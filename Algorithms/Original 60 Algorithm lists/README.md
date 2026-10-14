@@ -4,7 +4,7 @@ The folder titled Final List Including Python Code and Pseudocode contains the d
 
 All programs were written in a consistent programming style to minimise stylistic variation across tasks. Recursion was avoided except in cases where the task specification explicitly required it.
 
-In situations where loop termination was necessary, a controlled error‑based exit mechanism was used. Specifically, a flag variable was set to True at the start of iteration, and if an exception occurred—such as a ValueError triggered by an out‑of‑bounds list access; the flag was set to False, causing the loop to terminate via a try–except structure. This approach ensured predictable loop behaviour across all implementations.
+In situations where loop termination was necessary, a controlled error‑based exit mechanism was used. Specifically, a flag variable was set to True at the start of iteration, and if an exception occurred—such as a ValueError triggered by an out of bounds list access; the flag was set to False, causing the loop to terminate via a try except structure. This approach ensured predictable loop behaviour across all implementations.
 
 The pseudocode used in this study was generated with reference to the guidance provided in Cambridge Assessment International Education (2024), specifically the 2026 pseudocode guide for teachers [PDF]. This document served as the baseline standard for structural conventions and formatting. Custom pseudocode rules were then implemented, as detailed in the file Cambridge Style Pseudocode Grammer - AJ_24038155 Dialect v1.0, to enhance readability and to support the development of a compiler capable of producing Abstract Syntax Trees (ASTs) and Control Flow Diagrams (CFDs).
 
