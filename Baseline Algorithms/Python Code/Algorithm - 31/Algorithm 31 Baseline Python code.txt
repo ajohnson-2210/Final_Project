@@ -1,0 +1,376 @@
+Develop a co-reference resolution system to identify relationships between Pronouns and Nouns
+
+text = "John gave his dog a bath because they were dirty. Sarah told him to use warm water. Then she asked him to clean his car as he is dirty"
+
+# -----------------------------------------
+# PRONOUN DEFINITIONS (gender, role)
+# ---------------------------------------
+pronouns = {
+    "he": ("male", "subject"),
+    "him": ("male", "object"),
+    "his": ("male", "possessive"),
+    "she": ("female", "subject"),
+    "her": ("female", "object"),
+    "they": ("plural", "subject"),
+    "them": ("plural", "object"),
+    "their": ("plural", "possessive")
+}
+
+# ---------------------------------------
+# NAME LISTS
+# ---------------------------------------
+male_names = ["john", "peter", "michael", "david"]
+female_names = ["sarah", "mary", "anna", "julia"]
+
+# ---------------------------------------
+# COMMON NOUNS
+# ---------------------------------------
+common_nouns = ["dog", "cat", "car", "bike", "boat", "ship", "motorbike"]
+
+# ---------------------------------------
+# ANIMACY CATEGORIES
+# ---------------------------------------
+animate_nouns = ["dog", "cat", "man", "woman", "boy", "girl"]
+anthropomorphic_nouns = ["car", "bike", "boat", "ship", "motorbike"]
+
+# ---------------------------------------
+# PLURAL EXCEPTIONS
+# ---------------------------------------
+plural_exceptions = ["children", "people", "men", "women"]
+
+# ---------------------------------------
+# TOKENISE
+# ---------------------------------------
+def tokenise(text):
+    return text.lower().replace(".", "").split()
+
+words = tokenise(text)
+
+# ---------------------------------------
+# IDENTIFY NOUN CANDIDATES
+# nouns = (word, index, gender, kind, animacy, number)
+# ---------------------------------------
+nouns = []
+
+i = 0
+loop = True
+while loop:
+    try:
+        w = words[i]
+        found = False
+        number = "singular"
+
+        # plural exceptions
+        e = 0
+        e_loop = True
+        while e_loop:
+            try:
+                if w == plural_exceptions[e]:
+                    number = "plural"
+                    break
+                e += 1
+            except:
+                e_loop = False
+
+        # plural by 's'
+        if number == "singular":
+            if len(w) > 1 and w.endswith("s"):
+                number = "plural"
+
+        # male names
+        m = 0
+        m_loop = True
+        while m_loop:
+            try:
+                if w == male_names[m]:
+                    nouns.append((w, i, "male", "name", "animate", number))
+                    found = True
+                    m_loop = False
+                m += 1
+            except:
+                m_loop = False
+
+        # female names
+        if not found:
+            f = 0
+            f_loop = True
+            while f_loop:
+                try:
+                    if w == female_names[f]:
+                        nouns.append((w, i, "female", "name", "animate", number))
+                        found = True
+                        f_loop = False
+                    f += 1
+                except:
+                    f_loop = False
+
+        # common nouns
+        if not found:
+            c = 0
+            c_loop = True
+            while c_loop:
+                try:
+                    if w == common_nouns[c]:
+
+                        animacy = "inanimate"
+
+                        # animate?
+                        a = 0
+                        a_loop = True
+                        while a_loop:
+                            try:
+                                if w == animate_nouns[a]:
+                                    animacy = "animate"
+                                    a_loop = False
+                                a += 1
+                            except:
+                                a_loop = False
+
+                        # anthropomorphic?
+                        h = 0
+                        h_loop = True
+                        while h_loop:
+                            try:
+                                if w == anthropomorphic_nouns[h]:
+                                    animacy = "anthro"
+                                    h_loop = False
+                                h += 1
+                            except:
+                                h_loop = False
+
+                        nouns.append((w, i, "unknown", "noun", animacy, number))
+                        found = True
+                        c_loop = False
+
+                    c += 1
+                except:
+                    c_loop = False
+
+        i += 1
+    except:
+        loop = False
+
+# ---------------------------------------
+# POSSESSIVE PERSONIFICATION RULE
+# ---------------------------------------
+i = 0
+loop = True
+while loop:
+    try:
+        if words[i] == "his" or words[i] == "her":
+            noun_word = words[i + 1]
+
+            n = 0
+            n_loop = True
+            while n_loop:
+                try:
+                    w, idx, g, kind, anim, number = nouns[n]
+                    if w == noun_word:
+                        new_gender = "male"
+                        if words[i] == "her":
+                            new_gender = "female"
+                        nouns[n] = (w, idx, new_gender, kind, "animate", number)
+                    n += 1
+                except:
+                    n_loop = False
+
+        i += 1
+    except:
+        loop = False
+
+# ---------------------------------------
+# RESOLVE PRONOUNS → NOUNS
+# ---------------------------------------
+corefs = []
+
+i = 0
+loop = True
+while loop:
+    try:
+        w = words[i]
+
+        # check pronoun
+        keys = list(pronouns.keys())
+        p = 0
+        p_loop = True
+        is_pronoun = False
+        gender = None
+        role = None
+
+        while p_loop:
+            try:
+                if w == keys[p]:
+                    is_pronoun = True
+                    gender, role = pronouns[w]
+                    p_loop = False
+                p += 1
+            except:
+                p_loop = False
+
+        if is_pronoun:
+            best_noun = None
+            best_dist = 9999
+
+            # ---------------------------------------
+            # PLURAL PRONOUNS
+            # ---------------------------------------
+            if gender == "plural":
+                n = 0
+                n_loop = True
+                while n_loop:
+                    try:
+                        noun_word, noun_idx, noun_gender, noun_kind, animacy, number = nouns[n]
+
+                        if noun_idx < i and number == "plural":
+                            dist = i - noun_idx
+                            if dist < best_dist:
+                                best_dist = dist
+                                best_noun = noun_word
+
+                        n += 1
+                    except:
+                        n_loop = False
+
+                # FALLBACK: plural group of singular nouns
+                if best_noun is None:
+                    group = []
+                    n = 0
+                    n_loop = True
+                    while n_loop:
+                        try:
+                            noun_word, noun_idx, noun_gender, noun_kind, animacy, number = nouns[n]
+                            if noun_idx < i and number == "singular":
+                                group.append((noun_word, noun_idx))
+                            n += 1
+                        except:
+                            n_loop = False
+
+                    if len(group) >= 2:
+                        nearest = None
+                        best_dist = 9999
+
+                        g = 0
+                        g_loop = True
+                        while g_loop:
+                            try:
+                                noun_word, noun_idx = group[g]
+                                dist = i - noun_idx
+                                if dist < best_dist:
+                                    best_dist = dist
+                                    nearest = noun_word
+                                g += 1
+                            except:
+                                g_loop = False
+
+                        best_noun = nearest
+
+            # ---------------------------------------
+            # SINGULAR PRONOUNS
+            # ---------------------------------------
+            else:
+
+                # SUBJECT PRONOUNS
+                if role == "subject":
+
+                    n = 0
+                    n_loop = True
+                    while n_loop:
+                        try:
+                            noun_word, noun_idx, noun_gender, noun_kind, animacy, number = nouns[n]
+
+                            if noun_idx < i and number == "singular":
+
+                                if gender == "male" and animacy == "animate":
+                                    dist = i - noun_idx
+                                    if dist < best_dist:
+                                        best_dist = dist
+                                        best_noun = noun_word
+
+                                if gender == "female" and (animacy == "animate" or animacy == "anthro"):
+                                    dist = i - noun_idx
+                                    if dist < best_dist:
+                                        best_dist = dist
+                                        best_noun = noun_word
+
+                            n += 1
+                        except:
+                            n_loop = False
+
+                # OBJECT / POSSESSIVE
+                else:
+                    n = 0
+                    n_loop = True
+                    while n_loop:
+                        try:
+                            noun_word, noun_idx, noun_gender, noun_kind, animacy, number = nouns[n]
+
+                            if noun_idx < i and noun_kind == "name" and number == "singular":
+                                if noun_gender == gender or noun_gender == "unknown":
+                                    dist = i - noun_idx
+                                    if dist < best_dist:
+                                        best_dist = dist
+                                        best_noun = noun_word
+
+                            n += 1
+                        except:
+                            n_loop = False
+
+                    if best_noun is None:
+                        best_dist = 9999
+                        n = 0
+                        n_loop = True
+                        while n_loop:
+                            try:
+                                noun_word, noun_idx, noun_gender, noun_kind, animacy, number = nouns[n]
+
+                                if noun_idx < i and animacy == "animate" and number == "singular":
+                                    dist = i - noun_idx
+                                    if dist < best_dist:
+                                        best_dist = dist
+                                        best_noun = noun_word
+
+                                n += 1
+                            except:
+                                n_loop = False
+
+            # record result
+            corefs.append((w, i, best_noun))
+
+            # DYNAMIC GENDER + ANIMACY UPDATE
+            n = 0
+            n_loop = True
+            while n_loop:
+                try:
+                    noun_word, noun_idx, noun_gender, noun_kind, animacy, number = nouns[n]
+
+                    if noun_word == best_noun:
+
+                        if noun_gender == "unknown":
+                            nouns[n] = (noun_word, noun_idx, gender, noun_kind, "animate", number)
+
+                        elif animacy == "anthro":
+                            nouns[n] = (noun_word, noun_idx, gender, noun_kind, "animate", number)
+
+                    n += 1
+                except:
+                    n_loop = False
+
+        i += 1
+    except:
+        loop = False
+
+# ---------------------------------------
+# PRINT RESULTS
+# ---------------------------------------
+print("Pronoun, Noun Co‑reference Resolution Results:\n")
+
+i = 0
+loop = True
+while loop:
+    try:
+        pronoun, pos, noun = corefs[i]
+        print(f"Pronoun '{pronoun}' at position {pos} → refers to '{noun}'")
+        i += 1
+    except:
+        loop = False
+

@@ -1,0 +1,37 @@
+Find the first non-repeating character in a string
+
+print(f"First Non Repeating Character In a String")
+def fnon_repeat(s):
+    chars = list(s)
+    counts = [0] * len(chars)
+
+    # -----------------------------------------
+    # PASS 1 - count occurrences manually
+    # -----------------------------------------
+    i = 0
+    while i < len(chars):
+        j = 0
+        while j < len(chars):
+            if chars[i] == chars[j]:
+                counts[i] += 1
+            j += 1
+        i += 1
+
+    # -----------------------------------------
+    # PASS 2 - find first character with count = 1
+    # -----------------------------------------
+    i = 0
+    while i < len(chars):
+        if counts[i] == 1:
+            return "String = " + s + " Result: " + chars[i]
+        i += 1
+
+    return "String = " + s + " Result: " + str(None)
+
+
+# -----------------------------------------
+# EXAMPLE USAGE
+# -----------------------------------------
+print(fnon_repeat("swiss"))
+print(fnon_repeat("aabbccd"))
+print(fnon_repeat("aabbcc"))

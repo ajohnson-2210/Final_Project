@@ -1,0 +1,176 @@
+Create an algorithm that updates inventory quantities after purchases and deliveries
+
+import random
+
+print("Inventory System\n")
+
+# ============================================
+# INVENTORY CLASS
+# ============================================
+
+class Inventory:
+
+    def __init__(self, items, qty):
+        self.items = items
+        self.qty = qty
+
+    # ------------------------------
+    # Display Method
+    # ------------------------------
+    def display(self):
+        print("Current Inventory:")
+        i = 0
+        while i < len(self.items):
+            print(self.items[i], "→", self.qty[i])
+            i += 1
+        print("\n")
+
+    # ------------------------------
+    # Getter Method
+    # ------------------------------
+    def get_quantity(self, item_name):
+        i = 0
+        while i < len(self.items):
+            if self.items[i] == item_name:
+                return self.qty[i]
+            i += 1
+        return None
+
+    # ------------------------------
+    # Setter Method
+    # ------------------------------
+    def set_quantity(self, item_name, new_qty):
+        i = 0
+        while i < len(self.items):
+            if self.items[i] == item_name:
+                self.qty[i] = new_qty
+            i += 1
+
+    # ------------------------------
+    # Remove Items With Zero Stock
+    # ------------------------------
+    def remove_zero_stock(self):
+
+        i = 0
+        while i < len(self.items):
+            if self.qty[i] == 0:
+                print(f"REMOVED: {self.items[i]} (stock reached zero)")
+                
+                # Remove item and quantity
+                j = i
+                while j < len(self.items) - 1:
+                    self.items[j] = self.items[j + 1]
+                    self.qty[j] = self.qty[j + 1]
+                    j += 1
+
+                # Remove last element
+                self.items.pop()
+                self.qty.pop()
+
+                # Do NOT increment i — list has shifted
+            else:
+                i += 1
+
+
+    # ------------------------------
+    # Update Purchases
+    # ------------------------------
+    def update_purchases(self, purchase_items, purchase_qty):
+        print("\nUpdating Inventory After Purchases...\nCustomers")
+
+        i = 0
+        while i < len(purchase_items):
+            item = purchase_items[i]
+            amount = purchase_qty[i]
+
+            j = 0
+            while j < len(self.items):
+                if self.items[j] == item:
+                    new_qty = self.qty[j] - amount
+                    if new_qty < 0:
+                        new_qty = 0
+                    self.qty[j] = new_qty
+                    print(f"Purchased: {amount} {item} → New Qty = {new_qty}")
+                j += 1
+            i += 1
+
+        print("\n")
+        self.display()
+        self.remove_zero_stock()
+
+    # ------------------------------
+    # Update Deliveries
+    # ------------------------------
+    def update_deliveries(self, delivery_items, delivery_qty):
+        print("\nUpdating Inventory After Deliveries...\nCompanies")
+
+        i = 0
+        while i < len(delivery_items):
+            item = delivery_items[i]
+            amount = delivery_qty[i]
+
+            j = 0
+            while j < len(self.items):
+                if self.items[j] == item:
+                    new_qty = self.qty[j] + amount
+                    self.qty[j] = new_qty
+                    print(f"Deliverered: {amount} {item} → New Qty = {new_qty}")
+                j += 1
+            i += 1
+        print("\n")
+        self.display()
+        self.remove_zero_stock()
+
+
+# ============================================
+# STEP 1: Generate Random Inventory
+# ============================================
+
+item_names = ["Apples", "Bananas", "Oranges", "Pears", "Grapes"]
+item_qty = []
+
+i = 0
+while i < len(item_names):
+    qty = random.randint(10, 100)
+    item_qty.append(qty)
+    i += 1
+
+inventory = Inventory(item_names, item_qty)
+
+print("Random Inventory Generated\n")
+
+# ============================================
+# STEP 2: Display Current Inventory
+# ============================================
+inventory.display()
+
+# ============================================
+# STEP 3: Generate Random Purchases
+# ============================================
+
+purchase_items = ["Apples", "Grapes"]
+purchase_qty = [random.randint(1, 10), random.randint(1, 10)]
+
+print("Random Purchases Generated:")
+i = 0
+while i < len(purchase_items):
+    print(purchase_items[i], "→", purchase_qty[i])
+    i += 1
+
+inventory.update_purchases(purchase_items, purchase_qty)
+
+# ============================================
+# STEP 4: Generate Random Deliveries
+# ============================================
+
+delivery_items = ["Bananas", "Oranges"]
+delivery_qty = [random.randint(5, 20), random.randint(5, 20)]
+
+print("Random Deliveries Generated:")
+i = 0
+while i < len(delivery_items):
+    print(delivery_items[i], "→", delivery_qty[i])
+    i += 1
+
+inventory.update_deliveries(delivery_items, delivery_qty)
+

@@ -1,0 +1,108 @@
+Create instructions for adding 2 matrices of equal size
+
+import random
+
+print("Steps to Add 2 Equally Sized Matrices.")
+# ============================
+# STEP 1: Choose matrix size
+# ============================
+
+rows = random.randint(2, 5)
+cols = random.randint(2, 5)
+
+print("STEP 1: Matrix size chosen:", rows, "rows x", cols, "columns\n")
+
+# ============================
+# STEP 2: Generate Matrix A
+# ============================
+
+print("STEP 2: Generating Matrix A...\n")
+
+A = []
+r = 0
+while r < rows:
+    row_list = []
+    c = 0
+    while c < cols:
+        if random.random() < 0.5:
+            num = random.randint(-10, 10)
+        else:
+            num = round(random.uniform(-10, 10), 2)
+        row_list.append(num)
+        c += 1
+    A.append(row_list)
+    r += 1
+
+print("Matrix A:\n")
+r = 0
+while r < rows:
+    print(A[r])
+    r += 1
+print("\n")
+
+# ============================
+# STEP 3: Generate Matrix B
+# ============================
+
+print("STEP 3: Generating Matrix B...\n")
+
+B = []
+r = 0
+while r < rows:
+    row_list = []
+    c = 0
+    while c < cols:
+        if random.random() < 0.5:
+            num = random.randint(-10, 10)
+        else:
+            num = round(random.uniform(-10, 10), 2)
+        row_list.append(num)
+        c += 1
+    B.append(row_list)
+    r += 1
+
+
+print("Matrix B:\n")
+r = 0
+while r < rows:
+    print(B[r])
+    r += 1
+print("\n")
+
+# ============================
+# STEP 4: Add matrices (rounded 2dp)
+# ============================
+
+print("STEP 4: Adding Matrix A and Matrix B...\n")
+
+Result = []
+r = 0
+print("Adding..")
+while r < rows:
+    row_list = []
+    c = 0
+    while c < cols:
+        sum_value = A[r][c] + B[r][c]
+        rounded_value = int(sum_value * 100) / 100.0
+
+        row_list.append(rounded_value)
+        
+        print(f"A[{r}][{c}] + B[{r}][{c}] → {A[r][c]} + {B[r][c]} =  {rounded_value}")
+        
+
+        c += 1
+    Result.append(row_list)
+    r += 1
+
+# ============================
+# STEP 5: Print all matrices
+# ============================
+
+print("\nSTEP 5: Final Matrix\n")
+
+print("\nA + B =")
+r = 0
+while r < rows:
+    print(Result[r])
+    r += 1
+

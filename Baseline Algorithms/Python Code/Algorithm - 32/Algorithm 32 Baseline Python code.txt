@@ -1,0 +1,836 @@
+Build a question answering system to answer user queries based on a given text
+
+
+def clean_text(t):
+    t = t.replace("’", "'")
+    t = t.replace("‘", "'")
+    t = t.replace("“", '"')
+    t = t.replace("”", '"')
+    t = t.replace("—", "-")
+    t = t.replace("–", "-")
+    t = t.replace("…", "...")
+    return t
+
+
+# ============================================================
+#  RAW TEXT (PASTE HERE)
+# ============================================================
+
+raw_text = "The Mole had been working very hard all the morning, spring-cleaning his little home. First with brooms, then with dusters; then on ladders and steps and chairs, with a brush and a pail of whitewash; till he had dust in his throat and eyes, and splashes of whitewash all over his black fur, and an overall spring-feeling in his air and heart. Spring was moving in the air above and in the earth below and around him, penetrating even his dark and lowly little house with its spirit of divine discontent and longing. It was small wonder, then, that he suddenly flung his brush on the floor, said 'Bother!' and 'O blow!' and also 'Hang spring-cleaning!' and bolted out of the house. He scraped and scratched and scrabbled and poked, working his little way up through the soft earth, till at last, pop! his nose came out into the sunlight, and he found himself rolling in the warm grass of a great meadow. 'This is fine!' he said to himself. 'This is better than whitewash!'. The sunshine struck hot on his fur, the soft breezes caressed his heated brow, and after the lonely very long time he had spent in his underground home, he felt his heart leap up with joy. He scrambled out of the hole, set off across the meadow, and wandered aimlessly towards the trees and the sparkling water in the distance. He had never seen a river before. It was a sleek, full-bodied animal, chasing and chuckling, gripping things with a gurgling voice, laughing and leaping. It was an otter, a badger, or a water-rat—though he did not know it at the time. He sat on the bank, fascinated by the sight, until he saw a dark hole in the opposite bank right above the water, with a comfortable-looking chair, and fishing poles sticking out. As he sat looking at it, a tiny, bright-eyed face appeared and vanished, then reappeared again. It was the Water Rat. The Rat looked at the Mole, and the Mole looked at the Rat. 'Hullo, Mole!' said the Water Rat. 'Hullo, Rat!' said the Mole. 'Would you like to come over?' enquired the Rat presently. 'Oh, it's all very well to say come over,' replied the Mole, who was a stranger to the river, and rather bewildered. The Rat stepped into a little boat which the Mole had not observed. It was painted blue outside and white within, and looked as neat as a new watch. He sculled across with easy, practiced strokes, and held out a paw as the Mole stepped in. 'It's a wonderful life!' said the Rat. 'There is nothing—absolutely nothing—half so much worth doing as simply messing about in boats.'"
+
+text = clean_text(raw_text)
+question = input("Enter your question:\n")
+
+
+# ============================================================
+#  BASIC TOKENISATION + SENTENCE SPLITTING
+# ============================================================
+
+def split_sentences(text):
+    temp = text.replace("?", ".").replace("!", ".")
+    parts = temp.split(".")
+    sentences = []
+    i = 0
+    loop = True
+    while loop:
+        try:
+            s = parts[i].strip()
+            if len(s) > 0:
+                sentences.append(s)
+            i += 1
+        except:
+            loop = False
+    return sentences
+
+sentences = split_sentences(text)
+
+def tokenise(text):
+    return text.lower().replace(".", "").replace(",", "").replace(";", "").replace(":", "").split()
+
+q_words = tokenise(question)
+
+stopwords = ["the","a","an","and","or","to","of","in","on","for","with","as","is","was","were",
+             "why","what","who","how","when","where","did","does","do","too","into","at","by","from"]
+
+
+# ============================================================
+#  DEV vs PROD TOGGLE
+# ============================================================
+
+USE_API = False   # True = production, False = auto-generate
+
+
+# ============================================================
+#  API STUBS (REPLACE IN PRODUCTION)
+# ============================================================
+
+def api_get_animals(): return ["mole","rat","otter","badger","water-rat"]
+def api_get_places(): return ["meadow","bank","river","house"]
+def api_get_verbs(): return ["scrambled","wandered","rolled","bolted"]
+def api_get_nouns(): return ["mole","river","meadow","boat","bank"]
+def api_get_whowords(): return ["mole","rat","badger","otter"]
+def api_get_whywords(): return ["because","since","as","therefore","so"]
+def api_get_whenwords(): return ["morning","spring","day","evening","night"]
+
+
+
+# ============================================================
+#  AUTO-GENERATION HELPERS
+# ============================================================
+
+all_words = []
+i = 0
+loop = True
+while loop:
+    try:
+        all_words.append(tokenise(text)[i])
+        i += 1
+    except:
+        loop = False
+
+
+def auto_generate_verbs():
+    verbs = []
+    i = 0
+    loop = True
+    while loop:
+        try:
+            w = all_words[i]
+            if w.endswith("ing") or w.endswith("ed"):
+                verbs.append(w)
+            i += 1
+        except:
+            loop = False
+    return verbs
+
+
+def auto_generate_nouns():
+    nouns = []
+    i = 0
+    loop = True
+    while loop:
+        try:
+            w = all_words[i]
+            if not w.endswith("ing") and not w.endswith("ed"):
+                nouns.append(w)
+            i += 1
+        except:
+            loop = False
+    return nouns
+
+
+def auto_generate_whowords():
+    who = []
+    raw_words = raw_text.replace(";", " ").replace(":", " ").split()
+    i = 0
+    loop = True
+    while loop:
+        try:
+            w = raw_words[i]
+            if len(w) > 0 and w[0].isupper():
+                lw = w.lower().replace(",", "").replace(".", "").replace("!", "").replace("?", "")
+                if lw not in ["i","he","she","they","it"]:
+                    who.append(lw)
+            i += 1
+        except:
+            loop = False
+    return who
+
+
+def auto_generate_whywords():
+    why = []
+    i = 0
+    loop = True
+    while loop:
+        try:
+            w = all_words[i]
+            if w in ["because","since","as","therefore","so","till","until"]:
+                why.append(w)
+            i += 1
+        except:
+            loop = False
+    return why
+
+
+def auto_generate_whenwords():
+    when = []
+    i = 0
+    loop = True
+    while loop:
+        try:
+            w = all_words[i]
+            if w in ["then","after","before","later","earlier","day","night","time","morning","evening","spring"]:
+                when.append(w)
+            i += 1
+        except:
+            loop = False
+    return when
+
+
+def auto_generate_places():
+    endings = []
+    i = 0
+    loop = True
+    while loop:
+        try:
+            w = all_words[i]
+            if w.endswith("valley") or w.endswith("land") or w.endswith("road") or w.endswith("house") or w.endswith("place") or w.endswith("meadow") or w.endswith("bank"):
+                j = 0
+                found = False
+                while j < len(w) and not found:
+                    if w[j:] in ["valley","land","road","house","place","meadow","bank"]:
+                        endings.append(w[j:])
+                        found = True
+                        break
+                    j += 1
+            i += 1
+        except:
+            loop = False
+
+    places = []
+    i = 0
+    loop = True
+    while loop:
+        try:
+            w = all_words[i]
+            j = 0
+            j_loop = True
+            while j_loop:
+                try:
+                    if w.endswith(endings[j]):
+                        places.append(w)
+                    j += 1
+                except:
+                    j_loop = False
+            i += 1
+        except:
+            loop = False
+
+    return places
+
+
+def auto_generate_animals():
+    animals = []
+
+    raw_words_clean = raw_text.replace(",", " , ").replace(".", " . ").replace(";", " ; ").replace(":", " : ").replace("!", " ! ").replace("?", " ? ")
+    raw_words_list = raw_words_clean.split()
+
+    def looks_like_animal(w):
+        w = w.lower()
+        if w.endswith("mole"): return True
+        if w.endswith("rat"): return True
+        if w.endswith("otter"): return True
+        if w.endswith("badger"): return True
+        if w == "animal": return True
+        return False
+
+    i = 0
+    loop = True
+    while loop:
+        try:
+            if raw_words_list[i].lower() == "was" and i > 0 and raw_words_list[i-1].lower() == "it":
+                if i+1 < len(raw_words_list):
+                    nxt = raw_words_list[i+1].lower()
+                    if looks_like_animal(nxt):
+                        animals.append(nxt)
+            i += 1
+        except:
+            loop = False
+
+    raw_words = raw_text.replace(";", " ").replace(":", " ").split()
+    i = 0
+    loop = True
+    while loop:
+        try:
+            w = raw_words[i]
+            if len(w) > 0 and w[0].isupper():
+                lw = w.lower().replace(",", "").replace(".", "").replace("!", "").replace("?", "")
+                if looks_like_animal(lw):
+                    animals.append(lw)
+            i += 1
+        except:
+            loop = False
+
+    i = 0
+    loop = True
+    while loop:
+        try:
+            w = all_words[i]
+            if looks_like_animal(w):
+                animals.append(w)
+            i += 1
+        except:
+            loop = False
+
+    unique = []
+    i = 0
+    loop = True
+    while loop:
+        try:
+            if animals[i] not in unique:
+                unique.append(animals[i])
+            i += 1
+        except:
+            loop = False
+
+    return unique
+
+
+# ============================================================
+#  CATEGORY REGISTRY
+# ============================================================
+
+CATEGORIES = {
+    "animals": {"api": api_get_animals, "auto": auto_generate_animals},
+    "places": {"api": api_get_places, "auto": auto_generate_places},
+    "verbs": {"api": api_get_verbs, "auto": auto_generate_verbs},
+    "nouns": {"api": api_get_nouns, "auto": auto_generate_nouns},
+    "who": {"api": api_get_whowords, "auto": auto_generate_whowords},
+    "why": {"api": api_get_whywords, "auto": auto_generate_whywords},
+    "when": {"api": api_get_whenwords, "auto": auto_generate_whenwords}
+}
+
+
+# ============================================================
+#  LOAD ALL LISTS (MANUAL LOOPS)
+# ============================================================
+
+LISTS = {}
+
+category_names = []
+keys = list(CATEGORIES.keys())
+i = 0
+loop = True
+while loop:
+    try:
+        category_names.append(keys[i])
+        i += 1
+    except:
+        loop = False
+
+i = 0
+loop = True
+while loop:
+    try:
+        name = category_names[i]
+        if USE_API:
+            LISTS[name] = CATEGORIES[name]["api"]()
+        else:
+            LISTS[name] = CATEGORIES[name]["auto"]()
+        i += 1
+    except:
+        loop = False
+
+
+# ============================================================
+#  SYNONYMS (SUFFIX-BASED)
+# ============================================================
+
+synonyms = []
+i = 0
+loop = True
+while loop:
+    try:
+        w = all_words[i]
+        if w.endswith("s") and len(w) > 1:
+            synonyms.append((w, w[:-1]))
+        if w.endswith("ed") and len(w) > 2:
+            synonyms.append((w, w[:-2]))
+        if w.endswith("ing") and len(w) > 3:
+            synonyms.append((w, w[:-3]))
+        i += 1
+    except:
+        loop = False
+
+def words_match(w1, w2):
+    if w1 == w2:
+        return True
+    i = 0
+    loop = True
+    while loop:
+        try:
+            a, b = synonyms[i]
+            if (w1 == a and w2 == b) or (w1 == b and w2 == a):
+                return True
+            i += 1
+        except:
+            loop = False
+    return False
+
+
+# ============================================================
+#  QUESTION TYPE + MAIN NOUN + VERBS
+# ============================================================
+
+question_type = "other"
+
+if len(q_words) > 0:
+    if q_words[0] == "where":
+        question_type = "where"
+    elif q_words[0] == "who":
+        question_type = "who"
+    elif q_words[0] == "why":
+        question_type = "why"
+    elif q_words[0] == "when":
+        question_type = "when"
+    elif q_words[0] == "what":
+        question_type = "what"
+    elif q_words[0] == "how":
+        question_type = "how"
+
+main_noun = ""
+i = 0
+loop = True
+while loop:
+    try:
+        w = q_words[i]
+        if w not in stopwords:
+            main_noun = w
+        i += 1
+    except:
+        loop = False
+
+question_verbs = []
+i = 0
+loop = True
+while loop:
+    try:
+        w = q_words[i]
+        if w.endswith("ing") or w.endswith("ed"):
+            question_verbs.append(w)
+        i += 1
+    except:
+        loop = False
+
+
+# ============================================================
+#  UNIVERSAL CATEGORY DETECTION
+# ============================================================
+
+detected_category = ""
+
+i = 0
+loop = True
+while loop:
+    try:
+        w = q_words[i]
+        j = 0
+        j_loop = True
+        while j_loop:
+            try:
+                cname = category_names[j]
+                if w == cname or w == cname[:-1]:
+                    detected_category = cname
+                j += 1
+            except:
+                j_loop = False
+        i += 1
+    except:
+        loop = False
+
+
+# ============================================================
+#  UNIVERSAL QUERIES
+# ============================================================
+
+if len(q_words) > 1 and q_words[0] == "how" and q_words[1] == "many" and detected_category != "":
+    lst = LISTS[detected_category]
+
+    count = 0
+    i = 0
+    loop = True
+    while loop:
+        try:
+            if lst[i] != "":
+                count += 1
+            i += 1
+        except:
+            loop = False
+
+    out = ""
+    i = 0
+    loop = True
+    while loop:
+        try:
+            out += lst[i] + " "
+            i += 1
+        except:
+            loop = False
+
+    print("\nQuestion:", question)
+    print("Answer:", str(count) + " " + detected_category + ": " + out.strip())
+    raise SystemExit
+
+if detected_category != "":
+    if len(q_words) >= 3 and q_words[0] == "are" and q_words[1] == "there":
+        lst = LISTS[detected_category]
+
+        if len(lst) > 0:
+            out = ""
+            i = 0
+            loop = True
+            while loop:
+                try:
+                    out += lst[i] + " "
+                    i += 1
+                except:
+                    loop = False
+
+            print("\nQuestion:", question)
+            print("Answer: Yes — " + out.strip())
+            raise SystemExit
+        else:
+            print("\nQuestion:", question)
+            print("Answer: No — there are no " + detected_category)
+            raise SystemExit
+
+if detected_category != "" and "list" in q_words:
+    lst = LISTS[detected_category]
+
+    out = ""
+    i = 0
+    loop = True
+    while loop:
+        try:
+            out += lst[i] + " "
+            i += 1
+        except:
+            loop = False
+
+    print("\nQuestion:", question)
+    print("Answer:", out.strip())
+    raise SystemExit
+
+
+# ============================================================
+#  SCORING ENGINE
+# ============================================================
+
+animals = LISTS["animals"]
+location_words = LISTS["places"]
+who_words = LISTS["who"]
+why_words = LISTS["why"]
+when_words = LISTS["when"]
+
+scores = []
+
+i = 0
+loop = True
+while loop:
+    try:
+        sent = sentences[i]
+        s_words = tokenise(sent)
+        score = 0
+
+        q = 0
+        q_loop = True
+        while q_loop:
+            try:
+                qw = q_words[q]
+                if qw not in stopwords:
+                    s = 0
+                    s_loop = True
+                    while s_loop:
+                        try:
+                            if words_match(s_words[s], qw):
+                                score += 1
+                            s += 1
+                        except:
+                            s_loop = False
+                q += 1
+            except:
+                q_loop = False
+
+        v = 0
+        v_loop = True
+        while v_loop:
+            try:
+                verb = question_verbs[v]
+                s = 0
+                s_loop = True
+                while s_loop:
+                    try:
+                        if words_match(s_words[s], verb):
+                            score += 4
+                        s += 1
+                    except:
+                        s_loop = False
+                v += 1
+            except:
+                v_loop = False
+
+        s = 0
+        s_loop = True
+        while s_loop:
+            try:
+                w = s_words[s]
+
+                if question_type == "where":
+                    j = 0
+                    j_loop = True
+                    while j_loop:
+                        try:
+                            if w == location_words[j]:
+                                score += 2
+                            j += 1
+                        except:
+                            j_loop = False
+
+                if question_type == "who":
+                    j = 0
+                    j_loop = True
+                    while j_loop:
+                        try:
+                            if w == who_words[j]:
+                                score += 2
+                            j += 1
+                        except:
+                            j_loop = False
+
+                if question_type == "why":
+                    j = 0
+                    j_loop = True
+                    while j_loop:
+                        try:
+                            if w == why_words[j]:
+                                score += 2
+                            j += 1
+                        except:
+                            j_loop = False
+
+                if question_type == "when":
+                    j = 0
+                    j_loop = True
+                    while j_loop:
+                        try:
+                            if w == when_words[j]:
+                                score += 2
+                            j += 1
+                        except:
+                            j_loop = False
+
+                if question_type == "what":
+                    if w == main_noun:
+                        score += 4
+                    if w == "for":
+                        score += 3
+                    if w == "were" or w == "there":
+                        score += 2
+                    if w == "used":
+                        score += 3
+
+                if len(q_words) > 0 and q_words[0] in ["did","does","do"]:
+                    subject = ""
+                    i2 = 1
+                    loop2 = True
+                    while loop2:
+                        try:
+                            if q_words[i2] not in stopwords:
+                                subject = q_words[i2]
+                                loop2 = False
+                            i2 += 1
+                        except:
+                            loop2 = False
+
+                    obj = ""
+                    i2 = 0
+                    loop2 = True
+                    while loop2:
+                        try:
+                            if q_words[i2] not in stopwords:
+                                obj = q_words[i2]
+                            i2 += 1
+                        except:
+                            loop2 = False
+
+                    s2 = 0
+                    loop2 = True
+                    while loop2:
+                        try:
+                            if s_words[s2] == subject:
+                                score += 3
+                            if s_words[s2] == obj:
+                                score += 4
+                            s2 += 1
+                        except:
+                            loop2 = False
+
+                    s2 = 0
+                    loop2 = True
+                    while loop2:
+                        try:
+                            if s_words[s2] in ["was","were","had","approached","contained","included"]:
+                                score += 2
+                            s2 += 1
+                        except:
+                            loop2 = False
+
+                s += 1
+            except:
+                s_loop = False
+
+        if i > 0:
+            prev_words = tokenise(sentences[i - 1])
+            q = 0
+            q_loop = True
+            while q_loop:
+                try:
+                    qw = q_words[q]
+                    if qw not in stopwords:
+                        p = 0
+                        p_loop = True
+                        while p_loop:
+                            try:
+                                if words_match(prev_words[p], qw):
+                                    score += 1
+                                p += 1
+                            except:
+                                p_loop = False
+                    q += 1
+                except:
+                    q_loop = False
+
+        if i < len(sentences) - 1:
+            next_words = tokenise(sentences[i + 1])
+            q = 0
+            q_loop = True
+            while q_loop:
+                try:
+                    qw = q_words[q]
+                    if qw not in stopwords:
+                        n2 = 0
+                        n2_loop = True
+                        while n2_loop:
+                            try:
+                                if words_match(next_words[n2], qw):
+                                    score += 1
+                                n2 += 1
+                            except:
+                                n2_loop = False
+                    q += 1
+                except:
+                    q_loop = False
+
+        scores.append((score, sent))
+        i += 1
+    except:
+        loop = False
+
+
+# ============================================================
+#  PICK BEST SENTENCE
+# ============================================================
+
+best_score = -1
+best_sentence = None
+i = 0
+loop = True
+while loop:
+    try:
+        sc, sent = scores[i]
+        if sc > best_score:
+            best_score = sc
+            best_sentence = sent
+        i += 1
+    except:
+        loop = False
+
+
+# ============================================================
+#  ANSWER REWRITING
+# ============================================================
+
+def rewrite_answer(sentence, question_type):
+    words = tokenise(sentence)
+
+    if len(words) > 0:
+        if words[0] == "because":
+            words = words[1:]
+
+    if question_type == "where":
+        i = 0
+        loop = True
+        while loop:
+            try:
+                if words[i] == "at":
+                    words[i] = "in"
+                i += 1
+            except:
+                loop = False
+
+    if question_type == "why":
+        i = 0
+        loop = True
+        start = 0
+        while loop:
+            try:
+                if words[i] == "because":
+                    start = i
+                i += 1
+            except:
+                loop = False
+        words = words[start:]
+
+    if question_type == "who":
+        if len(words) > 8:
+            new_words = []
+            j = 0
+            loop2 = True
+            while loop2:
+                try:
+                    if j < 8:
+                        new_words.append(words[j])
+                    j += 1
+                except:
+                    loop2 = False
+            words = new_words
+
+    if question_type == "what":
+        i = 0
+        loop = True
+        start = 0
+        found = False
+        while loop:
+            try:
+                if words[i] == "for":
+                    start = i
+                    found = True
+                i += 1
+            except:
+                loop = False
+        if found:
+            new_words = []
+            j = start
+            loop2 = True
+            while loop2:
+                try:
+                    new_words.append(words[j])
+                    j += 1
+                except:
+                    loop2 = False
+            words = new_words
+
+    rewritten = ""
+    i = 0
+    loop = True
+    while loop:
+        try:
+            rewritten += words[i] + " "
+            i += 1
+        except:
+            loop = False
+
+    return rewritten.strip()
+
+
+# ============================================================
+#  FINAL ANSWER
+# ============================================================
+
+answer = "I cannot answer that from the given text."
+if best_sentence is not None and best_score > 0:
+    answer = rewrite_answer(best_sentence, question_type)
+
+print("\nQuestion:", question)
+print("Answer:", answer)
+

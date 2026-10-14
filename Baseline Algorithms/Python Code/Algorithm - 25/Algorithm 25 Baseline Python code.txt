@@ -1,0 +1,70 @@
+Find the length of the longest substring without repeating characters into a given string
+
+sentence = "this is a sentence made up of"
+startindex = 0
+substrlen = 0
+offset = 0
+sentencelist = list(sentence)
+substrlist = []
+substring = ""
+
+loop = True
+while loop:
+    offset += 1
+    substring = sentencelist[startindex:offset]
+    substrlist.append(substring)
+    
+    if offset >= len(sentencelist):
+        startindex += 1
+        offset = startindex
+        if startindex >= len(sentencelist):
+            startindex = 0
+            substrlen = 0
+            offset = 0
+            loop = False
+
+listindex = 0
+loop = True
+while loop:
+    excl = set()
+    duplicate = False
+
+    for ch in substrlist[listindex]:
+        if ch in excl:
+            duplicate = True
+            break
+        excl.add(ch)
+        
+    if duplicate:
+        substrlist.pop(listindex)
+    else:
+        listindex += 1
+
+    if listindex >= len(substrlist):
+        loop = False
+
+loop = True
+index = 0
+maxstrings = []
+maxlength = 0
+
+while loop:
+    try:
+        current = substrlist[index]
+        currentlen = len(current)
+
+        if currentlen > maxlength:
+            maxlength = currentlen
+             = [current]
+
+        elif currentlen == maxlength:
+            maxstrings.append(current)
+
+        index += 1
+
+    except:
+        loop = False
+
+print("The Longest Substrings Without Duplicate Characters Are:")
+print(["".join(s) for s in maxstrings])
+

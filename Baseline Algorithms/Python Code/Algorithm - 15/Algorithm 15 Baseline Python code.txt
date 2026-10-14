@@ -1,0 +1,10 @@
+Find the second largest in a list
+
+numlist = [6,7,9,4,66,8,34,5,2]
+print(numlist)
+n = len(numlist) - 1
+for i in range(n):
+    for j in range(n - i):
+        if numlist[j] > numlist[j + 1]:
+            numlist[j], numlist[j + 1] = numlist[j + 1], numlist[j]
+print(f"The Second highest number in the list = {numlist[-2]}")

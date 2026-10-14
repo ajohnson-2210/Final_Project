@@ -1,0 +1,45 @@
+Find GCD of 2 numbers using Euclidean algorithm
+
+
+firstNum = 0
+secondNum = 0
+errorString = "That's Not a Valid Number, Please Try Again!"
+loop = True
+
+while loop == True:
+    firstNum = input("Enter First Number: ")
+    try:
+        firstNum = int(firstNum)
+        if firstNum < 0:
+            firstNum = abs(firstNum)
+        loop = False
+    except:
+        print(errorString)
+
+loop = True       
+while loop == True:
+    secondNum = input("Enter Second Number: ")
+    try:
+        secondNum = int(secondNum)
+        if secondNum < 0:
+            secondNum = abs(secondNum)
+        loop = False
+    except:
+        print(errorString)
+
+def gcd(first, second):
+    remainder = first % second
+    while remainder != 0:
+        first = second
+        second = remainder
+        remainder = first % second
+    return second
+
+if firstNum > secondNum:
+    a = firstNum 
+    b = secondNum 
+else:
+    a = secondNum
+    b = firstNum 
+
+print("GCD =", gcd(a, b))

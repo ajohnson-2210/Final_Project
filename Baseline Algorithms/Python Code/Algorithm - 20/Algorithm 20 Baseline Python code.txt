@@ -1,0 +1,24 @@
+Determine all divisors in a given integer
+
+numvar = 0
+givenNum = 0
+numlist = []
+loop = True
+while loop == True:
+    givenNum = input("Enter Number: ")
+    try:
+        givenNum = int(givenNum)
+        loop = False
+    except:
+        print(f"That's Not a Valid Number, Please Try Again!")
+while numvar <= givenNum:
+    numvar +=1
+    if givenNum % numvar == 0:
+        numlist.append(numvar)
+
+while loop == False:
+    try:
+        x = numlist.pop(0)
+        print(f"{x} is a Divisor of {givenNum}")
+    except:
+        quit()

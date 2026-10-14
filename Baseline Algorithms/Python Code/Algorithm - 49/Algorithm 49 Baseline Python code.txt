@@ -1,0 +1,157 @@
+Create a pathfinding solution that guides a user through a maze using graph traversal.
+
+import random
+
+print("Auto Maze Generator and BFS Solver\n")
+
+# ============================================
+# SHUFFLE DIRECTIONS
+# ============================================
+
+def shuffle_dirs(dirs):
+    for i in range(len(dirs)):
+        j = random.randint(0, len(dirs)-1)
+        dirs[i], dirs[j] = dirs[j], dirs[i]
+
+
+# ============================================
+# DFS MAZE CARVING (STEP SIZE = 2)
+# ============================================
+
+def carve_maze(maze, rows, cols):
+    stack = []
+
+    r, c = 1, 1
+    maze[r][c] = " "
+
+    stack.append((r, c))
+
+    while stack:
+        r, c = stack[-1]
+
+        dirs = [(0,2), (0,-2), (2,0), (-2,0)]
+        shuffle_dirs(dirs)
+
+        carved = False
+
+        for dr, dc in dirs:
+            nr = r + dr
+            nc = c + dc
+
+            if 1 <= nr < rows-1 and 1 <= nc < cols-1:
+                if maze[nr][nc] == "▓":
+                    maze[r + dr//2][c + dc//2] = " "
+                    maze[nr][nc] = " "
+                    stack.append((nr, nc))
+                    carved = True
+                    break
+
+        if not carved:
+            stack.pop()
+
+
+# ============================================
+# BFS SOLVER
+# ============================================
+
+def solve_maze_bfs(maze, rows, cols):
+    start = end = None
+
+    for r in range(rows):
+        for c in range(cols):
+            if maze[r][c] == "S":
+                start = (r, c)
+            elif maze[r][c] == "E":
+                end = (r, c)
+
+    queue = [start]
+    visited = {start: None}
+
+    i = 0
+    while i < len(queue):
+        r, c = queue[i]
+
+        if (r, c) == end:
+            break
+
+        for dr, dc in [(1,0), (-1,0), (0,1), (0,-1)]:
+            nr = r + dr
+            nc = c + dc
+
+            if 0 <= nr < rows and 0 <= nc < cols:
+                if maze[nr][nc] != "▓" and (nr, nc) not in visited:
+                    visited[(nr, nc)] = (r, c)
+                    queue.append((nr, nc))
+
+        i += 1
+
+    # Reconstruct path
+    path = []
+    node = end
+    while node is not None:
+        path.insert(0, node)
+        node = visited.get(node)
+
+    return path
+
+
+# ============================================
+# MARK FINAL PATH
+# ============================================
+
+def mark_path(maze, path):
+    for r, c in path:
+        if maze[r][c] not in ("S", "E"):
+            maze[r][c] = "•"
+
+
+# ============================================
+# DISPLAY MAZE
+# ============================================
+
+def display_maze(maze):
+    for row in maze:
+        print("".join(row))
+
+
+# ============================================
+# PUBLIC FUNCTION: create_grid(rows, cols)
+# ============================================
+
+def create_grid(rows, cols):
+
+    # Carving grid must be odd
+    carve_rows = rows if rows % 2 == 1 else rows - 1
+    carve_cols = cols if cols % 2 == 1 else cols - 1
+
+    # Build full maze
+    maze = [["▓" for _ in range(cols)] for _ in range(rows)]
+
+    # Build carving grid
+    carve = [["▓" for _ in range(carve_cols)] for _ in range(carve_rows)]
+
+    # Carve perfect maze
+    carve_maze(carve, carve_rows, carve_cols)
+
+    # Copy carved region into full maze
+    for r in range(carve_rows):
+        for c in range(carve_cols):
+            maze[r][c] = carve[r][c]
+
+    # Ensure S and E are placed on carved cells
+    maze[1][1] = "S"
+    maze[carve_rows-2][carve_cols-2] = "E"
+
+    # Solve with BFS
+    path = solve_maze_bfs(maze, rows, cols)
+
+    # Mark final path
+    mark_path(maze, path)
+
+    # Display
+    display_maze(maze)
+
+    return maze
+
+
+create_grid(11, 20)

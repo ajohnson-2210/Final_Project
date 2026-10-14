@@ -1,0 +1,12 @@
+Remove punctuation from a string
+
+import string
+
+string1 = "This /_@!^*%<>is &*;:'a sentence, that has punctuation!"
+string2 = list(string1)
+
+x = ["".join(char for char in s if char not in string.punctuation) for s in string2]
+
+final = "".join(x)
+print(final)
+

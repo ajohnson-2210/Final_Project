@@ -1,0 +1,135 @@
+Develop a process for multiplying 2 matrices
+
+
+import random
+
+print("Steps to Multiply 2 Matrices.")
+
+# ============================
+# STEP 1: Choose matrix sizes
+# ============================
+
+# A is rowsA x colsA
+# B is colsA x colsB   (so multiplication is valid)
+
+rowsA = random.randint(2, 4)
+colsA = random.randint(2, 4)
+colsB = random.randint(2, 4)
+
+print("STEP 1: Matrix sizes chosen:")
+print("Matrix A:", rowsA, "x", colsA)
+print("Matrix B:", colsA, "x", colsB, "\n")
+
+# ============================
+# STEP 2: Generate Matrix A
+# ============================
+
+print("STEP 2: Generating Matrix A...\n")
+
+A = []
+r = 0
+while r < rowsA:
+    row_list = []
+    c = 0
+    while c < colsA:
+        if random.random() < 0.5:
+            num = random.randint(-10, 10)
+        else:
+            num = round(random.uniform(-10, 10), 2)
+        row_list.append(num)
+        c += 1
+    A.append(row_list)
+    r += 1
+
+print("Matrix A:\n")
+r = 0
+while r < rowsA:
+    print(A[r])
+    r += 1
+print("\n")
+
+# ============================
+# STEP 3: Generate Matrix B
+# ============================
+
+print("STEP 3: Generating Matrix B...\n")
+
+B = []
+r = 0
+while r < colsA:
+    row_list = []
+    c = 0
+    while c < colsB:
+        if random.random() < 0.5:
+            num = random.randint(-10, 10)
+        else:
+            num = round(random.uniform(-10, 10), 2)
+        row_list.append(num)
+        c += 1
+    B.append(row_list)
+    r += 1
+
+print("Matrix B:\n")
+r = 0
+while r < colsA:
+    print(B[r])
+    r += 1
+print("\n")
+
+# ============================
+# STEP 4: Multiply matrices
+# ============================
+
+print("STEP 4: Multiplying Matrix A and Matrix B...\n")
+print("Multiplying...\n")
+
+# Result will be rowsA x colsB
+Result = []
+
+r = 0
+while r < rowsA:
+    row_list = []
+    c = 0
+    while c < colsB:
+
+        # Compute dot product of A row r and B column c
+        k = 0
+        running_sum = 0
+        print(f"Element Result[{r}][{c}]:")
+
+        while k < colsA:
+            product = A[r][k] * B[k][c]
+            rounded_product = int(product * 100) / 100.0
+            running_sum += rounded_product
+
+            print(
+                f"  A[{r}][{k}] * B[{k}][{c}] → "
+                f"{A[r][k]} * {B[k][c]} = {rounded_product}"
+            )
+
+            k += 1
+
+        # Final rounded value
+        final_value = int(running_sum * 100) / 100.0
+        row_list.append(final_value)
+
+        print(f"  Sum for Result[{r}][{c}] = {final_value}\n")
+
+        c += 1
+
+    Result.append(row_list)
+    r += 1
+
+# ============================
+# STEP 5: Print final matrix
+# ============================
+
+print("\nSTEP 5: Final Matrix\n")
+
+print("A × B =")
+r = 0
+while r < rowsA:
+    print(Result[r])
+    r += 1
+
+

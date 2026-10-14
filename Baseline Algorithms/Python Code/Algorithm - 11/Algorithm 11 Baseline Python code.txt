@@ -1,0 +1,16 @@
+Given a list of IP addresses that accessed a server today remove all duplicates and return only the unique addresses
+ 
+iplist = ["192.168.1.15", "10.0.0.5","172.16.254.1", "192.168.1.15", "203.0.113.45", "8.8.8.8", "172.16.254.1", "198.51.100.12", "10.0.0.5", "192.168.0.100", "172.16.1.10", "10.0.0.5", "203.0.113.45", "192.168.1.15", "8.8.4.4", "172.16.254.1", "192.168.0.254", "10.0.0.12", "192.168.1.100", "8.8.8.8"]
+uniqueIplist = []
+flag = True
+while flag:
+    try:
+        ip = iplist.pop(0)
+        if ip not in uniqueIplist:
+            uniqueIplist.append(ip)
+    except:
+        flag = False
+
+print(f"Unique IP Addresses Are:")
+for x in range(len(uniqueIplist)):
+    print(uniqueIplist[x])

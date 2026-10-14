@@ -1,0 +1,71 @@
+Rotate a 2D matrix 90 degrees clockwise in place
+
+matrix = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+n = len(matrix)
+
+print("Matrix Before Rotation:")
+row = 0
+loop = True
+while loop:
+    try:
+        print(matrix[row])
+        row += 1
+    except:
+        loop = False
+
+row = 0
+loop = True
+
+while loop:
+    col = row + 1
+    innerloop = True
+
+    while innerloop:
+        try:
+            temp = matrix[row][col]
+            matrix[row][col] = matrix[col][row]
+            matrix[col][row] = temp
+            col += 1
+        except:
+            innerloop = False
+
+    row += 1
+    if row >= n:
+        loop = False
+
+row = 0
+loop = True
+
+while loop:
+    left = 0
+    right = n - 1
+    innerloop = True
+
+    while innerloop:
+        if left >= right:
+            innerloop = False
+        else:
+            temp = matrix[row][left]
+            matrix[row][left] = matrix[row][right]
+            matrix[row][right] = temp
+            left += 1
+            right -= 1
+
+    row += 1
+    if row >= n:
+        loop = False
+
+print("\nMatrix After 90° Clockwise Rotation:")
+row = 0
+loop = True
+while loop:
+    try:
+        print(matrix[row])
+        row += 1
+    except:
+        loop = False

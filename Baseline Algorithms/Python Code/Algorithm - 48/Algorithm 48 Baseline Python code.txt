@@ -1,0 +1,57 @@
+Develop a recursive process that searches through nested folders to find a specific file type
+
+import os
+
+print("Recursive File Search System\n")
+
+# ============================================
+# FUNCTION: Recursive Search
+# ============================================
+
+def search_files_recursive(folder_path, file_extension, results):
+    print("Searching:", folder_path)
+
+    try:
+        items = os.listdir(folder_path)
+    except:
+        print("Cannot access:", folder_path)
+        return
+
+    i = 0
+    while i < len(items):
+        item = items[i]
+        full_path = os.path.join(folder_path, item)
+
+        # If it's a file
+        if os.path.isfile(full_path):
+            if item.endswith(file_extension):
+                print("FOUND:", full_path)
+                results.append(full_path)
+
+        # If it's a folder then recurse
+        elif os.path.isdir(full_path):
+            search_files_recursive(full_path, file_extension, results)
+
+        i += 1
+
+
+# ============================================
+# MAIN PROCESS
+# ============================================
+
+start_folder = "C:/example/start/path"   # Change to your folder
+target_extension = ".txt"                # Change to any file type
+
+found_files = []
+
+print("Starting recursive search...\n")
+search_files_recursive(start_folder, target_extension, found_files)
+
+print("\nSearch complete.\nFiles found:")
+i = 0
+while i < len(found_files):
+    print(found_files[i])
+    i += 1
+
+
+

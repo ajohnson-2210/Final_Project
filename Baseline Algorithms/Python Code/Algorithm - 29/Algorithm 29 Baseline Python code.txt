@@ -1,0 +1,90 @@
+Build a text classification model to categorise text into predefined categories
+
+trainingdata = {
+    "sports": [
+        "team wins match",
+        "player scores goal",
+        "championship game victory"
+    ],
+    "tech": [
+        "new smartphone released",
+        "software update improves performance",
+        "AI model breakthrough benchmark"
+    ],
+    "food": [
+        "fresh ingredients recipe",
+        "chef prepares meal",
+        "restaurant serves tasty dishes"
+    ]
+}
+
+def tokenise(text):
+    return text.lower().split()
+
+def classify(text):
+    words = tokenise(text)
+    bestcategory = None
+    bestscore = -1
+
+    categories = list(trainingdata.keys())
+    c_index = 0
+    loop = True
+
+    while loop:
+        try:
+            category = categories[c_index]
+            score = 0
+
+            s_index = 0
+            innerloop = True
+
+            while innerloop:
+                try:
+                    sentence = trainingdata[category][s_index]
+                    sentence_words = tokenise(sentence)
+
+                    w_index = 0
+                    wordloop = True
+
+                    while wordloop:
+                        try:
+                            if words[w_index] in sentence_words:
+                                score += 1
+                            w_index += 1
+                        except:
+                            wordloop = False
+
+                    s_index += 1
+                except:
+                    innerloop = False
+
+            # Track best category
+            if score > bestscore:
+                bestscore = score
+                bestcategory = category
+
+            c_index += 1
+        except:
+            loop = False
+
+    return bestcategory
+
+tests = [
+    "the team scored a goal",
+    "new processor released",
+    "chef cooks tasty meal",
+    "fish and chips are tasty"
+]
+
+print("Simple Text Classification:")
+index = 0
+loop = True
+
+while loop:
+    try:
+        text = tests[index]
+        result = classify(text)
+        print(f"'{text}' → {result}")
+        index += 1
+    except:
+        loop = False

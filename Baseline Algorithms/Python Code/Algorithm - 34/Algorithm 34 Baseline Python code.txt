@@ -1,0 +1,42 @@
+Find all elements that appear in 2 separate unsorted lists ensuring the result contains no duplicates 
+
+
+def common(a, b):
+    result = []
+    i = 0
+    # loop through first list
+    while i < len(a):
+        item = a[i]
+        # check if item is in second list
+        j = 0
+        found_in_b = False
+
+        while j < len(b):
+            if b[j] == item:
+                found_in_b = True
+                break
+            j += 1
+
+        # if found in b, ensure not already in result
+        if found_in_b:
+            k = 0
+            already_in_result = False
+
+            while k < len(result):
+                if result[k] == item:
+                    already_in_result = True
+                    break
+                k += 1
+
+            if not already_in_result:
+                result.append(item)
+
+        i += 1
+
+    return result
+
+firstlist = [5,8,6,3,6,9,7,0,2]
+secondlist =[2,4,3,1,7,9,7,3]
+
+print(f"{firstlist}\n{secondlist} \nCommon Elements: {common(firstlist, secondlist)}")
+

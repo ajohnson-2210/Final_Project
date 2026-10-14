@@ -1,0 +1,23 @@
+Split a sentence into individual words and store in a list
+
+import string
+string1 = "This is a sentence!"
+string2 = list(string1)
+x = ["".join(char for char in s if char not in string.punctuation) for s in string2]
+word = ""
+words = []
+flag = True
+delimiter = " "
+while flag:
+    try:
+        element = x.pop(0)
+        if element != delimiter:
+            word += element
+        else:
+            words.append(word)
+            word = ""
+    except:
+        words.append(word)
+        flag = False
+    
+print(words)

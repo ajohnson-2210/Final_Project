@@ -1,0 +1,16 @@
+Create a process that determines whether a number is even or odd
+
+
+givenNum = 0
+loop = True
+while loop == True:
+    givenNum = input("Enter Number: ")
+    try:
+        givenNum = int(givenNum)
+        loop = False
+    except:
+        print(f"That's Not a Valid Integer, Please Try Again!")
+if givenNum % 2 == 0:
+    print(f"{givenNum} is Even")
+else:
+    print(f"{givenNum} is Odd")

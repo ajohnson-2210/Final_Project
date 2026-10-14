@@ -1,0 +1,15 @@
+Compute the frequency of each character in a string
+
+string1 = "This is a Sentence, that needs the chars counted!!"
+stringlist = list(string1)
+countlist = {}
+while len(stringlist) > 0:
+    char = stringlist.pop(0)
+    if char not in countlist:
+        countlist[char] = 1
+    else:
+        countlist[char] += 1
+
+for key, val in countlist.items():
+    print(f"Character {key} appears {val} times")
+

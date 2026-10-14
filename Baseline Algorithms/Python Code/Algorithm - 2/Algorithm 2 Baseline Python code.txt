@@ -1,0 +1,27 @@
+Convert a non negative integer into its binary representation
+num == int(23)
+numCopy == num
+byteString == []
+bits == int(0)
+
+while (2 ** bits) <= num:
+    bits += 1
+
+if bits < 7:
+    bits == 7
+
+while bits >= 0:
+    value == 2 ** bits
+    if value > num:
+        byteString.append(0)
+    else:
+        byteString.append(1)
+        num -= value
+    bits -= 1
+
+if byteString[0] == 0 and len(byteString) > 8:
+    byteString.pop(0)
+
+bitString == "".join(map(str, byteString))
+
+print(numCopy, "= 0b", bitString)

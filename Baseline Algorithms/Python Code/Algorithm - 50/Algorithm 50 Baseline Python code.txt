@@ -1,0 +1,305 @@
+Develop an algorithm enabling autonomous drones to coordinate movement while avoiding collisions.
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation
+
+
+# ============================================================
+# CONFIG CLASS
+# ============================================================
+class Config:
+    SPACE_SIZE = 400
+    NUM_DRONES = 40
+    NUM_OBSTACLES = 15
+
+    MAX_SPEED = 2
+    NEIGHBOUR_RADIUS = 20
+    SEPARATION_RADIUS = 14
+
+    COHESION_WEIGHT = 0.02
+    ALIGNMENT_WEIGHT = 0.05
+    SEPARATION_WEIGHT = 0.45
+    GOAL_WEIGHT = 0.1
+
+    OBSTACLE_RADIUS = 8
+    OBSTACLE_REPULSION = 0.25
+    OBSTACLE_EDGE_MARGIN = 15
+
+    BOUNDARY_FORCE = 0.15
+    DT = 1.0
+
+    TARGET_RADIUS = 10.0
+
+
+# ============================================================
+# ENVIRONMENT CLASS
+# ============================================================
+class Environment:
+    def __init__(self, config: Config):
+        self.cfg = config
+
+    def random_point(self):
+        return np.array([
+            np.random.uniform(0, self.cfg.SPACE_SIZE),
+            np.random.uniform(0, self.cfg.SPACE_SIZE)
+        ], dtype=float)
+
+    def generate_safe_point(self, avoid_point, obstacles):
+        while True:
+            p = self.random_point()
+
+            if p[0] < 20 or p[0] > self.cfg.SPACE_SIZE - 20:
+                continue
+            if p[1] < 20 or p[1] > self.cfg.SPACE_SIZE - 20:
+                continue
+
+            too_close = False
+            for obs in obstacles:
+                if np.linalg.norm(p - obs) < self.cfg.OBSTACLE_RADIUS * 4:
+                    too_close = True
+                    break
+            if too_close:
+                continue
+
+            if np.linalg.norm(p - avoid_point) < 30:
+                continue
+
+            return p
+
+    def generate_obstacles(self, point_a, min_dist=20):
+        obstacles = []
+
+        while len(obstacles) < self.cfg.NUM_OBSTACLES:
+            obs = self.random_point()
+
+            if not (self.cfg.OBSTACLE_EDGE_MARGIN < obs[0] < self.cfg.SPACE_SIZE - self.cfg.OBSTACLE_EDGE_MARGIN):
+                continue
+            if not (self.cfg.OBSTACLE_EDGE_MARGIN < obs[1] < self.cfg.SPACE_SIZE - self.cfg.OBSTACLE_EDGE_MARGIN):
+                continue
+
+            if np.linalg.norm(obs - point_a) < min_dist:
+                continue
+
+            too_close = False
+            for o in obstacles:
+                if np.linalg.norm(obs - o) < self.cfg.OBSTACLE_RADIUS * 3:
+                    too_close = True
+                    break
+            if too_close:
+                continue
+
+            obstacles.append(obs)
+
+        return obstacles
+
+
+# ============================================================
+# TARGET POINT CLASS
+# ============================================================
+class TargetPoint:
+    def __init__(self, position, radius):
+        self.position = position.astype(float)
+        self.radius = radius
+
+    def reached(self, drone_positions):
+        distances = np.linalg.norm(drone_positions - self.position, axis=1)
+        return distances.min() < self.radius
+
+
+# ============================================================
+# DRONE CLASS
+# ============================================================
+class Drone:
+    def __init__(self, position, velocity, cfg: Config):
+        self.position = position.astype(float)
+        self.velocity = velocity.astype(float)
+        self.cfg = cfg
+
+    def update(self, acceleration):
+        self.velocity += acceleration * self.cfg.DT
+
+        speed = np.linalg.norm(self.velocity)
+        if speed > self.cfg.MAX_SPEED:
+            self.velocity = (self.velocity / speed) * self.cfg.MAX_SPEED
+
+        self.position += self.velocity * self.cfg.DT
+
+        for i in range(2):
+            if self.position[i] < 0:
+                self.position[i] = 0
+                self.velocity[i] += self.cfg.BOUNDARY_FORCE
+            elif self.position[i] > self.cfg.SPACE_SIZE:
+                self.position[i] = self.cfg.SPACE_SIZE
+                self.velocity[i] -= self.cfg.BOUNDARY_FORCE
+
+
+# ============================================================
+# SWARM CLASS
+# ============================================================
+class Swarm:
+    def __init__(self, num_drones, start_pos, cfg: Config):
+        self.cfg = cfg
+        self.drones = []
+        for _ in range(num_drones):
+            vel = (np.random.rand(2) - 0.5) * 2
+            self.drones.append(Drone(start_pos.copy(), vel, cfg))
+
+    def step(self, target: TargetPoint, obstacles):
+        positions = np.array([d.position for d in self.drones])
+        velocities = np.array([d.velocity for d in self.drones])
+
+        for i, drone in enumerate(self.drones):
+
+            if np.linalg.norm(drone.position - target.position) < target.radius:
+                acceleration = (target.position - drone.position) * self.cfg.GOAL_WEIGHT
+                drone.update(acceleration)
+                continue
+
+            diff = positions - drone.position
+            dist = np.linalg.norm(diff, axis=1)
+
+            neighbours_mask = (dist > 0) & (dist < self.cfg.NEIGHBOUR_RADIUS)
+            neighbours_idx = np.where(neighbours_mask)[0]
+
+            acceleration = np.zeros(2)
+
+            if len(neighbours_idx) > 0:
+                neighbour_positions = positions[neighbours_idx]
+                neighbour_velocities = velocities[neighbours_idx]
+
+                cohesion = (neighbour_positions.mean(axis=0) - drone.position) * self.cfg.COHESION_WEIGHT
+                alignment = (neighbour_velocities.mean(axis=0) - drone.velocity) * self.cfg.ALIGNMENT_WEIGHT
+
+                close_idx = np.where(dist < self.cfg.SEPARATION_RADIUS)[0]
+                separation = np.zeros(2)
+                if len(close_idx) > 0:
+                    separation = -(positions[close_idx] - drone.position).sum(axis=0) * self.cfg.SEPARATION_WEIGHT
+
+                acceleration += cohesion + alignment + separation
+
+            acceleration += (target.position - drone.position) * self.cfg.GOAL_WEIGHT
+
+            for obstacle in obstacles:
+                to_obs = drone.position - obstacle
+                dist_obs = np.linalg.norm(to_obs)
+
+                radial = to_obs / (dist_obs + 1e-6)
+                tangent = np.array([-radial[1], radial[0]])
+
+                dir_to_goal = target.position - drone.position
+                if np.dot(tangent, dir_to_goal) < 0:
+                    tangent = -tangent
+
+                HARD_LOCK_RADIUS = self.cfg.OBSTACLE_RADIUS * 3.0
+                SOFT_LOCK_RADIUS = self.cfg.OBSTACLE_RADIUS * 5.0
+                MIN_SAFE = self.cfg.OBSTACLE_RADIUS * 1.8
+
+                if dist_obs < MIN_SAFE:
+                    acceleration = radial * (self.cfg.OBSTACLE_REPULSION * 4.0)
+                    drone.velocity = -drone.velocity * 0.5
+                    continue
+
+                if dist_obs < HARD_LOCK_RADIUS:
+                    acceleration = tangent * (self.cfg.OBSTACLE_REPULSION * 2.0)
+                    continue
+
+                if dist_obs < SOFT_LOCK_RADIUS:
+                    avoid = (
+                        radial * (self.cfg.OBSTACLE_REPULSION * 0.4) +
+                        tangent * (self.cfg.OBSTACLE_REPULSION * 1.2)
+                    )
+                    acceleration += avoid
+
+            drone.update(acceleration)
+
+
+# ============================================================
+# MISSION CONTROLLER
+# ============================================================
+class MissionController:
+    def __init__(self, env: Environment, cfg: Config):
+        self.env = env
+        self.cfg = cfg
+
+        self.point_a = TargetPoint(env.random_point(), cfg.TARGET_RADIUS)
+        self.obstacles = env.generate_obstacles(self.point_a.position)
+        self.point_b = TargetPoint(env.generate_safe_point(self.point_a.position, self.obstacles), cfg.TARGET_RADIUS)
+
+    def update_targets(self, swarm_positions):
+        if self.point_b.reached(swarm_positions):
+            self.point_a = self.point_b
+            new_pos = self.env.generate_safe_point(self.point_a.position, self.obstacles)
+            self.point_b = TargetPoint(new_pos, self.cfg.TARGET_RADIUS)
+
+
+# ============================================================
+# VISUALISATION CLASS
+# ============================================================
+class Visualizer:
+    def __init__(self, mission: MissionController, swarm: Swarm, cfg: Config):
+        self.mission = mission
+        self.swarm = swarm
+        self.cfg = cfg
+
+        self.fig, self.ax = plt.subplots(figsize=(6, 6))
+        self.ax.set_xlim(0, cfg.SPACE_SIZE)
+        self.ax.set_ylim(0, cfg.SPACE_SIZE)
+
+        self.scat = self.ax.scatter([], [], s=20, c='blue')
+        self.point_a_marker = self.ax.scatter(mission.point_a.position[0], mission.point_a.position[1], c='green', s=80)
+        self.point_b_marker = self.ax.scatter(mission.point_b.position[0], mission.point_b.position[1], c='purple', s=80)
+
+        for obs in mission.obstacles:
+            circle = plt.Circle(obs, cfg.OBSTACLE_RADIUS, color='red')
+            self.ax.add_patch(circle)
+
+    def init(self):
+        self.scat.set_offsets(np.empty((0, 2)))
+        return self.scat, self.point_a_marker, self.point_b_marker
+
+    def update(self, frame):
+        self.swarm.step(self.mission.point_b, self.mission.obstacles)
+        positions = np.array([d.position for d in self.swarm.drones])
+        self.scat.set_offsets(positions)
+
+        self.mission.update_targets(positions)
+
+        self.point_a_marker.set_offsets(self.mission.point_a.position)
+        self.point_b_marker.set_offsets(self.mission.point_b.position)
+
+        return self.scat, self.point_a_marker, self.point_b_marker
+
+    def animate(self):
+        self.anim = FuncAnimation(
+            self.fig,
+            self.update,
+            init_func=self.init,
+            frames=2000,
+            interval=40,
+            blit=False
+        )
+        plt.show()
+
+
+
+
+# ============================================================
+# SIMULATION CLASS
+# ============================================================
+class Simulation:
+    def __init__(self):
+        self.cfg = Config()
+        self.env = Environment(self.cfg)
+        self.mission = MissionController(self.env, self.cfg)
+        self.swarm = Swarm(self.cfg.NUM_DRONES, self.mission.point_a.position, self.cfg)
+        self.visualizer = Visualizer(self.mission, self.swarm, self.cfg)
+
+    def run(self):
+        self.visualizer.animate()
+
+
+# ============================================================
+# RUN SIMULATION
+# ============================================================
+Simulation().run()
+

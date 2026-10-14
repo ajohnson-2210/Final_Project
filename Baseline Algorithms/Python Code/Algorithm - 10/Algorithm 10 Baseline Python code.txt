@@ -1,0 +1,32 @@
+Scan a given paragraph of text and count how many times each individual vowel appears
+
+vowel = ["a", "e", "i", "o", "u"]
+text = "This is a sentence that contains vowels"
+a, e, i, o, u = 0,0,0,0,0
+textlist = list(map(lambda x: x.lower(), text))
+
+for b in range(len(textlist)):
+    for j in range(len(vowel)):
+        if vowel[j] == textlist[b]:
+            if j == 0:
+                a += 1
+                break
+            elif j == 1:
+                e +=1
+                break
+            elif j == 2:
+                i += 1
+                break
+            elif j == 3:
+                o += 1
+                break
+            elif j == 4:
+                u += 1
+                break
+            
+
+print(f"The text contains the vowel a {a} times")
+print(f"The text contains the vowel e {e} times")
+print(f"The text contains the vowel i {i} times")
+print(f"The text contains the vowel o {o} times")
+print(f"The text contains the vowel u {u} times")

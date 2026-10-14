@@ -1,0 +1,75 @@
+Perform a level order traversal on a binary tree and return node values grouped by depth
+
+class Node:
+    def init(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+
+def levelOrderTraversal(root):
+    if root is None:
+        return []
+
+    depth = [root] 
+    results = []
+    loop = True
+
+    while loop:
+        level = []
+        nextdepth = []
+        index = 0
+
+        innerloop = True
+        while innerloop:
+            try:
+                node = depth[index]
+                level.append(node.value)
+
+                if node.left is not None:
+                    nextdepth.append(node.left)
+                if node.right is not None:
+                    nextdepth.append(node.right)
+
+                index += 1
+            except:
+                innerloop = False
+
+        results.append(level)
+        depth = nextdepth
+        
+        if len(depth) == 0:
+            loop = False
+
+    return results
+
+
+
+
+
+
+
+
+# #Example Tree
+#  #       1
+#  #      / \
+#  #    2   3
+#  #   / \
+#  # 4   5
+
+root = Node(1)
+root.left = Node(2)
+root.right = Node(3)
+root.left.left = Node(4)
+root.left.right = Node(5)
+
+print("Node Values Grouped by Depth")
+
+index = 0
+loop = True
+while loop:
+    try:
+        level = levelOrderTraversal(root)[index]
+        print(f"Level {index}: {level}")
+        index += 1
+    except:
+        loop = False
