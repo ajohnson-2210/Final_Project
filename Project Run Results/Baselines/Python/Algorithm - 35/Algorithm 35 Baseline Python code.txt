@@ -1,0 +1,116 @@
+Design a memory buffer that holds a fixed number of items. When it runs out of space it must discard the item that hasn't been accessed for the longest time.
+        
+import random
+
+class LRUBuffer:
+    def __init__(self, capacity):
+        self.capacity = capacity
+        self.items = []         # stored values
+        self.recent = []       # last-access timestamps
+        self.access_count = []  # NEW: number of times accessed
+        self.counter = 0        # global timestamp
+
+    # -----------------------------------------
+    # FIND INDEX OF ITEM
+    # -----------------------------------------
+    def find_index(self, value):
+        index = 0
+        for item in self.items:
+            if item == value:
+                return index
+            index += 1
+        return -1
+
+    # -----------------------------------------
+    # FIND LEAST RECENTLY USED INDEX
+    # -----------------------------------------
+    def find_lru_index(self):
+        lru_index = 0
+        lru_value = self.recent[0]
+
+        index = 0
+        for r in self.recent:
+            if r < lru_value:
+                lru_value = r
+                lru_index = index
+            index += 1
+
+        return lru_index
+
+    # -----------------------------------------
+    # ACCESS ROUTINE (updates recency + count)
+    # -----------------------------------------
+    def access(self, value):
+        index = self.find_index(value)
+        if index != -1:
+            self.counter += 1
+            self.recent[index] = self.counter
+
+            # increment access count
+            self.access_count[index] += 1
+
+            print("Accessed:", value, " - Access Count =", self.access_count[index])
+        else:
+            print("Access attempted but not found:", value)
+
+    # -----------------------------------------
+    # ADD ROUTINE (inserts or evicts)
+    # -----------------------------------------
+    def add(self, value):
+        index = self.find_index(value)
+
+        # If already exists, treat as access
+        if index != -1:
+            self.counter += 1
+            self.recent[index] = self.counter
+            self.access_count[index] += 1
+            print("Updated existing item:", value, "Access Count =", self.access_count[index])
+            return
+
+        # If space available, append
+        if len(self.items) < self.capacity:
+            self.items.append(value)
+            self.counter += 1
+            self.recent.append(self.counter)
+            self.access_count.append(1)
+            print("Added:", value, " -  Access Count = 1")
+            return
+
+        # Otherwise evict LRU
+        lru = self.find_lru_index()
+        evicted = self.items[lru]
+
+        self.items[lru] = value
+        self.counter += 1
+        self.recent[lru] = self.counter
+        self.access_count[lru] = 1
+
+        print("Evicted:", evicted, "-  Added:", value, "Access Count = 1")
+
+    # -----------------------------------------
+    # VIEW CONTENTS
+    # -----------------------------------------
+    def get_items(self):
+        return self.items
+
+buf = LRUBuffer(5)
+
+buf.add("A")
+buf.add("B")
+buf.add("C")
+buf.add("D")
+buf.add("E")
+
+pool = ["A", "B", "C", "D", "E", "F", "G"]
+
+for _ in range(10):
+    index = random.randint(0, len(pool) - 1)
+    value = pool[index]
+    buf.access(value)
+
+buf.add("F")
+buf.add("G")
+
+print("Final buffer:", buf.get_items())
+
+

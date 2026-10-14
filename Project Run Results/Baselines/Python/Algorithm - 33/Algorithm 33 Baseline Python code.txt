@@ -1,0 +1,41 @@
+Implement a method to find the exact square root of a non negative integer using binary search rounded down to the nearest integer without using built in math functions
+
+
+def int_sqrt(n):
+    if n < 2:
+        return n
+
+    left = 1
+    right = n // 2
+    ans = 1
+
+    while left <= right:
+        mid = (left + right) // 2
+        sq = mid * mid
+
+        if sq == n:
+            return mid
+        elif sq < n:
+            ans = mid
+            left = mid + 1
+        else:
+            right = mid - 1
+
+    return ans
+    
+integer = 0
+loop = True
+while loop == True:
+    try:
+        integer = input("Enter a Positive Integer to find the Square Root: ")
+        integer = int(integer)
+        if integer <= 0:
+            integer = 0
+            raise ValueError()
+        else:
+            loop = False
+    except:
+        print("That's Not a Valid Number, Please Try Again!")
+
+print(f"The Square Root of {integer} Rounded Down to the Nearest Integer = ", int_sqrt(integer))
+

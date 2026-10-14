@@ -1,0 +1,21 @@
+Given a square grid numbers $n x $n, calculate the sum of the numbers that lie on the main diagonal top left to bottom right
+
+import random
+rows = random.randint(3, 15)
+print(f"{rows} x {rows} Matrix")
+x, y = (rows, rows)
+matrix = ([[(random.randint(0, 99)) for i in range(y)] for j in range(x)])
+for t in range(rows):
+    print(matrix[t])
+
+total = 0
+counter = 0
+string = ""
+for a in range(rows):
+    total += matrix[counter][counter]
+    if string == "":
+        string += f"{matrix[counter][counter]} "
+    else:
+        string += f"+ {matrix[counter][counter]} "
+    counter += 1
+print(f"{string} = {total}")

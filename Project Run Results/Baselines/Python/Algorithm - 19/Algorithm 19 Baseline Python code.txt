@@ -1,0 +1,30 @@
+Swap 2 variables without using a third variable
+
+var1 = 3
+var2 = "tree"
+
+print(f"variable 1 = {var1}")
+print(f"variable 2 = {var2}")
+
+# If both are numbers ->  arithmetic swap
+if isinstance(var1, (int, float)) and isinstance(var2, (int, float)):
+    var1 = var1 + var2
+    var2 = var1 - var2
+    var1 = var1 - var2
+
+# If both are strings ->  concatenation swap
+elif isinstance(var1, str) and isinstance(var2, str):
+    var1 = var1 + var2
+    var2 = var1[:len(var1) - len(var2)]
+    var1 = var1[len(var2):]
+
+# Mixed types ->  convert var1 to string (your original behaviour)
+else:
+    var1 = str(var1)
+    var1 = var1 + var2
+    var2 = var1[:len(var1) - len(var2)]
+    var1 = var1[len(var2):]
+
+print(f"variable 1 = {var1}")
+print(f"variable 2 = {var2}") 
+

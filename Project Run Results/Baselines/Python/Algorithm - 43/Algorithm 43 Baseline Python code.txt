@@ -1,0 +1,105 @@
+Solve the Tower of Hanoi problem for N Discs
+
+ 
+print("Towers Of Hanoi")
+
+def display_board(pegs, n):
+    
+    level = n - 1
+    while level >= 0:
+        row = ""
+
+        # Peg A
+        if level < len(pegs["A"]):
+            row += f"  {pegs['A'][level]}  "
+        else:
+            row += "  |  "
+
+        # Peg B
+        if level < len(pegs["B"]):
+            row += f"  {pegs['B'][level]}  "
+        else:
+            row += "  |  "
+
+        # Peg C
+        if level < len(pegs["C"]):
+            row += f"  {pegs['C'][level]}  "
+        else:
+            row += "  |  "
+
+        print(row)
+        level -= 1
+
+    print("  A    B    C\n")
+
+
+def move_between(pegs, a, b, n):
+    # If peg a is empty, move from b to a
+    if len(pegs[a]) == 0:
+        disc = pegs[b].pop()
+        pegs[a].append(disc)
+        print(f"Move disc {disc} from {b} to {a}\n")
+
+    # If peg b is empty, move from a to b
+    elif len(pegs[b]) == 0:
+        disc = pegs[a].pop()
+        pegs[b].append(disc)
+        print(f"Move disc {disc} from {a} to {b}\n")
+
+    # Otherwise move the smaller disc legally
+    elif pegs[a][-1] < pegs[b][-1]:
+        disc = pegs[a].pop()
+        pegs[b].append(disc)
+        print(f"Move disc {disc} from {a} to {b}\n")
+    else:
+        disc = pegs[b].pop()
+        pegs[a].append(disc)
+        print(f"Move disc {disc} from {b} to {a}\n")
+
+    display_board(pegs, n)
+
+def hanoi(n, pegs):
+    A, B, C = "A", "B", "C"
+
+    # Even number of discs then swap target and auxiliary
+    if n % 2 == 0:
+        B, C = C, B
+
+    total_moves = (2 ** n) - 1
+
+    display_board(pegs, n)
+
+    move = 1
+    while move <= total_moves:
+        if move % 3 == 1:
+            move_between(pegs, A, C, n)
+        elif move % 3 == 2:
+            move_between(pegs, A, B, n)
+        else:
+            move_between(pegs, B, C, n)
+
+        move += 1
+    print("Solved!!")
+
+
+# ============================
+# MAIN PROGRAM FLOW
+# ============================
+loop = True
+while loop:
+    try:
+        N = int(input("Enter number of discs: "))
+        N = int(N)
+        print("Setting up..\n")
+        loop = False
+    except:
+        print(f"Than's Not a Valid Number, Please Try Again!!\n")
+
+pegs = {
+    "A": list(range(N, 0, -1)),
+    "B": [],
+    "C": []
+}
+
+hanoi(N, pegs)
+

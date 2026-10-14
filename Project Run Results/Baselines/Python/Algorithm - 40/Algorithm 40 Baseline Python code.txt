@@ -1,0 +1,115 @@
+Implement a queue using 2 stacks
+
+
+class Stack:
+    def __init__(self, name="Stack"):
+        self.items = []
+        self.name = name
+
+    def push(self, value):
+        self.items.append(value)
+        print(f"{self.name}: pushed {value}")
+
+    def pop(self):
+        if len(self.items) == 0:
+            print(f"{self.name}: pop attempted on empty stack")
+            return None
+        value = self.items.pop()
+        print(f"{self.name}: popped {value}")
+        return value
+
+    def is_empty(self):
+        return len(self.items) == 0
+
+    def peek(self):
+        if len(self.items) == 0:
+            return None
+        return self.items[len(self.items) - 1]
+
+    def display(self):
+        # Display in your required format
+        print(f"{self.name} {self.items}")
+
+
+class QueueUsingTwoStacks:
+    def __init__(self):
+        print("Queue created using two stacks\n")
+        self.in_stack = Stack("(Stack1)IN ")
+        self.out_stack = Stack("(Stack2)OUT ")
+
+    # -----------------------------------------
+    # ENQUEUE
+    # -----------------------------------------
+    def enqueue(self, value):
+        print(f"\nEnqueue: {value}")
+        self.in_stack.push(value)
+        self.display()
+
+    # -----------------------------------------
+    # DEQUEUE
+    # -----------------------------------------
+    def dequeue(self):
+        print("\nDequeue requested")
+
+        if self.out_stack.is_empty():
+            print("OUT is empty → transferring from IN")
+            while not self.in_stack.is_empty():
+                moved = self.in_stack.pop()
+                self.out_stack.push(moved)
+
+        if self.out_stack.is_empty():
+            print("Queue is empty — nothing to dequeue")
+            return None
+
+        value = self.out_stack.pop()
+        print(f"Dequeued: {value}")
+        self.display()
+        return value
+
+    # -----------------------------------------
+    # PEEK
+    # -----------------------------------------
+    def peek(self):
+        print("\nPeek requested")
+
+        if self.out_stack.is_empty():
+            while not self.in_stack.is_empty():
+                moved = self.in_stack.pop()
+                self.out_stack.push(moved)
+
+        value = self.out_stack.peek()
+        print(f"Front of queue: {value}")
+        self.display()
+        return value
+
+    # -----------------------------------------
+    # DISPLAY QUEUE (IN and OUT stacks)
+    # -----------------------------------------
+    def display(self):
+        print("\nQueue State:")
+        self.in_stack.display()
+        self.out_stack.display()
+        print("")
+
+
+# -----------------------------------------
+# EXAMPLE USAGE
+# -----------------------------------------
+q = QueueUsingTwoStacks()
+
+q.enqueue(10)
+q.enqueue(20)
+q.enqueue(30)
+
+q.dequeue()
+
+q.enqueue(40)
+q.enqueue(50)
+
+q.peek()
+
+q.dequeue()
+q.dequeue()
+q.dequeue()
+
+

@@ -1,0 +1,9 @@
+Sort a list of words into alphabetical order
+
+words = ["hello", "again", "similar", "simulate", "halo", "sibner"]
+n = len(words) - 1
+for i in range(n):
+    for j in range(n - i):
+        if words[j] > words[j + 1]:
+            words[j], words[j + 1] = words[j + 1], words[j]
+print(words)

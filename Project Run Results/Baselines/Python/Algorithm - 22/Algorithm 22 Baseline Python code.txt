@@ -1,0 +1,15 @@
+Design a process that computes the factorial of a given integer
+
+loop = True
+while loop == True:
+    givenNum = input("Enter Number: ")
+    try:
+        givenNum = int(givenNum)
+        loop = False
+    except:
+        print(f"That's Not an Integer, Please Try Again!")
+total = 1
+while givenNum > 0:
+    total *= givenNum
+    givenNum -= 1
+print(f"Factoral = {total}")

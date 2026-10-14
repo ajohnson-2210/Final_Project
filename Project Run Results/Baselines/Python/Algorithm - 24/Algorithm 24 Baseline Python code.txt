@@ -1,0 +1,36 @@
+Create a process that determines if a password has 8 characters 1 number and 1 uppercase letter
+
+password = ""
+num = False
+upper = False
+length = False
+passlist = []
+loop = True
+while loop == True:
+    password = input("Enter Password, it must be at least 8 Characters and contain at least 1 number and 1 uppercase letter : ")
+    try:
+        passlist = list(password)
+        if len(passlist) < 8:
+            raise Exception
+        else:
+            length = True
+        for x in passlist:
+            if x.isdigit():
+                num = True
+                break
+        for y in passlist:
+            if y.isupper():
+                upper = True
+                break
+        if length == True and num == True and upper == True:
+            print(f"Password Accepted!!")
+        else:
+            raise Exception
+        loop = False
+    except:
+        print(f"That's Not a Valid Password, Please Try Again!")
+        password = ""
+        num = False
+        upper = False
+        length = False
+

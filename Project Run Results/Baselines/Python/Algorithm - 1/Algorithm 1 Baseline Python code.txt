@@ -1,0 +1,21 @@
+Determine if 2 strings are anagrams of each other
+
+string = "1a23"
+string1 = "".join(char for char in string).lower()
+string = "45a6"
+string2 = "".join(char for char in string).lower()
+list1 = list(string1)
+list2 = list(string2)
+if (len(list1) == 0) or (len(list2) == 0) or (len(list1) != len(list2)):
+        print("string1 and string 2 are Not anagrams of each other")
+        quit()
+list1.sort()
+list2.sort()
+
+while len(list1) > 0:
+    x = list1.pop()
+    y = list2.pop()
+    if (x != y):
+        print("string 1 and string 2 are Not anagrams of each other")
+        quit()	
+print("string 1 and string 2 Are anagrams of each other")

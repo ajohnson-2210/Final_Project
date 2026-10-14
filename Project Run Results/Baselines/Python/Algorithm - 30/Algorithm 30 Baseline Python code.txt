@@ -1,0 +1,281 @@
+Create a topic modelling system to extract underlying topics from a large corpus
+
+corpus = [
+    "the team won the match and scored many goals",
+    "the player scored a hat trick in the game",
+    "the championship match ended in a victory",
+
+    "new smartphone released with powerful processor and fast performance",
+    "software update improves device performance and battery life",
+    "AI model achieves breakthrough in image recognition",
+
+    "fresh ingredients used in this recipe",
+    "the chef prepares a delicious meal at the restaurant",
+    "the restaurant serves tasty dishes and great food"
+]
+
+stopwords = ["the", "and", "in", "a", "at", "with", "this", "many"]
+
+def tokenise(text):
+    words = text.lower().split()
+    clean = []
+    i = 0
+    loop = True
+    while loop:
+        try:
+            if words[i] not in stopwords:
+                clean.append(words[i])
+            i += 1
+        except:
+            loop = False
+    return clean
+
+word_freq = {}
+co_occurrence = {}
+doc_tokens = []
+
+i = 0
+loop = True
+while loop:
+    try:
+        text = corpus[i]
+        words = tokenise(text)
+        doc_tokens.append(words)
+        
+        j = 0
+        innerloop = True
+        while innerloop:
+            try:
+                w = words[j]
+                if w not in word_freq:
+                    word_freq[w] = 0
+                word_freq[w] += 1
+                j += 1
+            except:
+                innerloop = False
+
+        j = 0
+        innerloop = True
+        while innerloop:
+            try:
+                w1 = words[j]
+                if w1 not in co_occurrence:
+                    co_occurrence[w1] = {}
+
+                k = 0
+                inner2 = True
+                while inner2:
+                    try:
+                        w2 = words[k]
+                        if w1 != w2:
+                            if w2 not in co_occurrence[w1]:
+                                co_occurrence[w1][w2] = 0
+                            co_occurrence[w1][w2] += 1
+                        k += 1
+                    except:
+                        inner2 = False
+
+                j += 1
+            except:
+                innerloop = False
+
+        i += 1
+    except:
+        loop = False
+
+items = list(word_freq.items())
+n = len(items)
+i = 0
+loop = True
+while loop:
+    if i >= n - 1:
+        loop = False
+    else:
+        j = 0
+        innerloop = True
+        while innerloop:
+            if j >= n - 1:
+                innerloop = False
+            else:
+                if items[j][1] < items[j + 1][1]:
+                    temp = items[j]
+                    items[j] = items[j + 1]
+                    items[j + 1] = temp
+                j += 1
+        i += 1
+        
+TOP_K = 12
+top_words = []
+i = 0
+loop = True
+while loop:
+    if i >= TOP_K or i >= len(items):
+        loop = False
+    else:
+        top_words.append(items[i][0])
+        i += 1
+
+topics = []
+used = {}
+i = 0
+loop = True
+while loop:
+    try:
+        w = top_words[i]
+
+        if w not in used:
+            topic = [w]
+            used[w] = True
+
+            if w in co_occurrence:
+                pairs = list(co_occurrence[w].items())
+
+                m = len(pairs)
+                a = 0
+                sortloop = True
+                while sortloop:
+                    if a >= m - 1:
+                        sortloop = False
+                    else:
+                        b = 0
+                        innersort = True
+                        while innersort:
+                            if b >= m - 1:
+                                innersort = False
+                            else:
+                                if pairs[b][1] < pairs[b + 1][1]:
+                                    temp = pairs[b]
+                                    pairs[b] = pairs[b + 1]
+                                    pairs[b + 1] = temp
+                                b += 1
+                        a += 1
+                        
+                c = 0
+                addloop = True
+                while addloop:
+                    try:
+                        w2 = pairs[c][0]
+                        if w2 not in used:
+                            topic.append(w2)
+                            used[w2] = True
+                        c += 1
+                        if c >= 2:
+                            addloop = False
+                    except:
+                        addloop = False
+
+            topics.append(topic)
+
+        i += 1
+    except:
+        loop = False
+
+label_words = {
+    "Sports": ["team", "match", "goal", "player", "score", "victory", "game"],
+    "Tech": ["processor", "software", "device", "update", "model", "performance", "smartphone"],
+    "Food": ["chef", "meal", "ingredients", "recipe", "restaurant", "dishes", "food"]
+}
+
+def auto_label(topic):
+    best_label = None
+    best_score = -1
+
+    labels = list(label_words.keys())
+    l_index = 0
+    loop = True
+
+    while loop:
+        try:
+            label = labels[l_index]
+            score = 0
+
+            t_index = 0
+            innerloop = True
+            while innerloop:
+                try:
+                    w = topic[t_index]
+
+                    lw_index = 0
+                    lw_loop = True
+                    while lw_loop:
+                        try:
+                            if w == label_words[label][lw_index]:
+                                score += 1
+                            lw_index += 1
+                        except:
+                            lw_loop = False
+
+                    t_index += 1
+                except:
+                    innerloop = False
+
+            if score > best_score:
+                best_score = score
+                best_label = label
+
+            l_index += 1
+        except:
+            loop = False
+
+    return best_label, best_score
+
+topic_labels = []
+
+i = 0
+loop = True
+while loop:
+    try:
+        topic = topics[i]
+        label, score = auto_label(topic)
+        topic_labels.append(label)
+        i += 1
+    except:
+        loop = False
+
+def classify(text):
+    words = tokenise(text)
+    best_topic = None
+    best_label = None
+    best_score = -1
+
+    i = 0
+    loop = True
+    while loop:
+        try:
+            topic = topics[i]
+            label = topic_labels[i]
+            score = 0
+
+            j = 0
+            innerloop = True
+            while innerloop:
+                try:
+                    if words[j] in topic:
+                        score += 1
+                    j += 1
+                except:
+                    innerloop = False
+
+            if score > best_score:
+                best_score = score
+                best_topic = topic
+                best_label = label
+
+            i += 1
+        except:
+            loop = False
+
+    return best_label, best_topic, best_score
+
+print("Topics -> Category:\n")
+
+i = 0
+loop = True
+while loop:
+    try:
+        print(f"Topic {i}:{topics[i]} -> {topic_labels[i]}")
+        i += 1
+    except:
+        loop = False
+
+

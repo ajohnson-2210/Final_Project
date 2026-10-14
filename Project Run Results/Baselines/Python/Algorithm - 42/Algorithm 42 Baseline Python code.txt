@@ -1,0 +1,58 @@
+Find all pairs in an array that match a given number
+
+
+import random
+
+def find_pairs(arr, target, decimals=6):
+    pairs = []
+    i = 0
+    n = len(arr)
+
+    while i < n:
+        j = i + 1
+        while j < n:
+            if round(arr[i] + arr[j], decimals) == round(target, decimals):
+                pairs.append((arr[i], arr[j]))
+            j += 1
+        i += 1
+
+    return pairs
+
+
+# ============================
+# MAIN PROGRAM FLOW
+# ============================
+
+# 1. Create and print random array (ints + floats)
+size = 20
+arr = []
+i = 0
+while i < size:
+    # 50% chance integer, 50% chance float
+    if random.random() < 0.5:
+        num = random.randint(-20, 20)          # integer
+    else:
+        num = round(random.uniform(-20, 20), 2)  # float
+    arr.append(num)
+    i += 1
+
+print("Random array:")
+print(arr)
+
+# 2. Prompt for target
+target = float(input("Enter target number: "))
+
+# 3. Find pairs
+pairs = find_pairs(arr, target)
+
+# 4. Display results
+print(f"\nPairs that sum to {target}:\n")
+
+i = 0
+if len(pairs) == 0:
+    print("No matching pairs found.")
+else:
+    while i < len(pairs):
+        print(pairs[i])
+        i += 1
+

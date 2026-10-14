@@ -1,0 +1,101 @@
+Implement a Stack using an Array (push/pop/peek)
+
+
+class Stack:
+    def __init__(self):
+        self.items = []      # underlying array
+        self.top = -1        # index of top element
+
+    # -----------------------------------------
+    # INTERNAL: display stack
+    # -----------------------------------------
+    def show(self):
+        print("Stack: ", self.items)
+
+    # -----------------------------------------
+    # PUSH - add item to top (manual append)
+    # -----------------------------------------
+    def push(self, value):
+        # manually append (no list.append)
+        new_length = len(self.items) + 1
+        temp = [None] * new_length
+
+        i = 0
+        for x in self.items:
+            temp[i] = x
+            i += 1
+
+        temp[self.top + 1] = value
+        self.items = temp
+        self.top += 1
+
+        print("Pushed: ", value)
+        self.show()
+
+    # -----------------------------------------
+    # POP - remove and return top (manual removal)
+    # -----------------------------------------
+    def pop(self):
+        if self.is_empty():
+            print("Pop attempted on empty stack")
+            self.show()
+            return None
+
+        value = self.items[self.top]
+
+        # manually shrink array
+        new_length = len(self.items) - 1
+        temp = [None] * new_length
+
+        i = 0
+        while i < new_length:
+            temp[i] = self.items[i]
+            i += 1
+
+        self.items = temp
+        self.top -= 1
+
+        print("Popped: ", value)
+        self.show()
+        return value
+
+    # -----------------------------------------
+    # PEEK - view top without removing
+    # -----------------------------------------
+    def peek(self):
+        if self.is_empty():
+            print("Peek attempted on empty stack")
+            self.show()
+            return None
+
+        value = self.items[self.top]
+        print("Peeked: ", value)
+        self.show()
+        return value
+
+    # -----------------------------------------
+    # IS EMPTY
+    # -----------------------------------------
+    def is_empty(self):
+        return self.top == -1
+
+    # -----------------------------------------
+    # SIZE
+    # -----------------------------------------
+    def size(self):
+        return self.top + 1
+
+
+s = Stack()
+
+s.push(10)
+s.push(20)
+s.push(30)
+
+s.peek()
+s.pop()
+s.peek()
+s.pop()
+s.pop()
+s.pop()
+s.peek()

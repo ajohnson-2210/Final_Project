@@ -1,0 +1,14 @@
+Find the length of a given string
+
+string1 = "This /_@!^*%<>is &*;:'a sentence, that has unwanted punctuation!"
+string2 = list(string1)
+flag = True
+count = 0
+while flag:
+    try:
+        element = string2.pop(0)
+        count += 1
+    except:
+        flag = False
+print(f"String Length = {count} Characters")
+

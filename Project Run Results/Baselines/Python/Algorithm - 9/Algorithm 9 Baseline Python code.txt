@@ -1,0 +1,17 @@
+Given an unsorted list of integers and a target value $t. Find the exact position of $t in the list or report that it doesn't exist
+
+list1 = [5,8,1,9,3,2,4,7,6]
+target = 9
+index = 0
+flag =  ""
+for i in range(len(list1)):
+    if list1[i] == target:
+        index = i
+        flag = True
+        break
+    else:
+        flag = False
+if flag == True:
+    print(f"index of target is {index}")
+else:
+    print(f"{target} Is Not in the list!")
