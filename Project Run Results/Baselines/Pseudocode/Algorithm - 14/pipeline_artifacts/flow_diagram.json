@@ -1,0 +1,359 @@
+{
+  "format": "NL-FDEP Flow Diagram",
+  "version": "1.0",
+  "entry_node": "F1",
+  "exit_node": "F2",
+  "nodes": {
+    "F1": {
+      "node_id": "F1",
+      "node_type": "START",
+      "label": "Start",
+      "line": 1,
+      "data": {}
+    },
+    "F2": {
+      "node_id": "F2",
+      "node_type": "END",
+      "label": "End",
+      "line": 1,
+      "data": {}
+    },
+    "F3": {
+      "node_id": "F3",
+      "node_type": "PROCESS",
+      "label": "Set __reserved_keyword__list to [6, 7, 9, 4, 66, 8, 34, 5, 2]",
+      "line": 1,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F4": {
+      "node_id": "F4",
+      "node_type": "PROCESS",
+      "label": "Set total to 0",
+      "line": 2,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F5": {
+      "node_id": "F5",
+      "node_type": "LOOP_DECISION",
+      "label": "For i from 0 to the length of __reserved_keyword__list",
+      "line": 3,
+      "data": {
+        "ast_kind": "ForRangeNode"
+      }
+    },
+    "F6": {
+      "node_id": "F6",
+      "node_type": "DECISION",
+      "label": "Item i of __reserved_keyword__list modulo 2 is equal to 0?",
+      "line": 4,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F7": {
+      "node_id": "F7",
+      "node_type": "PROCESS",
+      "label": "Set total to total plus item i of __reserved_keyword__list",
+      "line": 5,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F8": {
+      "node_id": "F8",
+      "node_type": "CONTINUE",
+      "label": "Continue with the next loop iteration",
+      "line": 7,
+      "data": {
+        "ast_kind": "ContinueNode"
+      }
+    },
+    "F9": {
+      "node_id": "F9",
+      "node_type": "OUTPUT",
+      "label": "Display \"The Sum of Even list elements = {total}\"",
+      "line": 10,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "F3",
+      "target": "F4",
+      "label": "NEXT"
+    },
+    {
+      "source": "F6",
+      "target": "F7",
+      "label": "TRUE"
+    },
+    {
+      "source": "F6",
+      "target": "F8",
+      "label": "FALSE"
+    },
+    {
+      "source": "F5",
+      "target": "F6",
+      "label": "ITERATE"
+    },
+    {
+      "source": "F8",
+      "target": "F5",
+      "label": "CONTINUE"
+    },
+    {
+      "source": "F7",
+      "target": "F5",
+      "label": "LOOP"
+    },
+    {
+      "source": "F4",
+      "target": "F5",
+      "label": "NEXT"
+    },
+    {
+      "source": "F5",
+      "target": "F9",
+      "label": "NEXT"
+    },
+    {
+      "source": "F1",
+      "target": "F3",
+      "label": "NEXT"
+    },
+    {
+      "source": "F9",
+      "target": "F2",
+      "label": "NEXT"
+    }
+  ],
+  "structured_program": {
+    "kind": "ProgramNode",
+    "line": 1,
+    "body": [
+      {
+        "kind": "AssignmentNode",
+        "line": 1,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 1,
+          "name": "__reserved_keyword__list"
+        },
+        "value": {
+          "kind": "ListLiteralNode",
+          "line": 1,
+          "items": [
+            {
+              "kind": "LiteralNode",
+              "line": 1,
+              "value": 6,
+              "data_type": "INTEGER"
+            },
+            {
+              "kind": "LiteralNode",
+              "line": 1,
+              "value": 7,
+              "data_type": "INTEGER"
+            },
+            {
+              "kind": "LiteralNode",
+              "line": 1,
+              "value": 9,
+              "data_type": "INTEGER"
+            },
+            {
+              "kind": "LiteralNode",
+              "line": 1,
+              "value": 4,
+              "data_type": "INTEGER"
+            },
+            {
+              "kind": "LiteralNode",
+              "line": 1,
+              "value": 66,
+              "data_type": "INTEGER"
+            },
+            {
+              "kind": "LiteralNode",
+              "line": 1,
+              "value": 8,
+              "data_type": "INTEGER"
+            },
+            {
+              "kind": "LiteralNode",
+              "line": 1,
+              "value": 34,
+              "data_type": "INTEGER"
+            },
+            {
+              "kind": "LiteralNode",
+              "line": 1,
+              "value": 5,
+              "data_type": "INTEGER"
+            },
+            {
+              "kind": "LiteralNode",
+              "line": 1,
+              "value": 2,
+              "data_type": "INTEGER"
+            }
+          ],
+          "declared_type": null
+        }
+      },
+      {
+        "kind": "AssignmentNode",
+        "line": 2,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 2,
+          "name": "total"
+        },
+        "value": {
+          "kind": "LiteralNode",
+          "line": 2,
+          "value": 0,
+          "data_type": "INTEGER"
+        }
+      },
+      {
+        "kind": "ForRangeNode",
+        "line": 3,
+        "variable": {
+          "kind": "IdentifierNode",
+          "line": 3,
+          "name": "i"
+        },
+        "start": {
+          "kind": "LiteralNode",
+          "line": 3,
+          "value": 0,
+          "data_type": "INTEGER"
+        },
+        "end": {
+          "kind": "LengthNode",
+          "line": 3,
+          "expression": {
+            "kind": "IdentifierNode",
+            "line": 3,
+            "name": "__reserved_keyword__list"
+          }
+        },
+        "step": null,
+        "body": {
+          "kind": "BlockNode",
+          "line": 4,
+          "statements": [
+            {
+              "kind": "IfNode",
+              "line": 4,
+              "condition": {
+                "kind": "BinaryNode",
+                "line": 4,
+                "operator": "==",
+                "left": {
+                  "kind": "BinaryNode",
+                  "line": 4,
+                  "operator": "MODULUS",
+                  "left": {
+                    "kind": "IndexNode",
+                    "line": 4,
+                    "collection": {
+                      "kind": "IdentifierNode",
+                      "line": 4,
+                      "name": "__reserved_keyword__list"
+                    },
+                    "index": {
+                      "kind": "IdentifierNode",
+                      "line": 4,
+                      "name": "i"
+                    }
+                  },
+                  "right": {
+                    "kind": "LiteralNode",
+                    "line": 4,
+                    "value": 2,
+                    "data_type": "INTEGER"
+                  }
+                },
+                "right": {
+                  "kind": "LiteralNode",
+                  "line": 4,
+                  "value": 0,
+                  "data_type": "INTEGER"
+                }
+              },
+              "then_body": {
+                "kind": "BlockNode",
+                "line": 5,
+                "statements": [
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 5,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 5,
+                      "name": "total"
+                    },
+                    "value": {
+                      "kind": "BinaryNode",
+                      "line": 5,
+                      "operator": "+",
+                      "left": {
+                        "kind": "IdentifierNode",
+                        "line": 5,
+                        "name": "total"
+                      },
+                      "right": {
+                        "kind": "IndexNode",
+                        "line": 5,
+                        "collection": {
+                          "kind": "IdentifierNode",
+                          "line": 5,
+                          "name": "__reserved_keyword__list"
+                        },
+                        "index": {
+                          "kind": "IdentifierNode",
+                          "line": 5,
+                          "name": "i"
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "else_if": [],
+              "else_body": {
+                "kind": "BlockNode",
+                "line": 7,
+                "statements": [
+                  {
+                    "kind": "ContinueNode",
+                    "line": 7
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "kind": "OutputNode",
+        "line": 10,
+        "expression": {
+          "kind": "LiteralNode",
+          "line": 10,
+          "value": "The Sum of Even list elements = {total}",
+          "data_type": "STRING"
+        }
+      }
+    ]
+  }
+}
