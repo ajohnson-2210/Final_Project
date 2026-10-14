@@ -1,0 +1,486 @@
+{
+  "format": "NL-FDEP Flow Diagram",
+  "version": "1.0",
+  "entry_node": "F1",
+  "exit_node": "F2",
+  "nodes": {
+    "F1": {
+      "node_id": "F1",
+      "node_type": "START",
+      "label": "Start",
+      "line": 1,
+      "data": {}
+    },
+    "F2": {
+      "node_id": "F2",
+      "node_type": "END",
+      "label": "End",
+      "line": 1,
+      "data": {}
+    },
+    "F3": {
+      "node_id": "F3",
+      "node_type": "IMPORT",
+      "label": "Import module string",
+      "line": 1,
+      "data": {
+        "ast_kind": "ImportDirectiveNode"
+      }
+    },
+    "F4": {
+      "node_id": "F4",
+      "node_type": "PROCESS",
+      "label": "Set string1 to \"This /_@!^*%<>is &*;:'a sentence, that has punctuation!\"",
+      "line": 3,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F5": {
+      "node_id": "F5",
+      "node_type": "PROCESS",
+      "label": "Set string2 to an empty list",
+      "line": 4,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F6": {
+      "node_id": "F6",
+      "node_type": "LOOP_DECISION",
+      "label": "For each character in string1",
+      "line": 5,
+      "data": {
+        "ast_kind": "ForEachNode"
+      }
+    },
+    "F7": {
+      "node_id": "F7",
+      "node_type": "PROCESS",
+      "label": "Append character to string2",
+      "line": 6,
+      "data": {
+        "ast_kind": "AppendNode"
+      }
+    },
+    "F8": {
+      "node_id": "F8",
+      "node_type": "PROCESS",
+      "label": "Set x to an empty list",
+      "line": 8,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F9": {
+      "node_id": "F9",
+      "node_type": "LOOP_DECISION",
+      "label": "For each s in string2",
+      "line": 9,
+      "data": {
+        "ast_kind": "ForEachNode"
+      }
+    },
+    "F10": {
+      "node_id": "F10",
+      "node_type": "PROCESS",
+      "label": "Set filtered_chars to an empty list",
+      "line": 10,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F11": {
+      "node_id": "F11",
+      "node_type": "LOOP_DECISION",
+      "label": "For each __reserved_keyword__char in s",
+      "line": 11,
+      "data": {
+        "ast_kind": "ForEachNode"
+      }
+    },
+    "F12": {
+      "node_id": "F12",
+      "node_type": "DECISION",
+      "label": "__reserved_keyword__char is not contained in string_method_punctuation?",
+      "line": 12,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F13": {
+      "node_id": "F13",
+      "node_type": "PROCESS",
+      "label": "Append __reserved_keyword__char to filtered_chars",
+      "line": 13,
+      "data": {
+        "ast_kind": "AppendNode"
+      }
+    },
+    "F14": {
+      "node_id": "F14",
+      "node_type": "PROCESS",
+      "label": "Append filtered_chars joined using an empty string to x",
+      "line": 16,
+      "data": {
+        "ast_kind": "AppendNode"
+      }
+    },
+    "F15": {
+      "node_id": "F15",
+      "node_type": "PROCESS",
+      "label": "Set final to x joined using an empty string",
+      "line": 18,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F16": {
+      "node_id": "F16",
+      "node_type": "OUTPUT",
+      "label": "Display final",
+      "line": 19,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "F3",
+      "target": "F4",
+      "label": "NEXT"
+    },
+    {
+      "source": "F4",
+      "target": "F5",
+      "label": "NEXT"
+    },
+    {
+      "source": "F6",
+      "target": "F7",
+      "label": "ITERATE"
+    },
+    {
+      "source": "F7",
+      "target": "F6",
+      "label": "LOOP"
+    },
+    {
+      "source": "F5",
+      "target": "F6",
+      "label": "NEXT"
+    },
+    {
+      "source": "F6",
+      "target": "F8",
+      "label": "NEXT"
+    },
+    {
+      "source": "F12",
+      "target": "F13",
+      "label": "TRUE"
+    },
+    {
+      "source": "F11",
+      "target": "F12",
+      "label": "ITERATE"
+    },
+    {
+      "source": "F13",
+      "target": "F11",
+      "label": "LOOP"
+    },
+    {
+      "source": "F12",
+      "target": "F11",
+      "label": "LOOP"
+    },
+    {
+      "source": "F10",
+      "target": "F11",
+      "label": "NEXT"
+    },
+    {
+      "source": "F11",
+      "target": "F14",
+      "label": "NEXT"
+    },
+    {
+      "source": "F9",
+      "target": "F10",
+      "label": "ITERATE"
+    },
+    {
+      "source": "F14",
+      "target": "F9",
+      "label": "LOOP"
+    },
+    {
+      "source": "F8",
+      "target": "F9",
+      "label": "NEXT"
+    },
+    {
+      "source": "F9",
+      "target": "F15",
+      "label": "NEXT"
+    },
+    {
+      "source": "F15",
+      "target": "F16",
+      "label": "NEXT"
+    },
+    {
+      "source": "F1",
+      "target": "F3",
+      "label": "NEXT"
+    },
+    {
+      "source": "F16",
+      "target": "F2",
+      "label": "NEXT"
+    }
+  ],
+  "structured_program": {
+    "kind": "ProgramNode",
+    "line": 1,
+    "body": [
+      {
+        "kind": "ImportDirectiveNode",
+        "line": 1,
+        "directive_type": "IMPORT",
+        "module": "string",
+        "alias": null,
+        "names": []
+      },
+      {
+        "kind": "AssignmentNode",
+        "line": 3,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 3,
+          "name": "string1"
+        },
+        "value": {
+          "kind": "LiteralNode",
+          "line": 3,
+          "value": "This /_@!^*%<>is &*;:'a sentence, that has punctuation!",
+          "data_type": "STRING"
+        }
+      },
+      {
+        "kind": "AssignmentNode",
+        "line": 4,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 4,
+          "name": "string2"
+        },
+        "value": {
+          "kind": "EmptyLiteralNode",
+          "line": 4,
+          "empty_type": "LIST"
+        }
+      },
+      {
+        "kind": "ForEachNode",
+        "line": 5,
+        "variable": {
+          "kind": "IdentifierNode",
+          "line": 5,
+          "name": "character"
+        },
+        "collection": {
+          "kind": "IdentifierNode",
+          "line": 5,
+          "name": "string1"
+        },
+        "body": {
+          "kind": "BlockNode",
+          "line": 6,
+          "statements": [
+            {
+              "kind": "AppendNode",
+              "line": 6,
+              "value": {
+                "kind": "IdentifierNode",
+                "line": 6,
+                "name": "character"
+              },
+              "collection": {
+                "kind": "IdentifierNode",
+                "line": 6,
+                "name": "string2"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "kind": "AssignmentNode",
+        "line": 8,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 8,
+          "name": "x"
+        },
+        "value": {
+          "kind": "EmptyLiteralNode",
+          "line": 8,
+          "empty_type": "LIST"
+        }
+      },
+      {
+        "kind": "ForEachNode",
+        "line": 9,
+        "variable": {
+          "kind": "IdentifierNode",
+          "line": 9,
+          "name": "s"
+        },
+        "collection": {
+          "kind": "IdentifierNode",
+          "line": 9,
+          "name": "string2"
+        },
+        "body": {
+          "kind": "BlockNode",
+          "line": 10,
+          "statements": [
+            {
+              "kind": "AssignmentNode",
+              "line": 10,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 10,
+                "name": "filtered_chars"
+              },
+              "value": {
+                "kind": "EmptyLiteralNode",
+                "line": 10,
+                "empty_type": "LIST"
+              }
+            },
+            {
+              "kind": "ForEachNode",
+              "line": 11,
+              "variable": {
+                "kind": "IdentifierNode",
+                "line": 11,
+                "name": "__reserved_keyword__char"
+              },
+              "collection": {
+                "kind": "IdentifierNode",
+                "line": 11,
+                "name": "s"
+              },
+              "body": {
+                "kind": "BlockNode",
+                "line": 12,
+                "statements": [
+                  {
+                    "kind": "IfNode",
+                    "line": 12,
+                    "condition": {
+                      "kind": "BinaryNode",
+                      "line": 12,
+                      "operator": "NOT IN",
+                      "left": {
+                        "kind": "IdentifierNode",
+                        "line": 12,
+                        "name": "__reserved_keyword__char"
+                      },
+                      "right": {
+                        "kind": "IdentifierNode",
+                        "line": 12,
+                        "name": "string_method_punctuation"
+                      }
+                    },
+                    "then_body": {
+                      "kind": "BlockNode",
+                      "line": 13,
+                      "statements": [
+                        {
+                          "kind": "AppendNode",
+                          "line": 13,
+                          "value": {
+                            "kind": "IdentifierNode",
+                            "line": 13,
+                            "name": "__reserved_keyword__char"
+                          },
+                          "collection": {
+                            "kind": "IdentifierNode",
+                            "line": 13,
+                            "name": "filtered_chars"
+                          }
+                        }
+                      ]
+                    },
+                    "else_if": [],
+                    "else_body": null
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "AppendNode",
+              "line": 16,
+              "value": {
+                "kind": "JoinNode",
+                "line": 16,
+                "collection": {
+                  "kind": "IdentifierNode",
+                  "line": 16,
+                  "name": "filtered_chars"
+                },
+                "separator": {
+                  "kind": "EmptyLiteralNode",
+                  "line": 16,
+                  "empty_type": "STRING"
+                }
+              },
+              "collection": {
+                "kind": "IdentifierNode",
+                "line": 16,
+                "name": "x"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "kind": "AssignmentNode",
+        "line": 18,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 18,
+          "name": "final"
+        },
+        "value": {
+          "kind": "JoinNode",
+          "line": 18,
+          "collection": {
+            "kind": "IdentifierNode",
+            "line": 18,
+            "name": "x"
+          },
+          "separator": {
+            "kind": "EmptyLiteralNode",
+            "line": 18,
+            "empty_type": "STRING"
+          }
+        }
+      },
+      {
+        "kind": "OutputNode",
+        "line": 19,
+        "expression": {
+          "kind": "IdentifierNode",
+          "line": 19,
+          "name": "final"
+        }
+      }
+    ]
+  }
+}
