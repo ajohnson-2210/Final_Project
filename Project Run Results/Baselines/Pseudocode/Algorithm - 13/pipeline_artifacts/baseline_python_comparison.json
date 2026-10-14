@@ -1,0 +1,132 @@
+{
+  "comparison_schema_version": "1.1",
+  "comparison_role": "PIPELINE_CALIBRATION",
+  "is_baseline": true,
+  "reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 13\\Algorithm 13 Baseline Python code.txt",
+  "structural_comparison": {
+    "status": "EVALUATED",
+    "generated_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Pseudocode\\Algorithm - 13\\pipeline_artifacts\\generated_program.py",
+    "reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 13\\Algorithm 13 Baseline Python code.txt",
+    "exact_source_match": false,
+    "generated_sha256": "c6e85c0da774c121795c7382616576d54992fa591e00ff6d6810d3a663d090b8",
+    "reference_sha256": "065bce1c6733218c8973046dc7601eaf2af0cf56893248444af4552898961b20",
+    "note": "Exact-source and normalised-AST comparisons are descriptive only. A structural mismatch is not scored as incorrect, because behaviourally equivalent Python implementations may differ syntactically.",
+    "generated_syntax_valid": true,
+    "reference_syntax_valid": false,
+    "reference_syntax_error": "invalid syntax (<unknown>, line 1)",
+    "reference_execution_syntax_valid": true,
+    "reference_execution_normalisation_applied": true,
+    "reference_execution_normalisation_rule": "COMMENT_MATCHED_TEST_SUITE_ALGORITHM_TITLE",
+    "normalised_python_ast_match": false
+  },
+  "interpretation_note": "This comparison calibrates the pipeline by comparing Python generated from frozen baseline pseudocode with the trusted baseline Python on the common behavioural test set. Source-text equality is not required.",
+  "status": "EVALUATED",
+  "tests_file": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\Pipeline Versions\\NL_Flow_Diagram_Encoder_Pipeline_v4_36-0\\NL_Flow_Diagram_Encoder_Pipeline_v4_36\\study data\\common tests v1.4.2\\Algorithm - 13\\Algorithm 13 Tests.json",
+  "tests_total": 1,
+  "behaviour_matches": 1,
+  "behaviour_mismatches": 0,
+  "behavioural_agreement_percentage": 100.0,
+  "calibration_score_percentage": 100.0,
+  "reference_oracle_runs": [
+    {
+      "name": "default manual string reverse",
+      "reference": {
+        "status": "COMPLETED",
+        "standard_input": [],
+        "stdout": [
+          "This is a sentence that needs reversing",
+          "gnisrever sdeen taht ecnetnes a si sihT"
+        ],
+        "stderr": "",
+        "return_code": 0,
+        "error_type": null,
+        "duration_ms": 43.509,
+        "category": "NORMAL",
+        "semantic_feature": "REVERSE_WITHOUT_BUILTIN",
+        "criteria_links": [
+          "P2",
+          "P4"
+        ],
+        "random_seed": null,
+        "environment": {},
+        "requires_modules": [],
+        "reference_source_preparation": {
+          "reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 13\\Algorithm 13 Baseline Python code.txt",
+          "raw_sha256": "065bce1c6733218c8973046dc7601eaf2af0cf56893248444af4552898961b20",
+          "raw_syntax_valid": false,
+          "execution_syntax_valid": true,
+          "normalisation_applied": true,
+          "normalisation_rule": "COMMENT_MATCHED_TEST_SUITE_ALGORITHM_TITLE",
+          "raw_syntax_error": "invalid syntax (<unknown>, line 1)",
+          "normalised_line_number": 1,
+          "declared_algorithm_title": "Reverse a string without using built in reverse functions",
+          "reference_heading": "Reverse a string without using built in reverse functions",
+          "execution_sha256": "0d081acb777e76973dfcbe59882b56f7162c9eedb3200c608d7edc1e516c53a4"
+        }
+      },
+      "expected_result_source": "REFERENCE_PYTHON",
+      "explicit_expectation_fields": [],
+      "derived_expectation_fields": [
+        "expected_output",
+        "expected_return_code"
+      ],
+      "evaluable_expectation_fields": [
+        "expected_output",
+        "expected_return_code"
+      ],
+      "test_case_status": "EVALUABLE"
+    }
+  ],
+  "reference_validation": {
+    "validation_schema_version": "1.0",
+    "reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 13\\Algorithm 13 Baseline Python code.txt",
+    "reference_source_preparation": {
+      "reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 13\\Algorithm 13 Baseline Python code.txt",
+      "raw_sha256": "065bce1c6733218c8973046dc7601eaf2af0cf56893248444af4552898961b20",
+      "raw_syntax_valid": false,
+      "execution_syntax_valid": true,
+      "normalisation_applied": true,
+      "normalisation_rule": "COMMENT_MATCHED_TEST_SUITE_ALGORITHM_TITLE",
+      "raw_syntax_error": "invalid syntax (<unknown>, line 1)",
+      "normalised_line_number": 1,
+      "declared_algorithm_title": "Reverse a string without using built in reverse functions",
+      "reference_heading": "Reverse a string without using built in reverse functions",
+      "execution_sha256": "0d081acb777e76973dfcbe59882b56f7162c9eedb3200c608d7edc1e516c53a4"
+    },
+    "status": "TRUSTED_REFERENCE",
+    "reason": "No independent expected outcomes are present. The frozen baseline Python is accepted as the trusted behavioural reference by the study design; this is not an independent validation claim.",
+    "explicit_tests_total": 0,
+    "tests": []
+  },
+  "semantic_boundary": {
+    "measure": "SEMANTIC_BOUNDARY_VARIANCE",
+    "declared_probes": 0,
+    "evaluable_probes": 0,
+    "out_of_domain_accepted": 0,
+    "controlled_rejection": 0,
+    "incidental_failure": 0,
+    "not_evaluable": 0,
+    "variance_percentage": null,
+    "interpretation": "Percentage of evaluable out-of-domain probes that the generated implementation accepted and processed. This is a descriptive semantic-domain extension measure and is not included in core behavioural accuracy."
+  },
+  "pre_freeze_validation": {
+    "declared_cases": 0,
+    "evaluable_cases": 0,
+    "passed_cases": 0,
+    "failed_cases": 0,
+    "not_evaluable": 0,
+    "accuracy_percentage": null,
+    "included_in_core_behavioural_score": false,
+    "included_in_baseline_calibration": false,
+    "interpretation": "Candidate valid-domain coverage expansions retained for pre-freeze baseline validation. Results are descriptive only until explicitly promoted to CORE_BEHAVIOURAL."
+  },
+  "core_semantic_validation": {
+    "evaluable_tests": 0,
+    "passed_tests": 0,
+    "failed_tests": 0,
+    "not_evaluable_tests": 1,
+    "accuracy_percentage": null
+  },
+  "oracle_source": "BASELINE_REFERENCE_PYTHON",
+  "reference_oracle_eligible": true
+}
