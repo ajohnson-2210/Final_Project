@@ -1,0 +1,421 @@
+{
+  "format": "NL-FDEP Flow Diagram",
+  "version": "1.0",
+  "entry_node": "F1",
+  "exit_node": "F2",
+  "nodes": {
+    "F1": {
+      "node_id": "F1",
+      "node_type": "START",
+      "label": "Start",
+      "line": 1,
+      "data": {}
+    },
+    "F2": {
+      "node_id": "F2",
+      "node_type": "END",
+      "label": "End",
+      "line": 1,
+      "data": {}
+    },
+    "F3": {
+      "node_id": "F3",
+      "node_type": "PROCESS",
+      "label": "Set string1 to \"This /_@!^*%<>is &*;:'a sentence, that has unwanted punctuation!\"",
+      "line": 1,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F4": {
+      "node_id": "F4",
+      "node_type": "PROCESS",
+      "label": "Set string2 to an empty list",
+      "line": 2,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F5": {
+      "node_id": "F5",
+      "node_type": "LOOP_DECISION",
+      "label": "For each character in string1",
+      "line": 3,
+      "data": {
+        "ast_kind": "ForEachNode"
+      }
+    },
+    "F6": {
+      "node_id": "F6",
+      "node_type": "PROCESS",
+      "label": "Append character to string2",
+      "line": 4,
+      "data": {
+        "ast_kind": "AppendNode"
+      }
+    },
+    "F7": {
+      "node_id": "F7",
+      "node_type": "PROCESS",
+      "label": "Set flag to true",
+      "line": 6,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F8": {
+      "node_id": "F8",
+      "node_type": "PROCESS",
+      "label": "Set count to 0",
+      "line": 7,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F9": {
+      "node_id": "F9",
+      "node_type": "LOOP_DECISION",
+      "label": "Continue while flag?",
+      "line": 8,
+      "data": {
+        "ast_kind": "WhileNode"
+      }
+    },
+    "F10": {
+      "node_id": "F10",
+      "node_type": "TRY",
+      "label": "Attempt the following operations",
+      "line": 9,
+      "data": {
+        "ast_kind": "TryCatchNode"
+      }
+    },
+    "F11": {
+      "node_id": "F11",
+      "node_type": "PROCESS",
+      "label": "Set element to the result of string2.pop(0)",
+      "line": 10,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F12": {
+      "node_id": "F12",
+      "node_type": "PROCESS",
+      "label": "Set count to count plus 1",
+      "line": 11,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F13": {
+      "node_id": "F13",
+      "node_type": "PROCESS",
+      "label": "Set flag to false",
+      "line": 13,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F14": {
+      "node_id": "F14",
+      "node_type": "OUTPUT",
+      "label": "Display \"String Length = {count} Characters\"",
+      "line": 16,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "F3",
+      "target": "F4",
+      "label": "NEXT"
+    },
+    {
+      "source": "F5",
+      "target": "F6",
+      "label": "ITERATE"
+    },
+    {
+      "source": "F6",
+      "target": "F5",
+      "label": "LOOP"
+    },
+    {
+      "source": "F4",
+      "target": "F5",
+      "label": "NEXT"
+    },
+    {
+      "source": "F5",
+      "target": "F7",
+      "label": "NEXT"
+    },
+    {
+      "source": "F7",
+      "target": "F8",
+      "label": "NEXT"
+    },
+    {
+      "source": "F11",
+      "target": "F12",
+      "label": "NEXT"
+    },
+    {
+      "source": "F10",
+      "target": "F11",
+      "label": "TRY"
+    },
+    {
+      "source": "F10",
+      "target": "F13",
+      "label": "EXCEPTION"
+    },
+    {
+      "source": "F9",
+      "target": "F10",
+      "label": "TRUE"
+    },
+    {
+      "source": "F12",
+      "target": "F9",
+      "label": "LOOP"
+    },
+    {
+      "source": "F13",
+      "target": "F9",
+      "label": "LOOP"
+    },
+    {
+      "source": "F8",
+      "target": "F9",
+      "label": "NEXT"
+    },
+    {
+      "source": "F9",
+      "target": "F14",
+      "label": "NEXT"
+    },
+    {
+      "source": "F1",
+      "target": "F3",
+      "label": "NEXT"
+    },
+    {
+      "source": "F14",
+      "target": "F2",
+      "label": "NEXT"
+    }
+  ],
+  "structured_program": {
+    "kind": "ProgramNode",
+    "line": 1,
+    "body": [
+      {
+        "kind": "AssignmentNode",
+        "line": 1,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 1,
+          "name": "string1"
+        },
+        "value": {
+          "kind": "LiteralNode",
+          "line": 1,
+          "value": "This /_@!^*%<>is &*;:'a sentence, that has unwanted punctuation!",
+          "data_type": "STRING"
+        }
+      },
+      {
+        "kind": "AssignmentNode",
+        "line": 2,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 2,
+          "name": "string2"
+        },
+        "value": {
+          "kind": "EmptyLiteralNode",
+          "line": 2,
+          "empty_type": "LIST"
+        }
+      },
+      {
+        "kind": "ForEachNode",
+        "line": 3,
+        "variable": {
+          "kind": "IdentifierNode",
+          "line": 3,
+          "name": "character"
+        },
+        "collection": {
+          "kind": "IdentifierNode",
+          "line": 3,
+          "name": "string1"
+        },
+        "body": {
+          "kind": "BlockNode",
+          "line": 4,
+          "statements": [
+            {
+              "kind": "AppendNode",
+              "line": 4,
+              "value": {
+                "kind": "IdentifierNode",
+                "line": 4,
+                "name": "character"
+              },
+              "collection": {
+                "kind": "IdentifierNode",
+                "line": 4,
+                "name": "string2"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "kind": "AssignmentNode",
+        "line": 6,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 6,
+          "name": "flag"
+        },
+        "value": {
+          "kind": "LiteralNode",
+          "line": 6,
+          "value": true,
+          "data_type": "BOOLEAN"
+        }
+      },
+      {
+        "kind": "AssignmentNode",
+        "line": 7,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 7,
+          "name": "count"
+        },
+        "value": {
+          "kind": "LiteralNode",
+          "line": 7,
+          "value": 0,
+          "data_type": "INTEGER"
+        }
+      },
+      {
+        "kind": "WhileNode",
+        "line": 8,
+        "condition": {
+          "kind": "IdentifierNode",
+          "line": 8,
+          "name": "flag"
+        },
+        "body": {
+          "kind": "BlockNode",
+          "line": 9,
+          "statements": [
+            {
+              "kind": "TryCatchNode",
+              "line": 9,
+              "try_body": {
+                "kind": "BlockNode",
+                "line": 10,
+                "statements": [
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 10,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 10,
+                      "name": "element"
+                    },
+                    "value": {
+                      "kind": "MemberCallNode",
+                      "line": 10,
+                      "object": {
+                        "kind": "IdentifierNode",
+                        "line": 10,
+                        "name": "string2"
+                      },
+                      "member": "pop",
+                      "arguments": [
+                        {
+                          "kind": "LiteralNode",
+                          "line": 10,
+                          "value": 0,
+                          "data_type": "INTEGER"
+                        }
+                      ],
+                      "resolved_intrinsic": null
+                    }
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 11,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 11,
+                      "name": "count"
+                    },
+                    "value": {
+                      "kind": "BinaryNode",
+                      "line": 11,
+                      "operator": "+",
+                      "left": {
+                        "kind": "IdentifierNode",
+                        "line": 11,
+                        "name": "count"
+                      },
+                      "right": {
+                        "kind": "LiteralNode",
+                        "line": 11,
+                        "value": 1,
+                        "data_type": "INTEGER"
+                      }
+                    }
+                  }
+                ]
+              },
+              "error": null,
+              "catch_body": {
+                "kind": "BlockNode",
+                "line": 13,
+                "statements": [
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 13,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 13,
+                      "name": "flag"
+                    },
+                    "value": {
+                      "kind": "LiteralNode",
+                      "line": 13,
+                      "value": false,
+                      "data_type": "BOOLEAN"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "kind": "OutputNode",
+        "line": 16,
+        "expression": {
+          "kind": "LiteralNode",
+          "line": 16,
+          "value": "String Length = {count} Characters",
+          "data_type": "STRING"
+        }
+      }
+    ]
+  }
+}

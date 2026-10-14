@@ -1,0 +1,16 @@
+string1 <- STRING("This /_@!^*%<>is &*;:'a sentence, that has unwanted punctuation!")
+string2 <- EMPTY LIST
+FOR EACH character IN string1 DO
+    APPEND character TO string2
+ENDFOR
+flag <- BOOLEAN(TRUE)
+count <- 0
+WHILE flag DO
+    TRY
+        element <- string2.pop(0)
+        count <- count + 1
+    CATCH
+        flag <- BOOLEAN(FALSE)
+    ENDTRY
+ENDWHILE
+OUTPUT STRING("String Length = {count} Characters")
