@@ -1,0 +1,215 @@
+{
+  "success": true,
+  "status": "SUCCESS",
+  "stages": [
+    {
+      "name": "PSEUDOCODE_PROFILE_PROCESSING",
+      "status": "SUCCESS",
+      "message": "Processed source using AJ_DIALECT_STRICT; 0 transformation(s); 0 header line(s) stripped.",
+      "duration_ms": 0.153
+    },
+    {
+      "name": "PSEUDOCODE_TO_AST",
+      "status": "SUCCESS",
+      "message": "Pseudocode parsed and validated.",
+      "duration_ms": 2.274
+    },
+    {
+      "name": "AST_TO_FLOW_DIAGRAM",
+      "status": "SUCCESS",
+      "message": "Machine-readable flow diagram generated.",
+      "duration_ms": 0.373
+    },
+    {
+      "name": "FLOW_DIAGRAM_TO_DRAWIO",
+      "status": "SUCCESS",
+      "message": "Editable draw.io XML flow diagram generated.",
+      "duration_ms": 1.861
+    },
+    {
+      "name": "FLOW_DIAGRAM_TO_PYTHON",
+      "status": "SUCCESS",
+      "message": "Python source generated and syntax validated.",
+      "duration_ms": 1.87
+    },
+    {
+      "name": "BEHAVIOURAL_TESTING",
+      "status": "SUCCESS",
+      "message": "Passed 5 of 5 tests.",
+      "duration_ms": 200.52
+    }
+  ],
+  "output_files": {
+    "pseudocode_processing_report": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Pseudocode\\Algorithm - 2\\pipeline_artifacts\\pseudocode_processing_report.json",
+    "processed_pseudocode": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Pseudocode\\Algorithm - 2\\pipeline_artifacts\\processed_pseudocode.aj",
+    "ast": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Pseudocode\\Algorithm - 2\\pipeline_artifacts\\ast.json",
+    "parser_report": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Pseudocode\\Algorithm - 2\\pipeline_artifacts\\parser_report.json",
+    "ast_visualisation": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Pseudocode\\Algorithm - 2\\pipeline_artifacts\\ast_visualisation.html",
+    "flow_diagram": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Pseudocode\\Algorithm - 2\\pipeline_artifacts\\flow_diagram.json",
+    "flow_visualisation": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Pseudocode\\Algorithm - 2\\pipeline_artifacts\\flow_diagram.html",
+    "flow_diagram_drawio": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Pseudocode\\Algorithm - 2\\pipeline_artifacts\\flow_diagram.drawio",
+    "generated_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Pseudocode\\Algorithm - 2\\pipeline_artifacts\\generated_program.py",
+    "compilation_report": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Pseudocode\\Algorithm - 2\\pipeline_artifacts\\compilation_report.json",
+    "test_report": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Pseudocode\\Algorithm - 2\\pipeline_artifacts\\test_report.json",
+    "pipeline_report": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Pseudocode\\Algorithm - 2\\pipeline_artifacts\\pipeline_report.json"
+  },
+  "test_report": {
+    "program_path": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Pseudocode\\Algorithm - 2\\pipeline_artifacts\\generated_program.py",
+    "success": true,
+    "total_tests": 5,
+    "passed_tests": 5,
+    "failed_tests": 0,
+    "category_summary": {
+      "NORMAL": {
+        "total": 3,
+        "passed": 3,
+        "failed": 0
+      },
+      "BOUNDARY": {
+        "total": 2,
+        "passed": 2,
+        "failed": 0
+      }
+    },
+    "results": [
+      {
+        "name": "default non-negative integer conversion",
+        "status": "PASSED",
+        "expected_output": [
+          "23 = 0b 00010111"
+        ],
+        "actual_output": [
+          "23 = 0b 00010111"
+        ],
+        "standard_error": "",
+        "return_code": 0,
+        "duration_ms": 45.353,
+        "category": "NORMAL",
+        "semantic_feature": "BINARY_CONVERSION_LOOP_AND_MINIMUM_WIDTH",
+        "expected_return_code": 0,
+        "expected_error_type": null,
+        "actual_error_type": null,
+        "criteria_links": [
+          "P2",
+          "P4"
+        ],
+        "random_seed": null,
+        "environment": {},
+        "requires_modules": []
+      },
+      {
+        "name": "binary zero",
+        "status": "PASSED",
+        "expected_output": [
+          "23 = 0b 00010111"
+        ],
+        "actual_output": [
+          "23 = 0b 00010111"
+        ],
+        "standard_error": "",
+        "return_code": 0,
+        "duration_ms": 35.861,
+        "category": "BOUNDARY",
+        "semantic_feature": "BINARY_ZERO",
+        "expected_return_code": 0,
+        "expected_error_type": null,
+        "actual_error_type": null,
+        "criteria_links": [
+          "P2",
+          "P3",
+          "P4"
+        ],
+        "random_seed": null,
+        "environment": {},
+        "requires_modules": []
+      },
+      {
+        "name": "binary one",
+        "status": "PASSED",
+        "expected_output": [
+          "23 = 0b 00010111"
+        ],
+        "actual_output": [
+          "23 = 0b 00010111"
+        ],
+        "standard_error": "",
+        "return_code": 0,
+        "duration_ms": 35.849,
+        "category": "BOUNDARY",
+        "semantic_feature": "BINARY_ONE",
+        "expected_return_code": 0,
+        "expected_error_type": null,
+        "actual_error_type": null,
+        "criteria_links": [
+          "P2",
+          "P3",
+          "P4"
+        ],
+        "random_seed": null,
+        "environment": {},
+        "requires_modules": []
+      },
+      {
+        "name": "binary power of two",
+        "status": "PASSED",
+        "expected_output": [
+          "23 = 0b 00010111"
+        ],
+        "actual_output": [
+          "23 = 0b 00010111"
+        ],
+        "standard_error": "",
+        "return_code": 0,
+        "duration_ms": 40.08,
+        "category": "NORMAL",
+        "semantic_feature": "BINARY_POWER_OF_TWO",
+        "expected_return_code": 0,
+        "expected_error_type": null,
+        "actual_error_type": null,
+        "criteria_links": [
+          "P2",
+          "P3",
+          "P4"
+        ],
+        "random_seed": null,
+        "environment": {},
+        "requires_modules": []
+      },
+      {
+        "name": "binary larger value",
+        "status": "PASSED",
+        "expected_output": [
+          "23 = 0b 00010111"
+        ],
+        "actual_output": [
+          "23 = 0b 00010111"
+        ],
+        "standard_error": "",
+        "return_code": 0,
+        "duration_ms": 41.952,
+        "category": "NORMAL",
+        "semantic_feature": "BINARY_LARGER_VALUE",
+        "expected_return_code": 0,
+        "expected_error_type": null,
+        "actual_error_type": null,
+        "criteria_links": [
+          "P2",
+          "P3",
+          "P4"
+        ],
+        "random_seed": null,
+        "environment": {},
+        "requires_modules": []
+      }
+    ]
+  },
+  "error": null,
+  "input_metadata": {
+    "input_type": "PSEUDOCODE",
+    "pseudocode_profile": "AJ_DIALECT_STRICT",
+    "source_modified": true,
+    "transformation_count": 0,
+    "header_comment_removed": false,
+    "header_lines_removed": 0
+  }
+}
