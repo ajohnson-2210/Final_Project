@@ -1,0 +1,97 @@
+COMMENT import random
+
+CLASS LRUBuffer
+    PROPERTY capacity
+    PROPERTY items
+    PROPERTY recent
+    PROPERTY access_count
+    PROPERTY counter
+    CONSTRUCTOR ACCEPTS(capacity)
+        PROPERTY THIS.capacity <- capacity
+        PROPERTY THIS.items <- EMPTY LIST
+        PROPERTY THIS.recent <- EMPTY LIST
+        PROPERTY THIS.access_count <- EMPTY LIST
+        PROPERTY THIS.counter <- 0
+    ENDCONSTRUCTOR
+    METHOD find_index ACCEPTS(value)
+        index <- 0
+        FOR EACH item IN THIS.items DO
+            IF item == value THEN
+                RETURN index
+            ENDIF
+            index <- index + 1
+        ENDFOR
+        RETURN -1
+    ENDMETHOD
+    METHOD find_lru_index ACCEPTS()
+        lru_index <- 0
+        lru_value <- THIS.recent[0]
+        index <- 0
+        FOR EACH r IN THIS.recent DO
+            IF r < lru_value THEN
+                lru_value <- r
+                lru_index <- index
+            ENDIF
+            index <- index + 1
+        ENDFOR
+        RETURN lru_index
+    ENDMETHOD
+    METHOD access ACCEPTS(value)
+        index <- THIS.find_index(value)
+        IF index != -1 THEN
+            PROPERTY THIS.counter <- THIS.counter + 1
+            THIS.recent[index] <- THIS.counter
+            THIS.access_count[index] <- (THIS.access_count[index] + 1)
+            access_count_value <- THIS.access_count[index]
+            OUTPUT STRING("Accessed: {value}  - Access Count = {access_count_value}")
+        ELSE
+            OUTPUT STRING("Access attempted but not found: {value}")
+        ENDIF
+    ENDMETHOD
+    METHOD add ACCEPTS(value)
+        index <- THIS.find_index(value)
+        IF index != -1 THEN
+            PROPERTY THIS.counter <- THIS.counter + 1
+            THIS.recent[index] <- THIS.counter
+            THIS.access_count[index] <- (THIS.access_count[index] + 1)
+            updated_access_count <- THIS.access_count[index]
+            OUTPUT STRING("Updated existing item: {value} Access Count = {updated_access_count}")
+            RETURN
+        ENDIF
+        IF LENGTH OF THIS.items < THIS.capacity THEN
+            APPEND value TO THIS.items
+            PROPERTY THIS.counter <- THIS.counter + 1
+            APPEND THIS.counter TO THIS.recent
+            APPEND 1 TO THIS.access_count
+            OUTPUT STRING("Added: {value}  -  Access Count = 1")
+            RETURN
+        ENDIF
+        lru <- THIS.find_lru_index()
+        evicted <- THIS.items[lru]
+        THIS.items[lru] <- value
+        PROPERTY THIS.counter <- THIS.counter + 1
+        THIS.recent[lru] <- THIS.counter
+        THIS.access_count[lru] <- 1
+        OUTPUT STRING("Evicted: {evicted} -  Added: {value} Access Count = 1")
+    ENDMETHOD
+    METHOD get_items ACCEPTS()
+        RETURN THIS.items
+    ENDMETHOD
+ENDCLASS
+
+buf <- CALL LRUBuffer(5)
+buf.add(STRING("A"))
+buf.add(STRING("B"))
+buf.add(STRING("C"))
+buf.add(STRING("D"))
+buf.add(STRING("E"))
+pool <- LIST [STRING("A"), STRING("B"), STRING("C"), STRING("D"), STRING("E"), STRING("F"), STRING("G")]
+FOR _ <- IN RANGE 0 TO 10 DO
+    index <- RANDOM INT(0, (LENGTH OF pool - 1))
+    value <- pool[index]
+    buf.access(value)
+ENDFOR
+buf.add(STRING("F"))
+buf.add(STRING("G"))
+final_items <- buf.get_items()
+OUTPUT STRING("Final buffer: {final_items}")

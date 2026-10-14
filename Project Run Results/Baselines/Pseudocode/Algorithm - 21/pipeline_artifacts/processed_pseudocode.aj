@@ -1,0 +1,16 @@
+givenNum <- 0
+loop <- BOOLEAN(TRUE)
+WHILE loop == BOOLEAN(TRUE) DO
+    givenNum <- INPUT(STRING("Enter Number: "))
+    TRY
+        givenNum <- CALL INTEGER(givenNum)
+        loop <- BOOLEAN(FALSE)
+    CATCH
+        OUTPUT STRING("That's Not a Valid Integer, Please Try Again!")
+    ENDTRY
+ENDWHILE
+IF (givenNum MODULUS 2) == 0 THEN
+    OUTPUT STRING("{givenNum} is Even")
+ELSE
+    OUTPUT STRING("{givenNum} is Odd")
+ENDIF

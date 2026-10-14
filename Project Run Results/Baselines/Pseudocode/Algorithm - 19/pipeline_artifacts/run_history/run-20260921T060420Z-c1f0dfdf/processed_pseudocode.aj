@@ -1,0 +1,35 @@
+FUNCTION substring_range ACCEPTS(text, start_index, end_index)
+    result <- EMPTY STRING
+    index <- start_index
+    WHILE index < end_index DO
+        result <- result + text[index]
+        index <- index + 1
+    ENDWHILE
+    RETURN result
+ENDFUNCTION
+
+var1 <- 3
+var2 <- STRING("tree")
+
+OUTPUT STRING("variable 1 = {var1}")
+OUTPUT STRING("variable 2 = {var2}")
+
+IF CALL ISINSTANCE(var1, (INTEGER, FLOAT)) AND CALL ISINSTANCE(var2, (INTEGER, FLOAT)) THEN
+    var1 <- var1 + var2
+    var2 <- var1 - var2
+    var1 <- var1 - var2
+
+ELSE IF CALL ISINSTANCE(var1, STRING) AND CALL ISINSTANCE(var2, STRING) THEN
+    var1 <- var1 + var2
+    var2 <- CALL substring_range(var1, 0, LENGTH OF var1 - LENGTH OF var2)
+    var1 <- CALL substring_range(var1, LENGTH OF var2, LENGTH OF var1)
+
+ELSE
+    var1 <- CALL STRING(var1)
+    var1 <- var1 + var2
+    var2 <- CALL substring_range(var1, 0, LENGTH OF var1 - LENGTH OF var2)
+    var1 <- CALL substring_range(var1, LENGTH OF var2, LENGTH OF var1)
+ENDIF
+
+OUTPUT STRING("variable 1 = {var1}")
+OUTPUT STRING("variable 2 = {var2}")

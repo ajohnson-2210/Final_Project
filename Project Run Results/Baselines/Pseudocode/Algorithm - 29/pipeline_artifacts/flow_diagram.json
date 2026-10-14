@@ -1,0 +1,1866 @@
+{
+  "format": "NL-FDEP Flow Diagram",
+  "version": "1.0",
+  "entry_node": "F1",
+  "exit_node": "F2",
+  "nodes": {
+    "F1": {
+      "node_id": "F1",
+      "node_type": "START",
+      "label": "Start",
+      "line": 1,
+      "data": {}
+    },
+    "F2": {
+      "node_id": "F2",
+      "node_type": "END",
+      "label": "End",
+      "line": 1,
+      "data": {}
+    },
+    "F3": {
+      "node_id": "F3",
+      "node_type": "PROCESS",
+      "label": "Set trainingdata to an empty dictionary",
+      "line": 1,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F4": {
+      "node_id": "F4",
+      "node_type": "PROCESS",
+      "label": "Set item \"sports\" of trainingdata to [\"team wins match\", \"player scores goal\", \"championship game victory\"]",
+      "line": 2,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F5": {
+      "node_id": "F5",
+      "node_type": "PROCESS",
+      "label": "Set item \"tech\" of trainingdata to [\"new smartphone released\", \"software update improves performance\", \"AI model breakthrough benchmark\"]",
+      "line": 3,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F6": {
+      "node_id": "F6",
+      "node_type": "PROCESS",
+      "label": "Set item \"food\" of trainingdata to [\"fresh ingredients recipe\", \"chef prepares meal\", \"restaurant serves tasty dishes\"]",
+      "line": 4,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F7": {
+      "node_id": "F7",
+      "node_type": "FUNCTION",
+      "label": "Run function tokenise with text",
+      "line": 6,
+      "data": {
+        "ast_kind": "FunctionNode",
+        "name": "tokenise"
+      }
+    },
+    "F8": {
+      "node_id": "F8",
+      "node_type": "RETURN",
+      "label": "Return the result of the result of text.lower().split()",
+      "line": 7,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    },
+    "F9": {
+      "node_id": "F9",
+      "node_type": "FUNCTION",
+      "label": "Run function classify with text",
+      "line": 10,
+      "data": {
+        "ast_kind": "FunctionNode",
+        "name": "classify"
+      }
+    },
+    "F10": {
+      "node_id": "F10",
+      "node_type": "PROCESS",
+      "label": "Set words to the result of tokenise(text)",
+      "line": 11,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F11": {
+      "node_id": "F11",
+      "node_type": "PROCESS",
+      "label": "Set bestcategory to nothing",
+      "line": 12,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F12": {
+      "node_id": "F12",
+      "node_type": "PROCESS",
+      "label": "Set bestscore to negative 1",
+      "line": 13,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F13": {
+      "node_id": "F13",
+      "node_type": "PROCESS",
+      "label": "Set categories to an empty list",
+      "line": 14,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F14": {
+      "node_id": "F14",
+      "node_type": "LOOP_DECISION",
+      "label": "For each category in the result of trainingdata.keys()",
+      "line": 15,
+      "data": {
+        "ast_kind": "ForEachNode"
+      }
+    },
+    "F15": {
+      "node_id": "F15",
+      "node_type": "PROCESS",
+      "label": "Append category to categories",
+      "line": 16,
+      "data": {
+        "ast_kind": "AppendNode"
+      }
+    },
+    "F16": {
+      "node_id": "F16",
+      "node_type": "PROCESS",
+      "label": "Set c_index to 0",
+      "line": 18,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F17": {
+      "node_id": "F17",
+      "node_type": "PROCESS",
+      "label": "Set loop to true",
+      "line": 19,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F18": {
+      "node_id": "F18",
+      "node_type": "LOOP_DECISION",
+      "label": "Continue while loop?",
+      "line": 20,
+      "data": {
+        "ast_kind": "WhileNode"
+      }
+    },
+    "F19": {
+      "node_id": "F19",
+      "node_type": "TRY",
+      "label": "Attempt the following operations",
+      "line": 21,
+      "data": {
+        "ast_kind": "TryCatchNode"
+      }
+    },
+    "F20": {
+      "node_id": "F20",
+      "node_type": "PROCESS",
+      "label": "Set category to item c_index of categories",
+      "line": 22,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F21": {
+      "node_id": "F21",
+      "node_type": "PROCESS",
+      "label": "Set score to 0",
+      "line": 23,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F22": {
+      "node_id": "F22",
+      "node_type": "PROCESS",
+      "label": "Set s_index to 0",
+      "line": 24,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F23": {
+      "node_id": "F23",
+      "node_type": "PROCESS",
+      "label": "Set innerloop to true",
+      "line": 25,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F24": {
+      "node_id": "F24",
+      "node_type": "LOOP_DECISION",
+      "label": "Continue while innerloop?",
+      "line": 26,
+      "data": {
+        "ast_kind": "WhileNode"
+      }
+    },
+    "F25": {
+      "node_id": "F25",
+      "node_type": "TRY",
+      "label": "Attempt the following operations",
+      "line": 27,
+      "data": {
+        "ast_kind": "TryCatchNode"
+      }
+    },
+    "F26": {
+      "node_id": "F26",
+      "node_type": "PROCESS",
+      "label": "Set sentence to item s_index of item category of trainingdata",
+      "line": 28,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F27": {
+      "node_id": "F27",
+      "node_type": "PROCESS",
+      "label": "Set sentence_words to the result of tokenise(sentence)",
+      "line": 29,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F28": {
+      "node_id": "F28",
+      "node_type": "PROCESS",
+      "label": "Set w_index to 0",
+      "line": 30,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F29": {
+      "node_id": "F29",
+      "node_type": "PROCESS",
+      "label": "Set wordloop to true",
+      "line": 31,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F30": {
+      "node_id": "F30",
+      "node_type": "LOOP_DECISION",
+      "label": "Continue while wordloop?",
+      "line": 32,
+      "data": {
+        "ast_kind": "WhileNode"
+      }
+    },
+    "F31": {
+      "node_id": "F31",
+      "node_type": "TRY",
+      "label": "Attempt the following operations",
+      "line": 33,
+      "data": {
+        "ast_kind": "TryCatchNode"
+      }
+    },
+    "F32": {
+      "node_id": "F32",
+      "node_type": "DECISION",
+      "label": "Item w_index of words is contained in sentence_words?",
+      "line": 34,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F33": {
+      "node_id": "F33",
+      "node_type": "PROCESS",
+      "label": "Set score to score plus 1",
+      "line": 35,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F34": {
+      "node_id": "F34",
+      "node_type": "PROCESS",
+      "label": "Set w_index to w_index plus 1",
+      "line": 37,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F35": {
+      "node_id": "F35",
+      "node_type": "PROCESS",
+      "label": "Set wordloop to false",
+      "line": 39,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F36": {
+      "node_id": "F36",
+      "node_type": "PROCESS",
+      "label": "Set s_index to s_index plus 1",
+      "line": 42,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F37": {
+      "node_id": "F37",
+      "node_type": "PROCESS",
+      "label": "Set innerloop to false",
+      "line": 44,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F38": {
+      "node_id": "F38",
+      "node_type": "DECISION",
+      "label": "Score is greater than bestscore?",
+      "line": 47,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F39": {
+      "node_id": "F39",
+      "node_type": "PROCESS",
+      "label": "Set bestscore to score",
+      "line": 48,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F40": {
+      "node_id": "F40",
+      "node_type": "PROCESS",
+      "label": "Set bestcategory to category",
+      "line": 49,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F41": {
+      "node_id": "F41",
+      "node_type": "PROCESS",
+      "label": "Set c_index to c_index plus 1",
+      "line": 51,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F42": {
+      "node_id": "F42",
+      "node_type": "PROCESS",
+      "label": "Set loop to false",
+      "line": 53,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F43": {
+      "node_id": "F43",
+      "node_type": "RETURN",
+      "label": "Return bestcategory",
+      "line": 56,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    },
+    "F44": {
+      "node_id": "F44",
+      "node_type": "PROCESS",
+      "label": "Set tests to [\"the team scored a goal\", \"new processor released\", \"chef cooks tasty meal\", \"fish and chips are tasty\"]",
+      "line": 59,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F45": {
+      "node_id": "F45",
+      "node_type": "OUTPUT",
+      "label": "Display \"Simple Text Classification:\"",
+      "line": 60,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F46": {
+      "node_id": "F46",
+      "node_type": "PROCESS",
+      "label": "Set index to 0",
+      "line": 61,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F47": {
+      "node_id": "F47",
+      "node_type": "PROCESS",
+      "label": "Set loop to true",
+      "line": 62,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F48": {
+      "node_id": "F48",
+      "node_type": "LOOP_DECISION",
+      "label": "Continue while loop?",
+      "line": 63,
+      "data": {
+        "ast_kind": "WhileNode"
+      }
+    },
+    "F49": {
+      "node_id": "F49",
+      "node_type": "TRY",
+      "label": "Attempt the following operations",
+      "line": 64,
+      "data": {
+        "ast_kind": "TryCatchNode"
+      }
+    },
+    "F50": {
+      "node_id": "F50",
+      "node_type": "PROCESS",
+      "label": "Set text to item index of tests",
+      "line": 65,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F51": {
+      "node_id": "F51",
+      "node_type": "PROCESS",
+      "label": "Set result to the result of classify(text)",
+      "line": 66,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F52": {
+      "node_id": "F52",
+      "node_type": "OUTPUT",
+      "label": "Display \"'{text}' \u2192 {result}\"",
+      "line": 67,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F53": {
+      "node_id": "F53",
+      "node_type": "PROCESS",
+      "label": "Set index to index plus 1",
+      "line": 68,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F54": {
+      "node_id": "F54",
+      "node_type": "PROCESS",
+      "label": "Set loop to false",
+      "line": 70,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "F3",
+      "target": "F4",
+      "label": "NEXT"
+    },
+    {
+      "source": "F4",
+      "target": "F5",
+      "label": "NEXT"
+    },
+    {
+      "source": "F5",
+      "target": "F6",
+      "label": "NEXT"
+    },
+    {
+      "source": "F7",
+      "target": "F8",
+      "label": "BODY"
+    },
+    {
+      "source": "F6",
+      "target": "F7",
+      "label": "NEXT"
+    },
+    {
+      "source": "F10",
+      "target": "F11",
+      "label": "NEXT"
+    },
+    {
+      "source": "F11",
+      "target": "F12",
+      "label": "NEXT"
+    },
+    {
+      "source": "F12",
+      "target": "F13",
+      "label": "NEXT"
+    },
+    {
+      "source": "F14",
+      "target": "F15",
+      "label": "ITERATE"
+    },
+    {
+      "source": "F15",
+      "target": "F14",
+      "label": "LOOP"
+    },
+    {
+      "source": "F13",
+      "target": "F14",
+      "label": "NEXT"
+    },
+    {
+      "source": "F14",
+      "target": "F16",
+      "label": "NEXT"
+    },
+    {
+      "source": "F16",
+      "target": "F17",
+      "label": "NEXT"
+    },
+    {
+      "source": "F20",
+      "target": "F21",
+      "label": "NEXT"
+    },
+    {
+      "source": "F21",
+      "target": "F22",
+      "label": "NEXT"
+    },
+    {
+      "source": "F22",
+      "target": "F23",
+      "label": "NEXT"
+    },
+    {
+      "source": "F26",
+      "target": "F27",
+      "label": "NEXT"
+    },
+    {
+      "source": "F27",
+      "target": "F28",
+      "label": "NEXT"
+    },
+    {
+      "source": "F28",
+      "target": "F29",
+      "label": "NEXT"
+    },
+    {
+      "source": "F32",
+      "target": "F33",
+      "label": "TRUE"
+    },
+    {
+      "source": "F33",
+      "target": "F34",
+      "label": "NEXT"
+    },
+    {
+      "source": "F32",
+      "target": "F34",
+      "label": "NEXT"
+    },
+    {
+      "source": "F31",
+      "target": "F32",
+      "label": "TRY"
+    },
+    {
+      "source": "F31",
+      "target": "F35",
+      "label": "EXCEPTION"
+    },
+    {
+      "source": "F30",
+      "target": "F31",
+      "label": "TRUE"
+    },
+    {
+      "source": "F34",
+      "target": "F30",
+      "label": "LOOP"
+    },
+    {
+      "source": "F35",
+      "target": "F30",
+      "label": "LOOP"
+    },
+    {
+      "source": "F29",
+      "target": "F30",
+      "label": "NEXT"
+    },
+    {
+      "source": "F30",
+      "target": "F36",
+      "label": "NEXT"
+    },
+    {
+      "source": "F25",
+      "target": "F26",
+      "label": "TRY"
+    },
+    {
+      "source": "F25",
+      "target": "F37",
+      "label": "EXCEPTION"
+    },
+    {
+      "source": "F24",
+      "target": "F25",
+      "label": "TRUE"
+    },
+    {
+      "source": "F36",
+      "target": "F24",
+      "label": "LOOP"
+    },
+    {
+      "source": "F37",
+      "target": "F24",
+      "label": "LOOP"
+    },
+    {
+      "source": "F23",
+      "target": "F24",
+      "label": "NEXT"
+    },
+    {
+      "source": "F39",
+      "target": "F40",
+      "label": "NEXT"
+    },
+    {
+      "source": "F38",
+      "target": "F39",
+      "label": "TRUE"
+    },
+    {
+      "source": "F24",
+      "target": "F38",
+      "label": "NEXT"
+    },
+    {
+      "source": "F40",
+      "target": "F41",
+      "label": "NEXT"
+    },
+    {
+      "source": "F38",
+      "target": "F41",
+      "label": "NEXT"
+    },
+    {
+      "source": "F19",
+      "target": "F20",
+      "label": "TRY"
+    },
+    {
+      "source": "F19",
+      "target": "F42",
+      "label": "EXCEPTION"
+    },
+    {
+      "source": "F18",
+      "target": "F19",
+      "label": "TRUE"
+    },
+    {
+      "source": "F41",
+      "target": "F18",
+      "label": "LOOP"
+    },
+    {
+      "source": "F42",
+      "target": "F18",
+      "label": "LOOP"
+    },
+    {
+      "source": "F17",
+      "target": "F18",
+      "label": "NEXT"
+    },
+    {
+      "source": "F18",
+      "target": "F43",
+      "label": "NEXT"
+    },
+    {
+      "source": "F9",
+      "target": "F10",
+      "label": "BODY"
+    },
+    {
+      "source": "F44",
+      "target": "F45",
+      "label": "NEXT"
+    },
+    {
+      "source": "F45",
+      "target": "F46",
+      "label": "NEXT"
+    },
+    {
+      "source": "F46",
+      "target": "F47",
+      "label": "NEXT"
+    },
+    {
+      "source": "F50",
+      "target": "F51",
+      "label": "NEXT"
+    },
+    {
+      "source": "F51",
+      "target": "F52",
+      "label": "NEXT"
+    },
+    {
+      "source": "F52",
+      "target": "F53",
+      "label": "NEXT"
+    },
+    {
+      "source": "F49",
+      "target": "F50",
+      "label": "TRY"
+    },
+    {
+      "source": "F49",
+      "target": "F54",
+      "label": "EXCEPTION"
+    },
+    {
+      "source": "F48",
+      "target": "F49",
+      "label": "TRUE"
+    },
+    {
+      "source": "F53",
+      "target": "F48",
+      "label": "LOOP"
+    },
+    {
+      "source": "F54",
+      "target": "F48",
+      "label": "LOOP"
+    },
+    {
+      "source": "F47",
+      "target": "F48",
+      "label": "NEXT"
+    },
+    {
+      "source": "F1",
+      "target": "F3",
+      "label": "NEXT"
+    },
+    {
+      "source": "F8",
+      "target": "F2",
+      "label": "NEXT"
+    },
+    {
+      "source": "F43",
+      "target": "F2",
+      "label": "NEXT"
+    },
+    {
+      "source": "F48",
+      "target": "F2",
+      "label": "NEXT"
+    }
+  ],
+  "structured_program": {
+    "kind": "ProgramNode",
+    "line": 1,
+    "body": [
+      {
+        "kind": "AssignmentNode",
+        "line": 1,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 1,
+          "name": "trainingdata"
+        },
+        "value": {
+          "kind": "EmptyLiteralNode",
+          "line": 1,
+          "empty_type": "DICTIONARY"
+        }
+      },
+      {
+        "kind": "AssignmentNode",
+        "line": 2,
+        "target": {
+          "kind": "IndexNode",
+          "line": 2,
+          "collection": {
+            "kind": "IdentifierNode",
+            "line": 2,
+            "name": "trainingdata"
+          },
+          "index": {
+            "kind": "LiteralNode",
+            "line": 2,
+            "value": "sports",
+            "data_type": "STRING"
+          }
+        },
+        "value": {
+          "kind": "ListLiteralNode",
+          "line": 2,
+          "items": [
+            {
+              "kind": "LiteralNode",
+              "line": 2,
+              "value": "team wins match",
+              "data_type": "STRING"
+            },
+            {
+              "kind": "LiteralNode",
+              "line": 2,
+              "value": "player scores goal",
+              "data_type": "STRING"
+            },
+            {
+              "kind": "LiteralNode",
+              "line": 2,
+              "value": "championship game victory",
+              "data_type": "STRING"
+            }
+          ],
+          "declared_type": null
+        }
+      },
+      {
+        "kind": "AssignmentNode",
+        "line": 3,
+        "target": {
+          "kind": "IndexNode",
+          "line": 3,
+          "collection": {
+            "kind": "IdentifierNode",
+            "line": 3,
+            "name": "trainingdata"
+          },
+          "index": {
+            "kind": "LiteralNode",
+            "line": 3,
+            "value": "tech",
+            "data_type": "STRING"
+          }
+        },
+        "value": {
+          "kind": "ListLiteralNode",
+          "line": 3,
+          "items": [
+            {
+              "kind": "LiteralNode",
+              "line": 3,
+              "value": "new smartphone released",
+              "data_type": "STRING"
+            },
+            {
+              "kind": "LiteralNode",
+              "line": 3,
+              "value": "software update improves performance",
+              "data_type": "STRING"
+            },
+            {
+              "kind": "LiteralNode",
+              "line": 3,
+              "value": "AI model breakthrough benchmark",
+              "data_type": "STRING"
+            }
+          ],
+          "declared_type": null
+        }
+      },
+      {
+        "kind": "AssignmentNode",
+        "line": 4,
+        "target": {
+          "kind": "IndexNode",
+          "line": 4,
+          "collection": {
+            "kind": "IdentifierNode",
+            "line": 4,
+            "name": "trainingdata"
+          },
+          "index": {
+            "kind": "LiteralNode",
+            "line": 4,
+            "value": "food",
+            "data_type": "STRING"
+          }
+        },
+        "value": {
+          "kind": "ListLiteralNode",
+          "line": 4,
+          "items": [
+            {
+              "kind": "LiteralNode",
+              "line": 4,
+              "value": "fresh ingredients recipe",
+              "data_type": "STRING"
+            },
+            {
+              "kind": "LiteralNode",
+              "line": 4,
+              "value": "chef prepares meal",
+              "data_type": "STRING"
+            },
+            {
+              "kind": "LiteralNode",
+              "line": 4,
+              "value": "restaurant serves tasty dishes",
+              "data_type": "STRING"
+            }
+          ],
+          "declared_type": null
+        }
+      },
+      {
+        "kind": "FunctionNode",
+        "line": 6,
+        "name": "tokenise",
+        "parameters": [
+          {
+            "kind": "ParameterNode",
+            "line": 6,
+            "name": "text",
+            "declared_type": null
+          }
+        ],
+        "body": {
+          "kind": "BlockNode",
+          "line": 7,
+          "statements": [
+            {
+              "kind": "ReturnNode",
+              "line": 7,
+              "expression": {
+                "kind": "MemberCallNode",
+                "line": 7,
+                "object": {
+                  "kind": "MemberCallNode",
+                  "line": 7,
+                  "object": {
+                    "kind": "IdentifierNode",
+                    "line": 7,
+                    "name": "text"
+                  },
+                  "member": "lower",
+                  "arguments": [],
+                  "resolved_intrinsic": null
+                },
+                "member": "split",
+                "arguments": [],
+                "resolved_intrinsic": null
+              }
+            }
+          ]
+        }
+      },
+      {
+        "kind": "FunctionNode",
+        "line": 10,
+        "name": "classify",
+        "parameters": [
+          {
+            "kind": "ParameterNode",
+            "line": 10,
+            "name": "text",
+            "declared_type": null
+          }
+        ],
+        "body": {
+          "kind": "BlockNode",
+          "line": 11,
+          "statements": [
+            {
+              "kind": "AssignmentNode",
+              "line": 11,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 11,
+                "name": "words"
+              },
+              "value": {
+                "kind": "CallNode",
+                "line": 11,
+                "name": "tokenise",
+                "arguments": [
+                  {
+                    "kind": "IdentifierNode",
+                    "line": 11,
+                    "name": "text"
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "AssignmentNode",
+              "line": 12,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 12,
+                "name": "bestcategory"
+              },
+              "value": {
+                "kind": "LiteralNode",
+                "line": 12,
+                "value": null,
+                "data_type": "NONE"
+              }
+            },
+            {
+              "kind": "AssignmentNode",
+              "line": 13,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 13,
+                "name": "bestscore"
+              },
+              "value": {
+                "kind": "UnaryNode",
+                "line": 13,
+                "operator": "-",
+                "operand": {
+                  "kind": "LiteralNode",
+                  "line": 13,
+                  "value": 1,
+                  "data_type": "INTEGER"
+                }
+              }
+            },
+            {
+              "kind": "AssignmentNode",
+              "line": 14,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 14,
+                "name": "categories"
+              },
+              "value": {
+                "kind": "EmptyLiteralNode",
+                "line": 14,
+                "empty_type": "LIST"
+              }
+            },
+            {
+              "kind": "ForEachNode",
+              "line": 15,
+              "variable": {
+                "kind": "IdentifierNode",
+                "line": 15,
+                "name": "category"
+              },
+              "collection": {
+                "kind": "MemberCallNode",
+                "line": 15,
+                "object": {
+                  "kind": "IdentifierNode",
+                  "line": 15,
+                  "name": "trainingdata"
+                },
+                "member": "keys",
+                "arguments": [],
+                "resolved_intrinsic": null
+              },
+              "body": {
+                "kind": "BlockNode",
+                "line": 16,
+                "statements": [
+                  {
+                    "kind": "AppendNode",
+                    "line": 16,
+                    "value": {
+                      "kind": "IdentifierNode",
+                      "line": 16,
+                      "name": "category"
+                    },
+                    "collection": {
+                      "kind": "IdentifierNode",
+                      "line": 16,
+                      "name": "categories"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "AssignmentNode",
+              "line": 18,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 18,
+                "name": "c_index"
+              },
+              "value": {
+                "kind": "LiteralNode",
+                "line": 18,
+                "value": 0,
+                "data_type": "INTEGER"
+              }
+            },
+            {
+              "kind": "AssignmentNode",
+              "line": 19,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 19,
+                "name": "loop"
+              },
+              "value": {
+                "kind": "LiteralNode",
+                "line": 19,
+                "value": true,
+                "data_type": "BOOLEAN"
+              }
+            },
+            {
+              "kind": "WhileNode",
+              "line": 20,
+              "condition": {
+                "kind": "IdentifierNode",
+                "line": 20,
+                "name": "loop"
+              },
+              "body": {
+                "kind": "BlockNode",
+                "line": 21,
+                "statements": [
+                  {
+                    "kind": "TryCatchNode",
+                    "line": 21,
+                    "try_body": {
+                      "kind": "BlockNode",
+                      "line": 22,
+                      "statements": [
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 22,
+                          "target": {
+                            "kind": "IdentifierNode",
+                            "line": 22,
+                            "name": "category"
+                          },
+                          "value": {
+                            "kind": "IndexNode",
+                            "line": 22,
+                            "collection": {
+                              "kind": "IdentifierNode",
+                              "line": 22,
+                              "name": "categories"
+                            },
+                            "index": {
+                              "kind": "IdentifierNode",
+                              "line": 22,
+                              "name": "c_index"
+                            }
+                          }
+                        },
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 23,
+                          "target": {
+                            "kind": "IdentifierNode",
+                            "line": 23,
+                            "name": "score"
+                          },
+                          "value": {
+                            "kind": "LiteralNode",
+                            "line": 23,
+                            "value": 0,
+                            "data_type": "INTEGER"
+                          }
+                        },
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 24,
+                          "target": {
+                            "kind": "IdentifierNode",
+                            "line": 24,
+                            "name": "s_index"
+                          },
+                          "value": {
+                            "kind": "LiteralNode",
+                            "line": 24,
+                            "value": 0,
+                            "data_type": "INTEGER"
+                          }
+                        },
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 25,
+                          "target": {
+                            "kind": "IdentifierNode",
+                            "line": 25,
+                            "name": "innerloop"
+                          },
+                          "value": {
+                            "kind": "LiteralNode",
+                            "line": 25,
+                            "value": true,
+                            "data_type": "BOOLEAN"
+                          }
+                        },
+                        {
+                          "kind": "WhileNode",
+                          "line": 26,
+                          "condition": {
+                            "kind": "IdentifierNode",
+                            "line": 26,
+                            "name": "innerloop"
+                          },
+                          "body": {
+                            "kind": "BlockNode",
+                            "line": 27,
+                            "statements": [
+                              {
+                                "kind": "TryCatchNode",
+                                "line": 27,
+                                "try_body": {
+                                  "kind": "BlockNode",
+                                  "line": 28,
+                                  "statements": [
+                                    {
+                                      "kind": "AssignmentNode",
+                                      "line": 28,
+                                      "target": {
+                                        "kind": "IdentifierNode",
+                                        "line": 28,
+                                        "name": "sentence"
+                                      },
+                                      "value": {
+                                        "kind": "IndexNode",
+                                        "line": 28,
+                                        "collection": {
+                                          "kind": "IndexNode",
+                                          "line": 28,
+                                          "collection": {
+                                            "kind": "IdentifierNode",
+                                            "line": 28,
+                                            "name": "trainingdata"
+                                          },
+                                          "index": {
+                                            "kind": "IdentifierNode",
+                                            "line": 28,
+                                            "name": "category"
+                                          }
+                                        },
+                                        "index": {
+                                          "kind": "IdentifierNode",
+                                          "line": 28,
+                                          "name": "s_index"
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "kind": "AssignmentNode",
+                                      "line": 29,
+                                      "target": {
+                                        "kind": "IdentifierNode",
+                                        "line": 29,
+                                        "name": "sentence_words"
+                                      },
+                                      "value": {
+                                        "kind": "CallNode",
+                                        "line": 29,
+                                        "name": "tokenise",
+                                        "arguments": [
+                                          {
+                                            "kind": "IdentifierNode",
+                                            "line": 29,
+                                            "name": "sentence"
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "kind": "AssignmentNode",
+                                      "line": 30,
+                                      "target": {
+                                        "kind": "IdentifierNode",
+                                        "line": 30,
+                                        "name": "w_index"
+                                      },
+                                      "value": {
+                                        "kind": "LiteralNode",
+                                        "line": 30,
+                                        "value": 0,
+                                        "data_type": "INTEGER"
+                                      }
+                                    },
+                                    {
+                                      "kind": "AssignmentNode",
+                                      "line": 31,
+                                      "target": {
+                                        "kind": "IdentifierNode",
+                                        "line": 31,
+                                        "name": "wordloop"
+                                      },
+                                      "value": {
+                                        "kind": "LiteralNode",
+                                        "line": 31,
+                                        "value": true,
+                                        "data_type": "BOOLEAN"
+                                      }
+                                    },
+                                    {
+                                      "kind": "WhileNode",
+                                      "line": 32,
+                                      "condition": {
+                                        "kind": "IdentifierNode",
+                                        "line": 32,
+                                        "name": "wordloop"
+                                      },
+                                      "body": {
+                                        "kind": "BlockNode",
+                                        "line": 33,
+                                        "statements": [
+                                          {
+                                            "kind": "TryCatchNode",
+                                            "line": 33,
+                                            "try_body": {
+                                              "kind": "BlockNode",
+                                              "line": 34,
+                                              "statements": [
+                                                {
+                                                  "kind": "IfNode",
+                                                  "line": 34,
+                                                  "condition": {
+                                                    "kind": "BinaryNode",
+                                                    "line": 34,
+                                                    "operator": "IN",
+                                                    "left": {
+                                                      "kind": "IndexNode",
+                                                      "line": 34,
+                                                      "collection": {
+                                                        "kind": "IdentifierNode",
+                                                        "line": 34,
+                                                        "name": "words"
+                                                      },
+                                                      "index": {
+                                                        "kind": "IdentifierNode",
+                                                        "line": 34,
+                                                        "name": "w_index"
+                                                      }
+                                                    },
+                                                    "right": {
+                                                      "kind": "IdentifierNode",
+                                                      "line": 34,
+                                                      "name": "sentence_words"
+                                                    }
+                                                  },
+                                                  "then_body": {
+                                                    "kind": "BlockNode",
+                                                    "line": 35,
+                                                    "statements": [
+                                                      {
+                                                        "kind": "AssignmentNode",
+                                                        "line": 35,
+                                                        "target": {
+                                                          "kind": "IdentifierNode",
+                                                          "line": 35,
+                                                          "name": "score"
+                                                        },
+                                                        "value": {
+                                                          "kind": "BinaryNode",
+                                                          "line": 35,
+                                                          "operator": "+",
+                                                          "left": {
+                                                            "kind": "IdentifierNode",
+                                                            "line": 35,
+                                                            "name": "score"
+                                                          },
+                                                          "right": {
+                                                            "kind": "LiteralNode",
+                                                            "line": 35,
+                                                            "value": 1,
+                                                            "data_type": "INTEGER"
+                                                          }
+                                                        }
+                                                      }
+                                                    ]
+                                                  },
+                                                  "else_if": [],
+                                                  "else_body": null
+                                                },
+                                                {
+                                                  "kind": "AssignmentNode",
+                                                  "line": 37,
+                                                  "target": {
+                                                    "kind": "IdentifierNode",
+                                                    "line": 37,
+                                                    "name": "w_index"
+                                                  },
+                                                  "value": {
+                                                    "kind": "BinaryNode",
+                                                    "line": 37,
+                                                    "operator": "+",
+                                                    "left": {
+                                                      "kind": "IdentifierNode",
+                                                      "line": 37,
+                                                      "name": "w_index"
+                                                    },
+                                                    "right": {
+                                                      "kind": "LiteralNode",
+                                                      "line": 37,
+                                                      "value": 1,
+                                                      "data_type": "INTEGER"
+                                                    }
+                                                  }
+                                                }
+                                              ]
+                                            },
+                                            "error": null,
+                                            "catch_body": {
+                                              "kind": "BlockNode",
+                                              "line": 39,
+                                              "statements": [
+                                                {
+                                                  "kind": "AssignmentNode",
+                                                  "line": 39,
+                                                  "target": {
+                                                    "kind": "IdentifierNode",
+                                                    "line": 39,
+                                                    "name": "wordloop"
+                                                  },
+                                                  "value": {
+                                                    "kind": "LiteralNode",
+                                                    "line": 39,
+                                                    "value": false,
+                                                    "data_type": "BOOLEAN"
+                                                  }
+                                                }
+                                              ]
+                                            }
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "kind": "AssignmentNode",
+                                      "line": 42,
+                                      "target": {
+                                        "kind": "IdentifierNode",
+                                        "line": 42,
+                                        "name": "s_index"
+                                      },
+                                      "value": {
+                                        "kind": "BinaryNode",
+                                        "line": 42,
+                                        "operator": "+",
+                                        "left": {
+                                          "kind": "IdentifierNode",
+                                          "line": 42,
+                                          "name": "s_index"
+                                        },
+                                        "right": {
+                                          "kind": "LiteralNode",
+                                          "line": 42,
+                                          "value": 1,
+                                          "data_type": "INTEGER"
+                                        }
+                                      }
+                                    }
+                                  ]
+                                },
+                                "error": null,
+                                "catch_body": {
+                                  "kind": "BlockNode",
+                                  "line": 44,
+                                  "statements": [
+                                    {
+                                      "kind": "AssignmentNode",
+                                      "line": 44,
+                                      "target": {
+                                        "kind": "IdentifierNode",
+                                        "line": 44,
+                                        "name": "innerloop"
+                                      },
+                                      "value": {
+                                        "kind": "LiteralNode",
+                                        "line": 44,
+                                        "value": false,
+                                        "data_type": "BOOLEAN"
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "kind": "IfNode",
+                          "line": 47,
+                          "condition": {
+                            "kind": "BinaryNode",
+                            "line": 47,
+                            "operator": ">",
+                            "left": {
+                              "kind": "IdentifierNode",
+                              "line": 47,
+                              "name": "score"
+                            },
+                            "right": {
+                              "kind": "IdentifierNode",
+                              "line": 47,
+                              "name": "bestscore"
+                            }
+                          },
+                          "then_body": {
+                            "kind": "BlockNode",
+                            "line": 48,
+                            "statements": [
+                              {
+                                "kind": "AssignmentNode",
+                                "line": 48,
+                                "target": {
+                                  "kind": "IdentifierNode",
+                                  "line": 48,
+                                  "name": "bestscore"
+                                },
+                                "value": {
+                                  "kind": "IdentifierNode",
+                                  "line": 48,
+                                  "name": "score"
+                                }
+                              },
+                              {
+                                "kind": "AssignmentNode",
+                                "line": 49,
+                                "target": {
+                                  "kind": "IdentifierNode",
+                                  "line": 49,
+                                  "name": "bestcategory"
+                                },
+                                "value": {
+                                  "kind": "IdentifierNode",
+                                  "line": 49,
+                                  "name": "category"
+                                }
+                              }
+                            ]
+                          },
+                          "else_if": [],
+                          "else_body": null
+                        },
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 51,
+                          "target": {
+                            "kind": "IdentifierNode",
+                            "line": 51,
+                            "name": "c_index"
+                          },
+                          "value": {
+                            "kind": "BinaryNode",
+                            "line": 51,
+                            "operator": "+",
+                            "left": {
+                              "kind": "IdentifierNode",
+                              "line": 51,
+                              "name": "c_index"
+                            },
+                            "right": {
+                              "kind": "LiteralNode",
+                              "line": 51,
+                              "value": 1,
+                              "data_type": "INTEGER"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "error": null,
+                    "catch_body": {
+                      "kind": "BlockNode",
+                      "line": 53,
+                      "statements": [
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 53,
+                          "target": {
+                            "kind": "IdentifierNode",
+                            "line": 53,
+                            "name": "loop"
+                          },
+                          "value": {
+                            "kind": "LiteralNode",
+                            "line": 53,
+                            "value": false,
+                            "data_type": "BOOLEAN"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "ReturnNode",
+              "line": 56,
+              "expression": {
+                "kind": "IdentifierNode",
+                "line": 56,
+                "name": "bestcategory"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "kind": "AssignmentNode",
+        "line": 59,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 59,
+          "name": "tests"
+        },
+        "value": {
+          "kind": "ListLiteralNode",
+          "line": 59,
+          "items": [
+            {
+              "kind": "LiteralNode",
+              "line": 59,
+              "value": "the team scored a goal",
+              "data_type": "STRING"
+            },
+            {
+              "kind": "LiteralNode",
+              "line": 59,
+              "value": "new processor released",
+              "data_type": "STRING"
+            },
+            {
+              "kind": "LiteralNode",
+              "line": 59,
+              "value": "chef cooks tasty meal",
+              "data_type": "STRING"
+            },
+            {
+              "kind": "LiteralNode",
+              "line": 59,
+              "value": "fish and chips are tasty",
+              "data_type": "STRING"
+            }
+          ],
+          "declared_type": null
+        }
+      },
+      {
+        "kind": "OutputNode",
+        "line": 60,
+        "expression": {
+          "kind": "LiteralNode",
+          "line": 60,
+          "value": "Simple Text Classification:",
+          "data_type": "STRING"
+        }
+      },
+      {
+        "kind": "AssignmentNode",
+        "line": 61,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 61,
+          "name": "index"
+        },
+        "value": {
+          "kind": "LiteralNode",
+          "line": 61,
+          "value": 0,
+          "data_type": "INTEGER"
+        }
+      },
+      {
+        "kind": "AssignmentNode",
+        "line": 62,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 62,
+          "name": "loop"
+        },
+        "value": {
+          "kind": "LiteralNode",
+          "line": 62,
+          "value": true,
+          "data_type": "BOOLEAN"
+        }
+      },
+      {
+        "kind": "WhileNode",
+        "line": 63,
+        "condition": {
+          "kind": "IdentifierNode",
+          "line": 63,
+          "name": "loop"
+        },
+        "body": {
+          "kind": "BlockNode",
+          "line": 64,
+          "statements": [
+            {
+              "kind": "TryCatchNode",
+              "line": 64,
+              "try_body": {
+                "kind": "BlockNode",
+                "line": 65,
+                "statements": [
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 65,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 65,
+                      "name": "text"
+                    },
+                    "value": {
+                      "kind": "IndexNode",
+                      "line": 65,
+                      "collection": {
+                        "kind": "IdentifierNode",
+                        "line": 65,
+                        "name": "tests"
+                      },
+                      "index": {
+                        "kind": "IdentifierNode",
+                        "line": 65,
+                        "name": "index"
+                      }
+                    }
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 66,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 66,
+                      "name": "result"
+                    },
+                    "value": {
+                      "kind": "CallNode",
+                      "line": 66,
+                      "name": "classify",
+                      "arguments": [
+                        {
+                          "kind": "IdentifierNode",
+                          "line": 66,
+                          "name": "text"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "kind": "OutputNode",
+                    "line": 67,
+                    "expression": {
+                      "kind": "LiteralNode",
+                      "line": 67,
+                      "value": "'{text}' \u2192 {result}",
+                      "data_type": "STRING"
+                    }
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 68,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 68,
+                      "name": "index"
+                    },
+                    "value": {
+                      "kind": "BinaryNode",
+                      "line": 68,
+                      "operator": "+",
+                      "left": {
+                        "kind": "IdentifierNode",
+                        "line": 68,
+                        "name": "index"
+                      },
+                      "right": {
+                        "kind": "LiteralNode",
+                        "line": 68,
+                        "value": 1,
+                        "data_type": "INTEGER"
+                      }
+                    }
+                  }
+                ]
+              },
+              "error": null,
+              "catch_body": {
+                "kind": "BlockNode",
+                "line": 70,
+                "statements": [
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 70,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 70,
+                      "name": "loop"
+                    },
+                    "value": {
+                      "kind": "LiteralNode",
+                      "line": 70,
+                      "value": false,
+                      "data_type": "BOOLEAN"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

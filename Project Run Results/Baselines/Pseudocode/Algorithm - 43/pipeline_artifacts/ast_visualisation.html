@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AJ_24038155 AST Visualisation</title>
+<style>
+:root {
+  color-scheme: light dark;
+  --bg: #f7f8fb;
+  --panel: #ffffff;
+  --text: #172033;
+  --muted: #64748b;
+  --line: #94a3b8;
+  --border: #cbd5e1;
+  --accent: #2563eb;
+  --accent-soft: #dbeafe;
+  --node: #ffffff;
+  --node-shadow: rgba(15, 23, 42, 0.13);
+  --success: #15803d;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f172a;
+    --panel: #111827;
+    --text: #e5e7eb;
+    --muted: #94a3b8;
+    --line: #64748b;
+    --border: #334155;
+    --accent: #60a5fa;
+    --accent-soft: #172554;
+    --node: #1e293b;
+    --node-shadow: rgba(0, 0, 0, 0.3);
+    --success: #4ade80;
+  }
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; font-family: Inter, system-ui, sans-serif; background: var(--bg); color: var(--text); }
+body { display: grid; grid-template-rows: auto 1fr; overflow: hidden; }
+header {
+  display: flex; gap: 12px; align-items: center; flex-wrap: wrap;
+  padding: 12px 16px; background: var(--panel); border-bottom: 1px solid var(--border);
+}
+header h1 { font-size: 18px; margin: 0 12px 0 0; }
+.control {
+  appearance: none; border: 1px solid var(--border); border-radius: 8px;
+  background: var(--panel); color: var(--text); padding: 8px 10px; font-size: 14px;
+}
+button.control { cursor: pointer; }
+button.control:hover { border-color: var(--accent); }
+#search { width: 230px; }
+.status { margin-left: auto; color: var(--muted); font-size: 13px; }
+main { display: grid; grid-template-columns: minmax(0, 1fr) 300px; min-height: 0; }
+#viewport { position: relative; overflow: hidden; cursor: grab; background-image: radial-gradient(var(--border) 1px, transparent 1px); background-size: 22px 22px; }
+#viewport.dragging { cursor: grabbing; }
+svg { width: 100%; height: 100%; display: block; user-select: none; }
+.edge { fill: none; stroke: var(--line); stroke-width: 1.7; }
+.node rect { fill: var(--node); stroke: var(--border); stroke-width: 1.4; rx: 9; filter: drop-shadow(0 3px 5px var(--node-shadow)); }
+.node:hover rect, .node.selected rect { stroke: var(--accent); stroke-width: 2.5; }
+.node.match rect { stroke: var(--success); stroke-width: 3; }
+.node text { pointer-events: none; fill: var(--text); text-anchor: middle; }
+.node .kind { font-weight: 700; font-size: 13px; }
+.node .id { fill: var(--muted); font-size: 11px; }
+.node .toggle { pointer-events: auto; cursor: pointer; fill: var(--accent-soft); stroke: var(--accent); }
+.node .toggle-text { font-weight: 700; fill: var(--accent); font-size: 12px; }
+aside { padding: 16px; overflow: auto; border-left: 1px solid var(--border); background: var(--panel); }
+aside h2 { margin: 0 0 12px; font-size: 16px; }
+.meta-row { border-bottom: 1px solid var(--border); padding: 9px 0; }
+.meta-label { color: var(--muted); font-size: 12px; display: block; margin-bottom: 3px; }
+.meta-value { font-size: 14px; overflow-wrap: anywhere; white-space: pre-wrap; }
+.help { margin-top: 18px; color: var(--muted); font-size: 12px; line-height: 1.5; }
+@media (max-width: 760px) { main { grid-template-columns: 1fr; } aside { display: none; } .status { display: none; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>AJ_24038155 AST Visualisation</h1>
+  <button class="control" id="zoom-in" title="Zoom in">Zoom in +</button>
+  <button class="control" id="zoom-out" title="Zoom out">Zoom out −</button>
+  <button class="control" id="reset-view">Reset view</button>
+  <button class="control" id="fit">Fit tree</button>
+  <button class="control" id="expand">Expand all</button>
+  <button class="control" id="collapse">Collapse descendants</button>
+  <input class="control" id="search" type="search" placeholder="Search node kind, ID or value">
+  <span class="status" id="status"></span>
+</header>
+<main>
+  <section id="viewport" aria-label="Interactive AST tree">
+    <svg id="canvas" role="img" aria-label="Abstract syntax tree">
+      <g id="scene"><g id="edges"></g><g id="nodes"></g></g>
+    </svg>
+  </section>
+  <aside>
+    <h2>Selected node</h2>
+    <div id="details"><span class="meta-value">Select a node to inspect its metadata.</span></div>
+    <p class="help">Drag the background to pan. Use the mouse wheel to zoom. Click a ± marker to collapse or expand descendants. Double-click a node to centre it.</p>
+  </aside>
+</main>
+<script>
+const graph = {"root_id": "N21845", "nodes": {"N21845": {"kind": "ProgramNode", "line": 1, "attributes": {}}, "N21480": {"kind": "OutputNode", "line": 1, "attributes": {}}, "N21479": {"kind": "LiteralNode", "line": 1, "attributes": {"value": "Towers Of Hanoi", "data_type": "STRING"}}, "N21599": {"kind": "FunctionNode", "line": 3, "attributes": {"name": "display_board"}}, "N21481": {"kind": "ParameterNode", "line": 3, "attributes": {"name": "pegs", "declared_type": null}}, "N21482": {"kind": "ParameterNode", "line": 3, "attributes": {"name": "n", "declared_type": null}}, "N21598": {"kind": "BlockNode", "line": 4, "attributes": {}}, "N21487": {"kind": "AssignmentNode", "line": 4, "attributes": {}}, "N21483": {"kind": "IdentifierNode", "line": 4, "attributes": {"name": "level"}}, "N21486": {"kind": "BinaryNode", "line": 4, "attributes": {"operator": "-"}}, "N21484": {"kind": "IdentifierNode", "line": 4, "attributes": {"name": "n"}}, "N21485": {"kind": "LiteralNode", "line": 4, "attributes": {"value": 1, "data_type": "INTEGER"}}, "N21595": {"kind": "WhileNode", "line": 5, "attributes": {}}, "N21490": {"kind": "BinaryNode", "line": 5, "attributes": {"operator": ">="}}, "N21488": {"kind": "IdentifierNode", "line": 5, "attributes": {"name": "level"}}, "N21489": {"kind": "LiteralNode", "line": 5, "attributes": {"value": 0, "data_type": "INTEGER"}}, "N21594": {"kind": "BlockNode", "line": 6, "attributes": {}}, "N21493": {"kind": "AssignmentNode", "line": 6, "attributes": {}}, "N21491": {"kind": "IdentifierNode", "line": 6, "attributes": {"name": "row"}}, "N21492": {"kind": "EmptyLiteralNode", "line": 6, "attributes": {"empty_type": "STRING"}}, "N21524": {"kind": "IfNode", "line": 7, "attributes": {"else_if": []}}, "N21499": {"kind": "BinaryNode", "line": 7, "attributes": {"operator": "<"}}, "N21494": {"kind": "IdentifierNode", "line": 7, "attributes": {"name": "level"}}, "N21498": {"kind": "LengthNode", "line": 7, "attributes": {}}, "N21497": {"kind": "IndexNode", "line": 7, "attributes": {}}, "N21495": {"kind": "IdentifierNode", "line": 7, "attributes": {"name": "pegs"}}, "N21496": {"kind": "LiteralNode", "line": 7, "attributes": {"value": "A", "data_type": "STRING"}}, "N21517": {"kind": "BlockNode", "line": 8, "attributes": {}}, "N21506": {"kind": "AssignmentNode", "line": 8, "attributes": {}}, "N21500": {"kind": "IdentifierNode", "line": 8, "attributes": {"name": "peg_value_1"}}, "N21505": {"kind": "IndexNode", "line": 8, "attributes": {}}, "N21503": {"kind": "IndexNode", "line": 8, "attributes": {}}, "N21501": {"kind": "IdentifierNode", "line": 8, "attributes": {"name": "pegs"}}, "N21502": {"kind": "LiteralNode", "line": 8, "attributes": {"value": "A", "data_type": "STRING"}}, "N21504": {"kind": "IdentifierNode", "line": 8, "attributes": {"name": "level"}}, "N21516": {"kind": "AssignmentNode", "line": 9, "attributes": {}}, "N21507": {"kind": "IdentifierNode", "line": 9, "attributes": {"name": "row"}}, "N21515": {"kind": "BinaryNode", "line": 9, "attributes": {"operator": "+"}}, "N21513": {"kind": "BinaryNode", "line": 9, "attributes": {"operator": "+"}}, "N21510": {"kind": "BinaryNode", "line": 9, "attributes": {"operator": "+"}}, "N21508": {"kind": "IdentifierNode", "line": 9, "attributes": {"name": "row"}}, "N21509": {"kind": "LiteralNode", "line": 9, "attributes": {"value": "  ", "data_type": "STRING"}}, "N21512": {"kind": "CastNode", "line": 9, "attributes": {"target_type": "STRING"}}, "N21511": {"kind": "IdentifierNode", "line": 9, "attributes": {"name": "peg_value_1"}}, "N21514": {"kind": "LiteralNode", "line": 9, "attributes": {"value": "  ", "data_type": "STRING"}}, "N21523": {"kind": "BlockNode", "line": 11, "attributes": {}}, "N21522": {"kind": "AssignmentNode", "line": 11, "attributes": {}}, "N21518": {"kind": "IdentifierNode", "line": 11, "attributes": {"name": "row"}}, "N21521": {"kind": "BinaryNode", "line": 11, "attributes": {"operator": "+"}}, "N21519": {"kind": "IdentifierNode", "line": 11, "attributes": {"name": "row"}}, "N21520": {"kind": "LiteralNode", "line": 11, "attributes": {"value": "  |  ", "data_type": "STRING"}}, "N21555": {"kind": "IfNode", "line": 13, "attributes": {"else_if": []}}, "N21530": {"kind": "BinaryNode", "line": 13, "attributes": {"operator": "<"}}, "N21525": {"kind": "IdentifierNode", "line": 13, "attributes": {"name": "level"}}, "N21529": {"kind": "LengthNode", "line": 13, "attributes": {}}, "N21528": {"kind": "IndexNode", "line": 13, "attributes": {}}, "N21526": {"kind": "IdentifierNode", "line": 13, "attributes": {"name": "pegs"}}, "N21527": {"kind": "LiteralNode", "line": 13, "attributes": {"value": "B", "data_type": "STRING"}}, "N21548": {"kind": "BlockNode", "line": 14, "attributes": {}}, "N21537": {"kind": "AssignmentNode", "line": 14, "attributes": {}}, "N21531": {"kind": "IdentifierNode", "line": 14, "attributes": {"name": "peg_value_2"}}, "N21536": {"kind": "IndexNode", "line": 14, "attributes": {}}, "N21534": {"kind": "IndexNode", "line": 14, "attributes": {}}, "N21532": {"kind": "IdentifierNode", "line": 14, "attributes": {"name": "pegs"}}, "N21533": {"kind": "LiteralNode", "line": 14, "attributes": {"value": "B", "data_type": "STRING"}}, "N21535": {"kind": "IdentifierNode", "line": 14, "attributes": {"name": "level"}}, "N21547": {"kind": "AssignmentNode", "line": 15, "attributes": {}}, "N21538": {"kind": "IdentifierNode", "line": 15, "attributes": {"name": "row"}}, "N21546": {"kind": "BinaryNode", "line": 15, "attributes": {"operator": "+"}}, "N21544": {"kind": "BinaryNode", "line": 15, "attributes": {"operator": "+"}}, "N21541": {"kind": "BinaryNode", "line": 15, "attributes": {"operator": "+"}}, "N21539": {"kind": "IdentifierNode", "line": 15, "attributes": {"name": "row"}}, "N21540": {"kind": "LiteralNode", "line": 15, "attributes": {"value": "  ", "data_type": "STRING"}}, "N21543": {"kind": "CastNode", "line": 15, "attributes": {"target_type": "STRING"}}, "N21542": {"kind": "IdentifierNode", "line": 15, "attributes": {"name": "peg_value_2"}}, "N21545": {"kind": "LiteralNode", "line": 15, "attributes": {"value": "  ", "data_type": "STRING"}}, "N21554": {"kind": "BlockNode", "line": 17, "attributes": {}}, "N21553": {"kind": "AssignmentNode", "line": 17, "attributes": {}}, "N21549": {"kind": "IdentifierNode", "line": 17, "attributes": {"name": "row"}}, "N21552": {"kind": "BinaryNode", "line": 17, "attributes": {"operator": "+"}}, "N21550": {"kind": "IdentifierNode", "line": 17, "attributes": {"name": "row"}}, "N21551": {"kind": "LiteralNode", "line": 17, "attributes": {"value": "  |  ", "data_type": "STRING"}}, "N21586": {"kind": "IfNode", "line": 19, "attributes": {"else_if": []}}, "N21561": {"kind": "BinaryNode", "line": 19, "attributes": {"operator": "<"}}, "N21556": {"kind": "IdentifierNode", "line": 19, "attributes": {"name": "level"}}, "N21560": {"kind": "LengthNode", "line": 19, "attributes": {}}, "N21559": {"kind": "IndexNode", "line": 19, "attributes": {}}, "N21557": {"kind": "IdentifierNode", "line": 19, "attributes": {"name": "pegs"}}, "N21558": {"kind": "LiteralNode", "line": 19, "attributes": {"value": "C", "data_type": "STRING"}}, "N21579": {"kind": "BlockNode", "line": 20, "attributes": {}}, "N21568": {"kind": "AssignmentNode", "line": 20, "attributes": {}}, "N21562": {"kind": "IdentifierNode", "line": 20, "attributes": {"name": "peg_value_3"}}, "N21567": {"kind": "IndexNode", "line": 20, "attributes": {}}, "N21565": {"kind": "IndexNode", "line": 20, "attributes": {}}, "N21563": {"kind": "IdentifierNode", "line": 20, "attributes": {"name": "pegs"}}, "N21564": {"kind": "LiteralNode", "line": 20, "attributes": {"value": "C", "data_type": "STRING"}}, "N21566": {"kind": "IdentifierNode", "line": 20, "attributes": {"name": "level"}}, "N21578": {"kind": "AssignmentNode", "line": 21, "attributes": {}}, "N21569": {"kind": "IdentifierNode", "line": 21, "attributes": {"name": "row"}}, "N21577": {"kind": "BinaryNode", "line": 21, "attributes": {"operator": "+"}}, "N21575": {"kind": "BinaryNode", "line": 21, "attributes": {"operator": "+"}}, "N21572": {"kind": "BinaryNode", "line": 21, "attributes": {"operator": "+"}}, "N21570": {"kind": "IdentifierNode", "line": 21, "attributes": {"name": "row"}}, "N21571": {"kind": "LiteralNode", "line": 21, "attributes": {"value": "  ", "data_type": "STRING"}}, "N21574": {"kind": "CastNode", "line": 21, "attributes": {"target_type": "STRING"}}, "N21573": {"kind": "IdentifierNode", "line": 21, "attributes": {"name": "peg_value_3"}}, "N21576": {"kind": "LiteralNode", "line": 21, "attributes": {"value": "  ", "data_type": "STRING"}}, "N21585": {"kind": "BlockNode", "line": 23, "attributes": {}}, "N21584": {"kind": "AssignmentNode", "line": 23, "attributes": {}}, "N21580": {"kind": "IdentifierNode", "line": 23, "attributes": {"name": "row"}}, "N21583": {"kind": "BinaryNode", "line": 23, "attributes": {"operator": "+"}}, "N21581": {"kind": "IdentifierNode", "line": 23, "attributes": {"name": "row"}}, "N21582": {"kind": "LiteralNode", "line": 23, "attributes": {"value": "  |  ", "data_type": "STRING"}}, "N21588": {"kind": "OutputNode", "line": 25, "attributes": {}}, "N21587": {"kind": "IdentifierNode", "line": 25, "attributes": {"name": "row"}}, "N21593": {"kind": "AssignmentNode", "line": 26, "attributes": {}}, "N21589": {"kind": "IdentifierNode", "line": 26, "attributes": {"name": "level"}}, "N21592": {"kind": "BinaryNode", "line": 26, "attributes": {"operator": "-"}}, "N21590": {"kind": "IdentifierNode", "line": 26, "attributes": {"name": "level"}}, "N21591": {"kind": "LiteralNode", "line": 26, "attributes": {"value": 1, "data_type": "INTEGER"}}, "N21597": {"kind": "OutputNode", "line": 28, "attributes": {}}, "N21596": {"kind": "LiteralNode", "line": 28, "attributes": {"value": "  A    B    C\n", "data_type": "STRING"}}, "N21692": {"kind": "FunctionNode", "line": 31, "attributes": {"name": "move_between"}}, "N21600": {"kind": "ParameterNode", "line": 31, "attributes": {"name": "pegs", "declared_type": null}}, "N21601": {"kind": "ParameterNode", "line": 31, "attributes": {"name": "a", "declared_type": null}}, "N21602": {"kind": "ParameterNode", "line": 31, "attributes": {"name": "b", "declared_type": null}}, "N21603": {"kind": "ParameterNode", "line": 31, "attributes": {"name": "n", "declared_type": null}}, "N21691": {"kind": "BlockNode", "line": 32, "attributes": {}}, "N21687": {"kind": "IfNode", "line": 32, "attributes": {}}, "N21609": {"kind": "BinaryNode", "line": 32, "attributes": {"operator": "=="}}, "N21607": {"kind": "LengthNode", "line": 32, "attributes": {}}, "N21606": {"kind": "IndexNode", "line": 32, "attributes": {}}, "N21604": {"kind": "IdentifierNode", "line": 32, "attributes": {"name": "pegs"}}, "N21605": {"kind": "IdentifierNode", "line": 32, "attributes": {"name": "a"}}, "N21608": {"kind": "LiteralNode", "line": 32, "attributes": {"value": 0, "data_type": "INTEGER"}}, "N21623": {"kind": "BlockNode", "line": 33, "attributes": {}}, "N21615": {"kind": "AssignmentNode", "line": 33, "attributes": {}}, "N21610": {"kind": "IdentifierNode", "line": 33, "attributes": {"name": "disc"}}, "N21614": {"kind": "MemberCallNode", "line": 33, "attributes": {"member": "pop", "arguments": [], "resolved_intrinsic": null}}, "N21613": {"kind": "IndexNode", "line": 33, "attributes": {}}, "N21611": {"kind": "IdentifierNode", "line": 33, "attributes": {"name": "pegs"}}, "N21612": {"kind": "IdentifierNode", "line": 33, "attributes": {"name": "b"}}, "N21620": {"kind": "AppendNode", "line": 34, "attributes": {}}, "N21616": {"kind": "IdentifierNode", "line": 34, "attributes": {"name": "disc"}}, "N21619": {"kind": "IndexNode", "line": 34, "attributes": {}}, "N21617": {"kind": "IdentifierNode", "line": 34, "attributes": {"name": "pegs"}}, "N21618": {"kind": "IdentifierNode", "line": 34, "attributes": {"name": "a"}}, "N21622": {"kind": "OutputNode", "line": 35, "attributes": {}}, "N21621": {"kind": "LiteralNode", "line": 35, "attributes": {"value": "Move disc {disc} from {b} to {a}\n", "data_type": "STRING"}}, "N21644": {"kind": "ElseIfNode", "line": 36, "attributes": {}}, "N21629": {"kind": "BinaryNode", "line": 36, "attributes": {"operator": "=="}}, "N21627": {"kind": "LengthNode", "line": 36, "attributes": {}}, "N21626": {"kind": "IndexNode", "line": 36, "attributes": {}}, "N21624": {"kind": "IdentifierNode", "line": 36, "attributes": {"name": "pegs"}}, "N21625": {"kind": "IdentifierNode", "line": 36, "attributes": {"name": "b"}}, "N21628": {"kind": "LiteralNode", "line": 36, "attributes": {"value": 0, "data_type": "INTEGER"}}, "N21643": {"kind": "BlockNode", "line": 37, "attributes": {}}, "N21635": {"kind": "AssignmentNode", "line": 37, "attributes": {}}, "N21630": {"kind": "IdentifierNode", "line": 37, "attributes": {"name": "disc"}}, "N21634": {"kind": "MemberCallNode", "line": 37, "attributes": {"member": "pop", "arguments": [], "resolved_intrinsic": null}}, "N21633": {"kind": "IndexNode", "line": 37, "attributes": {}}, "N21631": {"kind": "IdentifierNode", "line": 37, "attributes": {"name": "pegs"}}, "N21632": {"kind": "IdentifierNode", "line": 37, "attributes": {"name": "a"}}, "N21640": {"kind": "AppendNode", "line": 38, "attributes": {}}, "N21636": {"kind": "IdentifierNode", "line": 38, "attributes": {"name": "disc"}}, "N21639": {"kind": "IndexNode", "line": 38, "attributes": {}}, "N21637": {"kind": "IdentifierNode", "line": 38, "attributes": {"name": "pegs"}}, "N21638": {"kind": "IdentifierNode", "line": 38, "attributes": {"name": "b"}}, "N21642": {"kind": "OutputNode", "line": 39, "attributes": {}}, "N21641": {"kind": "LiteralNode", "line": 39, "attributes": {"value": "Move disc {disc} from {a} to {b}\n", "data_type": "STRING"}}, "N21672": {"kind": "ElseIfNode", "line": 40, "attributes": {}}, "N21657": {"kind": "BinaryNode", "line": 40, "attributes": {"operator": "<"}}, "N21650": {"kind": "IndexNode", "line": 40, "attributes": {}}, "N21647": {"kind": "IndexNode", "line": 40, "attributes": {}}, "N21645": {"kind": "IdentifierNode", "line": 40, "attributes": {"name": "pegs"}}, "N21646": {"kind": "IdentifierNode", "line": 40, "attributes": {"name": "a"}}, "N21649": {"kind": "UnaryNode", "line": 40, "attributes": {"operator": "-"}}, "N21648": {"kind": "LiteralNode", "line": 40, "attributes": {"value": 1, "data_type": "INTEGER"}}, "N21656": {"kind": "IndexNode", "line": 40, "attributes": {}}, "N21653": {"kind": "IndexNode", "line": 40, "attributes": {}}, "N21651": {"kind": "IdentifierNode", "line": 40, "attributes": {"name": "pegs"}}, "N21652": {"kind": "IdentifierNode", "line": 40, "attributes": {"name": "b"}}, "N21655": {"kind": "UnaryNode", "line": 40, "attributes": {"operator": "-"}}, "N21654": {"kind": "LiteralNode", "line": 40, "attributes": {"value": 1, "data_type": "INTEGER"}}, "N21671": {"kind": "BlockNode", "line": 41, "attributes": {}}, "N21663": {"kind": "AssignmentNode", "line": 41, "attributes": {}}, "N21658": {"kind": "IdentifierNode", "line": 41, "attributes": {"name": "disc"}}, "N21662": {"kind": "MemberCallNode", "line": 41, "attributes": {"member": "pop", "arguments": [], "resolved_intrinsic": null}}, "N21661": {"kind": "IndexNode", "line": 41, "attributes": {}}, "N21659": {"kind": "IdentifierNode", "line": 41, "attributes": {"name": "pegs"}}, "N21660": {"kind": "IdentifierNode", "line": 41, "attributes": {"name": "a"}}, "N21668": {"kind": "AppendNode", "line": 42, "attributes": {}}, "N21664": {"kind": "IdentifierNode", "line": 42, "attributes": {"name": "disc"}}, "N21667": {"kind": "IndexNode", "line": 42, "attributes": {}}, "N21665": {"kind": "IdentifierNode", "line": 42, "attributes": {"name": "pegs"}}, "N21666": {"kind": "IdentifierNode", "line": 42, "attributes": {"name": "b"}}, "N21670": {"kind": "OutputNode", "line": 43, "attributes": {}}, "N21669": {"kind": "LiteralNode", "line": 43, "attributes": {"value": "Move disc {disc} from {a} to {b}\n", "data_type": "STRING"}}, "N21686": {"kind": "BlockNode", "line": 45, "attributes": {}}, "N21678": {"kind": "AssignmentNode", "line": 45, "attributes": {}}, "N21673": {"kind": "IdentifierNode", "line": 45, "attributes": {"name": "disc"}}, "N21677": {"kind": "MemberCallNode", "line": 45, "attributes": {"member": "pop", "arguments": [], "resolved_intrinsic": null}}, "N21676": {"kind": "IndexNode", "line": 45, "attributes": {}}, "N21674": {"kind": "IdentifierNode", "line": 45, "attributes": {"name": "pegs"}}, "N21675": {"kind": "IdentifierNode", "line": 45, "attributes": {"name": "b"}}, "N21683": {"kind": "AppendNode", "line": 46, "attributes": {}}, "N21679": {"kind": "IdentifierNode", "line": 46, "attributes": {"name": "disc"}}, "N21682": {"kind": "IndexNode", "line": 46, "attributes": {}}, "N21680": {"kind": "IdentifierNode", "line": 46, "attributes": {"name": "pegs"}}, "N21681": {"kind": "IdentifierNode", "line": 46, "attributes": {"name": "a"}}, "N21685": {"kind": "OutputNode", "line": 47, "attributes": {}}, "N21684": {"kind": "LiteralNode", "line": 47, "attributes": {"value": "Move disc {disc} from {b} to {a}\n", "data_type": "STRING"}}, "N21690": {"kind": "CallNode", "line": 49, "attributes": {"name": "display_board"}}, "N21688": {"kind": "IdentifierNode", "line": 49, "attributes": {"name": "pegs"}}, "N21689": {"kind": "IdentifierNode", "line": 49, "attributes": {"name": "n"}}, "N21782": {"kind": "FunctionNode", "line": 52, "attributes": {"name": "hanoi"}}, "N21693": {"kind": "ParameterNode", "line": 52, "attributes": {"name": "n", "declared_type": null}}, "N21694": {"kind": "ParameterNode", "line": 52, "attributes": {"name": "pegs", "declared_type": null}}, "N21781": {"kind": "BlockNode", "line": 53, "attributes": {}}, "N21697": {"kind": "AssignmentNode", "line": 53, "attributes": {}}, "N21695": {"kind": "IdentifierNode", "line": 53, "attributes": {"name": "A"}}, "N21696": {"kind": "LiteralNode", "line": 53, "attributes": {"value": "A", "data_type": "STRING"}}, "N21700": {"kind": "AssignmentNode", "line": 54, "attributes": {}}, "N21698": {"kind": "IdentifierNode", "line": 54, "attributes": {"name": "B"}}, "N21699": {"kind": "LiteralNode", "line": 54, "attributes": {"value": "B", "data_type": "STRING"}}, "N21703": {"kind": "AssignmentNode", "line": 55, "attributes": {}}, "N21701": {"kind": "IdentifierNode", "line": 55, "attributes": {"name": "C"}}, "N21702": {"kind": "LiteralNode", "line": 55, "attributes": {"value": "C", "data_type": "STRING"}}, "N21725": {"kind": "IfNode", "line": 56, "attributes": {"else_if": [], "else_body": null}}, "N21708": {"kind": "BinaryNode", "line": 56, "attributes": {"operator": "=="}}, "N21706": {"kind": "BinaryNode", "line": 56, "attributes": {"operator": "MODULUS"}}, "N21704": {"kind": "IdentifierNode", "line": 56, "attributes": {"name": "n"}}, "N21705": {"kind": "LiteralNode", "line": 56, "attributes": {"value": 2, "data_type": "INTEGER"}}, "N21707": {"kind": "LiteralNode", "line": 56, "attributes": {"value": 0, "data_type": "INTEGER"}}, "N21724": {"kind": "BlockNode", "line": 57, "attributes": {}}, "N21713": {"kind": "AssignmentNode", "line": 57, "attributes": {}}, "N21709": {"kind": "IdentifierNode", "line": 57, "attributes": {"name": "swap_values"}}, "N21712": {"kind": "TupleLiteralNode", "line": 57, "attributes": {}}, "N21710": {"kind": "IdentifierNode", "line": 57, "attributes": {"name": "C"}}, "N21711": {"kind": "IdentifierNode", "line": 57, "attributes": {"name": "B"}}, "N21718": {"kind": "AssignmentNode", "line": 58, "attributes": {}}, "N21714": {"kind": "IdentifierNode", "line": 58, "attributes": {"name": "B"}}, "N21717": {"kind": "IndexNode", "line": 58, "attributes": {}}, "N21715": {"kind": "IdentifierNode", "line": 58, "attributes": {"name": "swap_values"}}, "N21716": {"kind": "LiteralNode", "line": 58, "attributes": {"value": 0, "data_type": "INTEGER"}}, "N21723": {"kind": "AssignmentNode", "line": 59, "attributes": {}}, "N21719": {"kind": "IdentifierNode", "line": 59, "attributes": {"name": "C"}}, "N21722": {"kind": "IndexNode", "line": 59, "attributes": {}}, "N21720": {"kind": "IdentifierNode", "line": 59, "attributes": {"name": "swap_values"}}, "N21721": {"kind": "LiteralNode", "line": 59, "attributes": {"value": 1, "data_type": "INTEGER"}}, "N21732": {"kind": "AssignmentNode", "line": 61, "attributes": {}}, "N21726": {"kind": "IdentifierNode", "line": 61, "attributes": {"name": "total_moves"}}, "N21731": {"kind": "BinaryNode", "line": 61, "attributes": {"operator": "-"}}, "N21729": {"kind": "BinaryNode", "line": 61, "attributes": {"operator": "EXP"}}, "N21727": {"kind": "LiteralNode", "line": 61, "attributes": {"value": 2, "data_type": "INTEGER"}}, "N21728": {"kind": "IdentifierNode", "line": 61, "attributes": {"name": "n"}}, "N21730": {"kind": "LiteralNode", "line": 61, "attributes": {"value": 1, "data_type": "INTEGER"}}, "N21735": {"kind": "CallNode", "line": 62, "attributes": {"name": "display_board"}}, "N21733": {"kind": "IdentifierNode", "line": 62, "attributes": {"name": "pegs"}}, "N21734": {"kind": "IdentifierNode", "line": 62, "attributes": {"name": "n"}}, "N21738": {"kind": "AssignmentNode", "line": 63, "attributes": {}}, "N21736": {"kind": "IdentifierNode", "line": 63, "attributes": {"name": "move"}}, "N21737": {"kind": "LiteralNode", "line": 63, "attributes": {"value": 1, "data_type": "INTEGER"}}, "N21778": {"kind": "WhileNode", "line": 64, "attributes": {}}, "N21741": {"kind": "BinaryNode", "line": 64, "attributes": {"operator": "<="}}, "N21739": {"kind": "IdentifierNode", "line": 64, "attributes": {"name": "move"}}, "N21740": {"kind": "IdentifierNode", "line": 64, "attributes": {"name": "total_moves"}}, "N21777": {"kind": "BlockNode", "line": 65, "attributes": {}}, "N21771": {"kind": "IfNode", "line": 65, "attributes": {}}, "N21746": {"kind": "BinaryNode", "line": 65, "attributes": {"operator": "=="}}, "N21744": {"kind": "BinaryNode", "line": 65, "attributes": {"operator": "MODULUS"}}, "N21742": {"kind": "IdentifierNode", "line": 65, "attributes": {"name": "move"}}, "N21743": {"kind": "LiteralNode", "line": 65, "attributes": {"value": 3, "data_type": "INTEGER"}}, "N21745": {"kind": "LiteralNode", "line": 65, "attributes": {"value": 1, "data_type": "INTEGER"}}, "N21752": {"kind": "BlockNode", "line": 66, "attributes": {}}, "N21751": {"kind": "CallNode", "line": 66, "attributes": {"name": "move_between"}}, "N21747": {"kind": "IdentifierNode", "line": 66, "attributes": {"name": "pegs"}}, "N21748": {"kind": "IdentifierNode", "line": 66, "attributes": {"name": "A"}}, "N21749": {"kind": "IdentifierNode", "line": 66, "attributes": {"name": "C"}}, "N21750": {"kind": "IdentifierNode", "line": 66, "attributes": {"name": "n"}}, "N21764": {"kind": "ElseIfNode", "line": 67, "attributes": {}}, "N21757": {"kind": "BinaryNode", "line": 67, "attributes": {"operator": "=="}}, "N21755": {"kind": "BinaryNode", "line": 67, "attributes": {"operator": "MODULUS"}}, "N21753": {"kind": "IdentifierNode", "line": 67, "attributes": {"name": "move"}}, "N21754": {"kind": "LiteralNode", "line": 67, "attributes": {"value": 3, "data_type": "INTEGER"}}, "N21756": {"kind": "LiteralNode", "line": 67, "attributes": {"value": 2, "data_type": "INTEGER"}}, "N21763": {"kind": "BlockNode", "line": 68, "attributes": {}}, "N21762": {"kind": "CallNode", "line": 68, "attributes": {"name": "move_between"}}, "N21758": {"kind": "IdentifierNode", "line": 68, "attributes": {"name": "pegs"}}, "N21759": {"kind": "IdentifierNode", "line": 68, "attributes": {"name": "A"}}, "N21760": {"kind": "IdentifierNode", "line": 68, "attributes": {"name": "B"}}, "N21761": {"kind": "IdentifierNode", "line": 68, "attributes": {"name": "n"}}, "N21770": {"kind": "BlockNode", "line": 70, "attributes": {}}, "N21769": {"kind": "CallNode", "line": 70, "attributes": {"name": "move_between"}}, "N21765": {"kind": "IdentifierNode", "line": 70, "attributes": {"name": "pegs"}}, "N21766": {"kind": "IdentifierNode", "line": 70, "attributes": {"name": "B"}}, "N21767": {"kind": "IdentifierNode", "line": 70, "attributes": {"name": "C"}}, "N21768": {"kind": "IdentifierNode", "line": 70, "attributes": {"name": "n"}}, "N21776": {"kind": "AssignmentNode", "line": 72, "attributes": {}}, "N21772": {"kind": "IdentifierNode", "line": 72, "attributes": {"name": "move"}}, "N21775": {"kind": "BinaryNode", "line": 72, "attributes": {"operator": "+"}}, "N21773": {"kind": "IdentifierNode", "line": 72, "attributes": {"name": "move"}}, "N21774": {"kind": "LiteralNode", "line": 72, "attributes": {"value": 1, "data_type": "INTEGER"}}, "N21780": {"kind": "OutputNode", "line": 74, "attributes": {}}, "N21779": {"kind": "LiteralNode", "line": 74, "attributes": {"value": "Solved!!", "data_type": "STRING"}}, "N21785": {"kind": "AssignmentNode", "line": 77, "attributes": {}}, "N21783": {"kind": "IdentifierNode", "line": 77, "attributes": {"name": "N"}}, "N21784": {"kind": "LiteralNode", "line": 77, "attributes": {"value": 0, "data_type": "INTEGER"}}, "N21788": {"kind": "AssignmentNode", "line": 78, "attributes": {}}, "N21786": {"kind": "IdentifierNode", "line": 78, "attributes": {"name": "loop"}}, "N21787": {"kind": "LiteralNode", "line": 78, "attributes": {"value": true, "data_type": "BOOLEAN"}}, "N21810": {"kind": "WhileNode", "line": 79, "attributes": {}}, "N21789": {"kind": "IdentifierNode", "line": 79, "attributes": {"name": "loop"}}, "N21809": {"kind": "BlockNode", "line": 80, "attributes": {}}, "N21808": {"kind": "TryCatchNode", "line": 80, "attributes": {"error": null}}, "N21804": {"kind": "BlockNode", "line": 81, "attributes": {}}, "N21794": {"kind": "AssignmentNode", "line": 81, "attributes": {}}, "N21790": {"kind": "IdentifierNode", "line": 81, "attributes": {"name": "N"}}, "N21793": {"kind": "CastNode", "line": 81, "attributes": {"target_type": "INTEGER"}}, "N21792": {"kind": "InputNode", "line": 81, "attributes": {}}, "N21791": {"kind": "LiteralNode", "line": 81, "attributes": {"value": "Enter number of discs: ", "data_type": "STRING"}}, "N21798": {"kind": "AssignmentNode", "line": 82, "attributes": {}}, "N21795": {"kind": "IdentifierNode", "line": 82, "attributes": {"name": "N"}}, "N21797": {"kind": "CastNode", "line": 82, "attributes": {"target_type": "INTEGER"}}, "N21796": {"kind": "IdentifierNode", "line": 82, "attributes": {"name": "N"}}, "N21800": {"kind": "OutputNode", "line": 83, "attributes": {}}, "N21799": {"kind": "LiteralNode", "line": 83, "attributes": {"value": "Setting up..\n", "data_type": "STRING"}}, "N21803": {"kind": "AssignmentNode", "line": 84, "attributes": {}}, "N21801": {"kind": "IdentifierNode", "line": 84, "attributes": {"name": "loop"}}, "N21802": {"kind": "LiteralNode", "line": 84, "attributes": {"value": false, "data_type": "BOOLEAN"}}, "N21807": {"kind": "BlockNode", "line": 86, "attributes": {}}, "N21806": {"kind": "OutputNode", "line": 86, "attributes": {}}, "N21805": {"kind": "LiteralNode", "line": 86, "attributes": {"value": "Than's Not a Valid Number, Please Try Again!!\n", "data_type": "STRING"}}, "N21813": {"kind": "AssignmentNode", "line": 89, "attributes": {}}, "N21811": {"kind": "IdentifierNode", "line": 89, "attributes": {"name": "pegs"}}, "N21812": {"kind": "EmptyLiteralNode", "line": 89, "attributes": {"empty_type": "DICTIONARY"}}, "N21816": {"kind": "AssignmentNode", "line": 90, "attributes": {}}, "N21814": {"kind": "IdentifierNode", "line": 90, "attributes": {"name": "peg_a_values"}}, "N21815": {"kind": "EmptyLiteralNode", "line": 90, "attributes": {"empty_type": "LIST"}}, "N21826": {"kind": "ForRangeNode", "line": 91, "attributes": {}}, "N21825": {"kind": "IdentifierNode", "line": 91, "attributes": {"name": "disk"}}, "N21817": {"kind": "IdentifierNode", "line": 91, "attributes": {"name": "N"}}, "N21818": {"kind": "LiteralNode", "line": 91, "attributes": {"value": 0, "data_type": "INTEGER"}}, "N21820": {"kind": "UnaryNode", "line": 91, "attributes": {"operator": "-"}}, "N21819": {"kind": "LiteralNode", "line": 91, "attributes": {"value": 1, "data_type": "INTEGER"}}, "N21824": {"kind": "BlockNode", "line": 92, "attributes": {}}, "N21823": {"kind": "AppendNode", "line": 92, "attributes": {}}, "N21821": {"kind": "IdentifierNode", "line": 92, "attributes": {"name": "disk"}}, "N21822": {"kind": "IdentifierNode", "line": 92, "attributes": {"name": "peg_a_values"}}, "N21831": {"kind": "AssignmentNode", "line": 94, "attributes": {}}, "N21829": {"kind": "IndexNode", "line": 94, "attributes": {}}, "N21827": {"kind": "IdentifierNode", "line": 94, "attributes": {"name": "pegs"}}, "N21828": {"kind": "LiteralNode", "line": 94, "attributes": {"value": "A", "data_type": "STRING"}}, "N21830": {"kind": "IdentifierNode", "line": 94, "attributes": {"name": "peg_a_values"}}, "N21836": {"kind": "AssignmentNode", "line": 95, "attributes": {}}, "N21834": {"kind": "IndexNode", "line": 95, "attributes": {}}, "N21832": {"kind": "IdentifierNode", "line": 95, "attributes": {"name": "pegs"}}, "N21833": {"kind": "LiteralNode", "line": 95, "attributes": {"value": "B", "data_type": "STRING"}}, "N21835": {"kind": "EmptyLiteralNode", "line": 95, "attributes": {"empty_type": "LIST"}}, "N21841": {"kind": "AssignmentNode", "line": 96, "attributes": {}}, "N21839": {"kind": "IndexNode", "line": 96, "attributes": {}}, "N21837": {"kind": "IdentifierNode", "line": 96, "attributes": {"name": "pegs"}}, "N21838": {"kind": "LiteralNode", "line": 96, "attributes": {"value": "C", "data_type": "STRING"}}, "N21840": {"kind": "EmptyLiteralNode", "line": 96, "attributes": {"empty_type": "LIST"}}, "N21844": {"kind": "CallNode", "line": 97, "attributes": {"name": "hanoi"}}, "N21842": {"kind": "IdentifierNode", "line": 97, "attributes": {"name": "N"}}, "N21843": {"kind": "IdentifierNode", "line": 97, "attributes": {"name": "pegs"}}}, "adjacency": {"N21845": ["N21480", "N21599", "N21692", "N21782", "N21785", "N21788", "N21810", "N21813", "N21816", "N21826", "N21831", "N21836", "N21841", "N21844"], "N21480": ["N21479"], "N21479": [], "N21599": ["N21481", "N21482", "N21598"], "N21481": [], "N21482": [], "N21598": ["N21487", "N21595", "N21597"], "N21487": ["N21483", "N21486"], "N21483": [], "N21486": ["N21484", "N21485"], "N21484": [], "N21485": [], "N21595": ["N21490", "N21594"], "N21490": ["N21488", "N21489"], "N21488": [], "N21489": [], "N21594": ["N21493", "N21524", "N21555", "N21586", "N21588", "N21593"], "N21493": ["N21491", "N21492"], "N21491": [], "N21492": [], "N21524": ["N21499", "N21517", "N21523"], "N21499": ["N21494", "N21498"], "N21494": [], "N21498": ["N21497"], "N21497": ["N21495", "N21496"], "N21495": [], "N21496": [], "N21517": ["N21506", "N21516"], "N21506": ["N21500", "N21505"], "N21500": [], "N21505": ["N21503", "N21504"], "N21503": ["N21501", "N21502"], "N21501": [], "N21502": [], "N21504": [], "N21516": ["N21507", "N21515"], "N21507": [], "N21515": ["N21513", "N21514"], "N21513": ["N21510", "N21512"], "N21510": ["N21508", "N21509"], "N21508": [], "N21509": [], "N21512": ["N21511"], "N21511": [], "N21514": [], "N21523": ["N21522"], "N21522": ["N21518", "N21521"], "N21518": [], "N21521": ["N21519", "N21520"], "N21519": [], "N21520": [], "N21555": ["N21530", "N21548", "N21554"], "N21530": ["N21525", "N21529"], "N21525": [], "N21529": ["N21528"], "N21528": ["N21526", "N21527"], "N21526": [], "N21527": [], "N21548": ["N21537", "N21547"], "N21537": ["N21531", "N21536"], "N21531": [], "N21536": ["N21534", "N21535"], "N21534": ["N21532", "N21533"], "N21532": [], "N21533": [], "N21535": [], "N21547": ["N21538", "N21546"], "N21538": [], "N21546": ["N21544", "N21545"], "N21544": ["N21541", "N21543"], "N21541": ["N21539", "N21540"], "N21539": [], "N21540": [], "N21543": ["N21542"], "N21542": [], "N21545": [], "N21554": ["N21553"], "N21553": ["N21549", "N21552"], "N21549": [], "N21552": ["N21550", "N21551"], "N21550": [], "N21551": [], "N21586": ["N21561", "N21579", "N21585"], "N21561": ["N21556", "N21560"], "N21556": [], "N21560": ["N21559"], "N21559": ["N21557", "N21558"], "N21557": [], "N21558": [], "N21579": ["N21568", "N21578"], "N21568": ["N21562", "N21567"], "N21562": [], "N21567": ["N21565", "N21566"], "N21565": ["N21563", "N21564"], "N21563": [], "N21564": [], "N21566": [], "N21578": ["N21569", "N21577"], "N21569": [], "N21577": ["N21575", "N21576"], "N21575": ["N21572", "N21574"], "N21572": ["N21570", "N21571"], "N21570": [], "N21571": [], "N21574": ["N21573"], "N21573": [], "N21576": [], "N21585": ["N21584"], "N21584": ["N21580", "N21583"], "N21580": [], "N21583": ["N21581", "N21582"], "N21581": [], "N21582": [], "N21588": ["N21587"], "N21587": [], "N21593": ["N21589", "N21592"], "N21589": [], "N21592": ["N21590", "N21591"], "N21590": [], "N21591": [], "N21597": ["N21596"], "N21596": [], "N21692": ["N21600", "N21601", "N21602", "N21603", "N21691"], "N21600": [], "N21601": [], "N21602": [], "N21603": [], "N21691": ["N21687", "N21690"], "N21687": ["N21609", "N21623", "N21644", "N21672", "N21686"], "N21609": ["N21607", "N21608"], "N21607": ["N21606"], "N21606": ["N21604", "N21605"], "N21604": [], "N21605": [], "N21608": [], "N21623": ["N21615", "N21620", "N21622"], "N21615": ["N21610", "N21614"], "N21610": [], "N21614": ["N21613"], "N21613": ["N21611", "N21612"], "N21611": [], "N21612": [], "N21620": ["N21616", "N21619"], "N21616": [], "N21619": ["N21617", "N21618"], "N21617": [], "N21618": [], "N21622": ["N21621"], "N21621": [], "N21644": ["N21629", "N21643"], "N21629": ["N21627", "N21628"], "N21627": ["N21626"], "N21626": ["N21624", "N21625"], "N21624": [], "N21625": [], "N21628": [], "N21643": ["N21635", "N21640", "N21642"], "N21635": ["N21630", "N21634"], "N21630": [], "N21634": ["N21633"], "N21633": ["N21631", "N21632"], "N21631": [], "N21632": [], "N21640": ["N21636", "N21639"], "N21636": [], "N21639": ["N21637", "N21638"], "N21637": [], "N21638": [], "N21642": ["N21641"], "N21641": [], "N21672": ["N21657", "N21671"], "N21657": ["N21650", "N21656"], "N21650": ["N21647", "N21649"], "N21647": ["N21645", "N21646"], "N21645": [], "N21646": [], "N21649": ["N21648"], "N21648": [], "N21656": ["N21653", "N21655"], "N21653": ["N21651", "N21652"], "N21651": [], "N21652": [], "N21655": ["N21654"], "N21654": [], "N21671": ["N21663", "N21668", "N21670"], "N21663": ["N21658", "N21662"], "N21658": [], "N21662": ["N21661"], "N21661": ["N21659", "N21660"], "N21659": [], "N21660": [], "N21668": ["N21664", "N21667"], "N21664": [], "N21667": ["N21665", "N21666"], "N21665": [], "N21666": [], "N21670": ["N21669"], "N21669": [], "N21686": ["N21678", "N21683", "N21685"], "N21678": ["N21673", "N21677"], "N21673": [], "N21677": ["N21676"], "N21676": ["N21674", "N21675"], "N21674": [], "N21675": [], "N21683": ["N21679", "N21682"], "N21679": [], "N21682": ["N21680", "N21681"], "N21680": [], "N21681": [], "N21685": ["N21684"], "N21684": [], "N21690": ["N21688", "N21689"], "N21688": [], "N21689": [], "N21782": ["N21693", "N21694", "N21781"], "N21693": [], "N21694": [], "N21781": ["N21697", "N21700", "N21703", "N21725", "N21732", "N21735", "N21738", "N21778", "N21780"], "N21697": ["N21695", "N21696"], "N21695": [], "N21696": [], "N21700": ["N21698", "N21699"], "N21698": [], "N21699": [], "N21703": ["N21701", "N21702"], "N21701": [], "N21702": [], "N21725": ["N21708", "N21724"], "N21708": ["N21706", "N21707"], "N21706": ["N21704", "N21705"], "N21704": [], "N21705": [], "N21707": [], "N21724": ["N21713", "N21718", "N21723"], "N21713": ["N21709", "N21712"], "N21709": [], "N21712": ["N21710", "N21711"], "N21710": [], "N21711": [], "N21718": ["N21714", "N21717"], "N21714": [], "N21717": ["N21715", "N21716"], "N21715": [], "N21716": [], "N21723": ["N21719", "N21722"], "N21719": [], "N21722": ["N21720", "N21721"], "N21720": [], "N21721": [], "N21732": ["N21726", "N21731"], "N21726": [], "N21731": ["N21729", "N21730"], "N21729": ["N21727", "N21728"], "N21727": [], "N21728": [], "N21730": [], "N21735": ["N21733", "N21734"], "N21733": [], "N21734": [], "N21738": ["N21736", "N21737"], "N21736": [], "N21737": [], "N21778": ["N21741", "N21777"], "N21741": ["N21739", "N21740"], "N21739": [], "N21740": [], "N21777": ["N21771", "N21776"], "N21771": ["N21746", "N21752", "N21764", "N21770"], "N21746": ["N21744", "N21745"], "N21744": ["N21742", "N21743"], "N21742": [], "N21743": [], "N21745": [], "N21752": ["N21751"], "N21751": ["N21747", "N21748", "N21749", "N21750"], "N21747": [], "N21748": [], "N21749": [], "N21750": [], "N21764": ["N21757", "N21763"], "N21757": ["N21755", "N21756"], "N21755": ["N21753", "N21754"], "N21753": [], "N21754": [], "N21756": [], "N21763": ["N21762"], "N21762": ["N21758", "N21759", "N21760", "N21761"], "N21758": [], "N21759": [], "N21760": [], "N21761": [], "N21770": ["N21769"], "N21769": ["N21765", "N21766", "N21767", "N21768"], "N21765": [], "N21766": [], "N21767": [], "N21768": [], "N21776": ["N21772", "N21775"], "N21772": [], "N21775": ["N21773", "N21774"], "N21773": [], "N21774": [], "N21780": ["N21779"], "N21779": [], "N21785": ["N21783", "N21784"], "N21783": [], "N21784": [], "N21788": ["N21786", "N21787"], "N21786": [], "N21787": [], "N21810": ["N21789", "N21809"], "N21789": [], "N21809": ["N21808"], "N21808": ["N21804", "N21807"], "N21804": ["N21794", "N21798", "N21800", "N21803"], "N21794": ["N21790", "N21793"], "N21790": [], "N21793": ["N21792"], "N21792": ["N21791"], "N21791": [], "N21798": ["N21795", "N21797"], "N21795": [], "N21797": ["N21796"], "N21796": [], "N21800": ["N21799"], "N21799": [], "N21803": ["N21801", "N21802"], "N21801": [], "N21802": [], "N21807": ["N21806"], "N21806": ["N21805"], "N21805": [], "N21813": ["N21811", "N21812"], "N21811": [], "N21812": [], "N21816": ["N21814", "N21815"], "N21814": [], "N21815": [], "N21826": ["N21825", "N21817", "N21818", "N21820", "N21824"], "N21825": [], "N21817": [], "N21818": [], "N21820": ["N21819"], "N21819": [], "N21824": ["N21823"], "N21823": ["N21821", "N21822"], "N21821": [], "N21822": [], "N21831": ["N21829", "N21830"], "N21829": ["N21827", "N21828"], "N21827": [], "N21828": [], "N21830": [], "N21836": ["N21834", "N21835"], "N21834": ["N21832", "N21833"], "N21832": [], "N21833": [], "N21835": [], "N21841": ["N21839", "N21840"], "N21839": ["N21837", "N21838"], "N21837": [], "N21838": [], "N21840": [], "N21844": ["N21842", "N21843"], "N21842": [], "N21843": []}};
+const svg = document.getElementById('canvas');
+const scene = document.getElementById('scene');
+const edgesLayer = document.getElementById('edges');
+const nodesLayer = document.getElementById('nodes');
+const viewport = document.getElementById('viewport');
+const details = document.getElementById('details');
+const status = document.getElementById('status');
+const collapsed = new Set();
+let selectedId = null;
+const INITIAL_SCALE = 1.15;
+const MIN_SCALE = 0.15;
+const MAX_SCALE = 4;
+const ZOOM_FACTOR = 1.2;
+let scale = INITIAL_SCALE;
+let tx = 40;
+let ty = 40;
+let dragging = false;
+let lastX = 0;
+let lastY = 0;
+const positions = new Map();
+const NODE_W = 174;
+const NODE_H = 62;
+const X_GAP = 54;
+const Y_GAP = 94;
+
+function visibleChildren(id) { return collapsed.has(id) ? [] : (graph.adjacency[id] || []); }
+
+function layout() {
+  positions.clear();
+  let leafIndex = 0;
+  function visit(id, depth) {
+    const children = visibleChildren(id);
+    let x;
+    if (!children.length) { x = leafIndex++ * (NODE_W + X_GAP); }
+    else {
+      children.forEach(child => visit(child, depth + 1));
+      x = (positions.get(children[0]).x + positions.get(children[children.length - 1]).x) / 2;
+    }
+    positions.set(id, {x, y: depth * (NODE_H + Y_GAP)});
+  }
+  visit(graph.root_id, 0);
+}
+
+function makeSvg(name, attrs = {}) {
+  const el = document.createElementNS('http://www.w3.org/2000/svg', name);
+  Object.entries(attrs).forEach(([k, v]) => el.setAttribute(k, String(v)));
+  return el;
+}
+
+function render() {
+  layout();
+  edgesLayer.replaceChildren();
+  nodesLayer.replaceChildren();
+
+  for (const [source, targets] of Object.entries(graph.adjacency)) {
+    if (!positions.has(source)) continue;
+    for (const target of targets) {
+      if (!positions.has(target)) continue;
+      const a = positions.get(source), b = positions.get(target);
+      const path = makeSvg('path', {
+        class: 'edge',
+        d: `M ${a.x + NODE_W / 2} ${a.y + NODE_H} C ${a.x + NODE_W / 2} ${a.y + NODE_H + 40}, ${b.x + NODE_W / 2} ${b.y - 40}, ${b.x + NODE_W / 2} ${b.y}`
+      });
+      edgesLayer.appendChild(path);
+    }
+  }
+
+  for (const [id, pos] of positions) {
+    const data = graph.nodes[id];
+    const group = makeSvg('g', {class: 'node', transform: `translate(${pos.x},${pos.y})`, 'data-id': id});
+    if (id === selectedId) group.classList.add('selected');
+    group.appendChild(makeSvg('rect', {width: NODE_W, height: NODE_H}));
+
+    const kind = makeSvg('text', {class: 'kind', x: NODE_W / 2, y: 27});
+    kind.textContent = data.kind;
+    group.appendChild(kind);
+    const idText = makeSvg('text', {class: 'id', x: NODE_W / 2, y: 47});
+    idText.textContent = `${id} · line ${data.line}`;
+    group.appendChild(idText);
+
+    const children = graph.adjacency[id] || [];
+    if (children.length) {
+      const circle = makeSvg('circle', {class: 'toggle', cx: NODE_W - 12, cy: 12, r: 9});
+      circle.addEventListener('click', event => { event.stopPropagation(); toggle(id); });
+      group.appendChild(circle);
+      const sign = makeSvg('text', {class: 'toggle-text', x: NODE_W - 12, y: 16});
+      sign.textContent = collapsed.has(id) ? '+' : '−';
+      group.appendChild(sign);
+    }
+
+    group.addEventListener('click', () => selectNode(id));
+    group.addEventListener('dblclick', () => centreNode(id));
+    nodesLayer.appendChild(group);
+  }
+  applyTransform();
+  runSearch();
+}
+
+function toggle(id) {
+  if (collapsed.has(id)) collapsed.delete(id); else collapsed.add(id);
+  render();
+}
+
+function selectNode(id) {
+  selectedId = id;
+  const data = graph.nodes[id];
+  const children = graph.adjacency[id] || [];
+  details.innerHTML = '';
+  const entries = [
+    ['Node ID', id], ['Kind', data.kind], ['Source line', data.line],
+    ['Children', children.length ? children.join(', ') : 'None'],
+    ['Attributes', Object.keys(data.attributes || {}).length ? JSON.stringify(data.attributes, null, 2) : 'None']
+  ];
+  for (const [label, value] of entries) {
+    const row = document.createElement('div'); row.className = 'meta-row';
+    const labelEl = document.createElement('span'); labelEl.className = 'meta-label'; labelEl.textContent = label;
+    const valueEl = document.createElement('span'); valueEl.className = 'meta-value'; valueEl.textContent = String(value);
+    row.append(labelEl, valueEl); details.appendChild(row);
+  }
+  document.querySelectorAll('.node').forEach(el => el.classList.toggle('selected', el.dataset.id === id));
+}
+
+function updateZoomStatus() {
+  const percentage = Math.round(scale * 100);
+  status.textContent = `${positions.size} visible / ${Object.keys(graph.nodes).length} total nodes · ${percentage}%`;
+}
+
+function applyTransform() {
+  scene.setAttribute('transform', `translate(${tx} ${ty}) scale(${scale})`);
+  updateZoomStatus();
+}
+
+function zoomAt(factor, centreX = null, centreY = null) {
+  const rect = viewport.getBoundingClientRect();
+  const focusX = centreX === null ? rect.width / 2 : centreX;
+  const focusY = centreY === null ? rect.height / 2 : centreY;
+  const oldScale = scale;
+  const requestedScale = scale * factor;
+  scale = Math.max(MIN_SCALE, Math.min(MAX_SCALE, requestedScale));
+
+  if (scale === oldScale) return;
+
+  tx = focusX - (focusX - tx) * (scale / oldScale);
+  ty = focusY - (focusY - ty) * (scale / oldScale);
+  applyTransform();
+}
+
+function resetView() {
+  scale = INITIAL_SCALE;
+  const rootPosition = positions.get(graph.root_id);
+  const rect = viewport.getBoundingClientRect();
+
+  if (rootPosition) {
+    tx = rect.width / 2 - (rootPosition.x + NODE_W / 2) * scale;
+    ty = 36 - rootPosition.y * scale;
+  } else {
+    tx = 40;
+    ty = 40;
+  }
+
+  applyTransform();
+}
+
+function fitTree() {
+  if (!positions.size) return;
+  const xs = [...positions.values()].map(p => p.x);
+  const ys = [...positions.values()].map(p => p.y);
+  const minX = Math.min(...xs), maxX = Math.max(...xs) + NODE_W;
+  const minY = Math.min(...ys), maxY = Math.max(...ys) + NODE_H;
+  const width = Math.max(maxX - minX, 1), height = Math.max(maxY - minY, 1);
+  const rect = viewport.getBoundingClientRect();
+  scale = Math.min((rect.width - 70) / width, (rect.height - 70) / height, 1.4);
+  tx = (rect.width - width * scale) / 2 - minX * scale;
+  ty = 35 - minY * scale;
+  applyTransform();
+}
+
+function centreNode(id) {
+  const p = positions.get(id); if (!p) return;
+  const rect = viewport.getBoundingClientRect();
+  tx = rect.width / 2 - (p.x + NODE_W / 2) * scale;
+  ty = rect.height / 2 - (p.y + NODE_H / 2) * scale;
+  applyTransform(); selectNode(id);
+}
+
+function runSearch() {
+  const query = document.getElementById('search').value.trim().toLowerCase();
+  document.querySelectorAll('.node').forEach(el => {
+    const id = el.dataset.id;
+    const node = graph.nodes[id];
+    const haystack = `${id} ${node.kind} ${JSON.stringify(node.attributes)}`.toLowerCase();
+    el.classList.toggle('match', Boolean(query) && haystack.includes(query));
+  });
+}
+
+document.getElementById('zoom-in').addEventListener('click', () => zoomAt(ZOOM_FACTOR));
+document.getElementById('zoom-out').addEventListener('click', () => zoomAt(1 / ZOOM_FACTOR));
+document.getElementById('reset-view').addEventListener('click', resetView);
+document.getElementById('fit').addEventListener('click', fitTree);
+document.getElementById('expand').addEventListener('click', () => { collapsed.clear(); render(); fitTree(); });
+document.getElementById('collapse').addEventListener('click', () => {
+  collapsed.clear();
+  for (const id of Object.keys(graph.adjacency)) if (id !== graph.root_id && (graph.adjacency[id] || []).length) collapsed.add(id);
+  render(); fitTree();
+});
+document.getElementById('search').addEventListener('input', runSearch);
+viewport.addEventListener('mousedown', event => { if (event.target.closest('.node')) return; dragging = true; lastX = event.clientX; lastY = event.clientY; viewport.classList.add('dragging'); });
+window.addEventListener('mousemove', event => { if (!dragging) return; tx += event.clientX - lastX; ty += event.clientY - lastY; lastX = event.clientX; lastY = event.clientY; applyTransform(); });
+window.addEventListener('mouseup', () => { dragging = false; viewport.classList.remove('dragging'); });
+viewport.addEventListener('wheel', event => {
+  event.preventDefault();
+  const rect = viewport.getBoundingClientRect();
+  const mx = event.clientX - rect.left, my = event.clientY - rect.top;
+  zoomAt(event.deltaY < 0 ? 1.12 : 0.89, mx, my);
+}, {passive: false});
+window.addEventListener('resize', () => {
+  updateZoomStatus();
+});
+render();
+requestAnimationFrame(resetView);
+</script>
+</body>
+</html>

@@ -1,0 +1,898 @@
+{
+  "format": "NL-FDEP Flow Diagram",
+  "version": "1.0",
+  "entry_node": "F1",
+  "exit_node": "F2",
+  "nodes": {
+    "F1": {
+      "node_id": "F1",
+      "node_type": "START",
+      "label": "Start",
+      "line": 1,
+      "data": {}
+    },
+    "F2": {
+      "node_id": "F2",
+      "node_type": "END",
+      "label": "End",
+      "line": 1,
+      "data": {}
+    },
+    "F3": {
+      "node_id": "F3",
+      "node_type": "PROCESS",
+      "label": "Set loop to true",
+      "line": 1,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F4": {
+      "node_id": "F4",
+      "node_type": "PROCESS",
+      "label": "Set grade to an empty string",
+      "line": 2,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F5": {
+      "node_id": "F5",
+      "node_type": "LOOP_DECISION",
+      "label": "Loop is equal to true?",
+      "line": 3,
+      "data": {
+        "ast_kind": "WhileNode"
+      }
+    },
+    "F6": {
+      "node_id": "F6",
+      "node_type": "PROCESS",
+      "label": "Set score to input prompted by \"Enter Student Score: \"",
+      "line": 4,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F7": {
+      "node_id": "F7",
+      "node_type": "TRY",
+      "label": "Attempt the following operations",
+      "line": 5,
+      "data": {
+        "ast_kind": "TryCatchNode"
+      }
+    },
+    "F8": {
+      "node_id": "F8",
+      "node_type": "PROCESS",
+      "label": "Set score to score converted to float",
+      "line": 6,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F9": {
+      "node_id": "F9",
+      "node_type": "PROCESS",
+      "label": "Set loop to false",
+      "line": 7,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F10": {
+      "node_id": "F10",
+      "node_type": "OUTPUT",
+      "label": "Display \"That's Not a Number, Please Try Again!\"",
+      "line": 9,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F11": {
+      "node_id": "F11",
+      "node_type": "TRY",
+      "label": "Attempt the following operations",
+      "line": 11,
+      "data": {
+        "ast_kind": "TryCatchNode"
+      }
+    },
+    "F12": {
+      "node_id": "F12",
+      "node_type": "PROCESS",
+      "label": "Set loop to true",
+      "line": 12,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F13": {
+      "node_id": "F13",
+      "node_type": "DECISION",
+      "label": "Is score converted to integer is less than 0 or score converted to integer is greater than 100 true?",
+      "line": 13,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F14": {
+      "node_id": "F14",
+      "node_type": "RAISE",
+      "label": "Raise error the result of ValueError()",
+      "line": 14,
+      "data": {
+        "ast_kind": "RaiseNode"
+      }
+    },
+    "F15": {
+      "node_id": "F15",
+      "node_type": "PROCESS",
+      "label": "Set loop to false",
+      "line": 16,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F16": {
+      "node_id": "F16",
+      "node_type": "OUTPUT",
+      "label": "Display \"Score out of range 0 - 100\"",
+      "line": 19,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F17": {
+      "node_id": "F17",
+      "node_type": "DECISION",
+      "label": "Is score is greater than or equal to 60 and score is less than 70 true?",
+      "line": 22,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F18": {
+      "node_id": "F18",
+      "node_type": "OUTPUT",
+      "label": "Display \"Congratulations, You received a Grade of Pass!\"",
+      "line": 23,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F19": {
+      "node_id": "F19",
+      "node_type": "DECISION",
+      "label": "Is score is greater than or equal to 70 and score is less than 80 true?",
+      "line": 24,
+      "data": {
+        "ast_kind": "ElseIfNode"
+      }
+    },
+    "F20": {
+      "node_id": "F20",
+      "node_type": "OUTPUT",
+      "label": "Display \"Congratulations, You received a Grade of Merit!\"",
+      "line": 25,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F21": {
+      "node_id": "F21",
+      "node_type": "DECISION",
+      "label": "Is score is greater than or equal to 80 and score is less than 100 true?",
+      "line": 26,
+      "data": {
+        "ast_kind": "ElseIfNode"
+      }
+    },
+    "F22": {
+      "node_id": "F22",
+      "node_type": "OUTPUT",
+      "label": "Display \"Congratulations, You received a Grade of Distinction!\"",
+      "line": 27,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F23": {
+      "node_id": "F23",
+      "node_type": "DECISION",
+      "label": "Score is equal to 100?",
+      "line": 28,
+      "data": {
+        "ast_kind": "ElseIfNode"
+      }
+    },
+    "F24": {
+      "node_id": "F24",
+      "node_type": "OUTPUT",
+      "label": "Display \"WOW!! you got a Perfect score Excellent!!, Congratulations, You received a Grade of Distinction!\"",
+      "line": 29,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F25": {
+      "node_id": "F25",
+      "node_type": "OUTPUT",
+      "label": "Display \"Unfortunately, You did Not pass this time!\"",
+      "line": 31,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F26": {
+      "node_id": "F26",
+      "node_type": "END",
+      "label": "End after error",
+      "line": 14,
+      "data": {
+        "terminal_reason": "RAISE",
+        "source_node": "F14"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "F3",
+      "target": "F4",
+      "label": "NEXT"
+    },
+    {
+      "source": "F8",
+      "target": "F9",
+      "label": "NEXT"
+    },
+    {
+      "source": "F7",
+      "target": "F8",
+      "label": "TRY"
+    },
+    {
+      "source": "F7",
+      "target": "F10",
+      "label": "EXCEPTION"
+    },
+    {
+      "source": "F6",
+      "target": "F7",
+      "label": "NEXT"
+    },
+    {
+      "source": "F13",
+      "target": "F14",
+      "label": "TRUE"
+    },
+    {
+      "source": "F13",
+      "target": "F15",
+      "label": "FALSE"
+    },
+    {
+      "source": "F12",
+      "target": "F13",
+      "label": "NEXT"
+    },
+    {
+      "source": "F11",
+      "target": "F12",
+      "label": "TRY"
+    },
+    {
+      "source": "F11",
+      "target": "F16",
+      "label": "EXCEPTION"
+    },
+    {
+      "source": "F9",
+      "target": "F11",
+      "label": "NEXT"
+    },
+    {
+      "source": "F10",
+      "target": "F11",
+      "label": "NEXT"
+    },
+    {
+      "source": "F5",
+      "target": "F6",
+      "label": "TRUE"
+    },
+    {
+      "source": "F15",
+      "target": "F5",
+      "label": "LOOP"
+    },
+    {
+      "source": "F16",
+      "target": "F5",
+      "label": "LOOP"
+    },
+    {
+      "source": "F4",
+      "target": "F5",
+      "label": "NEXT"
+    },
+    {
+      "source": "F17",
+      "target": "F18",
+      "label": "TRUE"
+    },
+    {
+      "source": "F17",
+      "target": "F19",
+      "label": "FALSE"
+    },
+    {
+      "source": "F19",
+      "target": "F20",
+      "label": "TRUE"
+    },
+    {
+      "source": "F19",
+      "target": "F21",
+      "label": "FALSE"
+    },
+    {
+      "source": "F21",
+      "target": "F22",
+      "label": "TRUE"
+    },
+    {
+      "source": "F21",
+      "target": "F23",
+      "label": "FALSE"
+    },
+    {
+      "source": "F23",
+      "target": "F24",
+      "label": "TRUE"
+    },
+    {
+      "source": "F23",
+      "target": "F25",
+      "label": "FALSE"
+    },
+    {
+      "source": "F5",
+      "target": "F17",
+      "label": "NEXT"
+    },
+    {
+      "source": "F1",
+      "target": "F3",
+      "label": "NEXT"
+    },
+    {
+      "source": "F18",
+      "target": "F2",
+      "label": "NEXT"
+    },
+    {
+      "source": "F20",
+      "target": "F2",
+      "label": "NEXT"
+    },
+    {
+      "source": "F22",
+      "target": "F2",
+      "label": "NEXT"
+    },
+    {
+      "source": "F24",
+      "target": "F2",
+      "label": "NEXT"
+    },
+    {
+      "source": "F25",
+      "target": "F2",
+      "label": "NEXT"
+    },
+    {
+      "source": "F14",
+      "target": "F26",
+      "label": "NEXT"
+    }
+  ],
+  "structured_program": {
+    "kind": "ProgramNode",
+    "line": 1,
+    "body": [
+      {
+        "kind": "AssignmentNode",
+        "line": 1,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 1,
+          "name": "loop"
+        },
+        "value": {
+          "kind": "LiteralNode",
+          "line": 1,
+          "value": true,
+          "data_type": "BOOLEAN"
+        }
+      },
+      {
+        "kind": "AssignmentNode",
+        "line": 2,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 2,
+          "name": "grade"
+        },
+        "value": {
+          "kind": "EmptyLiteralNode",
+          "line": 2,
+          "empty_type": "STRING"
+        }
+      },
+      {
+        "kind": "WhileNode",
+        "line": 3,
+        "condition": {
+          "kind": "BinaryNode",
+          "line": 3,
+          "operator": "==",
+          "left": {
+            "kind": "IdentifierNode",
+            "line": 3,
+            "name": "loop"
+          },
+          "right": {
+            "kind": "LiteralNode",
+            "line": 3,
+            "value": true,
+            "data_type": "BOOLEAN"
+          }
+        },
+        "body": {
+          "kind": "BlockNode",
+          "line": 4,
+          "statements": [
+            {
+              "kind": "AssignmentNode",
+              "line": 4,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 4,
+                "name": "score"
+              },
+              "value": {
+                "kind": "InputNode",
+                "line": 4,
+                "prompt": {
+                  "kind": "LiteralNode",
+                  "line": 4,
+                  "value": "Enter Student Score: ",
+                  "data_type": "STRING"
+                }
+              }
+            },
+            {
+              "kind": "TryCatchNode",
+              "line": 5,
+              "try_body": {
+                "kind": "BlockNode",
+                "line": 6,
+                "statements": [
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 6,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 6,
+                      "name": "score"
+                    },
+                    "value": {
+                      "kind": "CastNode",
+                      "line": 6,
+                      "target_type": "FLOAT",
+                      "expression": {
+                        "kind": "IdentifierNode",
+                        "line": 6,
+                        "name": "score"
+                      }
+                    }
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 7,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 7,
+                      "name": "loop"
+                    },
+                    "value": {
+                      "kind": "LiteralNode",
+                      "line": 7,
+                      "value": false,
+                      "data_type": "BOOLEAN"
+                    }
+                  }
+                ]
+              },
+              "error": null,
+              "catch_body": {
+                "kind": "BlockNode",
+                "line": 9,
+                "statements": [
+                  {
+                    "kind": "OutputNode",
+                    "line": 9,
+                    "expression": {
+                      "kind": "LiteralNode",
+                      "line": 9,
+                      "value": "That's Not a Number, Please Try Again!",
+                      "data_type": "STRING"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "TryCatchNode",
+              "line": 11,
+              "try_body": {
+                "kind": "BlockNode",
+                "line": 12,
+                "statements": [
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 12,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 12,
+                      "name": "loop"
+                    },
+                    "value": {
+                      "kind": "LiteralNode",
+                      "line": 12,
+                      "value": true,
+                      "data_type": "BOOLEAN"
+                    }
+                  },
+                  {
+                    "kind": "IfNode",
+                    "line": 13,
+                    "condition": {
+                      "kind": "BinaryNode",
+                      "line": 13,
+                      "operator": "OR",
+                      "left": {
+                        "kind": "BinaryNode",
+                        "line": 13,
+                        "operator": "<",
+                        "left": {
+                          "kind": "CastNode",
+                          "line": 13,
+                          "target_type": "INTEGER",
+                          "expression": {
+                            "kind": "IdentifierNode",
+                            "line": 13,
+                            "name": "score"
+                          }
+                        },
+                        "right": {
+                          "kind": "LiteralNode",
+                          "line": 13,
+                          "value": 0,
+                          "data_type": "INTEGER"
+                        }
+                      },
+                      "right": {
+                        "kind": "BinaryNode",
+                        "line": 13,
+                        "operator": ">",
+                        "left": {
+                          "kind": "CastNode",
+                          "line": 13,
+                          "target_type": "INTEGER",
+                          "expression": {
+                            "kind": "IdentifierNode",
+                            "line": 13,
+                            "name": "score"
+                          }
+                        },
+                        "right": {
+                          "kind": "LiteralNode",
+                          "line": 13,
+                          "value": 100,
+                          "data_type": "INTEGER"
+                        }
+                      }
+                    },
+                    "then_body": {
+                      "kind": "BlockNode",
+                      "line": 14,
+                      "statements": [
+                        {
+                          "kind": "RaiseNode",
+                          "line": 14,
+                          "expression": {
+                            "kind": "CallNode",
+                            "line": 14,
+                            "name": "ValueError",
+                            "arguments": []
+                          }
+                        }
+                      ]
+                    },
+                    "else_if": [],
+                    "else_body": {
+                      "kind": "BlockNode",
+                      "line": 16,
+                      "statements": [
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 16,
+                          "target": {
+                            "kind": "IdentifierNode",
+                            "line": 16,
+                            "name": "loop"
+                          },
+                          "value": {
+                            "kind": "LiteralNode",
+                            "line": 16,
+                            "value": false,
+                            "data_type": "BOOLEAN"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              "error": null,
+              "catch_body": {
+                "kind": "BlockNode",
+                "line": 19,
+                "statements": [
+                  {
+                    "kind": "OutputNode",
+                    "line": 19,
+                    "expression": {
+                      "kind": "LiteralNode",
+                      "line": 19,
+                      "value": "Score out of range 0 - 100",
+                      "data_type": "STRING"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "kind": "IfNode",
+        "line": 22,
+        "condition": {
+          "kind": "BinaryNode",
+          "line": 22,
+          "operator": "AND",
+          "left": {
+            "kind": "BinaryNode",
+            "line": 22,
+            "operator": ">=",
+            "left": {
+              "kind": "IdentifierNode",
+              "line": 22,
+              "name": "score"
+            },
+            "right": {
+              "kind": "LiteralNode",
+              "line": 22,
+              "value": 60,
+              "data_type": "INTEGER"
+            }
+          },
+          "right": {
+            "kind": "BinaryNode",
+            "line": 22,
+            "operator": "<",
+            "left": {
+              "kind": "IdentifierNode",
+              "line": 22,
+              "name": "score"
+            },
+            "right": {
+              "kind": "LiteralNode",
+              "line": 22,
+              "value": 70,
+              "data_type": "INTEGER"
+            }
+          }
+        },
+        "then_body": {
+          "kind": "BlockNode",
+          "line": 23,
+          "statements": [
+            {
+              "kind": "OutputNode",
+              "line": 23,
+              "expression": {
+                "kind": "LiteralNode",
+                "line": 23,
+                "value": "Congratulations, You received a Grade of Pass!",
+                "data_type": "STRING"
+              }
+            }
+          ]
+        },
+        "else_if": [
+          {
+            "kind": "ElseIfNode",
+            "line": 24,
+            "condition": {
+              "kind": "BinaryNode",
+              "line": 24,
+              "operator": "AND",
+              "left": {
+                "kind": "BinaryNode",
+                "line": 24,
+                "operator": ">=",
+                "left": {
+                  "kind": "IdentifierNode",
+                  "line": 24,
+                  "name": "score"
+                },
+                "right": {
+                  "kind": "LiteralNode",
+                  "line": 24,
+                  "value": 70,
+                  "data_type": "INTEGER"
+                }
+              },
+              "right": {
+                "kind": "BinaryNode",
+                "line": 24,
+                "operator": "<",
+                "left": {
+                  "kind": "IdentifierNode",
+                  "line": 24,
+                  "name": "score"
+                },
+                "right": {
+                  "kind": "LiteralNode",
+                  "line": 24,
+                  "value": 80,
+                  "data_type": "INTEGER"
+                }
+              }
+            },
+            "body": {
+              "kind": "BlockNode",
+              "line": 25,
+              "statements": [
+                {
+                  "kind": "OutputNode",
+                  "line": 25,
+                  "expression": {
+                    "kind": "LiteralNode",
+                    "line": 25,
+                    "value": "Congratulations, You received a Grade of Merit!",
+                    "data_type": "STRING"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "kind": "ElseIfNode",
+            "line": 26,
+            "condition": {
+              "kind": "BinaryNode",
+              "line": 26,
+              "operator": "AND",
+              "left": {
+                "kind": "BinaryNode",
+                "line": 26,
+                "operator": ">=",
+                "left": {
+                  "kind": "IdentifierNode",
+                  "line": 26,
+                  "name": "score"
+                },
+                "right": {
+                  "kind": "LiteralNode",
+                  "line": 26,
+                  "value": 80,
+                  "data_type": "INTEGER"
+                }
+              },
+              "right": {
+                "kind": "BinaryNode",
+                "line": 26,
+                "operator": "<",
+                "left": {
+                  "kind": "IdentifierNode",
+                  "line": 26,
+                  "name": "score"
+                },
+                "right": {
+                  "kind": "LiteralNode",
+                  "line": 26,
+                  "value": 100,
+                  "data_type": "INTEGER"
+                }
+              }
+            },
+            "body": {
+              "kind": "BlockNode",
+              "line": 27,
+              "statements": [
+                {
+                  "kind": "OutputNode",
+                  "line": 27,
+                  "expression": {
+                    "kind": "LiteralNode",
+                    "line": 27,
+                    "value": "Congratulations, You received a Grade of Distinction!",
+                    "data_type": "STRING"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "kind": "ElseIfNode",
+            "line": 28,
+            "condition": {
+              "kind": "BinaryNode",
+              "line": 28,
+              "operator": "==",
+              "left": {
+                "kind": "IdentifierNode",
+                "line": 28,
+                "name": "score"
+              },
+              "right": {
+                "kind": "LiteralNode",
+                "line": 28,
+                "value": 100,
+                "data_type": "INTEGER"
+              }
+            },
+            "body": {
+              "kind": "BlockNode",
+              "line": 29,
+              "statements": [
+                {
+                  "kind": "OutputNode",
+                  "line": 29,
+                  "expression": {
+                    "kind": "LiteralNode",
+                    "line": 29,
+                    "value": "WOW!! you got a Perfect score Excellent!!, Congratulations, You received a Grade of Distinction!",
+                    "data_type": "STRING"
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "else_body": {
+          "kind": "BlockNode",
+          "line": 31,
+          "statements": [
+            {
+              "kind": "OutputNode",
+              "line": 31,
+              "expression": {
+                "kind": "LiteralNode",
+                "line": 31,
+                "value": "Unfortunately, You did Not pass this time!",
+                "data_type": "STRING"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

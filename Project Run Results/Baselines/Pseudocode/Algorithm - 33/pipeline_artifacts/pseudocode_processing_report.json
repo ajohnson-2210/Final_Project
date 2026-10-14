@@ -1,0 +1,108 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "AJ_DIALECT_STRICT",
+  "source_modified": true,
+  "transformation_count": 7,
+  "transformations": [
+    {
+      "line": 23,
+      "rule_family": "RESERVED_IDENTIFIER_ESCAPE",
+      "branch": "SOURCE_PROVEN_BINDING_ESCAPE",
+      "source": "integer <- 0",
+      "canonical": "__reserved_keyword__integer <- 0",
+      "evidence": [
+        "the source uses an AJ reserved keyword in an unambiguous identifier-binding position",
+        "the protected __reserved_keyword__ prefix preserves the source identifier spelling without assigning new algorithmic meaning",
+        "corresponding identifier occurrences are rewritten while quoted text and recognised AJ keyword syntax are preserved"
+      ],
+      "confidence": "source_proven",
+      "semantic_change": false
+    },
+    {
+      "line": 27,
+      "rule_family": "RESERVED_IDENTIFIER_ESCAPE",
+      "branch": "SOURCE_PROVEN_BINDING_ESCAPE",
+      "source": "        integer <- INPUT(STRING(\"Enter a Positive Integer to find the Square Root: \"))",
+      "canonical": "        __reserved_keyword__integer <- INPUT(STRING(\"Enter a Positive Integer to find the Square Root: \"))",
+      "evidence": [
+        "the source uses an AJ reserved keyword in an unambiguous identifier-binding position",
+        "the protected __reserved_keyword__ prefix preserves the source identifier spelling without assigning new algorithmic meaning",
+        "corresponding identifier occurrences are rewritten while quoted text and recognised AJ keyword syntax are preserved"
+      ],
+      "confidence": "source_proven",
+      "semantic_change": false
+    },
+    {
+      "line": 28,
+      "rule_family": "RESERVED_IDENTIFIER_ESCAPE",
+      "branch": "SOURCE_PROVEN_BINDING_ESCAPE",
+      "source": "        integer <- CALL INTEGER(integer)",
+      "canonical": "        __reserved_keyword__integer <- CALL INTEGER(__reserved_keyword__integer)",
+      "evidence": [
+        "the source uses an AJ reserved keyword in an unambiguous identifier-binding position",
+        "the protected __reserved_keyword__ prefix preserves the source identifier spelling without assigning new algorithmic meaning",
+        "corresponding identifier occurrences are rewritten while quoted text and recognised AJ keyword syntax are preserved"
+      ],
+      "confidence": "source_proven",
+      "semantic_change": false
+    },
+    {
+      "line": 29,
+      "rule_family": "RESERVED_IDENTIFIER_ESCAPE",
+      "branch": "SOURCE_PROVEN_BINDING_ESCAPE",
+      "source": "        IF integer <= 0 THEN",
+      "canonical": "        IF __reserved_keyword__integer <= 0 THEN",
+      "evidence": [
+        "the source uses an AJ reserved keyword in an unambiguous identifier-binding position",
+        "the protected __reserved_keyword__ prefix preserves the source identifier spelling without assigning new algorithmic meaning",
+        "corresponding identifier occurrences are rewritten while quoted text and recognised AJ keyword syntax are preserved"
+      ],
+      "confidence": "source_proven",
+      "semantic_change": false
+    },
+    {
+      "line": 30,
+      "rule_family": "RESERVED_IDENTIFIER_ESCAPE",
+      "branch": "SOURCE_PROVEN_BINDING_ESCAPE",
+      "source": "            integer <- 0",
+      "canonical": "            __reserved_keyword__integer <- 0",
+      "evidence": [
+        "the source uses an AJ reserved keyword in an unambiguous identifier-binding position",
+        "the protected __reserved_keyword__ prefix preserves the source identifier spelling without assigning new algorithmic meaning",
+        "corresponding identifier occurrences are rewritten while quoted text and recognised AJ keyword syntax are preserved"
+      ],
+      "confidence": "source_proven",
+      "semantic_change": false
+    },
+    {
+      "line": 39,
+      "rule_family": "RESERVED_IDENTIFIER_ESCAPE",
+      "branch": "SOURCE_PROVEN_BINDING_ESCAPE",
+      "source": "message <- STRING(\"The Square Root of \") + CALL STRING(integer) + STRING(\" Rounded Down to the Nearest Integer = \")",
+      "canonical": "message <- STRING(\"The Square Root of \") + CALL STRING(__reserved_keyword__integer) + STRING(\" Rounded Down to the Nearest Integer = \")",
+      "evidence": [
+        "the source uses an AJ reserved keyword in an unambiguous identifier-binding position",
+        "the protected __reserved_keyword__ prefix preserves the source identifier spelling without assigning new algorithmic meaning",
+        "corresponding identifier occurrences are rewritten while quoted text and recognised AJ keyword syntax are preserved"
+      ],
+      "confidence": "source_proven",
+      "semantic_change": false
+    },
+    {
+      "line": 40,
+      "rule_family": "RESERVED_IDENTIFIER_ESCAPE",
+      "branch": "SOURCE_PROVEN_BINDING_ESCAPE",
+      "source": "square_root <- CALL int_sqrt(integer)",
+      "canonical": "square_root <- CALL int_sqrt(__reserved_keyword__integer)",
+      "evidence": [
+        "the source uses an AJ reserved keyword in an unambiguous identifier-binding position",
+        "the protected __reserved_keyword__ prefix preserves the source identifier spelling without assigning new algorithmic meaning",
+        "corresponding identifier occurrences are rewritten while quoted text and recognised AJ keyword syntax are preserved"
+      ],
+      "confidence": "source_proven",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": false,
+  "header_lines_removed": 0
+}

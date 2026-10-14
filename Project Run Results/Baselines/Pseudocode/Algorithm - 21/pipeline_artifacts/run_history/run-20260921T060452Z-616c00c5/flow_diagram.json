@@ -1,0 +1,404 @@
+{
+  "format": "NL-FDEP Flow Diagram",
+  "version": "1.0",
+  "entry_node": "F1",
+  "exit_node": "F2",
+  "nodes": {
+    "F1": {
+      "node_id": "F1",
+      "node_type": "START",
+      "label": "Start",
+      "line": 1,
+      "data": {}
+    },
+    "F2": {
+      "node_id": "F2",
+      "node_type": "END",
+      "label": "End",
+      "line": 1,
+      "data": {}
+    },
+    "F3": {
+      "node_id": "F3",
+      "node_type": "PROCESS",
+      "label": "Set givenNum to 0",
+      "line": 1,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F4": {
+      "node_id": "F4",
+      "node_type": "PROCESS",
+      "label": "Set loop to true",
+      "line": 2,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F5": {
+      "node_id": "F5",
+      "node_type": "LOOP_DECISION",
+      "label": "Loop is equal to true?",
+      "line": 3,
+      "data": {
+        "ast_kind": "WhileNode"
+      }
+    },
+    "F6": {
+      "node_id": "F6",
+      "node_type": "PROCESS",
+      "label": "Set givenNum to input prompted by \"Enter Number: \"",
+      "line": 4,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F7": {
+      "node_id": "F7",
+      "node_type": "TRY",
+      "label": "Attempt the following operations",
+      "line": 5,
+      "data": {
+        "ast_kind": "TryCatchNode"
+      }
+    },
+    "F8": {
+      "node_id": "F8",
+      "node_type": "PROCESS",
+      "label": "Set givenNum to givenNum converted to integer",
+      "line": 6,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F9": {
+      "node_id": "F9",
+      "node_type": "PROCESS",
+      "label": "Set loop to false",
+      "line": 7,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F10": {
+      "node_id": "F10",
+      "node_type": "OUTPUT",
+      "label": "Display \"That's Not a Valid Integer, Please Try Again!\"",
+      "line": 9,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F11": {
+      "node_id": "F11",
+      "node_type": "DECISION",
+      "label": "GivenNum modulo 2 is equal to 0?",
+      "line": 12,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F12": {
+      "node_id": "F12",
+      "node_type": "OUTPUT",
+      "label": "Display \"{givenNum} is Even\"",
+      "line": 13,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F13": {
+      "node_id": "F13",
+      "node_type": "OUTPUT",
+      "label": "Display \"{givenNum} is Odd\"",
+      "line": 15,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "F3",
+      "target": "F4",
+      "label": "NEXT"
+    },
+    {
+      "source": "F8",
+      "target": "F9",
+      "label": "NEXT"
+    },
+    {
+      "source": "F7",
+      "target": "F8",
+      "label": "TRY"
+    },
+    {
+      "source": "F7",
+      "target": "F10",
+      "label": "EXCEPTION"
+    },
+    {
+      "source": "F6",
+      "target": "F7",
+      "label": "NEXT"
+    },
+    {
+      "source": "F5",
+      "target": "F6",
+      "label": "TRUE"
+    },
+    {
+      "source": "F9",
+      "target": "F5",
+      "label": "LOOP"
+    },
+    {
+      "source": "F10",
+      "target": "F5",
+      "label": "LOOP"
+    },
+    {
+      "source": "F4",
+      "target": "F5",
+      "label": "NEXT"
+    },
+    {
+      "source": "F11",
+      "target": "F12",
+      "label": "TRUE"
+    },
+    {
+      "source": "F11",
+      "target": "F13",
+      "label": "FALSE"
+    },
+    {
+      "source": "F5",
+      "target": "F11",
+      "label": "NEXT"
+    },
+    {
+      "source": "F1",
+      "target": "F3",
+      "label": "NEXT"
+    },
+    {
+      "source": "F12",
+      "target": "F2",
+      "label": "NEXT"
+    },
+    {
+      "source": "F13",
+      "target": "F2",
+      "label": "NEXT"
+    }
+  ],
+  "structured_program": {
+    "kind": "ProgramNode",
+    "line": 1,
+    "body": [
+      {
+        "kind": "AssignmentNode",
+        "line": 1,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 1,
+          "name": "givenNum"
+        },
+        "value": {
+          "kind": "LiteralNode",
+          "line": 1,
+          "value": 0,
+          "data_type": "INTEGER"
+        }
+      },
+      {
+        "kind": "AssignmentNode",
+        "line": 2,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 2,
+          "name": "loop"
+        },
+        "value": {
+          "kind": "LiteralNode",
+          "line": 2,
+          "value": true,
+          "data_type": "BOOLEAN"
+        }
+      },
+      {
+        "kind": "WhileNode",
+        "line": 3,
+        "condition": {
+          "kind": "BinaryNode",
+          "line": 3,
+          "operator": "==",
+          "left": {
+            "kind": "IdentifierNode",
+            "line": 3,
+            "name": "loop"
+          },
+          "right": {
+            "kind": "LiteralNode",
+            "line": 3,
+            "value": true,
+            "data_type": "BOOLEAN"
+          }
+        },
+        "body": {
+          "kind": "BlockNode",
+          "line": 4,
+          "statements": [
+            {
+              "kind": "AssignmentNode",
+              "line": 4,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 4,
+                "name": "givenNum"
+              },
+              "value": {
+                "kind": "InputNode",
+                "line": 4,
+                "prompt": {
+                  "kind": "LiteralNode",
+                  "line": 4,
+                  "value": "Enter Number: ",
+                  "data_type": "STRING"
+                }
+              }
+            },
+            {
+              "kind": "TryCatchNode",
+              "line": 5,
+              "try_body": {
+                "kind": "BlockNode",
+                "line": 6,
+                "statements": [
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 6,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 6,
+                      "name": "givenNum"
+                    },
+                    "value": {
+                      "kind": "CastNode",
+                      "line": 6,
+                      "target_type": "INTEGER",
+                      "expression": {
+                        "kind": "IdentifierNode",
+                        "line": 6,
+                        "name": "givenNum"
+                      }
+                    }
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 7,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 7,
+                      "name": "loop"
+                    },
+                    "value": {
+                      "kind": "LiteralNode",
+                      "line": 7,
+                      "value": false,
+                      "data_type": "BOOLEAN"
+                    }
+                  }
+                ]
+              },
+              "error": null,
+              "catch_body": {
+                "kind": "BlockNode",
+                "line": 9,
+                "statements": [
+                  {
+                    "kind": "OutputNode",
+                    "line": 9,
+                    "expression": {
+                      "kind": "LiteralNode",
+                      "line": 9,
+                      "value": "That's Not a Valid Integer, Please Try Again!",
+                      "data_type": "STRING"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "kind": "IfNode",
+        "line": 12,
+        "condition": {
+          "kind": "BinaryNode",
+          "line": 12,
+          "operator": "==",
+          "left": {
+            "kind": "BinaryNode",
+            "line": 12,
+            "operator": "MODULUS",
+            "left": {
+              "kind": "IdentifierNode",
+              "line": 12,
+              "name": "givenNum"
+            },
+            "right": {
+              "kind": "LiteralNode",
+              "line": 12,
+              "value": 2,
+              "data_type": "INTEGER"
+            }
+          },
+          "right": {
+            "kind": "LiteralNode",
+            "line": 12,
+            "value": 0,
+            "data_type": "INTEGER"
+          }
+        },
+        "then_body": {
+          "kind": "BlockNode",
+          "line": 13,
+          "statements": [
+            {
+              "kind": "OutputNode",
+              "line": 13,
+              "expression": {
+                "kind": "LiteralNode",
+                "line": 13,
+                "value": "{givenNum} is Even",
+                "data_type": "STRING"
+              }
+            }
+          ]
+        },
+        "else_if": [],
+        "else_body": {
+          "kind": "BlockNode",
+          "line": 15,
+          "statements": [
+            {
+              "kind": "OutputNode",
+              "line": 15,
+              "expression": {
+                "kind": "LiteralNode",
+                "line": 15,
+                "value": "{givenNum} is Odd",
+                "data_type": "STRING"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

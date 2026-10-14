@@ -1,0 +1,31 @@
+arr <- LIST [1, 3, -1, -3, 5, 3, 6, 7]
+k <- 2
+results <- EMPTY LIST
+start <- 0
+loop <- BOOLEAN(TRUE)
+WHILE loop DO
+    end <- start + k
+    IF end > LENGTH OF arr THEN
+        BREAK
+    ENDIF
+    index <- start
+    innerloop <- BOOLEAN(TRUE)
+    maxval <- arr[start]
+    WHILE innerloop DO
+        TRY
+            IF arr[index] > maxval THEN
+                maxval <- arr[index]
+            ENDIF
+            index <- index + 1
+        CATCH
+            innerloop <- BOOLEAN(FALSE)
+        ENDTRY
+        IF index >= end THEN
+            innerloop <- BOOLEAN(FALSE)
+        ENDIF
+    ENDWHILE
+    APPEND maxval TO results
+    start <- start + 1
+ENDWHILE
+OUTPUT STRING("Sliding Window Maximums From Window Size {k}:")
+OUTPUT results

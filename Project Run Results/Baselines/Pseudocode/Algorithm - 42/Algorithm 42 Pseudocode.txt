@@ -1,0 +1,45 @@
+COMMENT import random
+
+FUNCTION find_pairs ACCEPTS(arr, target, decimals)
+    pairs <- EMPTY LIST
+    i <- 0
+    n <- LENGTH OF arr
+    WHILE i < n DO
+        j <- i + 1
+        WHILE j < n DO
+            IF CALL round((arr[i] + arr[j]), decimals) == CALL round(target, decimals) THEN
+                APPEND TUPLE(arr[i], arr[j]) TO pairs
+            ENDIF
+            j <- j + 1
+        ENDWHILE
+        i <- i + 1
+    ENDWHILE
+    RETURN pairs
+ENDFUNCTION
+
+size <- 20
+arr <- EMPTY LIST
+i <- 0
+WHILE i < size DO
+    IF RANDOM FLOAT(0, 1) < 0.5 THEN
+        num <- RANDOM INT(-20, 20)
+    ELSE
+        num <- CALL round(RANDOM FLOAT(-20, 20), 2)
+    ENDIF
+    APPEND num TO arr
+    i <- i + 1
+ENDWHILE
+OUTPUT STRING("Random array:")
+OUTPUT arr
+target <- CALL FLOAT(INPUT(STRING("Enter target number: ")))
+pairs <- CALL find_pairs(arr, target, 6)
+OUTPUT STRING("\nPairs that sum to {target}:\n")
+i <- 0
+IF LENGTH OF pairs == 0 THEN
+    OUTPUT STRING("No matching pairs found.")
+ELSE
+    WHILE i < LENGTH OF pairs DO
+        OUTPUT pairs[i]
+        i <- i + 1
+    ENDWHILE
+ENDIF

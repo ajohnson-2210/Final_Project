@@ -1,0 +1,39 @@
+COMMENT import os
+
+OUTPUT STRING("Recursive File Search System\n")
+
+FUNCTION search_files_recursive ACCEPTS(folder_path, file_extension, results)
+    OUTPUT STRING("Searching: {folder_path}")
+    TRY
+        items <- CALL os_method_listdir(folder_path)
+    CATCH
+        OUTPUT STRING("Cannot access: {folder_path}")
+        RETURN
+    ENDTRY
+    i <- 0
+    WHILE i < LENGTH OF items DO
+        item <- items[i]
+        full_path <- CALL os_method_path_join(folder_path, item)
+        IF CALL os_method_path_isfile(full_path) THEN
+            IF item.endswith(file_extension) THEN
+                OUTPUT STRING("FOUND: {full_path}")
+                APPEND full_path TO results
+            ENDIF
+        ELSE IF CALL os_method_path_isdir(full_path) THEN
+            CALL search_files_recursive(full_path, file_extension, results)
+        ENDIF
+        i <- i + 1
+    ENDWHILE
+ENDFUNCTION
+
+start_folder <- STRING("C:/example/start/path")
+target_extension <- STRING(".txt")
+found_files <- EMPTY LIST
+OUTPUT STRING("Starting recursive search...\n")
+CALL search_files_recursive(start_folder, target_extension, found_files)
+OUTPUT STRING("\nSearch complete.\nFiles found:")
+i <- 0
+WHILE i < LENGTH OF found_files DO
+    OUTPUT found_files[i]
+    i <- i + 1
+ENDWHILE

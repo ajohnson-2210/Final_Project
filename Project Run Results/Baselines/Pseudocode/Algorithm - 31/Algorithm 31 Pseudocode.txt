@@ -1,0 +1,392 @@
+text <- STRING("John gave his dog a bath because they were dirty. Sarah told him to use warm water. Then she asked him to clean his car as he is dirty")
+pronouns <- EMPTY DICTIONARY
+pronouns[STRING("he")] <- TUPLE(STRING("male"), STRING("subject"))
+pronouns[STRING("him")] <- TUPLE(STRING("male"), STRING("object"))
+pronouns[STRING("his")] <- TUPLE(STRING("male"), STRING("possessive"))
+pronouns[STRING("she")] <- TUPLE(STRING("female"), STRING("subject"))
+pronouns[STRING("her")] <- TUPLE(STRING("female"), STRING("object"))
+pronouns[STRING("they")] <- TUPLE(STRING("plural"), STRING("subject"))
+pronouns[STRING("them")] <- TUPLE(STRING("plural"), STRING("object"))
+pronouns[STRING("their")] <- TUPLE(STRING("plural"), STRING("possessive"))
+male_names <- LIST [STRING("john"), STRING("peter"), STRING("michael"), STRING("david")]
+female_names <- LIST [STRING("sarah"), STRING("mary"), STRING("anna"), STRING("julia")]
+common_nouns <- LIST [STRING("dog"), STRING("cat"), STRING("car"), STRING("bike"), STRING("boat"), STRING("ship"), STRING("motorbike")]
+animate_nouns <- LIST [STRING("dog"), STRING("cat"), STRING("man"), STRING("woman"), STRING("boy"), STRING("girl")]
+anthropomorphic_nouns <- LIST [STRING("car"), STRING("bike"), STRING("boat"), STRING("ship"), STRING("motorbike")]
+plural_exceptions <- LIST [STRING("children"), STRING("people"), STRING("men"), STRING("women")]
+
+FUNCTION tokenise ACCEPTS(text)
+    RETURN text.lower().replace(STRING("."), EMPTY STRING).split()
+ENDFUNCTION
+
+words <- CALL tokenise(text)
+nouns <- EMPTY LIST
+i <- 0
+loop <- BOOLEAN(TRUE)
+WHILE loop DO
+    TRY
+        w <- words[i]
+        found <- BOOLEAN(FALSE)
+        number <- STRING("singular")
+        e <- 0
+        e_loop <- BOOLEAN(TRUE)
+        WHILE e_loop DO
+            TRY
+                IF w == plural_exceptions[e] THEN
+                    number <- STRING("plural")
+                    BREAK
+                ENDIF
+                e <- e + 1
+            CATCH
+                e_loop <- BOOLEAN(FALSE)
+            ENDTRY
+        ENDWHILE
+        IF number == STRING("singular") THEN
+            IF LENGTH OF w > 1 AND (w.endswith(STRING("s"))) THEN
+                number <- STRING("plural")
+            ENDIF
+        ENDIF
+        m <- 0
+        m_loop <- BOOLEAN(TRUE)
+        WHILE m_loop DO
+            TRY
+                IF w == male_names[m] THEN
+                    APPEND TUPLE(w, i, STRING("male"), STRING("name"), STRING("animate"), number) TO nouns
+                    found <- BOOLEAN(TRUE)
+                    m_loop <- BOOLEAN(FALSE)
+                ENDIF
+                m <- m + 1
+            CATCH
+                m_loop <- BOOLEAN(FALSE)
+            ENDTRY
+        ENDWHILE
+        IF NOT (found) THEN
+            f <- 0
+            f_loop <- BOOLEAN(TRUE)
+            WHILE f_loop DO
+                TRY
+                    IF w == female_names[f] THEN
+                        APPEND TUPLE(w, i, STRING("female"), STRING("name"), STRING("animate"), number) TO nouns
+                        found <- BOOLEAN(TRUE)
+                        f_loop <- BOOLEAN(FALSE)
+                    ENDIF
+                    f <- f + 1
+                CATCH
+                    f_loop <- BOOLEAN(FALSE)
+                ENDTRY
+            ENDWHILE
+        ENDIF
+        IF NOT (found) THEN
+            c <- 0
+            c_loop <- BOOLEAN(TRUE)
+            WHILE c_loop DO
+                TRY
+                    IF w == common_nouns[c] THEN
+                        animacy <- STRING("inanimate")
+                        a <- 0
+                        a_loop <- BOOLEAN(TRUE)
+                        WHILE a_loop DO
+                            TRY
+                                IF w == animate_nouns[a] THEN
+                                    animacy <- STRING("animate")
+                                    a_loop <- BOOLEAN(FALSE)
+                                ENDIF
+                                a <- a + 1
+                            CATCH
+                                a_loop <- BOOLEAN(FALSE)
+                            ENDTRY
+                        ENDWHILE
+                        h <- 0
+                        h_loop <- BOOLEAN(TRUE)
+                        WHILE h_loop DO
+                            TRY
+                                IF w == anthropomorphic_nouns[h] THEN
+                                    animacy <- STRING("anthro")
+                                    h_loop <- BOOLEAN(FALSE)
+                                ENDIF
+                                h <- h + 1
+                            CATCH
+                                h_loop <- BOOLEAN(FALSE)
+                            ENDTRY
+                        ENDWHILE
+                        APPEND TUPLE(w, i, STRING("unknown"), STRING("noun"), animacy, number) TO nouns
+                        found <- BOOLEAN(TRUE)
+                        c_loop <- BOOLEAN(FALSE)
+                    ENDIF
+                    c <- c + 1
+                CATCH
+                    c_loop <- BOOLEAN(FALSE)
+                ENDTRY
+            ENDWHILE
+        ENDIF
+        i <- i + 1
+    CATCH
+        loop <- BOOLEAN(FALSE)
+    ENDTRY
+ENDWHILE
+i <- 0
+loop <- BOOLEAN(TRUE)
+WHILE loop DO
+    TRY
+        IF ((words[i] == STRING("his"))) OR ((words[i] == STRING("her"))) THEN
+            noun_word <- words[i + 1]
+            n <- 0
+            n_loop <- BOOLEAN(TRUE)
+            WHILE n_loop DO
+                TRY
+                    noun_data <- nouns[n]
+                    w <- noun_data[0]
+                    idx <- noun_data[1]
+                    g <- noun_data[2]
+                    kind <- noun_data[3]
+                    anim <- noun_data[4]
+                    number <- noun_data[5]
+                    IF w == noun_word THEN
+                        new_gender <- STRING("male")
+                        IF words[i] == STRING("her") THEN
+                            new_gender <- STRING("female")
+                        ENDIF
+                        nouns[n] <- TUPLE(w, idx, new_gender, kind, STRING("animate"), number)
+                    ENDIF
+                    n <- n + 1
+                CATCH
+                    n_loop <- BOOLEAN(FALSE)
+                ENDTRY
+            ENDWHILE
+        ENDIF
+        i <- i + 1
+    CATCH
+        loop <- BOOLEAN(FALSE)
+    ENDTRY
+ENDWHILE
+corefs <- EMPTY LIST
+i <- 0
+loop <- BOOLEAN(TRUE)
+WHILE loop DO
+    TRY
+        w <- words[i]
+        keys <- EMPTY LIST
+        FOR EACH pronoun_key IN pronouns.keys() DO
+            APPEND pronoun_key TO keys
+        ENDFOR
+                p <- 0
+        p_loop <- BOOLEAN(TRUE)
+        is_pronoun <- BOOLEAN(FALSE)
+        gender <- NONE
+        role <- NONE
+        WHILE p_loop DO
+            TRY
+                IF w == keys[p] THEN
+                    is_pronoun <- BOOLEAN(TRUE)
+                    pronoun_data <- pronouns[w]
+                    gender <- pronoun_data[0]
+                    role <- pronoun_data[1]
+                    p_loop <- BOOLEAN(FALSE)
+                ENDIF
+                p <- p + 1
+            CATCH
+                p_loop <- BOOLEAN(FALSE)
+            ENDTRY
+        ENDWHILE
+        IF is_pronoun THEN
+            best_noun <- NONE
+            best_dist <- 9999
+            IF gender == STRING("plural") THEN
+                n <- 0
+                n_loop <- BOOLEAN(TRUE)
+                WHILE n_loop DO
+                    TRY
+                        noun_data <- nouns[n]
+                        noun_word <- noun_data[0]
+                        noun_idx <- noun_data[1]
+                        noun_gender <- noun_data[2]
+                        noun_kind <- noun_data[3]
+                        animacy <- noun_data[4]
+                        number <- noun_data[5]
+                        IF noun_idx < i AND ((number == STRING("plural"))) THEN
+                            dist <- i - noun_idx
+                            IF dist < best_dist THEN
+                                best_dist <- dist
+                                best_noun <- noun_word
+                            ENDIF
+                        ENDIF
+                        n <- n + 1
+                    CATCH
+                        n_loop <- BOOLEAN(FALSE)
+                    ENDTRY
+                ENDWHILE
+                IF best_noun == NONE THEN
+                    group <- EMPTY LIST
+                    n <- 0
+                    n_loop <- BOOLEAN(TRUE)
+                    WHILE n_loop DO
+                        TRY
+                            noun_data <- nouns[n]
+                            noun_word <- noun_data[0]
+                            noun_idx <- noun_data[1]
+                            noun_gender <- noun_data[2]
+                            noun_kind <- noun_data[3]
+                            animacy <- noun_data[4]
+                            number <- noun_data[5]
+                            IF noun_idx < i AND ((number == STRING("singular"))) THEN
+                                APPEND TUPLE(noun_word, noun_idx) TO group
+                            ENDIF
+                            n <- n + 1
+                        CATCH
+                            n_loop <- BOOLEAN(FALSE)
+                        ENDTRY
+                    ENDWHILE
+                    IF LENGTH OF group >= 2 THEN
+                        nearest <- NONE
+                        best_dist <- 9999
+                        g <- 0
+                        g_loop <- BOOLEAN(TRUE)
+                        WHILE g_loop DO
+                            TRY
+                                group_entry <- group[g]
+                                noun_word <- group_entry[0]
+                                noun_idx <- group_entry[1]
+                                dist <- i - noun_idx
+                                IF dist < best_dist THEN
+                                    best_dist <- dist
+                                    nearest <- noun_word
+                                ENDIF
+                                g <- g + 1
+                            CATCH
+                                g_loop <- BOOLEAN(FALSE)
+                            ENDTRY
+                        ENDWHILE
+                        best_noun <- nearest
+                    ENDIF
+                ENDIF
+            ELSE IF (role == STRING("subject")) THEN
+                n <- 0
+                n_loop <- BOOLEAN(TRUE)
+                WHILE n_loop DO
+                    TRY
+                        noun_data <- nouns[n]
+                        noun_word <- noun_data[0]
+                        noun_idx <- noun_data[1]
+                        noun_gender <- noun_data[2]
+                        noun_kind <- noun_data[3]
+                        animacy <- noun_data[4]
+                        number <- noun_data[5]
+                        IF noun_idx < i AND ((number == STRING("singular"))) THEN
+                            IF ((gender == STRING("male"))) AND ((animacy == STRING("animate"))) THEN
+                                dist <- i - noun_idx
+                                IF dist < best_dist THEN
+                                    best_dist <- dist
+                                    best_noun <- noun_word
+                                ENDIF
+                            ENDIF
+                            IF ((gender == STRING("female"))) AND (((animacy == STRING("animate"))) OR ((animacy == STRING("anthro")))) THEN
+                                dist <- i - noun_idx
+                                IF dist < best_dist THEN
+                                    best_dist <- dist
+                                    best_noun <- noun_word
+                                ENDIF
+                            ENDIF
+                        ENDIF
+                        n <- n + 1
+                    CATCH
+                        n_loop <- BOOLEAN(FALSE)
+                    ENDTRY
+                ENDWHILE
+            ELSE
+                n <- 0
+                n_loop <- BOOLEAN(TRUE)
+                WHILE n_loop DO
+                    TRY
+                        noun_data <- nouns[n]
+                        noun_word <- noun_data[0]
+                        noun_idx <- noun_data[1]
+                        noun_gender <- noun_data[2]
+                        noun_kind <- noun_data[3]
+                        animacy <- noun_data[4]
+                        number <- noun_data[5]
+                        IF noun_idx < i AND ((noun_kind == STRING("name"))) AND ((number == STRING("singular"))) THEN
+                            IF noun_gender == gender OR ((noun_gender == STRING("unknown"))) THEN
+                                dist <- i - noun_idx
+                                IF dist < best_dist THEN
+                                    best_dist <- dist
+                                    best_noun <- noun_word
+                                ENDIF
+                            ENDIF
+                        ENDIF
+                        n <- n + 1
+                    CATCH
+                        n_loop <- BOOLEAN(FALSE)
+                    ENDTRY
+                ENDWHILE
+                IF best_noun == NONE THEN
+                    best_dist <- 9999
+                    n <- 0
+                    n_loop <- BOOLEAN(TRUE)
+                    WHILE n_loop DO
+                        TRY
+                            noun_data <- nouns[n]
+                            noun_word <- noun_data[0]
+                            noun_idx <- noun_data[1]
+                            noun_gender <- noun_data[2]
+                            noun_kind <- noun_data[3]
+                            animacy <- noun_data[4]
+                            number <- noun_data[5]
+                            IF noun_idx < i AND ((animacy == STRING("animate"))) AND ((number == STRING("singular"))) THEN
+                                dist <- i - noun_idx
+                                IF dist < best_dist THEN
+                                    best_dist <- dist
+                                    best_noun <- noun_word
+                                ENDIF
+                            ENDIF
+                            n <- n + 1
+                        CATCH
+                            n_loop <- BOOLEAN(FALSE)
+                        ENDTRY
+                    ENDWHILE
+                ENDIF
+            ENDIF
+            APPEND TUPLE(w, i, best_noun) TO corefs
+            n <- 0
+            n_loop <- BOOLEAN(TRUE)
+            WHILE n_loop DO
+                TRY
+                    noun_data <- nouns[n]
+                    noun_word <- noun_data[0]
+                    noun_idx <- noun_data[1]
+                    noun_gender <- noun_data[2]
+                    noun_kind <- noun_data[3]
+                    animacy <- noun_data[4]
+                    number <- noun_data[5]
+                    IF noun_word == best_noun THEN
+                        IF noun_gender == STRING("unknown") THEN
+                            nouns[n] <- TUPLE(noun_word, noun_idx, gender, noun_kind, STRING("animate"), number)
+                        ELSE IF (animacy == STRING("anthro")) THEN
+                            nouns[n] <- TUPLE(noun_word, noun_idx, gender, noun_kind, STRING("animate"), number)
+                        ENDIF
+                    ENDIF
+                    n <- n + 1
+                CATCH
+                    n_loop <- BOOLEAN(FALSE)
+                ENDTRY
+            ENDWHILE
+        ENDIF
+        i <- i + 1
+    CATCH
+        loop <- BOOLEAN(FALSE)
+    ENDTRY
+ENDWHILE
+OUTPUT STRING("Pronoun, Noun Co‑reference Resolution Results:\n")
+i <- 0
+loop <- BOOLEAN(TRUE)
+WHILE loop DO
+    TRY
+        coreference_entry <- corefs[i]
+        pronoun <- coreference_entry[0]
+        pos <- coreference_entry[1]
+        noun <- coreference_entry[2]
+        OUTPUT STRING("Pronoun '{pronoun}' at position {pos} → refers to '{noun}'")
+        i <- i + 1
+    CATCH
+        loop <- BOOLEAN(FALSE)
+    ENDTRY
+ENDWHILE

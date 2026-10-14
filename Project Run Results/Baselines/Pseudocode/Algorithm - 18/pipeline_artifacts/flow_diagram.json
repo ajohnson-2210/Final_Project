@@ -1,0 +1,570 @@
+{
+  "format": "NL-FDEP Flow Diagram",
+  "version": "1.0",
+  "entry_node": "F1",
+  "exit_node": "F2",
+  "nodes": {
+    "F1": {
+      "node_id": "F1",
+      "node_type": "START",
+      "label": "Start",
+      "line": 1,
+      "data": {}
+    },
+    "F2": {
+      "node_id": "F2",
+      "node_type": "END",
+      "label": "End",
+      "line": 1,
+      "data": {}
+    },
+    "F3": {
+      "node_id": "F3",
+      "node_type": "PROCESS",
+      "label": "Set string1 to \"This is a Sentence, that needs the chars counted!!\"",
+      "line": 1,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F4": {
+      "node_id": "F4",
+      "node_type": "PROCESS",
+      "label": "Set stringlist to an empty list",
+      "line": 2,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F5": {
+      "node_id": "F5",
+      "node_type": "LOOP_DECISION",
+      "label": "For each character in string1",
+      "line": 3,
+      "data": {
+        "ast_kind": "ForEachNode"
+      }
+    },
+    "F6": {
+      "node_id": "F6",
+      "node_type": "PROCESS",
+      "label": "Append character to stringlist",
+      "line": 4,
+      "data": {
+        "ast_kind": "AppendNode"
+      }
+    },
+    "F7": {
+      "node_id": "F7",
+      "node_type": "PROCESS",
+      "label": "Set countlist to an empty dictionary",
+      "line": 6,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F8": {
+      "node_id": "F8",
+      "node_type": "LOOP_DECISION",
+      "label": "The length of stringlist is greater than 0?",
+      "line": 7,
+      "data": {
+        "ast_kind": "WhileNode"
+      }
+    },
+    "F9": {
+      "node_id": "F9",
+      "node_type": "PROCESS",
+      "label": "Set __reserved_keyword__char to the result of stringlist.pop(0)",
+      "line": 8,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F10": {
+      "node_id": "F10",
+      "node_type": "DECISION",
+      "label": "__reserved_keyword__char is not contained in countlist?",
+      "line": 9,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F11": {
+      "node_id": "F11",
+      "node_type": "PROCESS",
+      "label": "Set item __reserved_keyword__char of countlist to 1",
+      "line": 10,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F12": {
+      "node_id": "F12",
+      "node_type": "PROCESS",
+      "label": "Set item __reserved_keyword__char of countlist to item __reserved_keyword__char of countlist plus 1",
+      "line": 12,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F13": {
+      "node_id": "F13",
+      "node_type": "LOOP_DECISION",
+      "label": "For each entry in the result of countlist.items()",
+      "line": 15,
+      "data": {
+        "ast_kind": "ForEachNode"
+      }
+    },
+    "F14": {
+      "node_id": "F14",
+      "node_type": "PROCESS",
+      "label": "Set key to item 0 of entry",
+      "line": 16,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F15": {
+      "node_id": "F15",
+      "node_type": "PROCESS",
+      "label": "Set val to item 1 of entry",
+      "line": 17,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F16": {
+      "node_id": "F16",
+      "node_type": "OUTPUT",
+      "label": "Display \"Character {key} appears {val} times\"",
+      "line": 18,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "F3",
+      "target": "F4",
+      "label": "NEXT"
+    },
+    {
+      "source": "F5",
+      "target": "F6",
+      "label": "ITERATE"
+    },
+    {
+      "source": "F6",
+      "target": "F5",
+      "label": "LOOP"
+    },
+    {
+      "source": "F4",
+      "target": "F5",
+      "label": "NEXT"
+    },
+    {
+      "source": "F5",
+      "target": "F7",
+      "label": "NEXT"
+    },
+    {
+      "source": "F10",
+      "target": "F11",
+      "label": "TRUE"
+    },
+    {
+      "source": "F10",
+      "target": "F12",
+      "label": "FALSE"
+    },
+    {
+      "source": "F9",
+      "target": "F10",
+      "label": "NEXT"
+    },
+    {
+      "source": "F8",
+      "target": "F9",
+      "label": "TRUE"
+    },
+    {
+      "source": "F11",
+      "target": "F8",
+      "label": "LOOP"
+    },
+    {
+      "source": "F12",
+      "target": "F8",
+      "label": "LOOP"
+    },
+    {
+      "source": "F7",
+      "target": "F8",
+      "label": "NEXT"
+    },
+    {
+      "source": "F14",
+      "target": "F15",
+      "label": "NEXT"
+    },
+    {
+      "source": "F15",
+      "target": "F16",
+      "label": "NEXT"
+    },
+    {
+      "source": "F13",
+      "target": "F14",
+      "label": "ITERATE"
+    },
+    {
+      "source": "F16",
+      "target": "F13",
+      "label": "LOOP"
+    },
+    {
+      "source": "F8",
+      "target": "F13",
+      "label": "NEXT"
+    },
+    {
+      "source": "F1",
+      "target": "F3",
+      "label": "NEXT"
+    },
+    {
+      "source": "F13",
+      "target": "F2",
+      "label": "NEXT"
+    }
+  ],
+  "structured_program": {
+    "kind": "ProgramNode",
+    "line": 1,
+    "body": [
+      {
+        "kind": "AssignmentNode",
+        "line": 1,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 1,
+          "name": "string1"
+        },
+        "value": {
+          "kind": "LiteralNode",
+          "line": 1,
+          "value": "This is a Sentence, that needs the chars counted!!",
+          "data_type": "STRING"
+        }
+      },
+      {
+        "kind": "AssignmentNode",
+        "line": 2,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 2,
+          "name": "stringlist"
+        },
+        "value": {
+          "kind": "EmptyLiteralNode",
+          "line": 2,
+          "empty_type": "LIST"
+        }
+      },
+      {
+        "kind": "ForEachNode",
+        "line": 3,
+        "variable": {
+          "kind": "IdentifierNode",
+          "line": 3,
+          "name": "character"
+        },
+        "collection": {
+          "kind": "IdentifierNode",
+          "line": 3,
+          "name": "string1"
+        },
+        "body": {
+          "kind": "BlockNode",
+          "line": 4,
+          "statements": [
+            {
+              "kind": "AppendNode",
+              "line": 4,
+              "value": {
+                "kind": "IdentifierNode",
+                "line": 4,
+                "name": "character"
+              },
+              "collection": {
+                "kind": "IdentifierNode",
+                "line": 4,
+                "name": "stringlist"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "kind": "AssignmentNode",
+        "line": 6,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 6,
+          "name": "countlist"
+        },
+        "value": {
+          "kind": "EmptyLiteralNode",
+          "line": 6,
+          "empty_type": "DICTIONARY"
+        }
+      },
+      {
+        "kind": "WhileNode",
+        "line": 7,
+        "condition": {
+          "kind": "BinaryNode",
+          "line": 7,
+          "operator": ">",
+          "left": {
+            "kind": "LengthNode",
+            "line": 7,
+            "expression": {
+              "kind": "IdentifierNode",
+              "line": 7,
+              "name": "stringlist"
+            }
+          },
+          "right": {
+            "kind": "LiteralNode",
+            "line": 7,
+            "value": 0,
+            "data_type": "INTEGER"
+          }
+        },
+        "body": {
+          "kind": "BlockNode",
+          "line": 8,
+          "statements": [
+            {
+              "kind": "AssignmentNode",
+              "line": 8,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 8,
+                "name": "__reserved_keyword__char"
+              },
+              "value": {
+                "kind": "MemberCallNode",
+                "line": 8,
+                "object": {
+                  "kind": "IdentifierNode",
+                  "line": 8,
+                  "name": "stringlist"
+                },
+                "member": "pop",
+                "arguments": [
+                  {
+                    "kind": "LiteralNode",
+                    "line": 8,
+                    "value": 0,
+                    "data_type": "INTEGER"
+                  }
+                ],
+                "resolved_intrinsic": null
+              }
+            },
+            {
+              "kind": "IfNode",
+              "line": 9,
+              "condition": {
+                "kind": "BinaryNode",
+                "line": 9,
+                "operator": "NOT IN",
+                "left": {
+                  "kind": "IdentifierNode",
+                  "line": 9,
+                  "name": "__reserved_keyword__char"
+                },
+                "right": {
+                  "kind": "IdentifierNode",
+                  "line": 9,
+                  "name": "countlist"
+                }
+              },
+              "then_body": {
+                "kind": "BlockNode",
+                "line": 10,
+                "statements": [
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 10,
+                    "target": {
+                      "kind": "IndexNode",
+                      "line": 10,
+                      "collection": {
+                        "kind": "IdentifierNode",
+                        "line": 10,
+                        "name": "countlist"
+                      },
+                      "index": {
+                        "kind": "IdentifierNode",
+                        "line": 10,
+                        "name": "__reserved_keyword__char"
+                      }
+                    },
+                    "value": {
+                      "kind": "LiteralNode",
+                      "line": 10,
+                      "value": 1,
+                      "data_type": "INTEGER"
+                    }
+                  }
+                ]
+              },
+              "else_if": [],
+              "else_body": {
+                "kind": "BlockNode",
+                "line": 12,
+                "statements": [
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 12,
+                    "target": {
+                      "kind": "IndexNode",
+                      "line": 12,
+                      "collection": {
+                        "kind": "IdentifierNode",
+                        "line": 12,
+                        "name": "countlist"
+                      },
+                      "index": {
+                        "kind": "IdentifierNode",
+                        "line": 12,
+                        "name": "__reserved_keyword__char"
+                      }
+                    },
+                    "value": {
+                      "kind": "BinaryNode",
+                      "line": 12,
+                      "operator": "+",
+                      "left": {
+                        "kind": "IndexNode",
+                        "line": 12,
+                        "collection": {
+                          "kind": "IdentifierNode",
+                          "line": 12,
+                          "name": "countlist"
+                        },
+                        "index": {
+                          "kind": "IdentifierNode",
+                          "line": 12,
+                          "name": "__reserved_keyword__char"
+                        }
+                      },
+                      "right": {
+                        "kind": "LiteralNode",
+                        "line": 12,
+                        "value": 1,
+                        "data_type": "INTEGER"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "kind": "ForEachNode",
+        "line": 15,
+        "variable": {
+          "kind": "IdentifierNode",
+          "line": 15,
+          "name": "entry"
+        },
+        "collection": {
+          "kind": "MemberCallNode",
+          "line": 15,
+          "object": {
+            "kind": "IdentifierNode",
+            "line": 15,
+            "name": "countlist"
+          },
+          "member": "items",
+          "arguments": [],
+          "resolved_intrinsic": null
+        },
+        "body": {
+          "kind": "BlockNode",
+          "line": 16,
+          "statements": [
+            {
+              "kind": "AssignmentNode",
+              "line": 16,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 16,
+                "name": "key"
+              },
+              "value": {
+                "kind": "IndexNode",
+                "line": 16,
+                "collection": {
+                  "kind": "IdentifierNode",
+                  "line": 16,
+                  "name": "entry"
+                },
+                "index": {
+                  "kind": "LiteralNode",
+                  "line": 16,
+                  "value": 0,
+                  "data_type": "INTEGER"
+                }
+              }
+            },
+            {
+              "kind": "AssignmentNode",
+              "line": 17,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 17,
+                "name": "val"
+              },
+              "value": {
+                "kind": "IndexNode",
+                "line": 17,
+                "collection": {
+                  "kind": "IdentifierNode",
+                  "line": 17,
+                  "name": "entry"
+                },
+                "index": {
+                  "kind": "LiteralNode",
+                  "line": 17,
+                  "value": 1,
+                  "data_type": "INTEGER"
+                }
+              }
+            },
+            {
+              "kind": "OutputNode",
+              "line": 18,
+              "expression": {
+                "kind": "LiteralNode",
+                "line": 18,
+                "value": "Character {key} appears {val} times",
+                "data_type": "STRING"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

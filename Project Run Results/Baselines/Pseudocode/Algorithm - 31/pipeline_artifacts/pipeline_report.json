@@ -1,0 +1,122 @@
+{
+  "success": true,
+  "status": "SUCCESS",
+  "stages": [
+    {
+      "name": "PSEUDOCODE_PROFILE_PROCESSING",
+      "status": "SUCCESS",
+      "message": "Processed source using AJ_DIALECT_STRICT; 0 transformation(s); 0 header line(s) stripped.",
+      "duration_ms": 3.915
+    },
+    {
+      "name": "PSEUDOCODE_TO_AST",
+      "status": "SUCCESS",
+      "message": "Pseudocode parsed and validated.",
+      "duration_ms": 31.434
+    },
+    {
+      "name": "AST_TO_FLOW_DIAGRAM",
+      "status": "SUCCESS",
+      "message": "Machine-readable flow diagram generated.",
+      "duration_ms": 10.762
+    },
+    {
+      "name": "FLOW_DIAGRAM_TO_DRAWIO",
+      "status": "SUCCESS",
+      "message": "Editable draw.io XML flow diagram generated.",
+      "duration_ms": 17.184
+    },
+    {
+      "name": "FLOW_DIAGRAM_TO_PYTHON",
+      "status": "SUCCESS",
+      "message": "Python source generated and syntax validated.",
+      "duration_ms": 27.196
+    },
+    {
+      "name": "BEHAVIOURAL_TESTING",
+      "status": "SUCCESS",
+      "message": "Passed 1 of 1 tests.",
+      "duration_ms": 55.515
+    }
+  ],
+  "output_files": {
+    "pseudocode_processing_report": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Pseudocode\\Algorithm - 31\\pipeline_artifacts\\pseudocode_processing_report.json",
+    "processed_pseudocode": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Pseudocode\\Algorithm - 31\\pipeline_artifacts\\processed_pseudocode.aj",
+    "ast": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Pseudocode\\Algorithm - 31\\pipeline_artifacts\\ast.json",
+    "parser_report": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Pseudocode\\Algorithm - 31\\pipeline_artifacts\\parser_report.json",
+    "ast_visualisation": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Pseudocode\\Algorithm - 31\\pipeline_artifacts\\ast_visualisation.html",
+    "flow_diagram": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Pseudocode\\Algorithm - 31\\pipeline_artifacts\\flow_diagram.json",
+    "flow_visualisation": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Pseudocode\\Algorithm - 31\\pipeline_artifacts\\flow_diagram.html",
+    "flow_diagram_drawio": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Pseudocode\\Algorithm - 31\\pipeline_artifacts\\flow_diagram.drawio",
+    "generated_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Pseudocode\\Algorithm - 31\\pipeline_artifacts\\generated_program.py",
+    "compilation_report": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Pseudocode\\Algorithm - 31\\pipeline_artifacts\\compilation_report.json",
+    "test_report": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Pseudocode\\Algorithm - 31\\pipeline_artifacts\\test_report.json",
+    "pipeline_report": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Pseudocode\\Algorithm - 31\\pipeline_artifacts\\pipeline_report.json"
+  },
+  "test_report": {
+    "program_path": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Pseudocode\\Algorithm - 31\\pipeline_artifacts\\generated_program.py",
+    "success": true,
+    "total_tests": 1,
+    "passed_tests": 1,
+    "failed_tests": 0,
+    "category_summary": {
+      "BRANCH": {
+        "total": 1,
+        "passed": 1,
+        "failed": 0
+      }
+    },
+    "results": [
+      {
+        "name": "default co-reference resolution text",
+        "status": "PASSED",
+        "expected_output": [
+          "Pronoun, Noun Co\u00e2\u20ac\u2018reference Resolution Results:",
+          "",
+          "Pronoun 'his' at position 2 \u00e2\u2020\u2019 refers to 'john'",
+          "Pronoun 'they' at position 7 \u00e2\u2020\u2019 refers to 'dog'",
+          "Pronoun 'him' at position 12 \u00e2\u2020\u2019 refers to 'john'",
+          "Pronoun 'she' at position 18 \u00e2\u2020\u2019 refers to 'sarah'",
+          "Pronoun 'him' at position 20 \u00e2\u2020\u2019 refers to 'john'",
+          "Pronoun 'his' at position 23 \u00e2\u2020\u2019 refers to 'john'",
+          "Pronoun 'he' at position 26 \u00e2\u2020\u2019 refers to 'car'"
+        ],
+        "actual_output": [
+          "Pronoun, Noun Co\u00e2\u20ac\u2018reference Resolution Results:",
+          "",
+          "Pronoun 'his' at position 2 \u00e2\u2020\u2019 refers to 'john'",
+          "Pronoun 'they' at position 7 \u00e2\u2020\u2019 refers to 'dog'",
+          "Pronoun 'him' at position 12 \u00e2\u2020\u2019 refers to 'john'",
+          "Pronoun 'she' at position 18 \u00e2\u2020\u2019 refers to 'sarah'",
+          "Pronoun 'him' at position 20 \u00e2\u2020\u2019 refers to 'john'",
+          "Pronoun 'his' at position 23 \u00e2\u2020\u2019 refers to 'john'",
+          "Pronoun 'he' at position 26 \u00e2\u2020\u2019 refers to 'car'"
+        ],
+        "standard_error": "",
+        "return_code": 0,
+        "duration_ms": 55.106,
+        "category": "BRANCH",
+        "semantic_feature": "PRONOUN_NOUN_RELATIONSHIP_RESOLUTION",
+        "expected_return_code": 0,
+        "expected_error_type": null,
+        "actual_error_type": null,
+        "criteria_links": [
+          "P2",
+          "P4"
+        ],
+        "random_seed": null,
+        "environment": {},
+        "requires_modules": []
+      }
+    ]
+  },
+  "error": null,
+  "input_metadata": {
+    "input_type": "PSEUDOCODE",
+    "pseudocode_profile": "AJ_DIALECT_STRICT",
+    "source_modified": true,
+    "transformation_count": 0,
+    "header_comment_removed": false,
+    "header_lines_removed": 0
+  }
+}

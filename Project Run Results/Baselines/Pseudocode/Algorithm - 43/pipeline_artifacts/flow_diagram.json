@@ -1,0 +1,2985 @@
+{
+  "format": "NL-FDEP Flow Diagram",
+  "version": "1.0",
+  "entry_node": "F1",
+  "exit_node": "F2",
+  "nodes": {
+    "F1": {
+      "node_id": "F1",
+      "node_type": "START",
+      "label": "Start",
+      "line": 1,
+      "data": {}
+    },
+    "F2": {
+      "node_id": "F2",
+      "node_type": "END",
+      "label": "End",
+      "line": 1,
+      "data": {}
+    },
+    "F3": {
+      "node_id": "F3",
+      "node_type": "OUTPUT",
+      "label": "Display \"Towers Of Hanoi\"",
+      "line": 1,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F4": {
+      "node_id": "F4",
+      "node_type": "FUNCTION",
+      "label": "Run function display_board with pegs, n",
+      "line": 3,
+      "data": {
+        "ast_kind": "FunctionNode",
+        "name": "display_board"
+      }
+    },
+    "F5": {
+      "node_id": "F5",
+      "node_type": "PROCESS",
+      "label": "Set level to n minus 1",
+      "line": 4,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F6": {
+      "node_id": "F6",
+      "node_type": "LOOP_DECISION",
+      "label": "Level is greater than or equal to 0?",
+      "line": 5,
+      "data": {
+        "ast_kind": "WhileNode"
+      }
+    },
+    "F7": {
+      "node_id": "F7",
+      "node_type": "PROCESS",
+      "label": "Set row to an empty string",
+      "line": 6,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F8": {
+      "node_id": "F8",
+      "node_type": "DECISION",
+      "label": "Level is less than the length of item \"A\" of pegs?",
+      "line": 7,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F9": {
+      "node_id": "F9",
+      "node_type": "PROCESS",
+      "label": "Set peg_value_1 to item level of item \"A\" of pegs",
+      "line": 8,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F10": {
+      "node_id": "F10",
+      "node_type": "PROCESS",
+      "label": "Set row to row plus \"  \" plus peg_value_1 converted to string plus \"  \"",
+      "line": 9,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F11": {
+      "node_id": "F11",
+      "node_type": "PROCESS",
+      "label": "Set row to row plus \"  |  \"",
+      "line": 11,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F12": {
+      "node_id": "F12",
+      "node_type": "DECISION",
+      "label": "Level is less than the length of item \"B\" of pegs?",
+      "line": 13,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F13": {
+      "node_id": "F13",
+      "node_type": "PROCESS",
+      "label": "Set peg_value_2 to item level of item \"B\" of pegs",
+      "line": 14,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F14": {
+      "node_id": "F14",
+      "node_type": "PROCESS",
+      "label": "Set row to row plus \"  \" plus peg_value_2 converted to string plus \"  \"",
+      "line": 15,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F15": {
+      "node_id": "F15",
+      "node_type": "PROCESS",
+      "label": "Set row to row plus \"  |  \"",
+      "line": 17,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F16": {
+      "node_id": "F16",
+      "node_type": "DECISION",
+      "label": "Level is less than the length of item \"C\" of pegs?",
+      "line": 19,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F17": {
+      "node_id": "F17",
+      "node_type": "PROCESS",
+      "label": "Set peg_value_3 to item level of item \"C\" of pegs",
+      "line": 20,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F18": {
+      "node_id": "F18",
+      "node_type": "PROCESS",
+      "label": "Set row to row plus \"  \" plus peg_value_3 converted to string plus \"  \"",
+      "line": 21,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F19": {
+      "node_id": "F19",
+      "node_type": "PROCESS",
+      "label": "Set row to row plus \"  |  \"",
+      "line": 23,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F20": {
+      "node_id": "F20",
+      "node_type": "OUTPUT",
+      "label": "Display row",
+      "line": 25,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F21": {
+      "node_id": "F21",
+      "node_type": "PROCESS",
+      "label": "Set level to level minus 1",
+      "line": 26,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F22": {
+      "node_id": "F22",
+      "node_type": "OUTPUT",
+      "label": "Display \"  A    B    C\n\"",
+      "line": 28,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F23": {
+      "node_id": "F23",
+      "node_type": "FUNCTION",
+      "label": "Run function move_between with pegs, a, b, n",
+      "line": 31,
+      "data": {
+        "ast_kind": "FunctionNode",
+        "name": "move_between"
+      }
+    },
+    "F24": {
+      "node_id": "F24",
+      "node_type": "DECISION",
+      "label": "The length of item a of pegs is equal to 0?",
+      "line": 32,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F25": {
+      "node_id": "F25",
+      "node_type": "PROCESS",
+      "label": "Set disc to the result of item b of pegs.pop()",
+      "line": 33,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F26": {
+      "node_id": "F26",
+      "node_type": "PROCESS",
+      "label": "Append disc to item a of pegs",
+      "line": 34,
+      "data": {
+        "ast_kind": "AppendNode"
+      }
+    },
+    "F27": {
+      "node_id": "F27",
+      "node_type": "OUTPUT",
+      "label": "Display \"Move disc {disc} from {b} to {a}\n\"",
+      "line": 35,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F28": {
+      "node_id": "F28",
+      "node_type": "DECISION",
+      "label": "The length of item b of pegs is equal to 0?",
+      "line": 36,
+      "data": {
+        "ast_kind": "ElseIfNode"
+      }
+    },
+    "F29": {
+      "node_id": "F29",
+      "node_type": "PROCESS",
+      "label": "Set disc to the result of item a of pegs.pop()",
+      "line": 37,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F30": {
+      "node_id": "F30",
+      "node_type": "PROCESS",
+      "label": "Append disc to item b of pegs",
+      "line": 38,
+      "data": {
+        "ast_kind": "AppendNode"
+      }
+    },
+    "F31": {
+      "node_id": "F31",
+      "node_type": "OUTPUT",
+      "label": "Display \"Move disc {disc} from {a} to {b}\n\"",
+      "line": 39,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F32": {
+      "node_id": "F32",
+      "node_type": "DECISION",
+      "label": "Item negative 1 of item a of pegs is less than item negative 1 of item b of pegs?",
+      "line": 40,
+      "data": {
+        "ast_kind": "ElseIfNode"
+      }
+    },
+    "F33": {
+      "node_id": "F33",
+      "node_type": "PROCESS",
+      "label": "Set disc to the result of item a of pegs.pop()",
+      "line": 41,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F34": {
+      "node_id": "F34",
+      "node_type": "PROCESS",
+      "label": "Append disc to item b of pegs",
+      "line": 42,
+      "data": {
+        "ast_kind": "AppendNode"
+      }
+    },
+    "F35": {
+      "node_id": "F35",
+      "node_type": "OUTPUT",
+      "label": "Display \"Move disc {disc} from {a} to {b}\n\"",
+      "line": 43,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F36": {
+      "node_id": "F36",
+      "node_type": "PROCESS",
+      "label": "Set disc to the result of item b of pegs.pop()",
+      "line": 45,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F37": {
+      "node_id": "F37",
+      "node_type": "PROCESS",
+      "label": "Append disc to item a of pegs",
+      "line": 46,
+      "data": {
+        "ast_kind": "AppendNode"
+      }
+    },
+    "F38": {
+      "node_id": "F38",
+      "node_type": "OUTPUT",
+      "label": "Display \"Move disc {disc} from {b} to {a}\n\"",
+      "line": 47,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F39": {
+      "node_id": "F39",
+      "node_type": "CALL",
+      "label": "Call display_board with pegs, n",
+      "line": 49,
+      "data": {
+        "ast_kind": "CallNode"
+      }
+    },
+    "F40": {
+      "node_id": "F40",
+      "node_type": "FUNCTION",
+      "label": "Run function hanoi with n, pegs",
+      "line": 52,
+      "data": {
+        "ast_kind": "FunctionNode",
+        "name": "hanoi"
+      }
+    },
+    "F41": {
+      "node_id": "F41",
+      "node_type": "PROCESS",
+      "label": "Set A to \"A\"",
+      "line": 53,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F42": {
+      "node_id": "F42",
+      "node_type": "PROCESS",
+      "label": "Set B to \"B\"",
+      "line": 54,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F43": {
+      "node_id": "F43",
+      "node_type": "PROCESS",
+      "label": "Set C to \"C\"",
+      "line": 55,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F44": {
+      "node_id": "F44",
+      "node_type": "DECISION",
+      "label": "N modulo 2 is equal to 0?",
+      "line": 56,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F45": {
+      "node_id": "F45",
+      "node_type": "PROCESS",
+      "label": "Set swap_values to (C, B)",
+      "line": 57,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F46": {
+      "node_id": "F46",
+      "node_type": "PROCESS",
+      "label": "Set B to item 0 of swap_values",
+      "line": 58,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F47": {
+      "node_id": "F47",
+      "node_type": "PROCESS",
+      "label": "Set C to item 1 of swap_values",
+      "line": 59,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F48": {
+      "node_id": "F48",
+      "node_type": "PROCESS",
+      "label": "Set total_moves to 2 raised to the power of n minus 1",
+      "line": 61,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F49": {
+      "node_id": "F49",
+      "node_type": "CALL",
+      "label": "Call display_board with pegs, n",
+      "line": 62,
+      "data": {
+        "ast_kind": "CallNode"
+      }
+    },
+    "F50": {
+      "node_id": "F50",
+      "node_type": "PROCESS",
+      "label": "Set move to 1",
+      "line": 63,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F51": {
+      "node_id": "F51",
+      "node_type": "LOOP_DECISION",
+      "label": "Move is less than or equal to total_moves?",
+      "line": 64,
+      "data": {
+        "ast_kind": "WhileNode"
+      }
+    },
+    "F52": {
+      "node_id": "F52",
+      "node_type": "DECISION",
+      "label": "Move modulo 3 is equal to 1?",
+      "line": 65,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F53": {
+      "node_id": "F53",
+      "node_type": "CALL",
+      "label": "Call move_between with pegs, A, C, n",
+      "line": 66,
+      "data": {
+        "ast_kind": "CallNode"
+      }
+    },
+    "F54": {
+      "node_id": "F54",
+      "node_type": "DECISION",
+      "label": "Move modulo 3 is equal to 2?",
+      "line": 67,
+      "data": {
+        "ast_kind": "ElseIfNode"
+      }
+    },
+    "F55": {
+      "node_id": "F55",
+      "node_type": "CALL",
+      "label": "Call move_between with pegs, A, B, n",
+      "line": 68,
+      "data": {
+        "ast_kind": "CallNode"
+      }
+    },
+    "F56": {
+      "node_id": "F56",
+      "node_type": "CALL",
+      "label": "Call move_between with pegs, B, C, n",
+      "line": 70,
+      "data": {
+        "ast_kind": "CallNode"
+      }
+    },
+    "F57": {
+      "node_id": "F57",
+      "node_type": "PROCESS",
+      "label": "Set move to move plus 1",
+      "line": 72,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F58": {
+      "node_id": "F58",
+      "node_type": "OUTPUT",
+      "label": "Display \"Solved!!\"",
+      "line": 74,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F59": {
+      "node_id": "F59",
+      "node_type": "PROCESS",
+      "label": "Set N to 0",
+      "line": 77,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F60": {
+      "node_id": "F60",
+      "node_type": "PROCESS",
+      "label": "Set loop to true",
+      "line": 78,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F61": {
+      "node_id": "F61",
+      "node_type": "LOOP_DECISION",
+      "label": "Continue while loop?",
+      "line": 79,
+      "data": {
+        "ast_kind": "WhileNode"
+      }
+    },
+    "F62": {
+      "node_id": "F62",
+      "node_type": "TRY",
+      "label": "Attempt the following operations",
+      "line": 80,
+      "data": {
+        "ast_kind": "TryCatchNode"
+      }
+    },
+    "F63": {
+      "node_id": "F63",
+      "node_type": "PROCESS",
+      "label": "Set N to input prompted by \"Enter number of discs: \" converted to integer",
+      "line": 81,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F64": {
+      "node_id": "F64",
+      "node_type": "PROCESS",
+      "label": "Set N to N converted to integer",
+      "line": 82,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F65": {
+      "node_id": "F65",
+      "node_type": "OUTPUT",
+      "label": "Display \"Setting up..\n\"",
+      "line": 83,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F66": {
+      "node_id": "F66",
+      "node_type": "PROCESS",
+      "label": "Set loop to false",
+      "line": 84,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F67": {
+      "node_id": "F67",
+      "node_type": "OUTPUT",
+      "label": "Display \"Than's Not a Valid Number, Please Try Again!!\n\"",
+      "line": 86,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F68": {
+      "node_id": "F68",
+      "node_type": "PROCESS",
+      "label": "Set pegs to an empty dictionary",
+      "line": 89,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F69": {
+      "node_id": "F69",
+      "node_type": "PROCESS",
+      "label": "Set peg_a_values to an empty list",
+      "line": 90,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F70": {
+      "node_id": "F70",
+      "node_type": "LOOP_DECISION",
+      "label": "For disk from N to 0, increasing by negative 1",
+      "line": 91,
+      "data": {
+        "ast_kind": "ForRangeNode"
+      }
+    },
+    "F71": {
+      "node_id": "F71",
+      "node_type": "PROCESS",
+      "label": "Append disk to peg_a_values",
+      "line": 92,
+      "data": {
+        "ast_kind": "AppendNode"
+      }
+    },
+    "F72": {
+      "node_id": "F72",
+      "node_type": "PROCESS",
+      "label": "Set item \"A\" of pegs to peg_a_values",
+      "line": 94,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F73": {
+      "node_id": "F73",
+      "node_type": "PROCESS",
+      "label": "Set item \"B\" of pegs to an empty list",
+      "line": 95,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F74": {
+      "node_id": "F74",
+      "node_type": "PROCESS",
+      "label": "Set item \"C\" of pegs to an empty list",
+      "line": 96,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F75": {
+      "node_id": "F75",
+      "node_type": "CALL",
+      "label": "Call hanoi with N, pegs",
+      "line": 97,
+      "data": {
+        "ast_kind": "CallNode"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "F9",
+      "target": "F10",
+      "label": "NEXT"
+    },
+    {
+      "source": "F8",
+      "target": "F9",
+      "label": "TRUE"
+    },
+    {
+      "source": "F8",
+      "target": "F11",
+      "label": "FALSE"
+    },
+    {
+      "source": "F7",
+      "target": "F8",
+      "label": "NEXT"
+    },
+    {
+      "source": "F13",
+      "target": "F14",
+      "label": "NEXT"
+    },
+    {
+      "source": "F12",
+      "target": "F13",
+      "label": "TRUE"
+    },
+    {
+      "source": "F12",
+      "target": "F15",
+      "label": "FALSE"
+    },
+    {
+      "source": "F10",
+      "target": "F12",
+      "label": "NEXT"
+    },
+    {
+      "source": "F11",
+      "target": "F12",
+      "label": "NEXT"
+    },
+    {
+      "source": "F17",
+      "target": "F18",
+      "label": "NEXT"
+    },
+    {
+      "source": "F16",
+      "target": "F17",
+      "label": "TRUE"
+    },
+    {
+      "source": "F16",
+      "target": "F19",
+      "label": "FALSE"
+    },
+    {
+      "source": "F14",
+      "target": "F16",
+      "label": "NEXT"
+    },
+    {
+      "source": "F15",
+      "target": "F16",
+      "label": "NEXT"
+    },
+    {
+      "source": "F18",
+      "target": "F20",
+      "label": "NEXT"
+    },
+    {
+      "source": "F19",
+      "target": "F20",
+      "label": "NEXT"
+    },
+    {
+      "source": "F20",
+      "target": "F21",
+      "label": "NEXT"
+    },
+    {
+      "source": "F6",
+      "target": "F7",
+      "label": "TRUE"
+    },
+    {
+      "source": "F21",
+      "target": "F6",
+      "label": "LOOP"
+    },
+    {
+      "source": "F5",
+      "target": "F6",
+      "label": "NEXT"
+    },
+    {
+      "source": "F6",
+      "target": "F22",
+      "label": "NEXT"
+    },
+    {
+      "source": "F4",
+      "target": "F5",
+      "label": "BODY"
+    },
+    {
+      "source": "F3",
+      "target": "F4",
+      "label": "NEXT"
+    },
+    {
+      "source": "F25",
+      "target": "F26",
+      "label": "NEXT"
+    },
+    {
+      "source": "F26",
+      "target": "F27",
+      "label": "NEXT"
+    },
+    {
+      "source": "F24",
+      "target": "F25",
+      "label": "TRUE"
+    },
+    {
+      "source": "F24",
+      "target": "F28",
+      "label": "FALSE"
+    },
+    {
+      "source": "F29",
+      "target": "F30",
+      "label": "NEXT"
+    },
+    {
+      "source": "F30",
+      "target": "F31",
+      "label": "NEXT"
+    },
+    {
+      "source": "F28",
+      "target": "F29",
+      "label": "TRUE"
+    },
+    {
+      "source": "F28",
+      "target": "F32",
+      "label": "FALSE"
+    },
+    {
+      "source": "F33",
+      "target": "F34",
+      "label": "NEXT"
+    },
+    {
+      "source": "F34",
+      "target": "F35",
+      "label": "NEXT"
+    },
+    {
+      "source": "F32",
+      "target": "F33",
+      "label": "TRUE"
+    },
+    {
+      "source": "F36",
+      "target": "F37",
+      "label": "NEXT"
+    },
+    {
+      "source": "F37",
+      "target": "F38",
+      "label": "NEXT"
+    },
+    {
+      "source": "F32",
+      "target": "F36",
+      "label": "FALSE"
+    },
+    {
+      "source": "F27",
+      "target": "F39",
+      "label": "NEXT"
+    },
+    {
+      "source": "F31",
+      "target": "F39",
+      "label": "NEXT"
+    },
+    {
+      "source": "F35",
+      "target": "F39",
+      "label": "NEXT"
+    },
+    {
+      "source": "F38",
+      "target": "F39",
+      "label": "NEXT"
+    },
+    {
+      "source": "F23",
+      "target": "F24",
+      "label": "BODY"
+    },
+    {
+      "source": "F22",
+      "target": "F23",
+      "label": "NEXT"
+    },
+    {
+      "source": "F41",
+      "target": "F42",
+      "label": "NEXT"
+    },
+    {
+      "source": "F42",
+      "target": "F43",
+      "label": "NEXT"
+    },
+    {
+      "source": "F45",
+      "target": "F46",
+      "label": "NEXT"
+    },
+    {
+      "source": "F46",
+      "target": "F47",
+      "label": "NEXT"
+    },
+    {
+      "source": "F44",
+      "target": "F45",
+      "label": "TRUE"
+    },
+    {
+      "source": "F43",
+      "target": "F44",
+      "label": "NEXT"
+    },
+    {
+      "source": "F47",
+      "target": "F48",
+      "label": "NEXT"
+    },
+    {
+      "source": "F44",
+      "target": "F48",
+      "label": "NEXT"
+    },
+    {
+      "source": "F48",
+      "target": "F49",
+      "label": "NEXT"
+    },
+    {
+      "source": "F49",
+      "target": "F50",
+      "label": "NEXT"
+    },
+    {
+      "source": "F52",
+      "target": "F53",
+      "label": "TRUE"
+    },
+    {
+      "source": "F52",
+      "target": "F54",
+      "label": "FALSE"
+    },
+    {
+      "source": "F54",
+      "target": "F55",
+      "label": "TRUE"
+    },
+    {
+      "source": "F54",
+      "target": "F56",
+      "label": "FALSE"
+    },
+    {
+      "source": "F53",
+      "target": "F57",
+      "label": "NEXT"
+    },
+    {
+      "source": "F55",
+      "target": "F57",
+      "label": "NEXT"
+    },
+    {
+      "source": "F56",
+      "target": "F57",
+      "label": "NEXT"
+    },
+    {
+      "source": "F51",
+      "target": "F52",
+      "label": "TRUE"
+    },
+    {
+      "source": "F57",
+      "target": "F51",
+      "label": "LOOP"
+    },
+    {
+      "source": "F50",
+      "target": "F51",
+      "label": "NEXT"
+    },
+    {
+      "source": "F51",
+      "target": "F58",
+      "label": "NEXT"
+    },
+    {
+      "source": "F40",
+      "target": "F41",
+      "label": "BODY"
+    },
+    {
+      "source": "F39",
+      "target": "F40",
+      "label": "NEXT"
+    },
+    {
+      "source": "F58",
+      "target": "F59",
+      "label": "NEXT"
+    },
+    {
+      "source": "F59",
+      "target": "F60",
+      "label": "NEXT"
+    },
+    {
+      "source": "F63",
+      "target": "F64",
+      "label": "NEXT"
+    },
+    {
+      "source": "F64",
+      "target": "F65",
+      "label": "NEXT"
+    },
+    {
+      "source": "F65",
+      "target": "F66",
+      "label": "NEXT"
+    },
+    {
+      "source": "F62",
+      "target": "F63",
+      "label": "TRY"
+    },
+    {
+      "source": "F62",
+      "target": "F67",
+      "label": "EXCEPTION"
+    },
+    {
+      "source": "F61",
+      "target": "F62",
+      "label": "TRUE"
+    },
+    {
+      "source": "F66",
+      "target": "F61",
+      "label": "LOOP"
+    },
+    {
+      "source": "F67",
+      "target": "F61",
+      "label": "LOOP"
+    },
+    {
+      "source": "F60",
+      "target": "F61",
+      "label": "NEXT"
+    },
+    {
+      "source": "F61",
+      "target": "F68",
+      "label": "NEXT"
+    },
+    {
+      "source": "F68",
+      "target": "F69",
+      "label": "NEXT"
+    },
+    {
+      "source": "F70",
+      "target": "F71",
+      "label": "ITERATE"
+    },
+    {
+      "source": "F71",
+      "target": "F70",
+      "label": "LOOP"
+    },
+    {
+      "source": "F69",
+      "target": "F70",
+      "label": "NEXT"
+    },
+    {
+      "source": "F70",
+      "target": "F72",
+      "label": "NEXT"
+    },
+    {
+      "source": "F72",
+      "target": "F73",
+      "label": "NEXT"
+    },
+    {
+      "source": "F73",
+      "target": "F74",
+      "label": "NEXT"
+    },
+    {
+      "source": "F74",
+      "target": "F75",
+      "label": "NEXT"
+    },
+    {
+      "source": "F1",
+      "target": "F3",
+      "label": "NEXT"
+    },
+    {
+      "source": "F75",
+      "target": "F2",
+      "label": "NEXT"
+    }
+  ],
+  "structured_program": {
+    "kind": "ProgramNode",
+    "line": 1,
+    "body": [
+      {
+        "kind": "OutputNode",
+        "line": 1,
+        "expression": {
+          "kind": "LiteralNode",
+          "line": 1,
+          "value": "Towers Of Hanoi",
+          "data_type": "STRING"
+        }
+      },
+      {
+        "kind": "FunctionNode",
+        "line": 3,
+        "name": "display_board",
+        "parameters": [
+          {
+            "kind": "ParameterNode",
+            "line": 3,
+            "name": "pegs",
+            "declared_type": null
+          },
+          {
+            "kind": "ParameterNode",
+            "line": 3,
+            "name": "n",
+            "declared_type": null
+          }
+        ],
+        "body": {
+          "kind": "BlockNode",
+          "line": 4,
+          "statements": [
+            {
+              "kind": "AssignmentNode",
+              "line": 4,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 4,
+                "name": "level"
+              },
+              "value": {
+                "kind": "BinaryNode",
+                "line": 4,
+                "operator": "-",
+                "left": {
+                  "kind": "IdentifierNode",
+                  "line": 4,
+                  "name": "n"
+                },
+                "right": {
+                  "kind": "LiteralNode",
+                  "line": 4,
+                  "value": 1,
+                  "data_type": "INTEGER"
+                }
+              }
+            },
+            {
+              "kind": "WhileNode",
+              "line": 5,
+              "condition": {
+                "kind": "BinaryNode",
+                "line": 5,
+                "operator": ">=",
+                "left": {
+                  "kind": "IdentifierNode",
+                  "line": 5,
+                  "name": "level"
+                },
+                "right": {
+                  "kind": "LiteralNode",
+                  "line": 5,
+                  "value": 0,
+                  "data_type": "INTEGER"
+                }
+              },
+              "body": {
+                "kind": "BlockNode",
+                "line": 6,
+                "statements": [
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 6,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 6,
+                      "name": "row"
+                    },
+                    "value": {
+                      "kind": "EmptyLiteralNode",
+                      "line": 6,
+                      "empty_type": "STRING"
+                    }
+                  },
+                  {
+                    "kind": "IfNode",
+                    "line": 7,
+                    "condition": {
+                      "kind": "BinaryNode",
+                      "line": 7,
+                      "operator": "<",
+                      "left": {
+                        "kind": "IdentifierNode",
+                        "line": 7,
+                        "name": "level"
+                      },
+                      "right": {
+                        "kind": "LengthNode",
+                        "line": 7,
+                        "expression": {
+                          "kind": "IndexNode",
+                          "line": 7,
+                          "collection": {
+                            "kind": "IdentifierNode",
+                            "line": 7,
+                            "name": "pegs"
+                          },
+                          "index": {
+                            "kind": "LiteralNode",
+                            "line": 7,
+                            "value": "A",
+                            "data_type": "STRING"
+                          }
+                        }
+                      }
+                    },
+                    "then_body": {
+                      "kind": "BlockNode",
+                      "line": 8,
+                      "statements": [
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 8,
+                          "target": {
+                            "kind": "IdentifierNode",
+                            "line": 8,
+                            "name": "peg_value_1"
+                          },
+                          "value": {
+                            "kind": "IndexNode",
+                            "line": 8,
+                            "collection": {
+                              "kind": "IndexNode",
+                              "line": 8,
+                              "collection": {
+                                "kind": "IdentifierNode",
+                                "line": 8,
+                                "name": "pegs"
+                              },
+                              "index": {
+                                "kind": "LiteralNode",
+                                "line": 8,
+                                "value": "A",
+                                "data_type": "STRING"
+                              }
+                            },
+                            "index": {
+                              "kind": "IdentifierNode",
+                              "line": 8,
+                              "name": "level"
+                            }
+                          }
+                        },
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 9,
+                          "target": {
+                            "kind": "IdentifierNode",
+                            "line": 9,
+                            "name": "row"
+                          },
+                          "value": {
+                            "kind": "BinaryNode",
+                            "line": 9,
+                            "operator": "+",
+                            "left": {
+                              "kind": "BinaryNode",
+                              "line": 9,
+                              "operator": "+",
+                              "left": {
+                                "kind": "BinaryNode",
+                                "line": 9,
+                                "operator": "+",
+                                "left": {
+                                  "kind": "IdentifierNode",
+                                  "line": 9,
+                                  "name": "row"
+                                },
+                                "right": {
+                                  "kind": "LiteralNode",
+                                  "line": 9,
+                                  "value": "  ",
+                                  "data_type": "STRING"
+                                }
+                              },
+                              "right": {
+                                "kind": "CastNode",
+                                "line": 9,
+                                "target_type": "STRING",
+                                "expression": {
+                                  "kind": "IdentifierNode",
+                                  "line": 9,
+                                  "name": "peg_value_1"
+                                }
+                              }
+                            },
+                            "right": {
+                              "kind": "LiteralNode",
+                              "line": 9,
+                              "value": "  ",
+                              "data_type": "STRING"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "else_if": [],
+                    "else_body": {
+                      "kind": "BlockNode",
+                      "line": 11,
+                      "statements": [
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 11,
+                          "target": {
+                            "kind": "IdentifierNode",
+                            "line": 11,
+                            "name": "row"
+                          },
+                          "value": {
+                            "kind": "BinaryNode",
+                            "line": 11,
+                            "operator": "+",
+                            "left": {
+                              "kind": "IdentifierNode",
+                              "line": 11,
+                              "name": "row"
+                            },
+                            "right": {
+                              "kind": "LiteralNode",
+                              "line": 11,
+                              "value": "  |  ",
+                              "data_type": "STRING"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "kind": "IfNode",
+                    "line": 13,
+                    "condition": {
+                      "kind": "BinaryNode",
+                      "line": 13,
+                      "operator": "<",
+                      "left": {
+                        "kind": "IdentifierNode",
+                        "line": 13,
+                        "name": "level"
+                      },
+                      "right": {
+                        "kind": "LengthNode",
+                        "line": 13,
+                        "expression": {
+                          "kind": "IndexNode",
+                          "line": 13,
+                          "collection": {
+                            "kind": "IdentifierNode",
+                            "line": 13,
+                            "name": "pegs"
+                          },
+                          "index": {
+                            "kind": "LiteralNode",
+                            "line": 13,
+                            "value": "B",
+                            "data_type": "STRING"
+                          }
+                        }
+                      }
+                    },
+                    "then_body": {
+                      "kind": "BlockNode",
+                      "line": 14,
+                      "statements": [
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 14,
+                          "target": {
+                            "kind": "IdentifierNode",
+                            "line": 14,
+                            "name": "peg_value_2"
+                          },
+                          "value": {
+                            "kind": "IndexNode",
+                            "line": 14,
+                            "collection": {
+                              "kind": "IndexNode",
+                              "line": 14,
+                              "collection": {
+                                "kind": "IdentifierNode",
+                                "line": 14,
+                                "name": "pegs"
+                              },
+                              "index": {
+                                "kind": "LiteralNode",
+                                "line": 14,
+                                "value": "B",
+                                "data_type": "STRING"
+                              }
+                            },
+                            "index": {
+                              "kind": "IdentifierNode",
+                              "line": 14,
+                              "name": "level"
+                            }
+                          }
+                        },
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 15,
+                          "target": {
+                            "kind": "IdentifierNode",
+                            "line": 15,
+                            "name": "row"
+                          },
+                          "value": {
+                            "kind": "BinaryNode",
+                            "line": 15,
+                            "operator": "+",
+                            "left": {
+                              "kind": "BinaryNode",
+                              "line": 15,
+                              "operator": "+",
+                              "left": {
+                                "kind": "BinaryNode",
+                                "line": 15,
+                                "operator": "+",
+                                "left": {
+                                  "kind": "IdentifierNode",
+                                  "line": 15,
+                                  "name": "row"
+                                },
+                                "right": {
+                                  "kind": "LiteralNode",
+                                  "line": 15,
+                                  "value": "  ",
+                                  "data_type": "STRING"
+                                }
+                              },
+                              "right": {
+                                "kind": "CastNode",
+                                "line": 15,
+                                "target_type": "STRING",
+                                "expression": {
+                                  "kind": "IdentifierNode",
+                                  "line": 15,
+                                  "name": "peg_value_2"
+                                }
+                              }
+                            },
+                            "right": {
+                              "kind": "LiteralNode",
+                              "line": 15,
+                              "value": "  ",
+                              "data_type": "STRING"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "else_if": [],
+                    "else_body": {
+                      "kind": "BlockNode",
+                      "line": 17,
+                      "statements": [
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 17,
+                          "target": {
+                            "kind": "IdentifierNode",
+                            "line": 17,
+                            "name": "row"
+                          },
+                          "value": {
+                            "kind": "BinaryNode",
+                            "line": 17,
+                            "operator": "+",
+                            "left": {
+                              "kind": "IdentifierNode",
+                              "line": 17,
+                              "name": "row"
+                            },
+                            "right": {
+                              "kind": "LiteralNode",
+                              "line": 17,
+                              "value": "  |  ",
+                              "data_type": "STRING"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "kind": "IfNode",
+                    "line": 19,
+                    "condition": {
+                      "kind": "BinaryNode",
+                      "line": 19,
+                      "operator": "<",
+                      "left": {
+                        "kind": "IdentifierNode",
+                        "line": 19,
+                        "name": "level"
+                      },
+                      "right": {
+                        "kind": "LengthNode",
+                        "line": 19,
+                        "expression": {
+                          "kind": "IndexNode",
+                          "line": 19,
+                          "collection": {
+                            "kind": "IdentifierNode",
+                            "line": 19,
+                            "name": "pegs"
+                          },
+                          "index": {
+                            "kind": "LiteralNode",
+                            "line": 19,
+                            "value": "C",
+                            "data_type": "STRING"
+                          }
+                        }
+                      }
+                    },
+                    "then_body": {
+                      "kind": "BlockNode",
+                      "line": 20,
+                      "statements": [
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 20,
+                          "target": {
+                            "kind": "IdentifierNode",
+                            "line": 20,
+                            "name": "peg_value_3"
+                          },
+                          "value": {
+                            "kind": "IndexNode",
+                            "line": 20,
+                            "collection": {
+                              "kind": "IndexNode",
+                              "line": 20,
+                              "collection": {
+                                "kind": "IdentifierNode",
+                                "line": 20,
+                                "name": "pegs"
+                              },
+                              "index": {
+                                "kind": "LiteralNode",
+                                "line": 20,
+                                "value": "C",
+                                "data_type": "STRING"
+                              }
+                            },
+                            "index": {
+                              "kind": "IdentifierNode",
+                              "line": 20,
+                              "name": "level"
+                            }
+                          }
+                        },
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 21,
+                          "target": {
+                            "kind": "IdentifierNode",
+                            "line": 21,
+                            "name": "row"
+                          },
+                          "value": {
+                            "kind": "BinaryNode",
+                            "line": 21,
+                            "operator": "+",
+                            "left": {
+                              "kind": "BinaryNode",
+                              "line": 21,
+                              "operator": "+",
+                              "left": {
+                                "kind": "BinaryNode",
+                                "line": 21,
+                                "operator": "+",
+                                "left": {
+                                  "kind": "IdentifierNode",
+                                  "line": 21,
+                                  "name": "row"
+                                },
+                                "right": {
+                                  "kind": "LiteralNode",
+                                  "line": 21,
+                                  "value": "  ",
+                                  "data_type": "STRING"
+                                }
+                              },
+                              "right": {
+                                "kind": "CastNode",
+                                "line": 21,
+                                "target_type": "STRING",
+                                "expression": {
+                                  "kind": "IdentifierNode",
+                                  "line": 21,
+                                  "name": "peg_value_3"
+                                }
+                              }
+                            },
+                            "right": {
+                              "kind": "LiteralNode",
+                              "line": 21,
+                              "value": "  ",
+                              "data_type": "STRING"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "else_if": [],
+                    "else_body": {
+                      "kind": "BlockNode",
+                      "line": 23,
+                      "statements": [
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 23,
+                          "target": {
+                            "kind": "IdentifierNode",
+                            "line": 23,
+                            "name": "row"
+                          },
+                          "value": {
+                            "kind": "BinaryNode",
+                            "line": 23,
+                            "operator": "+",
+                            "left": {
+                              "kind": "IdentifierNode",
+                              "line": 23,
+                              "name": "row"
+                            },
+                            "right": {
+                              "kind": "LiteralNode",
+                              "line": 23,
+                              "value": "  |  ",
+                              "data_type": "STRING"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "kind": "OutputNode",
+                    "line": 25,
+                    "expression": {
+                      "kind": "IdentifierNode",
+                      "line": 25,
+                      "name": "row"
+                    }
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 26,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 26,
+                      "name": "level"
+                    },
+                    "value": {
+                      "kind": "BinaryNode",
+                      "line": 26,
+                      "operator": "-",
+                      "left": {
+                        "kind": "IdentifierNode",
+                        "line": 26,
+                        "name": "level"
+                      },
+                      "right": {
+                        "kind": "LiteralNode",
+                        "line": 26,
+                        "value": 1,
+                        "data_type": "INTEGER"
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "OutputNode",
+              "line": 28,
+              "expression": {
+                "kind": "LiteralNode",
+                "line": 28,
+                "value": "  A    B    C\n",
+                "data_type": "STRING"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "kind": "FunctionNode",
+        "line": 31,
+        "name": "move_between",
+        "parameters": [
+          {
+            "kind": "ParameterNode",
+            "line": 31,
+            "name": "pegs",
+            "declared_type": null
+          },
+          {
+            "kind": "ParameterNode",
+            "line": 31,
+            "name": "a",
+            "declared_type": null
+          },
+          {
+            "kind": "ParameterNode",
+            "line": 31,
+            "name": "b",
+            "declared_type": null
+          },
+          {
+            "kind": "ParameterNode",
+            "line": 31,
+            "name": "n",
+            "declared_type": null
+          }
+        ],
+        "body": {
+          "kind": "BlockNode",
+          "line": 32,
+          "statements": [
+            {
+              "kind": "IfNode",
+              "line": 32,
+              "condition": {
+                "kind": "BinaryNode",
+                "line": 32,
+                "operator": "==",
+                "left": {
+                  "kind": "LengthNode",
+                  "line": 32,
+                  "expression": {
+                    "kind": "IndexNode",
+                    "line": 32,
+                    "collection": {
+                      "kind": "IdentifierNode",
+                      "line": 32,
+                      "name": "pegs"
+                    },
+                    "index": {
+                      "kind": "IdentifierNode",
+                      "line": 32,
+                      "name": "a"
+                    }
+                  }
+                },
+                "right": {
+                  "kind": "LiteralNode",
+                  "line": 32,
+                  "value": 0,
+                  "data_type": "INTEGER"
+                }
+              },
+              "then_body": {
+                "kind": "BlockNode",
+                "line": 33,
+                "statements": [
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 33,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 33,
+                      "name": "disc"
+                    },
+                    "value": {
+                      "kind": "MemberCallNode",
+                      "line": 33,
+                      "object": {
+                        "kind": "IndexNode",
+                        "line": 33,
+                        "collection": {
+                          "kind": "IdentifierNode",
+                          "line": 33,
+                          "name": "pegs"
+                        },
+                        "index": {
+                          "kind": "IdentifierNode",
+                          "line": 33,
+                          "name": "b"
+                        }
+                      },
+                      "member": "pop",
+                      "arguments": [],
+                      "resolved_intrinsic": null
+                    }
+                  },
+                  {
+                    "kind": "AppendNode",
+                    "line": 34,
+                    "value": {
+                      "kind": "IdentifierNode",
+                      "line": 34,
+                      "name": "disc"
+                    },
+                    "collection": {
+                      "kind": "IndexNode",
+                      "line": 34,
+                      "collection": {
+                        "kind": "IdentifierNode",
+                        "line": 34,
+                        "name": "pegs"
+                      },
+                      "index": {
+                        "kind": "IdentifierNode",
+                        "line": 34,
+                        "name": "a"
+                      }
+                    }
+                  },
+                  {
+                    "kind": "OutputNode",
+                    "line": 35,
+                    "expression": {
+                      "kind": "LiteralNode",
+                      "line": 35,
+                      "value": "Move disc {disc} from {b} to {a}\n",
+                      "data_type": "STRING"
+                    }
+                  }
+                ]
+              },
+              "else_if": [
+                {
+                  "kind": "ElseIfNode",
+                  "line": 36,
+                  "condition": {
+                    "kind": "BinaryNode",
+                    "line": 36,
+                    "operator": "==",
+                    "left": {
+                      "kind": "LengthNode",
+                      "line": 36,
+                      "expression": {
+                        "kind": "IndexNode",
+                        "line": 36,
+                        "collection": {
+                          "kind": "IdentifierNode",
+                          "line": 36,
+                          "name": "pegs"
+                        },
+                        "index": {
+                          "kind": "IdentifierNode",
+                          "line": 36,
+                          "name": "b"
+                        }
+                      }
+                    },
+                    "right": {
+                      "kind": "LiteralNode",
+                      "line": 36,
+                      "value": 0,
+                      "data_type": "INTEGER"
+                    }
+                  },
+                  "body": {
+                    "kind": "BlockNode",
+                    "line": 37,
+                    "statements": [
+                      {
+                        "kind": "AssignmentNode",
+                        "line": 37,
+                        "target": {
+                          "kind": "IdentifierNode",
+                          "line": 37,
+                          "name": "disc"
+                        },
+                        "value": {
+                          "kind": "MemberCallNode",
+                          "line": 37,
+                          "object": {
+                            "kind": "IndexNode",
+                            "line": 37,
+                            "collection": {
+                              "kind": "IdentifierNode",
+                              "line": 37,
+                              "name": "pegs"
+                            },
+                            "index": {
+                              "kind": "IdentifierNode",
+                              "line": 37,
+                              "name": "a"
+                            }
+                          },
+                          "member": "pop",
+                          "arguments": [],
+                          "resolved_intrinsic": null
+                        }
+                      },
+                      {
+                        "kind": "AppendNode",
+                        "line": 38,
+                        "value": {
+                          "kind": "IdentifierNode",
+                          "line": 38,
+                          "name": "disc"
+                        },
+                        "collection": {
+                          "kind": "IndexNode",
+                          "line": 38,
+                          "collection": {
+                            "kind": "IdentifierNode",
+                            "line": 38,
+                            "name": "pegs"
+                          },
+                          "index": {
+                            "kind": "IdentifierNode",
+                            "line": 38,
+                            "name": "b"
+                          }
+                        }
+                      },
+                      {
+                        "kind": "OutputNode",
+                        "line": 39,
+                        "expression": {
+                          "kind": "LiteralNode",
+                          "line": 39,
+                          "value": "Move disc {disc} from {a} to {b}\n",
+                          "data_type": "STRING"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "kind": "ElseIfNode",
+                  "line": 40,
+                  "condition": {
+                    "kind": "BinaryNode",
+                    "line": 40,
+                    "operator": "<",
+                    "left": {
+                      "kind": "IndexNode",
+                      "line": 40,
+                      "collection": {
+                        "kind": "IndexNode",
+                        "line": 40,
+                        "collection": {
+                          "kind": "IdentifierNode",
+                          "line": 40,
+                          "name": "pegs"
+                        },
+                        "index": {
+                          "kind": "IdentifierNode",
+                          "line": 40,
+                          "name": "a"
+                        }
+                      },
+                      "index": {
+                        "kind": "UnaryNode",
+                        "line": 40,
+                        "operator": "-",
+                        "operand": {
+                          "kind": "LiteralNode",
+                          "line": 40,
+                          "value": 1,
+                          "data_type": "INTEGER"
+                        }
+                      }
+                    },
+                    "right": {
+                      "kind": "IndexNode",
+                      "line": 40,
+                      "collection": {
+                        "kind": "IndexNode",
+                        "line": 40,
+                        "collection": {
+                          "kind": "IdentifierNode",
+                          "line": 40,
+                          "name": "pegs"
+                        },
+                        "index": {
+                          "kind": "IdentifierNode",
+                          "line": 40,
+                          "name": "b"
+                        }
+                      },
+                      "index": {
+                        "kind": "UnaryNode",
+                        "line": 40,
+                        "operator": "-",
+                        "operand": {
+                          "kind": "LiteralNode",
+                          "line": 40,
+                          "value": 1,
+                          "data_type": "INTEGER"
+                        }
+                      }
+                    }
+                  },
+                  "body": {
+                    "kind": "BlockNode",
+                    "line": 41,
+                    "statements": [
+                      {
+                        "kind": "AssignmentNode",
+                        "line": 41,
+                        "target": {
+                          "kind": "IdentifierNode",
+                          "line": 41,
+                          "name": "disc"
+                        },
+                        "value": {
+                          "kind": "MemberCallNode",
+                          "line": 41,
+                          "object": {
+                            "kind": "IndexNode",
+                            "line": 41,
+                            "collection": {
+                              "kind": "IdentifierNode",
+                              "line": 41,
+                              "name": "pegs"
+                            },
+                            "index": {
+                              "kind": "IdentifierNode",
+                              "line": 41,
+                              "name": "a"
+                            }
+                          },
+                          "member": "pop",
+                          "arguments": [],
+                          "resolved_intrinsic": null
+                        }
+                      },
+                      {
+                        "kind": "AppendNode",
+                        "line": 42,
+                        "value": {
+                          "kind": "IdentifierNode",
+                          "line": 42,
+                          "name": "disc"
+                        },
+                        "collection": {
+                          "kind": "IndexNode",
+                          "line": 42,
+                          "collection": {
+                            "kind": "IdentifierNode",
+                            "line": 42,
+                            "name": "pegs"
+                          },
+                          "index": {
+                            "kind": "IdentifierNode",
+                            "line": 42,
+                            "name": "b"
+                          }
+                        }
+                      },
+                      {
+                        "kind": "OutputNode",
+                        "line": 43,
+                        "expression": {
+                          "kind": "LiteralNode",
+                          "line": 43,
+                          "value": "Move disc {disc} from {a} to {b}\n",
+                          "data_type": "STRING"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ],
+              "else_body": {
+                "kind": "BlockNode",
+                "line": 45,
+                "statements": [
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 45,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 45,
+                      "name": "disc"
+                    },
+                    "value": {
+                      "kind": "MemberCallNode",
+                      "line": 45,
+                      "object": {
+                        "kind": "IndexNode",
+                        "line": 45,
+                        "collection": {
+                          "kind": "IdentifierNode",
+                          "line": 45,
+                          "name": "pegs"
+                        },
+                        "index": {
+                          "kind": "IdentifierNode",
+                          "line": 45,
+                          "name": "b"
+                        }
+                      },
+                      "member": "pop",
+                      "arguments": [],
+                      "resolved_intrinsic": null
+                    }
+                  },
+                  {
+                    "kind": "AppendNode",
+                    "line": 46,
+                    "value": {
+                      "kind": "IdentifierNode",
+                      "line": 46,
+                      "name": "disc"
+                    },
+                    "collection": {
+                      "kind": "IndexNode",
+                      "line": 46,
+                      "collection": {
+                        "kind": "IdentifierNode",
+                        "line": 46,
+                        "name": "pegs"
+                      },
+                      "index": {
+                        "kind": "IdentifierNode",
+                        "line": 46,
+                        "name": "a"
+                      }
+                    }
+                  },
+                  {
+                    "kind": "OutputNode",
+                    "line": 47,
+                    "expression": {
+                      "kind": "LiteralNode",
+                      "line": 47,
+                      "value": "Move disc {disc} from {b} to {a}\n",
+                      "data_type": "STRING"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "CallNode",
+              "line": 49,
+              "name": "display_board",
+              "arguments": [
+                {
+                  "kind": "IdentifierNode",
+                  "line": 49,
+                  "name": "pegs"
+                },
+                {
+                  "kind": "IdentifierNode",
+                  "line": 49,
+                  "name": "n"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "kind": "FunctionNode",
+        "line": 52,
+        "name": "hanoi",
+        "parameters": [
+          {
+            "kind": "ParameterNode",
+            "line": 52,
+            "name": "n",
+            "declared_type": null
+          },
+          {
+            "kind": "ParameterNode",
+            "line": 52,
+            "name": "pegs",
+            "declared_type": null
+          }
+        ],
+        "body": {
+          "kind": "BlockNode",
+          "line": 53,
+          "statements": [
+            {
+              "kind": "AssignmentNode",
+              "line": 53,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 53,
+                "name": "A"
+              },
+              "value": {
+                "kind": "LiteralNode",
+                "line": 53,
+                "value": "A",
+                "data_type": "STRING"
+              }
+            },
+            {
+              "kind": "AssignmentNode",
+              "line": 54,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 54,
+                "name": "B"
+              },
+              "value": {
+                "kind": "LiteralNode",
+                "line": 54,
+                "value": "B",
+                "data_type": "STRING"
+              }
+            },
+            {
+              "kind": "AssignmentNode",
+              "line": 55,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 55,
+                "name": "C"
+              },
+              "value": {
+                "kind": "LiteralNode",
+                "line": 55,
+                "value": "C",
+                "data_type": "STRING"
+              }
+            },
+            {
+              "kind": "IfNode",
+              "line": 56,
+              "condition": {
+                "kind": "BinaryNode",
+                "line": 56,
+                "operator": "==",
+                "left": {
+                  "kind": "BinaryNode",
+                  "line": 56,
+                  "operator": "MODULUS",
+                  "left": {
+                    "kind": "IdentifierNode",
+                    "line": 56,
+                    "name": "n"
+                  },
+                  "right": {
+                    "kind": "LiteralNode",
+                    "line": 56,
+                    "value": 2,
+                    "data_type": "INTEGER"
+                  }
+                },
+                "right": {
+                  "kind": "LiteralNode",
+                  "line": 56,
+                  "value": 0,
+                  "data_type": "INTEGER"
+                }
+              },
+              "then_body": {
+                "kind": "BlockNode",
+                "line": 57,
+                "statements": [
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 57,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 57,
+                      "name": "swap_values"
+                    },
+                    "value": {
+                      "kind": "TupleLiteralNode",
+                      "line": 57,
+                      "items": [
+                        {
+                          "kind": "IdentifierNode",
+                          "line": 57,
+                          "name": "C"
+                        },
+                        {
+                          "kind": "IdentifierNode",
+                          "line": 57,
+                          "name": "B"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 58,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 58,
+                      "name": "B"
+                    },
+                    "value": {
+                      "kind": "IndexNode",
+                      "line": 58,
+                      "collection": {
+                        "kind": "IdentifierNode",
+                        "line": 58,
+                        "name": "swap_values"
+                      },
+                      "index": {
+                        "kind": "LiteralNode",
+                        "line": 58,
+                        "value": 0,
+                        "data_type": "INTEGER"
+                      }
+                    }
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 59,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 59,
+                      "name": "C"
+                    },
+                    "value": {
+                      "kind": "IndexNode",
+                      "line": 59,
+                      "collection": {
+                        "kind": "IdentifierNode",
+                        "line": 59,
+                        "name": "swap_values"
+                      },
+                      "index": {
+                        "kind": "LiteralNode",
+                        "line": 59,
+                        "value": 1,
+                        "data_type": "INTEGER"
+                      }
+                    }
+                  }
+                ]
+              },
+              "else_if": [],
+              "else_body": null
+            },
+            {
+              "kind": "AssignmentNode",
+              "line": 61,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 61,
+                "name": "total_moves"
+              },
+              "value": {
+                "kind": "BinaryNode",
+                "line": 61,
+                "operator": "-",
+                "left": {
+                  "kind": "BinaryNode",
+                  "line": 61,
+                  "operator": "EXP",
+                  "left": {
+                    "kind": "LiteralNode",
+                    "line": 61,
+                    "value": 2,
+                    "data_type": "INTEGER"
+                  },
+                  "right": {
+                    "kind": "IdentifierNode",
+                    "line": 61,
+                    "name": "n"
+                  }
+                },
+                "right": {
+                  "kind": "LiteralNode",
+                  "line": 61,
+                  "value": 1,
+                  "data_type": "INTEGER"
+                }
+              }
+            },
+            {
+              "kind": "CallNode",
+              "line": 62,
+              "name": "display_board",
+              "arguments": [
+                {
+                  "kind": "IdentifierNode",
+                  "line": 62,
+                  "name": "pegs"
+                },
+                {
+                  "kind": "IdentifierNode",
+                  "line": 62,
+                  "name": "n"
+                }
+              ]
+            },
+            {
+              "kind": "AssignmentNode",
+              "line": 63,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 63,
+                "name": "move"
+              },
+              "value": {
+                "kind": "LiteralNode",
+                "line": 63,
+                "value": 1,
+                "data_type": "INTEGER"
+              }
+            },
+            {
+              "kind": "WhileNode",
+              "line": 64,
+              "condition": {
+                "kind": "BinaryNode",
+                "line": 64,
+                "operator": "<=",
+                "left": {
+                  "kind": "IdentifierNode",
+                  "line": 64,
+                  "name": "move"
+                },
+                "right": {
+                  "kind": "IdentifierNode",
+                  "line": 64,
+                  "name": "total_moves"
+                }
+              },
+              "body": {
+                "kind": "BlockNode",
+                "line": 65,
+                "statements": [
+                  {
+                    "kind": "IfNode",
+                    "line": 65,
+                    "condition": {
+                      "kind": "BinaryNode",
+                      "line": 65,
+                      "operator": "==",
+                      "left": {
+                        "kind": "BinaryNode",
+                        "line": 65,
+                        "operator": "MODULUS",
+                        "left": {
+                          "kind": "IdentifierNode",
+                          "line": 65,
+                          "name": "move"
+                        },
+                        "right": {
+                          "kind": "LiteralNode",
+                          "line": 65,
+                          "value": 3,
+                          "data_type": "INTEGER"
+                        }
+                      },
+                      "right": {
+                        "kind": "LiteralNode",
+                        "line": 65,
+                        "value": 1,
+                        "data_type": "INTEGER"
+                      }
+                    },
+                    "then_body": {
+                      "kind": "BlockNode",
+                      "line": 66,
+                      "statements": [
+                        {
+                          "kind": "CallNode",
+                          "line": 66,
+                          "name": "move_between",
+                          "arguments": [
+                            {
+                              "kind": "IdentifierNode",
+                              "line": 66,
+                              "name": "pegs"
+                            },
+                            {
+                              "kind": "IdentifierNode",
+                              "line": 66,
+                              "name": "A"
+                            },
+                            {
+                              "kind": "IdentifierNode",
+                              "line": 66,
+                              "name": "C"
+                            },
+                            {
+                              "kind": "IdentifierNode",
+                              "line": 66,
+                              "name": "n"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    "else_if": [
+                      {
+                        "kind": "ElseIfNode",
+                        "line": 67,
+                        "condition": {
+                          "kind": "BinaryNode",
+                          "line": 67,
+                          "operator": "==",
+                          "left": {
+                            "kind": "BinaryNode",
+                            "line": 67,
+                            "operator": "MODULUS",
+                            "left": {
+                              "kind": "IdentifierNode",
+                              "line": 67,
+                              "name": "move"
+                            },
+                            "right": {
+                              "kind": "LiteralNode",
+                              "line": 67,
+                              "value": 3,
+                              "data_type": "INTEGER"
+                            }
+                          },
+                          "right": {
+                            "kind": "LiteralNode",
+                            "line": 67,
+                            "value": 2,
+                            "data_type": "INTEGER"
+                          }
+                        },
+                        "body": {
+                          "kind": "BlockNode",
+                          "line": 68,
+                          "statements": [
+                            {
+                              "kind": "CallNode",
+                              "line": 68,
+                              "name": "move_between",
+                              "arguments": [
+                                {
+                                  "kind": "IdentifierNode",
+                                  "line": 68,
+                                  "name": "pegs"
+                                },
+                                {
+                                  "kind": "IdentifierNode",
+                                  "line": 68,
+                                  "name": "A"
+                                },
+                                {
+                                  "kind": "IdentifierNode",
+                                  "line": 68,
+                                  "name": "B"
+                                },
+                                {
+                                  "kind": "IdentifierNode",
+                                  "line": 68,
+                                  "name": "n"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "else_body": {
+                      "kind": "BlockNode",
+                      "line": 70,
+                      "statements": [
+                        {
+                          "kind": "CallNode",
+                          "line": 70,
+                          "name": "move_between",
+                          "arguments": [
+                            {
+                              "kind": "IdentifierNode",
+                              "line": 70,
+                              "name": "pegs"
+                            },
+                            {
+                              "kind": "IdentifierNode",
+                              "line": 70,
+                              "name": "B"
+                            },
+                            {
+                              "kind": "IdentifierNode",
+                              "line": 70,
+                              "name": "C"
+                            },
+                            {
+                              "kind": "IdentifierNode",
+                              "line": 70,
+                              "name": "n"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 72,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 72,
+                      "name": "move"
+                    },
+                    "value": {
+                      "kind": "BinaryNode",
+                      "line": 72,
+                      "operator": "+",
+                      "left": {
+                        "kind": "IdentifierNode",
+                        "line": 72,
+                        "name": "move"
+                      },
+                      "right": {
+                        "kind": "LiteralNode",
+                        "line": 72,
+                        "value": 1,
+                        "data_type": "INTEGER"
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "OutputNode",
+              "line": 74,
+              "expression": {
+                "kind": "LiteralNode",
+                "line": 74,
+                "value": "Solved!!",
+                "data_type": "STRING"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "kind": "AssignmentNode",
+        "line": 77,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 77,
+          "name": "N"
+        },
+        "value": {
+          "kind": "LiteralNode",
+          "line": 77,
+          "value": 0,
+          "data_type": "INTEGER"
+        }
+      },
+      {
+        "kind": "AssignmentNode",
+        "line": 78,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 78,
+          "name": "loop"
+        },
+        "value": {
+          "kind": "LiteralNode",
+          "line": 78,
+          "value": true,
+          "data_type": "BOOLEAN"
+        }
+      },
+      {
+        "kind": "WhileNode",
+        "line": 79,
+        "condition": {
+          "kind": "IdentifierNode",
+          "line": 79,
+          "name": "loop"
+        },
+        "body": {
+          "kind": "BlockNode",
+          "line": 80,
+          "statements": [
+            {
+              "kind": "TryCatchNode",
+              "line": 80,
+              "try_body": {
+                "kind": "BlockNode",
+                "line": 81,
+                "statements": [
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 81,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 81,
+                      "name": "N"
+                    },
+                    "value": {
+                      "kind": "CastNode",
+                      "line": 81,
+                      "target_type": "INTEGER",
+                      "expression": {
+                        "kind": "InputNode",
+                        "line": 81,
+                        "prompt": {
+                          "kind": "LiteralNode",
+                          "line": 81,
+                          "value": "Enter number of discs: ",
+                          "data_type": "STRING"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 82,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 82,
+                      "name": "N"
+                    },
+                    "value": {
+                      "kind": "CastNode",
+                      "line": 82,
+                      "target_type": "INTEGER",
+                      "expression": {
+                        "kind": "IdentifierNode",
+                        "line": 82,
+                        "name": "N"
+                      }
+                    }
+                  },
+                  {
+                    "kind": "OutputNode",
+                    "line": 83,
+                    "expression": {
+                      "kind": "LiteralNode",
+                      "line": 83,
+                      "value": "Setting up..\n",
+                      "data_type": "STRING"
+                    }
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 84,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 84,
+                      "name": "loop"
+                    },
+                    "value": {
+                      "kind": "LiteralNode",
+                      "line": 84,
+                      "value": false,
+                      "data_type": "BOOLEAN"
+                    }
+                  }
+                ]
+              },
+              "error": null,
+              "catch_body": {
+                "kind": "BlockNode",
+                "line": 86,
+                "statements": [
+                  {
+                    "kind": "OutputNode",
+                    "line": 86,
+                    "expression": {
+                      "kind": "LiteralNode",
+                      "line": 86,
+                      "value": "Than's Not a Valid Number, Please Try Again!!\n",
+                      "data_type": "STRING"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "kind": "AssignmentNode",
+        "line": 89,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 89,
+          "name": "pegs"
+        },
+        "value": {
+          "kind": "EmptyLiteralNode",
+          "line": 89,
+          "empty_type": "DICTIONARY"
+        }
+      },
+      {
+        "kind": "AssignmentNode",
+        "line": 90,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 90,
+          "name": "peg_a_values"
+        },
+        "value": {
+          "kind": "EmptyLiteralNode",
+          "line": 90,
+          "empty_type": "LIST"
+        }
+      },
+      {
+        "kind": "ForRangeNode",
+        "line": 91,
+        "variable": {
+          "kind": "IdentifierNode",
+          "line": 91,
+          "name": "disk"
+        },
+        "start": {
+          "kind": "IdentifierNode",
+          "line": 91,
+          "name": "N"
+        },
+        "end": {
+          "kind": "LiteralNode",
+          "line": 91,
+          "value": 0,
+          "data_type": "INTEGER"
+        },
+        "step": {
+          "kind": "UnaryNode",
+          "line": 91,
+          "operator": "-",
+          "operand": {
+            "kind": "LiteralNode",
+            "line": 91,
+            "value": 1,
+            "data_type": "INTEGER"
+          }
+        },
+        "body": {
+          "kind": "BlockNode",
+          "line": 92,
+          "statements": [
+            {
+              "kind": "AppendNode",
+              "line": 92,
+              "value": {
+                "kind": "IdentifierNode",
+                "line": 92,
+                "name": "disk"
+              },
+              "collection": {
+                "kind": "IdentifierNode",
+                "line": 92,
+                "name": "peg_a_values"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "kind": "AssignmentNode",
+        "line": 94,
+        "target": {
+          "kind": "IndexNode",
+          "line": 94,
+          "collection": {
+            "kind": "IdentifierNode",
+            "line": 94,
+            "name": "pegs"
+          },
+          "index": {
+            "kind": "LiteralNode",
+            "line": 94,
+            "value": "A",
+            "data_type": "STRING"
+          }
+        },
+        "value": {
+          "kind": "IdentifierNode",
+          "line": 94,
+          "name": "peg_a_values"
+        }
+      },
+      {
+        "kind": "AssignmentNode",
+        "line": 95,
+        "target": {
+          "kind": "IndexNode",
+          "line": 95,
+          "collection": {
+            "kind": "IdentifierNode",
+            "line": 95,
+            "name": "pegs"
+          },
+          "index": {
+            "kind": "LiteralNode",
+            "line": 95,
+            "value": "B",
+            "data_type": "STRING"
+          }
+        },
+        "value": {
+          "kind": "EmptyLiteralNode",
+          "line": 95,
+          "empty_type": "LIST"
+        }
+      },
+      {
+        "kind": "AssignmentNode",
+        "line": 96,
+        "target": {
+          "kind": "IndexNode",
+          "line": 96,
+          "collection": {
+            "kind": "IdentifierNode",
+            "line": 96,
+            "name": "pegs"
+          },
+          "index": {
+            "kind": "LiteralNode",
+            "line": 96,
+            "value": "C",
+            "data_type": "STRING"
+          }
+        },
+        "value": {
+          "kind": "EmptyLiteralNode",
+          "line": 96,
+          "empty_type": "LIST"
+        }
+      },
+      {
+        "kind": "CallNode",
+        "line": 97,
+        "name": "hanoi",
+        "arguments": [
+          {
+            "kind": "IdentifierNode",
+            "line": 97,
+            "name": "N"
+          },
+          {
+            "kind": "IdentifierNode",
+            "line": 97,
+            "name": "pegs"
+          }
+        ]
+      }
+    ]
+  }
+}

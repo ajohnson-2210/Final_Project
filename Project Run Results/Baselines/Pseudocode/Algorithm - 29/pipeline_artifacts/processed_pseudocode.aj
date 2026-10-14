@@ -1,0 +1,72 @@
+trainingdata <- EMPTY DICTIONARY
+trainingdata[STRING("sports")] <- LIST [STRING("team wins match"), STRING("player scores goal"), STRING("championship game victory")]
+trainingdata[STRING("tech")] <- LIST [STRING("new smartphone released"), STRING("software update improves performance"), STRING("AI model breakthrough benchmark")]
+trainingdata[STRING("food")] <- LIST [STRING("fresh ingredients recipe"), STRING("chef prepares meal"), STRING("restaurant serves tasty dishes")]
+
+FUNCTION tokenise ACCEPTS(text)
+    RETURN text.lower().split()
+ENDFUNCTION
+
+FUNCTION classify ACCEPTS(text)
+    words <- CALL tokenise(text)
+    bestcategory <- NONE
+    bestscore <- -1
+    categories <- EMPTY LIST
+    FOR EACH category IN trainingdata.keys() DO
+        APPEND category TO categories
+    ENDFOR
+        c_index <- 0
+    loop <- BOOLEAN(TRUE)
+    WHILE loop DO
+        TRY
+            category <- categories[c_index]
+            score <- 0
+            s_index <- 0
+            innerloop <- BOOLEAN(TRUE)
+            WHILE innerloop DO
+                TRY
+                    sentence <- trainingdata[category][s_index]
+                    sentence_words <- CALL tokenise(sentence)
+                    w_index <- 0
+                    wordloop <- BOOLEAN(TRUE)
+                    WHILE wordloop DO
+                        TRY
+                            IF words[w_index] IN sentence_words THEN
+                                score <- score + 1
+                            ENDIF
+                            w_index <- w_index + 1
+                        CATCH
+                            wordloop <- BOOLEAN(FALSE)
+                        ENDTRY
+                    ENDWHILE
+                    s_index <- s_index + 1
+                CATCH
+                    innerloop <- BOOLEAN(FALSE)
+                ENDTRY
+            ENDWHILE
+            IF score > bestscore THEN
+                bestscore <- score
+                bestcategory <- category
+            ENDIF
+            c_index <- c_index + 1
+        CATCH
+            loop <- BOOLEAN(FALSE)
+        ENDTRY
+    ENDWHILE
+    RETURN bestcategory
+ENDFUNCTION
+
+tests <- LIST [STRING("the team scored a goal"), STRING("new processor released"), STRING("chef cooks tasty meal"), STRING("fish and chips are tasty")]
+OUTPUT STRING("Simple Text Classification:")
+index <- 0
+loop <- BOOLEAN(TRUE)
+WHILE loop DO
+    TRY
+        text <- tests[index]
+        result <- CALL classify(text)
+        OUTPUT STRING("'{text}' → {result}")
+        index <- index + 1
+    CATCH
+        loop <- BOOLEAN(FALSE)
+    ENDTRY
+ENDWHILE

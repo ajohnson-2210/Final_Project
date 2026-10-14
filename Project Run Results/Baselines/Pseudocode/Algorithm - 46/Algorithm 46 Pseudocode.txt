@@ -1,0 +1,94 @@
+COMMENT import random
+
+OUTPUT STRING("Steps to Multiply 2 Matrices.")
+rowsA <- RANDOM INT(2, 4)
+colsA <- RANDOM INT(2, 4)
+colsB <- RANDOM INT(2, 4)
+OUTPUT STRING("STEP 1: Matrix sizes chosen:")
+OUTPUT STRING("Matrix A: {rowsA} x {colsA}")
+OUTPUT STRING("Matrix B: {colsA} x {colsB} \n")
+OUTPUT STRING("STEP 2: Generating Matrix A...\n")
+A <- EMPTY LIST
+r <- 0
+WHILE r < rowsA DO
+    row_list <- EMPTY LIST
+    c <- 0
+    WHILE c < colsA DO
+        IF RANDOM FLOAT(0, 1) < 0.5 THEN
+            num <- RANDOM INT(-10, 10)
+        ELSE
+            num <- CALL round(RANDOM FLOAT(-10, 10), 2)
+        ENDIF
+        APPEND num TO row_list
+        c <- c + 1
+    ENDWHILE
+    APPEND row_list TO A
+    r <- r + 1
+ENDWHILE
+OUTPUT STRING("Matrix A:\n")
+r <- 0
+WHILE r < rowsA DO
+    OUTPUT A[r]
+    r <- r + 1
+ENDWHILE
+OUTPUT STRING("\n")
+OUTPUT STRING("STEP 3: Generating Matrix B...\n")
+B <- EMPTY LIST
+r <- 0
+WHILE r < colsA DO
+    row_list <- EMPTY LIST
+    c <- 0
+    WHILE c < colsB DO
+        IF RANDOM FLOAT(0, 1) < 0.5 THEN
+            num <- RANDOM INT(-10, 10)
+        ELSE
+            num <- CALL round(RANDOM FLOAT(-10, 10), 2)
+        ENDIF
+        APPEND num TO row_list
+        c <- c + 1
+    ENDWHILE
+    APPEND row_list TO B
+    r <- r + 1
+ENDWHILE
+OUTPUT STRING("Matrix B:\n")
+r <- 0
+WHILE r < colsA DO
+    OUTPUT B[r]
+    r <- r + 1
+ENDWHILE
+OUTPUT STRING("\n")
+OUTPUT STRING("STEP 4: Multiplying Matrix A and Matrix B...\n")
+OUTPUT STRING("Multiplying...\n")
+Result <- EMPTY LIST
+r <- 0
+WHILE r < rowsA DO
+    row_list <- EMPTY LIST
+    c <- 0
+    WHILE c < colsB DO
+        k <- 0
+        running_sum <- 0
+        OUTPUT STRING("Element Result[{r}][{c}]:")
+        WHILE k < colsA DO
+            product <- A[r][k] * B[k][c]
+            rounded_product <- CALL INTEGER((product * 100)) / 100.0
+            running_sum <- running_sum + rounded_product
+            a_value <- A[r][k]
+            b_value <- B[k][c]
+            OUTPUT STRING("  A[{r}][{k}] * B[{k}][{c}] → {a_value} * {b_value} = {rounded_product}")
+            k <- k + 1
+        ENDWHILE
+        final_value <- CALL INTEGER((running_sum * 100)) / 100.0
+        APPEND final_value TO row_list
+        OUTPUT STRING("  Sum for Result[{r}][{c}] = {final_value}\n")
+        c <- c + 1
+    ENDWHILE
+    APPEND row_list TO Result
+    r <- r + 1
+ENDWHILE
+OUTPUT STRING("\nSTEP 5: Final Matrix\n")
+OUTPUT STRING("A × B =")
+r <- 0
+WHILE r < rowsA DO
+    OUTPUT Result[r]
+    r <- r + 1
+ENDWHILE

@@ -1,0 +1,258 @@
+{
+  "success": true,
+  "status": "SUCCESS",
+  "stages": [
+    {
+      "name": "PSEUDOCODE_PROFILE_PROCESSING",
+      "status": "SUCCESS",
+      "message": "Processed source using AJ_DIALECT_STRICT; 0 transformation(s); 0 header line(s) stripped.",
+      "duration_ms": 0.694
+    },
+    {
+      "name": "PSEUDOCODE_TO_AST",
+      "status": "SUCCESS",
+      "message": "Pseudocode parsed and validated.",
+      "duration_ms": 17.175
+    },
+    {
+      "name": "AST_TO_FLOW_DIAGRAM",
+      "status": "SUCCESS",
+      "message": "Machine-readable flow diagram generated.",
+      "duration_ms": 3.122
+    },
+    {
+      "name": "FLOW_DIAGRAM_TO_DRAWIO",
+      "status": "SUCCESS",
+      "message": "Editable draw.io XML flow diagram generated.",
+      "duration_ms": 8.202
+    },
+    {
+      "name": "FLOW_DIAGRAM_TO_PYTHON",
+      "status": "SUCCESS",
+      "message": "Python source generated and syntax validated.",
+      "duration_ms": 13.342
+    },
+    {
+      "name": "BEHAVIOURAL_TESTING",
+      "status": "SUCCESS",
+      "message": "Passed 3 of 3 tests.",
+      "duration_ms": 313.647
+    }
+  ],
+  "output_files": {
+    "pseudocode_processing_report": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Pseudocode\\Algorithm - 35\\pipeline_artifacts\\pseudocode_processing_report.json",
+    "processed_pseudocode": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Pseudocode\\Algorithm - 35\\pipeline_artifacts\\processed_pseudocode.aj",
+    "ast": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Pseudocode\\Algorithm - 35\\pipeline_artifacts\\ast.json",
+    "parser_report": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Pseudocode\\Algorithm - 35\\pipeline_artifacts\\parser_report.json",
+    "ast_visualisation": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Pseudocode\\Algorithm - 35\\pipeline_artifacts\\ast_visualisation.html",
+    "flow_diagram": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Pseudocode\\Algorithm - 35\\pipeline_artifacts\\flow_diagram.json",
+    "flow_visualisation": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Pseudocode\\Algorithm - 35\\pipeline_artifacts\\flow_diagram.html",
+    "flow_diagram_drawio": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Pseudocode\\Algorithm - 35\\pipeline_artifacts\\flow_diagram.drawio",
+    "generated_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Pseudocode\\Algorithm - 35\\pipeline_artifacts\\generated_program.py",
+    "compilation_report": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Pseudocode\\Algorithm - 35\\pipeline_artifacts\\compilation_report.json",
+    "test_report": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Pseudocode\\Algorithm - 35\\pipeline_artifacts\\test_report.json",
+    "pipeline_report": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Pseudocode\\Algorithm - 35\\pipeline_artifacts\\pipeline_report.json"
+  },
+  "test_report": {
+    "program_path": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Pseudocode\\Algorithm - 35\\pipeline_artifacts\\generated_program.py",
+    "success": true,
+    "total_tests": 3,
+    "passed_tests": 3,
+    "failed_tests": 0,
+    "category_summary": {
+      "STATE_MUTATION": {
+        "total": 3,
+        "passed": 3,
+        "failed": 0
+      }
+    },
+    "results": [
+      {
+        "name": "seeded LRU access/eviction run seed 104729",
+        "status": "PASSED",
+        "expected_output": [
+          "Added: A  -  Access Count = 1",
+          "Added: B  -  Access Count = 1",
+          "Added: C  -  Access Count = 1",
+          "Added: D  -  Access Count = 1",
+          "Added: E  -  Access Count = 1",
+          "Accessed: B  - Access Count = 2",
+          "Accessed: E  - Access Count = 2",
+          "Accessed: D  - Access Count = 2",
+          "Accessed: C  - Access Count = 2",
+          "Accessed: C  - Access Count = 3",
+          "Accessed: D  - Access Count = 3",
+          "Accessed: B  - Access Count = 3",
+          "Accessed: B  - Access Count = 4",
+          "Access attempted but not found: F",
+          "Accessed: B  - Access Count = 5",
+          "Evicted: A -  Added: F Access Count = 1",
+          "Evicted: E -  Added: G Access Count = 1",
+          "Final buffer: ['F', 'B', 'C', 'D', 'G']"
+        ],
+        "actual_output": [
+          "Added: A  -  Access Count = 1",
+          "Added: B  -  Access Count = 1",
+          "Added: C  -  Access Count = 1",
+          "Added: D  -  Access Count = 1",
+          "Added: E  -  Access Count = 1",
+          "Accessed: B  - Access Count = 2",
+          "Accessed: E  - Access Count = 2",
+          "Accessed: D  - Access Count = 2",
+          "Accessed: C  - Access Count = 2",
+          "Accessed: C  - Access Count = 3",
+          "Accessed: D  - Access Count = 3",
+          "Accessed: B  - Access Count = 3",
+          "Accessed: B  - Access Count = 4",
+          "Access attempted but not found: F",
+          "Accessed: B  - Access Count = 5",
+          "Evicted: A -  Added: F Access Count = 1",
+          "Evicted: E -  Added: G Access Count = 1",
+          "Final buffer: ['F', 'B', 'C', 'D', 'G']"
+        ],
+        "standard_error": "",
+        "return_code": 0,
+        "duration_ms": 103.831,
+        "category": "STATE_MUTATION",
+        "semantic_feature": "LRU_RECENCY_ACCESS_COUNT_AND_EVICTION",
+        "expected_return_code": 0,
+        "expected_error_type": null,
+        "actual_error_type": null,
+        "criteria_links": [
+          "P2",
+          "P4"
+        ],
+        "random_seed": 104729,
+        "environment": {},
+        "requires_modules": []
+      },
+      {
+        "name": "seeded LRU access/eviction run seed 104759",
+        "status": "PASSED",
+        "expected_output": [
+          "Added: A  -  Access Count = 1",
+          "Added: B  -  Access Count = 1",
+          "Added: C  -  Access Count = 1",
+          "Added: D  -  Access Count = 1",
+          "Added: E  -  Access Count = 1",
+          "Accessed: A  - Access Count = 2",
+          "Accessed: C  - Access Count = 2",
+          "Accessed: E  - Access Count = 2",
+          "Accessed: C  - Access Count = 3",
+          "Accessed: C  - Access Count = 4",
+          "Accessed: C  - Access Count = 5",
+          "Accessed: E  - Access Count = 3",
+          "Access attempted but not found: G",
+          "Accessed: B  - Access Count = 2",
+          "Accessed: C  - Access Count = 6",
+          "Evicted: D -  Added: F Access Count = 1",
+          "Evicted: A -  Added: G Access Count = 1",
+          "Final buffer: ['G', 'B', 'C', 'F', 'E']"
+        ],
+        "actual_output": [
+          "Added: A  -  Access Count = 1",
+          "Added: B  -  Access Count = 1",
+          "Added: C  -  Access Count = 1",
+          "Added: D  -  Access Count = 1",
+          "Added: E  -  Access Count = 1",
+          "Accessed: A  - Access Count = 2",
+          "Accessed: C  - Access Count = 2",
+          "Accessed: E  - Access Count = 2",
+          "Accessed: C  - Access Count = 3",
+          "Accessed: C  - Access Count = 4",
+          "Accessed: C  - Access Count = 5",
+          "Accessed: E  - Access Count = 3",
+          "Access attempted but not found: G",
+          "Accessed: B  - Access Count = 2",
+          "Accessed: C  - Access Count = 6",
+          "Evicted: D -  Added: F Access Count = 1",
+          "Evicted: A -  Added: G Access Count = 1",
+          "Final buffer: ['G', 'B', 'C', 'F', 'E']"
+        ],
+        "standard_error": "",
+        "return_code": 0,
+        "duration_ms": 108.221,
+        "category": "STATE_MUTATION",
+        "semantic_feature": "LRU_RECENCY_ACCESS_COUNT_AND_EVICTION",
+        "expected_return_code": 0,
+        "expected_error_type": null,
+        "actual_error_type": null,
+        "criteria_links": [
+          "P2",
+          "P4"
+        ],
+        "random_seed": 104759,
+        "environment": {},
+        "requires_modules": []
+      },
+      {
+        "name": "seeded LRU access/eviction run seed 104761",
+        "status": "PASSED",
+        "expected_output": [
+          "Added: A  -  Access Count = 1",
+          "Added: B  -  Access Count = 1",
+          "Added: C  -  Access Count = 1",
+          "Added: D  -  Access Count = 1",
+          "Added: E  -  Access Count = 1",
+          "Access attempted but not found: F",
+          "Accessed: A  - Access Count = 2",
+          "Accessed: A  - Access Count = 3",
+          "Accessed: B  - Access Count = 2",
+          "Access attempted but not found: F",
+          "Accessed: C  - Access Count = 2",
+          "Accessed: C  - Access Count = 3",
+          "Accessed: C  - Access Count = 4",
+          "Accessed: C  - Access Count = 5",
+          "Accessed: A  - Access Count = 4",
+          "Evicted: D -  Added: F Access Count = 1",
+          "Evicted: E -  Added: G Access Count = 1",
+          "Final buffer: ['A', 'B', 'C', 'F', 'G']"
+        ],
+        "actual_output": [
+          "Added: A  -  Access Count = 1",
+          "Added: B  -  Access Count = 1",
+          "Added: C  -  Access Count = 1",
+          "Added: D  -  Access Count = 1",
+          "Added: E  -  Access Count = 1",
+          "Access attempted but not found: F",
+          "Accessed: A  - Access Count = 2",
+          "Accessed: A  - Access Count = 3",
+          "Accessed: B  - Access Count = 2",
+          "Access attempted but not found: F",
+          "Accessed: C  - Access Count = 2",
+          "Accessed: C  - Access Count = 3",
+          "Accessed: C  - Access Count = 4",
+          "Accessed: C  - Access Count = 5",
+          "Accessed: A  - Access Count = 4",
+          "Evicted: D -  Added: F Access Count = 1",
+          "Evicted: E -  Added: G Access Count = 1",
+          "Final buffer: ['A', 'B', 'C', 'F', 'G']"
+        ],
+        "standard_error": "",
+        "return_code": 0,
+        "duration_ms": 100.072,
+        "category": "STATE_MUTATION",
+        "semantic_feature": "LRU_RECENCY_ACCESS_COUNT_AND_EVICTION",
+        "expected_return_code": 0,
+        "expected_error_type": null,
+        "actual_error_type": null,
+        "criteria_links": [
+          "P2",
+          "P4"
+        ],
+        "random_seed": 104761,
+        "environment": {},
+        "requires_modules": []
+      }
+    ]
+  },
+  "error": null,
+  "input_metadata": {
+    "input_type": "PSEUDOCODE",
+    "pseudocode_profile": "AJ_DIALECT_STRICT",
+    "source_modified": true,
+    "transformation_count": 0,
+    "header_comment_removed": false,
+    "header_lines_removed": 0
+  }
+}

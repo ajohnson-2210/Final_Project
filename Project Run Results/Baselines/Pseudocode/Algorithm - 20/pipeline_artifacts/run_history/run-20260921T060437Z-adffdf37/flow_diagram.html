@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NL-FDEP Flow Diagram</title>
+<style>
+:root { color-scheme: light; }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Arial, Helvetica, sans-serif; background: #f4f5f7; color: #16191f; }
+header { position: sticky; top: 0; z-index: 10; padding: 14px 18px; background: white; border-bottom: 1px solid #c9cdd3; }
+header h1 { margin: 0 0 4px; font-size: 20px; }
+header p { margin: 0; color: #555d69; font-size: 13px; }
+.controls { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.controls input { min-width: 220px; flex: 1; padding: 8px 10px; border: 1px solid #9da4ae; border-radius: 5px; }
+.controls button { padding: 8px 12px; border: 1px solid #8f97a3; border-radius: 5px; background: white; cursor: pointer; }
+.viewport { overflow: hidden; width: 100%; height: calc(100vh - 108px); background: white; cursor: grab; }
+.viewport.dragging { cursor: grabbing; }
+svg { width: 100%; height: 100%; user-select: none; }
+.flow-node { cursor: pointer; }
+.flow-node .shape { fill: white; stroke: #20242a; stroke-width: 1.6; vector-effect: non-scaling-stroke; }
+.flow-node text { fill: #111418; font-size: 13px; text-anchor: middle; dominant-baseline: middle; pointer-events: none; }
+.flow-node .metadata { fill: #606874; font-size: 10px; }
+.flow-node.match .shape { stroke: #d18b00; stroke-width: 4; }
+.flow-node.selected .shape { stroke: #1769aa; stroke-width: 4; }
+.flow-edge { fill: none; stroke: #252a31; stroke-width: 1.45; vector-effect: non-scaling-stroke; marker-end: url(#arrowhead); }
+.shared-return-follower { marker-end: none; }
+.edge-label rect { fill: white; stroke: none; }
+.edge-label text { fill: #20242a; font-size: 11px; text-anchor: middle; dominant-baseline: middle; }
+.legend { position: fixed; right: 14px; bottom: 14px; padding: 9px 11px; background: rgba(255,255,255,.94); border: 1px solid #c9cdd3; border-radius: 6px; font-size: 11px; line-height: 1.6; }
+</style>
+</head>
+<body>
+<header>
+<h1>NL to Flow Diagram Encoder Pipeline</h1>
+<p>Standard flowchart notation generated from AJ pseudocode.</p>
+<div class="controls">
+<input id="search" placeholder="Search step, type, line, or node ID">
+<button id="zoom-in" type="button">Zoom in</button>
+<button id="zoom-out" type="button">Zoom out</button>
+<button id="fit" type="button">Fit diagram</button>
+</div>
+</header>
+<div id="viewport" class="viewport">
+<svg id="diagram" viewBox="0 0 1730 2294" role="img" aria-label="Generated program flow diagram">
+<defs>
+<marker id="arrowhead" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto" markerUnits="strokeWidth">
+<path d="M 0 0 L 9 3.5 L 0 7 z" fill="#252a31"></path>
+</marker>
+</defs>
+<g id="canvas"><path class="flow-edge" d="M 730.0 351 L 730.0 484"></path><path class="flow-edge" d="M 730.0 548 L 730.0 681"></path><path class="flow-edge" d="M 730.0 745 L 730.0 878"></path><path class="flow-edge" d="M 205.0 1730 L 205.0 1863"></path><path class="flow-edge" d="M 380.0 1533 L 380.0 1642.0 L 205.0 1642.0 L 205.0 1666"></path><g class="edge-label"><rect x="276.0" y="1624.0" width="33" height="18" rx="3"></rect><text x="292.5" y="1633.0">Try</text></g><path class="flow-edge" d="M 495.0 1501.0 L 519.0 1501.0 L 519.0 1642.0 L 555.0 1642.0 L 555.0 1666"></path><g class="edge-label"><rect x="499.5" y="1624.0" width="75" height="18" rx="3"></rect><text x="537.0" y="1633.0">Exception</text></g><path class="flow-edge" d="M 555.0 1336 L 555.0 1445.0 L 380.0 1445.0 L 380.0 1469"></path><path class="flow-edge" d="M 730.0 1187 L 730.0 1248.0 L 555.0 1248.0 L 555.0 1272"></path><g class="edge-label"><rect x="626.0" y="1230.0" width="33" height="18" rx="3"></rect><text x="642.5" y="1239.0">Yes</text></g><path class="flow-edge shared-return-follower" d="M 90.0 1895.0 L 34.0 1895.0 L 34.0 1131.0 L 615.0 1131.0"></path><path class="flow-edge" d="M 440.0 1698.0 L 34.0 1698.0 L 34.0 1131.0 L 615.0 1131.0"></path><g class="edge-label"><rect x="297.5" y="1113.0" width="54" height="18" rx="3"></rect><text x="324.5" y="1122.0">Repeat</text></g><path class="flow-edge" d="M 730.0 942 L 730.0 1075"></path><path class="flow-edge" d="M 790.0 1722.0 L 766.0 1722.0 L 766.0 1839.0 L 555.0 1839.0 L 555.0 1863"></path><g class="edge-label"><rect x="644.0" y="1821.0" width="33" height="18" rx="3"></rect><text x="660.5" y="1830.0">Yes</text></g><path class="flow-edge" d="M 730.0 1533 L 730.0 1648 L 1044.0 1648 L 1044.0 1722.0 L 1020.0 1722.0"></path><path class="flow-edge" d="M 905.0 1384 L 905.0 1445.0 L 730.0 1445.0 L 730.0 1469"></path><g class="edge-label"><rect x="801.0" y="1427.0" width="33" height="18" rx="3"></rect><text x="817.5" y="1436.0">Yes</text></g><path class="flow-edge shared-return-follower" d="M 440.0 1895.0 L 34.0 1895.0 L 34.0 1328.0 L 790.0 1328.0"></path><path class="flow-edge" d="M 905.0 1666 L 905.0 1642 L 34.0 1642 L 34.0 1328.0 L 790.0 1328.0"></path><g class="edge-label"><rect x="442.5" y="1624.0" width="54" height="18" rx="3"></rect><text x="469.5" y="1633.0">Repeat</text></g><path class="flow-edge" d="M 845.0 1131.0 L 869.0 1131.0 L 869.0 1248.0 L 905.0 1248.0 L 905.0 1272"></path><g class="edge-label"><rect x="872.0" y="1230.0" width="30" height="18" rx="3"></rect><text x="887.0" y="1239.0">No</text></g><path class="flow-edge" d="M 905.0 1927 L 905.0 2036.0 L 555.0 2036.0 L 555.0 2060"></path><path class="flow-edge" d="M 1255.0 1730 L 1255.0 1839.0 L 905.0 1839.0 L 905.0 1863"></path><g class="edge-label"><rect x="1063.5" y="1821.0" width="33" height="18" rx="3"></rect><text x="1080.0" y="1830.0">Try</text></g><path class="flow-edge" d="M 1370.0 1698.0 L 1394.0 1698.0 L 1394.0 1839.0 L 1255.0 1839.0 L 1255.0 1863"></path><g class="edge-label"><rect x="1287.0" y="1821.0" width="75" height="18" rx="3"></rect><text x="1324.5" y="1830.0">Exception</text></g><path class="flow-edge" d="M 1080.0 1581 L 1080.0 1642.0 L 1255.0 1642.0 L 1255.0 1666"></path><g class="edge-label"><rect x="1151.0" y="1624.0" width="33" height="18" rx="3"></rect><text x="1167.5" y="1633.0">Yes</text></g><path class="flow-edge" d="M 555.0 2124 L 555.0 2148 L 34.0 2148.0 L 34.0 1551 L 941.0 1551 L 941.0 1525.0 L 965.0 1525.0"></path><g class="edge-label"><rect x="460.5" y="1533.0" width="54" height="18" rx="3"></rect><text x="487.5" y="1542.0">Repeat</text></g><path class="flow-edge" d="M 1020.0 1328.0 L 1044.0 1328.0 L 1044.0 1445.0 L 1080.0 1445.0 L 1080.0 1469"></path><g class="edge-label"><rect x="1047.0" y="1427.0" width="30" height="18" rx="3"></rect><text x="1062.0" y="1436.0">No</text></g><path class="flow-edge" d="M 730.0 154 L 730.0 287"></path><path class="flow-edge" d="M 1255.0 1927 L 1255.0 2068.0 L 1525.0 2068.0 L 1525.0 2092.0"></path><path class="flow-edge" d="M 1195.0 1525.0 L 80.0 1525.0 L 80.0 2124.0 L 1410.0 2124.0"></path><g class="edge-label"><rect x="730.0" y="2106.0" width="30" height="18" rx="3"></rect><text x="745.0" y="2115.0">No</text></g><g class="flow-node" data-node-id="F1"><title>START | Line 1 | F1</title><rect class="shape" x="615.0" y="90" width="230" height="64" rx="32" ry="32"></rect><text x="730.0" y="115.0"><tspan x="730.0" dy="0">Start</tspan></text><text class="metadata" x="730.0" y="141">Line 1 · F1</text></g><g class="flow-node" data-node-id="F2"><title>END | Line 1 | F2</title><rect class="shape" x="1410.0" y="2092.0" width="230" height="64" rx="32" ry="32"></rect><text x="1525.0" y="2117.0"><tspan x="1525.0" dy="0">End</tspan></text><text class="metadata" x="1525.0" y="2143.0">Line 1 · F2</text></g><g class="flow-node" data-node-id="F3"><title>PROCESS | Line 1 | F3</title><rect class="shape" x="615.0" y="287" width="230" height="64" rx="4" ry="4"></rect><text x="730.0" y="312.0"><tspan x="730.0" dy="0">Set numvar to 0</tspan></text><text class="metadata" x="730.0" y="338">Line 1 · F3</text></g><g class="flow-node" data-node-id="F4"><title>PROCESS | Line 2 | F4</title><rect class="shape" x="615.0" y="484" width="230" height="64" rx="4" ry="4"></rect><text x="730.0" y="509.0"><tspan x="730.0" dy="0">Set givenNum to 0</tspan></text><text class="metadata" x="730.0" y="535">Line 2 · F4</text></g><g class="flow-node" data-node-id="F5"><title>PROCESS | Line 3 | F5</title><rect class="shape" x="615.0" y="681" width="230" height="64" rx="4" ry="4"></rect><text x="730.0" y="706.0"><tspan x="730.0" dy="0">Set numlist to an empty list</tspan></text><text class="metadata" x="730.0" y="732">Line 3 · F5</text></g><g class="flow-node" data-node-id="F6"><title>PROCESS | Line 4 | F6</title><rect class="shape" x="615.0" y="878" width="230" height="64" rx="4" ry="4"></rect><text x="730.0" y="903.0"><tspan x="730.0" dy="0">Set loop to true</tspan></text><text class="metadata" x="730.0" y="929">Line 4 · F6</text></g><g class="flow-node" data-node-id="F7"><title>LOOP_DECISION | Line 5 | F7</title><polygon class="shape" points="730.0,1075 845.0,1131.0 730.0,1187 615.0,1131.0"></polygon><text x="730.0" y="1124.0"><tspan x="730.0" dy="0">Loop is equal to true?</tspan></text><text class="metadata" x="730.0" y="1174">Line 5 · F7</text></g><g class="flow-node" data-node-id="F8"><title>PROCESS | Line 6 | F8</title><rect class="shape" x="440.0" y="1272" width="230" height="64" rx="4" ry="4"></rect><text x="555.0" y="1289.0"><tspan x="555.0" dy="0">Set givenNum to input prompted</tspan><tspan x="555.0" dy="16">by &quot;Enter Number: &quot;</tspan></text><text class="metadata" x="555.0" y="1323">Line 6 · F8</text></g><g class="flow-node" data-node-id="F9"><title>TRY | Line 7 | F9</title><rect class="shape" x="265.0" y="1469" width="230" height="64" rx="4" ry="4"></rect><text x="380.0" y="1486.0"><tspan x="380.0" dy="0">Attempt the following</tspan><tspan x="380.0" dy="16">operations</tspan></text><text class="metadata" x="380.0" y="1520">Line 7 · F9</text></g><g class="flow-node" data-node-id="F10"><title>PROCESS | Line 8 | F10</title><rect class="shape" x="90.0" y="1666" width="230" height="64" rx="4" ry="4"></rect><text x="205.0" y="1683.0"><tspan x="205.0" dy="0">Set givenNum to givenNum</tspan><tspan x="205.0" dy="16">converted to integer</tspan></text><text class="metadata" x="205.0" y="1717">Line 8 · F10</text></g><g class="flow-node" data-node-id="F11"><title>PROCESS | Line 9 | F11</title><rect class="shape" x="90.0" y="1863" width="230" height="64" rx="4" ry="4"></rect><text x="205.0" y="1888.0"><tspan x="205.0" dy="0">Set loop to false</tspan></text><text class="metadata" x="205.0" y="1914">Line 9 · F11</text></g><g class="flow-node" data-node-id="F12"><title>OUTPUT | Line 11 | F12</title><polygon class="shape" points="464.0,1666 670.0,1666 646.0,1730 440.0,1730"></polygon><text x="555.0" y="1683.0"><tspan x="555.0" dy="0">Display &quot;That&#x27;s Not a Valid</tspan><tspan x="555.0" dy="16">Number, Please Try Again!&quot;</tspan></text><text class="metadata" x="555.0" y="1717">Line 11 · F12</text></g><g class="flow-node" data-node-id="F13"><title>LOOP_DECISION | Line 14 | F13</title><polygon class="shape" points="905.0,1272 1020.0,1328.0 905.0,1384 790.0,1328.0"></polygon><text x="905.0" y="1313.0"><tspan x="905.0" dy="0">Numvar is less than or equal</tspan><tspan x="905.0" dy="16">to givenNum?</tspan></text><text class="metadata" x="905.0" y="1371">Line 14 · F13</text></g><g class="flow-node" data-node-id="F14"><title>PROCESS | Line 15 | F14</title><rect class="shape" x="615.0" y="1469" width="230" height="64" rx="4" ry="4"></rect><text x="730.0" y="1494.0"><tspan x="730.0" dy="0">Set numvar to numvar plus 1</tspan></text><text class="metadata" x="730.0" y="1520">Line 15 · F14</text></g><g class="flow-node" data-node-id="F15"><title>DECISION | Line 16 | F15</title><polygon class="shape" points="905.0,1666 1020.0,1722.0 905.0,1778 790.0,1722.0"></polygon><text x="905.0" y="1707.0"><tspan x="905.0" dy="0">GivenNum modulo numvar is</tspan><tspan x="905.0" dy="16">equal to 0?</tspan></text><text class="metadata" x="905.0" y="1765">Line 16 · F15</text></g><g class="flow-node" data-node-id="F16"><title>PROCESS | Line 17 | F16</title><rect class="shape" x="440.0" y="1863" width="230" height="64" rx="4" ry="4"></rect><text x="555.0" y="1888.0"><tspan x="555.0" dy="0">Append numvar to numlist</tspan></text><text class="metadata" x="555.0" y="1914">Line 17 · F16</text></g><g class="flow-node" data-node-id="F17"><title>LOOP_DECISION | Line 20 | F17</title><polygon class="shape" points="1080.0,1469 1195.0,1525.0 1080.0,1581 965.0,1525.0"></polygon><text x="1080.0" y="1518.0"><tspan x="1080.0" dy="0">Loop is equal to false?</tspan></text><text class="metadata" x="1080.0" y="1568">Line 20 · F17</text></g><g class="flow-node" data-node-id="F18"><title>TRY | Line 21 | F18</title><rect class="shape" x="1140.0" y="1666" width="230" height="64" rx="4" ry="4"></rect><text x="1255.0" y="1683.0"><tspan x="1255.0" dy="0">Attempt the following</tspan><tspan x="1255.0" dy="16">operations</tspan></text><text class="metadata" x="1255.0" y="1717">Line 21 · F18</text></g><g class="flow-node" data-node-id="F19"><title>PROCESS | Line 22 | F19</title><rect class="shape" x="790.0" y="1863" width="230" height="64" rx="4" ry="4"></rect><text x="905.0" y="1880.0"><tspan x="905.0" dy="0">Set x to the result of</tspan><tspan x="905.0" dy="16">numlist.pop(0)</tspan></text><text class="metadata" x="905.0" y="1914">Line 22 · F19</text></g><g class="flow-node" data-node-id="F20"><title>OUTPUT | Line 23 | F20</title><polygon class="shape" points="464.0,2060 670.0,2060 646.0,2124 440.0,2124"></polygon><text x="555.0" y="2077.0"><tspan x="555.0" dy="0">Display &quot;{x} is a Divisor of</tspan><tspan x="555.0" dy="16">{givenNum}&quot;</tspan></text><text class="metadata" x="555.0" y="2111">Line 23 · F20</text></g><g class="flow-node" data-node-id="F21"><title>QUIT | Line 25 | F21</title><rect class="shape" x="1140.0" y="1863" width="230" height="64" rx="4" ry="4"></rect><text x="1255.0" y="1888.0"><tspan x="1255.0" dy="0">Quit the program</tspan></text><text class="metadata" x="1255.0" y="1914">Line 25 · F21</text></g></g>
+</svg>
+</div>
+<div class="legend">Oval: Start/End<br>Diamond: Decision<br>Parallelogram: Input/Output<br>Rectangle: Process<br>Double rectangle: Function/Call</div>
+<script>
+const diagramData = {"format": "NL-FDEP Flow Diagram", "version": "1.0", "entry_node": "F1", "exit_node": "F2", "nodes": {"F1": {"node_id": "F1", "node_type": "START", "label": "Start", "line": 1, "data": {}}, "F2": {"node_id": "F2", "node_type": "END", "label": "End", "line": 1, "data": {}}, "F3": {"node_id": "F3", "node_type": "PROCESS", "label": "Set numvar to 0", "line": 1, "data": {"ast_kind": "AssignmentNode"}}, "F4": {"node_id": "F4", "node_type": "PROCESS", "label": "Set givenNum to 0", "line": 2, "data": {"ast_kind": "AssignmentNode"}}, "F5": {"node_id": "F5", "node_type": "PROCESS", "label": "Set numlist to an empty list", "line": 3, "data": {"ast_kind": "AssignmentNode"}}, "F6": {"node_id": "F6", "node_type": "PROCESS", "label": "Set loop to true", "line": 4, "data": {"ast_kind": "AssignmentNode"}}, "F7": {"node_id": "F7", "node_type": "LOOP_DECISION", "label": "Loop is equal to true?", "line": 5, "data": {"ast_kind": "WhileNode"}}, "F8": {"node_id": "F8", "node_type": "PROCESS", "label": "Set givenNum to input prompted by \"Enter Number: \"", "line": 6, "data": {"ast_kind": "AssignmentNode"}}, "F9": {"node_id": "F9", "node_type": "TRY", "label": "Attempt the following operations", "line": 7, "data": {"ast_kind": "TryCatchNode"}}, "F10": {"node_id": "F10", "node_type": "PROCESS", "label": "Set givenNum to givenNum converted to integer", "line": 8, "data": {"ast_kind": "AssignmentNode"}}, "F11": {"node_id": "F11", "node_type": "PROCESS", "label": "Set loop to false", "line": 9, "data": {"ast_kind": "AssignmentNode"}}, "F12": {"node_id": "F12", "node_type": "OUTPUT", "label": "Display \"That's Not a Valid Number, Please Try Again!\"", "line": 11, "data": {"ast_kind": "OutputNode"}}, "F13": {"node_id": "F13", "node_type": "LOOP_DECISION", "label": "Numvar is less than or equal to givenNum?", "line": 14, "data": {"ast_kind": "WhileNode"}}, "F14": {"node_id": "F14", "node_type": "PROCESS", "label": "Set numvar to numvar plus 1", "line": 15, "data": {"ast_kind": "AssignmentNode"}}, "F15": {"node_id": "F15", "node_type": "DECISION", "label": "GivenNum modulo numvar is equal to 0?", "line": 16, "data": {"ast_kind": "IfNode"}}, "F16": {"node_id": "F16", "node_type": "PROCESS", "label": "Append numvar to numlist", "line": 17, "data": {"ast_kind": "AppendNode"}}, "F17": {"node_id": "F17", "node_type": "LOOP_DECISION", "label": "Loop is equal to false?", "line": 20, "data": {"ast_kind": "WhileNode"}}, "F18": {"node_id": "F18", "node_type": "TRY", "label": "Attempt the following operations", "line": 21, "data": {"ast_kind": "TryCatchNode"}}, "F19": {"node_id": "F19", "node_type": "PROCESS", "label": "Set x to the result of numlist.pop(0)", "line": 22, "data": {"ast_kind": "AssignmentNode"}}, "F20": {"node_id": "F20", "node_type": "OUTPUT", "label": "Display \"{x} is a Divisor of {givenNum}\"", "line": 23, "data": {"ast_kind": "OutputNode"}}, "F21": {"node_id": "F21", "node_type": "QUIT", "label": "Quit the program", "line": 25, "data": {"ast_kind": "QuitNode"}}}, "edges": [{"source": "F3", "target": "F4", "label": "NEXT"}, {"source": "F4", "target": "F5", "label": "NEXT"}, {"source": "F5", "target": "F6", "label": "NEXT"}, {"source": "F10", "target": "F11", "label": "NEXT"}, {"source": "F9", "target": "F10", "label": "TRY"}, {"source": "F9", "target": "F12", "label": "EXCEPTION"}, {"source": "F8", "target": "F9", "label": "NEXT"}, {"source": "F7", "target": "F8", "label": "TRUE"}, {"source": "F11", "target": "F7", "label": "LOOP"}, {"source": "F12", "target": "F7", "label": "LOOP"}, {"source": "F6", "target": "F7", "label": "NEXT"}, {"source": "F15", "target": "F16", "label": "TRUE"}, {"source": "F14", "target": "F15", "label": "NEXT"}, {"source": "F13", "target": "F14", "label": "TRUE"}, {"source": "F16", "target": "F13", "label": "LOOP"}, {"source": "F15", "target": "F13", "label": "LOOP"}, {"source": "F7", "target": "F13", "label": "NEXT"}, {"source": "F19", "target": "F20", "label": "NEXT"}, {"source": "F18", "target": "F19", "label": "TRY"}, {"source": "F18", "target": "F21", "label": "EXCEPTION"}, {"source": "F17", "target": "F18", "label": "TRUE"}, {"source": "F20", "target": "F17", "label": "LOOP"}, {"source": "F13", "target": "F17", "label": "NEXT"}, {"source": "F1", "target": "F3", "label": "NEXT"}, {"source": "F21", "target": "F2", "label": "NEXT"}, {"source": "F17", "target": "F2", "label": "NEXT"}], "structured_program": {"kind": "ProgramNode", "line": 1, "body": [{"kind": "AssignmentNode", "line": 1, "target": {"kind": "IdentifierNode", "line": 1, "name": "numvar"}, "value": {"kind": "LiteralNode", "line": 1, "value": 0, "data_type": "INTEGER"}}, {"kind": "AssignmentNode", "line": 2, "target": {"kind": "IdentifierNode", "line": 2, "name": "givenNum"}, "value": {"kind": "LiteralNode", "line": 2, "value": 0, "data_type": "INTEGER"}}, {"kind": "AssignmentNode", "line": 3, "target": {"kind": "IdentifierNode", "line": 3, "name": "numlist"}, "value": {"kind": "EmptyLiteralNode", "line": 3, "empty_type": "LIST"}}, {"kind": "AssignmentNode", "line": 4, "target": {"kind": "IdentifierNode", "line": 4, "name": "loop"}, "value": {"kind": "LiteralNode", "line": 4, "value": true, "data_type": "BOOLEAN"}}, {"kind": "WhileNode", "line": 5, "condition": {"kind": "BinaryNode", "line": 5, "operator": "==", "left": {"kind": "IdentifierNode", "line": 5, "name": "loop"}, "right": {"kind": "LiteralNode", "line": 5, "value": true, "data_type": "BOOLEAN"}}, "body": {"kind": "BlockNode", "line": 6, "statements": [{"kind": "AssignmentNode", "line": 6, "target": {"kind": "IdentifierNode", "line": 6, "name": "givenNum"}, "value": {"kind": "InputNode", "line": 6, "prompt": {"kind": "LiteralNode", "line": 6, "value": "Enter Number: ", "data_type": "STRING"}}}, {"kind": "TryCatchNode", "line": 7, "try_body": {"kind": "BlockNode", "line": 8, "statements": [{"kind": "AssignmentNode", "line": 8, "target": {"kind": "IdentifierNode", "line": 8, "name": "givenNum"}, "value": {"kind": "CastNode", "line": 8, "target_type": "INTEGER", "expression": {"kind": "IdentifierNode", "line": 8, "name": "givenNum"}}}, {"kind": "AssignmentNode", "line": 9, "target": {"kind": "IdentifierNode", "line": 9, "name": "loop"}, "value": {"kind": "LiteralNode", "line": 9, "value": false, "data_type": "BOOLEAN"}}]}, "error": null, "catch_body": {"kind": "BlockNode", "line": 11, "statements": [{"kind": "OutputNode", "line": 11, "expression": {"kind": "LiteralNode", "line": 11, "value": "That's Not a Valid Number, Please Try Again!", "data_type": "STRING"}}]}}]}}, {"kind": "WhileNode", "line": 14, "condition": {"kind": "BinaryNode", "line": 14, "operator": "<=", "left": {"kind": "IdentifierNode", "line": 14, "name": "numvar"}, "right": {"kind": "IdentifierNode", "line": 14, "name": "givenNum"}}, "body": {"kind": "BlockNode", "line": 15, "statements": [{"kind": "AssignmentNode", "line": 15, "target": {"kind": "IdentifierNode", "line": 15, "name": "numvar"}, "value": {"kind": "BinaryNode", "line": 15, "operator": "+", "left": {"kind": "IdentifierNode", "line": 15, "name": "numvar"}, "right": {"kind": "LiteralNode", "line": 15, "value": 1, "data_type": "INTEGER"}}}, {"kind": "IfNode", "line": 16, "condition": {"kind": "BinaryNode", "line": 16, "operator": "==", "left": {"kind": "BinaryNode", "line": 16, "operator": "MODULUS", "left": {"kind": "IdentifierNode", "line": 16, "name": "givenNum"}, "right": {"kind": "IdentifierNode", "line": 16, "name": "numvar"}}, "right": {"kind": "LiteralNode", "line": 16, "value": 0, "data_type": "INTEGER"}}, "then_body": {"kind": "BlockNode", "line": 17, "statements": [{"kind": "AppendNode", "line": 17, "value": {"kind": "IdentifierNode", "line": 17, "name": "numvar"}, "collection": {"kind": "IdentifierNode", "line": 17, "name": "numlist"}}]}, "else_if": [], "else_body": null}]}}, {"kind": "WhileNode", "line": 20, "condition": {"kind": "BinaryNode", "line": 20, "operator": "==", "left": {"kind": "IdentifierNode", "line": 20, "name": "loop"}, "right": {"kind": "LiteralNode", "line": 20, "value": false, "data_type": "BOOLEAN"}}, "body": {"kind": "BlockNode", "line": 21, "statements": [{"kind": "TryCatchNode", "line": 21, "try_body": {"kind": "BlockNode", "line": 22, "statements": [{"kind": "AssignmentNode", "line": 22, "target": {"kind": "IdentifierNode", "line": 22, "name": "x"}, "value": {"kind": "MemberCallNode", "line": 22, "object": {"kind": "IdentifierNode", "line": 22, "name": "numlist"}, "member": "pop", "arguments": [{"kind": "LiteralNode", "line": 22, "value": 0, "data_type": "INTEGER"}], "resolved_intrinsic": null}}, {"kind": "OutputNode", "line": 23, "expression": {"kind": "LiteralNode", "line": 23, "value": "{x} is a Divisor of {givenNum}", "data_type": "STRING"}}]}, "error": null, "catch_body": {"kind": "BlockNode", "line": 25, "statements": [{"kind": "QuitNode", "line": 25}]}}]}}]}};
+const svg = document.getElementById('diagram');
+const canvas = document.getElementById('canvas');
+const viewport = document.getElementById('viewport');
+const INITIAL_SCALE = 1.15;
+let scale = INITIAL_SCALE;
+let translateX = 0;
+let translateY = 0;
+let dragging = false;
+let startX = 0;
+let startY = 0;
+
+function applyTransform() {
+    canvas.setAttribute('transform', `translate(${translateX} ${translateY}) scale(${scale})`);
+}
+
+function initialView() {
+    const box = canvas.getBBox();
+    const visibleWidth = viewport.clientWidth;
+    scale = INITIAL_SCALE;
+    translateX = (visibleWidth - box.width * scale) / 2 - box.x * scale;
+    translateY = 28 - box.y * scale;
+    applyTransform();
+}
+
+function fitDiagram() {
+    const box = canvas.getBBox();
+    const visibleWidth = viewport.clientWidth;
+    const visibleHeight = viewport.clientHeight;
+    scale = Math.min(visibleWidth / (box.width + 80), visibleHeight / (box.height + 80), 1.3);
+    translateX = (visibleWidth - box.width * scale) / 2 - box.x * scale;
+    translateY = (visibleHeight - box.height * scale) / 2 - box.y * scale;
+    applyTransform();
+}
+
+document.getElementById('zoom-in').addEventListener('click', () => { scale *= 1.15; applyTransform(); });
+document.getElementById('zoom-out').addEventListener('click', () => { scale /= 1.15; applyTransform(); });
+document.getElementById('fit').addEventListener('click', fitDiagram);
+
+document.getElementById('search').addEventListener('input', event => {
+    const query = event.target.value.trim().toLowerCase();
+    document.querySelectorAll('.flow-node').forEach(node => {
+        node.classList.toggle('match', query.length > 0 && node.textContent.toLowerCase().includes(query));
+    });
+});
+
+document.querySelectorAll('.flow-node').forEach(node => {
+    node.addEventListener('click', () => node.classList.toggle('selected'));
+});
+
+viewport.addEventListener('mousedown', event => {
+    dragging = true;
+    startX = event.clientX - translateX;
+    startY = event.clientY - translateY;
+    viewport.classList.add('dragging');
+});
+window.addEventListener('mousemove', event => {
+    if (!dragging) return;
+    translateX = event.clientX - startX;
+    translateY = event.clientY - startY;
+    applyTransform();
+});
+window.addEventListener('mouseup', () => { dragging = false; viewport.classList.remove('dragging'); });
+viewport.addEventListener('wheel', event => {
+    event.preventDefault();
+    const factor = event.deltaY < 0 ? 1.1 : 0.9;
+    scale *= factor;
+    applyTransform();
+}, { passive: false });
+window.addEventListener('load', initialView);
+window.addEventListener('resize', initialView);
+</script>
+</body>
+</html>

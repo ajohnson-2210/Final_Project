@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AJ_24038155 AST Visualisation</title>
+<style>
+:root {
+  color-scheme: light dark;
+  --bg: #f7f8fb;
+  --panel: #ffffff;
+  --text: #172033;
+  --muted: #64748b;
+  --line: #94a3b8;
+  --border: #cbd5e1;
+  --accent: #2563eb;
+  --accent-soft: #dbeafe;
+  --node: #ffffff;
+  --node-shadow: rgba(15, 23, 42, 0.13);
+  --success: #15803d;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f172a;
+    --panel: #111827;
+    --text: #e5e7eb;
+    --muted: #94a3b8;
+    --line: #64748b;
+    --border: #334155;
+    --accent: #60a5fa;
+    --accent-soft: #172554;
+    --node: #1e293b;
+    --node-shadow: rgba(0, 0, 0, 0.3);
+    --success: #4ade80;
+  }
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; font-family: Inter, system-ui, sans-serif; background: var(--bg); color: var(--text); }
+body { display: grid; grid-template-rows: auto 1fr; overflow: hidden; }
+header {
+  display: flex; gap: 12px; align-items: center; flex-wrap: wrap;
+  padding: 12px 16px; background: var(--panel); border-bottom: 1px solid var(--border);
+}
+header h1 { font-size: 18px; margin: 0 12px 0 0; }
+.control {
+  appearance: none; border: 1px solid var(--border); border-radius: 8px;
+  background: var(--panel); color: var(--text); padding: 8px 10px; font-size: 14px;
+}
+button.control { cursor: pointer; }
+button.control:hover { border-color: var(--accent); }
+#search { width: 230px; }
+.status { margin-left: auto; color: var(--muted); font-size: 13px; }
+main { display: grid; grid-template-columns: minmax(0, 1fr) 300px; min-height: 0; }
+#viewport { position: relative; overflow: hidden; cursor: grab; background-image: radial-gradient(var(--border) 1px, transparent 1px); background-size: 22px 22px; }
+#viewport.dragging { cursor: grabbing; }
+svg { width: 100%; height: 100%; display: block; user-select: none; }
+.edge { fill: none; stroke: var(--line); stroke-width: 1.7; }
+.node rect { fill: var(--node); stroke: var(--border); stroke-width: 1.4; rx: 9; filter: drop-shadow(0 3px 5px var(--node-shadow)); }
+.node:hover rect, .node.selected rect { stroke: var(--accent); stroke-width: 2.5; }
+.node.match rect { stroke: var(--success); stroke-width: 3; }
+.node text { pointer-events: none; fill: var(--text); text-anchor: middle; }
+.node .kind { font-weight: 700; font-size: 13px; }
+.node .id { fill: var(--muted); font-size: 11px; }
+.node .toggle { pointer-events: auto; cursor: pointer; fill: var(--accent-soft); stroke: var(--accent); }
+.node .toggle-text { font-weight: 700; fill: var(--accent); font-size: 12px; }
+aside { padding: 16px; overflow: auto; border-left: 1px solid var(--border); background: var(--panel); }
+aside h2 { margin: 0 0 12px; font-size: 16px; }
+.meta-row { border-bottom: 1px solid var(--border); padding: 9px 0; }
+.meta-label { color: var(--muted); font-size: 12px; display: block; margin-bottom: 3px; }
+.meta-value { font-size: 14px; overflow-wrap: anywhere; white-space: pre-wrap; }
+.help { margin-top: 18px; color: var(--muted); font-size: 12px; line-height: 1.5; }
+@media (max-width: 760px) { main { grid-template-columns: 1fr; } aside { display: none; } .status { display: none; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>AJ_24038155 AST Visualisation</h1>
+  <button class="control" id="zoom-in" title="Zoom in">Zoom in +</button>
+  <button class="control" id="zoom-out" title="Zoom out">Zoom out −</button>
+  <button class="control" id="reset-view">Reset view</button>
+  <button class="control" id="fit">Fit tree</button>
+  <button class="control" id="expand">Expand all</button>
+  <button class="control" id="collapse">Collapse descendants</button>
+  <input class="control" id="search" type="search" placeholder="Search node kind, ID or value">
+  <span class="status" id="status"></span>
+</header>
+<main>
+  <section id="viewport" aria-label="Interactive AST tree">
+    <svg id="canvas" role="img" aria-label="Abstract syntax tree">
+      <g id="scene"><g id="edges"></g><g id="nodes"></g></g>
+    </svg>
+  </section>
+  <aside>
+    <h2>Selected node</h2>
+    <div id="details"><span class="meta-value">Select a node to inspect its metadata.</span></div>
+    <p class="help">Drag the background to pan. Use the mouse wheel to zoom. Click a ± marker to collapse or expand descendants. Double-click a node to centre it.</p>
+  </aside>
+</main>
+<script>
+const graph = {"root_id": "N664", "nodes": {"N664": {"kind": "ProgramNode", "line": 1, "attributes": {}}, "N516": {"kind": "ClassNode", "line": 1, "attributes": {"name": "Node", "parameters": []}}, "N515": {"kind": "BlockNode", "line": 2, "attributes": {}}, "N483": {"kind": "PropertyDeclarationNode", "line": 2, "attributes": {"name": "value", "declared_type": null}}, "N484": {"kind": "PropertyDeclarationNode", "line": 3, "attributes": {"name": "left", "declared_type": null}}, "N485": {"kind": "PropertyDeclarationNode", "line": 4, "attributes": {"name": "right", "declared_type": null}}, "N500": {"kind": "ConstructorNode", "line": 5, "attributes": {}}, "N486": {"kind": "ParameterNode", "line": 5, "attributes": {"name": "value", "declared_type": null}}, "N499": {"kind": "BlockNode", "line": 6, "attributes": {}}, "N490": {"kind": "PropertyAssignmentNode", "line": 6, "attributes": {}}, "N489": {"kind": "MemberAccessNode", "line": 6, "attributes": {"member": "value"}}, "N488": {"kind": "IdentifierNode", "line": 6, "attributes": {"name": "THIS"}}, "N487": {"kind": "IdentifierNode", "line": 6, "attributes": {"name": "value"}}, "N494": {"kind": "PropertyAssignmentNode", "line": 7, "attributes": {}}, "N493": {"kind": "MemberAccessNode", "line": 7, "attributes": {"member": "left"}}, "N492": {"kind": "IdentifierNode", "line": 7, "attributes": {"name": "THIS"}}, "N491": {"kind": "LiteralNode", "line": 7, "attributes": {"value": null, "data_type": "NONE"}}, "N498": {"kind": "PropertyAssignmentNode", "line": 8, "attributes": {}}, "N497": {"kind": "MemberAccessNode", "line": 8, "attributes": {"member": "right"}}, "N496": {"kind": "IdentifierNode", "line": 8, "attributes": {"name": "THIS"}}, "N495": {"kind": "LiteralNode", "line": 8, "attributes": {"value": null, "data_type": "NONE"}}, "N507": {"kind": "MethodNode", "line": 10, "attributes": {"name": "set_left"}}, "N501": {"kind": "ParameterNode", "line": 10, "attributes": {"name": "node", "declared_type": null}}, "N506": {"kind": "BlockNode", "line": 11, "attributes": {}}, "N505": {"kind": "PropertyAssignmentNode", "line": 11, "attributes": {}}, "N504": {"kind": "MemberAccessNode", "line": 11, "attributes": {"member": "left"}}, "N503": {"kind": "IdentifierNode", "line": 11, "attributes": {"name": "THIS"}}, "N502": {"kind": "IdentifierNode", "line": 11, "attributes": {"name": "node"}}, "N514": {"kind": "MethodNode", "line": 13, "attributes": {"name": "set_right"}}, "N508": {"kind": "ParameterNode", "line": 13, "attributes": {"name": "node", "declared_type": null}}, "N513": {"kind": "BlockNode", "line": 14, "attributes": {}}, "N512": {"kind": "PropertyAssignmentNode", "line": 14, "attributes": {}}, "N511": {"kind": "MemberAccessNode", "line": 14, "attributes": {"member": "right"}}, "N510": {"kind": "IdentifierNode", "line": 14, "attributes": {"name": "THIS"}}, "N509": {"kind": "IdentifierNode", "line": 14, "attributes": {"name": "node"}}, "N611": {"kind": "FunctionNode", "line": 18, "attributes": {"name": "levelOrderTraversal"}}, "N517": {"kind": "ParameterNode", "line": 18, "attributes": {"name": "root", "declared_type": null}}, "N610": {"kind": "BlockNode", "line": 19, "attributes": {}}, "N524": {"kind": "IfNode", "line": 19, "attributes": {"else_if": [], "else_body": null}}, "N520": {"kind": "BinaryNode", "line": 19, "attributes": {"operator": "=="}}, "N518": {"kind": "IdentifierNode", "line": 19, "attributes": {"name": "root"}}, "N519": {"kind": "LiteralNode", "line": 19, "attributes": {"value": null, "data_type": "NONE"}}, "N523": {"kind": "BlockNode", "line": 20, "attributes": {}}, "N522": {"kind": "ReturnNode", "line": 20, "attributes": {}}, "N521": {"kind": "EmptyLiteralNode", "line": 20, "attributes": {"empty_type": "LIST"}}, "N528": {"kind": "AssignmentNode", "line": 22, "attributes": {}}, "N525": {"kind": "IdentifierNode", "line": 22, "attributes": {"name": "depth"}}, "N527": {"kind": "ListLiteralNode", "line": 22, "attributes": {"declared_type": null}}, "N526": {"kind": "IdentifierNode", "line": 22, "attributes": {"name": "root"}}, "N531": {"kind": "AssignmentNode", "line": 23, "attributes": {}}, "N529": {"kind": "IdentifierNode", "line": 23, "attributes": {"name": "results"}}, "N530": {"kind": "EmptyLiteralNode", "line": 23, "attributes": {"empty_type": "LIST"}}, "N534": {"kind": "AssignmentNode", "line": 24, "attributes": {}}, "N532": {"kind": "IdentifierNode", "line": 24, "attributes": {"name": "loop"}}, "N533": {"kind": "LiteralNode", "line": 24, "attributes": {"value": true, "data_type": "BOOLEAN"}}, "N607": {"kind": "WhileNode", "line": 25, "attributes": {}}, "N535": {"kind": "IdentifierNode", "line": 25, "attributes": {"name": "loop"}}, "N606": {"kind": "BlockNode", "line": 26, "attributes": {}}, "N538": {"kind": "AssignmentNode", "line": 26, "attributes": {}}, "N536": {"kind": "IdentifierNode", "line": 26, "attributes": {"name": "level"}}, "N537": {"kind": "EmptyLiteralNode", "line": 26, "attributes": {"empty_type": "LIST"}}, "N541": {"kind": "AssignmentNode", "line": 27, "attributes": {}}, "N539": {"kind": "IdentifierNode", "line": 27, "attributes": {"name": "nextdepth"}}, "N540": {"kind": "EmptyLiteralNode", "line": 27, "attributes": {"empty_type": "LIST"}}, "N544": {"kind": "AssignmentNode", "line": 28, "attributes": {}}, "N542": {"kind": "IdentifierNode", "line": 28, "attributes": {"name": "index"}}, "N543": {"kind": "LiteralNode", "line": 28, "attributes": {"value": 0, "data_type": "INTEGER"}}, "N547": {"kind": "AssignmentNode", "line": 29, "attributes": {}}, "N545": {"kind": "IdentifierNode", "line": 29, "attributes": {"name": "innerloop"}}, "N546": {"kind": "LiteralNode", "line": 29, "attributes": {"value": true, "data_type": "BOOLEAN"}}, "N590": {"kind": "WhileNode", "line": 30, "attributes": {}}, "N548": {"kind": "IdentifierNode", "line": 30, "attributes": {"name": "innerloop"}}, "N589": {"kind": "BlockNode", "line": 31, "attributes": {}}, "N588": {"kind": "TryCatchNode", "line": 31, "attributes": {"error": null}}, "N583": {"kind": "BlockNode", "line": 32, "attributes": {}}, "N553": {"kind": "AssignmentNode", "line": 32, "attributes": {}}, "N549": {"kind": "IdentifierNode", "line": 32, "attributes": {"name": "node"}}, "N552": {"kind": "IndexNode", "line": 32, "attributes": {}}, "N550": {"kind": "IdentifierNode", "line": 32, "attributes": {"name": "depth"}}, "N551": {"kind": "IdentifierNode", "line": 32, "attributes": {"name": "index"}}, "N557": {"kind": "AppendNode", "line": 33, "attributes": {}}, "N555": {"kind": "MemberAccessNode", "line": 33, "attributes": {"member": "value"}}, "N554": {"kind": "IdentifierNode", "line": 33, "attributes": {"name": "node"}}, "N556": {"kind": "IdentifierNode", "line": 33, "attributes": {"name": "level"}}, "N567": {"kind": "IfNode", "line": 34, "attributes": {"else_if": [], "else_body": null}}, "N561": {"kind": "BinaryNode", "line": 34, "attributes": {"operator": "!="}}, "N559": {"kind": "MemberAccessNode", "line": 34, "attributes": {"member": "left"}}, "N558": {"kind": "IdentifierNode", "line": 34, "attributes": {"name": "node"}}, "N560": {"kind": "LiteralNode", "line": 34, "attributes": {"value": null, "data_type": "NONE"}}, "N566": {"kind": "BlockNode", "line": 35, "attributes": {}}, "N565": {"kind": "AppendNode", "line": 35, "attributes": {}}, "N563": {"kind": "MemberAccessNode", "line": 35, "attributes": {"member": "left"}}, "N562": {"kind": "IdentifierNode", "line": 35, "attributes": {"name": "node"}}, "N564": {"kind": "IdentifierNode", "line": 35, "attributes": {"name": "nextdepth"}}, "N577": {"kind": "IfNode", "line": 37, "attributes": {"else_if": [], "else_body": null}}, "N571": {"kind": "BinaryNode", "line": 37, "attributes": {"operator": "!="}}, "N569": {"kind": "MemberAccessNode", "line": 37, "attributes": {"member": "right"}}, "N568": {"kind": "IdentifierNode", "line": 37, "attributes": {"name": "node"}}, "N570": {"kind": "LiteralNode", "line": 37, "attributes": {"value": null, "data_type": "NONE"}}, "N576": {"kind": "BlockNode", "line": 38, "attributes": {}}, "N575": {"kind": "AppendNode", "line": 38, "attributes": {}}, "N573": {"kind": "MemberAccessNode", "line": 38, "attributes": {"member": "right"}}, "N572": {"kind": "IdentifierNode", "line": 38, "attributes": {"name": "node"}}, "N574": {"kind": "IdentifierNode", "line": 38, "attributes": {"name": "nextdepth"}}, "N582": {"kind": "AssignmentNode", "line": 40, "attributes": {}}, "N578": {"kind": "IdentifierNode", "line": 40, "attributes": {"name": "index"}}, "N581": {"kind": "BinaryNode", "line": 40, "attributes": {"operator": "+"}}, "N579": {"kind": "IdentifierNode", "line": 40, "attributes": {"name": "index"}}, "N580": {"kind": "LiteralNode", "line": 40, "attributes": {"value": 1, "data_type": "INTEGER"}}, "N587": {"kind": "BlockNode", "line": 42, "attributes": {}}, "N586": {"kind": "AssignmentNode", "line": 42, "attributes": {}}, "N584": {"kind": "IdentifierNode", "line": 42, "attributes": {"name": "innerloop"}}, "N585": {"kind": "LiteralNode", "line": 42, "attributes": {"value": false, "data_type": "BOOLEAN"}}, "N593": {"kind": "AppendNode", "line": 45, "attributes": {}}, "N591": {"kind": "IdentifierNode", "line": 45, "attributes": {"name": "level"}}, "N592": {"kind": "IdentifierNode", "line": 45, "attributes": {"name": "results"}}, "N596": {"kind": "AssignmentNode", "line": 46, "attributes": {}}, "N594": {"kind": "IdentifierNode", "line": 46, "attributes": {"name": "depth"}}, "N595": {"kind": "IdentifierNode", "line": 46, "attributes": {"name": "nextdepth"}}, "N605": {"kind": "IfNode", "line": 47, "attributes": {"else_if": [], "else_body": null}}, "N600": {"kind": "BinaryNode", "line": 47, "attributes": {"operator": "=="}}, "N598": {"kind": "LengthNode", "line": 47, "attributes": {}}, "N597": {"kind": "IdentifierNode", "line": 47, "attributes": {"name": "depth"}}, "N599": {"kind": "LiteralNode", "line": 47, "attributes": {"value": 0, "data_type": "INTEGER"}}, "N604": {"kind": "BlockNode", "line": 48, "attributes": {}}, "N603": {"kind": "AssignmentNode", "line": 48, "attributes": {}}, "N601": {"kind": "IdentifierNode", "line": 48, "attributes": {"name": "loop"}}, "N602": {"kind": "LiteralNode", "line": 48, "attributes": {"value": false, "data_type": "BOOLEAN"}}, "N609": {"kind": "ReturnNode", "line": 51, "attributes": {}}, "N608": {"kind": "IdentifierNode", "line": 51, "attributes": {"name": "results"}}, "N615": {"kind": "AssignmentNode", "line": 54, "attributes": {}}, "N612": {"kind": "IdentifierNode", "line": 54, "attributes": {"name": "root"}}, "N614": {"kind": "CallNode", "line": 54, "attributes": {"name": "Node"}}, "N613": {"kind": "LiteralNode", "line": 54, "attributes": {"value": 1, "data_type": "INTEGER"}}, "N619": {"kind": "MemberCallNode", "line": 55, "attributes": {"member": "set_left", "resolved_intrinsic": null}}, "N616": {"kind": "IdentifierNode", "line": 55, "attributes": {"name": "root"}}, "N618": {"kind": "CallNode", "line": 55, "attributes": {"name": "Node"}}, "N617": {"kind": "LiteralNode", "line": 55, "attributes": {"value": 2, "data_type": "INTEGER"}}, "N623": {"kind": "MemberCallNode", "line": 56, "attributes": {"member": "set_right", "resolved_intrinsic": null}}, "N620": {"kind": "IdentifierNode", "line": 56, "attributes": {"name": "root"}}, "N622": {"kind": "CallNode", "line": 56, "attributes": {"name": "Node"}}, "N621": {"kind": "LiteralNode", "line": 56, "attributes": {"value": 3, "data_type": "INTEGER"}}, "N628": {"kind": "MemberCallNode", "line": 57, "attributes": {"member": "set_left", "resolved_intrinsic": null}}, "N625": {"kind": "MemberAccessNode", "line": 57, "attributes": {"member": "left"}}, "N624": {"kind": "IdentifierNode", "line": 57, "attributes": {"name": "root"}}, "N627": {"kind": "CallNode", "line": 57, "attributes": {"name": "Node"}}, "N626": {"kind": "LiteralNode", "line": 57, "attributes": {"value": 4, "data_type": "INTEGER"}}, "N633": {"kind": "MemberCallNode", "line": 58, "attributes": {"member": "set_right", "resolved_intrinsic": null}}, "N630": {"kind": "MemberAccessNode", "line": 58, "attributes": {"member": "left"}}, "N629": {"kind": "IdentifierNode", "line": 58, "attributes": {"name": "root"}}, "N632": {"kind": "CallNode", "line": 58, "attributes": {"name": "Node"}}, "N631": {"kind": "LiteralNode", "line": 58, "attributes": {"value": 5, "data_type": "INTEGER"}}, "N635": {"kind": "OutputNode", "line": 59, "attributes": {}}, "N634": {"kind": "LiteralNode", "line": 59, "attributes": {"value": "Node Values Grouped by Depth", "data_type": "STRING"}}, "N638": {"kind": "AssignmentNode", "line": 60, "attributes": {}}, "N636": {"kind": "IdentifierNode", "line": 60, "attributes": {"name": "index"}}, "N637": {"kind": "LiteralNode", "line": 60, "attributes": {"value": 0, "data_type": "INTEGER"}}, "N641": {"kind": "AssignmentNode", "line": 61, "attributes": {}}, "N639": {"kind": "IdentifierNode", "line": 61, "attributes": {"name": "loop"}}, "N640": {"kind": "LiteralNode", "line": 61, "attributes": {"value": true, "data_type": "BOOLEAN"}}, "N663": {"kind": "WhileNode", "line": 62, "attributes": {}}, "N642": {"kind": "IdentifierNode", "line": 62, "attributes": {"name": "loop"}}, "N662": {"kind": "BlockNode", "line": 63, "attributes": {}}, "N661": {"kind": "TryCatchNode", "line": 63, "attributes": {"error": null}}, "N656": {"kind": "BlockNode", "line": 64, "attributes": {}}, "N648": {"kind": "AssignmentNode", "line": 64, "attributes": {}}, "N643": {"kind": "IdentifierNode", "line": 64, "attributes": {"name": "level"}}, "N647": {"kind": "IndexNode", "line": 64, "attributes": {}}, "N645": {"kind": "CallNode", "line": 64, "attributes": {"name": "levelOrderTraversal"}}, "N644": {"kind": "IdentifierNode", "line": 64, "attributes": {"name": "root"}}, "N646": {"kind": "IdentifierNode", "line": 64, "attributes": {"name": "index"}}, "N650": {"kind": "OutputNode", "line": 65, "attributes": {}}, "N649": {"kind": "LiteralNode", "line": 65, "attributes": {"value": "Level {index}: {level}", "data_type": "STRING"}}, "N655": {"kind": "AssignmentNode", "line": 66, "attributes": {}}, "N651": {"kind": "IdentifierNode", "line": 66, "attributes": {"name": "index"}}, "N654": {"kind": "BinaryNode", "line": 66, "attributes": {"operator": "+"}}, "N652": {"kind": "IdentifierNode", "line": 66, "attributes": {"name": "index"}}, "N653": {"kind": "LiteralNode", "line": 66, "attributes": {"value": 1, "data_type": "INTEGER"}}, "N660": {"kind": "BlockNode", "line": 68, "attributes": {}}, "N659": {"kind": "AssignmentNode", "line": 68, "attributes": {}}, "N657": {"kind": "IdentifierNode", "line": 68, "attributes": {"name": "loop"}}, "N658": {"kind": "LiteralNode", "line": 68, "attributes": {"value": false, "data_type": "BOOLEAN"}}}, "adjacency": {"N664": ["N516", "N611", "N615", "N619", "N623", "N628", "N633", "N635", "N638", "N641", "N663"], "N516": ["N515"], "N515": ["N483", "N484", "N485", "N500", "N507", "N514"], "N483": [], "N484": [], "N485": [], "N500": ["N486", "N499"], "N486": [], "N499": ["N490", "N494", "N498"], "N490": ["N489", "N487"], "N489": ["N488"], "N488": [], "N487": [], "N494": ["N493", "N491"], "N493": ["N492"], "N492": [], "N491": [], "N498": ["N497", "N495"], "N497": ["N496"], "N496": [], "N495": [], "N507": ["N501", "N506"], "N501": [], "N506": ["N505"], "N505": ["N504", "N502"], "N504": ["N503"], "N503": [], "N502": [], "N514": ["N508", "N513"], "N508": [], "N513": ["N512"], "N512": ["N511", "N509"], "N511": ["N510"], "N510": [], "N509": [], "N611": ["N517", "N610"], "N517": [], "N610": ["N524", "N528", "N531", "N534", "N607", "N609"], "N524": ["N520", "N523"], "N520": ["N518", "N519"], "N518": [], "N519": [], "N523": ["N522"], "N522": ["N521"], "N521": [], "N528": ["N525", "N527"], "N525": [], "N527": ["N526"], "N526": [], "N531": ["N529", "N530"], "N529": [], "N530": [], "N534": ["N532", "N533"], "N532": [], "N533": [], "N607": ["N535", "N606"], "N535": [], "N606": ["N538", "N541", "N544", "N547", "N590", "N593", "N596", "N605"], "N538": ["N536", "N537"], "N536": [], "N537": [], "N541": ["N539", "N540"], "N539": [], "N540": [], "N544": ["N542", "N543"], "N542": [], "N543": [], "N547": ["N545", "N546"], "N545": [], "N546": [], "N590": ["N548", "N589"], "N548": [], "N589": ["N588"], "N588": ["N583", "N587"], "N583": ["N553", "N557", "N567", "N577", "N582"], "N553": ["N549", "N552"], "N549": [], "N552": ["N550", "N551"], "N550": [], "N551": [], "N557": ["N555", "N556"], "N555": ["N554"], "N554": [], "N556": [], "N567": ["N561", "N566"], "N561": ["N559", "N560"], "N559": ["N558"], "N558": [], "N560": [], "N566": ["N565"], "N565": ["N563", "N564"], "N563": ["N562"], "N562": [], "N564": [], "N577": ["N571", "N576"], "N571": ["N569", "N570"], "N569": ["N568"], "N568": [], "N570": [], "N576": ["N575"], "N575": ["N573", "N574"], "N573": ["N572"], "N572": [], "N574": [], "N582": ["N578", "N581"], "N578": [], "N581": ["N579", "N580"], "N579": [], "N580": [], "N587": ["N586"], "N586": ["N584", "N585"], "N584": [], "N585": [], "N593": ["N591", "N592"], "N591": [], "N592": [], "N596": ["N594", "N595"], "N594": [], "N595": [], "N605": ["N600", "N604"], "N600": ["N598", "N599"], "N598": ["N597"], "N597": [], "N599": [], "N604": ["N603"], "N603": ["N601", "N602"], "N601": [], "N602": [], "N609": ["N608"], "N608": [], "N615": ["N612", "N614"], "N612": [], "N614": ["N613"], "N613": [], "N619": ["N616", "N618"], "N616": [], "N618": ["N617"], "N617": [], "N623": ["N620", "N622"], "N620": [], "N622": ["N621"], "N621": [], "N628": ["N625", "N627"], "N625": ["N624"], "N624": [], "N627": ["N626"], "N626": [], "N633": ["N630", "N632"], "N630": ["N629"], "N629": [], "N632": ["N631"], "N631": [], "N635": ["N634"], "N634": [], "N638": ["N636", "N637"], "N636": [], "N637": [], "N641": ["N639", "N640"], "N639": [], "N640": [], "N663": ["N642", "N662"], "N642": [], "N662": ["N661"], "N661": ["N656", "N660"], "N656": ["N648", "N650", "N655"], "N648": ["N643", "N647"], "N643": [], "N647": ["N645", "N646"], "N645": ["N644"], "N644": [], "N646": [], "N650": ["N649"], "N649": [], "N655": ["N651", "N654"], "N651": [], "N654": ["N652", "N653"], "N652": [], "N653": [], "N660": ["N659"], "N659": ["N657", "N658"], "N657": [], "N658": []}};
+const svg = document.getElementById('canvas');
+const scene = document.getElementById('scene');
+const edgesLayer = document.getElementById('edges');
+const nodesLayer = document.getElementById('nodes');
+const viewport = document.getElementById('viewport');
+const details = document.getElementById('details');
+const status = document.getElementById('status');
+const collapsed = new Set();
+let selectedId = null;
+const INITIAL_SCALE = 1.15;
+const MIN_SCALE = 0.15;
+const MAX_SCALE = 4;
+const ZOOM_FACTOR = 1.2;
+let scale = INITIAL_SCALE;
+let tx = 40;
+let ty = 40;
+let dragging = false;
+let lastX = 0;
+let lastY = 0;
+const positions = new Map();
+const NODE_W = 174;
+const NODE_H = 62;
+const X_GAP = 54;
+const Y_GAP = 94;
+
+function visibleChildren(id) { return collapsed.has(id) ? [] : (graph.adjacency[id] || []); }
+
+function layout() {
+  positions.clear();
+  let leafIndex = 0;
+  function visit(id, depth) {
+    const children = visibleChildren(id);
+    let x;
+    if (!children.length) { x = leafIndex++ * (NODE_W + X_GAP); }
+    else {
+      children.forEach(child => visit(child, depth + 1));
+      x = (positions.get(children[0]).x + positions.get(children[children.length - 1]).x) / 2;
+    }
+    positions.set(id, {x, y: depth * (NODE_H + Y_GAP)});
+  }
+  visit(graph.root_id, 0);
+}
+
+function makeSvg(name, attrs = {}) {
+  const el = document.createElementNS('http://www.w3.org/2000/svg', name);
+  Object.entries(attrs).forEach(([k, v]) => el.setAttribute(k, String(v)));
+  return el;
+}
+
+function render() {
+  layout();
+  edgesLayer.replaceChildren();
+  nodesLayer.replaceChildren();
+
+  for (const [source, targets] of Object.entries(graph.adjacency)) {
+    if (!positions.has(source)) continue;
+    for (const target of targets) {
+      if (!positions.has(target)) continue;
+      const a = positions.get(source), b = positions.get(target);
+      const path = makeSvg('path', {
+        class: 'edge',
+        d: `M ${a.x + NODE_W / 2} ${a.y + NODE_H} C ${a.x + NODE_W / 2} ${a.y + NODE_H + 40}, ${b.x + NODE_W / 2} ${b.y - 40}, ${b.x + NODE_W / 2} ${b.y}`
+      });
+      edgesLayer.appendChild(path);
+    }
+  }
+
+  for (const [id, pos] of positions) {
+    const data = graph.nodes[id];
+    const group = makeSvg('g', {class: 'node', transform: `translate(${pos.x},${pos.y})`, 'data-id': id});
+    if (id === selectedId) group.classList.add('selected');
+    group.appendChild(makeSvg('rect', {width: NODE_W, height: NODE_H}));
+
+    const kind = makeSvg('text', {class: 'kind', x: NODE_W / 2, y: 27});
+    kind.textContent = data.kind;
+    group.appendChild(kind);
+    const idText = makeSvg('text', {class: 'id', x: NODE_W / 2, y: 47});
+    idText.textContent = `${id} · line ${data.line}`;
+    group.appendChild(idText);
+
+    const children = graph.adjacency[id] || [];
+    if (children.length) {
+      const circle = makeSvg('circle', {class: 'toggle', cx: NODE_W - 12, cy: 12, r: 9});
+      circle.addEventListener('click', event => { event.stopPropagation(); toggle(id); });
+      group.appendChild(circle);
+      const sign = makeSvg('text', {class: 'toggle-text', x: NODE_W - 12, y: 16});
+      sign.textContent = collapsed.has(id) ? '+' : '−';
+      group.appendChild(sign);
+    }
+
+    group.addEventListener('click', () => selectNode(id));
+    group.addEventListener('dblclick', () => centreNode(id));
+    nodesLayer.appendChild(group);
+  }
+  applyTransform();
+  runSearch();
+}
+
+function toggle(id) {
+  if (collapsed.has(id)) collapsed.delete(id); else collapsed.add(id);
+  render();
+}
+
+function selectNode(id) {
+  selectedId = id;
+  const data = graph.nodes[id];
+  const children = graph.adjacency[id] || [];
+  details.innerHTML = '';
+  const entries = [
+    ['Node ID', id], ['Kind', data.kind], ['Source line', data.line],
+    ['Children', children.length ? children.join(', ') : 'None'],
+    ['Attributes', Object.keys(data.attributes || {}).length ? JSON.stringify(data.attributes, null, 2) : 'None']
+  ];
+  for (const [label, value] of entries) {
+    const row = document.createElement('div'); row.className = 'meta-row';
+    const labelEl = document.createElement('span'); labelEl.className = 'meta-label'; labelEl.textContent = label;
+    const valueEl = document.createElement('span'); valueEl.className = 'meta-value'; valueEl.textContent = String(value);
+    row.append(labelEl, valueEl); details.appendChild(row);
+  }
+  document.querySelectorAll('.node').forEach(el => el.classList.toggle('selected', el.dataset.id === id));
+}
+
+function updateZoomStatus() {
+  const percentage = Math.round(scale * 100);
+  status.textContent = `${positions.size} visible / ${Object.keys(graph.nodes).length} total nodes · ${percentage}%`;
+}
+
+function applyTransform() {
+  scene.setAttribute('transform', `translate(${tx} ${ty}) scale(${scale})`);
+  updateZoomStatus();
+}
+
+function zoomAt(factor, centreX = null, centreY = null) {
+  const rect = viewport.getBoundingClientRect();
+  const focusX = centreX === null ? rect.width / 2 : centreX;
+  const focusY = centreY === null ? rect.height / 2 : centreY;
+  const oldScale = scale;
+  const requestedScale = scale * factor;
+  scale = Math.max(MIN_SCALE, Math.min(MAX_SCALE, requestedScale));
+
+  if (scale === oldScale) return;
+
+  tx = focusX - (focusX - tx) * (scale / oldScale);
+  ty = focusY - (focusY - ty) * (scale / oldScale);
+  applyTransform();
+}
+
+function resetView() {
+  scale = INITIAL_SCALE;
+  const rootPosition = positions.get(graph.root_id);
+  const rect = viewport.getBoundingClientRect();
+
+  if (rootPosition) {
+    tx = rect.width / 2 - (rootPosition.x + NODE_W / 2) * scale;
+    ty = 36 - rootPosition.y * scale;
+  } else {
+    tx = 40;
+    ty = 40;
+  }
+
+  applyTransform();
+}
+
+function fitTree() {
+  if (!positions.size) return;
+  const xs = [...positions.values()].map(p => p.x);
+  const ys = [...positions.values()].map(p => p.y);
+  const minX = Math.min(...xs), maxX = Math.max(...xs) + NODE_W;
+  const minY = Math.min(...ys), maxY = Math.max(...ys) + NODE_H;
+  const width = Math.max(maxX - minX, 1), height = Math.max(maxY - minY, 1);
+  const rect = viewport.getBoundingClientRect();
+  scale = Math.min((rect.width - 70) / width, (rect.height - 70) / height, 1.4);
+  tx = (rect.width - width * scale) / 2 - minX * scale;
+  ty = 35 - minY * scale;
+  applyTransform();
+}
+
+function centreNode(id) {
+  const p = positions.get(id); if (!p) return;
+  const rect = viewport.getBoundingClientRect();
+  tx = rect.width / 2 - (p.x + NODE_W / 2) * scale;
+  ty = rect.height / 2 - (p.y + NODE_H / 2) * scale;
+  applyTransform(); selectNode(id);
+}
+
+function runSearch() {
+  const query = document.getElementById('search').value.trim().toLowerCase();
+  document.querySelectorAll('.node').forEach(el => {
+    const id = el.dataset.id;
+    const node = graph.nodes[id];
+    const haystack = `${id} ${node.kind} ${JSON.stringify(node.attributes)}`.toLowerCase();
+    el.classList.toggle('match', Boolean(query) && haystack.includes(query));
+  });
+}
+
+document.getElementById('zoom-in').addEventListener('click', () => zoomAt(ZOOM_FACTOR));
+document.getElementById('zoom-out').addEventListener('click', () => zoomAt(1 / ZOOM_FACTOR));
+document.getElementById('reset-view').addEventListener('click', resetView);
+document.getElementById('fit').addEventListener('click', fitTree);
+document.getElementById('expand').addEventListener('click', () => { collapsed.clear(); render(); fitTree(); });
+document.getElementById('collapse').addEventListener('click', () => {
+  collapsed.clear();
+  for (const id of Object.keys(graph.adjacency)) if (id !== graph.root_id && (graph.adjacency[id] || []).length) collapsed.add(id);
+  render(); fitTree();
+});
+document.getElementById('search').addEventListener('input', runSearch);
+viewport.addEventListener('mousedown', event => { if (event.target.closest('.node')) return; dragging = true; lastX = event.clientX; lastY = event.clientY; viewport.classList.add('dragging'); });
+window.addEventListener('mousemove', event => { if (!dragging) return; tx += event.clientX - lastX; ty += event.clientY - lastY; lastX = event.clientX; lastY = event.clientY; applyTransform(); });
+window.addEventListener('mouseup', () => { dragging = false; viewport.classList.remove('dragging'); });
+viewport.addEventListener('wheel', event => {
+  event.preventDefault();
+  const rect = viewport.getBoundingClientRect();
+  const mx = event.clientX - rect.left, my = event.clientY - rect.top;
+  zoomAt(event.deltaY < 0 ? 1.12 : 0.89, mx, my);
+}, {passive: false});
+window.addEventListener('resize', () => {
+  updateZoomStatus();
+});
+render();
+requestAnimationFrame(resetView);
+</script>
+</body>
+</html>

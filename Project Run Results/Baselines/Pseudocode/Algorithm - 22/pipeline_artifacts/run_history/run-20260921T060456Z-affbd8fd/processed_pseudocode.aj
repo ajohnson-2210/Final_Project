@@ -1,0 +1,16 @@
+loop <- BOOLEAN(TRUE)
+WHILE loop == BOOLEAN(TRUE) DO
+    givenNum <- INPUT(STRING("Enter Number: "))
+    TRY
+        givenNum <- CALL INTEGER(givenNum)
+        loop <- BOOLEAN(FALSE)
+    CATCH
+        OUTPUT STRING("That's Not an Integer, Please Try Again!")
+    ENDTRY
+ENDWHILE
+total <- 1
+WHILE givenNum > 0 DO
+    total <- total * givenNum
+    givenNum <- givenNum - 1
+ENDWHILE
+OUTPUT STRING("Factoral = {total}")

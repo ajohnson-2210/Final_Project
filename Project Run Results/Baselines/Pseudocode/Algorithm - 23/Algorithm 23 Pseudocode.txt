@@ -1,0 +1,32 @@
+loop <- BOOLEAN(TRUE)
+grade <- EMPTY STRING
+WHILE loop == BOOLEAN(TRUE) DO
+    score <- INPUT(STRING("Enter Student Score: "))
+    TRY
+        score <- CALL FLOAT(score)
+        loop <- BOOLEAN(FALSE)
+    CATCH
+        OUTPUT STRING("That's Not a Number, Please Try Again!")
+    ENDTRY
+    TRY
+        loop <- BOOLEAN(TRUE)
+        IF ((CALL INTEGER(score) < 0)) OR ((CALL INTEGER(score) > 100)) THEN
+            RAISE CALL ValueError()
+        ELSE
+            loop <- BOOLEAN(FALSE)
+        ENDIF
+    CATCH
+        OUTPUT STRING("Score out of range 0 - 100")
+    ENDTRY
+ENDWHILE
+IF score >= 60 AND score < 70 THEN
+    OUTPUT STRING("Congratulations, You received a Grade of Pass!")
+ELSE IF (score >= 70) AND (score < 80) THEN
+    OUTPUT STRING("Congratulations, You received a Grade of Merit!")
+ELSE IF (score >= 80) AND (score < 100) THEN
+    OUTPUT STRING("Congratulations, You received a Grade of Distinction!")
+ELSE IF (score == 100) THEN
+    OUTPUT STRING("WOW!! you got a Perfect score Excellent!!, Congratulations, You received a Grade of Distinction!")
+ELSE
+    OUTPUT STRING("Unfortunately, You did Not pass this time!")
+ENDIF

@@ -1,0 +1,998 @@
+{
+  "format": "NL-FDEP Flow Diagram",
+  "version": "1.0",
+  "entry_node": "F1",
+  "exit_node": "F2",
+  "nodes": {
+    "F1": {
+      "node_id": "F1",
+      "node_type": "START",
+      "label": "Start",
+      "line": 1,
+      "data": {}
+    },
+    "F2": {
+      "node_id": "F2",
+      "node_type": "END",
+      "label": "End",
+      "line": 1,
+      "data": {}
+    },
+    "F3": {
+      "node_id": "F3",
+      "node_type": "IMPORT",
+      "label": "Import module os",
+      "line": 1,
+      "data": {
+        "ast_kind": "ImportDirectiveNode"
+      }
+    },
+    "F4": {
+      "node_id": "F4",
+      "node_type": "OUTPUT",
+      "label": "Display \"Recursive File Search System\n\"",
+      "line": 3,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F5": {
+      "node_id": "F5",
+      "node_type": "FUNCTION",
+      "label": "Run function search_files_recursive with folder_path, file_extension, results",
+      "line": 5,
+      "data": {
+        "ast_kind": "FunctionNode",
+        "name": "search_files_recursive"
+      }
+    },
+    "F6": {
+      "node_id": "F6",
+      "node_type": "OUTPUT",
+      "label": "Display \"Searching: {folder_path}\"",
+      "line": 6,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F7": {
+      "node_id": "F7",
+      "node_type": "TRY",
+      "label": "Attempt the following operations",
+      "line": 7,
+      "data": {
+        "ast_kind": "TryCatchNode"
+      }
+    },
+    "F8": {
+      "node_id": "F8",
+      "node_type": "PROCESS",
+      "label": "Set items to the result of os_method_listdir(folder_path)",
+      "line": 8,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F9": {
+      "node_id": "F9",
+      "node_type": "OUTPUT",
+      "label": "Display \"Cannot access: {folder_path}\"",
+      "line": 10,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F10": {
+      "node_id": "F10",
+      "node_type": "RETURN",
+      "label": "Return from the function",
+      "line": 11,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    },
+    "F11": {
+      "node_id": "F11",
+      "node_type": "PROCESS",
+      "label": "Set i to 0",
+      "line": 13,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F12": {
+      "node_id": "F12",
+      "node_type": "LOOP_DECISION",
+      "label": "I is less than the length of items?",
+      "line": 14,
+      "data": {
+        "ast_kind": "WhileNode"
+      }
+    },
+    "F13": {
+      "node_id": "F13",
+      "node_type": "PROCESS",
+      "label": "Set item to item i of items",
+      "line": 15,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F14": {
+      "node_id": "F14",
+      "node_type": "PROCESS",
+      "label": "Set full_path to the result of os_method_path_join(folder_path, item)",
+      "line": 16,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F15": {
+      "node_id": "F15",
+      "node_type": "DECISION",
+      "label": "Is the result of os_method_path_isfile(full_path) true?",
+      "line": 17,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F16": {
+      "node_id": "F16",
+      "node_type": "DECISION",
+      "label": "Is the result of item.endswith(file_extension) true?",
+      "line": 18,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F17": {
+      "node_id": "F17",
+      "node_type": "OUTPUT",
+      "label": "Display \"FOUND: {full_path}\"",
+      "line": 19,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F18": {
+      "node_id": "F18",
+      "node_type": "PROCESS",
+      "label": "Append full_path to results",
+      "line": 20,
+      "data": {
+        "ast_kind": "AppendNode"
+      }
+    },
+    "F19": {
+      "node_id": "F19",
+      "node_type": "DECISION",
+      "label": "Is the result of os_method_path_isdir(full_path) true?",
+      "line": 22,
+      "data": {
+        "ast_kind": "ElseIfNode"
+      }
+    },
+    "F20": {
+      "node_id": "F20",
+      "node_type": "CALL",
+      "label": "Call search_files_recursive with full_path, file_extension, results",
+      "line": 23,
+      "data": {
+        "ast_kind": "CallNode"
+      }
+    },
+    "F21": {
+      "node_id": "F21",
+      "node_type": "PROCESS",
+      "label": "Set i to i plus 1",
+      "line": 25,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F22": {
+      "node_id": "F22",
+      "node_type": "PROCESS",
+      "label": "Set start_folder to \"C:/example/start/path\"",
+      "line": 29,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F23": {
+      "node_id": "F23",
+      "node_type": "PROCESS",
+      "label": "Set target_extension to \".txt\"",
+      "line": 30,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F24": {
+      "node_id": "F24",
+      "node_type": "PROCESS",
+      "label": "Set found_files to an empty list",
+      "line": 31,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F25": {
+      "node_id": "F25",
+      "node_type": "OUTPUT",
+      "label": "Display \"Starting recursive search...\n\"",
+      "line": 32,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F26": {
+      "node_id": "F26",
+      "node_type": "CALL",
+      "label": "Call search_files_recursive with start_folder, target_extension, found_files",
+      "line": 33,
+      "data": {
+        "ast_kind": "CallNode"
+      }
+    },
+    "F27": {
+      "node_id": "F27",
+      "node_type": "OUTPUT",
+      "label": "Display \"\nSearch complete.\nFiles found:\"",
+      "line": 34,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F28": {
+      "node_id": "F28",
+      "node_type": "PROCESS",
+      "label": "Set i to 0",
+      "line": 35,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F29": {
+      "node_id": "F29",
+      "node_type": "LOOP_DECISION",
+      "label": "I is less than the length of found_files?",
+      "line": 36,
+      "data": {
+        "ast_kind": "WhileNode"
+      }
+    },
+    "F30": {
+      "node_id": "F30",
+      "node_type": "OUTPUT",
+      "label": "Display item i of found_files",
+      "line": 37,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F31": {
+      "node_id": "F31",
+      "node_type": "PROCESS",
+      "label": "Set i to i plus 1",
+      "line": 38,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "F3",
+      "target": "F4",
+      "label": "NEXT"
+    },
+    {
+      "source": "F9",
+      "target": "F10",
+      "label": "NEXT"
+    },
+    {
+      "source": "F7",
+      "target": "F8",
+      "label": "TRY"
+    },
+    {
+      "source": "F7",
+      "target": "F9",
+      "label": "EXCEPTION"
+    },
+    {
+      "source": "F6",
+      "target": "F7",
+      "label": "NEXT"
+    },
+    {
+      "source": "F8",
+      "target": "F11",
+      "label": "NEXT"
+    },
+    {
+      "source": "F13",
+      "target": "F14",
+      "label": "NEXT"
+    },
+    {
+      "source": "F17",
+      "target": "F18",
+      "label": "NEXT"
+    },
+    {
+      "source": "F16",
+      "target": "F17",
+      "label": "TRUE"
+    },
+    {
+      "source": "F15",
+      "target": "F16",
+      "label": "TRUE"
+    },
+    {
+      "source": "F15",
+      "target": "F19",
+      "label": "FALSE"
+    },
+    {
+      "source": "F19",
+      "target": "F20",
+      "label": "TRUE"
+    },
+    {
+      "source": "F14",
+      "target": "F15",
+      "label": "NEXT"
+    },
+    {
+      "source": "F18",
+      "target": "F21",
+      "label": "NEXT"
+    },
+    {
+      "source": "F16",
+      "target": "F21",
+      "label": "NEXT"
+    },
+    {
+      "source": "F20",
+      "target": "F21",
+      "label": "NEXT"
+    },
+    {
+      "source": "F19",
+      "target": "F21",
+      "label": "NEXT"
+    },
+    {
+      "source": "F12",
+      "target": "F13",
+      "label": "TRUE"
+    },
+    {
+      "source": "F21",
+      "target": "F12",
+      "label": "LOOP"
+    },
+    {
+      "source": "F11",
+      "target": "F12",
+      "label": "NEXT"
+    },
+    {
+      "source": "F5",
+      "target": "F6",
+      "label": "BODY"
+    },
+    {
+      "source": "F4",
+      "target": "F5",
+      "label": "NEXT"
+    },
+    {
+      "source": "F12",
+      "target": "F22",
+      "label": "NEXT"
+    },
+    {
+      "source": "F22",
+      "target": "F23",
+      "label": "NEXT"
+    },
+    {
+      "source": "F23",
+      "target": "F24",
+      "label": "NEXT"
+    },
+    {
+      "source": "F24",
+      "target": "F25",
+      "label": "NEXT"
+    },
+    {
+      "source": "F25",
+      "target": "F26",
+      "label": "NEXT"
+    },
+    {
+      "source": "F26",
+      "target": "F27",
+      "label": "NEXT"
+    },
+    {
+      "source": "F27",
+      "target": "F28",
+      "label": "NEXT"
+    },
+    {
+      "source": "F30",
+      "target": "F31",
+      "label": "NEXT"
+    },
+    {
+      "source": "F29",
+      "target": "F30",
+      "label": "TRUE"
+    },
+    {
+      "source": "F31",
+      "target": "F29",
+      "label": "LOOP"
+    },
+    {
+      "source": "F28",
+      "target": "F29",
+      "label": "NEXT"
+    },
+    {
+      "source": "F1",
+      "target": "F3",
+      "label": "NEXT"
+    },
+    {
+      "source": "F10",
+      "target": "F2",
+      "label": "NEXT"
+    },
+    {
+      "source": "F29",
+      "target": "F2",
+      "label": "NEXT"
+    }
+  ],
+  "structured_program": {
+    "kind": "ProgramNode",
+    "line": 1,
+    "body": [
+      {
+        "kind": "ImportDirectiveNode",
+        "line": 1,
+        "directive_type": "IMPORT",
+        "module": "os",
+        "alias": null,
+        "names": []
+      },
+      {
+        "kind": "OutputNode",
+        "line": 3,
+        "expression": {
+          "kind": "LiteralNode",
+          "line": 3,
+          "value": "Recursive File Search System\n",
+          "data_type": "STRING"
+        }
+      },
+      {
+        "kind": "FunctionNode",
+        "line": 5,
+        "name": "search_files_recursive",
+        "parameters": [
+          {
+            "kind": "ParameterNode",
+            "line": 5,
+            "name": "folder_path",
+            "declared_type": null
+          },
+          {
+            "kind": "ParameterNode",
+            "line": 5,
+            "name": "file_extension",
+            "declared_type": null
+          },
+          {
+            "kind": "ParameterNode",
+            "line": 5,
+            "name": "results",
+            "declared_type": null
+          }
+        ],
+        "body": {
+          "kind": "BlockNode",
+          "line": 6,
+          "statements": [
+            {
+              "kind": "OutputNode",
+              "line": 6,
+              "expression": {
+                "kind": "LiteralNode",
+                "line": 6,
+                "value": "Searching: {folder_path}",
+                "data_type": "STRING"
+              }
+            },
+            {
+              "kind": "TryCatchNode",
+              "line": 7,
+              "try_body": {
+                "kind": "BlockNode",
+                "line": 8,
+                "statements": [
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 8,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 8,
+                      "name": "items"
+                    },
+                    "value": {
+                      "kind": "CallNode",
+                      "line": 8,
+                      "name": "os_method_listdir",
+                      "arguments": [
+                        {
+                          "kind": "IdentifierNode",
+                          "line": 8,
+                          "name": "folder_path"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              "error": null,
+              "catch_body": {
+                "kind": "BlockNode",
+                "line": 10,
+                "statements": [
+                  {
+                    "kind": "OutputNode",
+                    "line": 10,
+                    "expression": {
+                      "kind": "LiteralNode",
+                      "line": 10,
+                      "value": "Cannot access: {folder_path}",
+                      "data_type": "STRING"
+                    }
+                  },
+                  {
+                    "kind": "ReturnNode",
+                    "line": 11,
+                    "expression": null
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "AssignmentNode",
+              "line": 13,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 13,
+                "name": "i"
+              },
+              "value": {
+                "kind": "LiteralNode",
+                "line": 13,
+                "value": 0,
+                "data_type": "INTEGER"
+              }
+            },
+            {
+              "kind": "WhileNode",
+              "line": 14,
+              "condition": {
+                "kind": "BinaryNode",
+                "line": 14,
+                "operator": "<",
+                "left": {
+                  "kind": "IdentifierNode",
+                  "line": 14,
+                  "name": "i"
+                },
+                "right": {
+                  "kind": "LengthNode",
+                  "line": 14,
+                  "expression": {
+                    "kind": "IdentifierNode",
+                    "line": 14,
+                    "name": "items"
+                  }
+                }
+              },
+              "body": {
+                "kind": "BlockNode",
+                "line": 15,
+                "statements": [
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 15,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 15,
+                      "name": "item"
+                    },
+                    "value": {
+                      "kind": "IndexNode",
+                      "line": 15,
+                      "collection": {
+                        "kind": "IdentifierNode",
+                        "line": 15,
+                        "name": "items"
+                      },
+                      "index": {
+                        "kind": "IdentifierNode",
+                        "line": 15,
+                        "name": "i"
+                      }
+                    }
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 16,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 16,
+                      "name": "full_path"
+                    },
+                    "value": {
+                      "kind": "CallNode",
+                      "line": 16,
+                      "name": "os_method_path_join",
+                      "arguments": [
+                        {
+                          "kind": "IdentifierNode",
+                          "line": 16,
+                          "name": "folder_path"
+                        },
+                        {
+                          "kind": "IdentifierNode",
+                          "line": 16,
+                          "name": "item"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "kind": "IfNode",
+                    "line": 17,
+                    "condition": {
+                      "kind": "CallNode",
+                      "line": 17,
+                      "name": "os_method_path_isfile",
+                      "arguments": [
+                        {
+                          "kind": "IdentifierNode",
+                          "line": 17,
+                          "name": "full_path"
+                        }
+                      ]
+                    },
+                    "then_body": {
+                      "kind": "BlockNode",
+                      "line": 18,
+                      "statements": [
+                        {
+                          "kind": "IfNode",
+                          "line": 18,
+                          "condition": {
+                            "kind": "MemberCallNode",
+                            "line": 18,
+                            "object": {
+                              "kind": "IdentifierNode",
+                              "line": 18,
+                              "name": "item"
+                            },
+                            "member": "endswith",
+                            "arguments": [
+                              {
+                                "kind": "IdentifierNode",
+                                "line": 18,
+                                "name": "file_extension"
+                              }
+                            ],
+                            "resolved_intrinsic": null
+                          },
+                          "then_body": {
+                            "kind": "BlockNode",
+                            "line": 19,
+                            "statements": [
+                              {
+                                "kind": "OutputNode",
+                                "line": 19,
+                                "expression": {
+                                  "kind": "LiteralNode",
+                                  "line": 19,
+                                  "value": "FOUND: {full_path}",
+                                  "data_type": "STRING"
+                                }
+                              },
+                              {
+                                "kind": "AppendNode",
+                                "line": 20,
+                                "value": {
+                                  "kind": "IdentifierNode",
+                                  "line": 20,
+                                  "name": "full_path"
+                                },
+                                "collection": {
+                                  "kind": "IdentifierNode",
+                                  "line": 20,
+                                  "name": "results"
+                                }
+                              }
+                            ]
+                          },
+                          "else_if": [],
+                          "else_body": null
+                        }
+                      ]
+                    },
+                    "else_if": [
+                      {
+                        "kind": "ElseIfNode",
+                        "line": 22,
+                        "condition": {
+                          "kind": "CallNode",
+                          "line": 22,
+                          "name": "os_method_path_isdir",
+                          "arguments": [
+                            {
+                              "kind": "IdentifierNode",
+                              "line": 22,
+                              "name": "full_path"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "kind": "BlockNode",
+                          "line": 23,
+                          "statements": [
+                            {
+                              "kind": "CallNode",
+                              "line": 23,
+                              "name": "search_files_recursive",
+                              "arguments": [
+                                {
+                                  "kind": "IdentifierNode",
+                                  "line": 23,
+                                  "name": "full_path"
+                                },
+                                {
+                                  "kind": "IdentifierNode",
+                                  "line": 23,
+                                  "name": "file_extension"
+                                },
+                                {
+                                  "kind": "IdentifierNode",
+                                  "line": 23,
+                                  "name": "results"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "else_body": null
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 25,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 25,
+                      "name": "i"
+                    },
+                    "value": {
+                      "kind": "BinaryNode",
+                      "line": 25,
+                      "operator": "+",
+                      "left": {
+                        "kind": "IdentifierNode",
+                        "line": 25,
+                        "name": "i"
+                      },
+                      "right": {
+                        "kind": "LiteralNode",
+                        "line": 25,
+                        "value": 1,
+                        "data_type": "INTEGER"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "kind": "AssignmentNode",
+        "line": 29,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 29,
+          "name": "start_folder"
+        },
+        "value": {
+          "kind": "LiteralNode",
+          "line": 29,
+          "value": "C:/example/start/path",
+          "data_type": "STRING"
+        }
+      },
+      {
+        "kind": "AssignmentNode",
+        "line": 30,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 30,
+          "name": "target_extension"
+        },
+        "value": {
+          "kind": "LiteralNode",
+          "line": 30,
+          "value": ".txt",
+          "data_type": "STRING"
+        }
+      },
+      {
+        "kind": "AssignmentNode",
+        "line": 31,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 31,
+          "name": "found_files"
+        },
+        "value": {
+          "kind": "EmptyLiteralNode",
+          "line": 31,
+          "empty_type": "LIST"
+        }
+      },
+      {
+        "kind": "OutputNode",
+        "line": 32,
+        "expression": {
+          "kind": "LiteralNode",
+          "line": 32,
+          "value": "Starting recursive search...\n",
+          "data_type": "STRING"
+        }
+      },
+      {
+        "kind": "CallNode",
+        "line": 33,
+        "name": "search_files_recursive",
+        "arguments": [
+          {
+            "kind": "IdentifierNode",
+            "line": 33,
+            "name": "start_folder"
+          },
+          {
+            "kind": "IdentifierNode",
+            "line": 33,
+            "name": "target_extension"
+          },
+          {
+            "kind": "IdentifierNode",
+            "line": 33,
+            "name": "found_files"
+          }
+        ]
+      },
+      {
+        "kind": "OutputNode",
+        "line": 34,
+        "expression": {
+          "kind": "LiteralNode",
+          "line": 34,
+          "value": "\nSearch complete.\nFiles found:",
+          "data_type": "STRING"
+        }
+      },
+      {
+        "kind": "AssignmentNode",
+        "line": 35,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 35,
+          "name": "i"
+        },
+        "value": {
+          "kind": "LiteralNode",
+          "line": 35,
+          "value": 0,
+          "data_type": "INTEGER"
+        }
+      },
+      {
+        "kind": "WhileNode",
+        "line": 36,
+        "condition": {
+          "kind": "BinaryNode",
+          "line": 36,
+          "operator": "<",
+          "left": {
+            "kind": "IdentifierNode",
+            "line": 36,
+            "name": "i"
+          },
+          "right": {
+            "kind": "LengthNode",
+            "line": 36,
+            "expression": {
+              "kind": "IdentifierNode",
+              "line": 36,
+              "name": "found_files"
+            }
+          }
+        },
+        "body": {
+          "kind": "BlockNode",
+          "line": 37,
+          "statements": [
+            {
+              "kind": "OutputNode",
+              "line": 37,
+              "expression": {
+                "kind": "IndexNode",
+                "line": 37,
+                "collection": {
+                  "kind": "IdentifierNode",
+                  "line": 37,
+                  "name": "found_files"
+                },
+                "index": {
+                  "kind": "IdentifierNode",
+                  "line": 37,
+                  "name": "i"
+                }
+              }
+            },
+            {
+              "kind": "AssignmentNode",
+              "line": 38,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 38,
+                "name": "i"
+              },
+              "value": {
+                "kind": "BinaryNode",
+                "line": 38,
+                "operator": "+",
+                "left": {
+                  "kind": "IdentifierNode",
+                  "line": 38,
+                  "name": "i"
+                },
+                "right": {
+                  "kind": "LiteralNode",
+                  "line": 38,
+                  "value": 1,
+                  "data_type": "INTEGER"
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

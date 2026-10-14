@@ -1,0 +1,467 @@
+{
+  "format": "NL-FDEP Flow Diagram",
+  "version": "1.0",
+  "entry_node": "F1",
+  "exit_node": "F2",
+  "nodes": {
+    "F1": {
+      "node_id": "F1",
+      "node_type": "START",
+      "label": "Start",
+      "line": 1,
+      "data": {}
+    },
+    "F2": {
+      "node_id": "F2",
+      "node_type": "END",
+      "label": "End",
+      "line": 1,
+      "data": {}
+    },
+    "F3": {
+      "node_id": "F3",
+      "node_type": "PROCESS",
+      "label": "Set numlist to [7, 9, 3, 5, 2.6, 8.3]",
+      "line": 1,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F4": {
+      "node_id": "F4",
+      "node_type": "PROCESS",
+      "label": "Set total to 0",
+      "line": 2,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F5": {
+      "node_id": "F5",
+      "node_type": "PROCESS",
+      "label": "Set counter to 0",
+      "line": 3,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F6": {
+      "node_id": "F6",
+      "node_type": "LOOP_DECISION",
+      "label": "The length of numlist is greater than 0?",
+      "line": 4,
+      "data": {
+        "ast_kind": "WhileNode"
+      }
+    },
+    "F7": {
+      "node_id": "F7",
+      "node_type": "PROCESS",
+      "label": "Set total to total plus the result of numlist.pop(0)",
+      "line": 5,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F8": {
+      "node_id": "F8",
+      "node_type": "PROCESS",
+      "label": "Set counter to counter plus 1",
+      "line": 6,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F9": {
+      "node_id": "F9",
+      "node_type": "PROCESS",
+      "label": "Set average to total divided by counter",
+      "line": 8,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F10": {
+      "node_id": "F10",
+      "node_type": "PROCESS",
+      "label": "Set total to the result of format(total, \".2f\")",
+      "line": 9,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F11": {
+      "node_id": "F11",
+      "node_type": "PROCESS",
+      "label": "Set average to the result of format(average, \".2f\")",
+      "line": 10,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F12": {
+      "node_id": "F12",
+      "node_type": "OUTPUT",
+      "label": "Display \"The Sum of Numbers in the list = {total}\"",
+      "line": 11,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F13": {
+      "node_id": "F13",
+      "node_type": "OUTPUT",
+      "label": "Display \"The Average = {average}\"",
+      "line": 12,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "F3",
+      "target": "F4",
+      "label": "NEXT"
+    },
+    {
+      "source": "F4",
+      "target": "F5",
+      "label": "NEXT"
+    },
+    {
+      "source": "F7",
+      "target": "F8",
+      "label": "NEXT"
+    },
+    {
+      "source": "F6",
+      "target": "F7",
+      "label": "TRUE"
+    },
+    {
+      "source": "F8",
+      "target": "F6",
+      "label": "LOOP"
+    },
+    {
+      "source": "F5",
+      "target": "F6",
+      "label": "NEXT"
+    },
+    {
+      "source": "F6",
+      "target": "F9",
+      "label": "NEXT"
+    },
+    {
+      "source": "F9",
+      "target": "F10",
+      "label": "NEXT"
+    },
+    {
+      "source": "F10",
+      "target": "F11",
+      "label": "NEXT"
+    },
+    {
+      "source": "F11",
+      "target": "F12",
+      "label": "NEXT"
+    },
+    {
+      "source": "F12",
+      "target": "F13",
+      "label": "NEXT"
+    },
+    {
+      "source": "F1",
+      "target": "F3",
+      "label": "NEXT"
+    },
+    {
+      "source": "F13",
+      "target": "F2",
+      "label": "NEXT"
+    }
+  ],
+  "structured_program": {
+    "kind": "ProgramNode",
+    "line": 1,
+    "body": [
+      {
+        "kind": "AssignmentNode",
+        "line": 1,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 1,
+          "name": "numlist"
+        },
+        "value": {
+          "kind": "ListLiteralNode",
+          "line": 1,
+          "items": [
+            {
+              "kind": "LiteralNode",
+              "line": 1,
+              "value": 7,
+              "data_type": "INTEGER"
+            },
+            {
+              "kind": "LiteralNode",
+              "line": 1,
+              "value": 9,
+              "data_type": "INTEGER"
+            },
+            {
+              "kind": "LiteralNode",
+              "line": 1,
+              "value": 3,
+              "data_type": "INTEGER"
+            },
+            {
+              "kind": "LiteralNode",
+              "line": 1,
+              "value": 5,
+              "data_type": "INTEGER"
+            },
+            {
+              "kind": "LiteralNode",
+              "line": 1,
+              "value": 2.6,
+              "data_type": "FLOAT"
+            },
+            {
+              "kind": "LiteralNode",
+              "line": 1,
+              "value": 8.3,
+              "data_type": "FLOAT"
+            }
+          ],
+          "declared_type": null
+        }
+      },
+      {
+        "kind": "AssignmentNode",
+        "line": 2,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 2,
+          "name": "total"
+        },
+        "value": {
+          "kind": "LiteralNode",
+          "line": 2,
+          "value": 0,
+          "data_type": "INTEGER"
+        }
+      },
+      {
+        "kind": "AssignmentNode",
+        "line": 3,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 3,
+          "name": "counter"
+        },
+        "value": {
+          "kind": "LiteralNode",
+          "line": 3,
+          "value": 0,
+          "data_type": "INTEGER"
+        }
+      },
+      {
+        "kind": "WhileNode",
+        "line": 4,
+        "condition": {
+          "kind": "BinaryNode",
+          "line": 4,
+          "operator": ">",
+          "left": {
+            "kind": "LengthNode",
+            "line": 4,
+            "expression": {
+              "kind": "IdentifierNode",
+              "line": 4,
+              "name": "numlist"
+            }
+          },
+          "right": {
+            "kind": "LiteralNode",
+            "line": 4,
+            "value": 0,
+            "data_type": "INTEGER"
+          }
+        },
+        "body": {
+          "kind": "BlockNode",
+          "line": 5,
+          "statements": [
+            {
+              "kind": "AssignmentNode",
+              "line": 5,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 5,
+                "name": "total"
+              },
+              "value": {
+                "kind": "BinaryNode",
+                "line": 5,
+                "operator": "+",
+                "left": {
+                  "kind": "IdentifierNode",
+                  "line": 5,
+                  "name": "total"
+                },
+                "right": {
+                  "kind": "MemberCallNode",
+                  "line": 5,
+                  "object": {
+                    "kind": "IdentifierNode",
+                    "line": 5,
+                    "name": "numlist"
+                  },
+                  "member": "pop",
+                  "arguments": [
+                    {
+                      "kind": "LiteralNode",
+                      "line": 5,
+                      "value": 0,
+                      "data_type": "INTEGER"
+                    }
+                  ],
+                  "resolved_intrinsic": null
+                }
+              }
+            },
+            {
+              "kind": "AssignmentNode",
+              "line": 6,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 6,
+                "name": "counter"
+              },
+              "value": {
+                "kind": "BinaryNode",
+                "line": 6,
+                "operator": "+",
+                "left": {
+                  "kind": "IdentifierNode",
+                  "line": 6,
+                  "name": "counter"
+                },
+                "right": {
+                  "kind": "LiteralNode",
+                  "line": 6,
+                  "value": 1,
+                  "data_type": "INTEGER"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "kind": "AssignmentNode",
+        "line": 8,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 8,
+          "name": "average"
+        },
+        "value": {
+          "kind": "BinaryNode",
+          "line": 8,
+          "operator": "/",
+          "left": {
+            "kind": "IdentifierNode",
+            "line": 8,
+            "name": "total"
+          },
+          "right": {
+            "kind": "IdentifierNode",
+            "line": 8,
+            "name": "counter"
+          }
+        }
+      },
+      {
+        "kind": "AssignmentNode",
+        "line": 9,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 9,
+          "name": "total"
+        },
+        "value": {
+          "kind": "CallNode",
+          "line": 9,
+          "name": "format",
+          "arguments": [
+            {
+              "kind": "IdentifierNode",
+              "line": 9,
+              "name": "total"
+            },
+            {
+              "kind": "LiteralNode",
+              "line": 9,
+              "value": ".2f",
+              "data_type": "STRING"
+            }
+          ]
+        }
+      },
+      {
+        "kind": "AssignmentNode",
+        "line": 10,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 10,
+          "name": "average"
+        },
+        "value": {
+          "kind": "CallNode",
+          "line": 10,
+          "name": "format",
+          "arguments": [
+            {
+              "kind": "IdentifierNode",
+              "line": 10,
+              "name": "average"
+            },
+            {
+              "kind": "LiteralNode",
+              "line": 10,
+              "value": ".2f",
+              "data_type": "STRING"
+            }
+          ]
+        }
+      },
+      {
+        "kind": "OutputNode",
+        "line": 11,
+        "expression": {
+          "kind": "LiteralNode",
+          "line": 11,
+          "value": "The Sum of Numbers in the list = {total}",
+          "data_type": "STRING"
+        }
+      },
+      {
+        "kind": "OutputNode",
+        "line": 12,
+        "expression": {
+          "kind": "LiteralNode",
+          "line": 12,
+          "value": "The Average = {average}",
+          "data_type": "STRING"
+        }
+      }
+    ]
+  }
+}

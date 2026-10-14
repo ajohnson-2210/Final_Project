@@ -1,0 +1,315 @@
+COMMENT import numpy as np
+COMMENT import matplotlib.pyplot as plt
+COMMENT from matplotlib.animation import FuncAnimation
+
+CLASS Config
+    PROPERTY TARGET_RADIUS
+    PROPERTY DT
+    PROPERTY BOUNDARY_FORCE
+    PROPERTY OBSTACLE_EDGE_MARGIN
+    PROPERTY OBSTACLE_REPULSION
+    PROPERTY OBSTACLE_RADIUS
+    PROPERTY GOAL_WEIGHT
+    PROPERTY SEPARATION_WEIGHT
+    PROPERTY ALIGNMENT_WEIGHT
+    PROPERTY COHESION_WEIGHT
+    PROPERTY SEPARATION_RADIUS
+    PROPERTY NEIGHBOUR_RADIUS
+    PROPERTY MAX_SPEED
+    PROPERTY NUM_OBSTACLES
+    PROPERTY NUM_DRONES
+    PROPERTY SPACE_SIZE
+    CONSTRUCTOR ACCEPTS()
+        PROPERTY THIS.SPACE_SIZE <- 400
+        PROPERTY THIS.NUM_DRONES <- 40
+        PROPERTY THIS.NUM_OBSTACLES <- 15
+        PROPERTY THIS.MAX_SPEED <- 2
+        PROPERTY THIS.NEIGHBOUR_RADIUS <- 20
+        PROPERTY THIS.SEPARATION_RADIUS <- 14
+        PROPERTY THIS.COHESION_WEIGHT <- 0.02
+        PROPERTY THIS.ALIGNMENT_WEIGHT <- 0.05
+        PROPERTY THIS.SEPARATION_WEIGHT <- 0.45
+        PROPERTY THIS.GOAL_WEIGHT <- 0.1
+        PROPERTY THIS.OBSTACLE_RADIUS <- 8
+        PROPERTY THIS.OBSTACLE_REPULSION <- 0.25
+        PROPERTY THIS.OBSTACLE_EDGE_MARGIN <- 15
+        PROPERTY THIS.BOUNDARY_FORCE <- 0.15
+        PROPERTY THIS.DT <- 1.0
+        PROPERTY THIS.TARGET_RADIUS <- 10.0
+    ENDCONSTRUCTOR
+ENDCLASS
+
+CLASS Environment
+    PROPERTY cfg
+    CONSTRUCTOR ACCEPTS(config)
+        PROPERTY THIS.cfg <- config
+    ENDCONSTRUCTOR
+    METHOD random_point ACCEPTS()
+        RETURN CALL numpy_method_array(LIST [CALL numpy_method_random_uniform(0, THIS.cfg.SPACE_SIZE), CALL numpy_method_random_uniform(0, THIS.cfg.SPACE_SIZE)], STRING("float"))
+    ENDMETHOD
+    METHOD generate_safe_point ACCEPTS(avoid_point, obstacles)
+        WHILE BOOLEAN(TRUE) DO
+            p <- THIS.random_point()
+            IF p[0] < 20 OR ((p[0] > (THIS.cfg.SPACE_SIZE - 20))) THEN
+                CONTINUE
+            ENDIF
+            IF p[1] < 20 OR ((p[1] > (THIS.cfg.SPACE_SIZE - 20))) THEN
+                CONTINUE
+            ENDIF
+            too_close <- BOOLEAN(FALSE)
+            FOR EACH obs IN obstacles DO
+                IF CALL numpy_method_linalg_norm((p - obs)) < (THIS.cfg.OBSTACLE_RADIUS * 4) THEN
+                    too_close <- BOOLEAN(TRUE)
+                    BREAK
+                ENDIF
+            ENDFOR
+            IF too_close THEN
+                CONTINUE
+            ENDIF
+            IF CALL numpy_method_linalg_norm((p - avoid_point)) < 30 THEN
+                CONTINUE
+            ENDIF
+            RETURN p
+        ENDWHILE
+    ENDMETHOD
+    METHOD generate_obstacles ACCEPTS(point_a, min_dist)
+        obstacles <- EMPTY LIST
+        WHILE LENGTH OF obstacles < THIS.cfg.NUM_OBSTACLES DO
+            obs <- THIS.random_point()
+            IF NOT (THIS.cfg.OBSTACLE_EDGE_MARGIN < obs[0] AND (obs[0] < (THIS.cfg.SPACE_SIZE - THIS.cfg.OBSTACLE_EDGE_MARGIN))) THEN
+                CONTINUE
+            ENDIF
+            IF NOT (THIS.cfg.OBSTACLE_EDGE_MARGIN < obs[1] AND (obs[1] < (THIS.cfg.SPACE_SIZE - THIS.cfg.OBSTACLE_EDGE_MARGIN))) THEN
+                CONTINUE
+            ENDIF
+            IF CALL numpy_method_linalg_norm((obs - point_a)) < min_dist THEN
+                CONTINUE
+            ENDIF
+            too_close <- BOOLEAN(FALSE)
+            FOR EACH o IN obstacles DO
+                IF CALL numpy_method_linalg_norm((obs - o)) < (THIS.cfg.OBSTACLE_RADIUS * 3) THEN
+                    too_close <- BOOLEAN(TRUE)
+                    BREAK
+                ENDIF
+            ENDFOR
+            IF too_close THEN
+                CONTINUE
+            ENDIF
+            APPEND obs TO obstacles
+        ENDWHILE
+        RETURN obstacles
+    ENDMETHOD
+ENDCLASS
+
+CLASS TargetPoint
+    PROPERTY position
+    PROPERTY radius
+    CONSTRUCTOR ACCEPTS(position, radius)
+        PROPERTY THIS.position <- position.astype(STRING("float"))
+        PROPERTY THIS.radius <- radius
+    ENDCONSTRUCTOR
+    METHOD reached ACCEPTS(drone_positions)
+        distances <- CALL numpy_method_linalg_norm((drone_positions - THIS.position), 1)
+        RETURN distances.min() < THIS.radius
+    ENDMETHOD
+ENDCLASS
+
+CLASS Drone
+    PROPERTY position
+    PROPERTY velocity
+    PROPERTY cfg
+    CONSTRUCTOR ACCEPTS(position, velocity, cfg)
+        PROPERTY THIS.position <- position.astype(STRING("float"))
+        PROPERTY THIS.velocity <- velocity.astype(STRING("float"))
+        PROPERTY THIS.cfg <- cfg
+    ENDCONSTRUCTOR
+    METHOD set_velocity ACCEPTS(value)
+        PROPERTY THIS.velocity <- value
+    ENDMETHOD
+    METHOD update ACCEPTS(acceleration)
+        PROPERTY THIS.velocity <- THIS.velocity + (acceleration * THIS.cfg.DT)
+        speed <- CALL numpy_method_linalg_norm(THIS.velocity)
+        IF speed > THIS.cfg.MAX_SPEED THEN
+            PROPERTY THIS.velocity <- (THIS.velocity / speed) * THIS.cfg.MAX_SPEED
+        ENDIF
+        PROPERTY THIS.position <- THIS.position + (THIS.velocity * THIS.cfg.DT)
+        FOR i <- IN RANGE 0 TO 2 DO
+            IF THIS.position[i] < 0 THEN
+                THIS.position[i] <- 0
+                THIS.velocity[i] <- (THIS.velocity[i] + THIS.cfg.BOUNDARY_FORCE)
+            ELSE IF (THIS.position[i] > THIS.cfg.SPACE_SIZE) THEN
+                THIS.position[i] <- THIS.cfg.SPACE_SIZE
+                THIS.velocity[i] <- (THIS.velocity[i] - THIS.cfg.BOUNDARY_FORCE)
+            ENDIF
+        ENDFOR
+    ENDMETHOD
+ENDCLASS
+
+CLASS Swarm
+    PROPERTY cfg
+    PROPERTY drones
+    CONSTRUCTOR ACCEPTS(num_drones, start_pos, cfg)
+        PROPERTY THIS.cfg <- cfg
+        PROPERTY THIS.drones <- EMPTY LIST
+        FOR _ <- IN RANGE 0 TO num_drones DO
+            vel <- (CALL numpy_method_random_rand(2) - 0.5) * 2
+            APPEND CALL Drone(start_pos.copy(), vel, cfg) TO THIS.drones
+        ENDFOR
+    ENDCONSTRUCTOR
+    METHOD __reserved_keyword__step ACCEPTS(target, obstacles)
+        position_list <- EMPTY LIST
+        FOR EACH d IN THIS.drones DO
+            APPEND d.position TO position_list
+        ENDFOR
+        positions <- CALL numpy_method_array(position_list)
+        velocity_list <- EMPTY LIST
+        FOR EACH d IN THIS.drones DO
+            APPEND d.velocity TO velocity_list
+        ENDFOR
+        velocities <- CALL numpy_method_array(velocity_list)
+        i <- 0
+        FOR EACH drone IN THIS.drones DO
+            IF CALL numpy_method_linalg_norm((drone.position - target.position)) < target.radius THEN
+                acceleration <- (target.position - drone.position) * THIS.cfg.GOAL_WEIGHT
+                drone.update(acceleration)
+                CONTINUE
+            ENDIF
+            diff <- positions - drone.position
+            dist <- CALL numpy_method_linalg_norm(diff, 1)
+            neighbours_mask <- (dist > 0) AND (dist < THIS.cfg.NEIGHBOUR_RADIUS)
+            neighbours_idx <- CALL numpy_method_where(neighbours_mask)[0]
+            acceleration <- CALL numpy_method_zeros(2)
+            IF LENGTH OF neighbours_idx > 0 THEN
+                neighbour_positions <- positions[neighbours_idx]
+                neighbour_velocities <- velocities[neighbours_idx]
+                cohesion <- (neighbour_positions.mean(0) - drone.position) * THIS.cfg.COHESION_WEIGHT
+                alignment <- (neighbour_velocities.mean(0) - drone.velocity) * THIS.cfg.ALIGNMENT_WEIGHT
+                close_idx <- CALL numpy_method_where(dist < THIS.cfg.SEPARATION_RADIUS)[0]
+                separation <- CALL numpy_method_zeros(2)
+                IF LENGTH OF close_idx > 0 THEN
+                    separation <- -((positions[close_idx] - drone.position).sum(0)) * THIS.cfg.SEPARATION_WEIGHT
+                ENDIF
+                acceleration <- acceleration + ((cohesion + alignment) + separation)
+            ENDIF
+            acceleration <- acceleration + ((target.position - drone.position) * THIS.cfg.GOAL_WEIGHT)
+            FOR EACH obstacle IN obstacles DO
+                to_obs <- drone.position - obstacle
+                dist_obs <- CALL numpy_method_linalg_norm(to_obs)
+                radial <- to_obs / (dist_obs + 0.000001)
+                tangent <- CALL numpy_method_array(LIST [-(radial[1]), radial[0]])
+                dir_to_goal <- target.position - drone.position
+                IF CALL numpy_method_dot(tangent, dir_to_goal) < 0 THEN
+                    tangent <- -(tangent)
+                ENDIF
+                HARD_LOCK_RADIUS <- THIS.cfg.OBSTACLE_RADIUS * 3.0
+                SOFT_LOCK_RADIUS <- THIS.cfg.OBSTACLE_RADIUS * 5.0
+                MIN_SAFE <- THIS.cfg.OBSTACLE_RADIUS * 1.8
+                IF dist_obs < MIN_SAFE THEN
+                    acceleration <- radial * (THIS.cfg.OBSTACLE_REPULSION * 4.0)
+                    drone.set_velocity((-(drone.velocity) * 0.5))
+                    CONTINUE
+                ENDIF
+                IF dist_obs < HARD_LOCK_RADIUS THEN
+                    acceleration <- tangent * (THIS.cfg.OBSTACLE_REPULSION * 2.0)
+                    CONTINUE
+                ENDIF
+                IF dist_obs < SOFT_LOCK_RADIUS THEN
+                    avoid <- (radial * (THIS.cfg.OBSTACLE_REPULSION * 0.4)) + (tangent * (THIS.cfg.OBSTACLE_REPULSION * 1.2))
+                    acceleration <- acceleration + avoid
+                ENDIF
+            ENDFOR
+            drone.update(acceleration)
+            i <- i + 1
+        ENDFOR
+    ENDMETHOD
+ENDCLASS
+
+CLASS MissionController
+    PROPERTY env
+    PROPERTY cfg
+    PROPERTY point_a
+    PROPERTY obstacles
+    PROPERTY point_b
+    CONSTRUCTOR ACCEPTS(env, cfg)
+        PROPERTY THIS.env <- env
+        PROPERTY THIS.cfg <- cfg
+        PROPERTY THIS.point_a <- CALL TargetPoint(env.random_point(), cfg.TARGET_RADIUS)
+        PROPERTY THIS.obstacles <- env.generate_obstacles(THIS.point_a.position, 20)
+        PROPERTY THIS.point_b <- CALL TargetPoint(env.generate_safe_point(THIS.point_a.position, THIS.obstacles), cfg.TARGET_RADIUS)
+    ENDCONSTRUCTOR
+    METHOD update_targets ACCEPTS(swarm_positions)
+        IF THIS.point_b.reached(swarm_positions) THEN
+            PROPERTY THIS.point_a <- THIS.point_b
+            new_pos <- THIS.env.generate_safe_point(THIS.point_a.position, THIS.obstacles)
+            PROPERTY THIS.point_b <- CALL TargetPoint(new_pos, THIS.cfg.TARGET_RADIUS)
+        ENDIF
+    ENDMETHOD
+ENDCLASS
+
+CLASS Visualizer
+    PROPERTY mission
+    PROPERTY swarm
+    PROPERTY cfg
+    PROPERTY scat
+    PROPERTY point_a_marker
+    PROPERTY point_b_marker
+    PROPERTY anim
+    CONSTRUCTOR ACCEPTS(mission, swarm, cfg)
+        PROPERTY THIS.mission <- mission
+        PROPERTY THIS.swarm <- swarm
+        PROPERTY THIS.cfg <- cfg
+        figure_axes <- CALL matplotlib_method_subplots(TUPLE(6, 6))
+        PROPERTY THIS.fig <- figure_axes[0]
+        PROPERTY THIS.ax <- figure_axes[1]
+        THIS.ax.set_xlim(0, cfg.SPACE_SIZE)
+        THIS.ax.set_ylim(0, cfg.SPACE_SIZE)
+        PROPERTY THIS.scat <- THIS.ax.scatter(EMPTY LIST, EMPTY LIST, 20, STRING("blue"))
+        PROPERTY THIS.point_a_marker <- THIS.ax.scatter(mission.point_a.position[0], mission.point_a.position[1], 80, STRING("green"))
+        PROPERTY THIS.point_b_marker <- THIS.ax.scatter(mission.point_b.position[0], mission.point_b.position[1], 80, STRING("purple"))
+        FOR EACH obs IN mission.obstacles DO
+            circle <- CALL matplotlib_method_Circle(obs, cfg.OBSTACLE_RADIUS, STRING("red"))
+            THIS.ax.add_patch(circle)
+        ENDFOR
+    ENDCONSTRUCTOR
+    METHOD init ACCEPTS()
+        THIS.scat.set_offsets(CALL numpy_method_empty(TUPLE(0, 2)))
+        RETURN TUPLE(THIS.scat, THIS.point_a_marker, THIS.point_b_marker)
+    ENDMETHOD
+    METHOD update ACCEPTS(frame)
+        THIS.swarm.__reserved_keyword__step(THIS.mission.point_b, THIS.mission.obstacles)
+        position_list <- EMPTY LIST
+        FOR EACH d IN THIS.swarm.drones DO
+            APPEND d.position TO position_list
+        ENDFOR
+        positions <- CALL numpy_method_array(position_list)
+        THIS.scat.set_offsets(positions)
+        THIS.mission.update_targets(positions)
+        THIS.point_a_marker.set_offsets(THIS.mission.point_a.position)
+        THIS.point_b_marker.set_offsets(THIS.mission.point_b.position)
+        RETURN TUPLE(THIS.scat, THIS.point_a_marker, THIS.point_b_marker)
+    ENDMETHOD
+    METHOD animate ACCEPTS()
+        PROPERTY THIS.anim <- CALL matplotlib_animation_method_FuncAnimation(THIS.fig, THIS.update, THIS.init, 2000, 40, BOOLEAN(FALSE))
+        CALL matplotlib_method_show()
+    ENDMETHOD
+ENDCLASS
+
+CLASS Simulation
+    PROPERTY cfg
+    PROPERTY env
+    PROPERTY mission
+    PROPERTY swarm
+    PROPERTY visualizer
+    CONSTRUCTOR ACCEPTS()
+        PROPERTY THIS.cfg <- CALL Config()
+        PROPERTY THIS.env <- CALL Environment(THIS.cfg)
+        PROPERTY THIS.mission <- CALL MissionController(THIS.env, THIS.cfg)
+        PROPERTY THIS.swarm <- CALL Swarm(THIS.cfg.NUM_DRONES, THIS.mission.point_a.position, THIS.cfg)
+        PROPERTY THIS.visualizer <- CALL Visualizer(THIS.mission, THIS.swarm, THIS.cfg)
+    ENDCONSTRUCTOR
+    METHOD run ACCEPTS()
+        THIS.visualizer.animate()
+    ENDMETHOD
+ENDCLASS
+
+CALL Simulation().run()

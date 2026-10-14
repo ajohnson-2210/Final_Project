@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AJ_24038155 AST Visualisation</title>
+<style>
+:root {
+  color-scheme: light dark;
+  --bg: #f7f8fb;
+  --panel: #ffffff;
+  --text: #172033;
+  --muted: #64748b;
+  --line: #94a3b8;
+  --border: #cbd5e1;
+  --accent: #2563eb;
+  --accent-soft: #dbeafe;
+  --node: #ffffff;
+  --node-shadow: rgba(15, 23, 42, 0.13);
+  --success: #15803d;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f172a;
+    --panel: #111827;
+    --text: #e5e7eb;
+    --muted: #94a3b8;
+    --line: #64748b;
+    --border: #334155;
+    --accent: #60a5fa;
+    --accent-soft: #172554;
+    --node: #1e293b;
+    --node-shadow: rgba(0, 0, 0, 0.3);
+    --success: #4ade80;
+  }
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; font-family: Inter, system-ui, sans-serif; background: var(--bg); color: var(--text); }
+body { display: grid; grid-template-rows: auto 1fr; overflow: hidden; }
+header {
+  display: flex; gap: 12px; align-items: center; flex-wrap: wrap;
+  padding: 12px 16px; background: var(--panel); border-bottom: 1px solid var(--border);
+}
+header h1 { font-size: 18px; margin: 0 12px 0 0; }
+.control {
+  appearance: none; border: 1px solid var(--border); border-radius: 8px;
+  background: var(--panel); color: var(--text); padding: 8px 10px; font-size: 14px;
+}
+button.control { cursor: pointer; }
+button.control:hover { border-color: var(--accent); }
+#search { width: 230px; }
+.status { margin-left: auto; color: var(--muted); font-size: 13px; }
+main { display: grid; grid-template-columns: minmax(0, 1fr) 300px; min-height: 0; }
+#viewport { position: relative; overflow: hidden; cursor: grab; background-image: radial-gradient(var(--border) 1px, transparent 1px); background-size: 22px 22px; }
+#viewport.dragging { cursor: grabbing; }
+svg { width: 100%; height: 100%; display: block; user-select: none; }
+.edge { fill: none; stroke: var(--line); stroke-width: 1.7; }
+.node rect { fill: var(--node); stroke: var(--border); stroke-width: 1.4; rx: 9; filter: drop-shadow(0 3px 5px var(--node-shadow)); }
+.node:hover rect, .node.selected rect { stroke: var(--accent); stroke-width: 2.5; }
+.node.match rect { stroke: var(--success); stroke-width: 3; }
+.node text { pointer-events: none; fill: var(--text); text-anchor: middle; }
+.node .kind { font-weight: 700; font-size: 13px; }
+.node .id { fill: var(--muted); font-size: 11px; }
+.node .toggle { pointer-events: auto; cursor: pointer; fill: var(--accent-soft); stroke: var(--accent); }
+.node .toggle-text { font-weight: 700; fill: var(--accent); font-size: 12px; }
+aside { padding: 16px; overflow: auto; border-left: 1px solid var(--border); background: var(--panel); }
+aside h2 { margin: 0 0 12px; font-size: 16px; }
+.meta-row { border-bottom: 1px solid var(--border); padding: 9px 0; }
+.meta-label { color: var(--muted); font-size: 12px; display: block; margin-bottom: 3px; }
+.meta-value { font-size: 14px; overflow-wrap: anywhere; white-space: pre-wrap; }
+.help { margin-top: 18px; color: var(--muted); font-size: 12px; line-height: 1.5; }
+@media (max-width: 760px) { main { grid-template-columns: 1fr; } aside { display: none; } .status { display: none; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>AJ_24038155 AST Visualisation</h1>
+  <button class="control" id="zoom-in" title="Zoom in">Zoom in +</button>
+  <button class="control" id="zoom-out" title="Zoom out">Zoom out −</button>
+  <button class="control" id="reset-view">Reset view</button>
+  <button class="control" id="fit">Fit tree</button>
+  <button class="control" id="expand">Expand all</button>
+  <button class="control" id="collapse">Collapse descendants</button>
+  <input class="control" id="search" type="search" placeholder="Search node kind, ID or value">
+  <span class="status" id="status"></span>
+</header>
+<main>
+  <section id="viewport" aria-label="Interactive AST tree">
+    <svg id="canvas" role="img" aria-label="Abstract syntax tree">
+      <g id="scene"><g id="edges"></g><g id="nodes"></g></g>
+    </svg>
+  </section>
+  <aside>
+    <h2>Selected node</h2>
+    <div id="details"><span class="meta-value">Select a node to inspect its metadata.</span></div>
+    <p class="help">Drag the background to pan. Use the mouse wheel to zoom. Click a ± marker to collapse or expand descendants. Double-click a node to centre it.</p>
+  </aside>
+</main>
+<script>
+const graph = {"root_id": "N20649", "nodes": {"N20649": {"kind": "ProgramNode", "line": 1, "attributes": {}}, "N20266": {"kind": "FunctionNode", "line": 1, "attributes": {"name": "safe_placement"}}, "N20161": {"kind": "ParameterNode", "line": 1, "attributes": {"name": "board", "declared_type": null}}, "N20162": {"kind": "ParameterNode", "line": 1, "attributes": {"name": "row", "declared_type": null}}, "N20163": {"kind": "ParameterNode", "line": 1, "attributes": {"name": "col", "declared_type": null}}, "N20164": {"kind": "ParameterNode", "line": 1, "attributes": {"name": "n", "declared_type": null}}, "N20265": {"kind": "BlockNode", "line": 2, "attributes": {}}, "N20167": {"kind": "AssignmentNode", "line": 2, "attributes": {}}, "N20165": {"kind": "IdentifierNode", "line": 2, "attributes": {"name": "r"}}, "N20166": {"kind": "LiteralNode", "line": 2, "attributes": {"value": 0, "data_type": "INTEGER"}}, "N20186": {"kind": "WhileNode", "line": 3, "attributes": {}}, "N20170": {"kind": "BinaryNode", "line": 3, "attributes": {"operator": "<"}}, "N20168": {"kind": "IdentifierNode", "line": 3, "attributes": {"name": "r"}}, "N20169": {"kind": "IdentifierNode", "line": 3, "attributes": {"name": "row"}}, "N20185": {"kind": "BlockNode", "line": 4, "attributes": {}}, "N20179": {"kind": "IfNode", "line": 4, "attributes": {"else_if": [], "else_body": null}}, "N20175": {"kind": "BinaryNode", "line": 4, "attributes": {"operator": "=="}}, "N20173": {"kind": "IndexNode", "line": 4, "attributes": {}}, "N20171": {"kind": "IdentifierNode", "line": 4, "attributes": {"name": "board"}}, "N20172": {"kind": "IdentifierNode", "line": 4, "attributes": {"name": "r"}}, "N20174": {"kind": "IdentifierNode", "line": 4, "attributes": {"name": "col"}}, "N20178": {"kind": "BlockNode", "line": 5, "attributes": {}}, "N20177": {"kind": "ReturnNode", "line": 5, "attributes": {}}, "N20176": {"kind": "LiteralNode", "line": 5, "attributes": {"value": false, "data_type": "BOOLEAN"}}, "N20184": {"kind": "AssignmentNode", "line": 7, "attributes": {}}, "N20180": {"kind": "IdentifierNode", "line": 7, "attributes": {"name": "r"}}, "N20183": {"kind": "BinaryNode", "line": 7, "attributes": {"operator": "+"}}, "N20181": {"kind": "IdentifierNode", "line": 7, "attributes": {"name": "r"}}, "N20182": {"kind": "LiteralNode", "line": 7, "attributes": {"value": 1, "data_type": "INTEGER"}}, "N20191": {"kind": "AssignmentNode", "line": 9, "attributes": {}}, "N20187": {"kind": "IdentifierNode", "line": 9, "attributes": {"name": "r"}}, "N20190": {"kind": "BinaryNode", "line": 9, "attributes": {"operator": "-"}}, "N20188": {"kind": "IdentifierNode", "line": 9, "attributes": {"name": "row"}}, "N20189": {"kind": "LiteralNode", "line": 9, "attributes": {"value": 1, "data_type": "INTEGER"}}, "N20196": {"kind": "AssignmentNode", "line": 10, "attributes": {}}, "N20192": {"kind": "IdentifierNode", "line": 10, "attributes": {"name": "c"}}, "N20195": {"kind": "BinaryNode", "line": 10, "attributes": {"operator": "-"}}, "N20193": {"kind": "IdentifierNode", "line": 10, "attributes": {"name": "col"}}, "N20194": {"kind": "LiteralNode", "line": 10, "attributes": {"value": 1, "data_type": "INTEGER"}}, "N20224": {"kind": "WhileNode", "line": 11, "attributes": {}}, "N20203": {"kind": "BinaryNode", "line": 11, "attributes": {"operator": "AND"}}, "N20199": {"kind": "BinaryNode", "line": 11, "attributes": {"operator": ">="}}, "N20197": {"kind": "IdentifierNode", "line": 11, "attributes": {"name": "r"}}, "N20198": {"kind": "LiteralNode", "line": 11, "attributes": {"value": 0, "data_type": "INTEGER"}}, "N20202": {"kind": "BinaryNode", "line": 11, "attributes": {"operator": ">="}}, "N20200": {"kind": "IdentifierNode", "line": 11, "attributes": {"name": "c"}}, "N20201": {"kind": "LiteralNode", "line": 11, "attributes": {"value": 0, "data_type": "INTEGER"}}, "N20223": {"kind": "BlockNode", "line": 12, "attributes": {}}, "N20212": {"kind": "IfNode", "line": 12, "attributes": {"else_if": [], "else_body": null}}, "N20208": {"kind": "BinaryNode", "line": 12, "attributes": {"operator": "=="}}, "N20206": {"kind": "IndexNode", "line": 12, "attributes": {}}, "N20204": {"kind": "IdentifierNode", "line": 12, "attributes": {"name": "board"}}, "N20205": {"kind": "IdentifierNode", "line": 12, "attributes": {"name": "r"}}, "N20207": {"kind": "IdentifierNode", "line": 12, "attributes": {"name": "c"}}, "N20211": {"kind": "BlockNode", "line": 13, "attributes": {}}, "N20210": {"kind": "ReturnNode", "line": 13, "attributes": {}}, "N20209": {"kind": "LiteralNode", "line": 13, "attributes": {"value": false, "data_type": "BOOLEAN"}}, "N20217": {"kind": "AssignmentNode", "line": 15, "attributes": {}}, "N20213": {"kind": "IdentifierNode", "line": 15, "attributes": {"name": "r"}}, "N20216": {"kind": "BinaryNode", "line": 15, "attributes": {"operator": "-"}}, "N20214": {"kind": "IdentifierNode", "line": 15, "attributes": {"name": "r"}}, "N20215": {"kind": "LiteralNode", "line": 15, "attributes": {"value": 1, "data_type": "INTEGER"}}, "N20222": {"kind": "AssignmentNode", "line": 16, "attributes": {}}, "N20218": {"kind": "IdentifierNode", "line": 16, "attributes": {"name": "c"}}, "N20221": {"kind": "BinaryNode", "line": 16, "attributes": {"operator": "-"}}, "N20219": {"kind": "IdentifierNode", "line": 16, "attributes": {"name": "c"}}, "N20220": {"kind": "LiteralNode", "line": 16, "attributes": {"value": 1, "data_type": "INTEGER"}}, "N20229": {"kind": "AssignmentNode", "line": 18, "attributes": {}}, "N20225": {"kind": "IdentifierNode", "line": 18, "attributes": {"name": "r"}}, "N20228": {"kind": "BinaryNode", "line": 18, "attributes": {"operator": "-"}}, "N20226": {"kind": "IdentifierNode", "line": 18, "attributes": {"name": "row"}}, "N20227": {"kind": "LiteralNode", "line": 18, "attributes": {"value": 1, "data_type": "INTEGER"}}, "N20234": {"kind": "AssignmentNode", "line": 19, "attributes": {}}, "N20230": {"kind": "IdentifierNode", "line": 19, "attributes": {"name": "c"}}, "N20233": {"kind": "BinaryNode", "line": 19, "attributes": {"operator": "+"}}, "N20231": {"kind": "IdentifierNode", "line": 19, "attributes": {"name": "col"}}, "N20232": {"kind": "LiteralNode", "line": 19, "attributes": {"value": 1, "data_type": "INTEGER"}}, "N20262": {"kind": "WhileNode", "line": 20, "attributes": {}}, "N20241": {"kind": "BinaryNode", "line": 20, "attributes": {"operator": "AND"}}, "N20237": {"kind": "BinaryNode", "line": 20, "attributes": {"operator": ">="}}, "N20235": {"kind": "IdentifierNode", "line": 20, "attributes": {"name": "r"}}, "N20236": {"kind": "LiteralNode", "line": 20, "attributes": {"value": 0, "data_type": "INTEGER"}}, "N20240": {"kind": "BinaryNode", "line": 20, "attributes": {"operator": "<"}}, "N20238": {"kind": "IdentifierNode", "line": 20, "attributes": {"name": "c"}}, "N20239": {"kind": "IdentifierNode", "line": 20, "attributes": {"name": "n"}}, "N20261": {"kind": "BlockNode", "line": 21, "attributes": {}}, "N20250": {"kind": "IfNode", "line": 21, "attributes": {"else_if": [], "else_body": null}}, "N20246": {"kind": "BinaryNode", "line": 21, "attributes": {"operator": "=="}}, "N20244": {"kind": "IndexNode", "line": 21, "attributes": {}}, "N20242": {"kind": "IdentifierNode", "line": 21, "attributes": {"name": "board"}}, "N20243": {"kind": "IdentifierNode", "line": 21, "attributes": {"name": "r"}}, "N20245": {"kind": "IdentifierNode", "line": 21, "attributes": {"name": "c"}}, "N20249": {"kind": "BlockNode", "line": 22, "attributes": {}}, "N20248": {"kind": "ReturnNode", "line": 22, "attributes": {}}, "N20247": {"kind": "LiteralNode", "line": 22, "attributes": {"value": false, "data_type": "BOOLEAN"}}, "N20255": {"kind": "AssignmentNode", "line": 24, "attributes": {}}, "N20251": {"kind": "IdentifierNode", "line": 24, "attributes": {"name": "r"}}, "N20254": {"kind": "BinaryNode", "line": 24, "attributes": {"operator": "-"}}, "N20252": {"kind": "IdentifierNode", "line": 24, "attributes": {"name": "r"}}, "N20253": {"kind": "LiteralNode", "line": 24, "attributes": {"value": 1, "data_type": "INTEGER"}}, "N20260": {"kind": "AssignmentNode", "line": 25, "attributes": {}}, "N20256": {"kind": "IdentifierNode", "line": 25, "attributes": {"name": "c"}}, "N20259": {"kind": "BinaryNode", "line": 25, "attributes": {"operator": "+"}}, "N20257": {"kind": "IdentifierNode", "line": 25, "attributes": {"name": "c"}}, "N20258": {"kind": "LiteralNode", "line": 25, "attributes": {"value": 1, "data_type": "INTEGER"}}, "N20264": {"kind": "ReturnNode", "line": 27, "attributes": {}}, "N20263": {"kind": "LiteralNode", "line": 27, "attributes": {"value": true, "data_type": "BOOLEAN"}}, "N20329": {"kind": "FunctionNode", "line": 30, "attributes": {"name": "solve_n_queens_util"}}, "N20267": {"kind": "ParameterNode", "line": 30, "attributes": {"name": "board", "declared_type": null}}, "N20268": {"kind": "ParameterNode", "line": 30, "attributes": {"name": "row", "declared_type": null}}, "N20269": {"kind": "ParameterNode", "line": 30, "attributes": {"name": "n", "declared_type": null}}, "N20270": {"kind": "ParameterNode", "line": 30, "attributes": {"name": "solutions", "declared_type": null}}, "N20328": {"kind": "BlockNode", "line": 31, "attributes": {}}, "N20289": {"kind": "IfNode", "line": 31, "attributes": {"else_if": [], "else_body": null}}, "N20273": {"kind": "BinaryNode", "line": 31, "attributes": {"operator": "=="}}, "N20271": {"kind": "IdentifierNode", "line": 31, "attributes": {"name": "row"}}, "N20272": {"kind": "IdentifierNode", "line": 31, "attributes": {"name": "n"}}, "N20288": {"kind": "BlockNode", "line": 32, "attributes": {}}, "N20276": {"kind": "AssignmentNode", "line": 32, "attributes": {}}, "N20274": {"kind": "IdentifierNode", "line": 32, "attributes": {"name": "board_copy"}}, "N20275": {"kind": "EmptyLiteralNode", "line": 32, "attributes": {"empty_type": "LIST"}}, "N20283": {"kind": "ForEachNode", "line": 33, "attributes": {}}, "N20282": {"kind": "IdentifierNode", "line": 33, "attributes": {"name": "column"}}, "N20277": {"kind": "IdentifierNode", "line": 33, "attributes": {"name": "board"}}, "N20281": {"kind": "BlockNode", "line": 34, "attributes": {}}, "N20280": {"kind": "AppendNode", "line": 34, "attributes": {}}, "N20278": {"kind": "IdentifierNode", "line": 34, "attributes": {"name": "column"}}, "N20279": {"kind": "IdentifierNode", "line": 34, "attributes": {"name": "board_copy"}}, "N20286": {"kind": "AppendNode", "line": 36, "attributes": {}}, "N20284": {"kind": "IdentifierNode", "line": 36, "attributes": {"name": "board_copy"}}, "N20285": {"kind": "IdentifierNode", "line": 36, "attributes": {"name": "solutions"}}, "N20287": {"kind": "ReturnNode", "line": 37, "attributes": {"expression": null}}, "N20292": {"kind": "AssignmentNode", "line": 39, "attributes": {}}, "N20290": {"kind": "IdentifierNode", "line": 39, "attributes": {"name": "col"}}, "N20291": {"kind": "LiteralNode", "line": 39, "attributes": {"value": 0, "data_type": "INTEGER"}}, "N20327": {"kind": "WhileNode", "line": 40, "attributes": {}}, "N20295": {"kind": "BinaryNode", "line": 40, "attributes": {"operator": "<"}}, "N20293": {"kind": "IdentifierNode", "line": 40, "attributes": {"name": "col"}}, "N20294": {"kind": "IdentifierNode", "line": 40, "attributes": {"name": "n"}}, "N20326": {"kind": "BlockNode", "line": 41, "attributes": {}}, "N20320": {"kind": "IfNode", "line": 41, "attributes": {"else_if": [], "else_body": null}}, "N20300": {"kind": "CallNode", "line": 41, "attributes": {"name": "safe_placement"}}, "N20296": {"kind": "IdentifierNode", "line": 41, "attributes": {"name": "board"}}, "N20297": {"kind": "IdentifierNode", "line": 41, "attributes": {"name": "row"}}, "N20298": {"kind": "IdentifierNode", "line": 41, "attributes": {"name": "col"}}, "N20299": {"kind": "IdentifierNode", "line": 41, "attributes": {"name": "n"}}, "N20319": {"kind": "BlockNode", "line": 42, "attributes": {}}, "N20305": {"kind": "AssignmentNode", "line": 42, "attributes": {}}, "N20303": {"kind": "IndexNode", "line": 42, "attributes": {}}, "N20301": {"kind": "IdentifierNode", "line": 42, "attributes": {"name": "board"}}, "N20302": {"kind": "IdentifierNode", "line": 42, "attributes": {"name": "row"}}, "N20304": {"kind": "IdentifierNode", "line": 42, "attributes": {"name": "col"}}, "N20312": {"kind": "CallNode", "line": 43, "attributes": {"name": "solve_n_queens_util"}}, "N20306": {"kind": "IdentifierNode", "line": 43, "attributes": {"name": "board"}}, "N20309": {"kind": "BinaryNode", "line": 43, "attributes": {"operator": "+"}}, "N20307": {"kind": "IdentifierNode", "line": 43, "attributes": {"name": "row"}}, "N20308": {"kind": "LiteralNode", "line": 43, "attributes": {"value": 1, "data_type": "INTEGER"}}, "N20310": {"kind": "IdentifierNode", "line": 43, "attributes": {"name": "n"}}, "N20311": {"kind": "IdentifierNode", "line": 43, "attributes": {"name": "solutions"}}, "N20318": {"kind": "AssignmentNode", "line": 44, "attributes": {}}, "N20315": {"kind": "IndexNode", "line": 44, "attributes": {}}, "N20313": {"kind": "IdentifierNode", "line": 44, "attributes": {"name": "board"}}, "N20314": {"kind": "IdentifierNode", "line": 44, "attributes": {"name": "row"}}, "N20317": {"kind": "UnaryNode", "line": 44, "attributes": {"operator": "-"}}, "N20316": {"kind": "LiteralNode", "line": 44, "attributes": {"value": 1, "data_type": "INTEGER"}}, "N20325": {"kind": "AssignmentNode", "line": 46, "attributes": {}}, "N20321": {"kind": "IdentifierNode", "line": 46, "attributes": {"name": "col"}}, "N20324": {"kind": "BinaryNode", "line": 46, "attributes": {"operator": "+"}}, "N20322": {"kind": "IdentifierNode", "line": 46, "attributes": {"name": "col"}}, "N20323": {"kind": "LiteralNode", "line": 46, "attributes": {"value": 1, "data_type": "INTEGER"}}, "N20354": {"kind": "FunctionNode", "line": 50, "attributes": {"name": "solve_n_queens"}}, "N20330": {"kind": "ParameterNode", "line": 50, "attributes": {"name": "n", "declared_type": null}}, "N20353": {"kind": "BlockNode", "line": 51, "attributes": {}}, "N20333": {"kind": "AssignmentNode", "line": 51, "attributes": {}}, "N20331": {"kind": "IdentifierNode", "line": 51, "attributes": {"name": "board"}}, "N20332": {"kind": "EmptyLiteralNode", "line": 51, "attributes": {"empty_type": "LIST"}}, "N20342": {"kind": "ForRangeNode", "line": 52, "attributes": {"step": null}}, "N20341": {"kind": "IdentifierNode", "line": 52, "attributes": {"name": "fill_index"}}, "N20334": {"kind": "LiteralNode", "line": 52, "attributes": {"value": 0, "data_type": "INTEGER"}}, "N20335": {"kind": "IdentifierNode", "line": 52, "attributes": {"name": "n"}}, "N20340": {"kind": "BlockNode", "line": 53, "attributes": {}}, "N20339": {"kind": "AppendNode", "line": 53, "attributes": {}}, "N20337": {"kind": "UnaryNode", "line": 53, "attributes": {"operator": "-"}}, "N20336": {"kind": "LiteralNode", "line": 53, "attributes": {"value": 1, "data_type": "INTEGER"}}, "N20338": {"kind": "IdentifierNode", "line": 53, "attributes": {"name": "board"}}, "N20345": {"kind": "AssignmentNode", "line": 55, "attributes": {}}, "N20343": {"kind": "IdentifierNode", "line": 55, "attributes": {"name": "solutions"}}, "N20344": {"kind": "EmptyLiteralNode", "line": 55, "attributes": {"empty_type": "LIST"}}, "N20350": {"kind": "CallNode", "line": 56, "attributes": {"name": "solve_n_queens_util"}}, "N20346": {"kind": "IdentifierNode", "line": 56, "attributes": {"name": "board"}}, "N20347": {"kind": "LiteralNode", "line": 56, "attributes": {"value": 0, "data_type": "INTEGER"}}, "N20348": {"kind": "IdentifierNode", "line": 56, "attributes": {"name": "n"}}, "N20349": {"kind": "IdentifierNode", "line": 56, "attributes": {"name": "solutions"}}, "N20352": {"kind": "ReturnNode", "line": 57, "attributes": {}}, "N20351": {"kind": "IdentifierNode", "line": 57, "attributes": {"name": "solutions"}}, "N20412": {"kind": "FunctionNode", "line": 60, "attributes": {"name": "print_board"}}, "N20355": {"kind": "ParameterNode", "line": 60, "attributes": {"name": "solution", "declared_type": null}}, "N20411": {"kind": "BlockNode", "line": 61, "attributes": {}}, "N20359": {"kind": "AssignmentNode", "line": 61, "attributes": {}}, "N20356": {"kind": "IdentifierNode", "line": 61, "attributes": {"name": "n"}}, "N20358": {"kind": "LengthNode", "line": 61, "attributes": {}}, "N20357": {"kind": "IdentifierNode", "line": 61, "attributes": {"name": "solution"}}, "N20362": {"kind": "AssignmentNode", "line": 62, "attributes": {}}, "N20360": {"kind": "IdentifierNode", "line": 62, "attributes": {"name": "r"}}, "N20361": {"kind": "LiteralNode", "line": 62, "attributes": {"value": 0, "data_type": "INTEGER"}}, "N20408": {"kind": "WhileNode", "line": 63, "attributes": {}}, "N20365": {"kind": "BinaryNode", "line": 63, "attributes": {"operator": "<"}}, "N20363": {"kind": "IdentifierNode", "line": 63, "attributes": {"name": "r"}}, "N20364": {"kind": "IdentifierNode", "line": 63, "attributes": {"name": "n"}}, "N20407": {"kind": "BlockNode", "line": 64, "attributes": {}}, "N20368": {"kind": "AssignmentNode", "line": 64, "attributes": {}}, "N20366": {"kind": "IdentifierNode", "line": 64, "attributes": {"name": "row_str"}}, "N20367": {"kind": "EmptyLiteralNode", "line": 64, "attributes": {"empty_type": "STRING"}}, "N20371": {"kind": "AssignmentNode", "line": 65, "attributes": {}}, "N20369": {"kind": "IdentifierNode", "line": 65, "attributes": {"name": "c"}}, "N20370": {"kind": "LiteralNode", "line": 65, "attributes": {"value": 0, "data_type": "INTEGER"}}, "N20399": {"kind": "WhileNode", "line": 66, "attributes": {}}, "N20374": {"kind": "BinaryNode", "line": 66, "attributes": {"operator": "<"}}, "N20372": {"kind": "IdentifierNode", "line": 66, "attributes": {"name": "c"}}, "N20373": {"kind": "IdentifierNode", "line": 66, "attributes": {"name": "n"}}, "N20398": {"kind": "BlockNode", "line": 67, "attributes": {}}, "N20392": {"kind": "IfNode", "line": 67, "attributes": {"else_if": []}}, "N20379": {"kind": "BinaryNode", "line": 67, "attributes": {"operator": "=="}}, "N20377": {"kind": "IndexNode", "line": 67, "attributes": {}}, "N20375": {"kind": "IdentifierNode", "line": 67, "attributes": {"name": "solution"}}, "N20376": {"kind": "IdentifierNode", "line": 67, "attributes": {"name": "r"}}, "N20378": {"kind": "IdentifierNode", "line": 67, "attributes": {"name": "c"}}, "N20385": {"kind": "BlockNode", "line": 68, "attributes": {}}, "N20384": {"kind": "AssignmentNode", "line": 68, "attributes": {}}, "N20380": {"kind": "IdentifierNode", "line": 68, "attributes": {"name": "row_str"}}, "N20383": {"kind": "BinaryNode", "line": 68, "attributes": {"operator": "+"}}, "N20381": {"kind": "IdentifierNode", "line": 68, "attributes": {"name": "row_str"}}, "N20382": {"kind": "LiteralNode", "line": 68, "attributes": {"value": "Q ", "data_type": "STRING"}}, "N20391": {"kind": "BlockNode", "line": 70, "attributes": {}}, "N20390": {"kind": "AssignmentNode", "line": 70, "attributes": {}}, "N20386": {"kind": "IdentifierNode", "line": 70, "attributes": {"name": "row_str"}}, "N20389": {"kind": "BinaryNode", "line": 70, "attributes": {"operator": "+"}}, "N20387": {"kind": "IdentifierNode", "line": 70, "attributes": {"name": "row_str"}}, "N20388": {"kind": "LiteralNode", "line": 70, "attributes": {"value": ". ", "data_type": "STRING"}}, "N20397": {"kind": "AssignmentNode", "line": 72, "attributes": {}}, "N20393": {"kind": "IdentifierNode", "line": 72, "attributes": {"name": "c"}}, "N20396": {"kind": "BinaryNode", "line": 72, "attributes": {"operator": "+"}}, "N20394": {"kind": "IdentifierNode", "line": 72, "attributes": {"name": "c"}}, "N20395": {"kind": "LiteralNode", "line": 72, "attributes": {"value": 1, "data_type": "INTEGER"}}, "N20401": {"kind": "OutputNode", "line": 74, "attributes": {}}, "N20400": {"kind": "IdentifierNode", "line": 74, "attributes": {"name": "row_str"}}, "N20406": {"kind": "AssignmentNode", "line": 75, "attributes": {}}, "N20402": {"kind": "IdentifierNode", "line": 75, "attributes": {"name": "r"}}, "N20405": {"kind": "BinaryNode", "line": 75, "attributes": {"operator": "+"}}, "N20403": {"kind": "IdentifierNode", "line": 75, "attributes": {"name": "r"}}, "N20404": {"kind": "LiteralNode", "line": 75, "attributes": {"value": 1, "data_type": "INTEGER"}}, "N20410": {"kind": "OutputNode", "line": 77, "attributes": {}}, "N20409": {"kind": "EmptyLiteralNode", "line": 77, "attributes": {"empty_type": "STRING"}}, "N20445": {"kind": "FunctionNode", "line": 80, "attributes": {"name": "print_all_solutions"}}, "N20413": {"kind": "ParameterNode", "line": 80, "attributes": {"name": "solutions", "declared_type": null}}, "N20444": {"kind": "BlockNode", "line": 81, "attributes": {}}, "N20417": {"kind": "AssignmentNode", "line": 81, "attributes": {}}, "N20414": {"kind": "IdentifierNode", "line": 81, "attributes": {"name": "total"}}, "N20416": {"kind": "LengthNode", "line": 81, "attributes": {}}, "N20415": {"kind": "IdentifierNode", "line": 81, "attributes": {"name": "solutions"}}, "N20419": {"kind": "OutputNode", "line": 82, "attributes": {}}, "N20418": {"kind": "LiteralNode", "line": 82, "attributes": {"value": "\nShowing ALL {total} solutions:\n", "data_type": "STRING"}}, "N20422": {"kind": "AssignmentNode", "line": 83, "attributes": {}}, "N20420": {"kind": "IdentifierNode", "line": 83, "attributes": {"name": "i"}}, "N20421": {"kind": "LiteralNode", "line": 83, "attributes": {"value": 0, "data_type": "INTEGER"}}, "N20443": {"kind": "WhileNode", "line": 84, "attributes": {}}, "N20425": {"kind": "BinaryNode", "line": 84, "attributes": {"operator": "<"}}, "N20423": {"kind": "IdentifierNode", "line": 84, "attributes": {"name": "i"}}, "N20424": {"kind": "IdentifierNode", "line": 84, "attributes": {"name": "total"}}, "N20442": {"kind": "BlockNode", "line": 85, "attributes": {}}, "N20430": {"kind": "AssignmentNode", "line": 85, "attributes": {}}, "N20426": {"kind": "IdentifierNode", "line": 85, "attributes": {"name": "solution_number"}}, "N20429": {"kind": "BinaryNode", "line": 85, "attributes": {"operator": "+"}}, "N20427": {"kind": "IdentifierNode", "line": 85, "attributes": {"name": "i"}}, "N20428": {"kind": "LiteralNode", "line": 85, "attributes": {"value": 1, "data_type": "INTEGER"}}, "N20432": {"kind": "OutputNode", "line": 86, "attributes": {}}, "N20431": {"kind": "LiteralNode", "line": 86, "attributes": {"value": "Solution {solution_number}:", "data_type": "STRING"}}, "N20436": {"kind": "CallNode", "line": 87, "attributes": {"name": "print_board"}}, "N20435": {"kind": "IndexNode", "line": 87, "attributes": {}}, "N20433": {"kind": "IdentifierNode", "line": 87, "attributes": {"name": "solutions"}}, "N20434": {"kind": "IdentifierNode", "line": 87, "attributes": {"name": "i"}}, "N20441": {"kind": "AssignmentNode", "line": 88, "attributes": {}}, "N20437": {"kind": "IdentifierNode", "line": 88, "attributes": {"name": "i"}}, "N20440": {"kind": "BinaryNode", "line": 88, "attributes": {"operator": "+"}}, "N20438": {"kind": "IdentifierNode", "line": 88, "attributes": {"name": "i"}}, "N20439": {"kind": "LiteralNode", "line": 88, "attributes": {"value": 1, "data_type": "INTEGER"}}, "N20450": {"kind": "AssignmentNode", "line": 92, "attributes": {}}, "N20446": {"kind": "IdentifierNode", "line": 92, "attributes": {"name": "N"}}, "N20449": {"kind": "CastNode", "line": 92, "attributes": {"target_type": "INTEGER"}}, "N20448": {"kind": "InputNode", "line": 92, "attributes": {}}, "N20447": {"kind": "LiteralNode", "line": 92, "attributes": {"value": "Enter board size N: ", "data_type": "STRING"}}, "N20454": {"kind": "AssignmentNode", "line": 93, "attributes": {}}, "N20451": {"kind": "IdentifierNode", "line": 93, "attributes": {"name": "solutions"}}, "N20453": {"kind": "CallNode", "line": 93, "attributes": {"name": "solve_n_queens"}}, "N20452": {"kind": "IdentifierNode", "line": 93, "attributes": {"name": "N"}}, "N20458": {"kind": "AssignmentNode", "line": 94, "attributes": {}}, "N20455": {"kind": "IdentifierNode", "line": 94, "attributes": {"name": "total"}}, "N20457": {"kind": "LengthNode", "line": 94, "attributes": {}}, "N20456": {"kind": "IdentifierNode", "line": 94, "attributes": {"name": "solutions"}}, "N20460": {"kind": "OutputNode", "line": 95, "attributes": {}}, "N20459": {"kind": "LiteralNode", "line": 95, "attributes": {"value": "\nSolved {N}-Queens.", "data_type": "STRING"}}, "N20462": {"kind": "OutputNode", "line": 96, "attributes": {}}, "N20461": {"kind": "LiteralNode", "line": 96, "attributes": {"value": "Total solutions: {total}\n", "data_type": "STRING"}}, "N20465": {"kind": "AssignmentNode", "line": 97, "attributes": {}}, "N20463": {"kind": "IdentifierNode", "line": 97, "attributes": {"name": "index"}}, "N20464": {"kind": "LiteralNode", "line": 97, "attributes": {"value": 0, "data_type": "INTEGER"}}, "N20648": {"kind": "WhileNode", "line": 98, "attributes": {}}, "N20466": {"kind": "LiteralNode", "line": 98, "attributes": {"value": true, "data_type": "BOOLEAN"}}, "N20647": {"kind": "BlockNode", "line": 99, "attributes": {}}, "N20468": {"kind": "OutputNode", "line": 99, "attributes": {}}, "N20467": {"kind": "LiteralNode", "line": 99, "attributes": {"value": "Menu:", "data_type": "STRING"}}, "N20470": {"kind": "OutputNode", "line": 100, "attributes": {}}, "N20469": {"kind": "LiteralNode", "line": 100, "attributes": {"value": "  1 - Show current solution", "data_type": "STRING"}}, "N20472": {"kind": "OutputNode", "line": 101, "attributes": {}}, "N20471": {"kind": "LiteralNode", "line": 101, "attributes": {"value": "  2 - Next solution", "data_type": "STRING"}}, "N20474": {"kind": "OutputNode", "line": 102, "attributes": {}}, "N20473": {"kind": "LiteralNode", "line": 102, "attributes": {"value": "  3 - Previous solution", "data_type": "STRING"}}, "N20476": {"kind": "OutputNode", "line": 103, "attributes": {}}, "N20475": {"kind": "LiteralNode", "line": 103, "attributes": {"value": "  4 - Go to solution number", "data_type": "STRING"}}, "N20478": {"kind": "OutputNode", "line": 104, "attributes": {}}, "N20477": {"kind": "LiteralNode", "line": 104, "attributes": {"value": "  5 - Show ALL solutions", "data_type": "STRING"}}, "N20480": {"kind": "OutputNode", "line": 105, "attributes": {}}, "N20479": {"kind": "LiteralNode", "line": 105, "attributes": {"value": "  6 - Quit", "data_type": "STRING"}}, "N20485": {"kind": "AssignmentNode", "line": 106, "attributes": {}}, "N20481": {"kind": "IdentifierNode", "line": 106, "attributes": {"name": "choice"}}, "N20484": {"kind": "MemberCallNode", "line": 106, "attributes": {"member": "strip", "arguments": [], "resolved_intrinsic": null}}, "N20483": {"kind": "InputNode", "line": 106, "attributes": {}}, "N20482": {"kind": "LiteralNode", "line": 106, "attributes": {"value": "Enter choice: ", "data_type": "STRING"}}, "N20646": {"kind": "IfNode", "line": 107, "attributes": {}}, "N20488": {"kind": "BinaryNode", "line": 107, "attributes": {"operator": "=="}}, "N20486": {"kind": "IdentifierNode", "line": 107, "attributes": {"name": "choice"}}, "N20487": {"kind": "LiteralNode", "line": 107, "attributes": {"value": "1", "data_type": "STRING"}}, "N20508": {"kind": "BlockNode", "line": 108, "attributes": {}}, "N20507": {"kind": "IfNode", "line": 108, "attributes": {"else_if": []}}, "N20491": {"kind": "BinaryNode", "line": 108, "attributes": {"operator": ">"}}, "N20489": {"kind": "IdentifierNode", "line": 108, "attributes": {"name": "total"}}, "N20490": {"kind": "LiteralNode", "line": 108, "attributes": {"value": 0, "data_type": "INTEGER"}}, "N20503": {"kind": "BlockNode", "line": 109, "attributes": {}}, "N20496": {"kind": "AssignmentNode", "line": 109, "attributes": {}}, "N20492": {"kind": "IdentifierNode", "line": 109, "attributes": {"name": "solution_number"}}, "N20495": {"kind": "BinaryNode", "line": 109, "attributes": {"operator": "+"}}, "N20493": {"kind": "IdentifierNode", "line": 109, "attributes": {"name": "index"}}, "N20494": {"kind": "LiteralNode", "line": 109, "attributes": {"value": 1, "data_type": "INTEGER"}}, "N20498": {"kind": "OutputNode", "line": 110, "attributes": {}}, "N20497": {"kind": "LiteralNode", "line": 110, "attributes": {"value": "\nShowing solution {solution_number} of {total}:\n", "data_type": "STRING"}}, "N20502": {"kind": "CallNode", "line": 111, "attributes": {"name": "print_board"}}, "N20501": {"kind": "IndexNode", "line": 111, "attributes": {}}, "N20499": {"kind": "IdentifierNode", "line": 111, "attributes": {"name": "solutions"}}, "N20500": {"kind": "IdentifierNode", "line": 111, "attributes": {"name": "index"}}, "N20506": {"kind": "BlockNode", "line": 113, "attributes": {}}, "N20505": {"kind": "OutputNode", "line": 113, "attributes": {}}, "N20504": {"kind": "LiteralNode", "line": 113, "attributes": {"value": "\nNo solutions exist for this N.\n", "data_type": "STRING"}}, "N20539": {"kind": "ElseIfNode", "line": 115, "attributes": {}}, "N20511": {"kind": "BinaryNode", "line": 115, "attributes": {"operator": "=="}}, "N20509": {"kind": "IdentifierNode", "line": 115, "attributes": {"name": "choice"}}, "N20510": {"kind": "LiteralNode", "line": 115, "attributes": {"value": "2", "data_type": "STRING"}}, "N20538": {"kind": "BlockNode", "line": 116, "attributes": {}}, "N20537": {"kind": "IfNode", "line": 116, "attributes": {"else_if": []}}, "N20514": {"kind": "BinaryNode", "line": 116, "attributes": {"operator": ">"}}, "N20512": {"kind": "IdentifierNode", "line": 116, "attributes": {"name": "total"}}, "N20513": {"kind": "LiteralNode", "line": 116, "attributes": {"value": 0, "data_type": "INTEGER"}}, "N20533": {"kind": "BlockNode", "line": 117, "attributes": {}}, "N20521": {"kind": "AssignmentNode", "line": 117, "attributes": {}}, "N20515": {"kind": "IdentifierNode", "line": 117, "attributes": {"name": "index"}}, "N20520": {"kind": "BinaryNode", "line": 117, "attributes": {"operator": "MODULUS"}}, "N20518": {"kind": "BinaryNode", "line": 117, "attributes": {"operator": "+"}}, "N20516": {"kind": "IdentifierNode", "line": 117, "attributes": {"name": "index"}}, "N20517": {"kind": "LiteralNode", "line": 117, "attributes": {"value": 1, "data_type": "INTEGER"}}, "N20519": {"kind": "IdentifierNode", "line": 117, "attributes": {"name": "total"}}, "N20526": {"kind": "AssignmentNode", "line": 118, "attributes": {}}, "N20522": {"kind": "IdentifierNode", "line": 118, "attributes": {"name": "solution_number"}}, "N20525": {"kind": "BinaryNode", "line": 118, "attributes": {"operator": "+"}}, "N20523": {"kind": "IdentifierNode", "line": 118, "attributes": {"name": "index"}}, "N20524": {"kind": "LiteralNode", "line": 118, "attributes": {"value": 1, "data_type": "INTEGER"}}, "N20528": {"kind": "OutputNode", "line": 119, "attributes": {}}, "N20527": {"kind": "LiteralNode", "line": 119, "attributes": {"value": "\nShowing solution {solution_number} of {total}:\n", "data_type": "STRING"}}, "N20532": {"kind": "CallNode", "line": 120, "attributes": {"name": "print_board"}}, "N20531": {"kind": "IndexNode", "line": 120, "attributes": {}}, "N20529": {"kind": "IdentifierNode", "line": 120, "attributes": {"name": "solutions"}}, "N20530": {"kind": "IdentifierNode", "line": 120, "attributes": {"name": "index"}}, "N20536": {"kind": "BlockNode", "line": 122, "attributes": {}}, "N20535": {"kind": "OutputNode", "line": 122, "attributes": {}}, "N20534": {"kind": "LiteralNode", "line": 122, "attributes": {"value": "\nNo solutions.\n", "data_type": "STRING"}}, "N20570": {"kind": "ElseIfNode", "line": 124, "attributes": {}}, "N20542": {"kind": "BinaryNode", "line": 124, "attributes": {"operator": "=="}}, "N20540": {"kind": "IdentifierNode", "line": 124, "attributes": {"name": "choice"}}, "N20541": {"kind": "LiteralNode", "line": 124, "attributes": {"value": "3", "data_type": "STRING"}}, "N20569": {"kind": "BlockNode", "line": 125, "attributes": {}}, "N20568": {"kind": "IfNode", "line": 125, "attributes": {"else_if": []}}, "N20545": {"kind": "BinaryNode", "line": 125, "attributes": {"operator": ">"}}, "N20543": {"kind": "IdentifierNode", "line": 125, "attributes": {"name": "total"}}, "N20544": {"kind": "LiteralNode", "line": 125, "attributes": {"value": 0, "data_type": "INTEGER"}}, "N20564": {"kind": "BlockNode", "line": 126, "attributes": {}}, "N20552": {"kind": "AssignmentNode", "line": 126, "attributes": {}}, "N20546": {"kind": "IdentifierNode", "line": 126, "attributes": {"name": "index"}}, "N20551": {"kind": "BinaryNode", "line": 126, "attributes": {"operator": "MODULUS"}}, "N20549": {"kind": "BinaryNode", "line": 126, "attributes": {"operator": "-"}}, "N20547": {"kind": "IdentifierNode", "line": 126, "attributes": {"name": "index"}}, "N20548": {"kind": "LiteralNode", "line": 126, "attributes": {"value": 1, "data_type": "INTEGER"}}, "N20550": {"kind": "IdentifierNode", "line": 126, "attributes": {"name": "total"}}, "N20557": {"kind": "AssignmentNode", "line": 127, "attributes": {}}, "N20553": {"kind": "IdentifierNode", "line": 127, "attributes": {"name": "solution_number"}}, "N20556": {"kind": "BinaryNode", "line": 127, "attributes": {"operator": "+"}}, "N20554": {"kind": "IdentifierNode", "line": 127, "attributes": {"name": "index"}}, "N20555": {"kind": "LiteralNode", "line": 127, "attributes": {"value": 1, "data_type": "INTEGER"}}, "N20559": {"kind": "OutputNode", "line": 128, "attributes": {}}, "N20558": {"kind": "LiteralNode", "line": 128, "attributes": {"value": "\nShowing solution {solution_number} of {total}:\n", "data_type": "STRING"}}, "N20563": {"kind": "CallNode", "line": 129, "attributes": {"name": "print_board"}}, "N20562": {"kind": "IndexNode", "line": 129, "attributes": {}}, "N20560": {"kind": "IdentifierNode", "line": 129, "attributes": {"name": "solutions"}}, "N20561": {"kind": "IdentifierNode", "line": 129, "attributes": {"name": "index"}}, "N20567": {"kind": "BlockNode", "line": 131, "attributes": {}}, "N20566": {"kind": "OutputNode", "line": 131, "attributes": {}}, "N20565": {"kind": "LiteralNode", "line": 131, "attributes": {"value": "\nNo solutions.\n", "data_type": "STRING"}}, "N20627": {"kind": "ElseIfNode", "line": 133, "attributes": {}}, "N20573": {"kind": "BinaryNode", "line": 133, "attributes": {"operator": "=="}}, "N20571": {"kind": "IdentifierNode", "line": 133, "attributes": {"name": "choice"}}, "N20572": {"kind": "LiteralNode", "line": 133, "attributes": {"value": "4", "data_type": "STRING"}}, "N20626": {"kind": "BlockNode", "line": 134, "attributes": {}}, "N20625": {"kind": "IfNode", "line": 134, "attributes": {"else_if": []}}, "N20576": {"kind": "BinaryNode", "line": 134, "attributes": {"operator": ">"}}, "N20574": {"kind": "IdentifierNode", "line": 134, "attributes": {"name": "total"}}, "N20575": {"kind": "LiteralNode", "line": 134, "attributes": {"value": 0, "data_type": "INTEGER"}}, "N20621": {"kind": "BlockNode", "line": 135, "attributes": {}}, "N20581": {"kind": "AssignmentNode", "line": 135, "attributes": {}}, "N20577": {"kind": "IdentifierNode", "line": 135, "attributes": {"name": "num"}}, "N20580": {"kind": "MemberCallNode", "line": 135, "attributes": {"member": "strip", "arguments": [], "resolved_intrinsic": null}}, "N20579": {"kind": "InputNode", "line": 135, "attributes": {}}, "N20578": {"kind": "LiteralNode", "line": 135, "attributes": {"value": "Enter solution number: ", "data_type": "STRING"}}, "N20620": {"kind": "IfNode", "line": 136, "attributes": {"else_if": []}}, "N20583": {"kind": "MemberCallNode", "line": 136, "attributes": {"member": "isdigit", "arguments": [], "resolved_intrinsic": null}}, "N20582": {"kind": "IdentifierNode", "line": 136, "attributes": {"name": "num"}}, "N20616": {"kind": "BlockNode", "line": 137, "attributes": {}}, "N20587": {"kind": "AssignmentNode", "line": 137, "attributes": {}}, "N20584": {"kind": "IdentifierNode", "line": 137, "attributes": {"name": "num"}}, "N20586": {"kind": "CastNode", "line": 137, "attributes": {"target_type": "INTEGER"}}, "N20585": {"kind": "IdentifierNode", "line": 137, "attributes": {"name": "num"}}, "N20615": {"kind": "IfNode", "line": 138, "attributes": {"else_if": []}}, "N20594": {"kind": "BinaryNode", "line": 138, "attributes": {"operator": "AND"}}, "N20590": {"kind": "BinaryNode", "line": 138, "attributes": {"operator": "<="}}, "N20588": {"kind": "LiteralNode", "line": 138, "attributes": {"value": 1, "data_type": "INTEGER"}}, "N20589": {"kind": "IdentifierNode", "line": 138, "attributes": {"name": "num"}}, "N20593": {"kind": "BinaryNode", "line": 138, "attributes": {"operator": "<="}}, "N20591": {"kind": "IdentifierNode", "line": 138, "attributes": {"name": "num"}}, "N20592": {"kind": "IdentifierNode", "line": 138, "attributes": {"name": "total"}}, "N20611": {"kind": "BlockNode", "line": 139, "attributes": {}}, "N20599": {"kind": "AssignmentNode", "line": 139, "attributes": {}}, "N20595": {"kind": "IdentifierNode", "line": 139, "attributes": {"name": "index"}}, "N20598": {"kind": "BinaryNode", "line": 139, "attributes": {"operator": "-"}}, "N20596": {"kind": "IdentifierNode", "line": 139, "attributes": {"name": "num"}}, "N20597": {"kind": "LiteralNode", "line": 139, "attributes": {"value": 1, "data_type": "INTEGER"}}, "N20604": {"kind": "AssignmentNode", "line": 140, "attributes": {}}, "N20600": {"kind": "IdentifierNode", "line": 140, "attributes": {"name": "solution_number"}}, "N20603": {"kind": "BinaryNode", "line": 140, "attributes": {"operator": "+"}}, "N20601": {"kind": "IdentifierNode", "line": 140, "attributes": {"name": "index"}}, "N20602": {"kind": "LiteralNode", "line": 140, "attributes": {"value": 1, "data_type": "INTEGER"}}, "N20606": {"kind": "OutputNode", "line": 141, "attributes": {}}, "N20605": {"kind": "LiteralNode", "line": 141, "attributes": {"value": "\nShowing solution {solution_number} of {total}:\n", "data_type": "STRING"}}, "N20610": {"kind": "CallNode", "line": 142, "attributes": {"name": "print_board"}}, "N20609": {"kind": "IndexNode", "line": 142, "attributes": {}}, "N20607": {"kind": "IdentifierNode", "line": 142, "attributes": {"name": "solutions"}}, "N20608": {"kind": "IdentifierNode", "line": 142, "attributes": {"name": "index"}}, "N20614": {"kind": "BlockNode", "line": 144, "attributes": {}}, "N20613": {"kind": "OutputNode", "line": 144, "attributes": {}}, "N20612": {"kind": "LiteralNode", "line": 144, "attributes": {"value": "\nInvalid number.\n", "data_type": "STRING"}}, "N20619": {"kind": "BlockNode", "line": 147, "attributes": {}}, "N20618": {"kind": "OutputNode", "line": 147, "attributes": {}}, "N20617": {"kind": "LiteralNode", "line": 147, "attributes": {"value": "\nInvalid input.\n", "data_type": "STRING"}}, "N20624": {"kind": "BlockNode", "line": 150, "attributes": {}}, "N20623": {"kind": "OutputNode", "line": 150, "attributes": {}}, "N20622": {"kind": "LiteralNode", "line": 150, "attributes": {"value": "\nNo solutions.\n", "data_type": "STRING"}}, "N20634": {"kind": "ElseIfNode", "line": 152, "attributes": {}}, "N20630": {"kind": "BinaryNode", "line": 152, "attributes": {"operator": "=="}}, "N20628": {"kind": "IdentifierNode", "line": 152, "attributes": {"name": "choice"}}, "N20629": {"kind": "LiteralNode", "line": 152, "attributes": {"value": "5", "data_type": "STRING"}}, "N20633": {"kind": "BlockNode", "line": 153, "attributes": {}}, "N20632": {"kind": "CallNode", "line": 153, "attributes": {"name": "print_all_solutions"}}, "N20631": {"kind": "IdentifierNode", "line": 153, "attributes": {"name": "solutions"}}, "N20642": {"kind": "ElseIfNode", "line": 154, "attributes": {}}, "N20637": {"kind": "BinaryNode", "line": 154, "attributes": {"operator": "=="}}, "N20635": {"kind": "IdentifierNode", "line": 154, "attributes": {"name": "choice"}}, "N20636": {"kind": "LiteralNode", "line": 154, "attributes": {"value": "6", "data_type": "STRING"}}, "N20641": {"kind": "BlockNode", "line": 155, "attributes": {}}, "N20639": {"kind": "OutputNode", "line": 155, "attributes": {}}, "N20638": {"kind": "LiteralNode", "line": 155, "attributes": {"value": "\nExiting program.\n", "data_type": "STRING"}}, "N20640": {"kind": "BreakNode", "line": 156, "attributes": {}}, "N20645": {"kind": "BlockNode", "line": 158, "attributes": {}}, "N20644": {"kind": "OutputNode", "line": 158, "attributes": {}}, "N20643": {"kind": "LiteralNode", "line": 158, "attributes": {"value": "\nInvalid option.\n", "data_type": "STRING"}}}, "adjacency": {"N20649": ["N20266", "N20329", "N20354", "N20412", "N20445", "N20450", "N20454", "N20458", "N20460", "N20462", "N20465", "N20648"], "N20266": ["N20161", "N20162", "N20163", "N20164", "N20265"], "N20161": [], "N20162": [], "N20163": [], "N20164": [], "N20265": ["N20167", "N20186", "N20191", "N20196", "N20224", "N20229", "N20234", "N20262", "N20264"], "N20167": ["N20165", "N20166"], "N20165": [], "N20166": [], "N20186": ["N20170", "N20185"], "N20170": ["N20168", "N20169"], "N20168": [], "N20169": [], "N20185": ["N20179", "N20184"], "N20179": ["N20175", "N20178"], "N20175": ["N20173", "N20174"], "N20173": ["N20171", "N20172"], "N20171": [], "N20172": [], "N20174": [], "N20178": ["N20177"], "N20177": ["N20176"], "N20176": [], "N20184": ["N20180", "N20183"], "N20180": [], "N20183": ["N20181", "N20182"], "N20181": [], "N20182": [], "N20191": ["N20187", "N20190"], "N20187": [], "N20190": ["N20188", "N20189"], "N20188": [], "N20189": [], "N20196": ["N20192", "N20195"], "N20192": [], "N20195": ["N20193", "N20194"], "N20193": [], "N20194": [], "N20224": ["N20203", "N20223"], "N20203": ["N20199", "N20202"], "N20199": ["N20197", "N20198"], "N20197": [], "N20198": [], "N20202": ["N20200", "N20201"], "N20200": [], "N20201": [], "N20223": ["N20212", "N20217", "N20222"], "N20212": ["N20208", "N20211"], "N20208": ["N20206", "N20207"], "N20206": ["N20204", "N20205"], "N20204": [], "N20205": [], "N20207": [], "N20211": ["N20210"], "N20210": ["N20209"], "N20209": [], "N20217": ["N20213", "N20216"], "N20213": [], "N20216": ["N20214", "N20215"], "N20214": [], "N20215": [], "N20222": ["N20218", "N20221"], "N20218": [], "N20221": ["N20219", "N20220"], "N20219": [], "N20220": [], "N20229": ["N20225", "N20228"], "N20225": [], "N20228": ["N20226", "N20227"], "N20226": [], "N20227": [], "N20234": ["N20230", "N20233"], "N20230": [], "N20233": ["N20231", "N20232"], "N20231": [], "N20232": [], "N20262": ["N20241", "N20261"], "N20241": ["N20237", "N20240"], "N20237": ["N20235", "N20236"], "N20235": [], "N20236": [], "N20240": ["N20238", "N20239"], "N20238": [], "N20239": [], "N20261": ["N20250", "N20255", "N20260"], "N20250": ["N20246", "N20249"], "N20246": ["N20244", "N20245"], "N20244": ["N20242", "N20243"], "N20242": [], "N20243": [], "N20245": [], "N20249": ["N20248"], "N20248": ["N20247"], "N20247": [], "N20255": ["N20251", "N20254"], "N20251": [], "N20254": ["N20252", "N20253"], "N20252": [], "N20253": [], "N20260": ["N20256", "N20259"], "N20256": [], "N20259": ["N20257", "N20258"], "N20257": [], "N20258": [], "N20264": ["N20263"], "N20263": [], "N20329": ["N20267", "N20268", "N20269", "N20270", "N20328"], "N20267": [], "N20268": [], "N20269": [], "N20270": [], "N20328": ["N20289", "N20292", "N20327"], "N20289": ["N20273", "N20288"], "N20273": ["N20271", "N20272"], "N20271": [], "N20272": [], "N20288": ["N20276", "N20283", "N20286", "N20287"], "N20276": ["N20274", "N20275"], "N20274": [], "N20275": [], "N20283": ["N20282", "N20277", "N20281"], "N20282": [], "N20277": [], "N20281": ["N20280"], "N20280": ["N20278", "N20279"], "N20278": [], "N20279": [], "N20286": ["N20284", "N20285"], "N20284": [], "N20285": [], "N20287": [], "N20292": ["N20290", "N20291"], "N20290": [], "N20291": [], "N20327": ["N20295", "N20326"], "N20295": ["N20293", "N20294"], "N20293": [], "N20294": [], "N20326": ["N20320", "N20325"], "N20320": ["N20300", "N20319"], "N20300": ["N20296", "N20297", "N20298", "N20299"], "N20296": [], "N20297": [], "N20298": [], "N20299": [], "N20319": ["N20305", "N20312", "N20318"], "N20305": ["N20303", "N20304"], "N20303": ["N20301", "N20302"], "N20301": [], "N20302": [], "N20304": [], "N20312": ["N20306", "N20309", "N20310", "N20311"], "N20306": [], "N20309": ["N20307", "N20308"], "N20307": [], "N20308": [], "N20310": [], "N20311": [], "N20318": ["N20315", "N20317"], "N20315": ["N20313", "N20314"], "N20313": [], "N20314": [], "N20317": ["N20316"], "N20316": [], "N20325": ["N20321", "N20324"], "N20321": [], "N20324": ["N20322", "N20323"], "N20322": [], "N20323": [], "N20354": ["N20330", "N20353"], "N20330": [], "N20353": ["N20333", "N20342", "N20345", "N20350", "N20352"], "N20333": ["N20331", "N20332"], "N20331": [], "N20332": [], "N20342": ["N20341", "N20334", "N20335", "N20340"], "N20341": [], "N20334": [], "N20335": [], "N20340": ["N20339"], "N20339": ["N20337", "N20338"], "N20337": ["N20336"], "N20336": [], "N20338": [], "N20345": ["N20343", "N20344"], "N20343": [], "N20344": [], "N20350": ["N20346", "N20347", "N20348", "N20349"], "N20346": [], "N20347": [], "N20348": [], "N20349": [], "N20352": ["N20351"], "N20351": [], "N20412": ["N20355", "N20411"], "N20355": [], "N20411": ["N20359", "N20362", "N20408", "N20410"], "N20359": ["N20356", "N20358"], "N20356": [], "N20358": ["N20357"], "N20357": [], "N20362": ["N20360", "N20361"], "N20360": [], "N20361": [], "N20408": ["N20365", "N20407"], "N20365": ["N20363", "N20364"], "N20363": [], "N20364": [], "N20407": ["N20368", "N20371", "N20399", "N20401", "N20406"], "N20368": ["N20366", "N20367"], "N20366": [], "N20367": [], "N20371": ["N20369", "N20370"], "N20369": [], "N20370": [], "N20399": ["N20374", "N20398"], "N20374": ["N20372", "N20373"], "N20372": [], "N20373": [], "N20398": ["N20392", "N20397"], "N20392": ["N20379", "N20385", "N20391"], "N20379": ["N20377", "N20378"], "N20377": ["N20375", "N20376"], "N20375": [], "N20376": [], "N20378": [], "N20385": ["N20384"], "N20384": ["N20380", "N20383"], "N20380": [], "N20383": ["N20381", "N20382"], "N20381": [], "N20382": [], "N20391": ["N20390"], "N20390": ["N20386", "N20389"], "N20386": [], "N20389": ["N20387", "N20388"], "N20387": [], "N20388": [], "N20397": ["N20393", "N20396"], "N20393": [], "N20396": ["N20394", "N20395"], "N20394": [], "N20395": [], "N20401": ["N20400"], "N20400": [], "N20406": ["N20402", "N20405"], "N20402": [], "N20405": ["N20403", "N20404"], "N20403": [], "N20404": [], "N20410": ["N20409"], "N20409": [], "N20445": ["N20413", "N20444"], "N20413": [], "N20444": ["N20417", "N20419", "N20422", "N20443"], "N20417": ["N20414", "N20416"], "N20414": [], "N20416": ["N20415"], "N20415": [], "N20419": ["N20418"], "N20418": [], "N20422": ["N20420", "N20421"], "N20420": [], "N20421": [], "N20443": ["N20425", "N20442"], "N20425": ["N20423", "N20424"], "N20423": [], "N20424": [], "N20442": ["N20430", "N20432", "N20436", "N20441"], "N20430": ["N20426", "N20429"], "N20426": [], "N20429": ["N20427", "N20428"], "N20427": [], "N20428": [], "N20432": ["N20431"], "N20431": [], "N20436": ["N20435"], "N20435": ["N20433", "N20434"], "N20433": [], "N20434": [], "N20441": ["N20437", "N20440"], "N20437": [], "N20440": ["N20438", "N20439"], "N20438": [], "N20439": [], "N20450": ["N20446", "N20449"], "N20446": [], "N20449": ["N20448"], "N20448": ["N20447"], "N20447": [], "N20454": ["N20451", "N20453"], "N20451": [], "N20453": ["N20452"], "N20452": [], "N20458": ["N20455", "N20457"], "N20455": [], "N20457": ["N20456"], "N20456": [], "N20460": ["N20459"], "N20459": [], "N20462": ["N20461"], "N20461": [], "N20465": ["N20463", "N20464"], "N20463": [], "N20464": [], "N20648": ["N20466", "N20647"], "N20466": [], "N20647": ["N20468", "N20470", "N20472", "N20474", "N20476", "N20478", "N20480", "N20485", "N20646"], "N20468": ["N20467"], "N20467": [], "N20470": ["N20469"], "N20469": [], "N20472": ["N20471"], "N20471": [], "N20474": ["N20473"], "N20473": [], "N20476": ["N20475"], "N20475": [], "N20478": ["N20477"], "N20477": [], "N20480": ["N20479"], "N20479": [], "N20485": ["N20481", "N20484"], "N20481": [], "N20484": ["N20483"], "N20483": ["N20482"], "N20482": [], "N20646": ["N20488", "N20508", "N20539", "N20570", "N20627", "N20634", "N20642", "N20645"], "N20488": ["N20486", "N20487"], "N20486": [], "N20487": [], "N20508": ["N20507"], "N20507": ["N20491", "N20503", "N20506"], "N20491": ["N20489", "N20490"], "N20489": [], "N20490": [], "N20503": ["N20496", "N20498", "N20502"], "N20496": ["N20492", "N20495"], "N20492": [], "N20495": ["N20493", "N20494"], "N20493": [], "N20494": [], "N20498": ["N20497"], "N20497": [], "N20502": ["N20501"], "N20501": ["N20499", "N20500"], "N20499": [], "N20500": [], "N20506": ["N20505"], "N20505": ["N20504"], "N20504": [], "N20539": ["N20511", "N20538"], "N20511": ["N20509", "N20510"], "N20509": [], "N20510": [], "N20538": ["N20537"], "N20537": ["N20514", "N20533", "N20536"], "N20514": ["N20512", "N20513"], "N20512": [], "N20513": [], "N20533": ["N20521", "N20526", "N20528", "N20532"], "N20521": ["N20515", "N20520"], "N20515": [], "N20520": ["N20518", "N20519"], "N20518": ["N20516", "N20517"], "N20516": [], "N20517": [], "N20519": [], "N20526": ["N20522", "N20525"], "N20522": [], "N20525": ["N20523", "N20524"], "N20523": [], "N20524": [], "N20528": ["N20527"], "N20527": [], "N20532": ["N20531"], "N20531": ["N20529", "N20530"], "N20529": [], "N20530": [], "N20536": ["N20535"], "N20535": ["N20534"], "N20534": [], "N20570": ["N20542", "N20569"], "N20542": ["N20540", "N20541"], "N20540": [], "N20541": [], "N20569": ["N20568"], "N20568": ["N20545", "N20564", "N20567"], "N20545": ["N20543", "N20544"], "N20543": [], "N20544": [], "N20564": ["N20552", "N20557", "N20559", "N20563"], "N20552": ["N20546", "N20551"], "N20546": [], "N20551": ["N20549", "N20550"], "N20549": ["N20547", "N20548"], "N20547": [], "N20548": [], "N20550": [], "N20557": ["N20553", "N20556"], "N20553": [], "N20556": ["N20554", "N20555"], "N20554": [], "N20555": [], "N20559": ["N20558"], "N20558": [], "N20563": ["N20562"], "N20562": ["N20560", "N20561"], "N20560": [], "N20561": [], "N20567": ["N20566"], "N20566": ["N20565"], "N20565": [], "N20627": ["N20573", "N20626"], "N20573": ["N20571", "N20572"], "N20571": [], "N20572": [], "N20626": ["N20625"], "N20625": ["N20576", "N20621", "N20624"], "N20576": ["N20574", "N20575"], "N20574": [], "N20575": [], "N20621": ["N20581", "N20620"], "N20581": ["N20577", "N20580"], "N20577": [], "N20580": ["N20579"], "N20579": ["N20578"], "N20578": [], "N20620": ["N20583", "N20616", "N20619"], "N20583": ["N20582"], "N20582": [], "N20616": ["N20587", "N20615"], "N20587": ["N20584", "N20586"], "N20584": [], "N20586": ["N20585"], "N20585": [], "N20615": ["N20594", "N20611", "N20614"], "N20594": ["N20590", "N20593"], "N20590": ["N20588", "N20589"], "N20588": [], "N20589": [], "N20593": ["N20591", "N20592"], "N20591": [], "N20592": [], "N20611": ["N20599", "N20604", "N20606", "N20610"], "N20599": ["N20595", "N20598"], "N20595": [], "N20598": ["N20596", "N20597"], "N20596": [], "N20597": [], "N20604": ["N20600", "N20603"], "N20600": [], "N20603": ["N20601", "N20602"], "N20601": [], "N20602": [], "N20606": ["N20605"], "N20605": [], "N20610": ["N20609"], "N20609": ["N20607", "N20608"], "N20607": [], "N20608": [], "N20614": ["N20613"], "N20613": ["N20612"], "N20612": [], "N20619": ["N20618"], "N20618": ["N20617"], "N20617": [], "N20624": ["N20623"], "N20623": ["N20622"], "N20622": [], "N20634": ["N20630", "N20633"], "N20630": ["N20628", "N20629"], "N20628": [], "N20629": [], "N20633": ["N20632"], "N20632": ["N20631"], "N20631": [], "N20642": ["N20637", "N20641"], "N20637": ["N20635", "N20636"], "N20635": [], "N20636": [], "N20641": ["N20639", "N20640"], "N20639": ["N20638"], "N20638": [], "N20640": [], "N20645": ["N20644"], "N20644": ["N20643"], "N20643": []}};
+const svg = document.getElementById('canvas');
+const scene = document.getElementById('scene');
+const edgesLayer = document.getElementById('edges');
+const nodesLayer = document.getElementById('nodes');
+const viewport = document.getElementById('viewport');
+const details = document.getElementById('details');
+const status = document.getElementById('status');
+const collapsed = new Set();
+let selectedId = null;
+const INITIAL_SCALE = 1.15;
+const MIN_SCALE = 0.15;
+const MAX_SCALE = 4;
+const ZOOM_FACTOR = 1.2;
+let scale = INITIAL_SCALE;
+let tx = 40;
+let ty = 40;
+let dragging = false;
+let lastX = 0;
+let lastY = 0;
+const positions = new Map();
+const NODE_W = 174;
+const NODE_H = 62;
+const X_GAP = 54;
+const Y_GAP = 94;
+
+function visibleChildren(id) { return collapsed.has(id) ? [] : (graph.adjacency[id] || []); }
+
+function layout() {
+  positions.clear();
+  let leafIndex = 0;
+  function visit(id, depth) {
+    const children = visibleChildren(id);
+    let x;
+    if (!children.length) { x = leafIndex++ * (NODE_W + X_GAP); }
+    else {
+      children.forEach(child => visit(child, depth + 1));
+      x = (positions.get(children[0]).x + positions.get(children[children.length - 1]).x) / 2;
+    }
+    positions.set(id, {x, y: depth * (NODE_H + Y_GAP)});
+  }
+  visit(graph.root_id, 0);
+}
+
+function makeSvg(name, attrs = {}) {
+  const el = document.createElementNS('http://www.w3.org/2000/svg', name);
+  Object.entries(attrs).forEach(([k, v]) => el.setAttribute(k, String(v)));
+  return el;
+}
+
+function render() {
+  layout();
+  edgesLayer.replaceChildren();
+  nodesLayer.replaceChildren();
+
+  for (const [source, targets] of Object.entries(graph.adjacency)) {
+    if (!positions.has(source)) continue;
+    for (const target of targets) {
+      if (!positions.has(target)) continue;
+      const a = positions.get(source), b = positions.get(target);
+      const path = makeSvg('path', {
+        class: 'edge',
+        d: `M ${a.x + NODE_W / 2} ${a.y + NODE_H} C ${a.x + NODE_W / 2} ${a.y + NODE_H + 40}, ${b.x + NODE_W / 2} ${b.y - 40}, ${b.x + NODE_W / 2} ${b.y}`
+      });
+      edgesLayer.appendChild(path);
+    }
+  }
+
+  for (const [id, pos] of positions) {
+    const data = graph.nodes[id];
+    const group = makeSvg('g', {class: 'node', transform: `translate(${pos.x},${pos.y})`, 'data-id': id});
+    if (id === selectedId) group.classList.add('selected');
+    group.appendChild(makeSvg('rect', {width: NODE_W, height: NODE_H}));
+
+    const kind = makeSvg('text', {class: 'kind', x: NODE_W / 2, y: 27});
+    kind.textContent = data.kind;
+    group.appendChild(kind);
+    const idText = makeSvg('text', {class: 'id', x: NODE_W / 2, y: 47});
+    idText.textContent = `${id} · line ${data.line}`;
+    group.appendChild(idText);
+
+    const children = graph.adjacency[id] || [];
+    if (children.length) {
+      const circle = makeSvg('circle', {class: 'toggle', cx: NODE_W - 12, cy: 12, r: 9});
+      circle.addEventListener('click', event => { event.stopPropagation(); toggle(id); });
+      group.appendChild(circle);
+      const sign = makeSvg('text', {class: 'toggle-text', x: NODE_W - 12, y: 16});
+      sign.textContent = collapsed.has(id) ? '+' : '−';
+      group.appendChild(sign);
+    }
+
+    group.addEventListener('click', () => selectNode(id));
+    group.addEventListener('dblclick', () => centreNode(id));
+    nodesLayer.appendChild(group);
+  }
+  applyTransform();
+  runSearch();
+}
+
+function toggle(id) {
+  if (collapsed.has(id)) collapsed.delete(id); else collapsed.add(id);
+  render();
+}
+
+function selectNode(id) {
+  selectedId = id;
+  const data = graph.nodes[id];
+  const children = graph.adjacency[id] || [];
+  details.innerHTML = '';
+  const entries = [
+    ['Node ID', id], ['Kind', data.kind], ['Source line', data.line],
+    ['Children', children.length ? children.join(', ') : 'None'],
+    ['Attributes', Object.keys(data.attributes || {}).length ? JSON.stringify(data.attributes, null, 2) : 'None']
+  ];
+  for (const [label, value] of entries) {
+    const row = document.createElement('div'); row.className = 'meta-row';
+    const labelEl = document.createElement('span'); labelEl.className = 'meta-label'; labelEl.textContent = label;
+    const valueEl = document.createElement('span'); valueEl.className = 'meta-value'; valueEl.textContent = String(value);
+    row.append(labelEl, valueEl); details.appendChild(row);
+  }
+  document.querySelectorAll('.node').forEach(el => el.classList.toggle('selected', el.dataset.id === id));
+}
+
+function updateZoomStatus() {
+  const percentage = Math.round(scale * 100);
+  status.textContent = `${positions.size} visible / ${Object.keys(graph.nodes).length} total nodes · ${percentage}%`;
+}
+
+function applyTransform() {
+  scene.setAttribute('transform', `translate(${tx} ${ty}) scale(${scale})`);
+  updateZoomStatus();
+}
+
+function zoomAt(factor, centreX = null, centreY = null) {
+  const rect = viewport.getBoundingClientRect();
+  const focusX = centreX === null ? rect.width / 2 : centreX;
+  const focusY = centreY === null ? rect.height / 2 : centreY;
+  const oldScale = scale;
+  const requestedScale = scale * factor;
+  scale = Math.max(MIN_SCALE, Math.min(MAX_SCALE, requestedScale));
+
+  if (scale === oldScale) return;
+
+  tx = focusX - (focusX - tx) * (scale / oldScale);
+  ty = focusY - (focusY - ty) * (scale / oldScale);
+  applyTransform();
+}
+
+function resetView() {
+  scale = INITIAL_SCALE;
+  const rootPosition = positions.get(graph.root_id);
+  const rect = viewport.getBoundingClientRect();
+
+  if (rootPosition) {
+    tx = rect.width / 2 - (rootPosition.x + NODE_W / 2) * scale;
+    ty = 36 - rootPosition.y * scale;
+  } else {
+    tx = 40;
+    ty = 40;
+  }
+
+  applyTransform();
+}
+
+function fitTree() {
+  if (!positions.size) return;
+  const xs = [...positions.values()].map(p => p.x);
+  const ys = [...positions.values()].map(p => p.y);
+  const minX = Math.min(...xs), maxX = Math.max(...xs) + NODE_W;
+  const minY = Math.min(...ys), maxY = Math.max(...ys) + NODE_H;
+  const width = Math.max(maxX - minX, 1), height = Math.max(maxY - minY, 1);
+  const rect = viewport.getBoundingClientRect();
+  scale = Math.min((rect.width - 70) / width, (rect.height - 70) / height, 1.4);
+  tx = (rect.width - width * scale) / 2 - minX * scale;
+  ty = 35 - minY * scale;
+  applyTransform();
+}
+
+function centreNode(id) {
+  const p = positions.get(id); if (!p) return;
+  const rect = viewport.getBoundingClientRect();
+  tx = rect.width / 2 - (p.x + NODE_W / 2) * scale;
+  ty = rect.height / 2 - (p.y + NODE_H / 2) * scale;
+  applyTransform(); selectNode(id);
+}
+
+function runSearch() {
+  const query = document.getElementById('search').value.trim().toLowerCase();
+  document.querySelectorAll('.node').forEach(el => {
+    const id = el.dataset.id;
+    const node = graph.nodes[id];
+    const haystack = `${id} ${node.kind} ${JSON.stringify(node.attributes)}`.toLowerCase();
+    el.classList.toggle('match', Boolean(query) && haystack.includes(query));
+  });
+}
+
+document.getElementById('zoom-in').addEventListener('click', () => zoomAt(ZOOM_FACTOR));
+document.getElementById('zoom-out').addEventListener('click', () => zoomAt(1 / ZOOM_FACTOR));
+document.getElementById('reset-view').addEventListener('click', resetView);
+document.getElementById('fit').addEventListener('click', fitTree);
+document.getElementById('expand').addEventListener('click', () => { collapsed.clear(); render(); fitTree(); });
+document.getElementById('collapse').addEventListener('click', () => {
+  collapsed.clear();
+  for (const id of Object.keys(graph.adjacency)) if (id !== graph.root_id && (graph.adjacency[id] || []).length) collapsed.add(id);
+  render(); fitTree();
+});
+document.getElementById('search').addEventListener('input', runSearch);
+viewport.addEventListener('mousedown', event => { if (event.target.closest('.node')) return; dragging = true; lastX = event.clientX; lastY = event.clientY; viewport.classList.add('dragging'); });
+window.addEventListener('mousemove', event => { if (!dragging) return; tx += event.clientX - lastX; ty += event.clientY - lastY; lastX = event.clientX; lastY = event.clientY; applyTransform(); });
+window.addEventListener('mouseup', () => { dragging = false; viewport.classList.remove('dragging'); });
+viewport.addEventListener('wheel', event => {
+  event.preventDefault();
+  const rect = viewport.getBoundingClientRect();
+  const mx = event.clientX - rect.left, my = event.clientY - rect.top;
+  zoomAt(event.deltaY < 0 ? 1.12 : 0.89, mx, my);
+}, {passive: false});
+window.addEventListener('resize', () => {
+  updateZoomStatus();
+});
+render();
+requestAnimationFrame(resetView);
+</script>
+</body>
+</html>

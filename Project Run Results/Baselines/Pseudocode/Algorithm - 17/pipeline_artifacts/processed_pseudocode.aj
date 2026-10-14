@@ -1,0 +1,12 @@
+numlist <- LIST [7, 9, 3, 5, 2.6, 8.3]
+total <- 0
+counter <- 0
+WHILE LENGTH OF numlist > 0 DO
+    total <- total + numlist.pop(0)
+    counter <- counter + 1
+ENDWHILE
+average <- total / counter
+total <- CALL format(total, STRING(".2f"))
+average <- CALL format(average, STRING(".2f"))
+OUTPUT STRING("The Sum of Numbers in the list = {total}")
+OUTPUT STRING("The Average = {average}")

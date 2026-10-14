@@ -1,0 +1,102 @@
+CLASS Stack
+    PROPERTY items
+    PROPERTY name
+    CONSTRUCTOR ACCEPTS(name)
+        PROPERTY THIS.items <- EMPTY LIST
+        PROPERTY THIS.name <- name
+    ENDCONSTRUCTOR
+    METHOD push ACCEPTS(value)
+        APPEND value TO THIS.items
+        stack_name <- THIS.name
+        OUTPUT STRING("{stack_name}: pushed {value}")
+    ENDMETHOD
+    METHOD pop ACCEPTS()
+        IF LENGTH OF THIS.items == 0 THEN
+            stack_name <- THIS.name
+            OUTPUT STRING("{stack_name}: pop attempted on empty stack")
+            RETURN NONE
+        ENDIF
+        value <- THIS.items.pop()
+        stack_name <- THIS.name
+        OUTPUT STRING("{stack_name}: popped {value}")
+        RETURN value
+    ENDMETHOD
+    METHOD is_empty ACCEPTS()
+        RETURN LENGTH OF THIS.items == 0
+    ENDMETHOD
+    METHOD peek ACCEPTS()
+        IF LENGTH OF THIS.items == 0 THEN
+            RETURN NONE
+        ENDIF
+        RETURN THIS.items[LENGTH OF THIS.items - 1]
+    ENDMETHOD
+    METHOD display ACCEPTS()
+        stack_name <- THIS.name
+        stack_items <- THIS.items
+        OUTPUT STRING("{stack_name} {stack_items}")
+    ENDMETHOD
+ENDCLASS
+
+CLASS QueueUsingTwoStacks
+    PROPERTY in_stack
+    PROPERTY out_stack
+    CONSTRUCTOR ACCEPTS()
+        OUTPUT STRING("Queue created using two stacks\n")
+        PROPERTY THIS.in_stack <- CALL Stack(STRING("(Stack1)IN "))
+        PROPERTY THIS.out_stack <- CALL Stack(STRING("(Stack2)OUT "))
+    ENDCONSTRUCTOR
+    METHOD enqueue ACCEPTS(value)
+        OUTPUT STRING("\nEnqueue: {value}")
+        THIS.in_stack.push(value)
+        THIS.display()
+    ENDMETHOD
+    METHOD dequeue ACCEPTS()
+        OUTPUT STRING("\nDequeue requested")
+        IF THIS.out_stack.is_empty() THEN
+            OUTPUT STRING("OUT is empty → transferring from IN")
+            WHILE NOT (THIS.in_stack.is_empty()) DO
+                moved <- THIS.in_stack.pop()
+                THIS.out_stack.push(moved)
+            ENDWHILE
+        ENDIF
+        IF THIS.out_stack.is_empty() THEN
+            OUTPUT STRING("Queue is empty — nothing to dequeue")
+            RETURN NONE
+        ENDIF
+        value <- THIS.out_stack.pop()
+        OUTPUT STRING("Dequeued: {value}")
+        THIS.display()
+        RETURN value
+    ENDMETHOD
+    METHOD peek ACCEPTS()
+        OUTPUT STRING("\nPeek requested")
+        IF THIS.out_stack.is_empty() THEN
+            WHILE NOT (THIS.in_stack.is_empty()) DO
+                moved <- THIS.in_stack.pop()
+                THIS.out_stack.push(moved)
+            ENDWHILE
+        ENDIF
+        value <- THIS.out_stack.peek()
+        OUTPUT STRING("Front of queue: {value}")
+        THIS.display()
+        RETURN value
+    ENDMETHOD
+    METHOD display ACCEPTS()
+        OUTPUT STRING("\nQueue State:")
+        THIS.in_stack.display()
+        THIS.out_stack.display()
+        OUTPUT EMPTY STRING
+    ENDMETHOD
+ENDCLASS
+
+q <- CALL QueueUsingTwoStacks()
+q.enqueue(10)
+q.enqueue(20)
+q.enqueue(30)
+q.dequeue()
+q.enqueue(40)
+q.enqueue(50)
+q.peek()
+q.dequeue()
+q.dequeue()
+q.dequeue()

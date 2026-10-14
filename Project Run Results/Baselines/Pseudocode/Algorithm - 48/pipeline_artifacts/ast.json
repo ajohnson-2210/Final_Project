@@ -1,0 +1,925 @@
+{
+  "root_id": "N25058",
+  "nodes": {
+    "N25058": {
+      "kind": "ProgramNode",
+      "line": 1,
+      "attributes": {}
+    },
+    "N24957": {
+      "kind": "ImportDirectiveNode",
+      "line": 1,
+      "attributes": {
+        "directive_type": "IMPORT",
+        "module": "os",
+        "alias": null,
+        "names": []
+      }
+    },
+    "N24959": {
+      "kind": "OutputNode",
+      "line": 3,
+      "attributes": {}
+    },
+    "N24958": {
+      "kind": "LiteralNode",
+      "line": 3,
+      "attributes": {
+        "value": "Recursive File Search System\n",
+        "data_type": "STRING"
+      }
+    },
+    "N25022": {
+      "kind": "FunctionNode",
+      "line": 5,
+      "attributes": {
+        "name": "search_files_recursive"
+      }
+    },
+    "N24960": {
+      "kind": "ParameterNode",
+      "line": 5,
+      "attributes": {
+        "name": "folder_path",
+        "declared_type": null
+      }
+    },
+    "N24961": {
+      "kind": "ParameterNode",
+      "line": 5,
+      "attributes": {
+        "name": "file_extension",
+        "declared_type": null
+      }
+    },
+    "N24962": {
+      "kind": "ParameterNode",
+      "line": 5,
+      "attributes": {
+        "name": "results",
+        "declared_type": null
+      }
+    },
+    "N25021": {
+      "kind": "BlockNode",
+      "line": 6,
+      "attributes": {}
+    },
+    "N24964": {
+      "kind": "OutputNode",
+      "line": 6,
+      "attributes": {}
+    },
+    "N24963": {
+      "kind": "LiteralNode",
+      "line": 6,
+      "attributes": {
+        "value": "Searching: {folder_path}",
+        "data_type": "STRING"
+      }
+    },
+    "N24974": {
+      "kind": "TryCatchNode",
+      "line": 7,
+      "attributes": {
+        "error": null
+      }
+    },
+    "N24969": {
+      "kind": "BlockNode",
+      "line": 8,
+      "attributes": {}
+    },
+    "N24968": {
+      "kind": "AssignmentNode",
+      "line": 8,
+      "attributes": {}
+    },
+    "N24965": {
+      "kind": "IdentifierNode",
+      "line": 8,
+      "attributes": {
+        "name": "items"
+      }
+    },
+    "N24967": {
+      "kind": "CallNode",
+      "line": 8,
+      "attributes": {
+        "name": "os_method_listdir"
+      }
+    },
+    "N24966": {
+      "kind": "IdentifierNode",
+      "line": 8,
+      "attributes": {
+        "name": "folder_path"
+      }
+    },
+    "N24973": {
+      "kind": "BlockNode",
+      "line": 10,
+      "attributes": {}
+    },
+    "N24971": {
+      "kind": "OutputNode",
+      "line": 10,
+      "attributes": {}
+    },
+    "N24970": {
+      "kind": "LiteralNode",
+      "line": 10,
+      "attributes": {
+        "value": "Cannot access: {folder_path}",
+        "data_type": "STRING"
+      }
+    },
+    "N24972": {
+      "kind": "ReturnNode",
+      "line": 11,
+      "attributes": {
+        "expression": null
+      }
+    },
+    "N24977": {
+      "kind": "AssignmentNode",
+      "line": 13,
+      "attributes": {}
+    },
+    "N24975": {
+      "kind": "IdentifierNode",
+      "line": 13,
+      "attributes": {
+        "name": "i"
+      }
+    },
+    "N24976": {
+      "kind": "LiteralNode",
+      "line": 13,
+      "attributes": {
+        "value": 0,
+        "data_type": "INTEGER"
+      }
+    },
+    "N25020": {
+      "kind": "WhileNode",
+      "line": 14,
+      "attributes": {}
+    },
+    "N24981": {
+      "kind": "BinaryNode",
+      "line": 14,
+      "attributes": {
+        "operator": "<"
+      }
+    },
+    "N24978": {
+      "kind": "IdentifierNode",
+      "line": 14,
+      "attributes": {
+        "name": "i"
+      }
+    },
+    "N24980": {
+      "kind": "LengthNode",
+      "line": 14,
+      "attributes": {}
+    },
+    "N24979": {
+      "kind": "IdentifierNode",
+      "line": 14,
+      "attributes": {
+        "name": "items"
+      }
+    },
+    "N25019": {
+      "kind": "BlockNode",
+      "line": 15,
+      "attributes": {}
+    },
+    "N24986": {
+      "kind": "AssignmentNode",
+      "line": 15,
+      "attributes": {}
+    },
+    "N24982": {
+      "kind": "IdentifierNode",
+      "line": 15,
+      "attributes": {
+        "name": "item"
+      }
+    },
+    "N24985": {
+      "kind": "IndexNode",
+      "line": 15,
+      "attributes": {}
+    },
+    "N24983": {
+      "kind": "IdentifierNode",
+      "line": 15,
+      "attributes": {
+        "name": "items"
+      }
+    },
+    "N24984": {
+      "kind": "IdentifierNode",
+      "line": 15,
+      "attributes": {
+        "name": "i"
+      }
+    },
+    "N24991": {
+      "kind": "AssignmentNode",
+      "line": 16,
+      "attributes": {}
+    },
+    "N24987": {
+      "kind": "IdentifierNode",
+      "line": 16,
+      "attributes": {
+        "name": "full_path"
+      }
+    },
+    "N24990": {
+      "kind": "CallNode",
+      "line": 16,
+      "attributes": {
+        "name": "os_method_path_join"
+      }
+    },
+    "N24988": {
+      "kind": "IdentifierNode",
+      "line": 16,
+      "attributes": {
+        "name": "folder_path"
+      }
+    },
+    "N24989": {
+      "kind": "IdentifierNode",
+      "line": 16,
+      "attributes": {
+        "name": "item"
+      }
+    },
+    "N25013": {
+      "kind": "IfNode",
+      "line": 17,
+      "attributes": {
+        "else_body": null
+      }
+    },
+    "N24993": {
+      "kind": "CallNode",
+      "line": 17,
+      "attributes": {
+        "name": "os_method_path_isfile"
+      }
+    },
+    "N24992": {
+      "kind": "IdentifierNode",
+      "line": 17,
+      "attributes": {
+        "name": "full_path"
+      }
+    },
+    "N25004": {
+      "kind": "BlockNode",
+      "line": 18,
+      "attributes": {}
+    },
+    "N25003": {
+      "kind": "IfNode",
+      "line": 18,
+      "attributes": {
+        "else_if": [],
+        "else_body": null
+      }
+    },
+    "N24996": {
+      "kind": "MemberCallNode",
+      "line": 18,
+      "attributes": {
+        "member": "endswith",
+        "resolved_intrinsic": null
+      }
+    },
+    "N24994": {
+      "kind": "IdentifierNode",
+      "line": 18,
+      "attributes": {
+        "name": "item"
+      }
+    },
+    "N24995": {
+      "kind": "IdentifierNode",
+      "line": 18,
+      "attributes": {
+        "name": "file_extension"
+      }
+    },
+    "N25002": {
+      "kind": "BlockNode",
+      "line": 19,
+      "attributes": {}
+    },
+    "N24998": {
+      "kind": "OutputNode",
+      "line": 19,
+      "attributes": {}
+    },
+    "N24997": {
+      "kind": "LiteralNode",
+      "line": 19,
+      "attributes": {
+        "value": "FOUND: {full_path}",
+        "data_type": "STRING"
+      }
+    },
+    "N25001": {
+      "kind": "AppendNode",
+      "line": 20,
+      "attributes": {}
+    },
+    "N24999": {
+      "kind": "IdentifierNode",
+      "line": 20,
+      "attributes": {
+        "name": "full_path"
+      }
+    },
+    "N25000": {
+      "kind": "IdentifierNode",
+      "line": 20,
+      "attributes": {
+        "name": "results"
+      }
+    },
+    "N25012": {
+      "kind": "ElseIfNode",
+      "line": 22,
+      "attributes": {}
+    },
+    "N25006": {
+      "kind": "CallNode",
+      "line": 22,
+      "attributes": {
+        "name": "os_method_path_isdir"
+      }
+    },
+    "N25005": {
+      "kind": "IdentifierNode",
+      "line": 22,
+      "attributes": {
+        "name": "full_path"
+      }
+    },
+    "N25011": {
+      "kind": "BlockNode",
+      "line": 23,
+      "attributes": {}
+    },
+    "N25010": {
+      "kind": "CallNode",
+      "line": 23,
+      "attributes": {
+        "name": "search_files_recursive"
+      }
+    },
+    "N25007": {
+      "kind": "IdentifierNode",
+      "line": 23,
+      "attributes": {
+        "name": "full_path"
+      }
+    },
+    "N25008": {
+      "kind": "IdentifierNode",
+      "line": 23,
+      "attributes": {
+        "name": "file_extension"
+      }
+    },
+    "N25009": {
+      "kind": "IdentifierNode",
+      "line": 23,
+      "attributes": {
+        "name": "results"
+      }
+    },
+    "N25018": {
+      "kind": "AssignmentNode",
+      "line": 25,
+      "attributes": {}
+    },
+    "N25014": {
+      "kind": "IdentifierNode",
+      "line": 25,
+      "attributes": {
+        "name": "i"
+      }
+    },
+    "N25017": {
+      "kind": "BinaryNode",
+      "line": 25,
+      "attributes": {
+        "operator": "+"
+      }
+    },
+    "N25015": {
+      "kind": "IdentifierNode",
+      "line": 25,
+      "attributes": {
+        "name": "i"
+      }
+    },
+    "N25016": {
+      "kind": "LiteralNode",
+      "line": 25,
+      "attributes": {
+        "value": 1,
+        "data_type": "INTEGER"
+      }
+    },
+    "N25025": {
+      "kind": "AssignmentNode",
+      "line": 29,
+      "attributes": {}
+    },
+    "N25023": {
+      "kind": "IdentifierNode",
+      "line": 29,
+      "attributes": {
+        "name": "start_folder"
+      }
+    },
+    "N25024": {
+      "kind": "LiteralNode",
+      "line": 29,
+      "attributes": {
+        "value": "C:/example/start/path",
+        "data_type": "STRING"
+      }
+    },
+    "N25028": {
+      "kind": "AssignmentNode",
+      "line": 30,
+      "attributes": {}
+    },
+    "N25026": {
+      "kind": "IdentifierNode",
+      "line": 30,
+      "attributes": {
+        "name": "target_extension"
+      }
+    },
+    "N25027": {
+      "kind": "LiteralNode",
+      "line": 30,
+      "attributes": {
+        "value": ".txt",
+        "data_type": "STRING"
+      }
+    },
+    "N25031": {
+      "kind": "AssignmentNode",
+      "line": 31,
+      "attributes": {}
+    },
+    "N25029": {
+      "kind": "IdentifierNode",
+      "line": 31,
+      "attributes": {
+        "name": "found_files"
+      }
+    },
+    "N25030": {
+      "kind": "EmptyLiteralNode",
+      "line": 31,
+      "attributes": {
+        "empty_type": "LIST"
+      }
+    },
+    "N25033": {
+      "kind": "OutputNode",
+      "line": 32,
+      "attributes": {}
+    },
+    "N25032": {
+      "kind": "LiteralNode",
+      "line": 32,
+      "attributes": {
+        "value": "Starting recursive search...\n",
+        "data_type": "STRING"
+      }
+    },
+    "N25037": {
+      "kind": "CallNode",
+      "line": 33,
+      "attributes": {
+        "name": "search_files_recursive"
+      }
+    },
+    "N25034": {
+      "kind": "IdentifierNode",
+      "line": 33,
+      "attributes": {
+        "name": "start_folder"
+      }
+    },
+    "N25035": {
+      "kind": "IdentifierNode",
+      "line": 33,
+      "attributes": {
+        "name": "target_extension"
+      }
+    },
+    "N25036": {
+      "kind": "IdentifierNode",
+      "line": 33,
+      "attributes": {
+        "name": "found_files"
+      }
+    },
+    "N25039": {
+      "kind": "OutputNode",
+      "line": 34,
+      "attributes": {}
+    },
+    "N25038": {
+      "kind": "LiteralNode",
+      "line": 34,
+      "attributes": {
+        "value": "\nSearch complete.\nFiles found:",
+        "data_type": "STRING"
+      }
+    },
+    "N25042": {
+      "kind": "AssignmentNode",
+      "line": 35,
+      "attributes": {}
+    },
+    "N25040": {
+      "kind": "IdentifierNode",
+      "line": 35,
+      "attributes": {
+        "name": "i"
+      }
+    },
+    "N25041": {
+      "kind": "LiteralNode",
+      "line": 35,
+      "attributes": {
+        "value": 0,
+        "data_type": "INTEGER"
+      }
+    },
+    "N25057": {
+      "kind": "WhileNode",
+      "line": 36,
+      "attributes": {}
+    },
+    "N25046": {
+      "kind": "BinaryNode",
+      "line": 36,
+      "attributes": {
+        "operator": "<"
+      }
+    },
+    "N25043": {
+      "kind": "IdentifierNode",
+      "line": 36,
+      "attributes": {
+        "name": "i"
+      }
+    },
+    "N25045": {
+      "kind": "LengthNode",
+      "line": 36,
+      "attributes": {}
+    },
+    "N25044": {
+      "kind": "IdentifierNode",
+      "line": 36,
+      "attributes": {
+        "name": "found_files"
+      }
+    },
+    "N25056": {
+      "kind": "BlockNode",
+      "line": 37,
+      "attributes": {}
+    },
+    "N25050": {
+      "kind": "OutputNode",
+      "line": 37,
+      "attributes": {}
+    },
+    "N25049": {
+      "kind": "IndexNode",
+      "line": 37,
+      "attributes": {}
+    },
+    "N25047": {
+      "kind": "IdentifierNode",
+      "line": 37,
+      "attributes": {
+        "name": "found_files"
+      }
+    },
+    "N25048": {
+      "kind": "IdentifierNode",
+      "line": 37,
+      "attributes": {
+        "name": "i"
+      }
+    },
+    "N25055": {
+      "kind": "AssignmentNode",
+      "line": 38,
+      "attributes": {}
+    },
+    "N25051": {
+      "kind": "IdentifierNode",
+      "line": 38,
+      "attributes": {
+        "name": "i"
+      }
+    },
+    "N25054": {
+      "kind": "BinaryNode",
+      "line": 38,
+      "attributes": {
+        "operator": "+"
+      }
+    },
+    "N25052": {
+      "kind": "IdentifierNode",
+      "line": 38,
+      "attributes": {
+        "name": "i"
+      }
+    },
+    "N25053": {
+      "kind": "LiteralNode",
+      "line": 38,
+      "attributes": {
+        "value": 1,
+        "data_type": "INTEGER"
+      }
+    }
+  },
+  "adjacency": {
+    "N25058": [
+      "N24957",
+      "N24959",
+      "N25022",
+      "N25025",
+      "N25028",
+      "N25031",
+      "N25033",
+      "N25037",
+      "N25039",
+      "N25042",
+      "N25057"
+    ],
+    "N24957": [],
+    "N24959": [
+      "N24958"
+    ],
+    "N24958": [],
+    "N25022": [
+      "N24960",
+      "N24961",
+      "N24962",
+      "N25021"
+    ],
+    "N24960": [],
+    "N24961": [],
+    "N24962": [],
+    "N25021": [
+      "N24964",
+      "N24974",
+      "N24977",
+      "N25020"
+    ],
+    "N24964": [
+      "N24963"
+    ],
+    "N24963": [],
+    "N24974": [
+      "N24969",
+      "N24973"
+    ],
+    "N24969": [
+      "N24968"
+    ],
+    "N24968": [
+      "N24965",
+      "N24967"
+    ],
+    "N24965": [],
+    "N24967": [
+      "N24966"
+    ],
+    "N24966": [],
+    "N24973": [
+      "N24971",
+      "N24972"
+    ],
+    "N24971": [
+      "N24970"
+    ],
+    "N24970": [],
+    "N24972": [],
+    "N24977": [
+      "N24975",
+      "N24976"
+    ],
+    "N24975": [],
+    "N24976": [],
+    "N25020": [
+      "N24981",
+      "N25019"
+    ],
+    "N24981": [
+      "N24978",
+      "N24980"
+    ],
+    "N24978": [],
+    "N24980": [
+      "N24979"
+    ],
+    "N24979": [],
+    "N25019": [
+      "N24986",
+      "N24991",
+      "N25013",
+      "N25018"
+    ],
+    "N24986": [
+      "N24982",
+      "N24985"
+    ],
+    "N24982": [],
+    "N24985": [
+      "N24983",
+      "N24984"
+    ],
+    "N24983": [],
+    "N24984": [],
+    "N24991": [
+      "N24987",
+      "N24990"
+    ],
+    "N24987": [],
+    "N24990": [
+      "N24988",
+      "N24989"
+    ],
+    "N24988": [],
+    "N24989": [],
+    "N25013": [
+      "N24993",
+      "N25004",
+      "N25012"
+    ],
+    "N24993": [
+      "N24992"
+    ],
+    "N24992": [],
+    "N25004": [
+      "N25003"
+    ],
+    "N25003": [
+      "N24996",
+      "N25002"
+    ],
+    "N24996": [
+      "N24994",
+      "N24995"
+    ],
+    "N24994": [],
+    "N24995": [],
+    "N25002": [
+      "N24998",
+      "N25001"
+    ],
+    "N24998": [
+      "N24997"
+    ],
+    "N24997": [],
+    "N25001": [
+      "N24999",
+      "N25000"
+    ],
+    "N24999": [],
+    "N25000": [],
+    "N25012": [
+      "N25006",
+      "N25011"
+    ],
+    "N25006": [
+      "N25005"
+    ],
+    "N25005": [],
+    "N25011": [
+      "N25010"
+    ],
+    "N25010": [
+      "N25007",
+      "N25008",
+      "N25009"
+    ],
+    "N25007": [],
+    "N25008": [],
+    "N25009": [],
+    "N25018": [
+      "N25014",
+      "N25017"
+    ],
+    "N25014": [],
+    "N25017": [
+      "N25015",
+      "N25016"
+    ],
+    "N25015": [],
+    "N25016": [],
+    "N25025": [
+      "N25023",
+      "N25024"
+    ],
+    "N25023": [],
+    "N25024": [],
+    "N25028": [
+      "N25026",
+      "N25027"
+    ],
+    "N25026": [],
+    "N25027": [],
+    "N25031": [
+      "N25029",
+      "N25030"
+    ],
+    "N25029": [],
+    "N25030": [],
+    "N25033": [
+      "N25032"
+    ],
+    "N25032": [],
+    "N25037": [
+      "N25034",
+      "N25035",
+      "N25036"
+    ],
+    "N25034": [],
+    "N25035": [],
+    "N25036": [],
+    "N25039": [
+      "N25038"
+    ],
+    "N25038": [],
+    "N25042": [
+      "N25040",
+      "N25041"
+    ],
+    "N25040": [],
+    "N25041": [],
+    "N25057": [
+      "N25046",
+      "N25056"
+    ],
+    "N25046": [
+      "N25043",
+      "N25045"
+    ],
+    "N25043": [],
+    "N25045": [
+      "N25044"
+    ],
+    "N25044": [],
+    "N25056": [
+      "N25050",
+      "N25055"
+    ],
+    "N25050": [
+      "N25049"
+    ],
+    "N25049": [
+      "N25047",
+      "N25048"
+    ],
+    "N25047": [],
+    "N25048": [],
+    "N25055": [
+      "N25051",
+      "N25054"
+    ],
+    "N25051": [],
+    "N25054": [
+      "N25052",
+      "N25053"
+    ],
+    "N25052": [],
+    "N25053": []
+  }
+}

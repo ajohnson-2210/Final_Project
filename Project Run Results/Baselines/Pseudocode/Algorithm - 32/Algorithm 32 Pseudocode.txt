@@ -1,0 +1,955 @@
+FUNCTION substring_range ACCEPTS(text, start_index, end_index)
+    result <- EMPTY STRING
+    index <- start_index
+    WHILE index < end_index DO
+        result <- result + text[index]
+        index <- index + 1
+    ENDWHILE
+    RETURN result
+ENDFUNCTION
+
+FUNCTION sublist_range ACCEPTS(values, start_index, end_index)
+    result <- EMPTY LIST
+    index <- start_index
+    WHILE index < end_index DO
+        APPEND values[index] TO result
+        index <- index + 1
+    ENDWHILE
+    RETURN result
+ENDFUNCTION
+
+FUNCTION clean_text ACCEPTS(t)
+    t <- t.replace(STRING("’"), STRING("'"))
+    t <- t.replace(STRING("‘"), STRING("'"))
+    t <- t.replace(STRING("“"), STRING("\""))
+    t <- t.replace(STRING("”"), STRING("\""))
+    t <- t.replace(STRING("—"), STRING("-"))
+    t <- t.replace(STRING("–"), STRING("-"))
+    t <- t.replace(STRING("…"), STRING("..."))
+    RETURN t
+ENDFUNCTION
+
+raw_text <- STRING("The Mole had been working very hard all the morning, spring-cleaning his little home. First with brooms, then with dusters; then on ladders and steps and chairs, with a brush and a pail of whitewash; till he had dust in his throat and eyes, and splashes of whitewash all over his black fur, and an overall spring-feeling in his air and heart. Spring was moving in the air above and in the earth below and around him, penetrating even his dark and lowly little house with its spirit of divine discontent and longing. It was small wonder, then, that he suddenly flung his brush on the floor, said 'Bother!' and 'O blow!' and also 'Hang spring-cleaning!' and bolted out of the house. He scraped and scratched and scrabbled and poked, working his little way up through the soft earth, till at last, pop! his nose came out into the sunlight, and he found himself rolling in the warm grass of a great meadow. 'This is fine!' he said to himself. 'This is better than whitewash!'. The sunshine struck hot on his fur, the soft breezes caressed his heated brow, and after the lonely very long time he had spent in his underground home, he felt his heart leap up with joy. He scrambled out of the hole, set off across the meadow, and wandered aimlessly towards the trees and the sparkling water in the distance. He had never seen a river before. It was a sleek, full-bodied animal, chasing and chuckling, gripping things with a gurgling voice, laughing and leaping. It was an otter, a badger, or a water-rat— though he did not know it at the time. He sat on the bank, fascinated by the sight, until he saw a dark hole in the opposite bank right above the water, with a comfortable-looking chair, and fishing poles sticking out. As he sat looking at it, a tiny, bright-eyed face appeared and vanished, then reappeared again. It was the Water Rat. The Rat looked at the Mole, and the Mole looked at the Rat. 'Hullo, Mole!' said the Water Rat. 'Hullo, Rat!' said the Mole. 'Would you like to come over?' enquired the Rat presently. 'Oh, it's all very well to say come over,' replied the Mole, who was a stranger to the river, and rather bewildered. The Rat stepped into a little boat which the Mole had not observed. It was painted blue outside and white within, and looked as neat as a new watch. He sculled across with easy, practiced strokes, and held out a paw as the Mole stepped in. 'It's a wonderful life!' said the Rat. 'There is nothing—absolutely nothing—half so much worth doing as simply messing about in boats.'")
+text <- CALL clean_text(raw_text)
+question <- INPUT(STRING("Enter your question:\n"))
+
+FUNCTION split_sentences ACCEPTS(text)
+    temp <- text.replace(STRING("?"), STRING(".")).replace(STRING("!"), STRING("."))
+    parts <- temp.split(STRING("."))
+    sentences <- EMPTY LIST
+    i <- 0
+    loop <- BOOLEAN(TRUE)
+    WHILE loop DO
+        TRY
+            s <- parts[i].strip()
+            IF LENGTH OF s > 0 THEN
+                APPEND s TO sentences
+            ENDIF
+            i <- i + 1
+        CATCH
+            loop <- BOOLEAN(FALSE)
+        ENDTRY
+    ENDWHILE
+    RETURN sentences
+ENDFUNCTION
+
+sentences <- CALL split_sentences(text)
+
+FUNCTION tokenise ACCEPTS(text)
+    RETURN text.lower().replace(STRING("."), EMPTY STRING).replace(STRING(","), EMPTY STRING).replace(STRING(";"), EMPTY STRING).replace(STRING(":"), EMPTY STRING).split()
+ENDFUNCTION
+
+q_words <- CALL tokenise(question)
+stopwords <- LIST [STRING("the"), STRING("a"), STRING("an"), STRING("and"), STRING("or"), STRING("to"), STRING("of"), STRING("in"), STRING("on"), STRING("for"), STRING("with"), STRING("as"), STRING("is"), STRING("was"), STRING("were"), STRING("why"), STRING("what"), STRING("who"), STRING("how"), STRING("when"), STRING("where"), STRING("did"), STRING("does"), STRING("do"), STRING("too"), STRING("into"), STRING("at"), STRING("by"), STRING("from")]
+USE_API <- BOOLEAN(FALSE)
+
+FUNCTION api_get_animals ACCEPTS()
+    RETURN LIST [STRING("mole"), STRING("rat"), STRING("otter"), STRING("badger"), STRING("water-rat")]
+ENDFUNCTION
+
+FUNCTION api_get_places ACCEPTS()
+    RETURN LIST [STRING("meadow"), STRING("bank"), STRING("river"), STRING("house")]
+ENDFUNCTION
+
+FUNCTION api_get_verbs ACCEPTS()
+    RETURN LIST [STRING("scrambled"), STRING("wandered"), STRING("rolled"), STRING("bolted")]
+ENDFUNCTION
+
+FUNCTION api_get_nouns ACCEPTS()
+    RETURN LIST [STRING("mole"), STRING("river"), STRING("meadow"), STRING("boat"), STRING("bank")]
+ENDFUNCTION
+
+FUNCTION api_get_whowords ACCEPTS()
+    RETURN LIST [STRING("mole"), STRING("rat"), STRING("badger"), STRING("otter")]
+ENDFUNCTION
+
+FUNCTION api_get_whywords ACCEPTS()
+    RETURN LIST [STRING("because"), STRING("since"), STRING("as"), STRING("therefore"), STRING("so")]
+ENDFUNCTION
+
+FUNCTION api_get_whenwords ACCEPTS()
+    RETURN LIST [STRING("morning"), STRING("spring"), STRING("day"), STRING("evening"), STRING("night")]
+ENDFUNCTION
+
+all_words <- EMPTY LIST
+i <- 0
+loop <- BOOLEAN(TRUE)
+WHILE loop DO
+    TRY
+        APPEND CALL tokenise(text)[i] TO all_words
+        i <- i + 1
+    CATCH
+        loop <- BOOLEAN(FALSE)
+    ENDTRY
+ENDWHILE
+
+FUNCTION auto_generate_verbs ACCEPTS()
+    verbs <- EMPTY LIST
+    i <- 0
+    loop <- BOOLEAN(TRUE)
+    WHILE loop DO
+        TRY
+            w <- all_words[i]
+            IF (w.endswith(STRING("ing"))) OR (w.endswith(STRING("ed"))) THEN
+                APPEND w TO verbs
+            ENDIF
+            i <- i + 1
+        CATCH
+            loop <- BOOLEAN(FALSE)
+        ENDTRY
+    ENDWHILE
+    RETURN verbs
+ENDFUNCTION
+
+FUNCTION auto_generate_nouns ACCEPTS()
+    nouns <- EMPTY LIST
+    i <- 0
+    loop <- BOOLEAN(TRUE)
+    WHILE loop DO
+        TRY
+            w <- all_words[i]
+            IF (NOT (w.endswith(STRING("ing")))) AND (NOT (w.endswith(STRING("ed")))) THEN
+                APPEND w TO nouns
+            ENDIF
+            i <- i + 1
+        CATCH
+            loop <- BOOLEAN(FALSE)
+        ENDTRY
+    ENDWHILE
+    RETURN nouns
+ENDFUNCTION
+
+FUNCTION auto_generate_whowords ACCEPTS()
+    who <- EMPTY LIST
+    raw_words <- raw_text.replace(STRING(";"), STRING(" ")).replace(STRING(":"), STRING(" ")).split()
+    i <- 0
+    loop <- BOOLEAN(TRUE)
+    WHILE loop DO
+        TRY
+            w <- raw_words[i]
+            IF LENGTH OF w > 0 AND (w[0].isupper()) THEN
+                lw <- w.lower().replace(STRING(","), EMPTY STRING).replace(STRING("."), EMPTY STRING).replace(STRING("!"), EMPTY STRING).replace(STRING("?"), EMPTY STRING)
+                IF lw NOT IN LIST [STRING("i"), STRING("he"), STRING("she"), STRING("they"), STRING("it")] THEN
+                    APPEND lw TO who
+                ENDIF
+            ENDIF
+            i <- i + 1
+        CATCH
+            loop <- BOOLEAN(FALSE)
+        ENDTRY
+    ENDWHILE
+    RETURN who
+ENDFUNCTION
+
+FUNCTION auto_generate_whywords ACCEPTS()
+    why <- EMPTY LIST
+    i <- 0
+    loop <- BOOLEAN(TRUE)
+    WHILE loop DO
+        TRY
+            w <- all_words[i]
+            IF w IN LIST [STRING("because"), STRING("since"), STRING("as"), STRING("therefore"), STRING("so"), STRING("till"), STRING("until")] THEN
+                APPEND w TO why
+            ENDIF
+            i <- i + 1
+        CATCH
+            loop <- BOOLEAN(FALSE)
+        ENDTRY
+    ENDWHILE
+    RETURN why
+ENDFUNCTION
+
+FUNCTION auto_generate_whenwords ACCEPTS()
+    when <- EMPTY LIST
+    i <- 0
+    loop <- BOOLEAN(TRUE)
+    WHILE loop DO
+        TRY
+            w <- all_words[i]
+            IF w IN LIST [STRING("then"), STRING("after"), STRING("before"), STRING("later"), STRING("earlier"), STRING("day"), STRING("night"), STRING("time"), STRING("morning"), STRING("evening"), STRING("spring")] THEN
+                APPEND w TO when
+            ENDIF
+            i <- i + 1
+        CATCH
+            loop <- BOOLEAN(FALSE)
+        ENDTRY
+    ENDWHILE
+    RETURN when
+ENDFUNCTION
+
+FUNCTION auto_generate_places ACCEPTS()
+    endings <- EMPTY LIST
+    i <- 0
+    loop <- BOOLEAN(TRUE)
+    WHILE loop DO
+        TRY
+            w <- all_words[i]
+            IF (w.endswith(STRING("valley"))) OR (w.endswith(STRING("land"))) OR (w.endswith(STRING("road"))) OR (w.endswith(STRING("house"))) OR (w.endswith(STRING("place"))) OR (w.endswith(STRING("meadow"))) OR (w.endswith(STRING("bank"))) THEN
+                j <- 0
+                found <- BOOLEAN(FALSE)
+                WHILE j < LENGTH OF w AND (NOT (found)) DO
+                    IF CALL substring_range(w, j, LENGTH OF w) IN LIST [STRING("valley"), STRING("land"), STRING("road"), STRING("house"), STRING("place"), STRING("meadow"), STRING("bank")] THEN
+                        APPEND CALL substring_range(w, j, LENGTH OF w) TO endings
+                        found <- BOOLEAN(TRUE)
+                        BREAK
+                    ENDIF
+                    j <- j + 1
+                ENDWHILE
+            ENDIF
+            i <- i + 1
+        CATCH
+            loop <- BOOLEAN(FALSE)
+        ENDTRY
+    ENDWHILE
+    places <- EMPTY LIST
+    i <- 0
+    loop <- BOOLEAN(TRUE)
+    WHILE loop DO
+        TRY
+            w <- all_words[i]
+            j <- 0
+            j_loop <- BOOLEAN(TRUE)
+            WHILE j_loop DO
+                TRY
+                    IF w.endswith(endings[j]) THEN
+                        APPEND w TO places
+                    ENDIF
+                    j <- j + 1
+                CATCH
+                    j_loop <- BOOLEAN(FALSE)
+                ENDTRY
+            ENDWHILE
+            i <- i + 1
+        CATCH
+            loop <- BOOLEAN(FALSE)
+        ENDTRY
+    ENDWHILE
+    RETURN places
+ENDFUNCTION
+
+FUNCTION auto_generate_animals ACCEPTS()
+    animals <- EMPTY LIST
+    raw_words_clean <- raw_text.replace(STRING(","), STRING(" , ")).replace(STRING("."), STRING(" . ")).replace(STRING(";"), STRING(" ; ")).replace(STRING(":"), STRING(" : ")).replace(STRING("!"), STRING(" ! ")).replace(STRING("?"), STRING(" ? "))
+    raw_words_list <- raw_words_clean.split()
+    FUNCTION looks_like_animal ACCEPTS(w)
+        w <- w.lower()
+        IF w.endswith(STRING("mole")) THEN
+            RETURN BOOLEAN(TRUE)
+        ENDIF
+        IF w.endswith(STRING("rat")) THEN
+            RETURN BOOLEAN(TRUE)
+        ENDIF
+        IF w.endswith(STRING("otter")) THEN
+            RETURN BOOLEAN(TRUE)
+        ENDIF
+        IF w.endswith(STRING("badger")) THEN
+            RETURN BOOLEAN(TRUE)
+        ENDIF
+        IF w == STRING("animal") THEN
+            RETURN BOOLEAN(TRUE)
+        ENDIF
+        RETURN BOOLEAN(FALSE)
+    ENDFUNCTION
+
+    i <- 0
+    loop <- BOOLEAN(TRUE)
+    WHILE loop DO
+        TRY
+            IF ((raw_words_list[i].lower() == STRING("was"))) AND i > 0 AND ((raw_words_list[i - 1].lower() == STRING("it"))) THEN
+                IF (i + 1) < LENGTH OF raw_words_list THEN
+                    nxt <- raw_words_list[i + 1].lower()
+                    IF CALL looks_like_animal(nxt) THEN
+                        APPEND nxt TO animals
+                    ENDIF
+                ENDIF
+            ENDIF
+            i <- i + 1
+        CATCH
+            loop <- BOOLEAN(FALSE)
+        ENDTRY
+    ENDWHILE
+    raw_words <- raw_text.replace(STRING(";"), STRING(" ")).replace(STRING(":"), STRING(" ")).split()
+    i <- 0
+    loop <- BOOLEAN(TRUE)
+    WHILE loop DO
+        TRY
+            w <- raw_words[i]
+            IF LENGTH OF w > 0 AND (w[0].isupper()) THEN
+                lw <- w.lower().replace(STRING(","), EMPTY STRING).replace(STRING("."), EMPTY STRING).replace(STRING("!"), EMPTY STRING).replace(STRING("?"), EMPTY STRING)
+                IF CALL looks_like_animal(lw) THEN
+                    APPEND lw TO animals
+                ENDIF
+            ENDIF
+            i <- i + 1
+        CATCH
+            loop <- BOOLEAN(FALSE)
+        ENDTRY
+    ENDWHILE
+    i <- 0
+    loop <- BOOLEAN(TRUE)
+    WHILE loop DO
+        TRY
+            w <- all_words[i]
+            IF CALL looks_like_animal(w) THEN
+                APPEND w TO animals
+            ENDIF
+            i <- i + 1
+        CATCH
+            loop <- BOOLEAN(FALSE)
+        ENDTRY
+    ENDWHILE
+    unique <- EMPTY LIST
+    i <- 0
+    loop <- BOOLEAN(TRUE)
+    WHILE loop DO
+        TRY
+            IF animals[i] NOT IN unique THEN
+                APPEND animals[i] TO unique
+            ENDIF
+            i <- i + 1
+        CATCH
+            loop <- BOOLEAN(FALSE)
+        ENDTRY
+    ENDWHILE
+    RETURN unique
+ENDFUNCTION
+
+category_names <- LIST [STRING("animals"), STRING("places"), STRING("verbs"), STRING("nouns"), STRING("who"), STRING("why"), STRING("when")]
+
+FUNCTION get_category_values ACCEPTS(name, use_api)
+    IF name == STRING("animals") THEN
+        IF use_api THEN
+            RETURN CALL api_get_animals()
+        ENDIF
+        RETURN CALL auto_generate_animals()
+    ELSE IF (name == STRING("places")) THEN
+        IF use_api THEN
+            RETURN CALL api_get_places()
+        ENDIF
+        RETURN CALL auto_generate_places()
+    ELSE IF (name == STRING("verbs")) THEN
+        IF use_api THEN
+            RETURN CALL api_get_verbs()
+        ENDIF
+        RETURN CALL auto_generate_verbs()
+    ELSE IF (name == STRING("nouns")) THEN
+        IF use_api THEN
+            RETURN CALL api_get_nouns()
+        ENDIF
+        RETURN CALL auto_generate_nouns()
+    ELSE IF (name == STRING("who")) THEN
+        IF use_api THEN
+            RETURN CALL api_get_whowords()
+        ENDIF
+        RETURN CALL auto_generate_whowords()
+    ELSE IF (name == STRING("why")) THEN
+        IF use_api THEN
+            RETURN CALL api_get_whywords()
+        ENDIF
+        RETURN CALL auto_generate_whywords()
+    ELSE IF (name == STRING("when")) THEN
+        IF use_api THEN
+            RETURN CALL api_get_whenwords()
+        ENDIF
+        RETURN CALL auto_generate_whenwords()
+    ENDIF
+    RETURN EMPTY LIST
+ENDFUNCTION
+
+LISTS <- EMPTY DICTIONARY
+i <- 0
+loop <- BOOLEAN(TRUE)
+WHILE loop DO
+    TRY
+        name <- category_names[i]
+        LISTS[name] <- CALL get_category_values(name, USE_API)
+        i <- i + 1
+    CATCH
+        loop <- BOOLEAN(FALSE)
+    ENDTRY
+ENDWHILE
+synonyms <- EMPTY LIST
+i <- 0
+loop <- BOOLEAN(TRUE)
+WHILE loop DO
+    TRY
+        w <- all_words[i]
+        IF (w.endswith(STRING("s"))) AND LENGTH OF w > 1 THEN
+            APPEND TUPLE(w, CALL substring_range(w, 0, LENGTH OF w - 1)) TO synonyms
+        ENDIF
+        IF (w.endswith(STRING("ed"))) AND LENGTH OF w > 2 THEN
+            APPEND TUPLE(w, CALL substring_range(w, 0, LENGTH OF w - 2)) TO synonyms
+        ENDIF
+        IF (w.endswith(STRING("ing"))) AND LENGTH OF w > 3 THEN
+            APPEND TUPLE(w, CALL substring_range(w, 0, LENGTH OF w - 3)) TO synonyms
+        ENDIF
+        i <- i + 1
+    CATCH
+        loop <- BOOLEAN(FALSE)
+    ENDTRY
+ENDWHILE
+
+FUNCTION words_match ACCEPTS(w1, w2)
+    IF w1 == w2 THEN
+        RETURN BOOLEAN(TRUE)
+    ENDIF
+    i <- 0
+    loop <- BOOLEAN(TRUE)
+    WHILE loop DO
+        TRY
+            synonym_pair <- synonyms[i]
+            a <- synonym_pair[0]
+            b <- synonym_pair[1]
+            IF w1 == a AND w2 == b OR w1 == b AND w2 == a THEN
+                RETURN BOOLEAN(TRUE)
+            ENDIF
+            i <- i + 1
+        CATCH
+            loop <- BOOLEAN(FALSE)
+        ENDTRY
+    ENDWHILE
+    RETURN BOOLEAN(FALSE)
+ENDFUNCTION
+
+question_type <- STRING("other")
+IF LENGTH OF q_words > 0 THEN
+    IF q_words[0] == STRING("where") THEN
+        question_type <- STRING("where")
+    ELSE IF (q_words[0] == STRING("who")) THEN
+        question_type <- STRING("who")
+    ELSE IF (q_words[0] == STRING("why")) THEN
+        question_type <- STRING("why")
+    ELSE IF (q_words[0] == STRING("when")) THEN
+        question_type <- STRING("when")
+    ELSE IF (q_words[0] == STRING("what")) THEN
+        question_type <- STRING("what")
+    ELSE IF (q_words[0] == STRING("how")) THEN
+        question_type <- STRING("how")
+    ENDIF
+ENDIF
+main_noun <- EMPTY STRING
+i <- 0
+loop <- BOOLEAN(TRUE)
+WHILE loop DO
+    TRY
+        w <- q_words[i]
+        IF w NOT IN stopwords THEN
+            main_noun <- w
+        ENDIF
+        i <- i + 1
+    CATCH
+        loop <- BOOLEAN(FALSE)
+    ENDTRY
+ENDWHILE
+question_verbs <- EMPTY LIST
+i <- 0
+loop <- BOOLEAN(TRUE)
+WHILE loop DO
+    TRY
+        w <- q_words[i]
+        IF (w.endswith(STRING("ing"))) OR (w.endswith(STRING("ed"))) THEN
+            APPEND w TO question_verbs
+        ENDIF
+        i <- i + 1
+    CATCH
+        loop <- BOOLEAN(FALSE)
+    ENDTRY
+ENDWHILE
+detected_category <- EMPTY STRING
+i <- 0
+loop <- BOOLEAN(TRUE)
+WHILE loop DO
+    TRY
+        w <- q_words[i]
+        j <- 0
+        j_loop <- BOOLEAN(TRUE)
+        WHILE j_loop DO
+            TRY
+                cname <- category_names[j]
+                IF w == cname OR ((w == CALL substring_range(cname, 0, LENGTH OF cname - 1))) THEN
+                    detected_category <- cname
+                ENDIF
+                j <- j + 1
+            CATCH
+                j_loop <- BOOLEAN(FALSE)
+            ENDTRY
+        ENDWHILE
+        i <- i + 1
+    CATCH
+        loop <- BOOLEAN(FALSE)
+    ENDTRY
+ENDWHILE
+IF LENGTH OF q_words > 1 AND ((q_words[0] == STRING("how"))) AND ((q_words[1] == STRING("many"))) AND ((detected_category != EMPTY STRING)) THEN
+    lst <- LISTS[detected_category]
+    count <- 0
+    i <- 0
+    loop <- BOOLEAN(TRUE)
+    WHILE loop DO
+        TRY
+            IF lst[i] != EMPTY STRING THEN
+                count <- count + 1
+            ENDIF
+            i <- i + 1
+        CATCH
+            loop <- BOOLEAN(FALSE)
+        ENDTRY
+    ENDWHILE
+    out <- EMPTY STRING
+    i <- 0
+    loop <- BOOLEAN(TRUE)
+    WHILE loop DO
+        TRY
+            out <- out + (lst[i] + STRING(" "))
+            i <- i + 1
+        CATCH
+            loop <- BOOLEAN(FALSE)
+        ENDTRY
+    ENDWHILE
+    OUTPUT STRING("\nQuestion: {question}")
+    answer_text <- (((CALL STRING(count) + STRING(" ")) + detected_category) + STRING(": ")) + out.strip()
+    OUTPUT STRING("Answer: {answer_text}")
+    RAISE SystemExit
+ENDIF
+IF detected_category != EMPTY STRING THEN
+    IF LENGTH OF q_words >= 3 AND ((q_words[0] == STRING("are"))) AND ((q_words[1] == STRING("there"))) THEN
+        lst <- LISTS[detected_category]
+        IF LENGTH OF lst > 0 THEN
+            out <- EMPTY STRING
+            i <- 0
+            loop <- BOOLEAN(TRUE)
+            WHILE loop DO
+                TRY
+                    out <- out + (lst[i] + STRING(" "))
+                    i <- i + 1
+                CATCH
+                    loop <- BOOLEAN(FALSE)
+                ENDTRY
+            ENDWHILE
+            OUTPUT STRING("\nQuestion: {question}")
+            OUTPUT STRING("Answer: Yes — ") + out.strip()
+            RAISE SystemExit
+        ELSE
+            OUTPUT STRING("\nQuestion: {question}")
+            OUTPUT STRING("Answer: No — there are no ") + detected_category
+            RAISE SystemExit
+        ENDIF
+    ENDIF
+ENDIF
+IF ((detected_category != EMPTY STRING)) AND ((STRING("list") IN q_words)) THEN
+    lst <- LISTS[detected_category]
+    out <- EMPTY STRING
+    i <- 0
+    loop <- BOOLEAN(TRUE)
+    WHILE loop DO
+        TRY
+            out <- out + (lst[i] + STRING(" "))
+            i <- i + 1
+        CATCH
+            loop <- BOOLEAN(FALSE)
+        ENDTRY
+    ENDWHILE
+    OUTPUT STRING("\nQuestion: {question}")
+    answer_text <- out.strip()
+    OUTPUT STRING("Answer: {answer_text}")
+    RAISE SystemExit
+ENDIF
+animals <- LISTS[STRING("animals")]
+location_words <- LISTS[STRING("places")]
+who_words <- LISTS[STRING("who")]
+why_words <- LISTS[STRING("why")]
+when_words <- LISTS[STRING("when")]
+scores <- EMPTY LIST
+i <- 0
+loop <- BOOLEAN(TRUE)
+WHILE loop DO
+    TRY
+        sent <- sentences[i]
+        s_words <- CALL tokenise(sent)
+        score <- 0
+        q <- 0
+        q_loop <- BOOLEAN(TRUE)
+        WHILE q_loop DO
+            TRY
+                qw <- q_words[q]
+                IF qw NOT IN stopwords THEN
+                    s <- 0
+                    s_loop <- BOOLEAN(TRUE)
+                    WHILE s_loop DO
+                        TRY
+                            IF CALL words_match(s_words[s], qw) THEN
+                                score <- score + 1
+                            ENDIF
+                            s <- s + 1
+                        CATCH
+                            s_loop <- BOOLEAN(FALSE)
+                        ENDTRY
+                    ENDWHILE
+                ENDIF
+                q <- q + 1
+            CATCH
+                q_loop <- BOOLEAN(FALSE)
+            ENDTRY
+        ENDWHILE
+        v <- 0
+        v_loop <- BOOLEAN(TRUE)
+        WHILE v_loop DO
+            TRY
+                verb <- question_verbs[v]
+                s <- 0
+                s_loop <- BOOLEAN(TRUE)
+                WHILE s_loop DO
+                    TRY
+                        IF CALL words_match(s_words[s], verb) THEN
+                            score <- score + 4
+                        ENDIF
+                        s <- s + 1
+                    CATCH
+                        s_loop <- BOOLEAN(FALSE)
+                    ENDTRY
+                ENDWHILE
+                v <- v + 1
+            CATCH
+                v_loop <- BOOLEAN(FALSE)
+            ENDTRY
+        ENDWHILE
+        s <- 0
+        s_loop <- BOOLEAN(TRUE)
+        WHILE s_loop DO
+            TRY
+                w <- s_words[s]
+                IF question_type == STRING("where") THEN
+                    j <- 0
+                    j_loop <- BOOLEAN(TRUE)
+                    WHILE j_loop DO
+                        TRY
+                            IF w == location_words[j] THEN
+                                score <- score + 2
+                            ENDIF
+                            j <- j + 1
+                        CATCH
+                            j_loop <- BOOLEAN(FALSE)
+                        ENDTRY
+                    ENDWHILE
+                ENDIF
+                IF question_type == STRING("who") THEN
+                    j <- 0
+                    j_loop <- BOOLEAN(TRUE)
+                    WHILE j_loop DO
+                        TRY
+                            IF w == who_words[j] THEN
+                                score <- score + 2
+                            ENDIF
+                            j <- j + 1
+                        CATCH
+                            j_loop <- BOOLEAN(FALSE)
+                        ENDTRY
+                    ENDWHILE
+                ENDIF
+                IF question_type == STRING("why") THEN
+                    j <- 0
+                    j_loop <- BOOLEAN(TRUE)
+                    WHILE j_loop DO
+                        TRY
+                            IF w == why_words[j] THEN
+                                score <- score + 2
+                            ENDIF
+                            j <- j + 1
+                        CATCH
+                            j_loop <- BOOLEAN(FALSE)
+                        ENDTRY
+                    ENDWHILE
+                ENDIF
+                IF question_type == STRING("when") THEN
+                    j <- 0
+                    j_loop <- BOOLEAN(TRUE)
+                    WHILE j_loop DO
+                        TRY
+                            IF w == when_words[j] THEN
+                                score <- score + 2
+                            ENDIF
+                            j <- j + 1
+                        CATCH
+                            j_loop <- BOOLEAN(FALSE)
+                        ENDTRY
+                    ENDWHILE
+                ENDIF
+                IF question_type == STRING("what") THEN
+                    IF w == main_noun THEN
+                        score <- score + 4
+                    ENDIF
+                    IF w == STRING("for") THEN
+                        score <- score + 3
+                    ENDIF
+                    IF ((w == STRING("were"))) OR ((w == STRING("there"))) THEN
+                        score <- score + 2
+                    ENDIF
+                    IF w == STRING("used") THEN
+                        score <- score + 3
+                    ENDIF
+                ENDIF
+                IF LENGTH OF q_words > 0 AND ((q_words[0] IN LIST [STRING("did"), STRING("does"), STRING("do")])) THEN
+                    subject <- EMPTY STRING
+                    i2 <- 1
+                    loop2 <- BOOLEAN(TRUE)
+                    WHILE loop2 DO
+                        TRY
+                            IF q_words[i2] NOT IN stopwords THEN
+                                subject <- q_words[i2]
+                                loop2 <- BOOLEAN(FALSE)
+                            ENDIF
+                            i2 <- i2 + 1
+                        CATCH
+                            loop2 <- BOOLEAN(FALSE)
+                        ENDTRY
+                    ENDWHILE
+                    obj <- EMPTY STRING
+                    i2 <- 0
+                    loop2 <- BOOLEAN(TRUE)
+                    WHILE loop2 DO
+                        TRY
+                            IF q_words[i2] NOT IN stopwords THEN
+                                obj <- q_words[i2]
+                            ENDIF
+                            i2 <- i2 + 1
+                        CATCH
+                            loop2 <- BOOLEAN(FALSE)
+                        ENDTRY
+                    ENDWHILE
+                    s2 <- 0
+                    loop2 <- BOOLEAN(TRUE)
+                    WHILE loop2 DO
+                        TRY
+                            IF s_words[s2] == subject THEN
+                                score <- score + 3
+                            ENDIF
+                            IF s_words[s2] == obj THEN
+                                score <- score + 4
+                            ENDIF
+                            s2 <- s2 + 1
+                        CATCH
+                            loop2 <- BOOLEAN(FALSE)
+                        ENDTRY
+                    ENDWHILE
+                    s2 <- 0
+                    loop2 <- BOOLEAN(TRUE)
+                    WHILE loop2 DO
+                        TRY
+                            IF s_words[s2] IN LIST [STRING("was"), STRING("were"), STRING("had"), STRING("approached"), STRING("contained"), STRING("included")] THEN
+                                score <- score + 2
+                            ENDIF
+                            s2 <- s2 + 1
+                        CATCH
+                            loop2 <- BOOLEAN(FALSE)
+                        ENDTRY
+                    ENDWHILE
+                ENDIF
+                s <- s + 1
+            CATCH
+                s_loop <- BOOLEAN(FALSE)
+            ENDTRY
+        ENDWHILE
+        IF i > 0 THEN
+            prev_words <- CALL tokenise(sentences[i - 1])
+            q <- 0
+            q_loop <- BOOLEAN(TRUE)
+            WHILE q_loop DO
+                TRY
+                    qw <- q_words[q]
+                    IF qw NOT IN stopwords THEN
+                        p <- 0
+                        p_loop <- BOOLEAN(TRUE)
+                        WHILE p_loop DO
+                            TRY
+                                IF CALL words_match(prev_words[p], qw) THEN
+                                    score <- score + 1
+                                ENDIF
+                                p <- p + 1
+                            CATCH
+                                p_loop <- BOOLEAN(FALSE)
+                            ENDTRY
+                        ENDWHILE
+                    ENDIF
+                    q <- q + 1
+                CATCH
+                    q_loop <- BOOLEAN(FALSE)
+                ENDTRY
+            ENDWHILE
+        ENDIF
+        IF i < (LENGTH OF sentences - 1) THEN
+            next_words <- CALL tokenise(sentences[i + 1])
+            q <- 0
+            q_loop <- BOOLEAN(TRUE)
+            WHILE q_loop DO
+                TRY
+                    qw <- q_words[q]
+                    IF qw NOT IN stopwords THEN
+                        n2 <- 0
+                        n2_loop <- BOOLEAN(TRUE)
+                        WHILE n2_loop DO
+                            TRY
+                                IF CALL words_match(next_words[n2], qw) THEN
+                                    score <- score + 1
+                                ENDIF
+                                n2 <- n2 + 1
+                            CATCH
+                                n2_loop <- BOOLEAN(FALSE)
+                            ENDTRY
+                        ENDWHILE
+                    ENDIF
+                    q <- q + 1
+                CATCH
+                    q_loop <- BOOLEAN(FALSE)
+                ENDTRY
+            ENDWHILE
+        ENDIF
+        APPEND TUPLE(score, sent) TO scores
+        i <- i + 1
+    CATCH
+        loop <- BOOLEAN(FALSE)
+    ENDTRY
+ENDWHILE
+best_score <- -1
+best_sentence <- NONE
+i <- 0
+loop <- BOOLEAN(TRUE)
+WHILE loop DO
+    TRY
+        score_entry <- scores[i]
+        sc <- score_entry[0]
+        sent <- score_entry[1]
+        IF sc > best_score THEN
+            best_score <- sc
+            best_sentence <- sent
+        ENDIF
+        i <- i + 1
+    CATCH
+        loop <- BOOLEAN(FALSE)
+    ENDTRY
+ENDWHILE
+
+FUNCTION rewrite_answer ACCEPTS(sentence, question_type)
+    words <- CALL tokenise(sentence)
+    IF LENGTH OF words > 0 THEN
+        IF words[0] == STRING("because") THEN
+            words <- CALL sublist_range(words, 1, LENGTH OF words)
+        ENDIF
+    ENDIF
+    IF question_type == STRING("where") THEN
+        i <- 0
+        loop <- BOOLEAN(TRUE)
+        WHILE loop DO
+            TRY
+                IF words[i] == STRING("at") THEN
+                    words[i] <- STRING("in")
+                ENDIF
+                i <- i + 1
+            CATCH
+                loop <- BOOLEAN(FALSE)
+            ENDTRY
+        ENDWHILE
+    ENDIF
+    IF question_type == STRING("why") THEN
+        i <- 0
+        loop <- BOOLEAN(TRUE)
+        start <- 0
+        WHILE loop DO
+            TRY
+                IF words[i] == STRING("because") THEN
+                    start <- i
+                ENDIF
+                i <- i + 1
+            CATCH
+                loop <- BOOLEAN(FALSE)
+            ENDTRY
+        ENDWHILE
+        words <- CALL sublist_range(words, start, LENGTH OF words)
+    ENDIF
+    IF question_type == STRING("who") THEN
+        IF LENGTH OF words > 8 THEN
+            new_words <- EMPTY LIST
+            j <- 0
+            loop2 <- BOOLEAN(TRUE)
+            WHILE loop2 DO
+                TRY
+                    IF j < 8 THEN
+                        APPEND words[j] TO new_words
+                    ENDIF
+                    j <- j + 1
+                CATCH
+                    loop2 <- BOOLEAN(FALSE)
+                ENDTRY
+            ENDWHILE
+            words <- new_words
+        ENDIF
+    ENDIF
+    IF question_type == STRING("what") THEN
+        i <- 0
+        loop <- BOOLEAN(TRUE)
+        start <- 0
+        found <- BOOLEAN(FALSE)
+        WHILE loop DO
+            TRY
+                IF words[i] == STRING("for") THEN
+                    start <- i
+                    found <- BOOLEAN(TRUE)
+                ENDIF
+                i <- i + 1
+            CATCH
+                loop <- BOOLEAN(FALSE)
+            ENDTRY
+        ENDWHILE
+        IF found THEN
+            new_words <- EMPTY LIST
+            j <- start
+            loop2 <- BOOLEAN(TRUE)
+            WHILE loop2 DO
+                TRY
+                    APPEND words[j] TO new_words
+                    j <- j + 1
+                CATCH
+                    loop2 <- BOOLEAN(FALSE)
+                ENDTRY
+            ENDWHILE
+            words <- new_words
+        ENDIF
+    ENDIF
+    rewritten <- EMPTY STRING
+    i <- 0
+    loop <- BOOLEAN(TRUE)
+    WHILE loop DO
+        TRY
+            rewritten <- rewritten + (words[i] + STRING(" "))
+            i <- i + 1
+        CATCH
+            loop <- BOOLEAN(FALSE)
+        ENDTRY
+    ENDWHILE
+    RETURN rewritten.strip()
+ENDFUNCTION
+
+answer <- STRING("I cannot answer that from the given text.")
+IF best_sentence != NONE AND best_score > 0 THEN
+    answer <- CALL rewrite_answer(best_sentence, question_type)
+ENDIF
+OUTPUT STRING("\nQuestion: {question}")
+OUTPUT STRING("Answer: {answer}")

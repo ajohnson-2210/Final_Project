@@ -1,0 +1,200 @@
+{
+  "success": true,
+  "status": "SUCCESS",
+  "stages": [
+    {
+      "name": "PSEUDOCODE_PROFILE_PROCESSING",
+      "status": "SUCCESS",
+      "message": "Processed source using AJ_DIALECT_STRICT; 7 transformation(s); 0 header line(s) stripped.",
+      "duration_ms": 0.766
+    },
+    {
+      "name": "PSEUDOCODE_TO_AST",
+      "status": "SUCCESS",
+      "message": "Pseudocode parsed and validated.",
+      "duration_ms": 17.339
+    },
+    {
+      "name": "AST_TO_FLOW_DIAGRAM",
+      "status": "SUCCESS",
+      "message": "Machine-readable flow diagram generated.",
+      "duration_ms": 1.06
+    },
+    {
+      "name": "FLOW_DIAGRAM_TO_DRAWIO",
+      "status": "SUCCESS",
+      "message": "Editable draw.io XML flow diagram generated.",
+      "duration_ms": 4.47
+    },
+    {
+      "name": "FLOW_DIAGRAM_TO_PYTHON",
+      "status": "SUCCESS",
+      "message": "Python source generated and syntax validated.",
+      "duration_ms": 4.0
+    },
+    {
+      "name": "BEHAVIOURAL_TESTING",
+      "status": "SUCCESS",
+      "message": "Passed 4 of 4 tests.",
+      "duration_ms": 274.898
+    }
+  ],
+  "output_files": {
+    "pseudocode_processing_report": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Pseudocode\\Algorithm - 33\\pipeline_artifacts\\pseudocode_processing_report.json",
+    "processed_pseudocode": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Pseudocode\\Algorithm - 33\\pipeline_artifacts\\processed_pseudocode.aj",
+    "ast": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Pseudocode\\Algorithm - 33\\pipeline_artifacts\\ast.json",
+    "parser_report": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Pseudocode\\Algorithm - 33\\pipeline_artifacts\\parser_report.json",
+    "ast_visualisation": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Pseudocode\\Algorithm - 33\\pipeline_artifacts\\ast_visualisation.html",
+    "flow_diagram": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Pseudocode\\Algorithm - 33\\pipeline_artifacts\\flow_diagram.json",
+    "flow_visualisation": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Pseudocode\\Algorithm - 33\\pipeline_artifacts\\flow_diagram.html",
+    "flow_diagram_drawio": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Pseudocode\\Algorithm - 33\\pipeline_artifacts\\flow_diagram.drawio",
+    "generated_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Pseudocode\\Algorithm - 33\\pipeline_artifacts\\generated_program.py",
+    "compilation_report": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Pseudocode\\Algorithm - 33\\pipeline_artifacts\\compilation_report.json",
+    "test_report": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Pseudocode\\Algorithm - 33\\pipeline_artifacts\\test_report.json",
+    "pipeline_report": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Pseudocode\\Algorithm - 33\\pipeline_artifacts\\pipeline_report.json"
+  },
+  "test_report": {
+    "program_path": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Pseudocode\\Algorithm - 33\\pipeline_artifacts\\generated_program.py",
+    "success": true,
+    "total_tests": 4,
+    "passed_tests": 4,
+    "failed_tests": 0,
+    "category_summary": {
+      "NORMAL": {
+        "total": 1,
+        "passed": 1,
+        "failed": 0
+      },
+      "BRANCH": {
+        "total": 1,
+        "passed": 1,
+        "failed": 0
+      },
+      "BOUNDARY": {
+        "total": 1,
+        "passed": 1,
+        "failed": 0
+      },
+      "ERROR_BEHAVIOUR": {
+        "total": 1,
+        "passed": 1,
+        "failed": 0
+      }
+    },
+    "results": [
+      {
+        "name": "perfect square",
+        "status": "PASSED",
+        "expected_output": [
+          "Enter a Positive Integer to find the Square Root: The Square Root of 16 Rounded Down to the Nearest Integer =  4"
+        ],
+        "actual_output": [
+          "Enter a Positive Integer to find the Square Root: The Square Root of 16 Rounded Down to the Nearest Integer =  4"
+        ],
+        "standard_error": "",
+        "return_code": 0,
+        "duration_ms": 78.918,
+        "category": "NORMAL",
+        "semantic_feature": "INTEGER_SQRT_EXACT",
+        "expected_return_code": 0,
+        "expected_error_type": null,
+        "actual_error_type": null,
+        "criteria_links": [
+          "P2",
+          "P4"
+        ],
+        "random_seed": null,
+        "environment": {},
+        "requires_modules": []
+      },
+      {
+        "name": "non-perfect square rounds down",
+        "status": "PASSED",
+        "expected_output": [
+          "Enter a Positive Integer to find the Square Root: The Square Root of 15 Rounded Down to the Nearest Integer =  3"
+        ],
+        "actual_output": [
+          "Enter a Positive Integer to find the Square Root: The Square Root of 15 Rounded Down to the Nearest Integer =  3"
+        ],
+        "standard_error": "",
+        "return_code": 0,
+        "duration_ms": 58.931,
+        "category": "BRANCH",
+        "semantic_feature": "INTEGER_SQRT_FLOOR",
+        "expected_return_code": 0,
+        "expected_error_type": null,
+        "actual_error_type": null,
+        "criteria_links": [
+          "P2",
+          "P4"
+        ],
+        "random_seed": null,
+        "environment": {},
+        "requires_modules": []
+      },
+      {
+        "name": "small positive one",
+        "status": "PASSED",
+        "expected_output": [
+          "Enter a Positive Integer to find the Square Root: The Square Root of 1 Rounded Down to the Nearest Integer =  1"
+        ],
+        "actual_output": [
+          "Enter a Positive Integer to find the Square Root: The Square Root of 1 Rounded Down to the Nearest Integer =  1"
+        ],
+        "standard_error": "",
+        "return_code": 0,
+        "duration_ms": 63.79,
+        "category": "BOUNDARY",
+        "semantic_feature": "INTEGER_SQRT_ONE",
+        "expected_return_code": 0,
+        "expected_error_type": null,
+        "actual_error_type": null,
+        "criteria_links": [
+          "P2",
+          "P3",
+          "P4"
+        ],
+        "random_seed": null,
+        "environment": {},
+        "requires_modules": []
+      },
+      {
+        "name": "non-numeric retries",
+        "status": "PASSED",
+        "expected_output": [
+          "Enter a Positive Integer to find the Square Root: That's Not a Valid Number, Please Try Again!",
+          "Enter a Positive Integer to find the Square Root: The Square Root of 9 Rounded Down to the Nearest Integer =  3"
+        ],
+        "actual_output": [
+          "Enter a Positive Integer to find the Square Root: That's Not a Valid Number, Please Try Again!",
+          "Enter a Positive Integer to find the Square Root: The Square Root of 9 Rounded Down to the Nearest Integer =  3"
+        ],
+        "standard_error": "",
+        "return_code": 0,
+        "duration_ms": 70.577,
+        "category": "ERROR_BEHAVIOUR",
+        "semantic_feature": "INTEGER_INPUT_RETRY",
+        "expected_return_code": 0,
+        "expected_error_type": null,
+        "actual_error_type": null,
+        "criteria_links": [
+          "P2",
+          "P3",
+          "P4"
+        ],
+        "random_seed": null,
+        "environment": {},
+        "requires_modules": []
+      }
+    ]
+  },
+  "error": null,
+  "input_metadata": {
+    "input_type": "PSEUDOCODE",
+    "pseudocode_profile": "AJ_DIALECT_STRICT",
+    "source_modified": true,
+    "transformation_count": 7,
+    "header_comment_removed": false,
+    "header_lines_removed": 0
+  }
+}

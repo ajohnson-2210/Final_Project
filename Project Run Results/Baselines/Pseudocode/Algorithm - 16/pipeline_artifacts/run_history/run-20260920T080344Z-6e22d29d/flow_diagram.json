@@ -1,0 +1,1209 @@
+{
+  "format": "NL-FDEP Flow Diagram",
+  "version": "1.0",
+  "entry_node": "F1",
+  "exit_node": "F2",
+  "nodes": {
+    "F1": {
+      "node_id": "F1",
+      "node_type": "START",
+      "label": "Start",
+      "line": 1,
+      "data": {}
+    },
+    "F2": {
+      "node_id": "F2",
+      "node_type": "END",
+      "label": "End",
+      "line": 1,
+      "data": {}
+    },
+    "F3": {
+      "node_id": "F3",
+      "node_type": "PROCESS",
+      "label": "Set firstNum to 0",
+      "line": 1,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F4": {
+      "node_id": "F4",
+      "node_type": "PROCESS",
+      "label": "Set secondNum to 0",
+      "line": 2,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F5": {
+      "node_id": "F5",
+      "node_type": "PROCESS",
+      "label": "Set errorString to \"That's Not a Valid Number, Please Try Again!\"",
+      "line": 3,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F6": {
+      "node_id": "F6",
+      "node_type": "PROCESS",
+      "label": "Set loop to true",
+      "line": 4,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F7": {
+      "node_id": "F7",
+      "node_type": "LOOP_DECISION",
+      "label": "Loop is equal to true?",
+      "line": 5,
+      "data": {
+        "ast_kind": "WhileNode"
+      }
+    },
+    "F8": {
+      "node_id": "F8",
+      "node_type": "PROCESS",
+      "label": "Set firstNum to input prompted by \"Enter First Number: \"",
+      "line": 6,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F9": {
+      "node_id": "F9",
+      "node_type": "TRY",
+      "label": "Attempt the following operations",
+      "line": 7,
+      "data": {
+        "ast_kind": "TryCatchNode"
+      }
+    },
+    "F10": {
+      "node_id": "F10",
+      "node_type": "PROCESS",
+      "label": "Set firstNum to firstNum converted to integer",
+      "line": 8,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F11": {
+      "node_id": "F11",
+      "node_type": "DECISION",
+      "label": "FirstNum is less than 0?",
+      "line": 9,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F12": {
+      "node_id": "F12",
+      "node_type": "PROCESS",
+      "label": "Set firstNum to the result of abs(firstNum)",
+      "line": 10,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F13": {
+      "node_id": "F13",
+      "node_type": "PROCESS",
+      "label": "Set loop to false",
+      "line": 12,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F14": {
+      "node_id": "F14",
+      "node_type": "OUTPUT",
+      "label": "Display errorString",
+      "line": 14,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F15": {
+      "node_id": "F15",
+      "node_type": "PROCESS",
+      "label": "Set loop to true",
+      "line": 17,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F16": {
+      "node_id": "F16",
+      "node_type": "LOOP_DECISION",
+      "label": "Loop is equal to true?",
+      "line": 18,
+      "data": {
+        "ast_kind": "WhileNode"
+      }
+    },
+    "F17": {
+      "node_id": "F17",
+      "node_type": "PROCESS",
+      "label": "Set secondNum to input prompted by \"Enter Second Number: \"",
+      "line": 19,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F18": {
+      "node_id": "F18",
+      "node_type": "TRY",
+      "label": "Attempt the following operations",
+      "line": 20,
+      "data": {
+        "ast_kind": "TryCatchNode"
+      }
+    },
+    "F19": {
+      "node_id": "F19",
+      "node_type": "PROCESS",
+      "label": "Set secondNum to secondNum converted to integer",
+      "line": 21,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F20": {
+      "node_id": "F20",
+      "node_type": "DECISION",
+      "label": "SecondNum is less than 0?",
+      "line": 22,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F21": {
+      "node_id": "F21",
+      "node_type": "PROCESS",
+      "label": "Set secondNum to the result of abs(secondNum)",
+      "line": 23,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F22": {
+      "node_id": "F22",
+      "node_type": "PROCESS",
+      "label": "Set loop to false",
+      "line": 25,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F23": {
+      "node_id": "F23",
+      "node_type": "OUTPUT",
+      "label": "Display errorString",
+      "line": 27,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F24": {
+      "node_id": "F24",
+      "node_type": "FUNCTION",
+      "label": "Run function gcd with first, second",
+      "line": 31,
+      "data": {
+        "ast_kind": "FunctionNode",
+        "name": "gcd"
+      }
+    },
+    "F25": {
+      "node_id": "F25",
+      "node_type": "PROCESS",
+      "label": "Set remainder to first modulo second",
+      "line": 32,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F26": {
+      "node_id": "F26",
+      "node_type": "LOOP_DECISION",
+      "label": "Remainder is not equal to 0?",
+      "line": 33,
+      "data": {
+        "ast_kind": "WhileNode"
+      }
+    },
+    "F27": {
+      "node_id": "F27",
+      "node_type": "PROCESS",
+      "label": "Set first to second",
+      "line": 34,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F28": {
+      "node_id": "F28",
+      "node_type": "PROCESS",
+      "label": "Set second to remainder",
+      "line": 35,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F29": {
+      "node_id": "F29",
+      "node_type": "PROCESS",
+      "label": "Set remainder to first modulo second",
+      "line": 36,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F30": {
+      "node_id": "F30",
+      "node_type": "RETURN",
+      "label": "Return second",
+      "line": 38,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    },
+    "F31": {
+      "node_id": "F31",
+      "node_type": "DECISION",
+      "label": "FirstNum is greater than secondNum?",
+      "line": 41,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F32": {
+      "node_id": "F32",
+      "node_type": "PROCESS",
+      "label": "Set a to firstNum",
+      "line": 42,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F33": {
+      "node_id": "F33",
+      "node_type": "PROCESS",
+      "label": "Set b to secondNum",
+      "line": 43,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F34": {
+      "node_id": "F34",
+      "node_type": "PROCESS",
+      "label": "Set a to secondNum",
+      "line": 45,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F35": {
+      "node_id": "F35",
+      "node_type": "PROCESS",
+      "label": "Set b to firstNum",
+      "line": 46,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F36": {
+      "node_id": "F36",
+      "node_type": "PROCESS",
+      "label": "Set gcd_result to the result of gcd(a, b)",
+      "line": 48,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F37": {
+      "node_id": "F37",
+      "node_type": "OUTPUT",
+      "label": "Display \"GCD = {gcd_result}\"",
+      "line": 49,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "F3",
+      "target": "F4",
+      "label": "NEXT"
+    },
+    {
+      "source": "F4",
+      "target": "F5",
+      "label": "NEXT"
+    },
+    {
+      "source": "F5",
+      "target": "F6",
+      "label": "NEXT"
+    },
+    {
+      "source": "F11",
+      "target": "F12",
+      "label": "TRUE"
+    },
+    {
+      "source": "F10",
+      "target": "F11",
+      "label": "NEXT"
+    },
+    {
+      "source": "F12",
+      "target": "F13",
+      "label": "NEXT"
+    },
+    {
+      "source": "F11",
+      "target": "F13",
+      "label": "NEXT"
+    },
+    {
+      "source": "F9",
+      "target": "F10",
+      "label": "TRY"
+    },
+    {
+      "source": "F9",
+      "target": "F14",
+      "label": "EXCEPTION"
+    },
+    {
+      "source": "F8",
+      "target": "F9",
+      "label": "NEXT"
+    },
+    {
+      "source": "F7",
+      "target": "F8",
+      "label": "TRUE"
+    },
+    {
+      "source": "F13",
+      "target": "F7",
+      "label": "LOOP"
+    },
+    {
+      "source": "F14",
+      "target": "F7",
+      "label": "LOOP"
+    },
+    {
+      "source": "F6",
+      "target": "F7",
+      "label": "NEXT"
+    },
+    {
+      "source": "F7",
+      "target": "F15",
+      "label": "NEXT"
+    },
+    {
+      "source": "F20",
+      "target": "F21",
+      "label": "TRUE"
+    },
+    {
+      "source": "F19",
+      "target": "F20",
+      "label": "NEXT"
+    },
+    {
+      "source": "F21",
+      "target": "F22",
+      "label": "NEXT"
+    },
+    {
+      "source": "F20",
+      "target": "F22",
+      "label": "NEXT"
+    },
+    {
+      "source": "F18",
+      "target": "F19",
+      "label": "TRY"
+    },
+    {
+      "source": "F18",
+      "target": "F23",
+      "label": "EXCEPTION"
+    },
+    {
+      "source": "F17",
+      "target": "F18",
+      "label": "NEXT"
+    },
+    {
+      "source": "F16",
+      "target": "F17",
+      "label": "TRUE"
+    },
+    {
+      "source": "F22",
+      "target": "F16",
+      "label": "LOOP"
+    },
+    {
+      "source": "F23",
+      "target": "F16",
+      "label": "LOOP"
+    },
+    {
+      "source": "F15",
+      "target": "F16",
+      "label": "NEXT"
+    },
+    {
+      "source": "F27",
+      "target": "F28",
+      "label": "NEXT"
+    },
+    {
+      "source": "F28",
+      "target": "F29",
+      "label": "NEXT"
+    },
+    {
+      "source": "F26",
+      "target": "F27",
+      "label": "TRUE"
+    },
+    {
+      "source": "F29",
+      "target": "F26",
+      "label": "LOOP"
+    },
+    {
+      "source": "F25",
+      "target": "F26",
+      "label": "NEXT"
+    },
+    {
+      "source": "F26",
+      "target": "F30",
+      "label": "NEXT"
+    },
+    {
+      "source": "F24",
+      "target": "F25",
+      "label": "BODY"
+    },
+    {
+      "source": "F16",
+      "target": "F24",
+      "label": "NEXT"
+    },
+    {
+      "source": "F32",
+      "target": "F33",
+      "label": "NEXT"
+    },
+    {
+      "source": "F31",
+      "target": "F32",
+      "label": "TRUE"
+    },
+    {
+      "source": "F34",
+      "target": "F35",
+      "label": "NEXT"
+    },
+    {
+      "source": "F31",
+      "target": "F34",
+      "label": "FALSE"
+    },
+    {
+      "source": "F33",
+      "target": "F36",
+      "label": "NEXT"
+    },
+    {
+      "source": "F35",
+      "target": "F36",
+      "label": "NEXT"
+    },
+    {
+      "source": "F36",
+      "target": "F37",
+      "label": "NEXT"
+    },
+    {
+      "source": "F1",
+      "target": "F3",
+      "label": "NEXT"
+    },
+    {
+      "source": "F30",
+      "target": "F2",
+      "label": "NEXT"
+    },
+    {
+      "source": "F37",
+      "target": "F2",
+      "label": "NEXT"
+    }
+  ],
+  "structured_program": {
+    "kind": "ProgramNode",
+    "line": 1,
+    "body": [
+      {
+        "kind": "AssignmentNode",
+        "line": 1,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 1,
+          "name": "firstNum"
+        },
+        "value": {
+          "kind": "LiteralNode",
+          "line": 1,
+          "value": 0,
+          "data_type": "INTEGER"
+        }
+      },
+      {
+        "kind": "AssignmentNode",
+        "line": 2,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 2,
+          "name": "secondNum"
+        },
+        "value": {
+          "kind": "LiteralNode",
+          "line": 2,
+          "value": 0,
+          "data_type": "INTEGER"
+        }
+      },
+      {
+        "kind": "AssignmentNode",
+        "line": 3,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 3,
+          "name": "errorString"
+        },
+        "value": {
+          "kind": "LiteralNode",
+          "line": 3,
+          "value": "That's Not a Valid Number, Please Try Again!",
+          "data_type": "STRING"
+        }
+      },
+      {
+        "kind": "AssignmentNode",
+        "line": 4,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 4,
+          "name": "loop"
+        },
+        "value": {
+          "kind": "LiteralNode",
+          "line": 4,
+          "value": true,
+          "data_type": "BOOLEAN"
+        }
+      },
+      {
+        "kind": "WhileNode",
+        "line": 5,
+        "condition": {
+          "kind": "BinaryNode",
+          "line": 5,
+          "operator": "==",
+          "left": {
+            "kind": "IdentifierNode",
+            "line": 5,
+            "name": "loop"
+          },
+          "right": {
+            "kind": "LiteralNode",
+            "line": 5,
+            "value": true,
+            "data_type": "BOOLEAN"
+          }
+        },
+        "body": {
+          "kind": "BlockNode",
+          "line": 6,
+          "statements": [
+            {
+              "kind": "AssignmentNode",
+              "line": 6,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 6,
+                "name": "firstNum"
+              },
+              "value": {
+                "kind": "InputNode",
+                "line": 6,
+                "prompt": {
+                  "kind": "LiteralNode",
+                  "line": 6,
+                  "value": "Enter First Number: ",
+                  "data_type": "STRING"
+                }
+              }
+            },
+            {
+              "kind": "TryCatchNode",
+              "line": 7,
+              "try_body": {
+                "kind": "BlockNode",
+                "line": 8,
+                "statements": [
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 8,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 8,
+                      "name": "firstNum"
+                    },
+                    "value": {
+                      "kind": "CastNode",
+                      "line": 8,
+                      "target_type": "INTEGER",
+                      "expression": {
+                        "kind": "IdentifierNode",
+                        "line": 8,
+                        "name": "firstNum"
+                      }
+                    }
+                  },
+                  {
+                    "kind": "IfNode",
+                    "line": 9,
+                    "condition": {
+                      "kind": "BinaryNode",
+                      "line": 9,
+                      "operator": "<",
+                      "left": {
+                        "kind": "IdentifierNode",
+                        "line": 9,
+                        "name": "firstNum"
+                      },
+                      "right": {
+                        "kind": "LiteralNode",
+                        "line": 9,
+                        "value": 0,
+                        "data_type": "INTEGER"
+                      }
+                    },
+                    "then_body": {
+                      "kind": "BlockNode",
+                      "line": 10,
+                      "statements": [
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 10,
+                          "target": {
+                            "kind": "IdentifierNode",
+                            "line": 10,
+                            "name": "firstNum"
+                          },
+                          "value": {
+                            "kind": "CallNode",
+                            "line": 10,
+                            "name": "abs",
+                            "arguments": [
+                              {
+                                "kind": "IdentifierNode",
+                                "line": 10,
+                                "name": "firstNum"
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    "else_if": [],
+                    "else_body": null
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 12,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 12,
+                      "name": "loop"
+                    },
+                    "value": {
+                      "kind": "LiteralNode",
+                      "line": 12,
+                      "value": false,
+                      "data_type": "BOOLEAN"
+                    }
+                  }
+                ]
+              },
+              "error": null,
+              "catch_body": {
+                "kind": "BlockNode",
+                "line": 14,
+                "statements": [
+                  {
+                    "kind": "OutputNode",
+                    "line": 14,
+                    "expression": {
+                      "kind": "IdentifierNode",
+                      "line": 14,
+                      "name": "errorString"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "kind": "AssignmentNode",
+        "line": 17,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 17,
+          "name": "loop"
+        },
+        "value": {
+          "kind": "LiteralNode",
+          "line": 17,
+          "value": true,
+          "data_type": "BOOLEAN"
+        }
+      },
+      {
+        "kind": "WhileNode",
+        "line": 18,
+        "condition": {
+          "kind": "BinaryNode",
+          "line": 18,
+          "operator": "==",
+          "left": {
+            "kind": "IdentifierNode",
+            "line": 18,
+            "name": "loop"
+          },
+          "right": {
+            "kind": "LiteralNode",
+            "line": 18,
+            "value": true,
+            "data_type": "BOOLEAN"
+          }
+        },
+        "body": {
+          "kind": "BlockNode",
+          "line": 19,
+          "statements": [
+            {
+              "kind": "AssignmentNode",
+              "line": 19,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 19,
+                "name": "secondNum"
+              },
+              "value": {
+                "kind": "InputNode",
+                "line": 19,
+                "prompt": {
+                  "kind": "LiteralNode",
+                  "line": 19,
+                  "value": "Enter Second Number: ",
+                  "data_type": "STRING"
+                }
+              }
+            },
+            {
+              "kind": "TryCatchNode",
+              "line": 20,
+              "try_body": {
+                "kind": "BlockNode",
+                "line": 21,
+                "statements": [
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 21,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 21,
+                      "name": "secondNum"
+                    },
+                    "value": {
+                      "kind": "CastNode",
+                      "line": 21,
+                      "target_type": "INTEGER",
+                      "expression": {
+                        "kind": "IdentifierNode",
+                        "line": 21,
+                        "name": "secondNum"
+                      }
+                    }
+                  },
+                  {
+                    "kind": "IfNode",
+                    "line": 22,
+                    "condition": {
+                      "kind": "BinaryNode",
+                      "line": 22,
+                      "operator": "<",
+                      "left": {
+                        "kind": "IdentifierNode",
+                        "line": 22,
+                        "name": "secondNum"
+                      },
+                      "right": {
+                        "kind": "LiteralNode",
+                        "line": 22,
+                        "value": 0,
+                        "data_type": "INTEGER"
+                      }
+                    },
+                    "then_body": {
+                      "kind": "BlockNode",
+                      "line": 23,
+                      "statements": [
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 23,
+                          "target": {
+                            "kind": "IdentifierNode",
+                            "line": 23,
+                            "name": "secondNum"
+                          },
+                          "value": {
+                            "kind": "CallNode",
+                            "line": 23,
+                            "name": "abs",
+                            "arguments": [
+                              {
+                                "kind": "IdentifierNode",
+                                "line": 23,
+                                "name": "secondNum"
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    "else_if": [],
+                    "else_body": null
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 25,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 25,
+                      "name": "loop"
+                    },
+                    "value": {
+                      "kind": "LiteralNode",
+                      "line": 25,
+                      "value": false,
+                      "data_type": "BOOLEAN"
+                    }
+                  }
+                ]
+              },
+              "error": null,
+              "catch_body": {
+                "kind": "BlockNode",
+                "line": 27,
+                "statements": [
+                  {
+                    "kind": "OutputNode",
+                    "line": 27,
+                    "expression": {
+                      "kind": "IdentifierNode",
+                      "line": 27,
+                      "name": "errorString"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "kind": "FunctionNode",
+        "line": 31,
+        "name": "gcd",
+        "parameters": [
+          {
+            "kind": "ParameterNode",
+            "line": 31,
+            "name": "first",
+            "declared_type": null
+          },
+          {
+            "kind": "ParameterNode",
+            "line": 31,
+            "name": "second",
+            "declared_type": null
+          }
+        ],
+        "body": {
+          "kind": "BlockNode",
+          "line": 32,
+          "statements": [
+            {
+              "kind": "AssignmentNode",
+              "line": 32,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 32,
+                "name": "remainder"
+              },
+              "value": {
+                "kind": "BinaryNode",
+                "line": 32,
+                "operator": "MODULUS",
+                "left": {
+                  "kind": "IdentifierNode",
+                  "line": 32,
+                  "name": "first"
+                },
+                "right": {
+                  "kind": "IdentifierNode",
+                  "line": 32,
+                  "name": "second"
+                }
+              }
+            },
+            {
+              "kind": "WhileNode",
+              "line": 33,
+              "condition": {
+                "kind": "BinaryNode",
+                "line": 33,
+                "operator": "!=",
+                "left": {
+                  "kind": "IdentifierNode",
+                  "line": 33,
+                  "name": "remainder"
+                },
+                "right": {
+                  "kind": "LiteralNode",
+                  "line": 33,
+                  "value": 0,
+                  "data_type": "INTEGER"
+                }
+              },
+              "body": {
+                "kind": "BlockNode",
+                "line": 34,
+                "statements": [
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 34,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 34,
+                      "name": "first"
+                    },
+                    "value": {
+                      "kind": "IdentifierNode",
+                      "line": 34,
+                      "name": "second"
+                    }
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 35,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 35,
+                      "name": "second"
+                    },
+                    "value": {
+                      "kind": "IdentifierNode",
+                      "line": 35,
+                      "name": "remainder"
+                    }
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 36,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 36,
+                      "name": "remainder"
+                    },
+                    "value": {
+                      "kind": "BinaryNode",
+                      "line": 36,
+                      "operator": "MODULUS",
+                      "left": {
+                        "kind": "IdentifierNode",
+                        "line": 36,
+                        "name": "first"
+                      },
+                      "right": {
+                        "kind": "IdentifierNode",
+                        "line": 36,
+                        "name": "second"
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "ReturnNode",
+              "line": 38,
+              "expression": {
+                "kind": "IdentifierNode",
+                "line": 38,
+                "name": "second"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "kind": "IfNode",
+        "line": 41,
+        "condition": {
+          "kind": "BinaryNode",
+          "line": 41,
+          "operator": ">",
+          "left": {
+            "kind": "IdentifierNode",
+            "line": 41,
+            "name": "firstNum"
+          },
+          "right": {
+            "kind": "IdentifierNode",
+            "line": 41,
+            "name": "secondNum"
+          }
+        },
+        "then_body": {
+          "kind": "BlockNode",
+          "line": 42,
+          "statements": [
+            {
+              "kind": "AssignmentNode",
+              "line": 42,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 42,
+                "name": "a"
+              },
+              "value": {
+                "kind": "IdentifierNode",
+                "line": 42,
+                "name": "firstNum"
+              }
+            },
+            {
+              "kind": "AssignmentNode",
+              "line": 43,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 43,
+                "name": "b"
+              },
+              "value": {
+                "kind": "IdentifierNode",
+                "line": 43,
+                "name": "secondNum"
+              }
+            }
+          ]
+        },
+        "else_if": [],
+        "else_body": {
+          "kind": "BlockNode",
+          "line": 45,
+          "statements": [
+            {
+              "kind": "AssignmentNode",
+              "line": 45,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 45,
+                "name": "a"
+              },
+              "value": {
+                "kind": "IdentifierNode",
+                "line": 45,
+                "name": "secondNum"
+              }
+            },
+            {
+              "kind": "AssignmentNode",
+              "line": 46,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 46,
+                "name": "b"
+              },
+              "value": {
+                "kind": "IdentifierNode",
+                "line": 46,
+                "name": "firstNum"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "kind": "AssignmentNode",
+        "line": 48,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 48,
+          "name": "gcd_result"
+        },
+        "value": {
+          "kind": "CallNode",
+          "line": 48,
+          "name": "gcd",
+          "arguments": [
+            {
+              "kind": "IdentifierNode",
+              "line": 48,
+              "name": "a"
+            },
+            {
+              "kind": "IdentifierNode",
+              "line": 48,
+              "name": "b"
+            }
+          ]
+        }
+      },
+      {
+        "kind": "OutputNode",
+        "line": 49,
+        "expression": {
+          "kind": "LiteralNode",
+          "line": 49,
+          "value": "GCD = {gcd_result}",
+          "data_type": "STRING"
+        }
+      }
+    ]
+  }
+}

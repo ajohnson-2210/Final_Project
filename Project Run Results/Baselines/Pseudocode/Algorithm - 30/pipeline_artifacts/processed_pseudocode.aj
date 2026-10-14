@@ -1,0 +1,301 @@
+corpus <- LIST [STRING("the team won the match and scored many goals"), STRING("the player scored a hat trick in the game"), STRING("the championship match ended in a victory"), STRING("new smartphone released with powerful processor and fast performance"), STRING("software update improves device performance and battery life"), STRING("AI model achieves breakthrough in image recognition"), STRING("fresh ingredients used in this recipe"), STRING("the chef prepares a delicious meal at the restaurant"), STRING("the restaurant serves tasty dishes and great food")]
+stopwords <- LIST [STRING("the"), STRING("and"), STRING("in"), STRING("a"), STRING("at"), STRING("with"), STRING("this"), STRING("many")]
+
+FUNCTION tokenise ACCEPTS(text)
+    words <- text.lower().split()
+    clean <- EMPTY LIST
+    i <- 0
+    loop <- BOOLEAN(TRUE)
+    WHILE loop DO
+        TRY
+            IF words[i] NOT IN stopwords THEN
+                APPEND words[i] TO clean
+            ENDIF
+            i <- i + 1
+        CATCH
+            loop <- BOOLEAN(FALSE)
+        ENDTRY
+    ENDWHILE
+    RETURN clean
+ENDFUNCTION
+
+word_freq <- EMPTY DICTIONARY
+co_occurrence <- EMPTY DICTIONARY
+doc_tokens <- EMPTY LIST
+i <- 0
+loop <- BOOLEAN(TRUE)
+WHILE loop DO
+    TRY
+        text <- corpus[i]
+        words <- CALL tokenise(text)
+        APPEND words TO doc_tokens
+        j <- 0
+        innerloop <- BOOLEAN(TRUE)
+        WHILE innerloop DO
+            TRY
+                w <- words[j]
+                IF w NOT IN word_freq THEN
+                    word_freq[w] <- 0
+                ENDIF
+                word_freq[w] <- word_freq[w] + 1
+                j <- j + 1
+            CATCH
+                innerloop <- BOOLEAN(FALSE)
+            ENDTRY
+        ENDWHILE
+        j <- 0
+        innerloop <- BOOLEAN(TRUE)
+        WHILE innerloop DO
+            TRY
+                w1 <- words[j]
+                IF w1 NOT IN co_occurrence THEN
+                    co_occurrence[w1] <- EMPTY DICTIONARY
+                ENDIF
+                k <- 0
+                inner2 <- BOOLEAN(TRUE)
+                WHILE inner2 DO
+                    TRY
+                        w2 <- words[k]
+                        IF w1 != w2 THEN
+                            IF w2 NOT IN co_occurrence[w1] THEN
+                                co_occurrence[w1][w2] <- 0
+                            ENDIF
+                            co_occurrence[w1][w2] <- (co_occurrence[w1][w2] + 1)
+                        ENDIF
+                        k <- k + 1
+                    CATCH
+                        inner2 <- BOOLEAN(FALSE)
+                    ENDTRY
+                ENDWHILE
+                j <- j + 1
+            CATCH
+                innerloop <- BOOLEAN(FALSE)
+            ENDTRY
+        ENDWHILE
+        i <- i + 1
+    CATCH
+        loop <- BOOLEAN(FALSE)
+    ENDTRY
+ENDWHILE
+items <- EMPTY LIST
+FOR EACH word_entry IN word_freq.items() DO
+    APPEND word_entry TO items
+ENDFOR
+n <- LENGTH OF items
+i <- 0
+loop <- BOOLEAN(TRUE)
+WHILE loop DO
+    IF i >= (n - 1) THEN
+        loop <- BOOLEAN(FALSE)
+    ELSE
+        j <- 0
+        innerloop <- BOOLEAN(TRUE)
+        WHILE innerloop DO
+            IF j >= (n - 1) THEN
+                innerloop <- BOOLEAN(FALSE)
+            ELSE
+                IF items[j][1] < items[j + 1][1] THEN
+                    temp <- items[j]
+                    items[j] <- items[j + 1]
+                    items[j + 1] <- temp
+                ENDIF
+                j <- j + 1
+            ENDIF
+        ENDWHILE
+        i <- i + 1
+    ENDIF
+ENDWHILE
+TOP_K <- 12
+top_words <- EMPTY LIST
+i <- 0
+loop <- BOOLEAN(TRUE)
+WHILE loop DO
+    IF i >= TOP_K OR i >= LENGTH OF items THEN
+        loop <- BOOLEAN(FALSE)
+    ELSE
+        APPEND items[i][0] TO top_words
+        i <- i + 1
+    ENDIF
+ENDWHILE
+topics <- EMPTY LIST
+used <- EMPTY DICTIONARY
+i <- 0
+loop <- BOOLEAN(TRUE)
+WHILE loop DO
+    TRY
+        w <- top_words[i]
+        IF w NOT IN used THEN
+            topic <- LIST [w]
+            used[w] <- BOOLEAN(TRUE)
+            IF w IN co_occurrence THEN
+                pairs <- EMPTY LIST
+                FOR EACH cooccurrence_entry IN co_occurrence[w].items() DO
+                    APPEND cooccurrence_entry TO pairs
+                ENDFOR
+                                m <- LENGTH OF pairs
+                a <- 0
+                sortloop <- BOOLEAN(TRUE)
+                WHILE sortloop DO
+                    IF a >= (m - 1) THEN
+                        sortloop <- BOOLEAN(FALSE)
+                    ELSE
+                        b <- 0
+                        innersort <- BOOLEAN(TRUE)
+                        WHILE innersort DO
+                            IF b >= (m - 1) THEN
+                                innersort <- BOOLEAN(FALSE)
+                            ELSE
+                                IF pairs[b][1] < pairs[b + 1][1] THEN
+                                    temp <- pairs[b]
+                                    pairs[b] <- pairs[b + 1]
+                                    pairs[b + 1] <- temp
+                                ENDIF
+                                b <- b + 1
+                            ENDIF
+                        ENDWHILE
+                        a <- a + 1
+                    ENDIF
+                ENDWHILE
+                c <- 0
+                addloop <- BOOLEAN(TRUE)
+                WHILE addloop DO
+                    TRY
+                        w2 <- pairs[c][0]
+                        IF w2 NOT IN used THEN
+                            APPEND w2 TO topic
+                            used[w2] <- BOOLEAN(TRUE)
+                        ENDIF
+                        c <- c + 1
+                        IF c >= 2 THEN
+                            addloop <- BOOLEAN(FALSE)
+                        ENDIF
+                    CATCH
+                        addloop <- BOOLEAN(FALSE)
+                    ENDTRY
+                ENDWHILE
+            ENDIF
+            APPEND topic TO topics
+        ENDIF
+        i <- i + 1
+    CATCH
+        loop <- BOOLEAN(FALSE)
+    ENDTRY
+ENDWHILE
+label_words <- EMPTY DICTIONARY
+label_words[STRING("Sports")] <- LIST [STRING("team"), STRING("match"), STRING("goal"), STRING("player"), STRING("score"), STRING("victory"), STRING("game")]
+label_words[STRING("Tech")] <- LIST [STRING("processor"), STRING("software"), STRING("device"), STRING("update"), STRING("model"), STRING("performance"), STRING("smartphone")]
+label_words[STRING("Food")] <- LIST [STRING("chef"), STRING("meal"), STRING("ingredients"), STRING("recipe"), STRING("restaurant"), STRING("dishes"), STRING("food")]
+
+FUNCTION auto_label ACCEPTS(topic)
+    best_label <- NONE
+    best_score <- -1
+    labels <- EMPTY LIST
+    FOR EACH label_name IN label_words.keys() DO
+        APPEND label_name TO labels
+    ENDFOR
+        l_index <- 0
+    loop <- BOOLEAN(TRUE)
+    WHILE loop DO
+        TRY
+            label <- labels[l_index]
+            score <- 0
+            t_index <- 0
+            innerloop <- BOOLEAN(TRUE)
+            WHILE innerloop DO
+                TRY
+                    w <- topic[t_index]
+                    lw_index <- 0
+                    lw_loop <- BOOLEAN(TRUE)
+                    WHILE lw_loop DO
+                        TRY
+                            IF w == label_words[label][lw_index] THEN
+                                score <- score + 1
+                            ENDIF
+                            lw_index <- lw_index + 1
+                        CATCH
+                            lw_loop <- BOOLEAN(FALSE)
+                        ENDTRY
+                    ENDWHILE
+                    t_index <- t_index + 1
+                CATCH
+                    innerloop <- BOOLEAN(FALSE)
+                ENDTRY
+            ENDWHILE
+            IF score > best_score THEN
+                best_score <- score
+                best_label <- label
+            ENDIF
+            l_index <- l_index + 1
+        CATCH
+            loop <- BOOLEAN(FALSE)
+        ENDTRY
+    ENDWHILE
+    RETURN TUPLE(best_label, best_score)
+ENDFUNCTION
+
+topic_labels <- EMPTY LIST
+i <- 0
+loop <- BOOLEAN(TRUE)
+WHILE loop DO
+    TRY
+        topic <- topics[i]
+        label_result <- CALL auto_label(topic)
+        label <- label_result[0]
+        score <- label_result[1]
+        APPEND label TO topic_labels
+        i <- i + 1
+    CATCH
+        loop <- BOOLEAN(FALSE)
+    ENDTRY
+ENDWHILE
+
+FUNCTION classify ACCEPTS(text)
+    words <- CALL tokenise(text)
+    best_topic <- NONE
+    best_label <- NONE
+    best_score <- -1
+    i <- 0
+    loop <- BOOLEAN(TRUE)
+    WHILE loop DO
+        TRY
+            topic <- topics[i]
+            label <- topic_labels[i]
+            score <- 0
+            j <- 0
+            innerloop <- BOOLEAN(TRUE)
+            WHILE innerloop DO
+                TRY
+                    IF words[j] IN topic THEN
+                        score <- score + 1
+                    ENDIF
+                    j <- j + 1
+                CATCH
+                    innerloop <- BOOLEAN(FALSE)
+                ENDTRY
+            ENDWHILE
+            IF score > best_score THEN
+                best_score <- score
+                best_topic <- topic
+                best_label <- label
+            ENDIF
+            i <- i + 1
+        CATCH
+            loop <- BOOLEAN(FALSE)
+        ENDTRY
+    ENDWHILE
+    RETURN TUPLE(best_label, best_topic, best_score)
+ENDFUNCTION
+
+OUTPUT STRING("Topics -> Category:\n")
+i <- 0
+loop <- BOOLEAN(TRUE)
+WHILE loop DO
+    TRY
+        topic_value <- topics[i]
+        topic_label <- topic_labels[i]
+        OUTPUT STRING("Topic {i}:{topic_value} -> {topic_label}")
+        i <- i + 1
+    CATCH
+        loop <- BOOLEAN(FALSE)
+    ENDTRY
+ENDWHILE

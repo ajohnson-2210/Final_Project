@@ -1,0 +1,2000 @@
+{
+  "format": "NL-FDEP Flow Diagram",
+  "version": "1.0",
+  "entry_node": "F1",
+  "exit_node": "F2",
+  "nodes": {
+    "F1": {
+      "node_id": "F1",
+      "node_type": "START",
+      "label": "Start",
+      "line": 1,
+      "data": {}
+    },
+    "F2": {
+      "node_id": "F2",
+      "node_type": "END",
+      "label": "End",
+      "line": 1,
+      "data": {}
+    },
+    "F3": {
+      "node_id": "F3",
+      "node_type": "IMPORT",
+      "label": "Import module random",
+      "line": 1,
+      "data": {
+        "ast_kind": "ImportDirectiveNode"
+      }
+    },
+    "F4": {
+      "node_id": "F4",
+      "node_type": "FUNCTION",
+      "label": "Run function kadane with arr",
+      "line": 3,
+      "data": {
+        "ast_kind": "FunctionNode",
+        "name": "kadane"
+      }
+    },
+    "F5": {
+      "node_id": "F5",
+      "node_type": "PROCESS",
+      "label": "Set n to the length of arr",
+      "line": 4,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F6": {
+      "node_id": "F6",
+      "node_type": "PROCESS",
+      "label": "Set current_sum to item 0 of arr",
+      "line": 5,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F7": {
+      "node_id": "F7",
+      "node_type": "PROCESS",
+      "label": "Set best_sum to item 0 of arr",
+      "line": 6,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F8": {
+      "node_id": "F8",
+      "node_type": "PROCESS",
+      "label": "Set current_start to 0",
+      "line": 7,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F9": {
+      "node_id": "F9",
+      "node_type": "PROCESS",
+      "label": "Set best_ranges to [(0, 0)]",
+      "line": 8,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F10": {
+      "node_id": "F10",
+      "node_type": "PROCESS",
+      "label": "Set i to 1",
+      "line": 9,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F11": {
+      "node_id": "F11",
+      "node_type": "LOOP_DECISION",
+      "label": "I is less than n?",
+      "line": 10,
+      "data": {
+        "ast_kind": "WhileNode"
+      }
+    },
+    "F12": {
+      "node_id": "F12",
+      "node_type": "DECISION",
+      "label": "Current_sum plus item i of arr is less than item i of arr?",
+      "line": 11,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F13": {
+      "node_id": "F13",
+      "node_type": "PROCESS",
+      "label": "Set current_sum to item i of arr",
+      "line": 12,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F14": {
+      "node_id": "F14",
+      "node_type": "PROCESS",
+      "label": "Set current_start to i",
+      "line": 13,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F15": {
+      "node_id": "F15",
+      "node_type": "PROCESS",
+      "label": "Set current_sum to current_sum plus item i of arr",
+      "line": 15,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F16": {
+      "node_id": "F16",
+      "node_type": "DECISION",
+      "label": "Current_sum is greater than best_sum?",
+      "line": 17,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F17": {
+      "node_id": "F17",
+      "node_type": "PROCESS",
+      "label": "Set best_sum to current_sum",
+      "line": 18,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F18": {
+      "node_id": "F18",
+      "node_type": "PROCESS",
+      "label": "Set best_ranges to [(current_start, i)]",
+      "line": 19,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F19": {
+      "node_id": "F19",
+      "node_type": "DECISION",
+      "label": "Current_sum is equal to best_sum?",
+      "line": 20,
+      "data": {
+        "ast_kind": "ElseIfNode"
+      }
+    },
+    "F20": {
+      "node_id": "F20",
+      "node_type": "PROCESS",
+      "label": "Append (current_start, i) to best_ranges",
+      "line": 21,
+      "data": {
+        "ast_kind": "AppendNode"
+      }
+    },
+    "F21": {
+      "node_id": "F21",
+      "node_type": "PROCESS",
+      "label": "Set i to i plus 1",
+      "line": 23,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F22": {
+      "node_id": "F22",
+      "node_type": "RETURN",
+      "label": "Return (best_sum, best_ranges)",
+      "line": 25,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    },
+    "F23": {
+      "node_id": "F23",
+      "node_type": "PROCESS",
+      "label": "Set size to a random int from 5 to 10",
+      "line": 28,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F24": {
+      "node_id": "F24",
+      "node_type": "PROCESS",
+      "label": "Set arr to an empty list",
+      "line": 29,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F25": {
+      "node_id": "F25",
+      "node_type": "PROCESS",
+      "label": "Set i to 0",
+      "line": 30,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F26": {
+      "node_id": "F26",
+      "node_type": "LOOP_DECISION",
+      "label": "I is less than size?",
+      "line": 31,
+      "data": {
+        "ast_kind": "WhileNode"
+      }
+    },
+    "F27": {
+      "node_id": "F27",
+      "node_type": "DECISION",
+      "label": "A random float from 0 to 1 is less than 0.5?",
+      "line": 32,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F28": {
+      "node_id": "F28",
+      "node_type": "PROCESS",
+      "label": "Set num to a random int from negative 10 to 10",
+      "line": 33,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F29": {
+      "node_id": "F29",
+      "node_type": "PROCESS",
+      "label": "Set num to the result of round(a random float from negative 10 to 10, 2)",
+      "line": 35,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F30": {
+      "node_id": "F30",
+      "node_type": "PROCESS",
+      "label": "Append num to arr",
+      "line": 37,
+      "data": {
+        "ast_kind": "AppendNode"
+      }
+    },
+    "F31": {
+      "node_id": "F31",
+      "node_type": "PROCESS",
+      "label": "Set i to i plus 1",
+      "line": 38,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F32": {
+      "node_id": "F32",
+      "node_type": "OUTPUT",
+      "label": "Display \"Random array: {arr}\"",
+      "line": 40,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F33": {
+      "node_id": "F33",
+      "node_type": "PROCESS",
+      "label": "Set kadane_result to the result of kadane(arr)",
+      "line": 41,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F34": {
+      "node_id": "F34",
+      "node_type": "PROCESS",
+      "label": "Set best_sum to item 0 of kadane_result",
+      "line": 42,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F35": {
+      "node_id": "F35",
+      "node_type": "PROCESS",
+      "label": "Set ranges to item 1 of kadane_result",
+      "line": 43,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F36": {
+      "node_id": "F36",
+      "node_type": "OUTPUT",
+      "label": "Display \"\nMaximum subarray sum: {best_sum}\"",
+      "line": 44,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F37": {
+      "node_id": "F37",
+      "node_type": "PROCESS",
+      "label": "Set range_count to the length of ranges",
+      "line": 45,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F38": {
+      "node_id": "F38",
+      "node_type": "OUTPUT",
+      "label": "Display \"Number of max subarrays: {range_count}\"",
+      "line": 46,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F39": {
+      "node_id": "F39",
+      "node_type": "PROCESS",
+      "label": "Set idx to 0",
+      "line": 47,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F40": {
+      "node_id": "F40",
+      "node_type": "LOOP_DECISION",
+      "label": "Idx is less than the length of ranges?",
+      "line": 48,
+      "data": {
+        "ast_kind": "WhileNode"
+      }
+    },
+    "F41": {
+      "node_id": "F41",
+      "node_type": "PROCESS",
+      "label": "Set current_range to item idx of ranges",
+      "line": 49,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F42": {
+      "node_id": "F42",
+      "node_type": "PROCESS",
+      "label": "Set start to item 0 of current_range",
+      "line": 50,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F43": {
+      "node_id": "F43",
+      "node_type": "PROCESS",
+      "label": "Set end to item 1 of current_range",
+      "line": 51,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F44": {
+      "node_id": "F44",
+      "node_type": "PROCESS",
+      "label": "Set subarray_number to idx plus 1",
+      "line": 52,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F45": {
+      "node_id": "F45",
+      "node_type": "DECISION",
+      "label": "Idx is equal to 0?",
+      "line": 53,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F46": {
+      "node_id": "F46",
+      "node_type": "OUTPUT",
+      "label": "Display \"\nSubarray {subarray_number} Start Index: {start}: \"",
+      "line": 54,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F47": {
+      "node_id": "F47",
+      "node_type": "OUTPUT",
+      "label": "Display \"Subarray {subarray_number} Start Index: {start}: \"",
+      "line": 56,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F48": {
+      "node_id": "F48",
+      "node_type": "PROCESS",
+      "label": "Set j to start",
+      "line": 58,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F49": {
+      "node_id": "F49",
+      "node_type": "PROCESS",
+      "label": "Set subarray_text to an empty string",
+      "line": 59,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F50": {
+      "node_id": "F50",
+      "node_type": "LOOP_DECISION",
+      "label": "J is less than or equal to end?",
+      "line": 60,
+      "data": {
+        "ast_kind": "WhileNode"
+      }
+    },
+    "F51": {
+      "node_id": "F51",
+      "node_type": "PROCESS",
+      "label": "Set subarray_text to subarray_text plus item j of arr converted to string plus \", \"",
+      "line": 61,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F52": {
+      "node_id": "F52",
+      "node_type": "PROCESS",
+      "label": "Set j to j plus 1",
+      "line": 62,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F53": {
+      "node_id": "F53",
+      "node_type": "OUTPUT",
+      "label": "Display subarray_text",
+      "line": 64,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F54": {
+      "node_id": "F54",
+      "node_type": "PROCESS",
+      "label": "Set idx to idx plus 1",
+      "line": 65,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "F5",
+      "target": "F6",
+      "label": "NEXT"
+    },
+    {
+      "source": "F6",
+      "target": "F7",
+      "label": "NEXT"
+    },
+    {
+      "source": "F7",
+      "target": "F8",
+      "label": "NEXT"
+    },
+    {
+      "source": "F8",
+      "target": "F9",
+      "label": "NEXT"
+    },
+    {
+      "source": "F9",
+      "target": "F10",
+      "label": "NEXT"
+    },
+    {
+      "source": "F13",
+      "target": "F14",
+      "label": "NEXT"
+    },
+    {
+      "source": "F12",
+      "target": "F13",
+      "label": "TRUE"
+    },
+    {
+      "source": "F12",
+      "target": "F15",
+      "label": "FALSE"
+    },
+    {
+      "source": "F17",
+      "target": "F18",
+      "label": "NEXT"
+    },
+    {
+      "source": "F16",
+      "target": "F17",
+      "label": "TRUE"
+    },
+    {
+      "source": "F16",
+      "target": "F19",
+      "label": "FALSE"
+    },
+    {
+      "source": "F19",
+      "target": "F20",
+      "label": "TRUE"
+    },
+    {
+      "source": "F14",
+      "target": "F16",
+      "label": "NEXT"
+    },
+    {
+      "source": "F15",
+      "target": "F16",
+      "label": "NEXT"
+    },
+    {
+      "source": "F18",
+      "target": "F21",
+      "label": "NEXT"
+    },
+    {
+      "source": "F20",
+      "target": "F21",
+      "label": "NEXT"
+    },
+    {
+      "source": "F19",
+      "target": "F21",
+      "label": "NEXT"
+    },
+    {
+      "source": "F11",
+      "target": "F12",
+      "label": "TRUE"
+    },
+    {
+      "source": "F21",
+      "target": "F11",
+      "label": "LOOP"
+    },
+    {
+      "source": "F10",
+      "target": "F11",
+      "label": "NEXT"
+    },
+    {
+      "source": "F11",
+      "target": "F22",
+      "label": "NEXT"
+    },
+    {
+      "source": "F4",
+      "target": "F5",
+      "label": "BODY"
+    },
+    {
+      "source": "F3",
+      "target": "F4",
+      "label": "NEXT"
+    },
+    {
+      "source": "F23",
+      "target": "F24",
+      "label": "NEXT"
+    },
+    {
+      "source": "F24",
+      "target": "F25",
+      "label": "NEXT"
+    },
+    {
+      "source": "F27",
+      "target": "F28",
+      "label": "TRUE"
+    },
+    {
+      "source": "F27",
+      "target": "F29",
+      "label": "FALSE"
+    },
+    {
+      "source": "F28",
+      "target": "F30",
+      "label": "NEXT"
+    },
+    {
+      "source": "F29",
+      "target": "F30",
+      "label": "NEXT"
+    },
+    {
+      "source": "F30",
+      "target": "F31",
+      "label": "NEXT"
+    },
+    {
+      "source": "F26",
+      "target": "F27",
+      "label": "TRUE"
+    },
+    {
+      "source": "F31",
+      "target": "F26",
+      "label": "LOOP"
+    },
+    {
+      "source": "F25",
+      "target": "F26",
+      "label": "NEXT"
+    },
+    {
+      "source": "F26",
+      "target": "F32",
+      "label": "NEXT"
+    },
+    {
+      "source": "F32",
+      "target": "F33",
+      "label": "NEXT"
+    },
+    {
+      "source": "F33",
+      "target": "F34",
+      "label": "NEXT"
+    },
+    {
+      "source": "F34",
+      "target": "F35",
+      "label": "NEXT"
+    },
+    {
+      "source": "F35",
+      "target": "F36",
+      "label": "NEXT"
+    },
+    {
+      "source": "F36",
+      "target": "F37",
+      "label": "NEXT"
+    },
+    {
+      "source": "F37",
+      "target": "F38",
+      "label": "NEXT"
+    },
+    {
+      "source": "F38",
+      "target": "F39",
+      "label": "NEXT"
+    },
+    {
+      "source": "F41",
+      "target": "F42",
+      "label": "NEXT"
+    },
+    {
+      "source": "F42",
+      "target": "F43",
+      "label": "NEXT"
+    },
+    {
+      "source": "F43",
+      "target": "F44",
+      "label": "NEXT"
+    },
+    {
+      "source": "F45",
+      "target": "F46",
+      "label": "TRUE"
+    },
+    {
+      "source": "F45",
+      "target": "F47",
+      "label": "FALSE"
+    },
+    {
+      "source": "F44",
+      "target": "F45",
+      "label": "NEXT"
+    },
+    {
+      "source": "F46",
+      "target": "F48",
+      "label": "NEXT"
+    },
+    {
+      "source": "F47",
+      "target": "F48",
+      "label": "NEXT"
+    },
+    {
+      "source": "F48",
+      "target": "F49",
+      "label": "NEXT"
+    },
+    {
+      "source": "F51",
+      "target": "F52",
+      "label": "NEXT"
+    },
+    {
+      "source": "F50",
+      "target": "F51",
+      "label": "TRUE"
+    },
+    {
+      "source": "F52",
+      "target": "F50",
+      "label": "LOOP"
+    },
+    {
+      "source": "F49",
+      "target": "F50",
+      "label": "NEXT"
+    },
+    {
+      "source": "F50",
+      "target": "F53",
+      "label": "NEXT"
+    },
+    {
+      "source": "F53",
+      "target": "F54",
+      "label": "NEXT"
+    },
+    {
+      "source": "F40",
+      "target": "F41",
+      "label": "TRUE"
+    },
+    {
+      "source": "F54",
+      "target": "F40",
+      "label": "LOOP"
+    },
+    {
+      "source": "F39",
+      "target": "F40",
+      "label": "NEXT"
+    },
+    {
+      "source": "F1",
+      "target": "F3",
+      "label": "NEXT"
+    },
+    {
+      "source": "F22",
+      "target": "F2",
+      "label": "NEXT"
+    },
+    {
+      "source": "F40",
+      "target": "F2",
+      "label": "NEXT"
+    }
+  ],
+  "structured_program": {
+    "kind": "ProgramNode",
+    "line": 1,
+    "body": [
+      {
+        "kind": "ImportDirectiveNode",
+        "line": 1,
+        "directive_type": "IMPORT",
+        "module": "random",
+        "alias": null,
+        "names": []
+      },
+      {
+        "kind": "FunctionNode",
+        "line": 3,
+        "name": "kadane",
+        "parameters": [
+          {
+            "kind": "ParameterNode",
+            "line": 3,
+            "name": "arr",
+            "declared_type": null
+          }
+        ],
+        "body": {
+          "kind": "BlockNode",
+          "line": 4,
+          "statements": [
+            {
+              "kind": "AssignmentNode",
+              "line": 4,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 4,
+                "name": "n"
+              },
+              "value": {
+                "kind": "LengthNode",
+                "line": 4,
+                "expression": {
+                  "kind": "IdentifierNode",
+                  "line": 4,
+                  "name": "arr"
+                }
+              }
+            },
+            {
+              "kind": "AssignmentNode",
+              "line": 5,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 5,
+                "name": "current_sum"
+              },
+              "value": {
+                "kind": "IndexNode",
+                "line": 5,
+                "collection": {
+                  "kind": "IdentifierNode",
+                  "line": 5,
+                  "name": "arr"
+                },
+                "index": {
+                  "kind": "LiteralNode",
+                  "line": 5,
+                  "value": 0,
+                  "data_type": "INTEGER"
+                }
+              }
+            },
+            {
+              "kind": "AssignmentNode",
+              "line": 6,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 6,
+                "name": "best_sum"
+              },
+              "value": {
+                "kind": "IndexNode",
+                "line": 6,
+                "collection": {
+                  "kind": "IdentifierNode",
+                  "line": 6,
+                  "name": "arr"
+                },
+                "index": {
+                  "kind": "LiteralNode",
+                  "line": 6,
+                  "value": 0,
+                  "data_type": "INTEGER"
+                }
+              }
+            },
+            {
+              "kind": "AssignmentNode",
+              "line": 7,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 7,
+                "name": "current_start"
+              },
+              "value": {
+                "kind": "LiteralNode",
+                "line": 7,
+                "value": 0,
+                "data_type": "INTEGER"
+              }
+            },
+            {
+              "kind": "AssignmentNode",
+              "line": 8,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 8,
+                "name": "best_ranges"
+              },
+              "value": {
+                "kind": "ListLiteralNode",
+                "line": 8,
+                "items": [
+                  {
+                    "kind": "TupleLiteralNode",
+                    "line": 8,
+                    "items": [
+                      {
+                        "kind": "LiteralNode",
+                        "line": 8,
+                        "value": 0,
+                        "data_type": "INTEGER"
+                      },
+                      {
+                        "kind": "LiteralNode",
+                        "line": 8,
+                        "value": 0,
+                        "data_type": "INTEGER"
+                      }
+                    ]
+                  }
+                ],
+                "declared_type": null
+              }
+            },
+            {
+              "kind": "AssignmentNode",
+              "line": 9,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 9,
+                "name": "i"
+              },
+              "value": {
+                "kind": "LiteralNode",
+                "line": 9,
+                "value": 1,
+                "data_type": "INTEGER"
+              }
+            },
+            {
+              "kind": "WhileNode",
+              "line": 10,
+              "condition": {
+                "kind": "BinaryNode",
+                "line": 10,
+                "operator": "<",
+                "left": {
+                  "kind": "IdentifierNode",
+                  "line": 10,
+                  "name": "i"
+                },
+                "right": {
+                  "kind": "IdentifierNode",
+                  "line": 10,
+                  "name": "n"
+                }
+              },
+              "body": {
+                "kind": "BlockNode",
+                "line": 11,
+                "statements": [
+                  {
+                    "kind": "IfNode",
+                    "line": 11,
+                    "condition": {
+                      "kind": "BinaryNode",
+                      "line": 11,
+                      "operator": "<",
+                      "left": {
+                        "kind": "BinaryNode",
+                        "line": 11,
+                        "operator": "+",
+                        "left": {
+                          "kind": "IdentifierNode",
+                          "line": 11,
+                          "name": "current_sum"
+                        },
+                        "right": {
+                          "kind": "IndexNode",
+                          "line": 11,
+                          "collection": {
+                            "kind": "IdentifierNode",
+                            "line": 11,
+                            "name": "arr"
+                          },
+                          "index": {
+                            "kind": "IdentifierNode",
+                            "line": 11,
+                            "name": "i"
+                          }
+                        }
+                      },
+                      "right": {
+                        "kind": "IndexNode",
+                        "line": 11,
+                        "collection": {
+                          "kind": "IdentifierNode",
+                          "line": 11,
+                          "name": "arr"
+                        },
+                        "index": {
+                          "kind": "IdentifierNode",
+                          "line": 11,
+                          "name": "i"
+                        }
+                      }
+                    },
+                    "then_body": {
+                      "kind": "BlockNode",
+                      "line": 12,
+                      "statements": [
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 12,
+                          "target": {
+                            "kind": "IdentifierNode",
+                            "line": 12,
+                            "name": "current_sum"
+                          },
+                          "value": {
+                            "kind": "IndexNode",
+                            "line": 12,
+                            "collection": {
+                              "kind": "IdentifierNode",
+                              "line": 12,
+                              "name": "arr"
+                            },
+                            "index": {
+                              "kind": "IdentifierNode",
+                              "line": 12,
+                              "name": "i"
+                            }
+                          }
+                        },
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 13,
+                          "target": {
+                            "kind": "IdentifierNode",
+                            "line": 13,
+                            "name": "current_start"
+                          },
+                          "value": {
+                            "kind": "IdentifierNode",
+                            "line": 13,
+                            "name": "i"
+                          }
+                        }
+                      ]
+                    },
+                    "else_if": [],
+                    "else_body": {
+                      "kind": "BlockNode",
+                      "line": 15,
+                      "statements": [
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 15,
+                          "target": {
+                            "kind": "IdentifierNode",
+                            "line": 15,
+                            "name": "current_sum"
+                          },
+                          "value": {
+                            "kind": "BinaryNode",
+                            "line": 15,
+                            "operator": "+",
+                            "left": {
+                              "kind": "IdentifierNode",
+                              "line": 15,
+                              "name": "current_sum"
+                            },
+                            "right": {
+                              "kind": "IndexNode",
+                              "line": 15,
+                              "collection": {
+                                "kind": "IdentifierNode",
+                                "line": 15,
+                                "name": "arr"
+                              },
+                              "index": {
+                                "kind": "IdentifierNode",
+                                "line": 15,
+                                "name": "i"
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "kind": "IfNode",
+                    "line": 17,
+                    "condition": {
+                      "kind": "BinaryNode",
+                      "line": 17,
+                      "operator": ">",
+                      "left": {
+                        "kind": "IdentifierNode",
+                        "line": 17,
+                        "name": "current_sum"
+                      },
+                      "right": {
+                        "kind": "IdentifierNode",
+                        "line": 17,
+                        "name": "best_sum"
+                      }
+                    },
+                    "then_body": {
+                      "kind": "BlockNode",
+                      "line": 18,
+                      "statements": [
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 18,
+                          "target": {
+                            "kind": "IdentifierNode",
+                            "line": 18,
+                            "name": "best_sum"
+                          },
+                          "value": {
+                            "kind": "IdentifierNode",
+                            "line": 18,
+                            "name": "current_sum"
+                          }
+                        },
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 19,
+                          "target": {
+                            "kind": "IdentifierNode",
+                            "line": 19,
+                            "name": "best_ranges"
+                          },
+                          "value": {
+                            "kind": "ListLiteralNode",
+                            "line": 19,
+                            "items": [
+                              {
+                                "kind": "TupleLiteralNode",
+                                "line": 19,
+                                "items": [
+                                  {
+                                    "kind": "IdentifierNode",
+                                    "line": 19,
+                                    "name": "current_start"
+                                  },
+                                  {
+                                    "kind": "IdentifierNode",
+                                    "line": 19,
+                                    "name": "i"
+                                  }
+                                ]
+                              }
+                            ],
+                            "declared_type": null
+                          }
+                        }
+                      ]
+                    },
+                    "else_if": [
+                      {
+                        "kind": "ElseIfNode",
+                        "line": 20,
+                        "condition": {
+                          "kind": "BinaryNode",
+                          "line": 20,
+                          "operator": "==",
+                          "left": {
+                            "kind": "IdentifierNode",
+                            "line": 20,
+                            "name": "current_sum"
+                          },
+                          "right": {
+                            "kind": "IdentifierNode",
+                            "line": 20,
+                            "name": "best_sum"
+                          }
+                        },
+                        "body": {
+                          "kind": "BlockNode",
+                          "line": 21,
+                          "statements": [
+                            {
+                              "kind": "AppendNode",
+                              "line": 21,
+                              "value": {
+                                "kind": "TupleLiteralNode",
+                                "line": 21,
+                                "items": [
+                                  {
+                                    "kind": "IdentifierNode",
+                                    "line": 21,
+                                    "name": "current_start"
+                                  },
+                                  {
+                                    "kind": "IdentifierNode",
+                                    "line": 21,
+                                    "name": "i"
+                                  }
+                                ]
+                              },
+                              "collection": {
+                                "kind": "IdentifierNode",
+                                "line": 21,
+                                "name": "best_ranges"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "else_body": null
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 23,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 23,
+                      "name": "i"
+                    },
+                    "value": {
+                      "kind": "BinaryNode",
+                      "line": 23,
+                      "operator": "+",
+                      "left": {
+                        "kind": "IdentifierNode",
+                        "line": 23,
+                        "name": "i"
+                      },
+                      "right": {
+                        "kind": "LiteralNode",
+                        "line": 23,
+                        "value": 1,
+                        "data_type": "INTEGER"
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "ReturnNode",
+              "line": 25,
+              "expression": {
+                "kind": "TupleLiteralNode",
+                "line": 25,
+                "items": [
+                  {
+                    "kind": "IdentifierNode",
+                    "line": 25,
+                    "name": "best_sum"
+                  },
+                  {
+                    "kind": "IdentifierNode",
+                    "line": 25,
+                    "name": "best_ranges"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "kind": "AssignmentNode",
+        "line": 28,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 28,
+          "name": "size"
+        },
+        "value": {
+          "kind": "RandomExpressionNode",
+          "line": 28,
+          "random_type": "INT",
+          "minimum": {
+            "kind": "LiteralNode",
+            "line": 28,
+            "value": 5,
+            "data_type": "INTEGER"
+          },
+          "maximum": {
+            "kind": "LiteralNode",
+            "line": 28,
+            "value": 10,
+            "data_type": "INTEGER"
+          }
+        }
+      },
+      {
+        "kind": "AssignmentNode",
+        "line": 29,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 29,
+          "name": "arr"
+        },
+        "value": {
+          "kind": "EmptyLiteralNode",
+          "line": 29,
+          "empty_type": "LIST"
+        }
+      },
+      {
+        "kind": "AssignmentNode",
+        "line": 30,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 30,
+          "name": "i"
+        },
+        "value": {
+          "kind": "LiteralNode",
+          "line": 30,
+          "value": 0,
+          "data_type": "INTEGER"
+        }
+      },
+      {
+        "kind": "WhileNode",
+        "line": 31,
+        "condition": {
+          "kind": "BinaryNode",
+          "line": 31,
+          "operator": "<",
+          "left": {
+            "kind": "IdentifierNode",
+            "line": 31,
+            "name": "i"
+          },
+          "right": {
+            "kind": "IdentifierNode",
+            "line": 31,
+            "name": "size"
+          }
+        },
+        "body": {
+          "kind": "BlockNode",
+          "line": 32,
+          "statements": [
+            {
+              "kind": "IfNode",
+              "line": 32,
+              "condition": {
+                "kind": "BinaryNode",
+                "line": 32,
+                "operator": "<",
+                "left": {
+                  "kind": "RandomExpressionNode",
+                  "line": 32,
+                  "random_type": "FLOAT",
+                  "minimum": {
+                    "kind": "LiteralNode",
+                    "line": 32,
+                    "value": 0,
+                    "data_type": "INTEGER"
+                  },
+                  "maximum": {
+                    "kind": "LiteralNode",
+                    "line": 32,
+                    "value": 1,
+                    "data_type": "INTEGER"
+                  }
+                },
+                "right": {
+                  "kind": "LiteralNode",
+                  "line": 32,
+                  "value": 0.5,
+                  "data_type": "FLOAT"
+                }
+              },
+              "then_body": {
+                "kind": "BlockNode",
+                "line": 33,
+                "statements": [
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 33,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 33,
+                      "name": "num"
+                    },
+                    "value": {
+                      "kind": "RandomExpressionNode",
+                      "line": 33,
+                      "random_type": "INT",
+                      "minimum": {
+                        "kind": "UnaryNode",
+                        "line": 33,
+                        "operator": "-",
+                        "operand": {
+                          "kind": "LiteralNode",
+                          "line": 33,
+                          "value": 10,
+                          "data_type": "INTEGER"
+                        }
+                      },
+                      "maximum": {
+                        "kind": "LiteralNode",
+                        "line": 33,
+                        "value": 10,
+                        "data_type": "INTEGER"
+                      }
+                    }
+                  }
+                ]
+              },
+              "else_if": [],
+              "else_body": {
+                "kind": "BlockNode",
+                "line": 35,
+                "statements": [
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 35,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 35,
+                      "name": "num"
+                    },
+                    "value": {
+                      "kind": "CallNode",
+                      "line": 35,
+                      "name": "round",
+                      "arguments": [
+                        {
+                          "kind": "RandomExpressionNode",
+                          "line": 35,
+                          "random_type": "FLOAT",
+                          "minimum": {
+                            "kind": "UnaryNode",
+                            "line": 35,
+                            "operator": "-",
+                            "operand": {
+                              "kind": "LiteralNode",
+                              "line": 35,
+                              "value": 10,
+                              "data_type": "INTEGER"
+                            }
+                          },
+                          "maximum": {
+                            "kind": "LiteralNode",
+                            "line": 35,
+                            "value": 10,
+                            "data_type": "INTEGER"
+                          }
+                        },
+                        {
+                          "kind": "LiteralNode",
+                          "line": 35,
+                          "value": 2,
+                          "data_type": "INTEGER"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "AppendNode",
+              "line": 37,
+              "value": {
+                "kind": "IdentifierNode",
+                "line": 37,
+                "name": "num"
+              },
+              "collection": {
+                "kind": "IdentifierNode",
+                "line": 37,
+                "name": "arr"
+              }
+            },
+            {
+              "kind": "AssignmentNode",
+              "line": 38,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 38,
+                "name": "i"
+              },
+              "value": {
+                "kind": "BinaryNode",
+                "line": 38,
+                "operator": "+",
+                "left": {
+                  "kind": "IdentifierNode",
+                  "line": 38,
+                  "name": "i"
+                },
+                "right": {
+                  "kind": "LiteralNode",
+                  "line": 38,
+                  "value": 1,
+                  "data_type": "INTEGER"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "kind": "OutputNode",
+        "line": 40,
+        "expression": {
+          "kind": "LiteralNode",
+          "line": 40,
+          "value": "Random array: {arr}",
+          "data_type": "STRING"
+        }
+      },
+      {
+        "kind": "AssignmentNode",
+        "line": 41,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 41,
+          "name": "kadane_result"
+        },
+        "value": {
+          "kind": "CallNode",
+          "line": 41,
+          "name": "kadane",
+          "arguments": [
+            {
+              "kind": "IdentifierNode",
+              "line": 41,
+              "name": "arr"
+            }
+          ]
+        }
+      },
+      {
+        "kind": "AssignmentNode",
+        "line": 42,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 42,
+          "name": "best_sum"
+        },
+        "value": {
+          "kind": "IndexNode",
+          "line": 42,
+          "collection": {
+            "kind": "IdentifierNode",
+            "line": 42,
+            "name": "kadane_result"
+          },
+          "index": {
+            "kind": "LiteralNode",
+            "line": 42,
+            "value": 0,
+            "data_type": "INTEGER"
+          }
+        }
+      },
+      {
+        "kind": "AssignmentNode",
+        "line": 43,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 43,
+          "name": "ranges"
+        },
+        "value": {
+          "kind": "IndexNode",
+          "line": 43,
+          "collection": {
+            "kind": "IdentifierNode",
+            "line": 43,
+            "name": "kadane_result"
+          },
+          "index": {
+            "kind": "LiteralNode",
+            "line": 43,
+            "value": 1,
+            "data_type": "INTEGER"
+          }
+        }
+      },
+      {
+        "kind": "OutputNode",
+        "line": 44,
+        "expression": {
+          "kind": "LiteralNode",
+          "line": 44,
+          "value": "\nMaximum subarray sum: {best_sum}",
+          "data_type": "STRING"
+        }
+      },
+      {
+        "kind": "AssignmentNode",
+        "line": 45,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 45,
+          "name": "range_count"
+        },
+        "value": {
+          "kind": "LengthNode",
+          "line": 45,
+          "expression": {
+            "kind": "IdentifierNode",
+            "line": 45,
+            "name": "ranges"
+          }
+        }
+      },
+      {
+        "kind": "OutputNode",
+        "line": 46,
+        "expression": {
+          "kind": "LiteralNode",
+          "line": 46,
+          "value": "Number of max subarrays: {range_count}",
+          "data_type": "STRING"
+        }
+      },
+      {
+        "kind": "AssignmentNode",
+        "line": 47,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 47,
+          "name": "idx"
+        },
+        "value": {
+          "kind": "LiteralNode",
+          "line": 47,
+          "value": 0,
+          "data_type": "INTEGER"
+        }
+      },
+      {
+        "kind": "WhileNode",
+        "line": 48,
+        "condition": {
+          "kind": "BinaryNode",
+          "line": 48,
+          "operator": "<",
+          "left": {
+            "kind": "IdentifierNode",
+            "line": 48,
+            "name": "idx"
+          },
+          "right": {
+            "kind": "LengthNode",
+            "line": 48,
+            "expression": {
+              "kind": "IdentifierNode",
+              "line": 48,
+              "name": "ranges"
+            }
+          }
+        },
+        "body": {
+          "kind": "BlockNode",
+          "line": 49,
+          "statements": [
+            {
+              "kind": "AssignmentNode",
+              "line": 49,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 49,
+                "name": "current_range"
+              },
+              "value": {
+                "kind": "IndexNode",
+                "line": 49,
+                "collection": {
+                  "kind": "IdentifierNode",
+                  "line": 49,
+                  "name": "ranges"
+                },
+                "index": {
+                  "kind": "IdentifierNode",
+                  "line": 49,
+                  "name": "idx"
+                }
+              }
+            },
+            {
+              "kind": "AssignmentNode",
+              "line": 50,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 50,
+                "name": "start"
+              },
+              "value": {
+                "kind": "IndexNode",
+                "line": 50,
+                "collection": {
+                  "kind": "IdentifierNode",
+                  "line": 50,
+                  "name": "current_range"
+                },
+                "index": {
+                  "kind": "LiteralNode",
+                  "line": 50,
+                  "value": 0,
+                  "data_type": "INTEGER"
+                }
+              }
+            },
+            {
+              "kind": "AssignmentNode",
+              "line": 51,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 51,
+                "name": "end"
+              },
+              "value": {
+                "kind": "IndexNode",
+                "line": 51,
+                "collection": {
+                  "kind": "IdentifierNode",
+                  "line": 51,
+                  "name": "current_range"
+                },
+                "index": {
+                  "kind": "LiteralNode",
+                  "line": 51,
+                  "value": 1,
+                  "data_type": "INTEGER"
+                }
+              }
+            },
+            {
+              "kind": "AssignmentNode",
+              "line": 52,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 52,
+                "name": "subarray_number"
+              },
+              "value": {
+                "kind": "BinaryNode",
+                "line": 52,
+                "operator": "+",
+                "left": {
+                  "kind": "IdentifierNode",
+                  "line": 52,
+                  "name": "idx"
+                },
+                "right": {
+                  "kind": "LiteralNode",
+                  "line": 52,
+                  "value": 1,
+                  "data_type": "INTEGER"
+                }
+              }
+            },
+            {
+              "kind": "IfNode",
+              "line": 53,
+              "condition": {
+                "kind": "BinaryNode",
+                "line": 53,
+                "operator": "==",
+                "left": {
+                  "kind": "IdentifierNode",
+                  "line": 53,
+                  "name": "idx"
+                },
+                "right": {
+                  "kind": "LiteralNode",
+                  "line": 53,
+                  "value": 0,
+                  "data_type": "INTEGER"
+                }
+              },
+              "then_body": {
+                "kind": "BlockNode",
+                "line": 54,
+                "statements": [
+                  {
+                    "kind": "OutputNode",
+                    "line": 54,
+                    "expression": {
+                      "kind": "LiteralNode",
+                      "line": 54,
+                      "value": "\nSubarray {subarray_number} Start Index: {start}: ",
+                      "data_type": "STRING"
+                    }
+                  }
+                ]
+              },
+              "else_if": [],
+              "else_body": {
+                "kind": "BlockNode",
+                "line": 56,
+                "statements": [
+                  {
+                    "kind": "OutputNode",
+                    "line": 56,
+                    "expression": {
+                      "kind": "LiteralNode",
+                      "line": 56,
+                      "value": "Subarray {subarray_number} Start Index: {start}: ",
+                      "data_type": "STRING"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "AssignmentNode",
+              "line": 58,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 58,
+                "name": "j"
+              },
+              "value": {
+                "kind": "IdentifierNode",
+                "line": 58,
+                "name": "start"
+              }
+            },
+            {
+              "kind": "AssignmentNode",
+              "line": 59,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 59,
+                "name": "subarray_text"
+              },
+              "value": {
+                "kind": "EmptyLiteralNode",
+                "line": 59,
+                "empty_type": "STRING"
+              }
+            },
+            {
+              "kind": "WhileNode",
+              "line": 60,
+              "condition": {
+                "kind": "BinaryNode",
+                "line": 60,
+                "operator": "<=",
+                "left": {
+                  "kind": "IdentifierNode",
+                  "line": 60,
+                  "name": "j"
+                },
+                "right": {
+                  "kind": "IdentifierNode",
+                  "line": 60,
+                  "name": "end"
+                }
+              },
+              "body": {
+                "kind": "BlockNode",
+                "line": 61,
+                "statements": [
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 61,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 61,
+                      "name": "subarray_text"
+                    },
+                    "value": {
+                      "kind": "BinaryNode",
+                      "line": 61,
+                      "operator": "+",
+                      "left": {
+                        "kind": "BinaryNode",
+                        "line": 61,
+                        "operator": "+",
+                        "left": {
+                          "kind": "IdentifierNode",
+                          "line": 61,
+                          "name": "subarray_text"
+                        },
+                        "right": {
+                          "kind": "CastNode",
+                          "line": 61,
+                          "target_type": "STRING",
+                          "expression": {
+                            "kind": "IndexNode",
+                            "line": 61,
+                            "collection": {
+                              "kind": "IdentifierNode",
+                              "line": 61,
+                              "name": "arr"
+                            },
+                            "index": {
+                              "kind": "IdentifierNode",
+                              "line": 61,
+                              "name": "j"
+                            }
+                          }
+                        }
+                      },
+                      "right": {
+                        "kind": "LiteralNode",
+                        "line": 61,
+                        "value": ", ",
+                        "data_type": "STRING"
+                      }
+                    }
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 62,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 62,
+                      "name": "j"
+                    },
+                    "value": {
+                      "kind": "BinaryNode",
+                      "line": 62,
+                      "operator": "+",
+                      "left": {
+                        "kind": "IdentifierNode",
+                        "line": 62,
+                        "name": "j"
+                      },
+                      "right": {
+                        "kind": "LiteralNode",
+                        "line": 62,
+                        "value": 1,
+                        "data_type": "INTEGER"
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "OutputNode",
+              "line": 64,
+              "expression": {
+                "kind": "IdentifierNode",
+                "line": 64,
+                "name": "subarray_text"
+              }
+            },
+            {
+              "kind": "AssignmentNode",
+              "line": 65,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 65,
+                "name": "idx"
+              },
+              "value": {
+                "kind": "BinaryNode",
+                "line": 65,
+                "operator": "+",
+                "left": {
+                  "kind": "IdentifierNode",
+                  "line": 65,
+                  "name": "idx"
+                },
+                "right": {
+                  "kind": "LiteralNode",
+                  "line": 65,
+                  "value": 1,
+                  "data_type": "INTEGER"
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

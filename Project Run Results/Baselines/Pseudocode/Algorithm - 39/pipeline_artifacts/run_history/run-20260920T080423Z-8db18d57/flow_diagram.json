@@ -1,0 +1,5464 @@
+{
+  "format": "NL-FDEP Flow Diagram",
+  "version": "1.0",
+  "entry_node": "F1",
+  "exit_node": "F2",
+  "nodes": {
+    "F1": {
+      "node_id": "F1",
+      "node_type": "START",
+      "label": "Start",
+      "line": 1,
+      "data": {}
+    },
+    "F2": {
+      "node_id": "F2",
+      "node_type": "END",
+      "label": "End",
+      "line": 1,
+      "data": {}
+    },
+    "F3": {
+      "node_id": "F3",
+      "node_type": "CLASS",
+      "label": "Class Node",
+      "line": 1,
+      "data": {
+        "ast_kind": "ClassNode",
+        "name": "Node"
+      }
+    },
+    "F4": {
+      "node_id": "F4",
+      "node_type": "DECLARATION",
+      "label": "Declare property value",
+      "line": 2,
+      "data": {
+        "ast_kind": "PropertyDeclarationNode"
+      }
+    },
+    "F5": {
+      "node_id": "F5",
+      "node_type": "DECLARATION",
+      "label": "Declare property next",
+      "line": 3,
+      "data": {
+        "ast_kind": "PropertyDeclarationNode"
+      }
+    },
+    "F6": {
+      "node_id": "F6",
+      "node_type": "CONSTRUCTOR",
+      "label": "Run constructor with value",
+      "line": 4,
+      "data": {
+        "ast_kind": "ConstructorNode"
+      }
+    },
+    "F7": {
+      "node_id": "F7",
+      "node_type": "PROCESS",
+      "label": "Set value of THIS to value",
+      "line": 5,
+      "data": {
+        "ast_kind": "PropertyAssignmentNode"
+      }
+    },
+    "F8": {
+      "node_id": "F8",
+      "node_type": "PROCESS",
+      "label": "Set next of THIS to nothing",
+      "line": 6,
+      "data": {
+        "ast_kind": "PropertyAssignmentNode"
+      }
+    },
+    "F9": {
+      "node_id": "F9",
+      "node_type": "METHOD",
+      "label": "Run method set_next with node",
+      "line": 8,
+      "data": {
+        "ast_kind": "MethodNode",
+        "name": "set_next"
+      }
+    },
+    "F10": {
+      "node_id": "F10",
+      "node_type": "PROCESS",
+      "label": "Set next of THIS to node",
+      "line": 9,
+      "data": {
+        "ast_kind": "PropertyAssignmentNode"
+      }
+    },
+    "F11": {
+      "node_id": "F11",
+      "node_type": "CLASS",
+      "label": "Class LinkedList",
+      "line": 13,
+      "data": {
+        "ast_kind": "ClassNode",
+        "name": "LinkedList"
+      }
+    },
+    "F12": {
+      "node_id": "F12",
+      "node_type": "DECLARATION",
+      "label": "Declare property head",
+      "line": 14,
+      "data": {
+        "ast_kind": "PropertyDeclarationNode"
+      }
+    },
+    "F13": {
+      "node_id": "F13",
+      "node_type": "DECLARATION",
+      "label": "Declare property tail",
+      "line": 15,
+      "data": {
+        "ast_kind": "PropertyDeclarationNode"
+      }
+    },
+    "F14": {
+      "node_id": "F14",
+      "node_type": "DECLARATION",
+      "label": "Declare property nodes",
+      "line": 16,
+      "data": {
+        "ast_kind": "PropertyDeclarationNode"
+      }
+    },
+    "F15": {
+      "node_id": "F15",
+      "node_type": "CONSTRUCTOR",
+      "label": "Run constructor",
+      "line": 17,
+      "data": {
+        "ast_kind": "ConstructorNode"
+      }
+    },
+    "F16": {
+      "node_id": "F16",
+      "node_type": "PROCESS",
+      "label": "Set head of THIS to nothing",
+      "line": 18,
+      "data": {
+        "ast_kind": "PropertyAssignmentNode"
+      }
+    },
+    "F17": {
+      "node_id": "F17",
+      "node_type": "PROCESS",
+      "label": "Set tail of THIS to nothing",
+      "line": 19,
+      "data": {
+        "ast_kind": "PropertyAssignmentNode"
+      }
+    },
+    "F18": {
+      "node_id": "F18",
+      "node_type": "PROCESS",
+      "label": "Set nodes of THIS to an empty list",
+      "line": 20,
+      "data": {
+        "ast_kind": "PropertyAssignmentNode"
+      }
+    },
+    "F19": {
+      "node_id": "F19",
+      "node_type": "OUTPUT",
+      "label": "Display \"Linked List Created\n\"",
+      "line": 21,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F20": {
+      "node_id": "F20",
+      "node_type": "METHOD",
+      "label": "Run method __reserved_keyword__append with value",
+      "line": 23,
+      "data": {
+        "ast_kind": "MethodNode",
+        "name": "__reserved_keyword__append"
+      }
+    },
+    "F21": {
+      "node_id": "F21",
+      "node_type": "PROCESS",
+      "label": "Set new_node to the result of Node(value)",
+      "line": 24,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F22": {
+      "node_id": "F22",
+      "node_type": "OUTPUT",
+      "label": "Display \"Appended Value {value}\"",
+      "line": 25,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F23": {
+      "node_id": "F23",
+      "node_type": "DECISION",
+      "label": "Head of THIS is equal to nothing?",
+      "line": 26,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F24": {
+      "node_id": "F24",
+      "node_type": "PROCESS",
+      "label": "Set head of THIS to new_node",
+      "line": 27,
+      "data": {
+        "ast_kind": "PropertyAssignmentNode"
+      }
+    },
+    "F25": {
+      "node_id": "F25",
+      "node_type": "PROCESS",
+      "label": "Set tail of THIS to new_node",
+      "line": 28,
+      "data": {
+        "ast_kind": "PropertyAssignmentNode"
+      }
+    },
+    "F26": {
+      "node_id": "F26",
+      "node_type": "PROCESS",
+      "label": "Call tail of THIS.set_next with new_node",
+      "line": 30,
+      "data": {
+        "ast_kind": "MemberCallNode"
+      }
+    },
+    "F27": {
+      "node_id": "F27",
+      "node_type": "PROCESS",
+      "label": "Set tail of THIS to new_node",
+      "line": 31,
+      "data": {
+        "ast_kind": "PropertyAssignmentNode"
+      }
+    },
+    "F28": {
+      "node_id": "F28",
+      "node_type": "PROCESS",
+      "label": "Append new_node to nodes of THIS",
+      "line": 33,
+      "data": {
+        "ast_kind": "AppendNode"
+      }
+    },
+    "F29": {
+      "node_id": "F29",
+      "node_type": "METHOD",
+      "label": "Run method prepend with value",
+      "line": 35,
+      "data": {
+        "ast_kind": "MethodNode",
+        "name": "prepend"
+      }
+    },
+    "F30": {
+      "node_id": "F30",
+      "node_type": "OUTPUT",
+      "label": "Display \"Prepended Value {value} To The Front\"",
+      "line": 36,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F31": {
+      "node_id": "F31",
+      "node_type": "PROCESS",
+      "label": "Set new_node to the result of Node(value)",
+      "line": 37,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F32": {
+      "node_id": "F32",
+      "node_type": "DECISION",
+      "label": "Head of THIS is equal to nothing?",
+      "line": 38,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F33": {
+      "node_id": "F33",
+      "node_type": "PROCESS",
+      "label": "Set head of THIS to new_node",
+      "line": 39,
+      "data": {
+        "ast_kind": "PropertyAssignmentNode"
+      }
+    },
+    "F34": {
+      "node_id": "F34",
+      "node_type": "PROCESS",
+      "label": "Set tail of THIS to new_node",
+      "line": 40,
+      "data": {
+        "ast_kind": "PropertyAssignmentNode"
+      }
+    },
+    "F35": {
+      "node_id": "F35",
+      "node_type": "PROCESS",
+      "label": "Call new_node.set_next with head of THIS",
+      "line": 42,
+      "data": {
+        "ast_kind": "MemberCallNode"
+      }
+    },
+    "F36": {
+      "node_id": "F36",
+      "node_type": "PROCESS",
+      "label": "Set head of THIS to new_node",
+      "line": 43,
+      "data": {
+        "ast_kind": "PropertyAssignmentNode"
+      }
+    },
+    "F37": {
+      "node_id": "F37",
+      "node_type": "PROCESS",
+      "label": "Insert new_node into nodes of THIS at 0",
+      "line": 45,
+      "data": {
+        "ast_kind": "InsertNode"
+      }
+    },
+    "F38": {
+      "node_id": "F38",
+      "node_type": "METHOD",
+      "label": "Run method insert_at with index, value",
+      "line": 47,
+      "data": {
+        "ast_kind": "MethodNode",
+        "name": "insert_at"
+      }
+    },
+    "F39": {
+      "node_id": "F39",
+      "node_type": "OUTPUT",
+      "label": "Display \"Inserting Value {value} at Index {index}\"",
+      "line": 48,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F40": {
+      "node_id": "F40",
+      "node_type": "DECISION",
+      "label": "Index is equal to 0?",
+      "line": 49,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F41": {
+      "node_id": "F41",
+      "node_type": "PROCESS",
+      "label": "Call THIS.prepend with value",
+      "line": 50,
+      "data": {
+        "ast_kind": "MemberCallNode"
+      }
+    },
+    "F42": {
+      "node_id": "F42",
+      "node_type": "RETURN",
+      "label": "Return from the function",
+      "line": 51,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    },
+    "F43": {
+      "node_id": "F43",
+      "node_type": "PROCESS",
+      "label": "Set new_node to the result of Node(value)",
+      "line": 53,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F44": {
+      "node_id": "F44",
+      "node_type": "PROCESS",
+      "label": "Set temp to head of THIS",
+      "line": 54,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F45": {
+      "node_id": "F45",
+      "node_type": "PROCESS",
+      "label": "Set i to 0",
+      "line": 55,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F46": {
+      "node_id": "F46",
+      "node_type": "LOOP_DECISION",
+      "label": "Continue while temp is not equal to nothing and i is less than index minus 1?",
+      "line": 56,
+      "data": {
+        "ast_kind": "WhileNode"
+      }
+    },
+    "F47": {
+      "node_id": "F47",
+      "node_type": "PROCESS",
+      "label": "Set temp to next of temp",
+      "line": 57,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F48": {
+      "node_id": "F48",
+      "node_type": "PROCESS",
+      "label": "Set i to i plus 1",
+      "line": 58,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F49": {
+      "node_id": "F49",
+      "node_type": "DECISION",
+      "label": "Temp is equal to nothing?",
+      "line": 60,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F50": {
+      "node_id": "F50",
+      "node_type": "OUTPUT",
+      "label": "Display \"Insert Failed: Index out of range\"",
+      "line": 61,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F51": {
+      "node_id": "F51",
+      "node_type": "RETURN",
+      "label": "Return from the function",
+      "line": 62,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    },
+    "F52": {
+      "node_id": "F52",
+      "node_type": "PROCESS",
+      "label": "Call new_node.set_next with next of temp",
+      "line": 64,
+      "data": {
+        "ast_kind": "MemberCallNode"
+      }
+    },
+    "F53": {
+      "node_id": "F53",
+      "node_type": "PROCESS",
+      "label": "Call temp.set_next with new_node",
+      "line": 65,
+      "data": {
+        "ast_kind": "MemberCallNode"
+      }
+    },
+    "F54": {
+      "node_id": "F54",
+      "node_type": "DECISION",
+      "label": "Next of new_node is equal to nothing?",
+      "line": 66,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F55": {
+      "node_id": "F55",
+      "node_type": "PROCESS",
+      "label": "Set tail of THIS to new_node",
+      "line": 67,
+      "data": {
+        "ast_kind": "PropertyAssignmentNode"
+      }
+    },
+    "F56": {
+      "node_id": "F56",
+      "node_type": "PROCESS",
+      "label": "Insert new_node into nodes of THIS at index",
+      "line": 69,
+      "data": {
+        "ast_kind": "InsertNode"
+      }
+    },
+    "F57": {
+      "node_id": "F57",
+      "node_type": "OUTPUT",
+      "label": "Display \"Insert Successful: {value} Inserted at Index {index}\"",
+      "line": 70,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F58": {
+      "node_id": "F58",
+      "node_type": "METHOD",
+      "label": "Run method create_cycle with start_index, end_index",
+      "line": 72,
+      "data": {
+        "ast_kind": "MethodNode",
+        "name": "create_cycle"
+      }
+    },
+    "F59": {
+      "node_id": "F59",
+      "node_type": "OUTPUT",
+      "label": "Display \"\nCycle Created: Loop Start index {start_index} \u2192 End index  {end_index}\"",
+      "line": 73,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F60": {
+      "node_id": "F60",
+      "node_type": "DECISION",
+      "label": "Is start_index is less than 0 or end_index is less than 0 true?",
+      "line": 74,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F61": {
+      "node_id": "F61",
+      "node_type": "OUTPUT",
+      "label": "Display \"Cycle Creation Failed: Invalid Index\"",
+      "line": 75,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F62": {
+      "node_id": "F62",
+      "node_type": "RETURN",
+      "label": "Return from the function",
+      "line": 76,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    },
+    "F63": {
+      "node_id": "F63",
+      "node_type": "DECISION",
+      "label": "Is start_index is greater than or equal to the length of nodes of THIS or end_index is greater than or equal to the length of nodes of THIS true?",
+      "line": 78,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F64": {
+      "node_id": "F64",
+      "node_type": "OUTPUT",
+      "label": "Display \"Cycle Creation Failed: Index Out Of Range\"",
+      "line": 79,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F65": {
+      "node_id": "F65",
+      "node_type": "RETURN",
+      "label": "Return from the function",
+      "line": 80,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    },
+    "F66": {
+      "node_id": "F66",
+      "node_type": "PROCESS",
+      "label": "Set start_node to item start_index of nodes of THIS",
+      "line": 82,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F67": {
+      "node_id": "F67",
+      "node_type": "PROCESS",
+      "label": "Set end_node to item end_index of nodes of THIS",
+      "line": 83,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F68": {
+      "node_id": "F68",
+      "node_type": "PROCESS",
+      "label": "Call end_node.set_next with start_node",
+      "line": 84,
+      "data": {
+        "ast_kind": "MemberCallNode"
+      }
+    },
+    "F69": {
+      "node_id": "F69",
+      "node_type": "OUTPUT",
+      "label": "Display \"\nCycle Created: Node {start_index} now points to node {end_index}\"",
+      "line": 85,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F70": {
+      "node_id": "F70",
+      "node_type": "METHOD",
+      "label": "Run method remove_cycle",
+      "line": 87,
+      "data": {
+        "ast_kind": "MethodNode",
+        "name": "remove_cycle"
+      }
+    },
+    "F71": {
+      "node_id": "F71",
+      "node_type": "OUTPUT",
+      "label": "Display \"Remove Cycle Requested\"",
+      "line": 88,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F72": {
+      "node_id": "F72",
+      "node_type": "PROCESS",
+      "label": "Set slow to head of THIS",
+      "line": 89,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F73": {
+      "node_id": "F73",
+      "node_type": "PROCESS",
+      "label": "Set fast to head of THIS",
+      "line": 90,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F74": {
+      "node_id": "F74",
+      "node_type": "PROCESS",
+      "label": "Set cycle_found to false",
+      "line": 91,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F75": {
+      "node_id": "F75",
+      "node_type": "LOOP_DECISION",
+      "label": "Continue while fast and next of fast?",
+      "line": 92,
+      "data": {
+        "ast_kind": "WhileNode"
+      }
+    },
+    "F76": {
+      "node_id": "F76",
+      "node_type": "PROCESS",
+      "label": "Set slow to next of slow",
+      "line": 93,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F77": {
+      "node_id": "F77",
+      "node_type": "PROCESS",
+      "label": "Set fast to next of next of fast",
+      "line": 94,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F78": {
+      "node_id": "F78",
+      "node_type": "DECISION",
+      "label": "Slow is equal to fast?",
+      "line": 95,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F79": {
+      "node_id": "F79",
+      "node_type": "PROCESS",
+      "label": "Set cycle_found to true",
+      "line": 96,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F80": {
+      "node_id": "F80",
+      "node_type": "OUTPUT",
+      "label": "Display \"Cycle Detected: Proceeding with Removal\"",
+      "line": 97,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F81": {
+      "node_id": "F81",
+      "node_type": "BREAK",
+      "label": "Exit the current loop",
+      "line": 98,
+      "data": {
+        "ast_kind": "BreakNode"
+      }
+    },
+    "F82": {
+      "node_id": "F82",
+      "node_type": "DECISION",
+      "label": "Is not cycle_found true?",
+      "line": 101,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F83": {
+      "node_id": "F83",
+      "node_type": "OUTPUT",
+      "label": "Display \"No cycle found \u2014 nothing to remove\"",
+      "line": 102,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F84": {
+      "node_id": "F84",
+      "node_type": "RETURN",
+      "label": "Return from the function",
+      "line": 103,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    },
+    "F85": {
+      "node_id": "F85",
+      "node_type": "PROCESS",
+      "label": "Set slow to head of THIS",
+      "line": 105,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F86": {
+      "node_id": "F86",
+      "node_type": "LOOP_DECISION",
+      "label": "Slow is not equal to fast?",
+      "line": 106,
+      "data": {
+        "ast_kind": "WhileNode"
+      }
+    },
+    "F87": {
+      "node_id": "F87",
+      "node_type": "PROCESS",
+      "label": "Set slow to next of slow",
+      "line": 107,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F88": {
+      "node_id": "F88",
+      "node_type": "PROCESS",
+      "label": "Set fast to next of fast",
+      "line": 108,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F89": {
+      "node_id": "F89",
+      "node_type": "PROCESS",
+      "label": "Set cycle_start to slow",
+      "line": 110,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F90": {
+      "node_id": "F90",
+      "node_type": "PROCESS",
+      "label": "Set temp to cycle_start",
+      "line": 111,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F91": {
+      "node_id": "F91",
+      "node_type": "LOOP_DECISION",
+      "label": "Next of temp is not equal to cycle_start?",
+      "line": 112,
+      "data": {
+        "ast_kind": "WhileNode"
+      }
+    },
+    "F92": {
+      "node_id": "F92",
+      "node_type": "PROCESS",
+      "label": "Set temp to next of temp",
+      "line": 113,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F93": {
+      "node_id": "F93",
+      "node_type": "PROCESS",
+      "label": "Call temp.set_next with nothing",
+      "line": 115,
+      "data": {
+        "ast_kind": "MemberCallNode"
+      }
+    },
+    "F94": {
+      "node_id": "F94",
+      "node_type": "PROCESS",
+      "label": "Set tail of THIS to item negative 1 of nodes of THIS",
+      "line": 116,
+      "data": {
+        "ast_kind": "PropertyAssignmentNode"
+      }
+    },
+    "F95": {
+      "node_id": "F95",
+      "node_type": "PROCESS",
+      "label": "Set cycle_start_value to value of cycle_start",
+      "line": 117,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F96": {
+      "node_id": "F96",
+      "node_type": "OUTPUT",
+      "label": "Display \"Cycle Removed Successfully: Loop started at Node with Value {cycle_start_value}\"",
+      "line": 118,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F97": {
+      "node_id": "F97",
+      "node_type": "METHOD",
+      "label": "Run method loop_diagram",
+      "line": 120,
+      "data": {
+        "ast_kind": "MethodNode",
+        "name": "loop_diagram"
+      }
+    },
+    "F98": {
+      "node_id": "F98",
+      "node_type": "OUTPUT",
+      "label": "Display \"\nGenerating Loop Diagram...\n\"",
+      "line": 121,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F99": {
+      "node_id": "F99",
+      "node_type": "PROCESS",
+      "label": "Set nodes to nodes of THIS",
+      "line": 122,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F100": {
+      "node_id": "F100",
+      "node_type": "PROCESS",
+      "label": "Set visited to an empty dictionary",
+      "line": 123,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F101": {
+      "node_id": "F101",
+      "node_type": "PROCESS",
+      "label": "Set temp to head of THIS",
+      "line": 124,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F102": {
+      "node_id": "F102",
+      "node_type": "PROCESS",
+      "label": "Set index to 0",
+      "line": 125,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F103": {
+      "node_id": "F103",
+      "node_type": "PROCESS",
+      "label": "Set cycle_start to negative 1",
+      "line": 126,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F104": {
+      "node_id": "F104",
+      "node_type": "PROCESS",
+      "label": "Set cycle_end to negative 1",
+      "line": 127,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F105": {
+      "node_id": "F105",
+      "node_type": "LOOP_DECISION",
+      "label": "Temp is not equal to nothing?",
+      "line": 128,
+      "data": {
+        "ast_kind": "WhileNode"
+      }
+    },
+    "F106": {
+      "node_id": "F106",
+      "node_type": "DECISION",
+      "label": "Temp is contained in visited?",
+      "line": 129,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F107": {
+      "node_id": "F107",
+      "node_type": "PROCESS",
+      "label": "Set cycle_start to item temp of visited",
+      "line": 130,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F108": {
+      "node_id": "F108",
+      "node_type": "PROCESS",
+      "label": "Set cycle_end to index minus 1",
+      "line": 131,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F109": {
+      "node_id": "F109",
+      "node_type": "BREAK",
+      "label": "Exit the current loop",
+      "line": 132,
+      "data": {
+        "ast_kind": "BreakNode"
+      }
+    },
+    "F110": {
+      "node_id": "F110",
+      "node_type": "PROCESS",
+      "label": "Set item temp of visited to index",
+      "line": 134,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F111": {
+      "node_id": "F111",
+      "node_type": "PROCESS",
+      "label": "Set temp to next of temp",
+      "line": 135,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F112": {
+      "node_id": "F112",
+      "node_type": "PROCESS",
+      "label": "Set index to index plus 1",
+      "line": 136,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F113": {
+      "node_id": "F113",
+      "node_type": "PROCESS",
+      "label": "Set parts to an empty list",
+      "line": 138,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F114": {
+      "node_id": "F114",
+      "node_type": "LOOP_DECISION",
+      "label": "For each node in nodes",
+      "line": 139,
+      "data": {
+        "ast_kind": "ForEachNode"
+      }
+    },
+    "F115": {
+      "node_id": "F115",
+      "node_type": "PROCESS",
+      "label": "Append value of node converted to string to parts",
+      "line": 140,
+      "data": {
+        "ast_kind": "AppendNode"
+      }
+    },
+    "F116": {
+      "node_id": "F116",
+      "node_type": "PROCESS",
+      "label": "Set sep to \" \u2192 \"",
+      "line": 142,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F117": {
+      "node_id": "F117",
+      "node_type": "PROCESS",
+      "label": "Set chain to parts joined using sep",
+      "line": 143,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F118": {
+      "node_id": "F118",
+      "node_type": "OUTPUT",
+      "label": "Display chain",
+      "line": 144,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F119": {
+      "node_id": "F119",
+      "node_type": "DECISION",
+      "label": "Cycle_start is equal to negative 1?",
+      "line": 145,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F120": {
+      "node_id": "F120",
+      "node_type": "OUTPUT",
+      "label": "Display \"No Cycle Detected\n\"",
+      "line": 146,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F121": {
+      "node_id": "F121",
+      "node_type": "RETURN",
+      "label": "Return from the function",
+      "line": 147,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    },
+    "F122": {
+      "node_id": "F122",
+      "node_type": "PROCESS",
+      "label": "Set start_char to 0",
+      "line": 149,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F123": {
+      "node_id": "F123",
+      "node_type": "LOOP_DECISION",
+      "label": "For each i in the result of range(cycle_start)",
+      "line": 150,
+      "data": {
+        "ast_kind": "ForEachNode"
+      }
+    },
+    "F124": {
+      "node_id": "F124",
+      "node_type": "PROCESS",
+      "label": "Set start_char to start_char plus the length of item i of parts plus the length of sep",
+      "line": 151,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F125": {
+      "node_id": "F125",
+      "node_type": "PROCESS",
+      "label": "Set start_center to start_char plus the length of item cycle_start of parts integer-divided by 2",
+      "line": 153,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F126": {
+      "node_id": "F126",
+      "node_type": "PROCESS",
+      "label": "Set end_char to 0",
+      "line": 154,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F127": {
+      "node_id": "F127",
+      "node_type": "LOOP_DECISION",
+      "label": "For each i in the result of range(cycle_end)",
+      "line": 155,
+      "data": {
+        "ast_kind": "ForEachNode"
+      }
+    },
+    "F128": {
+      "node_id": "F128",
+      "node_type": "PROCESS",
+      "label": "Set end_char to end_char plus the length of item i of parts plus the length of sep",
+      "line": 156,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F129": {
+      "node_id": "F129",
+      "node_type": "PROCESS",
+      "label": "Set end_center to end_char plus the length of item cycle_end of parts integer-divided by 2",
+      "line": 158,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F130": {
+      "node_id": "F130",
+      "node_type": "PROCESS",
+      "label": "Set connector to an empty string",
+      "line": 159,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F131": {
+      "node_id": "F131",
+      "node_type": "PROCESS",
+      "label": "Set i to 0",
+      "line": 160,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F132": {
+      "node_id": "F132",
+      "node_type": "LOOP_DECISION",
+      "label": "I is less than start_center?",
+      "line": 161,
+      "data": {
+        "ast_kind": "WhileNode"
+      }
+    },
+    "F133": {
+      "node_id": "F133",
+      "node_type": "PROCESS",
+      "label": "Set connector to connector plus \" \"",
+      "line": 162,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F134": {
+      "node_id": "F134",
+      "node_type": "PROCESS",
+      "label": "Set i to i plus 1",
+      "line": 163,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F135": {
+      "node_id": "F135",
+      "node_type": "PROCESS",
+      "label": "Set connector to connector plus \"\u2514\"",
+      "line": 165,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F136": {
+      "node_id": "F136",
+      "node_type": "PROCESS",
+      "label": "Set dash_count to end_center minus start_center minus 1",
+      "line": 166,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F137": {
+      "node_id": "F137",
+      "node_type": "PROCESS",
+      "label": "Set i to 0",
+      "line": 167,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F138": {
+      "node_id": "F138",
+      "node_type": "LOOP_DECISION",
+      "label": "I is less than dash_count?",
+      "line": 168,
+      "data": {
+        "ast_kind": "WhileNode"
+      }
+    },
+    "F139": {
+      "node_id": "F139",
+      "node_type": "PROCESS",
+      "label": "Set connector to connector plus \"\u2500\"",
+      "line": 169,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F140": {
+      "node_id": "F140",
+      "node_type": "PROCESS",
+      "label": "Set i to i plus 1",
+      "line": 170,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F141": {
+      "node_id": "F141",
+      "node_type": "PROCESS",
+      "label": "Set connector to connector plus \"\u2518\"",
+      "line": 172,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F142": {
+      "node_id": "F142",
+      "node_type": "OUTPUT",
+      "label": "Display connector",
+      "line": 173,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F143": {
+      "node_id": "F143",
+      "node_type": "OUTPUT",
+      "label": "Display \"Cycle Detected From Node {cycle_start} to Node {cycle_end}\n\"",
+      "line": 174,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F144": {
+      "node_id": "F144",
+      "node_type": "OUTPUT",
+      "label": "Display \"Detect Cycle in Singly Linked List\n\"",
+      "line": 178,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F145": {
+      "node_id": "F145",
+      "node_type": "PROCESS",
+      "label": "Set l to the result of LinkedList()",
+      "line": 179,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F146": {
+      "node_id": "F146",
+      "node_type": "PROCESS",
+      "label": "Call l.__reserved_keyword__append with 10",
+      "line": 180,
+      "data": {
+        "ast_kind": "MemberCallNode"
+      }
+    },
+    "F147": {
+      "node_id": "F147",
+      "node_type": "PROCESS",
+      "label": "Call l.__reserved_keyword__append with 20",
+      "line": 181,
+      "data": {
+        "ast_kind": "MemberCallNode"
+      }
+    },
+    "F148": {
+      "node_id": "F148",
+      "node_type": "PROCESS",
+      "label": "Call l.__reserved_keyword__append with 30",
+      "line": 182,
+      "data": {
+        "ast_kind": "MemberCallNode"
+      }
+    },
+    "F149": {
+      "node_id": "F149",
+      "node_type": "PROCESS",
+      "label": "Call l.__reserved_keyword__append with 40",
+      "line": 183,
+      "data": {
+        "ast_kind": "MemberCallNode"
+      }
+    },
+    "F150": {
+      "node_id": "F150",
+      "node_type": "PROCESS",
+      "label": "Call l.__reserved_keyword__append with 50",
+      "line": 184,
+      "data": {
+        "ast_kind": "MemberCallNode"
+      }
+    },
+    "F151": {
+      "node_id": "F151",
+      "node_type": "PROCESS",
+      "label": "Call l.__reserved_keyword__append with 60",
+      "line": 185,
+      "data": {
+        "ast_kind": "MemberCallNode"
+      }
+    },
+    "F152": {
+      "node_id": "F152",
+      "node_type": "PROCESS",
+      "label": "Call l.loop_diagram",
+      "line": 186,
+      "data": {
+        "ast_kind": "MemberCallNode"
+      }
+    },
+    "F153": {
+      "node_id": "F153",
+      "node_type": "PROCESS",
+      "label": "Call l.remove_cycle",
+      "line": 187,
+      "data": {
+        "ast_kind": "MemberCallNode"
+      }
+    },
+    "F154": {
+      "node_id": "F154",
+      "node_type": "PROCESS",
+      "label": "Call l.loop_diagram",
+      "line": 188,
+      "data": {
+        "ast_kind": "MemberCallNode"
+      }
+    },
+    "F155": {
+      "node_id": "F155",
+      "node_type": "PROCESS",
+      "label": "Call l.__reserved_keyword__append with 40",
+      "line": 189,
+      "data": {
+        "ast_kind": "MemberCallNode"
+      }
+    },
+    "F156": {
+      "node_id": "F156",
+      "node_type": "PROCESS",
+      "label": "Call l.__reserved_keyword__append with 50",
+      "line": 190,
+      "data": {
+        "ast_kind": "MemberCallNode"
+      }
+    },
+    "F157": {
+      "node_id": "F157",
+      "node_type": "PROCESS",
+      "label": "Call l.create_cycle with 1, 6",
+      "line": 191,
+      "data": {
+        "ast_kind": "MemberCallNode"
+      }
+    },
+    "F158": {
+      "node_id": "F158",
+      "node_type": "PROCESS",
+      "label": "Call l.loop_diagram",
+      "line": 192,
+      "data": {
+        "ast_kind": "MemberCallNode"
+      }
+    },
+    "F159": {
+      "node_id": "F159",
+      "node_type": "PROCESS",
+      "label": "Call l.remove_cycle",
+      "line": 193,
+      "data": {
+        "ast_kind": "MemberCallNode"
+      }
+    },
+    "F160": {
+      "node_id": "F160",
+      "node_type": "OUTPUT",
+      "label": "Display \"\nAfter Removing Cycle:\"",
+      "line": 194,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F161": {
+      "node_id": "F161",
+      "node_type": "PROCESS",
+      "label": "Call l.loop_diagram",
+      "line": 195,
+      "data": {
+        "ast_kind": "MemberCallNode"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "F4",
+      "target": "F5",
+      "label": "NEXT"
+    },
+    {
+      "source": "F7",
+      "target": "F8",
+      "label": "NEXT"
+    },
+    {
+      "source": "F6",
+      "target": "F7",
+      "label": "BODY"
+    },
+    {
+      "source": "F5",
+      "target": "F6",
+      "label": "NEXT"
+    },
+    {
+      "source": "F9",
+      "target": "F10",
+      "label": "BODY"
+    },
+    {
+      "source": "F8",
+      "target": "F9",
+      "label": "NEXT"
+    },
+    {
+      "source": "F3",
+      "target": "F4",
+      "label": "BODY"
+    },
+    {
+      "source": "F12",
+      "target": "F13",
+      "label": "NEXT"
+    },
+    {
+      "source": "F13",
+      "target": "F14",
+      "label": "NEXT"
+    },
+    {
+      "source": "F16",
+      "target": "F17",
+      "label": "NEXT"
+    },
+    {
+      "source": "F17",
+      "target": "F18",
+      "label": "NEXT"
+    },
+    {
+      "source": "F18",
+      "target": "F19",
+      "label": "NEXT"
+    },
+    {
+      "source": "F15",
+      "target": "F16",
+      "label": "BODY"
+    },
+    {
+      "source": "F14",
+      "target": "F15",
+      "label": "NEXT"
+    },
+    {
+      "source": "F21",
+      "target": "F22",
+      "label": "NEXT"
+    },
+    {
+      "source": "F24",
+      "target": "F25",
+      "label": "NEXT"
+    },
+    {
+      "source": "F23",
+      "target": "F24",
+      "label": "TRUE"
+    },
+    {
+      "source": "F26",
+      "target": "F27",
+      "label": "NEXT"
+    },
+    {
+      "source": "F23",
+      "target": "F26",
+      "label": "FALSE"
+    },
+    {
+      "source": "F22",
+      "target": "F23",
+      "label": "NEXT"
+    },
+    {
+      "source": "F25",
+      "target": "F28",
+      "label": "NEXT"
+    },
+    {
+      "source": "F27",
+      "target": "F28",
+      "label": "NEXT"
+    },
+    {
+      "source": "F20",
+      "target": "F21",
+      "label": "BODY"
+    },
+    {
+      "source": "F19",
+      "target": "F20",
+      "label": "NEXT"
+    },
+    {
+      "source": "F30",
+      "target": "F31",
+      "label": "NEXT"
+    },
+    {
+      "source": "F33",
+      "target": "F34",
+      "label": "NEXT"
+    },
+    {
+      "source": "F32",
+      "target": "F33",
+      "label": "TRUE"
+    },
+    {
+      "source": "F35",
+      "target": "F36",
+      "label": "NEXT"
+    },
+    {
+      "source": "F32",
+      "target": "F35",
+      "label": "FALSE"
+    },
+    {
+      "source": "F31",
+      "target": "F32",
+      "label": "NEXT"
+    },
+    {
+      "source": "F34",
+      "target": "F37",
+      "label": "NEXT"
+    },
+    {
+      "source": "F36",
+      "target": "F37",
+      "label": "NEXT"
+    },
+    {
+      "source": "F29",
+      "target": "F30",
+      "label": "BODY"
+    },
+    {
+      "source": "F28",
+      "target": "F29",
+      "label": "NEXT"
+    },
+    {
+      "source": "F41",
+      "target": "F42",
+      "label": "NEXT"
+    },
+    {
+      "source": "F40",
+      "target": "F41",
+      "label": "TRUE"
+    },
+    {
+      "source": "F39",
+      "target": "F40",
+      "label": "NEXT"
+    },
+    {
+      "source": "F40",
+      "target": "F43",
+      "label": "NEXT"
+    },
+    {
+      "source": "F43",
+      "target": "F44",
+      "label": "NEXT"
+    },
+    {
+      "source": "F44",
+      "target": "F45",
+      "label": "NEXT"
+    },
+    {
+      "source": "F47",
+      "target": "F48",
+      "label": "NEXT"
+    },
+    {
+      "source": "F46",
+      "target": "F47",
+      "label": "TRUE"
+    },
+    {
+      "source": "F48",
+      "target": "F46",
+      "label": "LOOP"
+    },
+    {
+      "source": "F45",
+      "target": "F46",
+      "label": "NEXT"
+    },
+    {
+      "source": "F50",
+      "target": "F51",
+      "label": "NEXT"
+    },
+    {
+      "source": "F49",
+      "target": "F50",
+      "label": "TRUE"
+    },
+    {
+      "source": "F46",
+      "target": "F49",
+      "label": "NEXT"
+    },
+    {
+      "source": "F49",
+      "target": "F52",
+      "label": "NEXT"
+    },
+    {
+      "source": "F52",
+      "target": "F53",
+      "label": "NEXT"
+    },
+    {
+      "source": "F54",
+      "target": "F55",
+      "label": "TRUE"
+    },
+    {
+      "source": "F53",
+      "target": "F54",
+      "label": "NEXT"
+    },
+    {
+      "source": "F55",
+      "target": "F56",
+      "label": "NEXT"
+    },
+    {
+      "source": "F54",
+      "target": "F56",
+      "label": "NEXT"
+    },
+    {
+      "source": "F56",
+      "target": "F57",
+      "label": "NEXT"
+    },
+    {
+      "source": "F38",
+      "target": "F39",
+      "label": "BODY"
+    },
+    {
+      "source": "F37",
+      "target": "F38",
+      "label": "NEXT"
+    },
+    {
+      "source": "F61",
+      "target": "F62",
+      "label": "NEXT"
+    },
+    {
+      "source": "F60",
+      "target": "F61",
+      "label": "TRUE"
+    },
+    {
+      "source": "F59",
+      "target": "F60",
+      "label": "NEXT"
+    },
+    {
+      "source": "F64",
+      "target": "F65",
+      "label": "NEXT"
+    },
+    {
+      "source": "F63",
+      "target": "F64",
+      "label": "TRUE"
+    },
+    {
+      "source": "F60",
+      "target": "F63",
+      "label": "NEXT"
+    },
+    {
+      "source": "F63",
+      "target": "F66",
+      "label": "NEXT"
+    },
+    {
+      "source": "F66",
+      "target": "F67",
+      "label": "NEXT"
+    },
+    {
+      "source": "F67",
+      "target": "F68",
+      "label": "NEXT"
+    },
+    {
+      "source": "F68",
+      "target": "F69",
+      "label": "NEXT"
+    },
+    {
+      "source": "F58",
+      "target": "F59",
+      "label": "BODY"
+    },
+    {
+      "source": "F57",
+      "target": "F58",
+      "label": "NEXT"
+    },
+    {
+      "source": "F71",
+      "target": "F72",
+      "label": "NEXT"
+    },
+    {
+      "source": "F72",
+      "target": "F73",
+      "label": "NEXT"
+    },
+    {
+      "source": "F73",
+      "target": "F74",
+      "label": "NEXT"
+    },
+    {
+      "source": "F76",
+      "target": "F77",
+      "label": "NEXT"
+    },
+    {
+      "source": "F79",
+      "target": "F80",
+      "label": "NEXT"
+    },
+    {
+      "source": "F80",
+      "target": "F81",
+      "label": "NEXT"
+    },
+    {
+      "source": "F78",
+      "target": "F79",
+      "label": "TRUE"
+    },
+    {
+      "source": "F77",
+      "target": "F78",
+      "label": "NEXT"
+    },
+    {
+      "source": "F75",
+      "target": "F76",
+      "label": "TRUE"
+    },
+    {
+      "source": "F78",
+      "target": "F75",
+      "label": "LOOP"
+    },
+    {
+      "source": "F74",
+      "target": "F75",
+      "label": "NEXT"
+    },
+    {
+      "source": "F83",
+      "target": "F84",
+      "label": "NEXT"
+    },
+    {
+      "source": "F82",
+      "target": "F83",
+      "label": "TRUE"
+    },
+    {
+      "source": "F75",
+      "target": "F82",
+      "label": "NEXT"
+    },
+    {
+      "source": "F81",
+      "target": "F82",
+      "label": "NEXT"
+    },
+    {
+      "source": "F82",
+      "target": "F85",
+      "label": "NEXT"
+    },
+    {
+      "source": "F87",
+      "target": "F88",
+      "label": "NEXT"
+    },
+    {
+      "source": "F86",
+      "target": "F87",
+      "label": "TRUE"
+    },
+    {
+      "source": "F88",
+      "target": "F86",
+      "label": "LOOP"
+    },
+    {
+      "source": "F85",
+      "target": "F86",
+      "label": "NEXT"
+    },
+    {
+      "source": "F86",
+      "target": "F89",
+      "label": "NEXT"
+    },
+    {
+      "source": "F89",
+      "target": "F90",
+      "label": "NEXT"
+    },
+    {
+      "source": "F91",
+      "target": "F92",
+      "label": "TRUE"
+    },
+    {
+      "source": "F92",
+      "target": "F91",
+      "label": "LOOP"
+    },
+    {
+      "source": "F90",
+      "target": "F91",
+      "label": "NEXT"
+    },
+    {
+      "source": "F91",
+      "target": "F93",
+      "label": "NEXT"
+    },
+    {
+      "source": "F93",
+      "target": "F94",
+      "label": "NEXT"
+    },
+    {
+      "source": "F94",
+      "target": "F95",
+      "label": "NEXT"
+    },
+    {
+      "source": "F95",
+      "target": "F96",
+      "label": "NEXT"
+    },
+    {
+      "source": "F70",
+      "target": "F71",
+      "label": "BODY"
+    },
+    {
+      "source": "F69",
+      "target": "F70",
+      "label": "NEXT"
+    },
+    {
+      "source": "F98",
+      "target": "F99",
+      "label": "NEXT"
+    },
+    {
+      "source": "F99",
+      "target": "F100",
+      "label": "NEXT"
+    },
+    {
+      "source": "F100",
+      "target": "F101",
+      "label": "NEXT"
+    },
+    {
+      "source": "F101",
+      "target": "F102",
+      "label": "NEXT"
+    },
+    {
+      "source": "F102",
+      "target": "F103",
+      "label": "NEXT"
+    },
+    {
+      "source": "F103",
+      "target": "F104",
+      "label": "NEXT"
+    },
+    {
+      "source": "F107",
+      "target": "F108",
+      "label": "NEXT"
+    },
+    {
+      "source": "F108",
+      "target": "F109",
+      "label": "NEXT"
+    },
+    {
+      "source": "F106",
+      "target": "F107",
+      "label": "TRUE"
+    },
+    {
+      "source": "F106",
+      "target": "F110",
+      "label": "NEXT"
+    },
+    {
+      "source": "F110",
+      "target": "F111",
+      "label": "NEXT"
+    },
+    {
+      "source": "F111",
+      "target": "F112",
+      "label": "NEXT"
+    },
+    {
+      "source": "F105",
+      "target": "F106",
+      "label": "TRUE"
+    },
+    {
+      "source": "F112",
+      "target": "F105",
+      "label": "LOOP"
+    },
+    {
+      "source": "F104",
+      "target": "F105",
+      "label": "NEXT"
+    },
+    {
+      "source": "F105",
+      "target": "F113",
+      "label": "NEXT"
+    },
+    {
+      "source": "F109",
+      "target": "F113",
+      "label": "NEXT"
+    },
+    {
+      "source": "F114",
+      "target": "F115",
+      "label": "ITERATE"
+    },
+    {
+      "source": "F115",
+      "target": "F114",
+      "label": "LOOP"
+    },
+    {
+      "source": "F113",
+      "target": "F114",
+      "label": "NEXT"
+    },
+    {
+      "source": "F114",
+      "target": "F116",
+      "label": "NEXT"
+    },
+    {
+      "source": "F116",
+      "target": "F117",
+      "label": "NEXT"
+    },
+    {
+      "source": "F117",
+      "target": "F118",
+      "label": "NEXT"
+    },
+    {
+      "source": "F120",
+      "target": "F121",
+      "label": "NEXT"
+    },
+    {
+      "source": "F119",
+      "target": "F120",
+      "label": "TRUE"
+    },
+    {
+      "source": "F118",
+      "target": "F119",
+      "label": "NEXT"
+    },
+    {
+      "source": "F119",
+      "target": "F122",
+      "label": "NEXT"
+    },
+    {
+      "source": "F123",
+      "target": "F124",
+      "label": "ITERATE"
+    },
+    {
+      "source": "F124",
+      "target": "F123",
+      "label": "LOOP"
+    },
+    {
+      "source": "F122",
+      "target": "F123",
+      "label": "NEXT"
+    },
+    {
+      "source": "F123",
+      "target": "F125",
+      "label": "NEXT"
+    },
+    {
+      "source": "F125",
+      "target": "F126",
+      "label": "NEXT"
+    },
+    {
+      "source": "F127",
+      "target": "F128",
+      "label": "ITERATE"
+    },
+    {
+      "source": "F128",
+      "target": "F127",
+      "label": "LOOP"
+    },
+    {
+      "source": "F126",
+      "target": "F127",
+      "label": "NEXT"
+    },
+    {
+      "source": "F127",
+      "target": "F129",
+      "label": "NEXT"
+    },
+    {
+      "source": "F129",
+      "target": "F130",
+      "label": "NEXT"
+    },
+    {
+      "source": "F130",
+      "target": "F131",
+      "label": "NEXT"
+    },
+    {
+      "source": "F133",
+      "target": "F134",
+      "label": "NEXT"
+    },
+    {
+      "source": "F132",
+      "target": "F133",
+      "label": "TRUE"
+    },
+    {
+      "source": "F134",
+      "target": "F132",
+      "label": "LOOP"
+    },
+    {
+      "source": "F131",
+      "target": "F132",
+      "label": "NEXT"
+    },
+    {
+      "source": "F132",
+      "target": "F135",
+      "label": "NEXT"
+    },
+    {
+      "source": "F135",
+      "target": "F136",
+      "label": "NEXT"
+    },
+    {
+      "source": "F136",
+      "target": "F137",
+      "label": "NEXT"
+    },
+    {
+      "source": "F139",
+      "target": "F140",
+      "label": "NEXT"
+    },
+    {
+      "source": "F138",
+      "target": "F139",
+      "label": "TRUE"
+    },
+    {
+      "source": "F140",
+      "target": "F138",
+      "label": "LOOP"
+    },
+    {
+      "source": "F137",
+      "target": "F138",
+      "label": "NEXT"
+    },
+    {
+      "source": "F138",
+      "target": "F141",
+      "label": "NEXT"
+    },
+    {
+      "source": "F141",
+      "target": "F142",
+      "label": "NEXT"
+    },
+    {
+      "source": "F142",
+      "target": "F143",
+      "label": "NEXT"
+    },
+    {
+      "source": "F97",
+      "target": "F98",
+      "label": "BODY"
+    },
+    {
+      "source": "F96",
+      "target": "F97",
+      "label": "NEXT"
+    },
+    {
+      "source": "F11",
+      "target": "F12",
+      "label": "BODY"
+    },
+    {
+      "source": "F10",
+      "target": "F11",
+      "label": "NEXT"
+    },
+    {
+      "source": "F143",
+      "target": "F144",
+      "label": "NEXT"
+    },
+    {
+      "source": "F144",
+      "target": "F145",
+      "label": "NEXT"
+    },
+    {
+      "source": "F145",
+      "target": "F146",
+      "label": "NEXT"
+    },
+    {
+      "source": "F146",
+      "target": "F147",
+      "label": "NEXT"
+    },
+    {
+      "source": "F147",
+      "target": "F148",
+      "label": "NEXT"
+    },
+    {
+      "source": "F148",
+      "target": "F149",
+      "label": "NEXT"
+    },
+    {
+      "source": "F149",
+      "target": "F150",
+      "label": "NEXT"
+    },
+    {
+      "source": "F150",
+      "target": "F151",
+      "label": "NEXT"
+    },
+    {
+      "source": "F151",
+      "target": "F152",
+      "label": "NEXT"
+    },
+    {
+      "source": "F152",
+      "target": "F153",
+      "label": "NEXT"
+    },
+    {
+      "source": "F153",
+      "target": "F154",
+      "label": "NEXT"
+    },
+    {
+      "source": "F154",
+      "target": "F155",
+      "label": "NEXT"
+    },
+    {
+      "source": "F155",
+      "target": "F156",
+      "label": "NEXT"
+    },
+    {
+      "source": "F156",
+      "target": "F157",
+      "label": "NEXT"
+    },
+    {
+      "source": "F157",
+      "target": "F158",
+      "label": "NEXT"
+    },
+    {
+      "source": "F158",
+      "target": "F159",
+      "label": "NEXT"
+    },
+    {
+      "source": "F159",
+      "target": "F160",
+      "label": "NEXT"
+    },
+    {
+      "source": "F160",
+      "target": "F161",
+      "label": "NEXT"
+    },
+    {
+      "source": "F1",
+      "target": "F3",
+      "label": "NEXT"
+    },
+    {
+      "source": "F42",
+      "target": "F2",
+      "label": "NEXT"
+    },
+    {
+      "source": "F51",
+      "target": "F2",
+      "label": "NEXT"
+    },
+    {
+      "source": "F62",
+      "target": "F2",
+      "label": "NEXT"
+    },
+    {
+      "source": "F65",
+      "target": "F2",
+      "label": "NEXT"
+    },
+    {
+      "source": "F84",
+      "target": "F2",
+      "label": "NEXT"
+    },
+    {
+      "source": "F121",
+      "target": "F2",
+      "label": "NEXT"
+    },
+    {
+      "source": "F161",
+      "target": "F2",
+      "label": "NEXT"
+    }
+  ],
+  "structured_program": {
+    "kind": "ProgramNode",
+    "line": 1,
+    "body": [
+      {
+        "kind": "ClassNode",
+        "line": 1,
+        "name": "Node",
+        "parameters": [],
+        "body": {
+          "kind": "BlockNode",
+          "line": 2,
+          "statements": [
+            {
+              "kind": "PropertyDeclarationNode",
+              "line": 2,
+              "name": "value",
+              "declared_type": null
+            },
+            {
+              "kind": "PropertyDeclarationNode",
+              "line": 3,
+              "name": "next",
+              "declared_type": null
+            },
+            {
+              "kind": "ConstructorNode",
+              "line": 4,
+              "parameters": [
+                {
+                  "kind": "ParameterNode",
+                  "line": 4,
+                  "name": "value",
+                  "declared_type": null
+                }
+              ],
+              "body": {
+                "kind": "BlockNode",
+                "line": 5,
+                "statements": [
+                  {
+                    "kind": "PropertyAssignmentNode",
+                    "line": 5,
+                    "target": {
+                      "kind": "MemberAccessNode",
+                      "line": 5,
+                      "object": {
+                        "kind": "IdentifierNode",
+                        "line": 5,
+                        "name": "THIS"
+                      },
+                      "member": "value"
+                    },
+                    "value": {
+                      "kind": "IdentifierNode",
+                      "line": 5,
+                      "name": "value"
+                    }
+                  },
+                  {
+                    "kind": "PropertyAssignmentNode",
+                    "line": 6,
+                    "target": {
+                      "kind": "MemberAccessNode",
+                      "line": 6,
+                      "object": {
+                        "kind": "IdentifierNode",
+                        "line": 6,
+                        "name": "THIS"
+                      },
+                      "member": "next"
+                    },
+                    "value": {
+                      "kind": "LiteralNode",
+                      "line": 6,
+                      "value": null,
+                      "data_type": "NONE"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "MethodNode",
+              "line": 8,
+              "name": "set_next",
+              "parameters": [
+                {
+                  "kind": "ParameterNode",
+                  "line": 8,
+                  "name": "node",
+                  "declared_type": null
+                }
+              ],
+              "body": {
+                "kind": "BlockNode",
+                "line": 9,
+                "statements": [
+                  {
+                    "kind": "PropertyAssignmentNode",
+                    "line": 9,
+                    "target": {
+                      "kind": "MemberAccessNode",
+                      "line": 9,
+                      "object": {
+                        "kind": "IdentifierNode",
+                        "line": 9,
+                        "name": "THIS"
+                      },
+                      "member": "next"
+                    },
+                    "value": {
+                      "kind": "IdentifierNode",
+                      "line": 9,
+                      "name": "node"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "kind": "ClassNode",
+        "line": 13,
+        "name": "LinkedList",
+        "parameters": [],
+        "body": {
+          "kind": "BlockNode",
+          "line": 14,
+          "statements": [
+            {
+              "kind": "PropertyDeclarationNode",
+              "line": 14,
+              "name": "head",
+              "declared_type": null
+            },
+            {
+              "kind": "PropertyDeclarationNode",
+              "line": 15,
+              "name": "tail",
+              "declared_type": null
+            },
+            {
+              "kind": "PropertyDeclarationNode",
+              "line": 16,
+              "name": "nodes",
+              "declared_type": null
+            },
+            {
+              "kind": "ConstructorNode",
+              "line": 17,
+              "parameters": [],
+              "body": {
+                "kind": "BlockNode",
+                "line": 18,
+                "statements": [
+                  {
+                    "kind": "PropertyAssignmentNode",
+                    "line": 18,
+                    "target": {
+                      "kind": "MemberAccessNode",
+                      "line": 18,
+                      "object": {
+                        "kind": "IdentifierNode",
+                        "line": 18,
+                        "name": "THIS"
+                      },
+                      "member": "head"
+                    },
+                    "value": {
+                      "kind": "LiteralNode",
+                      "line": 18,
+                      "value": null,
+                      "data_type": "NONE"
+                    }
+                  },
+                  {
+                    "kind": "PropertyAssignmentNode",
+                    "line": 19,
+                    "target": {
+                      "kind": "MemberAccessNode",
+                      "line": 19,
+                      "object": {
+                        "kind": "IdentifierNode",
+                        "line": 19,
+                        "name": "THIS"
+                      },
+                      "member": "tail"
+                    },
+                    "value": {
+                      "kind": "LiteralNode",
+                      "line": 19,
+                      "value": null,
+                      "data_type": "NONE"
+                    }
+                  },
+                  {
+                    "kind": "PropertyAssignmentNode",
+                    "line": 20,
+                    "target": {
+                      "kind": "MemberAccessNode",
+                      "line": 20,
+                      "object": {
+                        "kind": "IdentifierNode",
+                        "line": 20,
+                        "name": "THIS"
+                      },
+                      "member": "nodes"
+                    },
+                    "value": {
+                      "kind": "EmptyLiteralNode",
+                      "line": 20,
+                      "empty_type": "LIST"
+                    }
+                  },
+                  {
+                    "kind": "OutputNode",
+                    "line": 21,
+                    "expression": {
+                      "kind": "LiteralNode",
+                      "line": 21,
+                      "value": "Linked List Created\n",
+                      "data_type": "STRING"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "MethodNode",
+              "line": 23,
+              "name": "__reserved_keyword__append",
+              "parameters": [
+                {
+                  "kind": "ParameterNode",
+                  "line": 23,
+                  "name": "value",
+                  "declared_type": null
+                }
+              ],
+              "body": {
+                "kind": "BlockNode",
+                "line": 24,
+                "statements": [
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 24,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 24,
+                      "name": "new_node"
+                    },
+                    "value": {
+                      "kind": "CallNode",
+                      "line": 24,
+                      "name": "Node",
+                      "arguments": [
+                        {
+                          "kind": "IdentifierNode",
+                          "line": 24,
+                          "name": "value"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "kind": "OutputNode",
+                    "line": 25,
+                    "expression": {
+                      "kind": "LiteralNode",
+                      "line": 25,
+                      "value": "Appended Value {value}",
+                      "data_type": "STRING"
+                    }
+                  },
+                  {
+                    "kind": "IfNode",
+                    "line": 26,
+                    "condition": {
+                      "kind": "BinaryNode",
+                      "line": 26,
+                      "operator": "==",
+                      "left": {
+                        "kind": "MemberAccessNode",
+                        "line": 26,
+                        "object": {
+                          "kind": "IdentifierNode",
+                          "line": 26,
+                          "name": "THIS"
+                        },
+                        "member": "head"
+                      },
+                      "right": {
+                        "kind": "LiteralNode",
+                        "line": 26,
+                        "value": null,
+                        "data_type": "NONE"
+                      }
+                    },
+                    "then_body": {
+                      "kind": "BlockNode",
+                      "line": 27,
+                      "statements": [
+                        {
+                          "kind": "PropertyAssignmentNode",
+                          "line": 27,
+                          "target": {
+                            "kind": "MemberAccessNode",
+                            "line": 27,
+                            "object": {
+                              "kind": "IdentifierNode",
+                              "line": 27,
+                              "name": "THIS"
+                            },
+                            "member": "head"
+                          },
+                          "value": {
+                            "kind": "IdentifierNode",
+                            "line": 27,
+                            "name": "new_node"
+                          }
+                        },
+                        {
+                          "kind": "PropertyAssignmentNode",
+                          "line": 28,
+                          "target": {
+                            "kind": "MemberAccessNode",
+                            "line": 28,
+                            "object": {
+                              "kind": "IdentifierNode",
+                              "line": 28,
+                              "name": "THIS"
+                            },
+                            "member": "tail"
+                          },
+                          "value": {
+                            "kind": "IdentifierNode",
+                            "line": 28,
+                            "name": "new_node"
+                          }
+                        }
+                      ]
+                    },
+                    "else_if": [],
+                    "else_body": {
+                      "kind": "BlockNode",
+                      "line": 30,
+                      "statements": [
+                        {
+                          "kind": "MemberCallNode",
+                          "line": 30,
+                          "object": {
+                            "kind": "MemberAccessNode",
+                            "line": 30,
+                            "object": {
+                              "kind": "IdentifierNode",
+                              "line": 30,
+                              "name": "THIS"
+                            },
+                            "member": "tail"
+                          },
+                          "member": "set_next",
+                          "arguments": [
+                            {
+                              "kind": "IdentifierNode",
+                              "line": 30,
+                              "name": "new_node"
+                            }
+                          ],
+                          "resolved_intrinsic": null
+                        },
+                        {
+                          "kind": "PropertyAssignmentNode",
+                          "line": 31,
+                          "target": {
+                            "kind": "MemberAccessNode",
+                            "line": 31,
+                            "object": {
+                              "kind": "IdentifierNode",
+                              "line": 31,
+                              "name": "THIS"
+                            },
+                            "member": "tail"
+                          },
+                          "value": {
+                            "kind": "IdentifierNode",
+                            "line": 31,
+                            "name": "new_node"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "kind": "AppendNode",
+                    "line": 33,
+                    "value": {
+                      "kind": "IdentifierNode",
+                      "line": 33,
+                      "name": "new_node"
+                    },
+                    "collection": {
+                      "kind": "MemberAccessNode",
+                      "line": 33,
+                      "object": {
+                        "kind": "IdentifierNode",
+                        "line": 33,
+                        "name": "THIS"
+                      },
+                      "member": "nodes"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "MethodNode",
+              "line": 35,
+              "name": "prepend",
+              "parameters": [
+                {
+                  "kind": "ParameterNode",
+                  "line": 35,
+                  "name": "value",
+                  "declared_type": null
+                }
+              ],
+              "body": {
+                "kind": "BlockNode",
+                "line": 36,
+                "statements": [
+                  {
+                    "kind": "OutputNode",
+                    "line": 36,
+                    "expression": {
+                      "kind": "LiteralNode",
+                      "line": 36,
+                      "value": "Prepended Value {value} To The Front",
+                      "data_type": "STRING"
+                    }
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 37,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 37,
+                      "name": "new_node"
+                    },
+                    "value": {
+                      "kind": "CallNode",
+                      "line": 37,
+                      "name": "Node",
+                      "arguments": [
+                        {
+                          "kind": "IdentifierNode",
+                          "line": 37,
+                          "name": "value"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "kind": "IfNode",
+                    "line": 38,
+                    "condition": {
+                      "kind": "BinaryNode",
+                      "line": 38,
+                      "operator": "==",
+                      "left": {
+                        "kind": "MemberAccessNode",
+                        "line": 38,
+                        "object": {
+                          "kind": "IdentifierNode",
+                          "line": 38,
+                          "name": "THIS"
+                        },
+                        "member": "head"
+                      },
+                      "right": {
+                        "kind": "LiteralNode",
+                        "line": 38,
+                        "value": null,
+                        "data_type": "NONE"
+                      }
+                    },
+                    "then_body": {
+                      "kind": "BlockNode",
+                      "line": 39,
+                      "statements": [
+                        {
+                          "kind": "PropertyAssignmentNode",
+                          "line": 39,
+                          "target": {
+                            "kind": "MemberAccessNode",
+                            "line": 39,
+                            "object": {
+                              "kind": "IdentifierNode",
+                              "line": 39,
+                              "name": "THIS"
+                            },
+                            "member": "head"
+                          },
+                          "value": {
+                            "kind": "IdentifierNode",
+                            "line": 39,
+                            "name": "new_node"
+                          }
+                        },
+                        {
+                          "kind": "PropertyAssignmentNode",
+                          "line": 40,
+                          "target": {
+                            "kind": "MemberAccessNode",
+                            "line": 40,
+                            "object": {
+                              "kind": "IdentifierNode",
+                              "line": 40,
+                              "name": "THIS"
+                            },
+                            "member": "tail"
+                          },
+                          "value": {
+                            "kind": "IdentifierNode",
+                            "line": 40,
+                            "name": "new_node"
+                          }
+                        }
+                      ]
+                    },
+                    "else_if": [],
+                    "else_body": {
+                      "kind": "BlockNode",
+                      "line": 42,
+                      "statements": [
+                        {
+                          "kind": "MemberCallNode",
+                          "line": 42,
+                          "object": {
+                            "kind": "IdentifierNode",
+                            "line": 42,
+                            "name": "new_node"
+                          },
+                          "member": "set_next",
+                          "arguments": [
+                            {
+                              "kind": "MemberAccessNode",
+                              "line": 42,
+                              "object": {
+                                "kind": "IdentifierNode",
+                                "line": 42,
+                                "name": "THIS"
+                              },
+                              "member": "head"
+                            }
+                          ],
+                          "resolved_intrinsic": null
+                        },
+                        {
+                          "kind": "PropertyAssignmentNode",
+                          "line": 43,
+                          "target": {
+                            "kind": "MemberAccessNode",
+                            "line": 43,
+                            "object": {
+                              "kind": "IdentifierNode",
+                              "line": 43,
+                              "name": "THIS"
+                            },
+                            "member": "head"
+                          },
+                          "value": {
+                            "kind": "IdentifierNode",
+                            "line": 43,
+                            "name": "new_node"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "kind": "InsertNode",
+                    "line": 45,
+                    "value": {
+                      "kind": "IdentifierNode",
+                      "line": 45,
+                      "name": "new_node"
+                    },
+                    "collection": {
+                      "kind": "MemberAccessNode",
+                      "line": 45,
+                      "object": {
+                        "kind": "IdentifierNode",
+                        "line": 45,
+                        "name": "THIS"
+                      },
+                      "member": "nodes"
+                    },
+                    "index": {
+                      "kind": "LiteralNode",
+                      "line": 45,
+                      "value": 0,
+                      "data_type": "INTEGER"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "MethodNode",
+              "line": 47,
+              "name": "insert_at",
+              "parameters": [
+                {
+                  "kind": "ParameterNode",
+                  "line": 47,
+                  "name": "index",
+                  "declared_type": null
+                },
+                {
+                  "kind": "ParameterNode",
+                  "line": 47,
+                  "name": "value",
+                  "declared_type": null
+                }
+              ],
+              "body": {
+                "kind": "BlockNode",
+                "line": 48,
+                "statements": [
+                  {
+                    "kind": "OutputNode",
+                    "line": 48,
+                    "expression": {
+                      "kind": "LiteralNode",
+                      "line": 48,
+                      "value": "Inserting Value {value} at Index {index}",
+                      "data_type": "STRING"
+                    }
+                  },
+                  {
+                    "kind": "IfNode",
+                    "line": 49,
+                    "condition": {
+                      "kind": "BinaryNode",
+                      "line": 49,
+                      "operator": "==",
+                      "left": {
+                        "kind": "IdentifierNode",
+                        "line": 49,
+                        "name": "index"
+                      },
+                      "right": {
+                        "kind": "LiteralNode",
+                        "line": 49,
+                        "value": 0,
+                        "data_type": "INTEGER"
+                      }
+                    },
+                    "then_body": {
+                      "kind": "BlockNode",
+                      "line": 50,
+                      "statements": [
+                        {
+                          "kind": "MemberCallNode",
+                          "line": 50,
+                          "object": {
+                            "kind": "IdentifierNode",
+                            "line": 50,
+                            "name": "THIS"
+                          },
+                          "member": "prepend",
+                          "arguments": [
+                            {
+                              "kind": "IdentifierNode",
+                              "line": 50,
+                              "name": "value"
+                            }
+                          ],
+                          "resolved_intrinsic": null
+                        },
+                        {
+                          "kind": "ReturnNode",
+                          "line": 51,
+                          "expression": null
+                        }
+                      ]
+                    },
+                    "else_if": [],
+                    "else_body": null
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 53,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 53,
+                      "name": "new_node"
+                    },
+                    "value": {
+                      "kind": "CallNode",
+                      "line": 53,
+                      "name": "Node",
+                      "arguments": [
+                        {
+                          "kind": "IdentifierNode",
+                          "line": 53,
+                          "name": "value"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 54,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 54,
+                      "name": "temp"
+                    },
+                    "value": {
+                      "kind": "MemberAccessNode",
+                      "line": 54,
+                      "object": {
+                        "kind": "IdentifierNode",
+                        "line": 54,
+                        "name": "THIS"
+                      },
+                      "member": "head"
+                    }
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 55,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 55,
+                      "name": "i"
+                    },
+                    "value": {
+                      "kind": "LiteralNode",
+                      "line": 55,
+                      "value": 0,
+                      "data_type": "INTEGER"
+                    }
+                  },
+                  {
+                    "kind": "WhileNode",
+                    "line": 56,
+                    "condition": {
+                      "kind": "BinaryNode",
+                      "line": 56,
+                      "operator": "AND",
+                      "left": {
+                        "kind": "BinaryNode",
+                        "line": 56,
+                        "operator": "!=",
+                        "left": {
+                          "kind": "IdentifierNode",
+                          "line": 56,
+                          "name": "temp"
+                        },
+                        "right": {
+                          "kind": "LiteralNode",
+                          "line": 56,
+                          "value": null,
+                          "data_type": "NONE"
+                        }
+                      },
+                      "right": {
+                        "kind": "BinaryNode",
+                        "line": 56,
+                        "operator": "<",
+                        "left": {
+                          "kind": "IdentifierNode",
+                          "line": 56,
+                          "name": "i"
+                        },
+                        "right": {
+                          "kind": "BinaryNode",
+                          "line": 56,
+                          "operator": "-",
+                          "left": {
+                            "kind": "IdentifierNode",
+                            "line": 56,
+                            "name": "index"
+                          },
+                          "right": {
+                            "kind": "LiteralNode",
+                            "line": 56,
+                            "value": 1,
+                            "data_type": "INTEGER"
+                          }
+                        }
+                      }
+                    },
+                    "body": {
+                      "kind": "BlockNode",
+                      "line": 57,
+                      "statements": [
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 57,
+                          "target": {
+                            "kind": "IdentifierNode",
+                            "line": 57,
+                            "name": "temp"
+                          },
+                          "value": {
+                            "kind": "MemberAccessNode",
+                            "line": 57,
+                            "object": {
+                              "kind": "IdentifierNode",
+                              "line": 57,
+                              "name": "temp"
+                            },
+                            "member": "next"
+                          }
+                        },
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 58,
+                          "target": {
+                            "kind": "IdentifierNode",
+                            "line": 58,
+                            "name": "i"
+                          },
+                          "value": {
+                            "kind": "BinaryNode",
+                            "line": 58,
+                            "operator": "+",
+                            "left": {
+                              "kind": "IdentifierNode",
+                              "line": 58,
+                              "name": "i"
+                            },
+                            "right": {
+                              "kind": "LiteralNode",
+                              "line": 58,
+                              "value": 1,
+                              "data_type": "INTEGER"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "kind": "IfNode",
+                    "line": 60,
+                    "condition": {
+                      "kind": "BinaryNode",
+                      "line": 60,
+                      "operator": "==",
+                      "left": {
+                        "kind": "IdentifierNode",
+                        "line": 60,
+                        "name": "temp"
+                      },
+                      "right": {
+                        "kind": "LiteralNode",
+                        "line": 60,
+                        "value": null,
+                        "data_type": "NONE"
+                      }
+                    },
+                    "then_body": {
+                      "kind": "BlockNode",
+                      "line": 61,
+                      "statements": [
+                        {
+                          "kind": "OutputNode",
+                          "line": 61,
+                          "expression": {
+                            "kind": "LiteralNode",
+                            "line": 61,
+                            "value": "Insert Failed: Index out of range",
+                            "data_type": "STRING"
+                          }
+                        },
+                        {
+                          "kind": "ReturnNode",
+                          "line": 62,
+                          "expression": null
+                        }
+                      ]
+                    },
+                    "else_if": [],
+                    "else_body": null
+                  },
+                  {
+                    "kind": "MemberCallNode",
+                    "line": 64,
+                    "object": {
+                      "kind": "IdentifierNode",
+                      "line": 64,
+                      "name": "new_node"
+                    },
+                    "member": "set_next",
+                    "arguments": [
+                      {
+                        "kind": "MemberAccessNode",
+                        "line": 64,
+                        "object": {
+                          "kind": "IdentifierNode",
+                          "line": 64,
+                          "name": "temp"
+                        },
+                        "member": "next"
+                      }
+                    ],
+                    "resolved_intrinsic": null
+                  },
+                  {
+                    "kind": "MemberCallNode",
+                    "line": 65,
+                    "object": {
+                      "kind": "IdentifierNode",
+                      "line": 65,
+                      "name": "temp"
+                    },
+                    "member": "set_next",
+                    "arguments": [
+                      {
+                        "kind": "IdentifierNode",
+                        "line": 65,
+                        "name": "new_node"
+                      }
+                    ],
+                    "resolved_intrinsic": null
+                  },
+                  {
+                    "kind": "IfNode",
+                    "line": 66,
+                    "condition": {
+                      "kind": "BinaryNode",
+                      "line": 66,
+                      "operator": "==",
+                      "left": {
+                        "kind": "MemberAccessNode",
+                        "line": 66,
+                        "object": {
+                          "kind": "IdentifierNode",
+                          "line": 66,
+                          "name": "new_node"
+                        },
+                        "member": "next"
+                      },
+                      "right": {
+                        "kind": "LiteralNode",
+                        "line": 66,
+                        "value": null,
+                        "data_type": "NONE"
+                      }
+                    },
+                    "then_body": {
+                      "kind": "BlockNode",
+                      "line": 67,
+                      "statements": [
+                        {
+                          "kind": "PropertyAssignmentNode",
+                          "line": 67,
+                          "target": {
+                            "kind": "MemberAccessNode",
+                            "line": 67,
+                            "object": {
+                              "kind": "IdentifierNode",
+                              "line": 67,
+                              "name": "THIS"
+                            },
+                            "member": "tail"
+                          },
+                          "value": {
+                            "kind": "IdentifierNode",
+                            "line": 67,
+                            "name": "new_node"
+                          }
+                        }
+                      ]
+                    },
+                    "else_if": [],
+                    "else_body": null
+                  },
+                  {
+                    "kind": "InsertNode",
+                    "line": 69,
+                    "value": {
+                      "kind": "IdentifierNode",
+                      "line": 69,
+                      "name": "new_node"
+                    },
+                    "collection": {
+                      "kind": "MemberAccessNode",
+                      "line": 69,
+                      "object": {
+                        "kind": "IdentifierNode",
+                        "line": 69,
+                        "name": "THIS"
+                      },
+                      "member": "nodes"
+                    },
+                    "index": {
+                      "kind": "IdentifierNode",
+                      "line": 69,
+                      "name": "index"
+                    }
+                  },
+                  {
+                    "kind": "OutputNode",
+                    "line": 70,
+                    "expression": {
+                      "kind": "LiteralNode",
+                      "line": 70,
+                      "value": "Insert Successful: {value} Inserted at Index {index}",
+                      "data_type": "STRING"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "MethodNode",
+              "line": 72,
+              "name": "create_cycle",
+              "parameters": [
+                {
+                  "kind": "ParameterNode",
+                  "line": 72,
+                  "name": "start_index",
+                  "declared_type": null
+                },
+                {
+                  "kind": "ParameterNode",
+                  "line": 72,
+                  "name": "end_index",
+                  "declared_type": null
+                }
+              ],
+              "body": {
+                "kind": "BlockNode",
+                "line": 73,
+                "statements": [
+                  {
+                    "kind": "OutputNode",
+                    "line": 73,
+                    "expression": {
+                      "kind": "LiteralNode",
+                      "line": 73,
+                      "value": "\nCycle Created: Loop Start index {start_index} \u2192 End index  {end_index}",
+                      "data_type": "STRING"
+                    }
+                  },
+                  {
+                    "kind": "IfNode",
+                    "line": 74,
+                    "condition": {
+                      "kind": "BinaryNode",
+                      "line": 74,
+                      "operator": "OR",
+                      "left": {
+                        "kind": "BinaryNode",
+                        "line": 74,
+                        "operator": "<",
+                        "left": {
+                          "kind": "IdentifierNode",
+                          "line": 74,
+                          "name": "start_index"
+                        },
+                        "right": {
+                          "kind": "LiteralNode",
+                          "line": 74,
+                          "value": 0,
+                          "data_type": "INTEGER"
+                        }
+                      },
+                      "right": {
+                        "kind": "BinaryNode",
+                        "line": 74,
+                        "operator": "<",
+                        "left": {
+                          "kind": "IdentifierNode",
+                          "line": 74,
+                          "name": "end_index"
+                        },
+                        "right": {
+                          "kind": "LiteralNode",
+                          "line": 74,
+                          "value": 0,
+                          "data_type": "INTEGER"
+                        }
+                      }
+                    },
+                    "then_body": {
+                      "kind": "BlockNode",
+                      "line": 75,
+                      "statements": [
+                        {
+                          "kind": "OutputNode",
+                          "line": 75,
+                          "expression": {
+                            "kind": "LiteralNode",
+                            "line": 75,
+                            "value": "Cycle Creation Failed: Invalid Index",
+                            "data_type": "STRING"
+                          }
+                        },
+                        {
+                          "kind": "ReturnNode",
+                          "line": 76,
+                          "expression": null
+                        }
+                      ]
+                    },
+                    "else_if": [],
+                    "else_body": null
+                  },
+                  {
+                    "kind": "IfNode",
+                    "line": 78,
+                    "condition": {
+                      "kind": "BinaryNode",
+                      "line": 78,
+                      "operator": "OR",
+                      "left": {
+                        "kind": "BinaryNode",
+                        "line": 78,
+                        "operator": ">=",
+                        "left": {
+                          "kind": "IdentifierNode",
+                          "line": 78,
+                          "name": "start_index"
+                        },
+                        "right": {
+                          "kind": "LengthNode",
+                          "line": 78,
+                          "expression": {
+                            "kind": "MemberAccessNode",
+                            "line": 78,
+                            "object": {
+                              "kind": "IdentifierNode",
+                              "line": 78,
+                              "name": "THIS"
+                            },
+                            "member": "nodes"
+                          }
+                        }
+                      },
+                      "right": {
+                        "kind": "BinaryNode",
+                        "line": 78,
+                        "operator": ">=",
+                        "left": {
+                          "kind": "IdentifierNode",
+                          "line": 78,
+                          "name": "end_index"
+                        },
+                        "right": {
+                          "kind": "LengthNode",
+                          "line": 78,
+                          "expression": {
+                            "kind": "MemberAccessNode",
+                            "line": 78,
+                            "object": {
+                              "kind": "IdentifierNode",
+                              "line": 78,
+                              "name": "THIS"
+                            },
+                            "member": "nodes"
+                          }
+                        }
+                      }
+                    },
+                    "then_body": {
+                      "kind": "BlockNode",
+                      "line": 79,
+                      "statements": [
+                        {
+                          "kind": "OutputNode",
+                          "line": 79,
+                          "expression": {
+                            "kind": "LiteralNode",
+                            "line": 79,
+                            "value": "Cycle Creation Failed: Index Out Of Range",
+                            "data_type": "STRING"
+                          }
+                        },
+                        {
+                          "kind": "ReturnNode",
+                          "line": 80,
+                          "expression": null
+                        }
+                      ]
+                    },
+                    "else_if": [],
+                    "else_body": null
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 82,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 82,
+                      "name": "start_node"
+                    },
+                    "value": {
+                      "kind": "IndexNode",
+                      "line": 82,
+                      "collection": {
+                        "kind": "MemberAccessNode",
+                        "line": 82,
+                        "object": {
+                          "kind": "IdentifierNode",
+                          "line": 82,
+                          "name": "THIS"
+                        },
+                        "member": "nodes"
+                      },
+                      "index": {
+                        "kind": "IdentifierNode",
+                        "line": 82,
+                        "name": "start_index"
+                      }
+                    }
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 83,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 83,
+                      "name": "end_node"
+                    },
+                    "value": {
+                      "kind": "IndexNode",
+                      "line": 83,
+                      "collection": {
+                        "kind": "MemberAccessNode",
+                        "line": 83,
+                        "object": {
+                          "kind": "IdentifierNode",
+                          "line": 83,
+                          "name": "THIS"
+                        },
+                        "member": "nodes"
+                      },
+                      "index": {
+                        "kind": "IdentifierNode",
+                        "line": 83,
+                        "name": "end_index"
+                      }
+                    }
+                  },
+                  {
+                    "kind": "MemberCallNode",
+                    "line": 84,
+                    "object": {
+                      "kind": "IdentifierNode",
+                      "line": 84,
+                      "name": "end_node"
+                    },
+                    "member": "set_next",
+                    "arguments": [
+                      {
+                        "kind": "IdentifierNode",
+                        "line": 84,
+                        "name": "start_node"
+                      }
+                    ],
+                    "resolved_intrinsic": null
+                  },
+                  {
+                    "kind": "OutputNode",
+                    "line": 85,
+                    "expression": {
+                      "kind": "LiteralNode",
+                      "line": 85,
+                      "value": "\nCycle Created: Node {start_index} now points to node {end_index}",
+                      "data_type": "STRING"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "MethodNode",
+              "line": 87,
+              "name": "remove_cycle",
+              "parameters": [],
+              "body": {
+                "kind": "BlockNode",
+                "line": 88,
+                "statements": [
+                  {
+                    "kind": "OutputNode",
+                    "line": 88,
+                    "expression": {
+                      "kind": "LiteralNode",
+                      "line": 88,
+                      "value": "Remove Cycle Requested",
+                      "data_type": "STRING"
+                    }
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 89,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 89,
+                      "name": "slow"
+                    },
+                    "value": {
+                      "kind": "MemberAccessNode",
+                      "line": 89,
+                      "object": {
+                        "kind": "IdentifierNode",
+                        "line": 89,
+                        "name": "THIS"
+                      },
+                      "member": "head"
+                    }
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 90,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 90,
+                      "name": "fast"
+                    },
+                    "value": {
+                      "kind": "MemberAccessNode",
+                      "line": 90,
+                      "object": {
+                        "kind": "IdentifierNode",
+                        "line": 90,
+                        "name": "THIS"
+                      },
+                      "member": "head"
+                    }
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 91,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 91,
+                      "name": "cycle_found"
+                    },
+                    "value": {
+                      "kind": "LiteralNode",
+                      "line": 91,
+                      "value": false,
+                      "data_type": "BOOLEAN"
+                    }
+                  },
+                  {
+                    "kind": "WhileNode",
+                    "line": 92,
+                    "condition": {
+                      "kind": "BinaryNode",
+                      "line": 92,
+                      "operator": "AND",
+                      "left": {
+                        "kind": "IdentifierNode",
+                        "line": 92,
+                        "name": "fast"
+                      },
+                      "right": {
+                        "kind": "MemberAccessNode",
+                        "line": 92,
+                        "object": {
+                          "kind": "IdentifierNode",
+                          "line": 92,
+                          "name": "fast"
+                        },
+                        "member": "next"
+                      }
+                    },
+                    "body": {
+                      "kind": "BlockNode",
+                      "line": 93,
+                      "statements": [
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 93,
+                          "target": {
+                            "kind": "IdentifierNode",
+                            "line": 93,
+                            "name": "slow"
+                          },
+                          "value": {
+                            "kind": "MemberAccessNode",
+                            "line": 93,
+                            "object": {
+                              "kind": "IdentifierNode",
+                              "line": 93,
+                              "name": "slow"
+                            },
+                            "member": "next"
+                          }
+                        },
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 94,
+                          "target": {
+                            "kind": "IdentifierNode",
+                            "line": 94,
+                            "name": "fast"
+                          },
+                          "value": {
+                            "kind": "MemberAccessNode",
+                            "line": 94,
+                            "object": {
+                              "kind": "MemberAccessNode",
+                              "line": 94,
+                              "object": {
+                                "kind": "IdentifierNode",
+                                "line": 94,
+                                "name": "fast"
+                              },
+                              "member": "next"
+                            },
+                            "member": "next"
+                          }
+                        },
+                        {
+                          "kind": "IfNode",
+                          "line": 95,
+                          "condition": {
+                            "kind": "BinaryNode",
+                            "line": 95,
+                            "operator": "==",
+                            "left": {
+                              "kind": "IdentifierNode",
+                              "line": 95,
+                              "name": "slow"
+                            },
+                            "right": {
+                              "kind": "IdentifierNode",
+                              "line": 95,
+                              "name": "fast"
+                            }
+                          },
+                          "then_body": {
+                            "kind": "BlockNode",
+                            "line": 96,
+                            "statements": [
+                              {
+                                "kind": "AssignmentNode",
+                                "line": 96,
+                                "target": {
+                                  "kind": "IdentifierNode",
+                                  "line": 96,
+                                  "name": "cycle_found"
+                                },
+                                "value": {
+                                  "kind": "LiteralNode",
+                                  "line": 96,
+                                  "value": true,
+                                  "data_type": "BOOLEAN"
+                                }
+                              },
+                              {
+                                "kind": "OutputNode",
+                                "line": 97,
+                                "expression": {
+                                  "kind": "LiteralNode",
+                                  "line": 97,
+                                  "value": "Cycle Detected: Proceeding with Removal",
+                                  "data_type": "STRING"
+                                }
+                              },
+                              {
+                                "kind": "BreakNode",
+                                "line": 98
+                              }
+                            ]
+                          },
+                          "else_if": [],
+                          "else_body": null
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "kind": "IfNode",
+                    "line": 101,
+                    "condition": {
+                      "kind": "UnaryNode",
+                      "line": 101,
+                      "operator": "NOT",
+                      "operand": {
+                        "kind": "IdentifierNode",
+                        "line": 101,
+                        "name": "cycle_found"
+                      }
+                    },
+                    "then_body": {
+                      "kind": "BlockNode",
+                      "line": 102,
+                      "statements": [
+                        {
+                          "kind": "OutputNode",
+                          "line": 102,
+                          "expression": {
+                            "kind": "LiteralNode",
+                            "line": 102,
+                            "value": "No cycle found \u2014 nothing to remove",
+                            "data_type": "STRING"
+                          }
+                        },
+                        {
+                          "kind": "ReturnNode",
+                          "line": 103,
+                          "expression": null
+                        }
+                      ]
+                    },
+                    "else_if": [],
+                    "else_body": null
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 105,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 105,
+                      "name": "slow"
+                    },
+                    "value": {
+                      "kind": "MemberAccessNode",
+                      "line": 105,
+                      "object": {
+                        "kind": "IdentifierNode",
+                        "line": 105,
+                        "name": "THIS"
+                      },
+                      "member": "head"
+                    }
+                  },
+                  {
+                    "kind": "WhileNode",
+                    "line": 106,
+                    "condition": {
+                      "kind": "BinaryNode",
+                      "line": 106,
+                      "operator": "!=",
+                      "left": {
+                        "kind": "IdentifierNode",
+                        "line": 106,
+                        "name": "slow"
+                      },
+                      "right": {
+                        "kind": "IdentifierNode",
+                        "line": 106,
+                        "name": "fast"
+                      }
+                    },
+                    "body": {
+                      "kind": "BlockNode",
+                      "line": 107,
+                      "statements": [
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 107,
+                          "target": {
+                            "kind": "IdentifierNode",
+                            "line": 107,
+                            "name": "slow"
+                          },
+                          "value": {
+                            "kind": "MemberAccessNode",
+                            "line": 107,
+                            "object": {
+                              "kind": "IdentifierNode",
+                              "line": 107,
+                              "name": "slow"
+                            },
+                            "member": "next"
+                          }
+                        },
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 108,
+                          "target": {
+                            "kind": "IdentifierNode",
+                            "line": 108,
+                            "name": "fast"
+                          },
+                          "value": {
+                            "kind": "MemberAccessNode",
+                            "line": 108,
+                            "object": {
+                              "kind": "IdentifierNode",
+                              "line": 108,
+                              "name": "fast"
+                            },
+                            "member": "next"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 110,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 110,
+                      "name": "cycle_start"
+                    },
+                    "value": {
+                      "kind": "IdentifierNode",
+                      "line": 110,
+                      "name": "slow"
+                    }
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 111,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 111,
+                      "name": "temp"
+                    },
+                    "value": {
+                      "kind": "IdentifierNode",
+                      "line": 111,
+                      "name": "cycle_start"
+                    }
+                  },
+                  {
+                    "kind": "WhileNode",
+                    "line": 112,
+                    "condition": {
+                      "kind": "BinaryNode",
+                      "line": 112,
+                      "operator": "!=",
+                      "left": {
+                        "kind": "MemberAccessNode",
+                        "line": 112,
+                        "object": {
+                          "kind": "IdentifierNode",
+                          "line": 112,
+                          "name": "temp"
+                        },
+                        "member": "next"
+                      },
+                      "right": {
+                        "kind": "IdentifierNode",
+                        "line": 112,
+                        "name": "cycle_start"
+                      }
+                    },
+                    "body": {
+                      "kind": "BlockNode",
+                      "line": 113,
+                      "statements": [
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 113,
+                          "target": {
+                            "kind": "IdentifierNode",
+                            "line": 113,
+                            "name": "temp"
+                          },
+                          "value": {
+                            "kind": "MemberAccessNode",
+                            "line": 113,
+                            "object": {
+                              "kind": "IdentifierNode",
+                              "line": 113,
+                              "name": "temp"
+                            },
+                            "member": "next"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "kind": "MemberCallNode",
+                    "line": 115,
+                    "object": {
+                      "kind": "IdentifierNode",
+                      "line": 115,
+                      "name": "temp"
+                    },
+                    "member": "set_next",
+                    "arguments": [
+                      {
+                        "kind": "LiteralNode",
+                        "line": 115,
+                        "value": null,
+                        "data_type": "NONE"
+                      }
+                    ],
+                    "resolved_intrinsic": null
+                  },
+                  {
+                    "kind": "PropertyAssignmentNode",
+                    "line": 116,
+                    "target": {
+                      "kind": "MemberAccessNode",
+                      "line": 116,
+                      "object": {
+                        "kind": "IdentifierNode",
+                        "line": 116,
+                        "name": "THIS"
+                      },
+                      "member": "tail"
+                    },
+                    "value": {
+                      "kind": "IndexNode",
+                      "line": 116,
+                      "collection": {
+                        "kind": "MemberAccessNode",
+                        "line": 116,
+                        "object": {
+                          "kind": "IdentifierNode",
+                          "line": 116,
+                          "name": "THIS"
+                        },
+                        "member": "nodes"
+                      },
+                      "index": {
+                        "kind": "UnaryNode",
+                        "line": 116,
+                        "operator": "-",
+                        "operand": {
+                          "kind": "LiteralNode",
+                          "line": 116,
+                          "value": 1,
+                          "data_type": "INTEGER"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 117,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 117,
+                      "name": "cycle_start_value"
+                    },
+                    "value": {
+                      "kind": "MemberAccessNode",
+                      "line": 117,
+                      "object": {
+                        "kind": "IdentifierNode",
+                        "line": 117,
+                        "name": "cycle_start"
+                      },
+                      "member": "value"
+                    }
+                  },
+                  {
+                    "kind": "OutputNode",
+                    "line": 118,
+                    "expression": {
+                      "kind": "LiteralNode",
+                      "line": 118,
+                      "value": "Cycle Removed Successfully: Loop started at Node with Value {cycle_start_value}",
+                      "data_type": "STRING"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "MethodNode",
+              "line": 120,
+              "name": "loop_diagram",
+              "parameters": [],
+              "body": {
+                "kind": "BlockNode",
+                "line": 121,
+                "statements": [
+                  {
+                    "kind": "OutputNode",
+                    "line": 121,
+                    "expression": {
+                      "kind": "LiteralNode",
+                      "line": 121,
+                      "value": "\nGenerating Loop Diagram...\n",
+                      "data_type": "STRING"
+                    }
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 122,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 122,
+                      "name": "nodes"
+                    },
+                    "value": {
+                      "kind": "MemberAccessNode",
+                      "line": 122,
+                      "object": {
+                        "kind": "IdentifierNode",
+                        "line": 122,
+                        "name": "THIS"
+                      },
+                      "member": "nodes"
+                    }
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 123,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 123,
+                      "name": "visited"
+                    },
+                    "value": {
+                      "kind": "EmptyLiteralNode",
+                      "line": 123,
+                      "empty_type": "DICTIONARY"
+                    }
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 124,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 124,
+                      "name": "temp"
+                    },
+                    "value": {
+                      "kind": "MemberAccessNode",
+                      "line": 124,
+                      "object": {
+                        "kind": "IdentifierNode",
+                        "line": 124,
+                        "name": "THIS"
+                      },
+                      "member": "head"
+                    }
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 125,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 125,
+                      "name": "index"
+                    },
+                    "value": {
+                      "kind": "LiteralNode",
+                      "line": 125,
+                      "value": 0,
+                      "data_type": "INTEGER"
+                    }
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 126,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 126,
+                      "name": "cycle_start"
+                    },
+                    "value": {
+                      "kind": "UnaryNode",
+                      "line": 126,
+                      "operator": "-",
+                      "operand": {
+                        "kind": "LiteralNode",
+                        "line": 126,
+                        "value": 1,
+                        "data_type": "INTEGER"
+                      }
+                    }
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 127,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 127,
+                      "name": "cycle_end"
+                    },
+                    "value": {
+                      "kind": "UnaryNode",
+                      "line": 127,
+                      "operator": "-",
+                      "operand": {
+                        "kind": "LiteralNode",
+                        "line": 127,
+                        "value": 1,
+                        "data_type": "INTEGER"
+                      }
+                    }
+                  },
+                  {
+                    "kind": "WhileNode",
+                    "line": 128,
+                    "condition": {
+                      "kind": "BinaryNode",
+                      "line": 128,
+                      "operator": "!=",
+                      "left": {
+                        "kind": "IdentifierNode",
+                        "line": 128,
+                        "name": "temp"
+                      },
+                      "right": {
+                        "kind": "LiteralNode",
+                        "line": 128,
+                        "value": null,
+                        "data_type": "NONE"
+                      }
+                    },
+                    "body": {
+                      "kind": "BlockNode",
+                      "line": 129,
+                      "statements": [
+                        {
+                          "kind": "IfNode",
+                          "line": 129,
+                          "condition": {
+                            "kind": "BinaryNode",
+                            "line": 129,
+                            "operator": "IN",
+                            "left": {
+                              "kind": "IdentifierNode",
+                              "line": 129,
+                              "name": "temp"
+                            },
+                            "right": {
+                              "kind": "IdentifierNode",
+                              "line": 129,
+                              "name": "visited"
+                            }
+                          },
+                          "then_body": {
+                            "kind": "BlockNode",
+                            "line": 130,
+                            "statements": [
+                              {
+                                "kind": "AssignmentNode",
+                                "line": 130,
+                                "target": {
+                                  "kind": "IdentifierNode",
+                                  "line": 130,
+                                  "name": "cycle_start"
+                                },
+                                "value": {
+                                  "kind": "IndexNode",
+                                  "line": 130,
+                                  "collection": {
+                                    "kind": "IdentifierNode",
+                                    "line": 130,
+                                    "name": "visited"
+                                  },
+                                  "index": {
+                                    "kind": "IdentifierNode",
+                                    "line": 130,
+                                    "name": "temp"
+                                  }
+                                }
+                              },
+                              {
+                                "kind": "AssignmentNode",
+                                "line": 131,
+                                "target": {
+                                  "kind": "IdentifierNode",
+                                  "line": 131,
+                                  "name": "cycle_end"
+                                },
+                                "value": {
+                                  "kind": "BinaryNode",
+                                  "line": 131,
+                                  "operator": "-",
+                                  "left": {
+                                    "kind": "IdentifierNode",
+                                    "line": 131,
+                                    "name": "index"
+                                  },
+                                  "right": {
+                                    "kind": "LiteralNode",
+                                    "line": 131,
+                                    "value": 1,
+                                    "data_type": "INTEGER"
+                                  }
+                                }
+                              },
+                              {
+                                "kind": "BreakNode",
+                                "line": 132
+                              }
+                            ]
+                          },
+                          "else_if": [],
+                          "else_body": null
+                        },
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 134,
+                          "target": {
+                            "kind": "IndexNode",
+                            "line": 134,
+                            "collection": {
+                              "kind": "IdentifierNode",
+                              "line": 134,
+                              "name": "visited"
+                            },
+                            "index": {
+                              "kind": "IdentifierNode",
+                              "line": 134,
+                              "name": "temp"
+                            }
+                          },
+                          "value": {
+                            "kind": "IdentifierNode",
+                            "line": 134,
+                            "name": "index"
+                          }
+                        },
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 135,
+                          "target": {
+                            "kind": "IdentifierNode",
+                            "line": 135,
+                            "name": "temp"
+                          },
+                          "value": {
+                            "kind": "MemberAccessNode",
+                            "line": 135,
+                            "object": {
+                              "kind": "IdentifierNode",
+                              "line": 135,
+                              "name": "temp"
+                            },
+                            "member": "next"
+                          }
+                        },
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 136,
+                          "target": {
+                            "kind": "IdentifierNode",
+                            "line": 136,
+                            "name": "index"
+                          },
+                          "value": {
+                            "kind": "BinaryNode",
+                            "line": 136,
+                            "operator": "+",
+                            "left": {
+                              "kind": "IdentifierNode",
+                              "line": 136,
+                              "name": "index"
+                            },
+                            "right": {
+                              "kind": "LiteralNode",
+                              "line": 136,
+                              "value": 1,
+                              "data_type": "INTEGER"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 138,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 138,
+                      "name": "parts"
+                    },
+                    "value": {
+                      "kind": "EmptyLiteralNode",
+                      "line": 138,
+                      "empty_type": "LIST"
+                    }
+                  },
+                  {
+                    "kind": "ForEachNode",
+                    "line": 139,
+                    "variable": {
+                      "kind": "IdentifierNode",
+                      "line": 139,
+                      "name": "node"
+                    },
+                    "collection": {
+                      "kind": "IdentifierNode",
+                      "line": 139,
+                      "name": "nodes"
+                    },
+                    "body": {
+                      "kind": "BlockNode",
+                      "line": 140,
+                      "statements": [
+                        {
+                          "kind": "AppendNode",
+                          "line": 140,
+                          "value": {
+                            "kind": "CastNode",
+                            "line": 140,
+                            "target_type": "STRING",
+                            "expression": {
+                              "kind": "MemberAccessNode",
+                              "line": 140,
+                              "object": {
+                                "kind": "IdentifierNode",
+                                "line": 140,
+                                "name": "node"
+                              },
+                              "member": "value"
+                            }
+                          },
+                          "collection": {
+                            "kind": "IdentifierNode",
+                            "line": 140,
+                            "name": "parts"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 142,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 142,
+                      "name": "sep"
+                    },
+                    "value": {
+                      "kind": "LiteralNode",
+                      "line": 142,
+                      "value": " \u2192 ",
+                      "data_type": "STRING"
+                    }
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 143,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 143,
+                      "name": "chain"
+                    },
+                    "value": {
+                      "kind": "JoinNode",
+                      "line": 143,
+                      "collection": {
+                        "kind": "IdentifierNode",
+                        "line": 143,
+                        "name": "parts"
+                      },
+                      "separator": {
+                        "kind": "IdentifierNode",
+                        "line": 143,
+                        "name": "sep"
+                      }
+                    }
+                  },
+                  {
+                    "kind": "OutputNode",
+                    "line": 144,
+                    "expression": {
+                      "kind": "IdentifierNode",
+                      "line": 144,
+                      "name": "chain"
+                    }
+                  },
+                  {
+                    "kind": "IfNode",
+                    "line": 145,
+                    "condition": {
+                      "kind": "BinaryNode",
+                      "line": 145,
+                      "operator": "==",
+                      "left": {
+                        "kind": "IdentifierNode",
+                        "line": 145,
+                        "name": "cycle_start"
+                      },
+                      "right": {
+                        "kind": "UnaryNode",
+                        "line": 145,
+                        "operator": "-",
+                        "operand": {
+                          "kind": "LiteralNode",
+                          "line": 145,
+                          "value": 1,
+                          "data_type": "INTEGER"
+                        }
+                      }
+                    },
+                    "then_body": {
+                      "kind": "BlockNode",
+                      "line": 146,
+                      "statements": [
+                        {
+                          "kind": "OutputNode",
+                          "line": 146,
+                          "expression": {
+                            "kind": "LiteralNode",
+                            "line": 146,
+                            "value": "No Cycle Detected\n",
+                            "data_type": "STRING"
+                          }
+                        },
+                        {
+                          "kind": "ReturnNode",
+                          "line": 147,
+                          "expression": null
+                        }
+                      ]
+                    },
+                    "else_if": [],
+                    "else_body": null
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 149,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 149,
+                      "name": "start_char"
+                    },
+                    "value": {
+                      "kind": "LiteralNode",
+                      "line": 149,
+                      "value": 0,
+                      "data_type": "INTEGER"
+                    }
+                  },
+                  {
+                    "kind": "ForEachNode",
+                    "line": 150,
+                    "variable": {
+                      "kind": "IdentifierNode",
+                      "line": 150,
+                      "name": "i"
+                    },
+                    "collection": {
+                      "kind": "CallNode",
+                      "line": 150,
+                      "name": "range",
+                      "arguments": [
+                        {
+                          "kind": "IdentifierNode",
+                          "line": 150,
+                          "name": "cycle_start"
+                        }
+                      ]
+                    },
+                    "body": {
+                      "kind": "BlockNode",
+                      "line": 151,
+                      "statements": [
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 151,
+                          "target": {
+                            "kind": "IdentifierNode",
+                            "line": 151,
+                            "name": "start_char"
+                          },
+                          "value": {
+                            "kind": "BinaryNode",
+                            "line": 151,
+                            "operator": "+",
+                            "left": {
+                              "kind": "IdentifierNode",
+                              "line": 151,
+                              "name": "start_char"
+                            },
+                            "right": {
+                              "kind": "BinaryNode",
+                              "line": 151,
+                              "operator": "+",
+                              "left": {
+                                "kind": "LengthNode",
+                                "line": 151,
+                                "expression": {
+                                  "kind": "IndexNode",
+                                  "line": 151,
+                                  "collection": {
+                                    "kind": "IdentifierNode",
+                                    "line": 151,
+                                    "name": "parts"
+                                  },
+                                  "index": {
+                                    "kind": "IdentifierNode",
+                                    "line": 151,
+                                    "name": "i"
+                                  }
+                                }
+                              },
+                              "right": {
+                                "kind": "LengthNode",
+                                "line": 151,
+                                "expression": {
+                                  "kind": "IdentifierNode",
+                                  "line": 151,
+                                  "name": "sep"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 153,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 153,
+                      "name": "start_center"
+                    },
+                    "value": {
+                      "kind": "BinaryNode",
+                      "line": 153,
+                      "operator": "+",
+                      "left": {
+                        "kind": "IdentifierNode",
+                        "line": 153,
+                        "name": "start_char"
+                      },
+                      "right": {
+                        "kind": "BinaryNode",
+                        "line": 153,
+                        "operator": "INTEGER DIVISION",
+                        "left": {
+                          "kind": "LengthNode",
+                          "line": 153,
+                          "expression": {
+                            "kind": "IndexNode",
+                            "line": 153,
+                            "collection": {
+                              "kind": "IdentifierNode",
+                              "line": 153,
+                              "name": "parts"
+                            },
+                            "index": {
+                              "kind": "IdentifierNode",
+                              "line": 153,
+                              "name": "cycle_start"
+                            }
+                          }
+                        },
+                        "right": {
+                          "kind": "LiteralNode",
+                          "line": 153,
+                          "value": 2,
+                          "data_type": "INTEGER"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 154,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 154,
+                      "name": "end_char"
+                    },
+                    "value": {
+                      "kind": "LiteralNode",
+                      "line": 154,
+                      "value": 0,
+                      "data_type": "INTEGER"
+                    }
+                  },
+                  {
+                    "kind": "ForEachNode",
+                    "line": 155,
+                    "variable": {
+                      "kind": "IdentifierNode",
+                      "line": 155,
+                      "name": "i"
+                    },
+                    "collection": {
+                      "kind": "CallNode",
+                      "line": 155,
+                      "name": "range",
+                      "arguments": [
+                        {
+                          "kind": "IdentifierNode",
+                          "line": 155,
+                          "name": "cycle_end"
+                        }
+                      ]
+                    },
+                    "body": {
+                      "kind": "BlockNode",
+                      "line": 156,
+                      "statements": [
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 156,
+                          "target": {
+                            "kind": "IdentifierNode",
+                            "line": 156,
+                            "name": "end_char"
+                          },
+                          "value": {
+                            "kind": "BinaryNode",
+                            "line": 156,
+                            "operator": "+",
+                            "left": {
+                              "kind": "IdentifierNode",
+                              "line": 156,
+                              "name": "end_char"
+                            },
+                            "right": {
+                              "kind": "BinaryNode",
+                              "line": 156,
+                              "operator": "+",
+                              "left": {
+                                "kind": "LengthNode",
+                                "line": 156,
+                                "expression": {
+                                  "kind": "IndexNode",
+                                  "line": 156,
+                                  "collection": {
+                                    "kind": "IdentifierNode",
+                                    "line": 156,
+                                    "name": "parts"
+                                  },
+                                  "index": {
+                                    "kind": "IdentifierNode",
+                                    "line": 156,
+                                    "name": "i"
+                                  }
+                                }
+                              },
+                              "right": {
+                                "kind": "LengthNode",
+                                "line": 156,
+                                "expression": {
+                                  "kind": "IdentifierNode",
+                                  "line": 156,
+                                  "name": "sep"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 158,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 158,
+                      "name": "end_center"
+                    },
+                    "value": {
+                      "kind": "BinaryNode",
+                      "line": 158,
+                      "operator": "+",
+                      "left": {
+                        "kind": "IdentifierNode",
+                        "line": 158,
+                        "name": "end_char"
+                      },
+                      "right": {
+                        "kind": "BinaryNode",
+                        "line": 158,
+                        "operator": "INTEGER DIVISION",
+                        "left": {
+                          "kind": "LengthNode",
+                          "line": 158,
+                          "expression": {
+                            "kind": "IndexNode",
+                            "line": 158,
+                            "collection": {
+                              "kind": "IdentifierNode",
+                              "line": 158,
+                              "name": "parts"
+                            },
+                            "index": {
+                              "kind": "IdentifierNode",
+                              "line": 158,
+                              "name": "cycle_end"
+                            }
+                          }
+                        },
+                        "right": {
+                          "kind": "LiteralNode",
+                          "line": 158,
+                          "value": 2,
+                          "data_type": "INTEGER"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 159,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 159,
+                      "name": "connector"
+                    },
+                    "value": {
+                      "kind": "EmptyLiteralNode",
+                      "line": 159,
+                      "empty_type": "STRING"
+                    }
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 160,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 160,
+                      "name": "i"
+                    },
+                    "value": {
+                      "kind": "LiteralNode",
+                      "line": 160,
+                      "value": 0,
+                      "data_type": "INTEGER"
+                    }
+                  },
+                  {
+                    "kind": "WhileNode",
+                    "line": 161,
+                    "condition": {
+                      "kind": "BinaryNode",
+                      "line": 161,
+                      "operator": "<",
+                      "left": {
+                        "kind": "IdentifierNode",
+                        "line": 161,
+                        "name": "i"
+                      },
+                      "right": {
+                        "kind": "IdentifierNode",
+                        "line": 161,
+                        "name": "start_center"
+                      }
+                    },
+                    "body": {
+                      "kind": "BlockNode",
+                      "line": 162,
+                      "statements": [
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 162,
+                          "target": {
+                            "kind": "IdentifierNode",
+                            "line": 162,
+                            "name": "connector"
+                          },
+                          "value": {
+                            "kind": "BinaryNode",
+                            "line": 162,
+                            "operator": "+",
+                            "left": {
+                              "kind": "IdentifierNode",
+                              "line": 162,
+                              "name": "connector"
+                            },
+                            "right": {
+                              "kind": "LiteralNode",
+                              "line": 162,
+                              "value": " ",
+                              "data_type": "STRING"
+                            }
+                          }
+                        },
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 163,
+                          "target": {
+                            "kind": "IdentifierNode",
+                            "line": 163,
+                            "name": "i"
+                          },
+                          "value": {
+                            "kind": "BinaryNode",
+                            "line": 163,
+                            "operator": "+",
+                            "left": {
+                              "kind": "IdentifierNode",
+                              "line": 163,
+                              "name": "i"
+                            },
+                            "right": {
+                              "kind": "LiteralNode",
+                              "line": 163,
+                              "value": 1,
+                              "data_type": "INTEGER"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 165,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 165,
+                      "name": "connector"
+                    },
+                    "value": {
+                      "kind": "BinaryNode",
+                      "line": 165,
+                      "operator": "+",
+                      "left": {
+                        "kind": "IdentifierNode",
+                        "line": 165,
+                        "name": "connector"
+                      },
+                      "right": {
+                        "kind": "LiteralNode",
+                        "line": 165,
+                        "value": "\u2514",
+                        "data_type": "STRING"
+                      }
+                    }
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 166,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 166,
+                      "name": "dash_count"
+                    },
+                    "value": {
+                      "kind": "BinaryNode",
+                      "line": 166,
+                      "operator": "-",
+                      "left": {
+                        "kind": "BinaryNode",
+                        "line": 166,
+                        "operator": "-",
+                        "left": {
+                          "kind": "IdentifierNode",
+                          "line": 166,
+                          "name": "end_center"
+                        },
+                        "right": {
+                          "kind": "IdentifierNode",
+                          "line": 166,
+                          "name": "start_center"
+                        }
+                      },
+                      "right": {
+                        "kind": "LiteralNode",
+                        "line": 166,
+                        "value": 1,
+                        "data_type": "INTEGER"
+                      }
+                    }
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 167,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 167,
+                      "name": "i"
+                    },
+                    "value": {
+                      "kind": "LiteralNode",
+                      "line": 167,
+                      "value": 0,
+                      "data_type": "INTEGER"
+                    }
+                  },
+                  {
+                    "kind": "WhileNode",
+                    "line": 168,
+                    "condition": {
+                      "kind": "BinaryNode",
+                      "line": 168,
+                      "operator": "<",
+                      "left": {
+                        "kind": "IdentifierNode",
+                        "line": 168,
+                        "name": "i"
+                      },
+                      "right": {
+                        "kind": "IdentifierNode",
+                        "line": 168,
+                        "name": "dash_count"
+                      }
+                    },
+                    "body": {
+                      "kind": "BlockNode",
+                      "line": 169,
+                      "statements": [
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 169,
+                          "target": {
+                            "kind": "IdentifierNode",
+                            "line": 169,
+                            "name": "connector"
+                          },
+                          "value": {
+                            "kind": "BinaryNode",
+                            "line": 169,
+                            "operator": "+",
+                            "left": {
+                              "kind": "IdentifierNode",
+                              "line": 169,
+                              "name": "connector"
+                            },
+                            "right": {
+                              "kind": "LiteralNode",
+                              "line": 169,
+                              "value": "\u2500",
+                              "data_type": "STRING"
+                            }
+                          }
+                        },
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 170,
+                          "target": {
+                            "kind": "IdentifierNode",
+                            "line": 170,
+                            "name": "i"
+                          },
+                          "value": {
+                            "kind": "BinaryNode",
+                            "line": 170,
+                            "operator": "+",
+                            "left": {
+                              "kind": "IdentifierNode",
+                              "line": 170,
+                              "name": "i"
+                            },
+                            "right": {
+                              "kind": "LiteralNode",
+                              "line": 170,
+                              "value": 1,
+                              "data_type": "INTEGER"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 172,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 172,
+                      "name": "connector"
+                    },
+                    "value": {
+                      "kind": "BinaryNode",
+                      "line": 172,
+                      "operator": "+",
+                      "left": {
+                        "kind": "IdentifierNode",
+                        "line": 172,
+                        "name": "connector"
+                      },
+                      "right": {
+                        "kind": "LiteralNode",
+                        "line": 172,
+                        "value": "\u2518",
+                        "data_type": "STRING"
+                      }
+                    }
+                  },
+                  {
+                    "kind": "OutputNode",
+                    "line": 173,
+                    "expression": {
+                      "kind": "IdentifierNode",
+                      "line": 173,
+                      "name": "connector"
+                    }
+                  },
+                  {
+                    "kind": "OutputNode",
+                    "line": 174,
+                    "expression": {
+                      "kind": "LiteralNode",
+                      "line": 174,
+                      "value": "Cycle Detected From Node {cycle_start} to Node {cycle_end}\n",
+                      "data_type": "STRING"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "kind": "OutputNode",
+        "line": 178,
+        "expression": {
+          "kind": "LiteralNode",
+          "line": 178,
+          "value": "Detect Cycle in Singly Linked List\n",
+          "data_type": "STRING"
+        }
+      },
+      {
+        "kind": "AssignmentNode",
+        "line": 179,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 179,
+          "name": "l"
+        },
+        "value": {
+          "kind": "CallNode",
+          "line": 179,
+          "name": "LinkedList",
+          "arguments": []
+        }
+      },
+      {
+        "kind": "MemberCallNode",
+        "line": 180,
+        "object": {
+          "kind": "IdentifierNode",
+          "line": 180,
+          "name": "l"
+        },
+        "member": "__reserved_keyword__append",
+        "arguments": [
+          {
+            "kind": "LiteralNode",
+            "line": 180,
+            "value": 10,
+            "data_type": "INTEGER"
+          }
+        ],
+        "resolved_intrinsic": null
+      },
+      {
+        "kind": "MemberCallNode",
+        "line": 181,
+        "object": {
+          "kind": "IdentifierNode",
+          "line": 181,
+          "name": "l"
+        },
+        "member": "__reserved_keyword__append",
+        "arguments": [
+          {
+            "kind": "LiteralNode",
+            "line": 181,
+            "value": 20,
+            "data_type": "INTEGER"
+          }
+        ],
+        "resolved_intrinsic": null
+      },
+      {
+        "kind": "MemberCallNode",
+        "line": 182,
+        "object": {
+          "kind": "IdentifierNode",
+          "line": 182,
+          "name": "l"
+        },
+        "member": "__reserved_keyword__append",
+        "arguments": [
+          {
+            "kind": "LiteralNode",
+            "line": 182,
+            "value": 30,
+            "data_type": "INTEGER"
+          }
+        ],
+        "resolved_intrinsic": null
+      },
+      {
+        "kind": "MemberCallNode",
+        "line": 183,
+        "object": {
+          "kind": "IdentifierNode",
+          "line": 183,
+          "name": "l"
+        },
+        "member": "__reserved_keyword__append",
+        "arguments": [
+          {
+            "kind": "LiteralNode",
+            "line": 183,
+            "value": 40,
+            "data_type": "INTEGER"
+          }
+        ],
+        "resolved_intrinsic": null
+      },
+      {
+        "kind": "MemberCallNode",
+        "line": 184,
+        "object": {
+          "kind": "IdentifierNode",
+          "line": 184,
+          "name": "l"
+        },
+        "member": "__reserved_keyword__append",
+        "arguments": [
+          {
+            "kind": "LiteralNode",
+            "line": 184,
+            "value": 50,
+            "data_type": "INTEGER"
+          }
+        ],
+        "resolved_intrinsic": null
+      },
+      {
+        "kind": "MemberCallNode",
+        "line": 185,
+        "object": {
+          "kind": "IdentifierNode",
+          "line": 185,
+          "name": "l"
+        },
+        "member": "__reserved_keyword__append",
+        "arguments": [
+          {
+            "kind": "LiteralNode",
+            "line": 185,
+            "value": 60,
+            "data_type": "INTEGER"
+          }
+        ],
+        "resolved_intrinsic": null
+      },
+      {
+        "kind": "MemberCallNode",
+        "line": 186,
+        "object": {
+          "kind": "IdentifierNode",
+          "line": 186,
+          "name": "l"
+        },
+        "member": "loop_diagram",
+        "arguments": [],
+        "resolved_intrinsic": null
+      },
+      {
+        "kind": "MemberCallNode",
+        "line": 187,
+        "object": {
+          "kind": "IdentifierNode",
+          "line": 187,
+          "name": "l"
+        },
+        "member": "remove_cycle",
+        "arguments": [],
+        "resolved_intrinsic": null
+      },
+      {
+        "kind": "MemberCallNode",
+        "line": 188,
+        "object": {
+          "kind": "IdentifierNode",
+          "line": 188,
+          "name": "l"
+        },
+        "member": "loop_diagram",
+        "arguments": [],
+        "resolved_intrinsic": null
+      },
+      {
+        "kind": "MemberCallNode",
+        "line": 189,
+        "object": {
+          "kind": "IdentifierNode",
+          "line": 189,
+          "name": "l"
+        },
+        "member": "__reserved_keyword__append",
+        "arguments": [
+          {
+            "kind": "LiteralNode",
+            "line": 189,
+            "value": 40,
+            "data_type": "INTEGER"
+          }
+        ],
+        "resolved_intrinsic": null
+      },
+      {
+        "kind": "MemberCallNode",
+        "line": 190,
+        "object": {
+          "kind": "IdentifierNode",
+          "line": 190,
+          "name": "l"
+        },
+        "member": "__reserved_keyword__append",
+        "arguments": [
+          {
+            "kind": "LiteralNode",
+            "line": 190,
+            "value": 50,
+            "data_type": "INTEGER"
+          }
+        ],
+        "resolved_intrinsic": null
+      },
+      {
+        "kind": "MemberCallNode",
+        "line": 191,
+        "object": {
+          "kind": "IdentifierNode",
+          "line": 191,
+          "name": "l"
+        },
+        "member": "create_cycle",
+        "arguments": [
+          {
+            "kind": "LiteralNode",
+            "line": 191,
+            "value": 1,
+            "data_type": "INTEGER"
+          },
+          {
+            "kind": "LiteralNode",
+            "line": 191,
+            "value": 6,
+            "data_type": "INTEGER"
+          }
+        ],
+        "resolved_intrinsic": null
+      },
+      {
+        "kind": "MemberCallNode",
+        "line": 192,
+        "object": {
+          "kind": "IdentifierNode",
+          "line": 192,
+          "name": "l"
+        },
+        "member": "loop_diagram",
+        "arguments": [],
+        "resolved_intrinsic": null
+      },
+      {
+        "kind": "MemberCallNode",
+        "line": 193,
+        "object": {
+          "kind": "IdentifierNode",
+          "line": 193,
+          "name": "l"
+        },
+        "member": "remove_cycle",
+        "arguments": [],
+        "resolved_intrinsic": null
+      },
+      {
+        "kind": "OutputNode",
+        "line": 194,
+        "expression": {
+          "kind": "LiteralNode",
+          "line": 194,
+          "value": "\nAfter Removing Cycle:",
+          "data_type": "STRING"
+        }
+      },
+      {
+        "kind": "MemberCallNode",
+        "line": 195,
+        "object": {
+          "kind": "IdentifierNode",
+          "line": 195,
+          "name": "l"
+        },
+        "member": "loop_diagram",
+        "arguments": [],
+        "resolved_intrinsic": null
+      }
+    ]
+  }
+}

@@ -1,0 +1,82 @@
+FUNCTION sublist_range ACCEPTS(values, start_index, end_index)
+    result <- EMPTY LIST
+    index <- start_index
+    WHILE index < end_index DO
+        APPEND values[index] TO result
+        index <- index + 1
+    ENDWHILE
+    RETURN result
+ENDFUNCTION
+
+sentence <- STRING("this is a sentence made up of")
+startindex <- 0
+substrlen <- 0
+offset <- 0
+sentencelist <- EMPTY LIST
+FOR EACH character IN sentence DO
+    APPEND character TO sentencelist
+ENDFOR
+substrlist <- EMPTY LIST
+substring <- EMPTY STRING
+loop <- BOOLEAN(TRUE)
+WHILE loop DO
+    offset <- offset + 1
+    substring <- CALL sublist_range(sentencelist, startindex, offset)
+    APPEND substring TO substrlist
+    IF offset >= LENGTH OF sentencelist THEN
+        startindex <- startindex + 1
+        offset <- startindex
+        IF startindex >= LENGTH OF sentencelist THEN
+            startindex <- 0
+            substrlen <- 0
+            offset <- 0
+            loop <- BOOLEAN(FALSE)
+        ENDIF
+    ENDIF
+ENDWHILE
+listindex <- 0
+loop <- BOOLEAN(TRUE)
+WHILE loop DO
+    excl <- EMPTY SET
+    duplicate <- BOOLEAN(FALSE)
+    FOR EACH ch IN substrlist[listindex] DO
+        IF ch IN excl THEN
+            duplicate <- BOOLEAN(TRUE)
+            BREAK
+        ENDIF
+        excl.add(ch)
+    ENDFOR
+    IF duplicate THEN
+        substrlist.pop(listindex)
+    ELSE
+        listindex <- listindex + 1
+    ENDIF
+    IF listindex >= LENGTH OF substrlist THEN
+        loop <- BOOLEAN(FALSE)
+    ENDIF
+ENDWHILE
+loop <- BOOLEAN(TRUE)
+index <- 0
+maxstrings <- EMPTY LIST
+maxlength <- 0
+WHILE loop DO
+    TRY
+        current <- substrlist[index]
+        currentlen <- LENGTH OF current
+        IF currentlen > maxlength THEN
+            maxlength <- currentlen
+            maxstrings <- LIST [current]
+        ELSE IF (currentlen == maxlength) THEN
+            APPEND current TO maxstrings
+        ENDIF
+        index <- index + 1
+    CATCH
+        loop <- BOOLEAN(FALSE)
+    ENDTRY
+ENDWHILE
+OUTPUT STRING("The Longest Substrings Without Duplicate Characters Are:")
+display_strings <- EMPTY LIST
+FOR EACH s IN maxstrings DO
+    APPEND JOIN(s, EMPTY STRING) TO display_strings
+ENDFOR
+OUTPUT display_strings

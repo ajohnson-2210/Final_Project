@@ -1,0 +1,1103 @@
+{
+  "format": "NL-FDEP Flow Diagram",
+  "version": "1.0",
+  "entry_node": "F1",
+  "exit_node": "F2",
+  "nodes": {
+    "F1": {
+      "node_id": "F1",
+      "node_type": "START",
+      "label": "Start",
+      "line": 1,
+      "data": {}
+    },
+    "F2": {
+      "node_id": "F2",
+      "node_type": "END",
+      "label": "End",
+      "line": 1,
+      "data": {}
+    },
+    "F3": {
+      "node_id": "F3",
+      "node_type": "PROCESS",
+      "label": "Set password to an empty string",
+      "line": 1,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F4": {
+      "node_id": "F4",
+      "node_type": "PROCESS",
+      "label": "Set num to false",
+      "line": 2,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F5": {
+      "node_id": "F5",
+      "node_type": "PROCESS",
+      "label": "Set upper to false",
+      "line": 3,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F6": {
+      "node_id": "F6",
+      "node_type": "PROCESS",
+      "label": "Set length to false",
+      "line": 4,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F7": {
+      "node_id": "F7",
+      "node_type": "PROCESS",
+      "label": "Set passlist to an empty list",
+      "line": 5,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F8": {
+      "node_id": "F8",
+      "node_type": "PROCESS",
+      "label": "Set loop to true",
+      "line": 6,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F9": {
+      "node_id": "F9",
+      "node_type": "LOOP_DECISION",
+      "label": "Loop is equal to true?",
+      "line": 7,
+      "data": {
+        "ast_kind": "WhileNode"
+      }
+    },
+    "F10": {
+      "node_id": "F10",
+      "node_type": "PROCESS",
+      "label": "Set password to input prompted by \"Enter Password, it must be at least 8 Characters and contain at least 1 number and 1 uppercase letter : \"",
+      "line": 8,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F11": {
+      "node_id": "F11",
+      "node_type": "TRY",
+      "label": "Attempt the following operations",
+      "line": 9,
+      "data": {
+        "ast_kind": "TryCatchNode"
+      }
+    },
+    "F12": {
+      "node_id": "F12",
+      "node_type": "PROCESS",
+      "label": "Set passlist to an empty list",
+      "line": 10,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F13": {
+      "node_id": "F13",
+      "node_type": "LOOP_DECISION",
+      "label": "For each character in password",
+      "line": 11,
+      "data": {
+        "ast_kind": "ForEachNode"
+      }
+    },
+    "F14": {
+      "node_id": "F14",
+      "node_type": "PROCESS",
+      "label": "Append character to passlist",
+      "line": 12,
+      "data": {
+        "ast_kind": "AppendNode"
+      }
+    },
+    "F15": {
+      "node_id": "F15",
+      "node_type": "DECISION",
+      "label": "The length of passlist is less than 8?",
+      "line": 14,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F16": {
+      "node_id": "F16",
+      "node_type": "RAISE",
+      "label": "Raise error the result of Exception()",
+      "line": 15,
+      "data": {
+        "ast_kind": "RaiseNode"
+      }
+    },
+    "F17": {
+      "node_id": "F17",
+      "node_type": "PROCESS",
+      "label": "Set length to true",
+      "line": 17,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F18": {
+      "node_id": "F18",
+      "node_type": "LOOP_DECISION",
+      "label": "For each x in passlist",
+      "line": 19,
+      "data": {
+        "ast_kind": "ForEachNode"
+      }
+    },
+    "F19": {
+      "node_id": "F19",
+      "node_type": "DECISION",
+      "label": "Is the result of x.isdigit() true?",
+      "line": 20,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F20": {
+      "node_id": "F20",
+      "node_type": "PROCESS",
+      "label": "Set num to true",
+      "line": 21,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F21": {
+      "node_id": "F21",
+      "node_type": "BREAK",
+      "label": "Exit the current loop",
+      "line": 22,
+      "data": {
+        "ast_kind": "BreakNode"
+      }
+    },
+    "F22": {
+      "node_id": "F22",
+      "node_type": "LOOP_DECISION",
+      "label": "For each y in passlist",
+      "line": 25,
+      "data": {
+        "ast_kind": "ForEachNode"
+      }
+    },
+    "F23": {
+      "node_id": "F23",
+      "node_type": "DECISION",
+      "label": "Is the result of y.isupper() true?",
+      "line": 26,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F24": {
+      "node_id": "F24",
+      "node_type": "PROCESS",
+      "label": "Set upper to true",
+      "line": 27,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F25": {
+      "node_id": "F25",
+      "node_type": "BREAK",
+      "label": "Exit the current loop",
+      "line": 28,
+      "data": {
+        "ast_kind": "BreakNode"
+      }
+    },
+    "F26": {
+      "node_id": "F26",
+      "node_type": "DECISION",
+      "label": "Is length is equal to true and num is equal to true and upper is equal to true true?",
+      "line": 31,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F27": {
+      "node_id": "F27",
+      "node_type": "OUTPUT",
+      "label": "Display \"Password Accepted!!\"",
+      "line": 32,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F28": {
+      "node_id": "F28",
+      "node_type": "RAISE",
+      "label": "Raise error the result of Exception()",
+      "line": 34,
+      "data": {
+        "ast_kind": "RaiseNode"
+      }
+    },
+    "F29": {
+      "node_id": "F29",
+      "node_type": "PROCESS",
+      "label": "Set loop to false",
+      "line": 36,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F30": {
+      "node_id": "F30",
+      "node_type": "OUTPUT",
+      "label": "Display \"That's Not a Valid Password, Please Try Again!\"",
+      "line": 38,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F31": {
+      "node_id": "F31",
+      "node_type": "PROCESS",
+      "label": "Set password to an empty string",
+      "line": 39,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F32": {
+      "node_id": "F32",
+      "node_type": "PROCESS",
+      "label": "Set num to false",
+      "line": 40,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F33": {
+      "node_id": "F33",
+      "node_type": "PROCESS",
+      "label": "Set upper to false",
+      "line": 41,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F34": {
+      "node_id": "F34",
+      "node_type": "PROCESS",
+      "label": "Set length to false",
+      "line": 42,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F35": {
+      "node_id": "F35",
+      "node_type": "END",
+      "label": "End after error",
+      "line": 15,
+      "data": {
+        "terminal_reason": "RAISE",
+        "source_node": "F16"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "F3",
+      "target": "F4",
+      "label": "NEXT"
+    },
+    {
+      "source": "F4",
+      "target": "F5",
+      "label": "NEXT"
+    },
+    {
+      "source": "F5",
+      "target": "F6",
+      "label": "NEXT"
+    },
+    {
+      "source": "F6",
+      "target": "F7",
+      "label": "NEXT"
+    },
+    {
+      "source": "F7",
+      "target": "F8",
+      "label": "NEXT"
+    },
+    {
+      "source": "F13",
+      "target": "F14",
+      "label": "ITERATE"
+    },
+    {
+      "source": "F14",
+      "target": "F13",
+      "label": "LOOP"
+    },
+    {
+      "source": "F12",
+      "target": "F13",
+      "label": "NEXT"
+    },
+    {
+      "source": "F15",
+      "target": "F16",
+      "label": "TRUE"
+    },
+    {
+      "source": "F15",
+      "target": "F17",
+      "label": "FALSE"
+    },
+    {
+      "source": "F13",
+      "target": "F15",
+      "label": "NEXT"
+    },
+    {
+      "source": "F20",
+      "target": "F21",
+      "label": "NEXT"
+    },
+    {
+      "source": "F19",
+      "target": "F20",
+      "label": "TRUE"
+    },
+    {
+      "source": "F18",
+      "target": "F19",
+      "label": "ITERATE"
+    },
+    {
+      "source": "F19",
+      "target": "F18",
+      "label": "LOOP"
+    },
+    {
+      "source": "F17",
+      "target": "F18",
+      "label": "NEXT"
+    },
+    {
+      "source": "F24",
+      "target": "F25",
+      "label": "NEXT"
+    },
+    {
+      "source": "F23",
+      "target": "F24",
+      "label": "TRUE"
+    },
+    {
+      "source": "F22",
+      "target": "F23",
+      "label": "ITERATE"
+    },
+    {
+      "source": "F23",
+      "target": "F22",
+      "label": "LOOP"
+    },
+    {
+      "source": "F18",
+      "target": "F22",
+      "label": "NEXT"
+    },
+    {
+      "source": "F21",
+      "target": "F22",
+      "label": "NEXT"
+    },
+    {
+      "source": "F26",
+      "target": "F27",
+      "label": "TRUE"
+    },
+    {
+      "source": "F26",
+      "target": "F28",
+      "label": "FALSE"
+    },
+    {
+      "source": "F22",
+      "target": "F26",
+      "label": "NEXT"
+    },
+    {
+      "source": "F25",
+      "target": "F26",
+      "label": "NEXT"
+    },
+    {
+      "source": "F27",
+      "target": "F29",
+      "label": "NEXT"
+    },
+    {
+      "source": "F30",
+      "target": "F31",
+      "label": "NEXT"
+    },
+    {
+      "source": "F31",
+      "target": "F32",
+      "label": "NEXT"
+    },
+    {
+      "source": "F32",
+      "target": "F33",
+      "label": "NEXT"
+    },
+    {
+      "source": "F33",
+      "target": "F34",
+      "label": "NEXT"
+    },
+    {
+      "source": "F11",
+      "target": "F12",
+      "label": "TRY"
+    },
+    {
+      "source": "F11",
+      "target": "F30",
+      "label": "EXCEPTION"
+    },
+    {
+      "source": "F10",
+      "target": "F11",
+      "label": "NEXT"
+    },
+    {
+      "source": "F9",
+      "target": "F10",
+      "label": "TRUE"
+    },
+    {
+      "source": "F29",
+      "target": "F9",
+      "label": "LOOP"
+    },
+    {
+      "source": "F34",
+      "target": "F9",
+      "label": "LOOP"
+    },
+    {
+      "source": "F8",
+      "target": "F9",
+      "label": "NEXT"
+    },
+    {
+      "source": "F1",
+      "target": "F3",
+      "label": "NEXT"
+    },
+    {
+      "source": "F28",
+      "target": "F2",
+      "label": "NEXT"
+    },
+    {
+      "source": "F9",
+      "target": "F2",
+      "label": "NEXT"
+    },
+    {
+      "source": "F16",
+      "target": "F35",
+      "label": "NEXT"
+    }
+  ],
+  "structured_program": {
+    "kind": "ProgramNode",
+    "line": 1,
+    "body": [
+      {
+        "kind": "AssignmentNode",
+        "line": 1,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 1,
+          "name": "password"
+        },
+        "value": {
+          "kind": "EmptyLiteralNode",
+          "line": 1,
+          "empty_type": "STRING"
+        }
+      },
+      {
+        "kind": "AssignmentNode",
+        "line": 2,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 2,
+          "name": "num"
+        },
+        "value": {
+          "kind": "LiteralNode",
+          "line": 2,
+          "value": false,
+          "data_type": "BOOLEAN"
+        }
+      },
+      {
+        "kind": "AssignmentNode",
+        "line": 3,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 3,
+          "name": "upper"
+        },
+        "value": {
+          "kind": "LiteralNode",
+          "line": 3,
+          "value": false,
+          "data_type": "BOOLEAN"
+        }
+      },
+      {
+        "kind": "AssignmentNode",
+        "line": 4,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 4,
+          "name": "length"
+        },
+        "value": {
+          "kind": "LiteralNode",
+          "line": 4,
+          "value": false,
+          "data_type": "BOOLEAN"
+        }
+      },
+      {
+        "kind": "AssignmentNode",
+        "line": 5,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 5,
+          "name": "passlist"
+        },
+        "value": {
+          "kind": "EmptyLiteralNode",
+          "line": 5,
+          "empty_type": "LIST"
+        }
+      },
+      {
+        "kind": "AssignmentNode",
+        "line": 6,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 6,
+          "name": "loop"
+        },
+        "value": {
+          "kind": "LiteralNode",
+          "line": 6,
+          "value": true,
+          "data_type": "BOOLEAN"
+        }
+      },
+      {
+        "kind": "WhileNode",
+        "line": 7,
+        "condition": {
+          "kind": "BinaryNode",
+          "line": 7,
+          "operator": "==",
+          "left": {
+            "kind": "IdentifierNode",
+            "line": 7,
+            "name": "loop"
+          },
+          "right": {
+            "kind": "LiteralNode",
+            "line": 7,
+            "value": true,
+            "data_type": "BOOLEAN"
+          }
+        },
+        "body": {
+          "kind": "BlockNode",
+          "line": 8,
+          "statements": [
+            {
+              "kind": "AssignmentNode",
+              "line": 8,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 8,
+                "name": "password"
+              },
+              "value": {
+                "kind": "InputNode",
+                "line": 8,
+                "prompt": {
+                  "kind": "LiteralNode",
+                  "line": 8,
+                  "value": "Enter Password, it must be at least 8 Characters and contain at least 1 number and 1 uppercase letter : ",
+                  "data_type": "STRING"
+                }
+              }
+            },
+            {
+              "kind": "TryCatchNode",
+              "line": 9,
+              "try_body": {
+                "kind": "BlockNode",
+                "line": 10,
+                "statements": [
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 10,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 10,
+                      "name": "passlist"
+                    },
+                    "value": {
+                      "kind": "EmptyLiteralNode",
+                      "line": 10,
+                      "empty_type": "LIST"
+                    }
+                  },
+                  {
+                    "kind": "ForEachNode",
+                    "line": 11,
+                    "variable": {
+                      "kind": "IdentifierNode",
+                      "line": 11,
+                      "name": "character"
+                    },
+                    "collection": {
+                      "kind": "IdentifierNode",
+                      "line": 11,
+                      "name": "password"
+                    },
+                    "body": {
+                      "kind": "BlockNode",
+                      "line": 12,
+                      "statements": [
+                        {
+                          "kind": "AppendNode",
+                          "line": 12,
+                          "value": {
+                            "kind": "IdentifierNode",
+                            "line": 12,
+                            "name": "character"
+                          },
+                          "collection": {
+                            "kind": "IdentifierNode",
+                            "line": 12,
+                            "name": "passlist"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "kind": "IfNode",
+                    "line": 14,
+                    "condition": {
+                      "kind": "BinaryNode",
+                      "line": 14,
+                      "operator": "<",
+                      "left": {
+                        "kind": "LengthNode",
+                        "line": 14,
+                        "expression": {
+                          "kind": "IdentifierNode",
+                          "line": 14,
+                          "name": "passlist"
+                        }
+                      },
+                      "right": {
+                        "kind": "LiteralNode",
+                        "line": 14,
+                        "value": 8,
+                        "data_type": "INTEGER"
+                      }
+                    },
+                    "then_body": {
+                      "kind": "BlockNode",
+                      "line": 15,
+                      "statements": [
+                        {
+                          "kind": "RaiseNode",
+                          "line": 15,
+                          "expression": {
+                            "kind": "CallNode",
+                            "line": 15,
+                            "name": "Exception",
+                            "arguments": []
+                          }
+                        }
+                      ]
+                    },
+                    "else_if": [],
+                    "else_body": {
+                      "kind": "BlockNode",
+                      "line": 17,
+                      "statements": [
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 17,
+                          "target": {
+                            "kind": "IdentifierNode",
+                            "line": 17,
+                            "name": "length"
+                          },
+                          "value": {
+                            "kind": "LiteralNode",
+                            "line": 17,
+                            "value": true,
+                            "data_type": "BOOLEAN"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "kind": "ForEachNode",
+                    "line": 19,
+                    "variable": {
+                      "kind": "IdentifierNode",
+                      "line": 19,
+                      "name": "x"
+                    },
+                    "collection": {
+                      "kind": "IdentifierNode",
+                      "line": 19,
+                      "name": "passlist"
+                    },
+                    "body": {
+                      "kind": "BlockNode",
+                      "line": 20,
+                      "statements": [
+                        {
+                          "kind": "IfNode",
+                          "line": 20,
+                          "condition": {
+                            "kind": "MemberCallNode",
+                            "line": 20,
+                            "object": {
+                              "kind": "IdentifierNode",
+                              "line": 20,
+                              "name": "x"
+                            },
+                            "member": "isdigit",
+                            "arguments": [],
+                            "resolved_intrinsic": null
+                          },
+                          "then_body": {
+                            "kind": "BlockNode",
+                            "line": 21,
+                            "statements": [
+                              {
+                                "kind": "AssignmentNode",
+                                "line": 21,
+                                "target": {
+                                  "kind": "IdentifierNode",
+                                  "line": 21,
+                                  "name": "num"
+                                },
+                                "value": {
+                                  "kind": "LiteralNode",
+                                  "line": 21,
+                                  "value": true,
+                                  "data_type": "BOOLEAN"
+                                }
+                              },
+                              {
+                                "kind": "BreakNode",
+                                "line": 22
+                              }
+                            ]
+                          },
+                          "else_if": [],
+                          "else_body": null
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "kind": "ForEachNode",
+                    "line": 25,
+                    "variable": {
+                      "kind": "IdentifierNode",
+                      "line": 25,
+                      "name": "y"
+                    },
+                    "collection": {
+                      "kind": "IdentifierNode",
+                      "line": 25,
+                      "name": "passlist"
+                    },
+                    "body": {
+                      "kind": "BlockNode",
+                      "line": 26,
+                      "statements": [
+                        {
+                          "kind": "IfNode",
+                          "line": 26,
+                          "condition": {
+                            "kind": "MemberCallNode",
+                            "line": 26,
+                            "object": {
+                              "kind": "IdentifierNode",
+                              "line": 26,
+                              "name": "y"
+                            },
+                            "member": "isupper",
+                            "arguments": [],
+                            "resolved_intrinsic": null
+                          },
+                          "then_body": {
+                            "kind": "BlockNode",
+                            "line": 27,
+                            "statements": [
+                              {
+                                "kind": "AssignmentNode",
+                                "line": 27,
+                                "target": {
+                                  "kind": "IdentifierNode",
+                                  "line": 27,
+                                  "name": "upper"
+                                },
+                                "value": {
+                                  "kind": "LiteralNode",
+                                  "line": 27,
+                                  "value": true,
+                                  "data_type": "BOOLEAN"
+                                }
+                              },
+                              {
+                                "kind": "BreakNode",
+                                "line": 28
+                              }
+                            ]
+                          },
+                          "else_if": [],
+                          "else_body": null
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "kind": "IfNode",
+                    "line": 31,
+                    "condition": {
+                      "kind": "BinaryNode",
+                      "line": 31,
+                      "operator": "AND",
+                      "left": {
+                        "kind": "BinaryNode",
+                        "line": 31,
+                        "operator": "AND",
+                        "left": {
+                          "kind": "BinaryNode",
+                          "line": 31,
+                          "operator": "==",
+                          "left": {
+                            "kind": "IdentifierNode",
+                            "line": 31,
+                            "name": "length"
+                          },
+                          "right": {
+                            "kind": "LiteralNode",
+                            "line": 31,
+                            "value": true,
+                            "data_type": "BOOLEAN"
+                          }
+                        },
+                        "right": {
+                          "kind": "BinaryNode",
+                          "line": 31,
+                          "operator": "==",
+                          "left": {
+                            "kind": "IdentifierNode",
+                            "line": 31,
+                            "name": "num"
+                          },
+                          "right": {
+                            "kind": "LiteralNode",
+                            "line": 31,
+                            "value": true,
+                            "data_type": "BOOLEAN"
+                          }
+                        }
+                      },
+                      "right": {
+                        "kind": "BinaryNode",
+                        "line": 31,
+                        "operator": "==",
+                        "left": {
+                          "kind": "IdentifierNode",
+                          "line": 31,
+                          "name": "upper"
+                        },
+                        "right": {
+                          "kind": "LiteralNode",
+                          "line": 31,
+                          "value": true,
+                          "data_type": "BOOLEAN"
+                        }
+                      }
+                    },
+                    "then_body": {
+                      "kind": "BlockNode",
+                      "line": 32,
+                      "statements": [
+                        {
+                          "kind": "OutputNode",
+                          "line": 32,
+                          "expression": {
+                            "kind": "LiteralNode",
+                            "line": 32,
+                            "value": "Password Accepted!!",
+                            "data_type": "STRING"
+                          }
+                        }
+                      ]
+                    },
+                    "else_if": [],
+                    "else_body": {
+                      "kind": "BlockNode",
+                      "line": 34,
+                      "statements": [
+                        {
+                          "kind": "RaiseNode",
+                          "line": 34,
+                          "expression": {
+                            "kind": "CallNode",
+                            "line": 34,
+                            "name": "Exception",
+                            "arguments": []
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 36,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 36,
+                      "name": "loop"
+                    },
+                    "value": {
+                      "kind": "LiteralNode",
+                      "line": 36,
+                      "value": false,
+                      "data_type": "BOOLEAN"
+                    }
+                  }
+                ]
+              },
+              "error": null,
+              "catch_body": {
+                "kind": "BlockNode",
+                "line": 38,
+                "statements": [
+                  {
+                    "kind": "OutputNode",
+                    "line": 38,
+                    "expression": {
+                      "kind": "LiteralNode",
+                      "line": 38,
+                      "value": "That's Not a Valid Password, Please Try Again!",
+                      "data_type": "STRING"
+                    }
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 39,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 39,
+                      "name": "password"
+                    },
+                    "value": {
+                      "kind": "EmptyLiteralNode",
+                      "line": 39,
+                      "empty_type": "STRING"
+                    }
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 40,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 40,
+                      "name": "num"
+                    },
+                    "value": {
+                      "kind": "LiteralNode",
+                      "line": 40,
+                      "value": false,
+                      "data_type": "BOOLEAN"
+                    }
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 41,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 41,
+                      "name": "upper"
+                    },
+                    "value": {
+                      "kind": "LiteralNode",
+                      "line": 41,
+                      "value": false,
+                      "data_type": "BOOLEAN"
+                    }
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 42,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 42,
+                      "name": "length"
+                    },
+                    "value": {
+                      "kind": "LiteralNode",
+                      "line": 42,
+                      "value": false,
+                      "data_type": "BOOLEAN"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

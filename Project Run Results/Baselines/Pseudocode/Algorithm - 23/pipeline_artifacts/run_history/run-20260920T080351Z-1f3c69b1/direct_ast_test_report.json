@@ -1,0 +1,185 @@
+{
+  "program_path": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Pseudocode\\Algorithm - 23\\pipeline_artifacts\\direct_ast_program.py",
+  "success": true,
+  "total_tests": 6,
+  "passed_tests": 6,
+  "failed_tests": 0,
+  "category_summary": {
+    "BRANCH": {
+      "total": 1,
+      "passed": 1,
+      "failed": 0
+    },
+    "BOUNDARY": {
+      "total": 4,
+      "passed": 4,
+      "failed": 0
+    },
+    "ERROR_BEHAVIOUR": {
+      "total": 1,
+      "passed": 1,
+      "failed": 0
+    }
+  },
+  "results": [
+    {
+      "name": "below pass threshold",
+      "status": "PASSED",
+      "expected_output": [
+        "Enter Student Score: Unfortunately, You did Not pass this time!"
+      ],
+      "actual_output": [
+        "Enter Student Score: Unfortunately, You did Not pass this time!"
+      ],
+      "standard_error": "",
+      "return_code": 0,
+      "duration_ms": 64.116,
+      "category": "BRANCH",
+      "semantic_feature": "GRADE_FAIL",
+      "expected_return_code": 0,
+      "expected_error_type": null,
+      "actual_error_type": null,
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "random_seed": null,
+      "environment": {},
+      "requires_modules": []
+    },
+    {
+      "name": "pass lower boundary",
+      "status": "PASSED",
+      "expected_output": [
+        "Enter Student Score: Congratulations, You received a Grade of Pass!"
+      ],
+      "actual_output": [
+        "Enter Student Score: Congratulations, You received a Grade of Pass!"
+      ],
+      "standard_error": "",
+      "return_code": 0,
+      "duration_ms": 56.152,
+      "category": "BOUNDARY",
+      "semantic_feature": "GRADE_PASS_BOUNDARY",
+      "expected_return_code": 0,
+      "expected_error_type": null,
+      "actual_error_type": null,
+      "criteria_links": [
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "random_seed": null,
+      "environment": {},
+      "requires_modules": []
+    },
+    {
+      "name": "merit lower boundary",
+      "status": "PASSED",
+      "expected_output": [
+        "Enter Student Score: Congratulations, You received a Grade of Merit!"
+      ],
+      "actual_output": [
+        "Enter Student Score: Congratulations, You received a Grade of Merit!"
+      ],
+      "standard_error": "",
+      "return_code": 0,
+      "duration_ms": 77.369,
+      "category": "BOUNDARY",
+      "semantic_feature": "GRADE_MERIT_BOUNDARY",
+      "expected_return_code": 0,
+      "expected_error_type": null,
+      "actual_error_type": null,
+      "criteria_links": [
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "random_seed": null,
+      "environment": {},
+      "requires_modules": []
+    },
+    {
+      "name": "distinction lower boundary",
+      "status": "PASSED",
+      "expected_output": [
+        "Enter Student Score: Congratulations, You received a Grade of Distinction!"
+      ],
+      "actual_output": [
+        "Enter Student Score: Congratulations, You received a Grade of Distinction!"
+      ],
+      "standard_error": "",
+      "return_code": 0,
+      "duration_ms": 65.879,
+      "category": "BOUNDARY",
+      "semantic_feature": "GRADE_DISTINCTION_BOUNDARY",
+      "expected_return_code": 0,
+      "expected_error_type": null,
+      "actual_error_type": null,
+      "criteria_links": [
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "random_seed": null,
+      "environment": {},
+      "requires_modules": []
+    },
+    {
+      "name": "perfect score branch",
+      "status": "PASSED",
+      "expected_output": [
+        "Enter Student Score: WOW!! you got a Perfect score Excellent!!, Congratulations, You received a Grade of Distinction!"
+      ],
+      "actual_output": [
+        "Enter Student Score: WOW!! you got a Perfect score Excellent!!, Congratulations, You received a Grade of Distinction!"
+      ],
+      "standard_error": "",
+      "return_code": 0,
+      "duration_ms": 72.232,
+      "category": "BOUNDARY",
+      "semantic_feature": "GRADE_PERFECT_100",
+      "expected_return_code": 0,
+      "expected_error_type": null,
+      "actual_error_type": null,
+      "criteria_links": [
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "random_seed": null,
+      "environment": {},
+      "requires_modules": []
+    },
+    {
+      "name": "non-numeric retries",
+      "status": "PASSED",
+      "expected_output": [
+        "Enter Student Score: That's Not a Number, Please Try Again!",
+        "Score out of range 0 - 100",
+        "Enter Student Score: Congratulations, You received a Grade of Distinction!"
+      ],
+      "actual_output": [
+        "Enter Student Score: That's Not a Number, Please Try Again!",
+        "Score out of range 0 - 100",
+        "Enter Student Score: Congratulations, You received a Grade of Distinction!"
+      ],
+      "standard_error": "",
+      "return_code": 0,
+      "duration_ms": 55.025,
+      "category": "ERROR_BEHAVIOUR",
+      "semantic_feature": "NUMERIC_INPUT_RETRY",
+      "expected_return_code": 0,
+      "expected_error_type": null,
+      "actual_error_type": null,
+      "criteria_links": [
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "random_seed": null,
+      "environment": {},
+      "requires_modules": []
+    }
+  ]
+}

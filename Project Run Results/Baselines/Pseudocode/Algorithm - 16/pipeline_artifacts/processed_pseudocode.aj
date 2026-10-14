@@ -1,0 +1,49 @@
+firstNum <- 0
+secondNum <- 0
+errorString <- STRING("That's Not a Valid Number, Please Try Again!")
+loop <- BOOLEAN(TRUE)
+WHILE loop == BOOLEAN(TRUE) DO
+    firstNum <- INPUT(STRING("Enter First Number: "))
+    TRY
+        firstNum <- CALL INTEGER(firstNum)
+        IF firstNum < 0 THEN
+            firstNum <- CALL abs(firstNum)
+        ENDIF
+        loop <- BOOLEAN(FALSE)
+    CATCH
+        OUTPUT errorString
+    ENDTRY
+ENDWHILE
+loop <- BOOLEAN(TRUE)
+WHILE loop == BOOLEAN(TRUE) DO
+    secondNum <- INPUT(STRING("Enter Second Number: "))
+    TRY
+        secondNum <- CALL INTEGER(secondNum)
+        IF secondNum < 0 THEN
+            secondNum <- CALL abs(secondNum)
+        ENDIF
+        loop <- BOOLEAN(FALSE)
+    CATCH
+        OUTPUT errorString
+    ENDTRY
+ENDWHILE
+
+FUNCTION gcd ACCEPTS(first, second)
+    remainder <- first MODULUS second
+    WHILE remainder != 0 DO
+        first <- second
+        second <- remainder
+        remainder <- first MODULUS second
+    ENDWHILE
+    RETURN second
+ENDFUNCTION
+
+IF firstNum > secondNum THEN
+    a <- firstNum
+    b <- secondNum
+ELSE
+    a <- secondNum
+    b <- firstNum
+ENDIF
+gcd_result <- CALL gcd(a, b)
+OUTPUT STRING("GCD = {gcd_result}")

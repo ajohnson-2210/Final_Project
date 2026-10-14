@@ -1,0 +1,571 @@
+{
+  "format": "NL-FDEP Flow Diagram",
+  "version": "1.0",
+  "entry_node": "F1",
+  "exit_node": "F2",
+  "nodes": {
+    "F1": {
+      "node_id": "F1",
+      "node_type": "START",
+      "label": "Start",
+      "line": 1,
+      "data": {}
+    },
+    "F2": {
+      "node_id": "F2",
+      "node_type": "END",
+      "label": "End",
+      "line": 1,
+      "data": {}
+    },
+    "F3": {
+      "node_id": "F3",
+      "node_type": "PROCESS",
+      "label": "Set numlist to [6, 7, 9, 4, 66, 8, 34, 5, 2]",
+      "line": 1,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F4": {
+      "node_id": "F4",
+      "node_type": "OUTPUT",
+      "label": "Display numlist",
+      "line": 2,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F5": {
+      "node_id": "F5",
+      "node_type": "PROCESS",
+      "label": "Set n to the length of numlist minus 1",
+      "line": 3,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F6": {
+      "node_id": "F6",
+      "node_type": "LOOP_DECISION",
+      "label": "For i from 0 to n",
+      "line": 4,
+      "data": {
+        "ast_kind": "ForRangeNode"
+      }
+    },
+    "F7": {
+      "node_id": "F7",
+      "node_type": "LOOP_DECISION",
+      "label": "For j from 0 to n minus i",
+      "line": 5,
+      "data": {
+        "ast_kind": "ForRangeNode"
+      }
+    },
+    "F8": {
+      "node_id": "F8",
+      "node_type": "DECISION",
+      "label": "Item j of numlist is greater than item j plus 1 of numlist?",
+      "line": 6,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F9": {
+      "node_id": "F9",
+      "node_type": "PROCESS",
+      "label": "Set temp to item j of numlist",
+      "line": 7,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F10": {
+      "node_id": "F10",
+      "node_type": "PROCESS",
+      "label": "Set item j of numlist to item j plus 1 of numlist",
+      "line": 8,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F11": {
+      "node_id": "F11",
+      "node_type": "PROCESS",
+      "label": "Set item j plus 1 of numlist to temp",
+      "line": 9,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F12": {
+      "node_id": "F12",
+      "node_type": "PROCESS",
+      "label": "Set second_largest to item negative 2 of numlist",
+      "line": 13,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F13": {
+      "node_id": "F13",
+      "node_type": "OUTPUT",
+      "label": "Display \"The Second highest number in the list = {second_largest}\"",
+      "line": 14,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "F3",
+      "target": "F4",
+      "label": "NEXT"
+    },
+    {
+      "source": "F4",
+      "target": "F5",
+      "label": "NEXT"
+    },
+    {
+      "source": "F9",
+      "target": "F10",
+      "label": "NEXT"
+    },
+    {
+      "source": "F10",
+      "target": "F11",
+      "label": "NEXT"
+    },
+    {
+      "source": "F8",
+      "target": "F9",
+      "label": "TRUE"
+    },
+    {
+      "source": "F7",
+      "target": "F8",
+      "label": "ITERATE"
+    },
+    {
+      "source": "F11",
+      "target": "F7",
+      "label": "LOOP"
+    },
+    {
+      "source": "F8",
+      "target": "F7",
+      "label": "LOOP"
+    },
+    {
+      "source": "F6",
+      "target": "F7",
+      "label": "ITERATE"
+    },
+    {
+      "source": "F7",
+      "target": "F6",
+      "label": "LOOP"
+    },
+    {
+      "source": "F5",
+      "target": "F6",
+      "label": "NEXT"
+    },
+    {
+      "source": "F6",
+      "target": "F12",
+      "label": "NEXT"
+    },
+    {
+      "source": "F12",
+      "target": "F13",
+      "label": "NEXT"
+    },
+    {
+      "source": "F1",
+      "target": "F3",
+      "label": "NEXT"
+    },
+    {
+      "source": "F13",
+      "target": "F2",
+      "label": "NEXT"
+    }
+  ],
+  "structured_program": {
+    "kind": "ProgramNode",
+    "line": 1,
+    "body": [
+      {
+        "kind": "AssignmentNode",
+        "line": 1,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 1,
+          "name": "numlist"
+        },
+        "value": {
+          "kind": "ListLiteralNode",
+          "line": 1,
+          "items": [
+            {
+              "kind": "LiteralNode",
+              "line": 1,
+              "value": 6,
+              "data_type": "INTEGER"
+            },
+            {
+              "kind": "LiteralNode",
+              "line": 1,
+              "value": 7,
+              "data_type": "INTEGER"
+            },
+            {
+              "kind": "LiteralNode",
+              "line": 1,
+              "value": 9,
+              "data_type": "INTEGER"
+            },
+            {
+              "kind": "LiteralNode",
+              "line": 1,
+              "value": 4,
+              "data_type": "INTEGER"
+            },
+            {
+              "kind": "LiteralNode",
+              "line": 1,
+              "value": 66,
+              "data_type": "INTEGER"
+            },
+            {
+              "kind": "LiteralNode",
+              "line": 1,
+              "value": 8,
+              "data_type": "INTEGER"
+            },
+            {
+              "kind": "LiteralNode",
+              "line": 1,
+              "value": 34,
+              "data_type": "INTEGER"
+            },
+            {
+              "kind": "LiteralNode",
+              "line": 1,
+              "value": 5,
+              "data_type": "INTEGER"
+            },
+            {
+              "kind": "LiteralNode",
+              "line": 1,
+              "value": 2,
+              "data_type": "INTEGER"
+            }
+          ],
+          "declared_type": null
+        }
+      },
+      {
+        "kind": "OutputNode",
+        "line": 2,
+        "expression": {
+          "kind": "IdentifierNode",
+          "line": 2,
+          "name": "numlist"
+        }
+      },
+      {
+        "kind": "AssignmentNode",
+        "line": 3,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 3,
+          "name": "n"
+        },
+        "value": {
+          "kind": "BinaryNode",
+          "line": 3,
+          "operator": "-",
+          "left": {
+            "kind": "LengthNode",
+            "line": 3,
+            "expression": {
+              "kind": "IdentifierNode",
+              "line": 3,
+              "name": "numlist"
+            }
+          },
+          "right": {
+            "kind": "LiteralNode",
+            "line": 3,
+            "value": 1,
+            "data_type": "INTEGER"
+          }
+        }
+      },
+      {
+        "kind": "ForRangeNode",
+        "line": 4,
+        "variable": {
+          "kind": "IdentifierNode",
+          "line": 4,
+          "name": "i"
+        },
+        "start": {
+          "kind": "LiteralNode",
+          "line": 4,
+          "value": 0,
+          "data_type": "INTEGER"
+        },
+        "end": {
+          "kind": "IdentifierNode",
+          "line": 4,
+          "name": "n"
+        },
+        "step": null,
+        "body": {
+          "kind": "BlockNode",
+          "line": 5,
+          "statements": [
+            {
+              "kind": "ForRangeNode",
+              "line": 5,
+              "variable": {
+                "kind": "IdentifierNode",
+                "line": 5,
+                "name": "j"
+              },
+              "start": {
+                "kind": "LiteralNode",
+                "line": 5,
+                "value": 0,
+                "data_type": "INTEGER"
+              },
+              "end": {
+                "kind": "BinaryNode",
+                "line": 5,
+                "operator": "-",
+                "left": {
+                  "kind": "IdentifierNode",
+                  "line": 5,
+                  "name": "n"
+                },
+                "right": {
+                  "kind": "IdentifierNode",
+                  "line": 5,
+                  "name": "i"
+                }
+              },
+              "step": null,
+              "body": {
+                "kind": "BlockNode",
+                "line": 6,
+                "statements": [
+                  {
+                    "kind": "IfNode",
+                    "line": 6,
+                    "condition": {
+                      "kind": "BinaryNode",
+                      "line": 6,
+                      "operator": ">",
+                      "left": {
+                        "kind": "IndexNode",
+                        "line": 6,
+                        "collection": {
+                          "kind": "IdentifierNode",
+                          "line": 6,
+                          "name": "numlist"
+                        },
+                        "index": {
+                          "kind": "IdentifierNode",
+                          "line": 6,
+                          "name": "j"
+                        }
+                      },
+                      "right": {
+                        "kind": "IndexNode",
+                        "line": 6,
+                        "collection": {
+                          "kind": "IdentifierNode",
+                          "line": 6,
+                          "name": "numlist"
+                        },
+                        "index": {
+                          "kind": "BinaryNode",
+                          "line": 6,
+                          "operator": "+",
+                          "left": {
+                            "kind": "IdentifierNode",
+                            "line": 6,
+                            "name": "j"
+                          },
+                          "right": {
+                            "kind": "LiteralNode",
+                            "line": 6,
+                            "value": 1,
+                            "data_type": "INTEGER"
+                          }
+                        }
+                      }
+                    },
+                    "then_body": {
+                      "kind": "BlockNode",
+                      "line": 7,
+                      "statements": [
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 7,
+                          "target": {
+                            "kind": "IdentifierNode",
+                            "line": 7,
+                            "name": "temp"
+                          },
+                          "value": {
+                            "kind": "IndexNode",
+                            "line": 7,
+                            "collection": {
+                              "kind": "IdentifierNode",
+                              "line": 7,
+                              "name": "numlist"
+                            },
+                            "index": {
+                              "kind": "IdentifierNode",
+                              "line": 7,
+                              "name": "j"
+                            }
+                          }
+                        },
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 8,
+                          "target": {
+                            "kind": "IndexNode",
+                            "line": 8,
+                            "collection": {
+                              "kind": "IdentifierNode",
+                              "line": 8,
+                              "name": "numlist"
+                            },
+                            "index": {
+                              "kind": "IdentifierNode",
+                              "line": 8,
+                              "name": "j"
+                            }
+                          },
+                          "value": {
+                            "kind": "IndexNode",
+                            "line": 8,
+                            "collection": {
+                              "kind": "IdentifierNode",
+                              "line": 8,
+                              "name": "numlist"
+                            },
+                            "index": {
+                              "kind": "BinaryNode",
+                              "line": 8,
+                              "operator": "+",
+                              "left": {
+                                "kind": "IdentifierNode",
+                                "line": 8,
+                                "name": "j"
+                              },
+                              "right": {
+                                "kind": "LiteralNode",
+                                "line": 8,
+                                "value": 1,
+                                "data_type": "INTEGER"
+                              }
+                            }
+                          }
+                        },
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 9,
+                          "target": {
+                            "kind": "IndexNode",
+                            "line": 9,
+                            "collection": {
+                              "kind": "IdentifierNode",
+                              "line": 9,
+                              "name": "numlist"
+                            },
+                            "index": {
+                              "kind": "BinaryNode",
+                              "line": 9,
+                              "operator": "+",
+                              "left": {
+                                "kind": "IdentifierNode",
+                                "line": 9,
+                                "name": "j"
+                              },
+                              "right": {
+                                "kind": "LiteralNode",
+                                "line": 9,
+                                "value": 1,
+                                "data_type": "INTEGER"
+                              }
+                            }
+                          },
+                          "value": {
+                            "kind": "IdentifierNode",
+                            "line": 9,
+                            "name": "temp"
+                          }
+                        }
+                      ]
+                    },
+                    "else_if": [],
+                    "else_body": null
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "kind": "AssignmentNode",
+        "line": 13,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 13,
+          "name": "second_largest"
+        },
+        "value": {
+          "kind": "IndexNode",
+          "line": 13,
+          "collection": {
+            "kind": "IdentifierNode",
+            "line": 13,
+            "name": "numlist"
+          },
+          "index": {
+            "kind": "UnaryNode",
+            "line": 13,
+            "operator": "-",
+            "operand": {
+              "kind": "LiteralNode",
+              "line": 13,
+              "value": 2,
+              "data_type": "INTEGER"
+            }
+          }
+        }
+      },
+      {
+        "kind": "OutputNode",
+        "line": 14,
+        "expression": {
+          "kind": "LiteralNode",
+          "line": 14,
+          "value": "The Second highest number in the list = {second_largest}",
+          "data_type": "STRING"
+        }
+      }
+    ]
+  }
+}
