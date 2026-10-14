@@ -1,6 +1,6 @@
 # NL-FDEP
 
-**Natural Language – Flow Diagram Execution Pipeline**
+**Natural Language to Flow Diagram Execution Pipeline**
 
 **MSc Computer Science Final Project**
 
