@@ -1,0 +1,17 @@
+iplist <- LIST [STRING("192.168.1.15"), STRING("10.0.0.5"), STRING("172.16.254.1"), STRING("192.168.1.15"), STRING("203.0.113.45"), STRING("8.8.8.8"), STRING("172.16.254.1"), STRING("198.51.100.12"), STRING("10.0.0.5"), STRING("192.168.0.100"), STRING("172.16.1.10"), STRING("10.0.0.5"), STRING("203.0.113.45"), STRING("192.168.1.15"), STRING("8.8.4.4"), STRING("172.16.254.1"), STRING("192.168.0.254"), STRING("10.0.0.12"), STRING("192.168.1.100"), STRING("8.8.8.8")]
+uniqueIplist <- EMPTY LIST
+flag <- BOOLEAN(TRUE)
+WHILE flag DO
+    TRY
+        ip <- iplist.pop(0)
+        IF ip NOT IN uniqueIplist THEN
+            APPEND ip TO uniqueIplist
+        ENDIF
+    CATCH
+        flag <- BOOLEAN(FALSE)
+    ENDTRY
+ENDWHILE
+OUTPUT STRING("Unique IP Addresses Are:")
+FOR x <- IN RANGE 0 TO LENGTH OF uniqueIplist DO
+    OUTPUT uniqueIplist[x]
+ENDFOR

@@ -1,0 +1,563 @@
+{
+  "format": "NL-FDEP Flow Diagram",
+  "version": "1.0",
+  "entry_node": "F1",
+  "exit_node": "F2",
+  "nodes": {
+    "F1": {
+      "node_id": "F1",
+      "node_type": "START",
+      "label": "Start",
+      "line": 1,
+      "data": {}
+    },
+    "F2": {
+      "node_id": "F2",
+      "node_type": "END",
+      "label": "End",
+      "line": 1,
+      "data": {}
+    },
+    "F3": {
+      "node_id": "F3",
+      "node_type": "PROCESS",
+      "label": "Set iplist to [\"192.168.1.15\", \"10.0.0.5\", \"172.16.254.1\", \"192.168.1.15\", \"203.0.113.45\", \"8.8.8.8\", \"172.16.254.1\", \"198.51.100.12\", \"10.0.0.5\", \"192.168.0.100\", \"172.16.1.10\", \"10.0.0.5\", \"203.0.113.45\", \"192.168.1.15\", \"8.8.4.4\", \"172.16.254.1\", \"192.168.0.254\", \"10.0.0.12\", \"192.168.1.100\", \"8.8.8.8\"]",
+      "line": 1,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F4": {
+      "node_id": "F4",
+      "node_type": "PROCESS",
+      "label": "Set uniqueIplist to an empty list",
+      "line": 2,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F5": {
+      "node_id": "F5",
+      "node_type": "PROCESS",
+      "label": "Set flag to true",
+      "line": 3,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F6": {
+      "node_id": "F6",
+      "node_type": "LOOP_DECISION",
+      "label": "Continue while flag?",
+      "line": 4,
+      "data": {
+        "ast_kind": "WhileNode"
+      }
+    },
+    "F7": {
+      "node_id": "F7",
+      "node_type": "TRY",
+      "label": "Attempt the following operations",
+      "line": 5,
+      "data": {
+        "ast_kind": "TryCatchNode"
+      }
+    },
+    "F8": {
+      "node_id": "F8",
+      "node_type": "PROCESS",
+      "label": "Set ip to the result of iplist.pop(0)",
+      "line": 6,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F9": {
+      "node_id": "F9",
+      "node_type": "DECISION",
+      "label": "Ip is not contained in uniqueIplist?",
+      "line": 7,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F10": {
+      "node_id": "F10",
+      "node_type": "PROCESS",
+      "label": "Append ip to uniqueIplist",
+      "line": 8,
+      "data": {
+        "ast_kind": "AppendNode"
+      }
+    },
+    "F11": {
+      "node_id": "F11",
+      "node_type": "PROCESS",
+      "label": "Set flag to false",
+      "line": 11,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F12": {
+      "node_id": "F12",
+      "node_type": "OUTPUT",
+      "label": "Display \"Unique IP Addresses Are:\"",
+      "line": 14,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F13": {
+      "node_id": "F13",
+      "node_type": "LOOP_DECISION",
+      "label": "For x from 0 to the length of uniqueIplist",
+      "line": 15,
+      "data": {
+        "ast_kind": "ForRangeNode"
+      }
+    },
+    "F14": {
+      "node_id": "F14",
+      "node_type": "OUTPUT",
+      "label": "Display item x of uniqueIplist",
+      "line": 16,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "F3",
+      "target": "F4",
+      "label": "NEXT"
+    },
+    {
+      "source": "F4",
+      "target": "F5",
+      "label": "NEXT"
+    },
+    {
+      "source": "F9",
+      "target": "F10",
+      "label": "TRUE"
+    },
+    {
+      "source": "F8",
+      "target": "F9",
+      "label": "NEXT"
+    },
+    {
+      "source": "F7",
+      "target": "F8",
+      "label": "TRY"
+    },
+    {
+      "source": "F7",
+      "target": "F11",
+      "label": "EXCEPTION"
+    },
+    {
+      "source": "F6",
+      "target": "F7",
+      "label": "TRUE"
+    },
+    {
+      "source": "F10",
+      "target": "F6",
+      "label": "LOOP"
+    },
+    {
+      "source": "F9",
+      "target": "F6",
+      "label": "LOOP"
+    },
+    {
+      "source": "F11",
+      "target": "F6",
+      "label": "LOOP"
+    },
+    {
+      "source": "F5",
+      "target": "F6",
+      "label": "NEXT"
+    },
+    {
+      "source": "F6",
+      "target": "F12",
+      "label": "NEXT"
+    },
+    {
+      "source": "F13",
+      "target": "F14",
+      "label": "ITERATE"
+    },
+    {
+      "source": "F14",
+      "target": "F13",
+      "label": "LOOP"
+    },
+    {
+      "source": "F12",
+      "target": "F13",
+      "label": "NEXT"
+    },
+    {
+      "source": "F1",
+      "target": "F3",
+      "label": "NEXT"
+    },
+    {
+      "source": "F13",
+      "target": "F2",
+      "label": "NEXT"
+    }
+  ],
+  "structured_program": {
+    "kind": "ProgramNode",
+    "line": 1,
+    "body": [
+      {
+        "kind": "AssignmentNode",
+        "line": 1,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 1,
+          "name": "iplist"
+        },
+        "value": {
+          "kind": "ListLiteralNode",
+          "line": 1,
+          "items": [
+            {
+              "kind": "LiteralNode",
+              "line": 1,
+              "value": "192.168.1.15",
+              "data_type": "STRING"
+            },
+            {
+              "kind": "LiteralNode",
+              "line": 1,
+              "value": "10.0.0.5",
+              "data_type": "STRING"
+            },
+            {
+              "kind": "LiteralNode",
+              "line": 1,
+              "value": "172.16.254.1",
+              "data_type": "STRING"
+            },
+            {
+              "kind": "LiteralNode",
+              "line": 1,
+              "value": "192.168.1.15",
+              "data_type": "STRING"
+            },
+            {
+              "kind": "LiteralNode",
+              "line": 1,
+              "value": "203.0.113.45",
+              "data_type": "STRING"
+            },
+            {
+              "kind": "LiteralNode",
+              "line": 1,
+              "value": "8.8.8.8",
+              "data_type": "STRING"
+            },
+            {
+              "kind": "LiteralNode",
+              "line": 1,
+              "value": "172.16.254.1",
+              "data_type": "STRING"
+            },
+            {
+              "kind": "LiteralNode",
+              "line": 1,
+              "value": "198.51.100.12",
+              "data_type": "STRING"
+            },
+            {
+              "kind": "LiteralNode",
+              "line": 1,
+              "value": "10.0.0.5",
+              "data_type": "STRING"
+            },
+            {
+              "kind": "LiteralNode",
+              "line": 1,
+              "value": "192.168.0.100",
+              "data_type": "STRING"
+            },
+            {
+              "kind": "LiteralNode",
+              "line": 1,
+              "value": "172.16.1.10",
+              "data_type": "STRING"
+            },
+            {
+              "kind": "LiteralNode",
+              "line": 1,
+              "value": "10.0.0.5",
+              "data_type": "STRING"
+            },
+            {
+              "kind": "LiteralNode",
+              "line": 1,
+              "value": "203.0.113.45",
+              "data_type": "STRING"
+            },
+            {
+              "kind": "LiteralNode",
+              "line": 1,
+              "value": "192.168.1.15",
+              "data_type": "STRING"
+            },
+            {
+              "kind": "LiteralNode",
+              "line": 1,
+              "value": "8.8.4.4",
+              "data_type": "STRING"
+            },
+            {
+              "kind": "LiteralNode",
+              "line": 1,
+              "value": "172.16.254.1",
+              "data_type": "STRING"
+            },
+            {
+              "kind": "LiteralNode",
+              "line": 1,
+              "value": "192.168.0.254",
+              "data_type": "STRING"
+            },
+            {
+              "kind": "LiteralNode",
+              "line": 1,
+              "value": "10.0.0.12",
+              "data_type": "STRING"
+            },
+            {
+              "kind": "LiteralNode",
+              "line": 1,
+              "value": "192.168.1.100",
+              "data_type": "STRING"
+            },
+            {
+              "kind": "LiteralNode",
+              "line": 1,
+              "value": "8.8.8.8",
+              "data_type": "STRING"
+            }
+          ],
+          "declared_type": null
+        }
+      },
+      {
+        "kind": "AssignmentNode",
+        "line": 2,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 2,
+          "name": "uniqueIplist"
+        },
+        "value": {
+          "kind": "EmptyLiteralNode",
+          "line": 2,
+          "empty_type": "LIST"
+        }
+      },
+      {
+        "kind": "AssignmentNode",
+        "line": 3,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 3,
+          "name": "flag"
+        },
+        "value": {
+          "kind": "LiteralNode",
+          "line": 3,
+          "value": true,
+          "data_type": "BOOLEAN"
+        }
+      },
+      {
+        "kind": "WhileNode",
+        "line": 4,
+        "condition": {
+          "kind": "IdentifierNode",
+          "line": 4,
+          "name": "flag"
+        },
+        "body": {
+          "kind": "BlockNode",
+          "line": 5,
+          "statements": [
+            {
+              "kind": "TryCatchNode",
+              "line": 5,
+              "try_body": {
+                "kind": "BlockNode",
+                "line": 6,
+                "statements": [
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 6,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 6,
+                      "name": "ip"
+                    },
+                    "value": {
+                      "kind": "MemberCallNode",
+                      "line": 6,
+                      "object": {
+                        "kind": "IdentifierNode",
+                        "line": 6,
+                        "name": "iplist"
+                      },
+                      "member": "pop",
+                      "arguments": [
+                        {
+                          "kind": "LiteralNode",
+                          "line": 6,
+                          "value": 0,
+                          "data_type": "INTEGER"
+                        }
+                      ],
+                      "resolved_intrinsic": null
+                    }
+                  },
+                  {
+                    "kind": "IfNode",
+                    "line": 7,
+                    "condition": {
+                      "kind": "BinaryNode",
+                      "line": 7,
+                      "operator": "NOT IN",
+                      "left": {
+                        "kind": "IdentifierNode",
+                        "line": 7,
+                        "name": "ip"
+                      },
+                      "right": {
+                        "kind": "IdentifierNode",
+                        "line": 7,
+                        "name": "uniqueIplist"
+                      }
+                    },
+                    "then_body": {
+                      "kind": "BlockNode",
+                      "line": 8,
+                      "statements": [
+                        {
+                          "kind": "AppendNode",
+                          "line": 8,
+                          "value": {
+                            "kind": "IdentifierNode",
+                            "line": 8,
+                            "name": "ip"
+                          },
+                          "collection": {
+                            "kind": "IdentifierNode",
+                            "line": 8,
+                            "name": "uniqueIplist"
+                          }
+                        }
+                      ]
+                    },
+                    "else_if": [],
+                    "else_body": null
+                  }
+                ]
+              },
+              "error": null,
+              "catch_body": {
+                "kind": "BlockNode",
+                "line": 11,
+                "statements": [
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 11,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 11,
+                      "name": "flag"
+                    },
+                    "value": {
+                      "kind": "LiteralNode",
+                      "line": 11,
+                      "value": false,
+                      "data_type": "BOOLEAN"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "kind": "OutputNode",
+        "line": 14,
+        "expression": {
+          "kind": "LiteralNode",
+          "line": 14,
+          "value": "Unique IP Addresses Are:",
+          "data_type": "STRING"
+        }
+      },
+      {
+        "kind": "ForRangeNode",
+        "line": 15,
+        "variable": {
+          "kind": "IdentifierNode",
+          "line": 15,
+          "name": "x"
+        },
+        "start": {
+          "kind": "LiteralNode",
+          "line": 15,
+          "value": 0,
+          "data_type": "INTEGER"
+        },
+        "end": {
+          "kind": "LengthNode",
+          "line": 15,
+          "expression": {
+            "kind": "IdentifierNode",
+            "line": 15,
+            "name": "uniqueIplist"
+          }
+        },
+        "step": null,
+        "body": {
+          "kind": "BlockNode",
+          "line": 16,
+          "statements": [
+            {
+              "kind": "OutputNode",
+              "line": 16,
+              "expression": {
+                "kind": "IndexNode",
+                "line": 16,
+                "collection": {
+                  "kind": "IdentifierNode",
+                  "line": 16,
+                  "name": "uniqueIplist"
+                },
+                "index": {
+                  "kind": "IdentifierNode",
+                  "line": 16,
+                  "name": "x"
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
