@@ -1,0 +1,12 @@
+words <- LIST [STRING("hello"), STRING("again"), STRING("similar"), STRING("simulate"), STRING("halo"), STRING("sibner")]
+n <- LENGTH OF words - 1
+FOR i <- IN RANGE 0 TO n DO
+    FOR j <- IN RANGE 0 TO (n - i) DO
+        IF words[j] > words[j + 1] THEN
+            temp <- words[j]
+            words[j] <- words[j + 1]
+            words[j + 1] <- temp
+        ENDIF
+    ENDFOR
+ENDFOR
+OUTPUT words
