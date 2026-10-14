@@ -1,0 +1,42 @@
+Given a square grid numbers $n x $n, calculate the sum of the numbers that lie on the main diagonal top left to bottom right
+
+COMMENT External library: random
+rows <- RANDOM INT(3, 15)
+OUTPUT STRING("{rows} x {rows} Matrix")
+x <- rows
+y <- rows
+matrix <- EMPTY LIST
+
+FOR j <- IN RANGE 0 TO x DO
+    row <- EMPTY LIST
+
+    FOR i <- IN RANGE 0 TO y DO
+        value <- RANDOM INT(0, 99)
+        APPEND CALL TO_INTEGER(value) TO row
+    ENDFOR
+
+    APPEND row TO matrix
+ENDFOR
+
+FOR t <- IN RANGE 0 TO rows DO
+    OUTPUT STRING("{matrix[t]}")
+ENDFOR
+
+total <- 0
+counter <- 0
+string <- EMPTY STRING
+
+FOR a <- IN RANGE 0 TO rows DO
+    total <- total + matrix[counter][counter]
+
+    IF string == EMPTY STRING THEN
+        string <- STRING("{matrix[counter][counter]}")
+    ELSE
+        string <- STRING("{string}+ {matrix[counter][counter]}")
+    ENDIF
+
+    counter <- counter + 1
+
+ENDFOR
+
+OUTPUT STRING("{string} == {total}")

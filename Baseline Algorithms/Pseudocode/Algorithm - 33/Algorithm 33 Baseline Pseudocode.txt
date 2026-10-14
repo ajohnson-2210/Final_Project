@@ -1,0 +1,53 @@
+Implement a method to find the exact square root of a non negative integer using binary search rounded down to the nearest integer without using built in math functions
+
+FUNCTION int_sqrt ACCEPTS(n)
+    IF n < 2 THEN
+        RETURN n
+    ENDIF
+
+    left <- 1
+    right <- n INTEGER DIVISION 2
+    ans <- 1
+
+    WHILE left <= right DO
+        mid <- (left + right) INTEGER DIVISION 2
+        sq <- mid * mid
+
+        IF sq == n THEN
+            RETURN mid
+        ELIF sq < n THEN
+            ans <- mid
+            left <- mid + 1
+        ELSE
+            right <- mid - 1
+        ENDIF
+    ENDWHILE
+
+    RETURN ans
+ENDFUNCTION
+
+
+integer <- 0
+loop <- BOOLEAN(TRUE)
+
+WHILE loop == BOOLEAN(TRUE) DO
+    TRY
+        integer <- INPUT(STRING("Enter a Positive Integer to find the Square Root:"))
+        integer <- CALL TO_INTEGER(integer)
+
+        IF integer <= 0 THEN
+            integer <- 0
+            RAISE STRING("Invalid value")
+        ELSE
+            loop <- BOOLEAN(FALSE)
+        ENDIF
+
+    CATCH
+        OUTPUT STRING("That's Not a Valid Number, Please Try Again!")
+    ENDTRY
+ENDWHILE
+
+
+result <- int_sqrt(integer)
+
+OUTPUT STRING("The Square Root of {integer} Rounded Down to the Nearest Integer == {result}")

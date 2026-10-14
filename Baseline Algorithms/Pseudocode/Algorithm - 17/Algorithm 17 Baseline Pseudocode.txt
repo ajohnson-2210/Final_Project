@@ -1,0 +1,15 @@
+Computer the sum and average of averages list of numbers
+
+numlist <- LIST [7, 9, 3, 5, 2.6, 8.3]
+total <- 0
+counter <- 0
+
+WHILE LENGTH OF numlist > 0 DO
+    total <- total + CALL REMOVE_FIRST(numlist)
+    counter <- counter + 1
+ENDWHILE
+
+average <- total / counter
+
+total <- CALL FORMAT(total, 2 DECIMAL PLACES)
+average <- CALL FORMAT(average, 2 DECIMAL PLACES)

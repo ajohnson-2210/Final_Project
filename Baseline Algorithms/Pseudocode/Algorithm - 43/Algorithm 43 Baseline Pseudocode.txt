@@ -1,0 +1,126 @@
+Solve the Tower of Hanoi problem for N Discs
+
+OUTPUT STRING("Towers Of Hanoi")
+
+FUNCTION display_board ACCEPTS(pegs, n)
+    level <- n - 1
+    WHILE level >= 0 DO
+        row <- STRING("")
+
+        IF level < LENGTH OF pegs[A] THEN
+            row <- row + STRING("{pegs[A][level]}")
+        ELSE
+            row <- row + STRING("|")
+        ENDIF
+
+        IF level < LENGTH OF pegs[B] THEN
+            row <- row + STRING("{pegs[B][level]}")
+        ELSE
+            row <- row + STRING("|")
+        ENDIF
+
+        IF level < LENGTH OF pegs[C] THEN
+            row <- row + STRING("{pegs[C][level]}")
+        ELSE
+            row <- row + STRING("|")
+        ENDIF
+
+        OUTPUT STRING("{row}")
+        level <- level - 1
+    ENDWHILE
+
+    OUTPUT STRING("A    B    C\\n")
+ENDFUNCTION
+
+
+
+FUNCTION move_between ACCEPTS(pegs, a, b, n)
+    IF LENGTH OF pegs[a] == 0 THEN
+        disc <- REMOVE LAST ITEM FROM pegs[b]
+        APPEND disc TO pegs[a]
+        OUTPUT STRING("Move disc {disc} from {b} to {a}\\n")
+
+    ELIF LENGTH OF pegs[b] == 0 THEN
+        disc <- REMOVE LAST ITEM FROM pegs[a]
+        APPEND disc TO pegs[b]
+        OUTPUT STRING("Move disc {disc} from {a} to {b}\\n")
+
+    ELIF pegs[a][LENGTH OF pegs[a] - 1] < pegs[b][LENGTH OF pegs[b] - 1] THEN
+        disc <- REMOVE LAST ITEM FROM pegs[a]
+        APPEND disc TO pegs[b]
+        OUTPUT STRING("Move disc {disc} from {a} to {b}\\n")
+
+    ELSE
+        disc <- REMOVE LAST ITEM FROM pegs[b]
+        APPEND disc TO pegs[a]
+        OUTPUT STRING("Move disc {disc} from {b} to {a}\\n")
+    ENDIF
+
+    display_board(pegs, n)
+ENDFUNCTION
+
+
+
+FUNCTION hanoi ACCEPTS(n, pegs)
+    A <- STRING("A")
+    B <- STRING("B")
+    C <- STRING("C")
+
+    IF n MODULUS 2 == 0 THEN
+        temp <- B
+        B <- C
+        C <- temp
+    ENDIF
+
+    total_moves <- (2 EXP n) - 1
+
+    display_board(pegs, n)
+
+    move <- 1
+    WHILE move <= total_moves DO
+        IF move MODULUS 3 == 1 THEN
+            move_between(pegs, A, C, n)
+        ELIF move MODULUS 3 == 2 THEN
+            move_between(pegs, A, B, n)
+        ELSE
+            move_between(pegs, B, C, n)
+        ENDIF
+
+        move <- move + 1
+    ENDWHILE
+
+    OUTPUT STRING("Solved!!")
+ENDFUNCTION
+
+
+
+# ============================================================
+# MAIN PROGRAM FLOW — TOWERS OF HANOI
+# ============================================================
+
+loop <- BOOLEAN(TRUE)
+
+WHILE loop == BOOLEAN(TRUE) DO
+    TRY
+        N <- INPUT(STRING("Enter number of discs:"))
+        N <- CALL TO_INTEGER(N)
+        OUTPUT STRING("Setting up..\\n")
+        loop <- BOOLEAN(FALSE)
+    CATCH
+        OUTPUT STRING("That's Not a Valid Number, Please Try Again!!\\n")
+    ENDTRY
+ENDWHILE
+
+pegs <- DICTIONARY(
+    A == LIST OF SIZE EQUALS N FILLED WITH CALL NULL(),
+    B == EMPTY LIST,
+    C == EMPTY LIST
+)
+
+i <- 0
+WHILE i < N DO
+    pegs[A][i] <- N - i
+    i <- i + 1
+ENDWHILE
+
+hanoi(N, pegs)

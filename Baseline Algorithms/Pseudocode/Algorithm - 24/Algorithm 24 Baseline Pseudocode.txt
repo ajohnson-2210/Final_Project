@@ -1,0 +1,48 @@
+Create a process that determines if a password has 8 characters 1 number and 1 uppercase letter
+
+password <- EMPTY STRING
+num <- BOOLEAN(FALSE)
+upper <- BOOLEAN(FALSE)
+length <- BOOLEAN(FALSE)
+passlist <- EMPTY LIST
+loop <- BOOLEAN(TRUE)
+
+WHILE loop == BOOLEAN(TRUE) DO
+    password <- INPUT(STRING("Enter Password, it must be at least 8 Characters and contain at least 1 number and 1 uppercase letter :"))
+
+    TRY
+        passlist <- CALL CHARACTERS_OF(password)
+        IF LENGTH OF passlist < 8 THEN
+            RAISE STRING("Invalid value")
+        ELSE
+            length <- BOOLEAN(TRUE)
+        ENDIF
+
+        FOR x <- IN RANGE 0 TO LENGTH OF passlist DO
+            IF CALL ISDIGIT(passlist[x]) THEN
+                num <- BOOLEAN(TRUE)
+                BREAK
+            ENDIF
+        ENDFOR
+
+        FOR y <- IN RANGE 0 TO LENGTH OF passlist DO
+            IF CALL ISUPPER(passlist[y]) THEN
+                upper <- BOOLEAN(TRUE)
+                BREAK
+            ENDIF
+        ENDFOR
+
+        IF length == BOOLEAN(TRUE) AND num == BOOLEAN(TRUE) AND upper == BOOLEAN(TRUE) THEN
+            OUTPUT STRING("Password Accepted!!")
+        ELSE
+            RAISE STRING("Invalid value")
+        ENDIF
+        loop <- BOOLEAN(FALSE)
+    CATCH
+        OUTPUT STRING("That's Not a Valid Password, Please Try Again!")
+        password <- EMPTY STRING
+        num <- BOOLEAN(FALSE)
+        upper <- BOOLEAN(FALSE)
+        length <- BOOLEAN(FALSE)
+    ENDTRY
+ENDWHILE

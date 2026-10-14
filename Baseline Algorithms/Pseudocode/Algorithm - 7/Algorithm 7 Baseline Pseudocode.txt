@@ -1,0 +1,44 @@
+Split a sentence into individual words and store in a list
+
+COMMENT External library: string
+
+string1 <- STRING("This is a sentence!")
+string2 <- CALL CHARACTERS_OF(string1)
+
+x <- EMPTY LIST
+
+FOR EACH s IN string2 DO
+    temp <- EMPTY STRING
+
+    FOR EACH char IN s DO
+        IF char NOT IN string.punctuation THEN
+            temp <- temp + char
+        ENDIF
+    ENDFOR
+
+    APPEND temp TO x
+ENDFOR
+
+word <- EMPTY STRING
+words <- EMPTY LIST
+flag <- BOOLEAN(TRUE)
+delimiter <- STRING("")
+
+WHILE flag == BOOLEAN(TRUE) DO
+    TRY
+        element <- CALL REMOVE_FIRST(x)
+
+        IF element != delimiter THEN
+            word <- word + element
+        ELSE
+            APPEND word TO words
+            word <- EMPTY STRING
+        ENDIF
+
+    CATCH
+        APPEND word TO words
+        flag <- BOOLEAN(FALSE)
+    ENDTRY
+ENDWHILE
+
+OUTPUT STRING("{words}")

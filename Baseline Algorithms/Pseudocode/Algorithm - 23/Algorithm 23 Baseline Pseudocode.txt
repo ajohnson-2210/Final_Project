@@ -1,0 +1,46 @@
+Write a process that converts numerical scores into grades such as pass merit or distinction
+
+givenNum <- 0
+loop <- BOOLEAN(TRUE)
+
+WHILE loop == BOOLEAN(TRUE) DO
+    givenNum <- INPUT(STRING("Enter Number:"))
+
+    TRY
+        givenNum <- CALL TO_FLOAT(givenNum)
+        loop <- BOOLEAN(FALSE)
+
+    CATCH
+        OUTPUT STRING("That's Not a Number, Please Try Again!")
+    ENDTRY
+
+    TRY
+        loop <- BOOLEAN(TRUE)
+
+        IF CALL TO_INTEGER(givenNum) < 0 OR CALL TO_INTEGER(givenNum) > 100 THEN
+            RAISE STRING("Invalid value")
+        ELSE
+            loop <- BOOLEAN(FALSE)
+        ENDIF
+
+    CATCH
+        OUTPUT STRING("SCORE OUT OF RANGE 0 - 100")
+    ENDTRY
+ENDWHILE
+
+
+IF givenNum >= 60 AND givenNum < 70 THEN
+    OUTPUT STRING("Congratulations, You received a Grade of Pass!")
+
+ELSE IF givenNum >= 70 AND givenNum < 80 THEN
+    OUTPUT STRING("Congratulations, You received a Grade of Merit!")
+
+ELSE IF givenNum >= 80 AND givenNum < 100 THEN
+    OUTPUT STRING("Congratulations, You received a Grade of Distinction!")
+
+ELSE IF givenNum == 100 THEN
+    OUTPUT STRING("WOW!! you got a Perfect score Excellent!!, Congratulations, You received a Grade of Distinction!")
+
+ELSE
+    OUTPUT STRING("Unfortunately, You did Not pass this time!")
+ENDIF

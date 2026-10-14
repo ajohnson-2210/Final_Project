@@ -1,0 +1,44 @@
+Find the intersection of 2 sorted arrays and return the common elements
+
+originalset1 <- LIST [STRING("a"), STRING("b"), STRING("c"), STRING("d"), STRING("e"), INTEGER(1)]
+originalset2 <- LIST [STRING("b"), STRING("c"), STRING("g"), INTEGER(1)]
+
+set1 <- EMPTY LIST
+FOR EACH x IN originalset1 DO
+    APPEND CALL TO_STRING(x) TO set1
+ENDFOR
+
+set2 <- EMPTY LIST
+FOR EACH x IN originalset2 DO
+    APPEND CALL TO_STRING(x) TO set2
+ENDFOR
+
+set1 <- CALL SORT(set1)
+set2 <- CALL SORT(set2)
+
+unionset <- EMPTY LIST
+
+len1 <- LENGTH OF set1
+len2 <- LENGTH OF set2
+
+listPointer1 <- EMPTY STRING
+listPointer2 <- EMPTY STRING
+
+IF len1 <= len2 THEN
+    listPointer1 <- set1
+    listPointer2 <- set2
+ELSE
+    listPointer1 <- set2
+    listPointer2 <- set1
+ENDIF
+
+WHILE LENGTH OF listPointer1 > 0 DO
+    element <- CALL REMOVE_FIRST(listPointer1)
+
+    IF element IN listPointer2 THEN
+        APPEND element TO unionset
+    ENDIF
+ENDWHILE
+
+OUTPUT STRING("The Common elements from both sets are:\\n {unionset}")
+

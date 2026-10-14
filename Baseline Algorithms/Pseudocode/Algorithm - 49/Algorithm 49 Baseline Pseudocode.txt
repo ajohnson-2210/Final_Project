@@ -1,0 +1,258 @@
+Create a pathfinding solution that guides a user through a maze using graph traversal.
+
+COMMENT External library: random
+OUTPUT STRING("Auto Maze Generator and BFS Solver\\n")
+
+# ============================================
+# SHUFFLE DIRECTIONS
+# ============================================
+
+FUNCTION shuffle_dirs ACCEPTS(dirs)
+    i <- 0
+    WHILE i < LENGTH OF dirs DO
+        j <- RANDOM INT(0, LENGTH OF dirs - 1)
+
+        temp <- dirs[i]
+        dirs[i] <- dirs[j]
+        dirs[j] <- temp
+
+        i <- i + 1
+    ENDWHILE
+ENDFUNCTION
+
+# ============================================
+# DFS MAZE CARVING (STEP SIZE == 2)
+# ============================================
+
+FUNCTION carve_maze ACCEPTS(maze, rows, cols)
+    stack <- EMPTY LIST
+
+    r <- 1
+    c <- 1
+    maze[r][c] <- STRING("")
+
+    APPEND TUPLE(r, c) TO stack
+
+    WHILE LENGTH OF stack > 0 DO
+        r <- stack[LENGTH OF stack - 1][0]
+        c <- stack[LENGTH OF stack - 1][1]
+
+        dirs <- LIST [
+            TUPLE(0, 2),
+            TUPLE(0, -2),
+            TUPLE(2, 0),
+            TUPLE(-2, 0)
+        ]
+
+        shuffle_dirs(dirs)
+
+        carved <- BOOLEAN(FALSE)
+
+        i <- 0
+        WHILE i < LENGTH OF dirs DO
+            dr <- dirs[i][0]
+            dc <- dirs[i][1]
+
+            nr <- r + dr
+            nc <- c + dc
+
+            IF 1 <= nr AND nr < rows - 1 AND 1 <= nc AND nc < cols - 1 THEN
+                IF maze[nr][nc] == STRING("▓") THEN
+                    maze[r + (dr INTEGER DIVISION 2)][c + (dc INTEGER DIVISION 2)] <- STRING("")
+                    maze[nr][nc] <- STRING("")
+
+                    APPEND TUPLE(nr, nc) TO stack
+                    carved <- BOOLEAN(TRUE)
+                    BREAK
+                ENDIF
+            ENDIF
+
+            i <- i + 1
+        ENDWHILE
+
+        IF carved == BOOLEAN(FALSE) THEN
+            REMOVE LAST ITEM FROM stack
+        ENDIF
+    ENDWHILE
+ENDFUNCTION
+
+# ============================================
+# BFS SOLVER
+# ============================================
+
+FUNCTION solve_maze_bfs ACCEPTS(maze, rows, cols)
+    start <- CALL NULL()
+    end <- CALL NULL()
+
+    r <- 0
+    WHILE r < rows DO
+        c <- 0
+        WHILE c < cols DO
+            IF maze[r][c] == CALL TO_STRING(S) THEN
+                start <- TUPLE(r, c)
+            ELIF maze[r][c] == STRING("E") THEN
+                end <- TUPLE(r, c)
+            ENDIF
+            c <- c + 1
+        ENDWHILE
+        r <- r + 1
+    ENDWHILE
+
+    queue <- LIST [start]
+    visited <- EMPTY DICTIONARY
+    visited([start]) <- CALL NULL()
+
+    i <- 0
+    WHILE i < LENGTH OF queue DO
+        r <- queue[i][0]
+        c <- queue[i][1]
+
+        IF TUPLE(r, c) == end THEN
+            BREAK
+        ENDIF
+
+        dirs <- LIST [
+            TUPLE(1, 0),
+            TUPLE(-1, 0),
+            TUPLE(0, 1),
+            TUPLE(0, -1)
+        ]
+
+        j <- 0
+        WHILE j < LENGTH OF dirs DO
+            dr <- dirs[j][0]
+            dc <- dirs[j][1]
+
+            nr <- r + dr
+            nc <- c + dc
+
+            IF 0 <= nr AND nr < rows AND 0 <= nc AND nc < cols THEN
+                IF maze[nr][nc] != STRING("▓") THEN
+                    IF visited~GET([TUPLE(nr, nc)]) == CALL NULL() THEN
+                        visited([TUPLE(nr, nc)]) <- TUPLE(r, c)
+                        APPEND TUPLE(nr, nc) TO queue
+                    ENDIF
+                ENDIF
+            ENDIF
+
+            j <- j + 1
+        ENDWHILE
+
+        i <- i + 1
+    ENDWHILE
+
+    path <- EMPTY LIST
+    node <- end
+
+    WHILE node != CALL NULL() DO
+        INSERT node AT FRONT OF path
+        node <- visited~GET([node])
+    ENDWHILE
+
+    RETURN path
+ENDFUNCTION
+
+# ============================================
+# MARK FINAL PATH
+# ============================================
+
+FUNCTION mark_path ACCEPTS(maze, path)
+    i <- 0
+    WHILE i < LENGTH OF path DO
+        r <- path[i][0]
+        c <- path[i][1]
+
+        IF maze[r][c] != CALL TO_STRING(S) AND maze[r][c] != STRING("E") THEN
+            maze[r][c] <- STRING("•")
+        ENDIF
+
+        i <- i + 1
+    ENDWHILE
+ENDFUNCTION
+
+# ============================================
+# DISPLAY MAZE
+# ============================================
+FUNCTION display_maze ACCEPTS(maze)
+    r <- 0
+    WHILE r < LENGTH OF maze DO
+        row_str <- STRING("")
+        c <- 0
+
+        WHILE c < LENGTH OF maze[r] DO
+            row_str <- row_str + maze[r][c]
+            c <- c + 1
+        ENDWHILE
+
+        OUTPUT STRING("{row_str}")
+        r <- r + 1
+    ENDWHILE
+ENDFUNCTION
+
+# ============================================
+# PUBLIC FUNCTION: create_grid(rows, cols)
+# ============================================
+
+FUNCTION create_grid ACCEPTS(rows, cols)
+
+    carve_rows <- rows
+    IF rows MODULUS 2 == 0 THEN
+        carve_rows <- rows - 1
+    ENDIF
+
+    carve_cols <- cols
+    IF cols MODULUS 2 == 0 THEN
+        carve_cols <- cols - 1
+    ENDIF
+
+    maze <- EMPTY LIST
+    r <- 0
+    WHILE r < rows DO
+        row <- EMPTY LIST
+        c <- 0
+        WHILE c < cols DO
+            APPEND STRING("▓") TO row
+            c <- c + 1
+        ENDWHILE
+        APPEND row TO maze
+        r <- r + 1
+    ENDWHILE
+
+    carve <- EMPTY LIST
+    r <- 0
+    WHILE r < carve_rows DO
+        row <- EMPTY LIST
+        c <- 0
+        WHILE c < carve_cols DO
+            APPEND STRING("▓") TO row
+            c <- c + 1
+        ENDWHILE
+        APPEND row TO carve
+        r <- r + 1
+    ENDWHILE
+
+    carve_maze(carve, carve_rows, carve_cols)
+
+    r <- 0
+    WHILE r < carve_rows DO
+        c <- 0
+        WHILE c < carve_cols DO
+            maze[r][c] <- carve[r][c]
+            c <- c + 1
+        ENDWHILE
+        r <- r + 1
+    ENDWHILE
+
+    maze[1][1] <- CALL TO_STRING(S)
+    maze[carve_rows - 2][carve_cols - 2] <- STRING("E")
+
+    path <- solve_maze_bfs(maze, rows, cols)
+
+    mark_path(maze, path)
+
+    display_maze(maze)
+
+    RETURN maze
+ENDFUNCTION
+
+create_grid(11, 20)

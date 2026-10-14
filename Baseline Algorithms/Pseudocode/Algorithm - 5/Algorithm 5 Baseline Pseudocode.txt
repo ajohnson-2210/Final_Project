@@ -1,0 +1,23 @@
+Remove punctuation from a string
+
+COMMENT External library: string
+
+string1 <- STRING("This /_@!^*%<>is &*;:'a sentence, that has punctuation!")
+string2 <- CALL CHARACTERS_OF(string1)
+x <- EMPTY LIST
+
+FOR EACH s IN string2 DO
+    temp <- EMPTY STRING
+
+    FOR EACH char IN s DO
+        IF char NOT IN string.punctuation THEN
+            temp <- temp + char
+        ENDIF
+    ENDFOR
+    APPEND temp TO x
+ENDFOR
+
+final <- EMPTY STRING
+final <- final + JOIN(x, EMPTY STRING)
+
+OUTPUT STRING("{final}")

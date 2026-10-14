@@ -1,0 +1,137 @@
+Design a memory buffer that holds a fixed number of items. When it runs out of space it must discard the item that hasn't been accessed for the longest time.
+
+COMMENT External library: random
+CLASS LRUBuffer
+
+    CONSTRUCTOR ACCEPTS(capacity)
+        COMMENT PROPERTY GROUP(
+            THIS.capacity <- capacity,
+            THIS.items <- EMPTY LIST,
+            THIS.recent <- EMPTY LIST,
+            THIS.access_count <- EMPTY LIST,
+            THIS.counter <- 0
+        )
+    ENDCONSTRUCTOR
+
+
+    FUNCTION find_index ACCEPTS(value)
+        index <- 0
+        loop <- BOOLEAN(TRUE)
+
+        WHILE loop == BOOLEAN(TRUE) DO
+            TRY
+                item <- THIS.items[index]
+                IF item == value THEN
+                    RETURN index
+                ENDIF
+                index <- index + 1
+            CATCH
+                loop <- BOOLEAN(FALSE)
+            ENDTRY
+        ENDWHILE
+
+        RETURN -1
+    ENDFUNCTION
+
+    FUNCTION find_lru_index ACCEPTS()
+        lru_index <- 0
+        lru_value <- THIS.recent[0]
+
+        index <- 0
+        loop <- BOOLEAN(TRUE)
+
+        WHILE loop == BOOLEAN(TRUE) DO
+            TRY
+                r <- THIS.recent[index]
+                IF r < lru_value THEN
+                    lru_value <- r
+                    lru_index <- index
+                ENDIF
+                index <- index + 1
+            CATCH
+                loop <- BOOLEAN(FALSE)
+            ENDTRY
+        ENDWHILE
+
+        RETURN lru_index
+    ENDFUNCTION
+
+
+    FUNCTION access ACCEPTS(value)
+        index <- THIS.find_index(value)
+
+        IF index != -1 THEN
+            THIS.counter <- THIS.counter + 1
+            THIS.recent[index] <- THIS.counter
+            THIS.access_count[index] <- THIS.access_count[index] + 1
+
+            OUTPUT STRING("Accessed: {value} - Access Count == {THIS.access_count[index]}")
+        ELSE
+            OUTPUT STRING("Access attempted but not found: {value}")
+        ENDIF
+    ENDFUNCTION
+
+
+    FUNCTION add ACCEPTS(value)
+        index <- THIS.find_index(value)
+
+        IF index != -1 THEN
+            THIS.counter <- THIS.counter + 1
+            THIS.recent[index] <- THIS.counter
+            THIS.access_count[index] <- THIS.access_count[index] + 1
+
+            OUTPUT STRING("Updated existing item: {value} Access Count == {THIS.access_count[index]}")
+            RETURN
+        ENDIF
+
+        IF LENGTH OF THIS.items < THIS.capacity THEN
+            APPEND value TO THIS.items
+            THIS.counter <- THIS.counter + 1
+            APPEND THIS.counter TO THIS.recent
+            APPEND 1 TO THIS.access_count
+
+            OUTPUT STRING("Added: {value} - Access Count == 1")
+            RETURN
+        ENDIF
+
+        lru <- THIS.find_lru_index()
+        evicted <- THIS.items[lru]
+
+        THIS.items[lru] <- value
+        THIS.counter <- THIS.counter + 1
+        THIS.recent[lru] <- THIS.counter
+        THIS.access_count[lru] <- 1
+
+        OUTPUT STRING("Evicted: {evicted} - Added: {value} Access Count == 1")
+    ENDFUNCTION
+
+
+    FUNCTION get_items ACCEPTS()
+        RETURN THIS.items
+    ENDFUNCTION
+
+ENDCLASS
+
+
+buf <- CALL LRUBuffer(5)
+
+buf.add(STRING("A"))
+buf.add(STRING("B"))
+buf.add(STRING("C"))
+buf.add(STRING("D"))
+buf.add(STRING("E"))
+
+pool <- LIST OF [STRING("A"), STRING("B"), STRING("C"), STRING("D"), STRING("E"), STRING(“F”), STRING("G")]
+
+i <- 0
+WHILE i < 10 DO
+    index <- RANDOM_INT(0, LENGTH OF pool - 1)
+    value <- pool[index]
+    buf.access(value)
+    i <- i + 1
+ENDWHILE
+
+buf.add(CALL TO_STRING(F))
+buf.add(STRING("G"))
+
+OUTPUT STRING("Final buffer: {buf.get_items()}")

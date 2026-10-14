@@ -1,0 +1,209 @@
+Create an algorithm that updates inventory quantities after purchases and deliveries
+
+COMMENT External library: random
+OUTPUT STRING("Inventory System\\n")
+# ============================================
+# INVENTORY CLASS
+# ============================================
+
+CLASS Inventory
+    CONSTRUCTOR ACCEPTS(items, qty)
+        COMMENT PROPERTY GROUP(
+            THIS.items <- items,
+            THIS.qty <- qty
+        )
+    ENDCONSTRUCTOR
+
+    FUNCTION display ACCEPTS()
+        OUTPUT STRING("Current Inventory:")
+        i <- 0
+
+        WHILE i < LENGTH OF THIS.items DO
+            OUTPUT STRING("{THIS.items[i]} → {THIS.qty[i]}")
+            i <- i + 1
+        ENDWHILE
+
+        OUTPUT STRING("\\n")
+    ENDFUNCTION
+
+
+
+    FUNCTION get_quantity ACCEPTS(item_name)
+        i <- 0
+
+        WHILE i < LENGTH OF THIS.items DO
+            IF THIS.items[i] == item_name THEN
+                RETURN THIS.qty[i]
+            ENDIF
+            i <- i + 1
+        ENDWHILE
+
+        RETURN CALL NULL()
+    ENDFUNCTION
+
+    FUNCTION set_quantity ACCEPTS(item_name, new_qty)
+        i <- 0
+
+        WHILE i < LENGTH OF THIS.items DO
+            IF THIS.items[i] == item_name THEN
+                THIS.qty[i] <- new_qty
+            ENDIF
+            i <- i + 1
+        ENDWHILE
+    ENDFUNCTION
+
+
+    FUNCTION remove_zero_stock ACCEPTS()
+        i <- 0
+
+        WHILE i < LENGTH OF THIS.items DO
+            IF THIS.qty[i] == 0 THEN
+                OUTPUT STRING("REMOVED: {THIS.items[i]} (stock reached zero)")
+
+                j <- i
+                WHILE j < LENGTH OF THIS.items - 1 DO
+                    THIS.items[j] <- THIS.items[j + 1]
+                    THIS.qty[j] <- THIS.qty[j + 1]
+                    j <- j + 1
+                ENDWHILE
+
+                REMOVE LAST ITEM FROM THIS.items
+                REMOVE LAST ITEM FROM THIS.qty
+
+            ELSE
+                i <- i + 1
+            ENDIF
+        ENDWHILE
+    ENDFUNCTION
+
+
+    FUNCTION update_purchases ACCEPTS(purchase_items, purchase_qty)
+        OUTPUT STRING("\\nUpdating Inventory After Purchases...\\nCustomers")
+
+        i <- 0
+        WHILE i < LENGTH OF purchase_items DO
+            item <- purchase_items[i]
+            amount <- purchase_qty[i]
+
+            j <- 0
+            WHILE j < LENGTH OF THIS.items DO
+                IF THIS.items[j] == item THEN
+                    new_qty <- THIS.qty[j] - amount
+
+                    IF new_qty < 0 THEN
+                        new_qty <- 0
+                    ENDIF
+
+                    THIS.qty[j] <- new_qty
+                    OUTPUT STRING("Purchased: {amount} {item} → New Qty == {new_qty}")
+                ENDIF
+
+                j <- j + 1
+            ENDWHILE
+
+            i <- i + 1
+        ENDWHILE
+
+        OUTPUT STRING("\\n")
+        THIS.display()
+        THIS.remove_zero_stock()
+    ENDFUNCTION
+
+
+    FUNCTION update_deliveries ACCEPTS(delivery_items, delivery_qty)
+        OUTPUT STRING("\\nUpdating Inventory After Deliveries...\\nCompanies")
+
+        i <- 0
+        WHILE i < LENGTH OF delivery_items DO
+            item <- delivery_items[i]
+            amount <- delivery_qty[i]
+
+            j <- 0
+            WHILE j < LENGTH OF THIS.items DO
+                IF THIS.items[j] == item THEN
+                    new_qty <- THIS.qty[j] + amount
+                    THIS.qty[j] <- new_qty
+                    OUTPUT STRING("Deliverered: {amount} {item} → New Qty == {new_qty}")
+                ENDIF
+
+                j <- j + 1
+            ENDWHILE
+
+            i <- i + 1
+        ENDWHILE
+
+        OUTPUT STRING("\\n")
+        THIS.display()
+        THIS.remove_zero_stock()
+    ENDFUNCTION
+
+ENDCLASS
+
+
+
+# ============================================
+# STEP 1: Generate Random Inventory
+# ============================================
+
+item_names <- LIST ["Apples", "Bananas", "Oranges", "Pears", "Grapes"]
+item_qty <- EMPTY LIST
+
+i <- 0
+WHILE i < LENGTH OF item_names DO
+    qty <- RANDOM INT(10, 100)
+    APPEND qty TO item_qty
+    i <- i + 1
+ENDWHILE
+
+inventory <- CALL Inventory(item_names, item_qty)
+
+OUTPUT STRING("Random Inventory Generated\\n")
+
+
+# ============================================
+# STEP 2: Display Current Inventory
+# ============================================
+
+inventory.display()
+
+
+# ============================================
+# STEP 3: Generate Random Purchases
+# ============================================
+
+purchase_items <- LIST ["Apples", "Grapes"]
+purchase_qty <- LIST [
+    RANDOM INT(1, 10),
+    RANDOM INT(1, 10)
+]
+
+OUTPUT STRING("Random Purchases Generated:")
+
+i <- 0
+WHILE i < LENGTH OF purchase_items DO
+    OUTPUT STRING("{purchase_items[i]} → {purchase_qty[i]}")
+    i <- i + 1
+ENDWHILE
+
+inventory.update_purchases(purchase_items, purchase_qty)
+
+
+# ============================================
+# STEP 4: Generate Random Deliveries
+# ============================================
+
+delivery_items <- LIST ["Bananas", "Oranges"]
+delivery_qty <- LIST [
+    RANDOM INT(5, 20),
+    RANDOM INT(5, 20)
+]
+
+OUTPUT STRING("Random Deliveries Generated:")
+
+i <- 0
+WHILE i < LENGTH OF delivery_items DO
+    OUTPUT STRING("{delivery_items[i]} → {delivery_qty[i]}")
+    i <- i + 1
+ENDWHILE
+
+inventory.update_deliveries(delivery_items, delivery_qty)

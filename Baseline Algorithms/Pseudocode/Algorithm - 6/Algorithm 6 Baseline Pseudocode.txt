@@ -1,0 +1,17 @@
+Find the length of a given string 
+string1 <- STRING("This /_@!^*%<>is &*;:'a sentence, that has unwanted punctuation!")
+string2 <- CALL CHARACTERS_OF(string1)
+
+flag <- BOOLEAN(TRUE)
+count <- 0
+
+WHILE flag == BOOLEAN(TRUE) DO
+    TRY
+        element <- CALL REMOVE_FIRST(string2)
+        count <- count + 1
+    CATCH
+        flag <- BOOLEAN(FALSE)
+    ENDTRY
+ENDWHILE
+
+OUTPUT STRING("String Length == {count} Characters")

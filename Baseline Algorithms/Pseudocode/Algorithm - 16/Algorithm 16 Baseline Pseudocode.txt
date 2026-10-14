@@ -1,0 +1,64 @@
+Find GCD of 2 numbers using Euclidean algorithm
+
+firstNum <- 0
+secondNum <- 0
+errorString <- STRING("That's Not a Valid Number, Please Try Again!")
+loop <- BOOLEAN(TRUE)
+
+WHILE loop == BOOLEAN(TRUE) DO
+    firstNum <- INPUT(STRING("Enter First Number:"))
+
+    TRY
+        firstNum <- CALL TO_INTEGER(firstNum)
+        IF firstNum < 0 THEN
+            firstNum <- CALL ABS(firstNum)
+        ENDIF
+
+        loop <- BOOLEAN(FALSE)
+    CATCH
+        OUTPUT STRING("{errorString}")
+    ENDTRY
+ENDWHILE
+
+loop <- BOOLEAN(TRUE)
+
+WHILE loop == BOOLEAN(TRUE) DO
+    secondNum <- INPUT(STRING("Enter Second Number:"))
+
+    TRY
+        secondNum <- CALL TO_INTEGER(secondNum)
+
+        IF secondNum < 0 THEN
+            secondNum <- CALL ABS(secondNum)
+        ENDIF
+
+        loop <- BOOLEAN(FALSE)
+
+    CATCH
+        OUTPUT STRING("{errorString}")
+    ENDTRY
+ENDWHILE
+
+
+FUNCTION gcd ACCEPTS(first, second)
+    remainder <- first MODULUS second
+
+    WHILE remainder != 0 DO
+        first <- second
+        second <- remainder
+        remainder <- first MODULUS second
+    ENDWHILE
+
+    RETURN second
+ENDFUNCTION
+
+
+IF firstNum > secondNum THEN
+    a <- firstNum
+    b <- secondNum
+ELSE
+    a <- secondNum
+    b <- firstNum
+ENDIF
+
+OUTPUT STRING("GCD == {gcd(a, b)}")

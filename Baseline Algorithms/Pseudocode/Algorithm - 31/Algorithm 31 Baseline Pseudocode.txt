@@ -1,0 +1,449 @@
+Develop a co-reference resolution system to identify relationships between Pronouns and Nouns
+
+text <- STRING("John gave his dog a bath because they were dirty. Sarah told him to use warm water. Then she asked him to clean his car as he is dirty")
+
+pronouns <- DICTIONARY OF {
+    he: (male, subject),
+    him: (male, object),
+    his: (male, possessive),
+    she: (female, subject),
+    her: (female, object),
+    they: (plural, subject),
+    them: (plural, object),
+    their: (plural, possessive)
+}
+
+male_names <- LIST [
+    CALL TO_STRING(john), CALL TO_STRING(peter), CALL TO_STRING(michael), CALL TO_STRING(david)
+]
+
+female_names <- LIST [
+    CALL TO_STRING(sarah), CALL TO_STRING(mary), CALL TO_STRING(anna), CALL TO_STRING(julia)
+]
+
+common_nouns <- LIST [
+    CALL TO_STRING(dog), CALL TO_STRING(cat), CALL TO_STRING(car), CALL TO_STRING(bike),
+    CALL TO_STRING(boat), CALL TO_STRING(ship), CALL TO_STRING(motorbike)
+]
+
+animate_nouns <- LIST [
+    CALL TO_STRING(dog), CALL TO_STRING(cat), CALL TO_STRING(man), CALL TO_STRING(woman),
+    CALL TO_STRING(boy), CALL TO_STRING(girl)
+]
+
+anthropomorphic_nouns <- LIST [
+    CALL TO_STRING(car), CALL TO_STRING(bike), CALL TO_STRING(boat),
+    CALL TO_STRING(ship), CALL TO_STRING(motorbike)
+]
+
+plural_exceptions <- LIST [
+    CALL TO_STRING(children), CALL TO_STRING(people),
+    CALL TO_STRING(men), CALL TO_STRING(women)
+]
+
+
+FUNCTION tokenise ACCEPTS(text)
+    lowered <- CALL LOWERCASE(text)
+    cleaned <- REPLACE(lowered, STRING("."), EMPTY STRING)
+    RETURN CALL SPLIT(cleaned)
+ENDFUNCTION
+
+
+words <- tokenise(text)
+
+nouns <- EMPTY LIST
+
+i <- 0
+loop <- BOOLEAN(TRUE)
+
+WHILE loop == BOOLEAN(TRUE) DO
+    TRY
+        w <- words[i]
+        found <- BOOLEAN(FALSE)
+        number <- CALL TO_STRING(singular)
+
+        e <- 0
+        e_loop <- BOOLEAN(TRUE)
+
+        WHILE e_loop == BOOLEAN(TRUE) DO
+            TRY
+                IF w == plural_exceptions[e] THEN
+                    number <- CALL TO_STRING(plural)
+                    BREAK
+                ENDIF
+                e <- e + 1
+            CATCH
+                e_loop <- BOOLEAN(FALSE)
+            ENDTRY
+        ENDWHILE
+
+        IF number == CALL TO_STRING(singular) THEN
+            IF LENGTH OF w > 1 AND w ENDSWITH CALL TO_STRING(s) THEN
+                number <- CALL TO_STRING(plural)
+            ENDIF
+        ENDIF
+
+        m <- 0
+        m_loop <- BOOLEAN(TRUE)
+
+        WHILE m_loop == BOOLEAN(TRUE) DO
+            TRY
+                IF w == male_names[m] THEN
+                    APPEND (w, i, CALL TO_STRING(male), CALL TO_STRING(name), CALL TO_STRING(animate), number) TO nouns
+                    found <- BOOLEAN(TRUE)
+                    m_loop <- BOOLEAN(FALSE)
+                ENDIF
+                m <- m + 1
+            CATCH
+                m_loop <- BOOLEAN(FALSE)
+            ENDTRY
+        ENDWHILE
+
+        IF found == BOOLEAN(FALSE) THEN
+            f <- 0
+            f_loop <- BOOLEAN(TRUE)
+
+            WHILE f_loop == BOOLEAN(TRUE) DO
+                TRY
+                    IF w == female_names[f] THEN
+                        APPEND (w, i, CALL TO_STRING(female), CALL TO_STRING(name), CALL TO_STRING(animate), number) TO nouns
+                        found <- BOOLEAN(TRUE)
+                        f_loop <- BOOLEAN(FALSE)
+                    ENDIF
+                    f <- f + 1
+                CATCH
+                    f_loop <- BOOLEAN(FALSE)
+                ENDTRY
+            ENDWHILE
+        ENDIF
+
+        IF found == BOOLEAN(FALSE) THEN
+            c <- 0
+            c_loop <- BOOLEAN(TRUE)
+
+            WHILE c_loop == BOOLEAN(TRUE) DO
+                TRY
+                    IF w == common_nouns[c] THEN
+                        animacy <- CALL TO_STRING(inanimate)
+
+                        a <- 0
+                        a_loop <- BOOLEAN(TRUE)
+
+                        WHILE a_loop == BOOLEAN(TRUE) DO
+                            TRY
+                                IF w == animate_nouns[a] THEN
+                                    animacy <- CALL TO_STRING(animate)
+                                    a_loop <- BOOLEAN(FALSE)
+                                ENDIF
+                                a <- a + 1
+                            CATCH
+                                a_loop <- BOOLEAN(FALSE)
+                            ENDTRY
+                        ENDWHILE
+
+                        h <- 0
+                        h_loop <- BOOLEAN(TRUE)
+
+                        WHILE h_loop == BOOLEAN(TRUE) DO
+                            TRY
+                                IF w == anthropomorphic_nouns[h] THEN
+                                    animacy <- CALL TO_STRING(anthro)
+                                    h_loop <- BOOLEAN(FALSE)
+                                ENDIF
+                                h <- h + 1
+                            CATCH
+                                h_loop <- BOOLEAN(FALSE)
+                            ENDTRY
+                        ENDWHILE
+
+                        APPEND (w, i, CALL TO_STRING(unknown), CALL TO_STRING(noun), animacy, number) TO nouns
+                        found <- BOOLEAN(TRUE)
+                        c_loop <- BOOLEAN(FALSE)
+                    ENDIF
+
+                    c <- c + 1
+                CATCH
+                    c_loop <- BOOLEAN(FALSE)
+                ENDTRY
+            ENDWHILE
+        ENDIF
+
+        i <- i + 1
+    CATCH
+        loop <- BOOLEAN(FALSE)
+    ENDTRY
+ENDWHILE
+
+
+i <- 0
+loop <- BOOLEAN(TRUE)
+
+WHILE loop == BOOLEAN(TRUE) DO
+    TRY
+        IF words[i] == CALL TO_STRING(his) OR words[i] == CALL TO_STRING(her) THEN
+            noun_word <- words[i + 1]
+
+            n <- 0
+            n_loop <- BOOLEAN(TRUE)
+
+            WHILE n_loop == BOOLEAN(TRUE) DO
+                TRY
+                    w, idx, g, kind, anim, number <- nouns[n]
+
+                    IF w == noun_word THEN
+                        new_gender <- CALL TO_STRING(male)
+
+                        IF words[i] == CALL TO_STRING(her) THEN
+                            new_gender <- CALL TO_STRING(female)
+                        ENDIF
+
+                        nouns[n] <- (w, idx, new_gender, kind, CALL TO_STRING(animate), number)
+                    ENDIF
+
+                    n <- n + 1
+                CATCH
+                    n_loop <- BOOLEAN(FALSE)
+                ENDTRY
+            ENDWHILE
+        ENDIF
+
+        i <- i + 1
+    CATCH
+        loop <- BOOLEAN(FALSE)
+    ENDTRY
+ENDWHILE
+
+
+corefs <- EMPTY LIST
+
+i <- 0
+loop <- BOOLEAN(TRUE)
+
+WHILE loop == BOOLEAN(TRUE) DO
+    TRY
+        w <- words[i]
+
+        keys <- LIST OF KEYS IN pronouns
+        p <- 0
+        p_loop <- BOOLEAN(TRUE)
+        is_pronoun <- BOOLEAN(FALSE)
+        gender <- CALL NULL()
+        role <- CALL NULL()
+
+        WHILE p_loop == BOOLEAN(TRUE) DO
+            TRY
+                IF w == keys[p] THEN
+                    is_pronoun <- BOOLEAN(TRUE)
+                    gender, role <- pronouns[w]
+                    p_loop <- BOOLEAN(FALSE)
+                ENDIF
+                p <- p + 1
+            CATCH
+                p_loop <- BOOLEAN(FALSE)
+            ENDTRY
+        ENDWHILE
+
+        IF is_pronoun == BOOLEAN(TRUE) THEN
+            best_noun <- CALL NULL()
+            best_dist <- 9999
+
+            IF gender == CALL TO_STRING(plural) THEN
+                n <- 0
+                n_loop <- BOOLEAN(TRUE)
+
+                WHILE n_loop == BOOLEAN(TRUE) DO
+                    TRY
+                        noun_word, noun_idx, noun_gender, noun_kind, animacy, number <- nouns[n]
+
+                        IF noun_idx < i AND number == CALL TO_STRING(plural) THEN
+                            dist <- i - noun_idx
+                            IF dist < best_dist THEN
+                                best_dist <- dist
+                                best_noun <- noun_word
+                            ENDIF
+                        ENDIF
+
+                        n <- n + 1
+                    CATCH
+                        n_loop <- BOOLEAN(FALSE)
+                    ENDTRY
+                ENDWHILE
+
+                IF best_noun == CALL NULL() THEN
+                    group <- EMPTY LIST
+                    n <- 0
+                    n_loop <- BOOLEAN(TRUE)
+
+                    WHILE n_loop == BOOLEAN(TRUE) DO
+                        TRY
+                            noun_word, noun_idx, noun_gender, noun_kind, animacy, number <- nouns[n]
+
+                            IF noun_idx < i AND number == CALL TO_STRING(singular) THEN
+                                APPEND (noun_word, noun_idx) TO group
+                            ENDIF
+
+                            n <- n + 1
+                        CATCH
+                            n_loop <- BOOLEAN(FALSE)
+                        ENDTRY
+                    ENDWHILE
+
+                    IF LENGTH OF group >= 2 THEN
+                        nearest <- CALL NULL()
+                        best_dist <- 9999
+
+                        g <- 0
+                        g_loop <- BOOLEAN(TRUE)
+
+                        WHILE g_loop == BOOLEAN(TRUE) DO
+                            TRY
+                                noun_word, noun_idx <- group[g]
+                                dist <- i - noun_idx
+
+                                IF dist < best_dist THEN
+                                    best_dist <- dist
+                                    nearest <- noun_word
+                                ENDIF
+
+                                g <- g + 1
+                            CATCH
+                                g_loop <- BOOLEAN(FALSE)
+                            ENDTRY
+                        ENDWHILE
+
+                        best_noun <- nearest
+                    ENDIF
+                ENDIF
+
+            ELSE
+                IF role == CALL TO_STRING(subject) THEN
+                    n <- 0
+                    n_loop <- BOOLEAN(TRUE)
+
+                    WHILE n_loop == BOOLEAN(TRUE) DO
+                        TRY
+                            noun_word, noun_idx, noun_gender, noun_kind, animacy, number <- nouns[n]
+
+                            IF noun_idx < i AND number == CALL TO_STRING(singular) THEN
+
+                                IF gender == CALL TO_STRING(male) AND animacy == CALL TO_STRING(animate) THEN
+                                    dist <- i - noun_idx
+                                    IF dist < best_dist THEN
+                                        best_dist <- dist
+                                        best_noun <- noun_word
+                                    ENDIF
+                                ENDIF
+
+                                IF gender == CALL TO_STRING(female) AND (animacy == CALL TO_STRING(animate) OR animacy == CALL TO_STRING(anthro)) THEN
+                                    dist <- i - noun_idx
+                                    IF dist < best_dist THEN
+                                        best_dist <- dist
+                                        best_noun <- noun_word
+                                    ENDIF
+                                ENDIF
+
+                            ENDIF
+
+                            n <- n + 1
+                        CATCH
+                            n_loop <- BOOLEAN(FALSE)
+                        ENDTRY
+                    ENDWHILE
+
+                ELSE
+                    n <- 0
+                    n_loop <- BOOLEAN(TRUE)
+
+                    WHILE n_loop == BOOLEAN(TRUE) DO
+                        TRY
+                            noun_word, noun_idx, noun_gender, noun_kind, animacy, number <- nouns[n]
+
+                            IF noun_idx < i AND noun_kind == CALL TO_STRING(name) AND number == CALL TO_STRING(singular) THEN
+                                IF noun_gender == gender OR noun_gender == CALL TO_STRING(unknown) THEN
+                                    dist <- i - noun_idx
+                                    IF dist < best_dist THEN
+                                        best_dist <- dist
+                                        best_noun <- noun_word
+                                    ENDIF
+                                ENDIF
+                            ENDIF
+
+                            n <- n + 1
+                        CATCH
+                            n_loop <- BOOLEAN(FALSE)
+                        ENDTRY
+                    ENDWHILE
+
+                    IF best_noun == CALL NULL() THEN
+                        best_dist <- 9999
+                        n <- 0
+                        n_loop <- BOOLEAN(TRUE)
+
+                        WHILE n_loop == BOOLEAN(TRUE) DO
+                            TRY
+                                noun_word, noun_idx, noun_gender, noun_kind, animacy, number <- nouns[n]
+
+                                IF noun_idx < i AND animacy == CALL TO_STRING(animate) AND number == CALL TO_STRING(singular) THEN
+                                    dist <- i - noun_idx
+                                    IF dist < best_dist THEN
+                                        best_dist <- dist
+                                        best_noun <- noun_word
+                                    ENDIF
+                                ENDIF
+
+                                n <- n + 1
+                            CATCH
+                                n_loop <- BOOLEAN(FALSE)
+                            ENDTRY
+                        ENDWHILE
+                    ENDIF
+                ENDIF
+            ENDIF
+
+            APPEND (w, i, best_noun) TO corefs
+
+            n <- 0
+            n_loop <- BOOLEAN(TRUE)
+
+            WHILE n_loop == BOOLEAN(TRUE) DO
+                TRY
+                    noun_word, noun_idx, noun_gender, noun_kind, animacy, number <- nouns[n]
+
+                    IF noun_word == best_noun THEN
+                        IF noun_gender == CALL TO_STRING(unknown) THEN
+                            nouns[n] <- (noun_word, noun_idx, gender, noun_kind, CALL TO_STRING(animate), number)
+                        ENDIF
+
+                        IF animacy == CALL TO_STRING(anthro) THEN
+                            nouns[n] <- (noun_word, noun_idx, gender, noun_kind, CALL TO_STRING(animate), number)
+                        ENDIF
+                    ENDIF
+
+                    n <- n + 1
+                CATCH
+                    n_loop <- BOOLEAN(FALSE)
+                ENDTRY
+            ENDWHILE
+        ENDIF
+
+        i <- i + 1
+    CATCH
+        loop <- BOOLEAN(FALSE)
+    ENDTRY
+ENDWHILE
+
+
+OUTPUT STRING("Pronoun, Noun Co‑reference Resolution Results:")
+
+i <- 0
+loop <- BOOLEAN(TRUE)
+
+WHILE loop == BOOLEAN(TRUE) DO
+    TRY
+        pronoun, pos, noun <- corefs[i]
+        OUTPUT STRING("Pronoun ‘{pronoun}’ at position {pos} -> refers to ‘{noun}’")
+        i <- i + 1
+    CATCH
+        loop <- BOOLEAN(FALSE)
+    ENDTRY
+ENDWHILE

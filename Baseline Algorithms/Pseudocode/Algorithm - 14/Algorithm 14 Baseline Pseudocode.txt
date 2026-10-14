@@ -1,0 +1,14 @@
+Find the sum of all even numbers in a list
+
+list <- LIST OF [6, 7, 9, 4, 66, 8, 34, 5, 2]
+total <- 0
+
+FOR i <- IN RANGE 0 TO LENGTH OF list DO
+    IF list[i] MODULUS 2 == 0 THEN
+        total <- total + list[i]
+    ELSE
+        CONTINUE
+    ENDIF
+ENDFOR
+
+OUTPUT STRING("The Sum of Even list elements == {total}")

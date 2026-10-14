@@ -1,0 +1,79 @@
+Perform a level order traversal on a binary tree and return node values grouped by depth
+
+CLASS Node
+    CONSTRUCTOR ACCEPTS(value)
+        COMMENT PROPERTY GROUP(THIS.value <- value, THIS.left <- CALL NULL(), THIS.right <- CALL NULL())
+ENDCONSTRUCTOR
+
+FUNCTION levelOrderTraversal ACCEPTS(root)
+    IF root == CALL NULL() THEN
+        RETURN EMPTY LIST
+    ENDIF
+
+    depth <- LIST [root]
+    results <- EMPTY LIST
+    loop <- BOOLEAN(TRUE)
+
+    WHILE loop == BOOLEAN(TRUE) DO
+        level <- EMPTY LIST
+        nextdepth <- EMPTY LIST
+        index <- 0
+
+        innerloop <- BOOLEAN(TRUE)
+
+        WHILE innerloop == BOOLEAN(TRUE) DO
+            TRY
+                node <- depth[index]
+                APPEND node.value TO level
+
+                IF node.left != CALL NULL() THEN
+                    APPEND node.left TO nextdepth
+                ENDIF
+
+                IF node.right != CALL NULL() THEN
+                    APPEND node.right TO nextdepth
+                ENDIF
+
+                index <- index + 1
+
+            CATCH
+                innerloop <- BOOLEAN(FALSE)
+            ENDTRY
+        ENDWHILE
+
+        APPEND level TO results
+        depth <- nextdepth
+
+        IF LENGTH OF depth == 0 THEN
+            loop <- BOOLEAN(FALSE)
+        ENDIF
+    ENDWHILE
+
+    RETURN results
+ENDFUNCTION
+ENDCLASS
+
+
+
+root <- CALL Node(1)
+root.left <- CALL Node(2)
+root.right <- CALL Node(3)
+root.left.left <- CALL Node(4)
+root.left.right <- CALL Node(5)
+
+
+OUTPUT STRING("Node Values Grouped by Depth")
+
+index <- 0
+loop <- BOOLEAN(TRUE)
+
+WHILE loop == BOOLEAN(TRUE) DO
+    TRY
+        level <- levelOrderTraversal(root)[index]
+        OUTPUT STRING("Level {index}: {level}")
+        index <- index + 1
+
+    CATCH
+        loop <- BOOLEAN(FALSE)
+    ENDTRY
+ENDWHILE

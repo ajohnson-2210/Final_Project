@@ -1,0 +1,14 @@
+Reverse a string without using built in reverse functions
+
+string <- STRING("This is a sentence that needs reversing")
+stringlist <- CALL CHARACTERS_OF(string)
+revlist <- EMPTY STRING
+OUTPUT STRING("{string}")
+
+FOR x <- IN RANGE 0 TO LENGTH OF stringlist DO
+    i <- CALL REMOVE_LAST(stringlist)
+    revlist <- STRING("{revlist}{i}")
+ENDFOR
+
+OUTPUT STRING("{revlist}")
+

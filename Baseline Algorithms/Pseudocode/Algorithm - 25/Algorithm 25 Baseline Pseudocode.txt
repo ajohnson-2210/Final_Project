@@ -1,0 +1,85 @@
+Find the length of the longest substring without repeating characters into a given string
+
+sentence <- STRING("this is a sentence made up of")
+startindex <- 0
+substrlen <- 0
+offset <- 0
+sentencelist <- CALL CHARACTERS_OF(sentence)
+substrlist <- EMPTY LIST
+substring <- EMPTY LIST
+loop <- BOOLEAN(TRUE)
+
+WHILE loop == BOOLEAN(TRUE) DO
+    offset <- offset + 1
+
+    substring <- CALL SUBLIST(sentencelist, startindex, offset)
+    APPEND substring TO substrlist
+
+    IF offset >= LENGTH OF sentencelist THEN
+        startindex <- startindex + 1
+        offset <- startindex
+
+        IF startindex >= LENGTH OF sentencelist THEN
+            startindex <- 0
+            substrlen <- 0
+            offset <- 0
+            loop <- BOOLEAN(FALSE)
+        ENDIF
+    ENDIF
+ENDWHILE
+
+
+listindex <- 0
+loop <- BOOLEAN(TRUE)
+
+WHILE loop == BOOLEAN(TRUE) DO
+    excl <- EMPTY SET
+    duplicate <- BOOLEAN(FALSE)
+
+    FOR ch <- IN RANGE 0 TO LENGTH OF substrlist[listindex] DO
+        currentchar <- substrlist[listindex][ch]
+        IF currentchar IN excl THEN
+            duplicate <- BOOLEAN(TRUE)
+            BREAK
+        ENDIF
+
+        CALL ADD_TO_SET(excl, currentchar)
+    ENDFOR
+
+    IF duplicate == BOOLEAN(TRUE) THEN
+        CALL REMOVE_AT(substrlist, listindex)
+    ELSE
+        listindex <- listindex + 1
+    ENDIF
+
+    IF listindex >= LENGTH OF substrlist THEN
+        loop <- BOOLEAN(FALSE)
+    ENDIF
+ENDWHILE
+
+
+loop <- BOOLEAN(TRUE)
+index <- 0
+maxstrings <- EMPTY LIST
+maxlength <- 0
+
+WHILE loop == BOOLEAN(TRUE) DO
+    TRY
+        current <- substrlist[index]
+        currentlen <- LENGTH OF current
+
+        IF currentlen > maxlength THEN
+            maxlength <- currentlen
+            maxstrings <- LIST [current]
+
+        ELSE IF currentlen == maxlength THEN
+            APPEND current TO maxstrings
+        ENDIF
+        index <- index + 1
+    CATCH
+        loop <- BOOLEAN(FALSE)
+    ENDTRY
+ENDWHILE
+
+OUTPUT STRING("The Longest Substrings Without Duplicate Characters Are:")
+OUTPUT STRING("{JOIN(maxstrings)}")

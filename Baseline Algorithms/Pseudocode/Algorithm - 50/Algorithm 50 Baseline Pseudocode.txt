@@ -1,0 +1,421 @@
+Develop an algorithm enabling autonomous drones to coordinate movement while avoiding collisions.
+
+COMMENT External library: numpy AS np
+COMMENT External library: matplotlib.pyplot AS plt
+COMMENT External library: matplotlib.animation.FuncAnimation
+
+OUTPUT STRING("Auto Drone Swarm Simulation\\n")
+
+# ============================================================
+# CLASS: Config
+# ============================================================
+
+CLASS Config
+
+    SPACE_SIZE <- 400
+    NUM_DRONES <- 40
+    NUM_OBSTACLES <- 15
+
+    MAX_SPEED <- 2
+    NEIGHBOUR_RADIUS <- 20
+    SEPARATION_RADIUS <- 14
+
+    COHESION_WEIGHT <- 0.02
+    ALIGNMENT_WEIGHT <- 0.05
+    SEPARATION_WEIGHT <- 0.45
+    GOAL_WEIGHT <- 0.1
+
+    OBSTACLE_RADIUS <- 8
+    OBSTACLE_REPULSION <- 0.25
+    OBSTACLE_EDGE_MARGIN <- 15
+
+    BOUNDARY_FORCE <- 0.15
+    DT <- 1.0
+
+    TARGET_RADIUS <- 10.0
+
+ENDCLASS
+
+
+
+# ============================================================
+# CLASS: Environment
+# ============================================================
+
+CLASS Environment
+
+    CONSTRUCTOR ACCEPTS(config)
+        COMMENT PROPERTY GROUP(THIS.cfg <- config)
+    ENDCONSTRUCTOR
+
+
+    FUNCTION random_point ACCEPTS()
+        x <- RANDOM FLOAT(0, THIS.cfg.SPACE_SIZE)
+        y <- RANDOM FLOAT(0, THIS.cfg.SPACE_SIZE)
+        RETURN LIST [x, y]
+    ENDFUNCTION
+
+
+    FUNCTION generate_safe_point ACCEPTS(avoid_point, obstacles)
+        LOOP FOREVER
+            p <- THIS.random_point()
+
+            IF p[0] < 20 OR p[0] > THIS.cfg.SPACE_SIZE - 20 THEN
+                CONTINUE
+            ENDIF
+
+            IF p[1] < 20 OR p[1] > THIS.cfg.SPACE_SIZE - 20 THEN
+                CONTINUE
+            ENDIF
+
+            too_close <- BOOLEAN(FALSE)
+
+            i <- 0
+            WHILE i < LENGTH OF obstacles DO
+                IF NORM(p - obstacles[i]) < THIS.cfg.OBSTACLE_RADIUS * 4 THEN
+                    too_close <- BOOLEAN(TRUE)
+                    BREAK
+                ENDIF
+                i <- i + 1
+            ENDWHILE
+
+            IF too_close == BOOLEAN(TRUE) THEN
+                CONTINUE
+            ENDIF
+
+            IF NORM(p - avoid_point) < 30 THEN
+                CONTINUE
+            ENDIF
+
+            RETURN p
+        ENDLOOP
+    ENDFUNCTION
+
+
+    FUNCTION generate_obstacles ACCEPTS(point_a, min_dist)
+        obstacles <- EMPTY LIST
+
+        WHILE LENGTH OF obstacles < THIS.cfg.NUM_OBSTACLES DO
+            obs <- THIS.random_point()
+
+            IF obs[0] <= THIS.cfg.OBSTACLE_EDGE_MARGIN OR
+               obs[0] >= THIS.cfg.SPACE_SIZE - THIS.cfg.OBSTACLE_EDGE_MARGIN THEN
+                CONTINUE
+            ENDIF
+
+            IF obs[1] <= THIS.cfg.OBSTACLE_EDGE_MARGIN OR
+               obs[1] >= THIS.cfg.SPACE_SIZE - THIS.cfg.OBSTACLE_EDGE_MARGIN THEN
+                CONTINUE
+            ENDIF
+
+            IF NORM(obs - point_a) < min_dist THEN
+                CONTINUE
+            ENDIF
+
+            too_close <- BOOLEAN(FALSE)
+
+            i <- 0
+            WHILE i < LENGTH OF obstacles DO
+                IF NORM(obs - obstacles[i]) < THIS.cfg.OBSTACLE_RADIUS * 3 THEN
+                    too_close <- BOOLEAN(TRUE)
+                    BREAK
+                ENDIF
+                i <- i + 1
+            ENDWHILE
+
+            IF too_close == BOOLEAN(TRUE) THEN
+                CONTINUE
+            ENDIF
+
+            APPEND obs TO obstacles
+        ENDWHILE
+
+        RETURN obstacles
+    ENDFUNCTION
+
+ENDCLASS
+
+
+
+# ============================================================
+# CLASS: TargetPoint
+# ============================================================
+
+CLASS TargetPoint
+
+    CONSTRUCTOR ACCEPTS(position, radius)
+        COMMENT PROPERTY GROUP(
+            THIS.position <- position,
+            THIS.radius <- radius
+        )
+    ENDCONSTRUCTOR
+
+
+    FUNCTION reached ACCEPTS(drone_positions)
+        distances <- NORM(drone_positions - THIS.position, AXIS=1)
+        RETURN distances MINIMUM < THIS.radius
+    ENDFUNCTION
+
+ENDCLASS
+
+
+
+# ============================================================
+# CLASS: Drone
+# ============================================================
+
+CLASS Drone
+
+    CONSTRUCTOR ACCEPTS(position, velocity, cfg)
+        COMMENT PROPERTY GROUP(
+            THIS.position <- position,
+            THIS.velocity <- velocity,
+            THIS.cfg <- cfg
+        )
+    ENDCONSTRUCTOR
+
+
+    FUNCTION update ACCEPTS(acceleration)
+        THIS.velocity <- THIS.velocity + acceleration * THIS.cfg.DT
+
+        speed <- NORM(THIS.velocity)
+        IF speed > THIS.cfg.MAX_SPEED THEN
+            THIS.velocity <- (THIS.velocity / speed) * THIS.cfg.MAX_SPEED
+        ENDIF
+
+        THIS.position <- THIS.position + THIS.velocity * THIS.cfg.DT
+
+        i <- 0
+        WHILE i < 2 DO
+            IF THIS.position[i] < 0 THEN
+                THIS.position[i] <- 0
+                THIS.velocity[i] <- THIS.velocity[i] + THIS.cfg.BOUNDARY_FORCE
+
+            ELIF THIS.position[i] > THIS.cfg.SPACE_SIZE THEN
+                THIS.position[i] <- THIS.cfg.SPACE_SIZE
+                THIS.velocity[i] <- THIS.velocity[i] - THIS.cfg.BOUNDARY_FORCE
+            ENDIF
+
+            i <- i + 1
+        ENDWHILE
+    ENDFUNCTION
+
+ENDCLASS
+
+
+
+# ============================================================
+# CLASS: Swarm
+# ============================================================
+
+CLASS Swarm
+
+    CONSTRUCTOR ACCEPTS(num_drones, start_pos, cfg)
+        COMMENT PROPERTY GROUP(THIS.cfg <- cfg)
+        THIS.drones <- EMPTY LIST
+
+        i <- 0
+        WHILE i < num_drones DO
+            vel <- LIST [
+                RANDOM FLOAT(-1, 1),
+                RANDOM FLOAT(-1, 1)
+            ]
+            APPEND CALL Drone(start_pos, vel, cfg) TO THIS.drones
+            i <- i + 1
+        ENDWHILE
+    ENDCONSTRUCTOR
+
+
+    FUNCTION step ACCEPTS(target, obstacles)
+        positions <- LIST OF SIZE EQUALS LENGTH OF THIS.drones FILLED WITH EMPTY LIST
+        velocities <- LIST OF SIZE EQUALS LENGTH OF THIS.drones FILLED WITH EMPTY LIST
+
+        i <- 0
+        WHILE i < LENGTH OF THIS.drones DO
+            positions[i] <- THIS.drones[i].position
+            velocities[i] <- THIS.drones[i].velocity
+            i <- i + 1
+        ENDWHILE
+
+        i <- 0
+        WHILE i < LENGTH OF THIS.drones DO
+            drone <- THIS.drones[i]
+
+            IF NORM(drone.position - target.position) < target.radius THEN
+                acceleration <- (target.position - drone.position) * THIS.cfg.GOAL_WEIGHT
+                drone.update(acceleration)
+                i <- i + 1
+                CONTINUE
+            ENDIF
+
+            diff <- positions - drone.position
+            dist <- NORM(diff, AXIS=1)
+
+            neighbours_mask <- (dist > 0) AND (dist < THIS.cfg.NEIGHBOUR_RADIUS)
+            neighbours_idx <- WHERE(neighbours_mask)
+
+            acceleration <- LIST [0, 0]
+
+            IF LENGTH OF neighbours_idx > 0 THEN
+                neighbour_positions <- positions[neighbours_idx]
+                neighbour_velocities <- velocities[neighbours_idx]
+
+                cohesion <- (MEAN(neighbour_positions) - drone.position) * THIS.cfg.COHESION_WEIGHT
+                alignment <- (MEAN(neighbour_velocities) - drone.velocity) * THIS.cfg.ALIGNMENT_WEIGHT
+
+                close_idx <- WHERE(dist < THIS.cfg.SEPARATION_RADIUS)
+                separation <- LIST [0, 0]
+
+                IF LENGTH OF close_idx > 0 THEN
+                    separation <- -(SUM(positions[close_idx] - drone.position)) * THIS.cfg.SEPARATION_WEIGHT
+                ENDIF
+
+                acceleration <- acceleration + cohesion + alignment + separation
+            ENDIF
+
+            acceleration <- acceleration + (target.position - drone.position) * THIS.cfg.GOAL_WEIGHT
+
+            j <- 0
+            WHILE j < LENGTH OF obstacles DO
+                obstacle <- obstacles[j]
+
+                to_obs <- drone.position - obstacle
+                dist_obs <- NORM(to_obs)
+
+                radial <- to_obs / (dist_obs + 0.000001)
+                tangent <- LIST [-radial[1], radial[0]]
+
+                dir_to_goal <- target.position - drone.position
+
+                IF DOT(tangent, dir_to_goal) < 0 THEN
+                    tangent <- -tangent
+                ENDIF
+
+                HARD_LOCK <- THIS.cfg.OBSTACLE_RADIUS * 3
+                SOFT_LOCK <- THIS.cfg.OBSTACLE_RADIUS * 5
+                MIN_SAFE <- THIS.cfg.OBSTACLE_RADIUS * 1.8
+
+                IF dist_obs < MIN_SAFE THEN
+                    acceleration <- radial * (THIS.cfg.OBSTACLE_REPULSION * 4)
+                    drone.velocity <- -drone.velocity * 0.5
+                    j <- j + 1
+                    CONTINUE
+                ENDIF
+
+                IF dist_obs < HARD_LOCK THEN
+                    acceleration <- tangent * (THIS.cfg.OBSTACLE_REPULSION * 2)
+                    j <- j + 1
+                    CONTINUE
+                ENDIF
+
+                IF dist_obs < SOFT_LOCK THEN
+                    avoid <- radial * (THIS.cfg.OBSTACLE_REPULSION * 0.4) +
+                             tangent * (THIS.cfg.OBSTACLE_REPULSION * 1.2)
+                    acceleration <- acceleration + avoid
+                ENDIF
+
+                j <- j + 1
+            ENDWHILE
+
+            drone.update(acceleration)
+            i <- i + 1
+        ENDWHILE
+    ENDFUNCTION
+
+ENDCLASS
+
+
+
+# ============================================================
+# CLASS: MissionController
+# ============================================================
+
+CLASS MissionController
+
+    CONSTRUCTOR ACCEPTS(env, cfg)
+        COMMENT PROPERTY GROUP(THIS.env <- env, THIS.cfg <- cfg)
+
+        THIS.point_a <- CALL TargetPoint(env.random_point(), cfg.TARGET_RADIUS)
+        THIS.obstacles <- env.generate_obstacles(THIS.point_a.position)
+        THIS.point_b <- CALL TargetPoint(env.generate_safe_point(THIS.point_a.position, THIS.obstacles), cfg.TARGET_RADIUS)
+    ENDCONSTRUCTOR
+
+
+    FUNCTION update_targets ACCEPTS(swarm_positions)
+        IF THIS.point_b.reached(swarm_positions) THEN
+            THIS.point_a <- THIS.point_b
+            new_pos <- THIS.env.generate_safe_point(THIS.point_a.position, THIS.obstacles)
+            THIS.point_b <- CALL TargetPoint(new_pos, THIS.cfg.TARGET_RADIUS)
+        ENDIF
+    ENDFUNCTION
+
+ENDCLASS
+
+
+
+# ============================================================
+# CLASS: Visualizer
+# ============================================================
+
+CLASS Visualizer
+
+    CONSTRUCTOR ACCEPTS(mission, swarm, cfg)
+        COMMENT PROPERTY GROUP(
+            THIS.mission <- mission,
+            THIS.swarm <- swarm,
+            THIS.cfg <- cfg
+        )
+    ENDCONSTRUCTOR
+
+
+    FUNCTION init ACCEPTS()
+        RETURN CALL NULL()
+    ENDFUNCTION
+
+
+    FUNCTION update ACCEPTS(frame)
+        THIS.swarm.step(THIS.mission.point_b, THIS.mission.obstacles)
+        positions <- LIST [drone.position FOR EACH drone IN THIS.swarm.drones]
+
+        THIS.mission.update_targets(positions)
+
+        RETURN CALL NULL()
+    ENDFUNCTION
+
+
+    FUNCTION animate ACCEPTS()
+        OUTPUT STRING("Animation running...")
+    ENDFUNCTION
+
+ENDCLASS
+
+
+
+# ============================================================
+# CLASS: Simulation
+# ============================================================
+
+CLASS Simulation
+
+    CONSTRUCTOR ACCEPTS()
+        THIS.cfg <- CALL Config()
+        THIS.env <- CALL Environment(THIS.cfg)
+        THIS.mission <- CALL MissionController(THIS.env, THIS.cfg)
+        THIS.swarm <- CALL Swarm(THIS.cfg.NUM_DRONES, THIS.mission.point_a.position, THIS.cfg)
+        THIS.visualizer <- CALL Visualizer(THIS.mission, THIS.swarm, THIS.cfg)
+    ENDCONSTRUCTOR
+
+
+    FUNCTION run ACCEPTS()
+        THIS.visualizer.animate()
+    ENDFUNCTION
+
+ENDCLASS
+
+
+
+# ============================================================
+# RUN SIMULATION
+# ============================================================
+
+CALL Simulation() RUN()

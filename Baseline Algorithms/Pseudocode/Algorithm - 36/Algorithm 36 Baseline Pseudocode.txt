@@ -1,0 +1,43 @@
+An ordered list of numbers was rotated at an unknown pivot point (e.g. [4,5,6,1,2,3]). Find the index of a target value in this list in logarithmic time
+
+OUTPUT STRING("Binary Search in O(log n) Time")
+
+FUNCTION rsearch ACCEPTS(nums, target)
+    left <- 0
+    right <- LENGTH OF nums - 1
+
+    WHILE left <= right DO
+        mid <- (left + right) INTEGER DIVISION 2
+        mid_val <- nums[mid]
+
+        IF mid_val == target THEN
+            RETURN mid
+        ENDIF
+
+        # Left half sorted
+        IF nums[left] <= mid_val THEN
+            IF nums[left] <= target AND target < mid_val THEN
+                right <- mid - 1
+            ELSE
+                left <- mid + 1
+            ENDIF
+
+        # Right half sorted
+        ELSE
+            IF mid_val < target AND target <= nums[right] THEN
+                left <- mid + 1
+            ELSE
+                right <- mid - 1
+            ENDIF
+        ENDIF
+    ENDWHILE
+
+    RETURN STRING("Target Value Does Not Exist")
+ENDFUNCTION
+
+nums <- LIST [4, 5, 6, 1, 2, 3]
+
+OUTPUT STRING("{nums}")
+OUTPUT STRING("{rsearch(nums, 1)}")
+OUTPUT STRING("{rsearch(nums, 5)}")
+OUTPUT STRING("{rsearch(nums, 9)}")

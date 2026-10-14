@@ -1,0 +1,250 @@
+
+Detect a cycle in a single linked list (Floyd's Cycle Detection)
+
+CLASS Node
+    CONSTRUCTOR ACCEPTS(value)
+        COMMENT PROPERTY GROUP(
+            THIS.value <- value,
+            THIS.next <- CALL NULL()
+        )
+    ENDCONSTRUCTOR
+ENDCLASS
+
+CLASS LinkedList
+    CONSTRUCTOR ACCEPTS()
+        COMMENT PROPERTY GROUP(
+            THIS.head <- CALL NULL(),
+            THIS.tail <- CALL NULL(),
+            THIS.nodes <- EMPTY LIST
+        )
+        OUTPUT STRING("Linked List Created\\n")
+    ENDCONSTRUCTOR
+
+
+    FUNCTION append ACCEPTS(value)
+        new_node <- CALL Node(value)
+        OUTPUT STRING("Appended Value {value}")
+
+        IF THIS.head == CALL NULL() THEN
+            THIS.head <- new_node
+            THIS.tail <- new_node
+        ELSE
+            THIS.tail.next <- new_node
+            THIS.tail <- new_node
+        ENDIF
+
+        APPEND new_node TO THIS.nodes
+    ENDFUNCTION
+
+
+    FUNCTION prepend ACCEPTS(value)
+        OUTPUT STRING("Prepended Value {value} To The Front")
+
+        new_node <- CALL Node(value)
+
+        IF THIS.head == CALL NULL() THEN
+            THIS.head <- new_node
+            THIS.tail <- new_node
+        ELSE
+            new_node.next <- THIS.head
+            THIS.head <- new_node
+        ENDIF
+
+        INSERT new_node AT INDEX 0 IN THIS.nodes
+    ENDFUNCTION
+
+
+    FUNCTION insert_at ACCEPTS(index, value)
+        OUTPUT STRING("Inserting Value {value} at Index {index}")
+
+        IF index == 0 THEN
+            THIS.prepend(value)
+            RETURN
+        ENDIF
+
+        new_node <- CALL Node(value)
+        temp <- THIS.head
+        i <- 0
+
+        WHILE temp != CALL NULL() AND i < index - 1 DO
+            temp <- temp.next
+            i <- i + 1
+        ENDWHILE
+
+        IF temp == CALL NULL() THEN
+            OUTPUT STRING("Insert Failed: Index out of range")
+            RETURN
+        ENDIF
+
+        new_node.next <- temp.next
+        temp.next <- new_node
+
+        IF new_node.next == CALL NULL() THEN
+            THIS.tail <- new_node
+        ENDIF
+
+        INSERT new_node AT INDEX index IN THIS.nodes
+        OUTPUT STRING("Insert Successful: {value} Inserted at Index {index}")
+    ENDFUNCTION
+
+
+    FUNCTION create_cycle ACCEPTS(start_index, end_index)
+        OUTPUT STRING("\\nCycle Created: Loop Start index {start_index} ->  End index {end_index}")
+
+        IF start_index < 0 OR end_index < 0 THEN
+            OUTPUT STRING("Cycle Creation Failed: Invalid Index")
+            RETURN
+        ENDIF
+
+        IF start_index >= LENGTH OF THIS.nodes OR end_index >= LENGTH OF THIS.nodes THEN
+            OUTPUT STRING("Cycle Creation Failed: Index Out Of Range")
+            RETURN
+        ENDIF
+
+        start_node <- THIS.nodes[start_index]
+        end_node <- THIS.nodes[end_index]
+
+        end_node.next <- start_node
+
+        OUTPUT STRING("\\nCycle Created: Node {start_index} now points to node {end_index}")
+    ENDFUNCTION
+
+
+    FUNCTION remove_cycle ACCEPTS()
+        OUTPUT STRING("Remove Cycle Requested")
+
+        slow <- THIS.head
+        fast <- THIS.head
+
+        WHILE fast != CALL NULL() AND fast.next != CALL NULL() DO
+            slow <- slow.next
+            fast <- fast.next.next
+
+            IF slow == fast THEN
+                OUTPUT STRING("Cycle Detected: Proceeding with Removal")
+                BREAK
+            ENDIF
+        ENDWHILE
+
+        IF fast == CALL NULL() OR fast.next == CALL NULL() THEN
+            OUTPUT STRING("No cycle found — nothing to remove")
+            RETURN
+        ENDIF
+
+        slow <- THIS.head
+
+        WHILE slow != fast DO
+            slow <- slow.next
+            fast <- fast.next
+        ENDWHILE
+
+        cycle_start <- slow
+
+        temp <- cycle_start
+        WHILE temp.next != cycle_start DO
+            temp <- temp.next
+        ENDWHILE
+
+        temp.next <- CALL NULL()
+
+        THIS.tail <- THIS.nodes[LENGTH OF THIS.nodes - 1]
+
+        OUTPUT STRING("Cycle Removed Successfully: Loop started at Node with Value {cycle_start.value}")
+    ENDFUNCTION
+
+
+    FUNCTION loop_diagram ACCEPTS()
+        OUTPUT STRING("\\nGenerating Loop Diagram...\\n")
+
+        nodes <- THIS.nodes
+
+        visited <- EMPTY DICTIONARY
+        temp <- THIS.head
+        index <- 0
+        cycle_start <- CALL NULL()
+        cycle_end <- CALL NULL()
+
+        WHILE temp != CALL NULL() DO
+            IF temp IN visited THEN
+                cycle_start <- visited[temp]
+                cycle_end <- index - 1
+                BREAK
+            ENDIF
+
+            visited[temp] <- index
+            temp <- temp.next
+            index <- index + 1
+        ENDWHILE
+
+        parts <- EMPTY LIST
+        i <- 0
+        WHILE i < LENGTH OF nodes DO
+            APPEND STRING("nodes[i].value") TO parts
+            i <- i + 1
+        ENDWHILE
+
+        sep <- STRING("->")
+        chain <- JOIN parts WITH sep
+
+        OUTPUT STRING("{chain}")
+
+        IF cycle_start == CALL NULL() THEN
+            OUTPUT STRING("No Cycle Detected\\n")
+            RETURN
+        ENDIF
+
+        start_char <- 0
+        i <- 0
+        WHILE i < cycle_start DO
+            start_char <- start_char + LENGTH OF parts[i] + LENGTH OF sep
+            i <- i + 1
+        ENDWHILE
+
+        start_center <- start_char + (LENGTH OF parts[cycle_start] INTEGER DIVISION 2)
+
+        end_char <- 0
+        i <- 0
+        WHILE i < cycle_end DO
+            end_char <- end_char + LENGTH OF parts[i] + LENGTH OF sep
+            i <- i + 1
+        ENDWHILE
+
+        end_center <- end_char + (LENGTH OF parts[cycle_end] INTEGER DIVISION 2)
+
+        OUTPUT STRING(" " * start_center + "└" + "─" * (end_center - start_center - 1) + "┘")
+
+        OUTPUT STRING("Cycle Detected From Node {cycle_start} to Node {cycle_end}\\n")
+    ENDFUNCTION
+
+ENDCLASS
+
+
+
+OUTPUT STRING("Detect Cycle in Singly Linked List\\n")
+
+l <- CALL LinkedList()
+
+l.append(10)
+l.append(20)
+l.append(30)
+l.append(40)
+l.append(50)
+l.append(60)
+
+l.loop_diagram()
+
+l.remove_cycle()
+
+l.loop_diagram()
+
+l.append(40)
+l.append(50)
+
+l.create_cycle(start_index == 1, end_index == 6)
+
+l.loop_diagram()
+
+l.remove_cycle()
+
+OUTPUT STRING("\\nAfter Removing Cycle:")
+l.loop_diagram()

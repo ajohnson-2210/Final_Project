@@ -1,0 +1,61 @@
+Develop a recursive process that searches through nested folders to find a specific file type
+
+COMMENT External library: os
+OUTPUT STRING("Recursive File Search System\\n")
+
+# ============================================
+# FUNCTION: Recursive Search
+# ============================================
+
+FUNCTION search_files_recursive ACCEPTS(folder_path, file_extension, results)
+
+    OUTPUT STRING("Searching: {folder_path}")
+
+    TRY
+        items <- LIST DIRECTORY CONTENTS(folder_path)
+    CATCH
+        OUTPUT STRING("Cannot access: {folder_path}")
+        RETURN
+    ENDTRY
+
+    i <- 0
+
+    WHILE i < LENGTH OF items DO
+        item <- items[i]
+        full_path <- JOIN PATH(folder_path, item)
+
+        IF ISFILE(full_path) == BOOLEAN(TRUE) THEN
+            IF ENDSWITH(item, file_extension) == BOOLEAN(TRUE) THEN
+                OUTPUT STRING("FOUND: {full_path}")
+                APPEND full_path TO results
+            ENDIF
+
+        ELIF ISDIRECTORY(full_path) == BOOLEAN(TRUE) THEN
+            search_files_recursive(full_path, file_extension, results)
+        ENDIF
+
+        i <- i + 1
+    ENDWHILE
+
+ENDFUNCTION
+
+# ============================================
+# MAIN PROCESS
+# ============================================
+
+start_folder <- STRING("C:/example/start/path")
+target_extension <- STRING(".txt")
+
+found_files <- EMPTY LIST
+
+OUTPUT STRING("Starting recursive search...\\n")
+
+search_files_recursive(start_folder, target_extension, found_files)
+
+OUTPUT STRING("\\nSearch complete.\\nFiles found:")
+
+i <- 0
+WHILE i < LENGTH OF found_files DO
+    OUTPUT STRING("{found_files[i]}")
+    i <- i + 1
+ENDWHILE
