@@ -1,0 +1,69 @@
+{
+  "test_evidence_schema_version": "1.2",
+  "test_design_version": "1.4.2",
+  "test_spec_schema_version": "1.6",
+  "tests_file": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\Pipeline Versions\\NL_Flow_Diagram_Encoder_Pipeline_v4_36-0\\NL_Flow_Diagram_Encoder_Pipeline_v4_36\\study data\\common tests v1.4.2\\Algorithm - 12\\Algorithm 12 Tests.json",
+  "semantic_contract": {
+    "contract_version": "1.4",
+    "contract_source": "ORIGINAL_TASK_SPECIFICATION",
+    "task_statement": "Calculate the sum of the main diagonal of an N \u00d7 N matrix.",
+    "inputs": [
+      {
+        "position": 1,
+        "name": "matrix",
+        "type": "SQUARE_MATRIX[NUMBER]"
+      }
+    ],
+    "result": {
+      "type": "NUMBER",
+      "canonical_semantics": "Sum of matrix[i][i] over the main diagonal."
+    },
+    "automation_status": "AUTOMATED_FUNCTION",
+    "parameter_names_are_semantically_irrelevant": true,
+    "derived_parameters_may_be_supplied_by_adapter": true,
+    "human_review_instruction": "Judge the original generated pseudocode against this same frozen task-semantic contract, including when automated evaluation is NOT_EVALUABLE.",
+    "fixture_policy": "PREEXPERIMENT_FROZEN_INPUTS",
+    "expectation_policy": "STATIC_PREEXPERIMENT_EXPECTED_VALUES",
+    "runtime_oracle_prohibited": true
+  },
+  "semantic_test_count": 3,
+  "interaction_or_reference_only_test_count": 0,
+  "semantic_boundary_probe_count": 1,
+  "semantic_boundary_probe_enabled_count": 1,
+  "pre_freeze_validation_count": 2,
+  "pre_freeze_validation_enabled_count": 2,
+  "core_test_count": 3,
+  "declared_evidence_adequacy": "PARTIAL",
+  "declared_evidence_summary": "This suite retains the three previously frozen seeded square-grid cases as core behavioural evidence. The explicit 1\u00d71 and 2\u00d72 valid-domain cases are retained as provisional pre-freeze validation cases after the RC9 baseline regression and do not affect calibration or experimental core scores. Rectangular input remains a separate semantic-boundary probe.",
+  "declared_coverage_dimensions": {
+    "normal_path": "COVERED",
+    "branch_behaviour": "NOT_COVERED",
+    "boundary_behaviour": "NOT_COVERED",
+    "error_behaviour": "NOT_COVERED",
+    "termination_behaviour": "NOT_COVERED",
+    "state_mutation": "NOT_COVERED"
+  },
+  "coverage_basis": "Core scoring is based on the 3 previously frozen seeded Common Test cases. Two additional valid-domain edge cases are retained in PRE_FREEZE_VALIDATION and are excluded from core scoring until explicitly baseline-validated. Semantic-boundary probes remain separately descriptive.",
+  "interpretation_guidance": "Interpret core behavioural accuracy only from CORE_BEHAVIOURAL cases. PRE_FREEZE_VALIDATION cases are candidate valid-domain expansions retained for baseline validation and must not affect calibration or experimental core scoring. Interpret Semantic Boundary Variance separately as descriptive out-of-domain evidence.",
+  "coverage_limitations": [
+    "1\u00d71 and 2\u00d72 square matrices are candidate valid-domain edge cases but remain provisional until the established baseline validates their invocation/observation semantics.",
+    "Rectangular matrices are outside the SQUARE_MATRIX contract and are reported separately through semantic-boundary variance."
+  ],
+  "manual_review_targets": [],
+  "requires_pipeline_features": [
+    "DETERMINISTIC_RANDOM_SEED"
+  ],
+  "test_count": 6,
+  "category_counts": {
+    "NORMAL": 3
+  },
+  "criteria_link_counts": {
+    "P2": 3,
+    "P4": 3
+  },
+  "seeded_test_count": 3,
+  "environment_controlled_test_count": 0,
+  "has_normal_or_branch_test": true,
+  "has_boundary_error_or_termination_test": false,
+  "has_state_mutation_test": false
+}
