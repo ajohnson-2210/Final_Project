@@ -1,0 +1,73 @@
+{
+  "test_evidence_schema_version": "1.2",
+  "test_design_version": "1.4.2",
+  "test_spec_schema_version": "1.6",
+  "tests_file": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\Pipeline Versions\\NL_Flow_Diagram_Encoder_Pipeline_v4_36-0\\NL_Flow_Diagram_Encoder_Pipeline_v4_36\\study data\\common tests v1.4.2\\Algorithm - 9\\Algorithm 9 Tests.json",
+  "semantic_contract": {
+    "contract_version": "1.4",
+    "contract_source": "ORIGINAL_TASK_SPECIFICATION",
+    "task_statement": "Find the exact position of a target value in an unsorted list.",
+    "inputs": [
+      {
+        "position": 1,
+        "name": "values",
+        "type": "ARRAY"
+      },
+      {
+        "position": 2,
+        "name": "target",
+        "type": "ANY"
+      }
+    ],
+    "result": {
+      "type": "INDEX_OR_NOT_FOUND",
+      "canonical_semantics": "Zero-based position of the target in the unsorted list, or not-found."
+    },
+    "automation_status": "AUTOMATED_FUNCTION",
+    "parameter_names_are_semantically_irrelevant": true,
+    "derived_parameters_may_be_supplied_by_adapter": true,
+    "human_review_instruction": "Judge the original generated pseudocode against this same frozen task-semantic contract, including when automated evaluation is NOT_EVALUABLE.",
+    "fixture_policy": "PREEXPERIMENT_FROZEN_INPUTS",
+    "expectation_policy": "STATIC_PREEXPERIMENT_EXPECTED_VALUES",
+    "runtime_oracle_prohibited": true
+  },
+  "semantic_test_count": 1,
+  "interaction_or_reference_only_test_count": 0,
+  "semantic_boundary_probe_count": 0,
+  "semantic_boundary_probe_enabled_count": 0,
+  "pre_freeze_validation_count": 0,
+  "pre_freeze_validation_enabled_count": 0,
+  "core_test_count": 1,
+  "declared_evidence_adequacy": "LIMITED",
+  "declared_evidence_summary": "This suite provides limited behavioural evidence using one predefined common behavioural test, with covered normal-path behaviour. Target and list are fixed; the not-found branch cannot be exercised externally.",
+  "declared_coverage_dimensions": {
+    "normal_path": "COVERED",
+    "branch_behaviour": "NOT_COVERED",
+    "boundary_behaviour": "NOT_COVERED",
+    "error_behaviour": "NOT_COVERED",
+    "termination_behaviour": "NOT_COVERED",
+    "state_mutation": "NOT_COVERED"
+  },
+  "coverage_basis": "Assessment is based on the predefined common behavioural test, the behaviours exposed by the frozen program interface, and the declared coverage dimensions: normal path.",
+  "interpretation_guidance": "Interpret behavioural accuracy as agreement for the specific exercised scenario or scenarios, not as strong evidence of general behavioural equivalence.",
+  "coverage_limitations": [
+    "Target and list are fixed; the not-found branch cannot be exercised externally."
+  ],
+  "manual_review_targets": [
+    "Inspect preserved not-found control path structurally through C3/A3/F2-F4."
+  ],
+  "requires_pipeline_features": [],
+  "test_count": 1,
+  "category_counts": {
+    "NORMAL": 1
+  },
+  "criteria_link_counts": {
+    "P2": 1,
+    "P4": 1
+  },
+  "seeded_test_count": 0,
+  "environment_controlled_test_count": 0,
+  "has_normal_or_branch_test": true,
+  "has_boundary_error_or_termination_test": false,
+  "has_state_mutation_test": false
+}
