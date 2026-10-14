@@ -1,0 +1,553 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NL-FDEP Comparative Radial Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <style>
+    :root {
+      --bg: #f7f9fc;
+      --panel: #ffffff;
+      --text: #172033;
+      --muted: #667085;
+      --border: #d9e0ea;
+      --accent: #315efb;
+      --shadow: 0 12px 30px rgba(16, 24, 40, 0.08);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+    .page {
+      max-width: 1480px;
+      margin: 0 auto;
+      padding: 28px;
+    }
+    h1 {
+      margin: 0 0 6px;
+      font-size: clamp(1.65rem, 2.7vw, 2.45rem);
+      letter-spacing: -0.03em;
+    }
+    .subtitle {
+      margin: 0 0 24px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 16px;
+      padding: 14px 16px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      margin-bottom: 20px;
+    }
+    label {
+      font-size: 0.92rem;
+      font-weight: 650;
+    }
+    select {
+      margin-left: 8px;
+      padding: 8px 10px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--text);
+    }
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-left: auto;
+    }
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 6px 9px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: #fff;
+      font-size: 0.86rem;
+      cursor: pointer;
+      user-select: none;
+    }
+    .legend-item.off {
+      opacity: 0.38;
+      text-decoration: line-through;
+    }
+    .swatch {
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+      border: 1px solid rgba(0,0,0,0.12);
+    }
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 330px;
+      gap: 20px;
+      align-items: start;
+    }
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+    }
+    .chart-panel {
+      padding: 8px 12px 18px;
+      min-height: 760px;
+    }
+    #chart {
+      width: 100%;
+      min-height: 720px;
+      display: grid;
+      place-items: center;
+    }
+    svg {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      overflow: visible;
+    }
+    .side-panel {
+      padding: 18px;
+      position: sticky;
+      top: 18px;
+    }
+    .side-panel h2 {
+      margin: 0 0 8px;
+      font-size: 1.1rem;
+    }
+    .metric {
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .metric:last-child { border-bottom: 0; }
+    .metric-label {
+      color: var(--muted);
+      font-size: 0.82rem;
+      margin-bottom: 3px;
+    }
+    .metric-value {
+      font-size: 1.35rem;
+      font-weight: 760;
+      letter-spacing: -0.02em;
+    }
+    .model-list {
+      margin-top: 18px;
+      display: grid;
+      gap: 8px;
+    }
+    .model-button {
+      width: 100%;
+      text-align: left;
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--text);
+      padding: 9px 10px;
+      border-radius: 9px;
+      cursor: pointer;
+      font-size: 0.86rem;
+    }
+    .model-button.active {
+      border-color: var(--accent);
+      outline: 2px solid rgba(49,94,251,0.12);
+    }
+    .tooltip {
+      position: fixed;
+      pointer-events: none;
+      z-index: 999;
+      opacity: 0;
+      background: rgba(16, 24, 40, 0.96);
+      color: white;
+      padding: 10px 12px;
+      border-radius: 9px;
+      font-size: 0.83rem;
+      line-height: 1.45;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+      max-width: 250px;
+    }
+    .note {
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.45;
+      margin-top: 14px;
+    }
+    .fallback {
+      padding: 18px;
+      color: #8a1c1c;
+      background: #fff4f4;
+      border: 1px solid #f2c8c8;
+      border-radius: 10px;
+      display: none;
+    }
+    @media (max-width: 980px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+      .side-panel {
+        position: static;
+      }
+      .legend {
+        width: 100%;
+        margin-left: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <h1>NL-FDEP Comparative Radial Dashboard</h1>
+    <p class="subtitle">
+      Interactive D3 visualisation of all AI agents across the 50-algorithm study.
+      Tick labels are centred in the white separators so they remain visible.
+    </p>
+
+    <section class="toolbar">
+      <label>
+        Radial view
+        <select id="viewSelect">
+          <option value="reference">Comparison to frozen semantic reference</option>
+          <option value="pipeline">Pipeline outcomes</option>
+        </select>
+      </label>
+      <div id="legend" class="legend"></div>
+    </section>
+
+    <div id="fallback" class="fallback">
+      D3 could not be loaded. This page uses D3 v7 from jsDelivr, so an internet connection is required when opening the HTML file.
+    </div>
+
+    <section class="layout">
+      <div class="panel chart-panel">
+        <div id="chart"></div>
+      </div>
+
+      <aside class="panel side-panel">
+        <h2 id="selectedModel">Model summary</h2>
+        <div class="metric">
+          <div class="metric-label">Mean semantic behavioural score</div>
+          <div class="metric-value" id="meanScore">—</div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">Aggregate Common Test accuracy</div>
+          <div class="metric-value" id="accuracy">—</div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">Algorithms represented</div>
+          <div class="metric-value">50</div>
+        </div>
+        <div class="model-list" id="modelList"></div>
+
+        <p class="note">
+          Each guide spoke runs through the centre of a model sector.
+          Algorithm-count guide labels are repeated in the white separator gaps for clarity.
+        </p>
+      </aside>
+    </section>
+  </main>
+
+  <div id="tooltip" class="tooltip"></div>
+
+  <script>
+    const studyData = [{"model":"Claude sonnet 4.6","algorithmCount":50,"meanSemanticScore":88.97,"aggregateAccuracy":87.1,"reference":{"At Reference":34,"Below Reference":5,"Not Evaluable":11},"pipeline":{"Success":39,"Failure":10,"Expected Failure":1}},{"model":"ChatGPT 5.5","algorithmCount":50,"meanSemanticScore":84.86,"aggregateAccuracy":84.52,"reference":{"At Reference":29,"Below Reference":6,"Not Evaluable":15},"pipeline":{"Success":35,"Failure":15,"Expected Failure":0}},{"model":"Deepseek","algorithmCount":50,"meanSemanticScore":83.75,"aggregateAccuracy":82.65,"reference":{"At Reference":33,"Below Reference":7,"Not Evaluable":10},"pipeline":{"Success":42,"Failure":8,"Expected Failure":0}},{"model":"Groq llama-3.3-70b-versatile","algorithmCount":50,"meanSemanticScore":79.64,"aggregateAccuracy":75.28,"reference":{"At Reference":28,"Below Reference":9,"Not Evaluable":13},"pipeline":{"Success":46,"Failure":4,"Expected Failure":0}},{"model":"Gemini 3 flash","algorithmCount":50,"meanSemanticScore":77.94,"aggregateAccuracy":81.48,"reference":{"At Reference":26,"Below Reference":8,"Not Evaluable":16},"pipeline":{"Success":39,"Failure":11,"Expected Failure":0}},{"model":"Qwen 3.6 plus","algorithmCount":50,"meanSemanticScore":74.67,"aggregateAccuracy":73.47,"reference":{"At Reference":29,"Below Reference":11,"Not Evaluable":10},"pipeline":{"Success":42,"Failure":5,"Expected Failure":3}}];
+
+    if (typeof d3 === "undefined") {
+      document.getElementById("fallback").style.display = "block";
+    } else {
+      const viewConfig = {
+        reference: {
+          key: "reference",
+          categories: ["At Reference", "Below Reference", "Not Evaluable"],
+          colours: {
+            "At Reference": "#2ca25f",
+            "Below Reference": "#ffc145",
+            "Not Evaluable": "#cfd6df"
+          }
+        },
+        pipeline: {
+          key: "pipeline",
+          categories: ["Success", "Failure", "Expected Failure"],
+          colours: {
+            "Success": "#2ca25f",
+            "Failure": "#d95f59",
+            "Expected Failure": "#6a8caf"
+          }
+        }
+      };
+
+      const state = {
+        view: "reference",
+        selectedModel: studyData[0].model,
+        hidden: new Set()
+      };
+
+      const chart = d3.select("#chart");
+      const tooltip = d3.select("#tooltip");
+      const legend = d3.select("#legend");
+
+      function setSelectedModel(modelName) {
+        state.selectedModel = modelName;
+        const item = studyData.find(d => d.model === modelName);
+        d3.select("#selectedModel").text(item.model);
+        d3.select("#meanScore").text(item.meanSemanticScore.toFixed(2) + "%");
+        d3.select("#accuracy").text(item.aggregateAccuracy.toFixed(2) + "%");
+        d3.selectAll(".model-button")
+          .classed("active", function() {
+            return this.dataset.model === modelName;
+          });
+      }
+
+      function buildModelList() {
+        d3.select("#modelList")
+          .selectAll("button")
+          .data(studyData, d => d.model)
+          .join("button")
+          .attr("class", "model-button")
+          .attr("data-model", d => d.model)
+          .text(d => d.model)
+          .on("click", (_, d) => setSelectedModel(d.model));
+        setSelectedModel(state.selectedModel);
+      }
+
+      function drawLegend() {
+        const cfg = viewConfig[state.view];
+        const items = legend
+          .selectAll(".legend-item")
+          .data(cfg.categories, d => d)
+          .join("div")
+          .attr("class", d => "legend-item" + (state.hidden.has(d) ? " off" : ""))
+          .on("click", (_, d) => {
+            if (state.hidden.has(d)) state.hidden.delete(d);
+            else state.hidden.add(d);
+            drawLegend();
+            draw();
+          });
+
+        items.html("");
+        items.append("span")
+          .attr("class", "swatch")
+          .style("background", d => cfg.colours[d]);
+        items.append("span").text(d => d);
+      }
+
+      function draw() {
+        const cfg = viewConfig[state.view];
+        chart.selectAll("*").remove();
+
+        const width = 900;
+        const height = 760;
+        const cx = width / 2;
+        const cy = height / 2;
+        const innerRadius = 95;
+        const maxRadius = 285;
+        const labelRadius = maxRadius + 56;
+
+        const svg = chart.append("svg")
+          .attr("viewBox", [0, 0, width, height]);
+
+        const g = svg.append("g")
+          .attr("transform", `translate(${cx},${cy})`);
+
+        const n = studyData.length;
+        const fullStep = 2 * Math.PI / n;
+        const barAngle = fullStep * 0.72;
+
+        const centreAngle = i => i * fullStep;
+        const gapCentreAngle = i => centreAngle(i) + fullStep / 2;
+
+        const algorithmCount = studyData.length ? (studyData[0].algorithmCount || 0) : 0;
+        const radius = d3.scaleLinear()
+          .domain([0, Math.max(1, algorithmCount)])
+          .range([innerRadius, maxRadius]);
+
+        const ticks = Array.from(new Set(
+          d3.ticks(0, Math.max(1, algorithmCount), 5).filter(t => t > 0).concat(algorithmCount > 0 ? [algorithmCount] : [])
+        )).sort((a,b) => a-b);
+
+        // Guide rings.
+        g.selectAll(".guide-ring")
+          .data(ticks)
+          .join("circle")
+          .attr("class", "guide-ring")
+          .attr("r", d => radius(d))
+          .attr("fill", "none")
+          .attr("stroke", "#dde3eb")
+          .attr("stroke-width", 1);
+
+        // Spokes through each sector centre.
+        g.selectAll(".model-spoke")
+          .data(studyData)
+          .join("line")
+          .attr("class", "model-spoke")
+          .attr("x1", (_, i) => Math.sin(centreAngle(i)) * (innerRadius - 10))
+          .attr("y1", (_, i) => -Math.cos(centreAngle(i)) * (innerRadius - 10))
+          .attr("x2", (_, i) => Math.sin(centreAngle(i)) * (labelRadius - 10))
+          .attr("y2", (_, i) => -Math.cos(centreAngle(i)) * (labelRadius - 10))
+          .attr("stroke", "#cbd3df")
+          .attr("stroke-width", 1)
+          .attr("stroke-dasharray", "3,4");
+
+        // Tick labels repeated in each white separator.
+        const gapLabelData = [];
+        for (let gapIndex = 0; gapIndex < n; gapIndex++) {
+          for (const t of ticks) {
+            gapLabelData.push({ gapIndex, tick: t });
+          }
+        }
+
+        g.selectAll(".gap-tick-label")
+          .data(gapLabelData)
+          .join("text")
+          .attr("class", "gap-tick-label")
+          .attr("x", d => Math.sin(gapCentreAngle(d.gapIndex)) * radius(d.tick))
+          .attr("y", d => -Math.cos(gapCentreAngle(d.gapIndex)) * radius(d.tick))
+          .attr("text-anchor", "middle")
+          .attr("dominant-baseline", "middle")
+          .attr("font-size", 10.5)
+          .attr("font-weight", 650)
+          .attr("fill", "#7b8493")
+          .text(d => d.tick);
+
+        const visibleCategories = cfg.categories.filter(c => !state.hidden.has(c));
+
+        const radialData = studyData.map(d => {
+          const row = { model: d.model };
+          cfg.categories.forEach(cat => row[cat] = d[cfg.key][cat] || 0);
+          return row;
+        });
+
+        const stack = d3.stack()
+          .keys(visibleCategories)
+          .value((d, key) => d[key] || 0);
+
+        const layers = stack(radialData);
+
+        const arc = d3.arc()
+          .innerRadius(d => radius(d[0]))
+          .outerRadius(d => radius(d[1]))
+          .startAngle((d, i) => centreAngle(i) - barAngle / 2)
+          .endAngle((d, i) => centreAngle(i) + barAngle / 2)
+          .padAngle(0.012)
+          .padRadius(innerRadius);
+
+        g.selectAll(".layer")
+          .data(layers)
+          .join("g")
+          .attr("class", "layer")
+          .attr("fill", layer => cfg.colours[layer.key])
+          .selectAll("path")
+          .data(layer =>
+            layer.map((d, i) => ({
+              ...d,
+              key: layer.key,
+              model: radialData[i].model,
+              value: radialData[i][layer.key]
+            }))
+          )
+          .join("path")
+          .attr("d", arc)
+          .attr("stroke", "#ffffff")
+          .attr("stroke-width", 1.2)
+          .style("cursor", "pointer")
+          .on("mouseenter", (event, d) => {
+            const pct = (algorithmCount ? d.value / algorithmCount * 100 : 0).toFixed(0);
+            tooltip
+              .style("opacity", 1)
+              .html(
+                `<strong>${d.model}</strong><br>` +
+                `${d.key}: <strong>${d.value}</strong> / ${algorithmCount} algorithms (${pct}%)`
+              );
+          })
+          .on("mousemove", event => {
+            tooltip
+              .style("left", (event.clientX + 14) + "px")
+              .style("top", (event.clientY + 14) + "px");
+          })
+          .on("mouseleave", () => tooltip.style("opacity", 0))
+          .on("click", (_, d) => setSelectedModel(d.model));
+
+        g.selectAll(".model-label")
+          .data(studyData)
+          .join("text")
+          .attr("class", "model-label")
+          .attr("x", (_, i) => Math.sin(centreAngle(i)) * labelRadius)
+          .attr("y", (_, i) => -Math.cos(centreAngle(i)) * labelRadius)
+          .attr("text-anchor", (_, i) => {
+            const x = Math.sin(centreAngle(i));
+            return x > 0.2 ? "start" : x < -0.2 ? "end" : "middle";
+          })
+          .attr("dominant-baseline", "middle")
+          .attr("font-size", 12.5)
+          .attr("font-weight", 650)
+          .attr("fill", "#293246")
+          .style("cursor", "pointer")
+          .text(d => d.model)
+          .on("click", (_, d) => setSelectedModel(d.model));
+
+        const scoredModels = studyData.filter(d => Number.isFinite(Number(d.meanSemanticScore)));
+        const highestMeanScore = scoredModels.length
+          ? d3.max(scoredModels, d => Number(d.meanSemanticScore))
+          : null;
+        const topModels = highestMeanScore === null
+          ? []
+          : scoredModels.filter(d => Math.abs(Number(d.meanSemanticScore) - highestMeanScore) < 1e-9);
+        const topModelLabel = topModels.length === 1
+          ? topModels[0].model
+          : topModels.length > 1
+            ? `Joint highest (${topModels.length} models)`
+            : "No evaluable score";
+
+        g.append("text")
+          .attr("text-anchor", "middle")
+          .attr("y", -31)
+          .attr("font-size", 12.5)
+          .attr("font-weight", 700)
+          .attr("fill", "#293246")
+          .text(topModelLabel);
+
+        g.append("text")
+          .attr("text-anchor", "middle")
+          .attr("y", -11)
+          .attr("font-size", 12)
+          .attr("fill", "#667085")
+          .text(`${algorithmCount} algorithms`);
+
+        g.append("text")
+          .attr("text-anchor", "middle")
+          .attr("y", 18)
+          .attr("font-size", 22)
+          .attr("font-weight", 760)
+          .attr("fill", "#172033")
+          .text(highestMeanScore === null ? "—" : highestMeanScore.toFixed(2) + "%");
+
+        g.append("text")
+          .attr("text-anchor", "middle")
+          .attr("y", 38)
+          .attr("font-size", 11.5)
+          .attr("fill", "#667085")
+          .text("highest mean behavioural score");
+      }
+
+      d3.select("#viewSelect").on("change", function() {
+        state.view = this.value;
+        state.hidden.clear();
+        drawLegend();
+        draw();
+      });
+
+      buildModelList();
+      drawLegend();
+      draw();
+    }
+  </script>
+</body>
+</html>

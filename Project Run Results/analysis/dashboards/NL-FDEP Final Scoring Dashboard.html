@@ -1,0 +1,864 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NL-FDEP Final Scoring Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <style>
+    :root {
+      --bg: #f7f9fc;
+      --panel: #ffffff;
+      --text: #172033;
+      --muted: #667085;
+      --border: #d9e0ea;
+      --shadow: 0 12px 30px rgba(16, 24, 40, 0.08);
+      --accent: #315efb;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .page {
+      max-width: 1500px;
+      margin: 0 auto;
+      padding: 28px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(1.8rem, 2.8vw, 2.6rem);
+      letter-spacing: -0.03em;
+    }
+
+    .subtitle {
+      margin: 0 0 22px;
+      color: var(--muted);
+      line-height: 1.55;
+      max-width: 1100px;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+    }
+
+    .formula {
+      padding: 18px 20px;
+      margin-bottom: 18px;
+    }
+
+    .formula-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+      margin-top: 12px;
+    }
+
+    .formula-card {
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #fff;
+    }
+
+    .formula-card .label {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .formula-card .value {
+      font-size: 1.15rem;
+      font-weight: 760;
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 18px;
+      margin-bottom: 18px;
+    }
+
+    .toolbar-left {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .toolbar-right {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    button {
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--text);
+      padding: 9px 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 650;
+    }
+
+    button.primary {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .score-card {
+      padding: 16px;
+    }
+
+    .score-card h2 {
+      margin: 0 0 12px;
+      font-size: 1.06rem;
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 16px;
+      margin-bottom: 12px;
+    }
+
+    .metric .label {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .metric .value {
+      font-size: 1rem;
+      font-weight: 720;
+      margin-top: 2px;
+    }
+
+    .human-row {
+      display: grid;
+      grid-template-columns: 1fr 110px;
+      gap: 10px;
+      align-items: center;
+      margin-top: 10px;
+    }
+
+    .human-row label {
+      font-size: 0.88rem;
+      font-weight: 650;
+    }
+
+    input[type="number"] {
+      width: 100%;
+      padding: 9px 10px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      font: inherit;
+    }
+
+    .final-score {
+      margin-top: 12px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: #f4f8ff;
+      border: 1px solid #d9e6ff;
+    }
+
+    .final-score .label {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .final-score .value {
+      margin-top: 3px;
+      font-size: 1.3rem;
+      font-weight: 800;
+    }
+
+    .status-note {
+      margin-top: 8px;
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+      margin-bottom: 20px;
+    }
+
+    .chart-panel {
+      padding: 18px 20px 22px;
+      min-height: 860px;
+    }
+
+    .chart-panel h2, .table-panel h2 {
+      margin: 0 0 12px;
+      font-size: 1.1rem;
+    }
+
+    #chart {
+      width: 100%;
+      min-height: 820px;
+      height: 820px;
+      overflow: hidden;
+    }
+
+    #chart svg {
+      display: block;
+      width: 100%;
+      height: 820px;
+      max-width: 100%;
+      overflow: visible;
+    }
+
+    svg {
+      display: block;
+      overflow: visible;
+    }
+
+    .table-panel {
+      padding: 16px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.92rem;
+    }
+
+    th, td {
+      padding: 10px 8px;
+      border-bottom: 1px solid var(--border);
+      text-align: left;
+      vertical-align: middle;
+    }
+
+    th {
+      font-size: 0.82rem;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    td strong {
+      font-weight: 760;
+    }
+
+    .footnote {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.5;
+      margin-top: 10px;
+    }
+
+    .pill {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      font-size: 0.76rem;
+      background: #fff;
+    }
+
+    .fallback {
+      padding: 16px;
+      border-radius: 10px;
+      background: #fff4f4;
+      border: 1px solid #f2c8c8;
+      color: #8a1c1c;
+      display: none;
+      margin-bottom: 18px;
+    }
+
+    .methodology {
+      padding: 18px 20px;
+      margin-bottom: 18px;
+      border-left: 5px solid var(--accent);
+    }
+
+    .methodology h2 { margin: 0 0 8px; font-size: 1.15rem; }
+    .methodology p, .methodology li { color: #465467; line-height: 1.55; font-size: .9rem; }
+    .methodology ul { margin: 10px 0 14px 20px; padding: 0; }
+    .methodology strong { color: var(--text); }
+
+    .eligibility-card {
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #fff;
+    }
+    .eligibility-card .model { font-weight: 780; margin-bottom: 7px; }
+    .eligibility-card .line { display:flex; justify-content:space-between; gap:10px; margin-top:5px; font-size:.8rem; color:var(--muted); }
+    .eligibility-card .line strong { color:var(--text); text-align:right; }
+    .eligibility-card.eligible { border-color: #9bc8a8; background:#f6fbf7; }
+    .eligibility-card.withheld { border-color: #e4c97a; background:#fffaf0; }
+    .status-banner { margin: 0 0 12px; padding: 11px 13px; border-radius: 10px; font-size:.86rem; line-height:1.45; }
+    .status-banner.final { background:#f1faf4; border:1px solid #b9ddc3; color:#245c35; }
+    .status-banner.provisional { background:#fff8e8; border:1px solid #ecd28e; color:#72520b; }
+
+
+  
+    @media (max-width: 900px) {
+      .chart-panel {
+        min-height: 860px;
+      }
+
+      #chart {
+        min-height: 820px;
+        height: 820px;
+      }
+
+      #chart svg {
+        width: 100%;
+        height: 820px;
+        max-width: 100%;
+      }
+    }
+
+</style>
+</head>
+<body>
+  <main class="page">
+    <h1>NL-FDEP Final Scoring Dashboard</h1>
+    <p class="subtitle">
+      This dashboard brings together the automated study outputs and the completed Human Review evidence.
+      It calculates a model-level <strong>automated overall score</strong> from the two automated measures.
+      A <strong>Human Review Overall</strong> and <strong>Combined Final Score</strong> are only reported after all 50 algorithm reviews for that AI agent reach a terminal Human Review outcome. Completed non-scorable outcomes explicitly contribute 0% under the failure-to-demonstrate rule described below.
+    </p>
+
+    <div id="fallback" class="fallback">
+      D3 could not be loaded. This page uses D3 v7 from jsDelivr, so an internet connection is required when opening the HTML file.
+    </div>
+
+    <section class="panel formula">
+      <h2 style="margin:0 0 10px;">Scoring logic used in this dashboard</h2>
+      <div class="formula-grid">
+        <div class="formula-card">
+          <div class="label">Automated measure 1</div>
+          <div class="value">Mean semantic behavioural score</div>
+        </div>
+        <div class="formula-card">
+          <div class="label">Automated measure 2</div>
+          <div class="value">Aggregate Common Test accuracy</div>
+        </div>
+        <div class="formula-card">
+          <div class="label">Automated overall score</div>
+          <div class="value">(Measure 1 + Measure 2) / 2</div>
+        </div>
+        <div class="formula-card">
+          <div class="label">Human Review Overall eligibility</div>
+          <div class="value">50 / 50 terminal Human Review outcomes required</div>
+        </div>
+        <div class="formula-card">
+          <div class="label">Human Review Overall</div>
+          <div class="value">Σ(observed Human Rubric %, with completed non-scorable = 0%) / 50</div>
+        </div>
+        <div class="formula-card">
+          <div class="label">Combined final score</div>
+          <div class="value">(Automated overall + Human Review Overall) / 2</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel methodology">
+      <h2>Human Review Overall — eligibility and missing-data rule</h2>
+      <p><strong>Unit of analysis:</strong> one planned algorithm instance. Each AI agent has N = 50 algorithm reviews in this study, and the Human Review Overall retains that fixed denominator N.</p>
+      <ul>
+        <li><strong>Observed-score rule:</strong> a completed review with a numerical Human Rubric percentage contributes its observed percentage.</li>
+        <li><strong>Completed non-scorable exception:</strong> when adjudication explicitly records <code>HUMAN_REVIEW_COMPLETE_NOT_EVALUABLE</code> (for example, all applicable rubric entries are explicitly <code>NA</code>), the review is a terminal <em>completed non-scorable</em> outcome. It remains in N and contributes <strong>0%</strong>. This is labelled a <em>failure-to-demonstrate</em> rule, not statistical missing-value imputation.</li>
+        <li><strong>Incomplete or technically unresolved records:</strong> partial, empty and pending reviews are never assigned zero. Likewise, a completed record with no numerical percentage but without the explicit terminal non-evaluable adjudication status is treated as a technical/data-quality exception. Human Review Overall remains withheld until it is resolved.</li>
+        <li><strong>Eligibility threshold:</strong> the metric becomes eligible only when all N planned algorithms are complete and each has either a numerical Human Rubric percentage or an explicit completed-non-scorable terminal outcome. For this study that is 50/50 terminal outcomes.</li>
+        <li><strong>Descriptive audit statistic:</strong> the numerical-only completed-review mean is shown separately. It deliberately excludes zero-credit non-scorable cases so the effect of the fixed-denominator rule is visible rather than hidden.</li>
+        <li><strong>Cross-agent final ranking:</strong> Combined Final is used for ranking only when <strong>every AI agent</strong> has an eligible Human Review Overall. Until then, all agents are ranked on Automated Overall only and the ranking is labelled provisional.</li>
+      </ul>
+      <p><strong>Methodological precedent (analogy, not an identical rubric):</strong> fixed-denominator code-generation benchmarks such as HumanEval (Chen et al., 2021) and SWE-bench (Jimenez et al., 2023) evaluate a predefined set of problem instances and report success over that fixed instance set rather than dropping unsuccessful attempts from the denominator. NL-FDEP applies that benchmark principle only to an explicitly terminal human-review outcome: failure to produce assessable rubric evidence receives zero credit, while genuine missing/technical data do not.</p>
+      <p class="footnote"><strong>References:</strong> Chen, M. et al. (2021), <em>Evaluating Large Language Models Trained on Code</em>, <a href="https://arxiv.org/abs/2107.03374" target="_blank" rel="noopener noreferrer">arXiv:2107.03374</a>. Jimenez, C. E. et al. (2023), <em>SWE-bench: Can Language Models Resolve Real-World GitHub Issues?</em>, <a href="https://arxiv.org/abs/2310.06770" target="_blank" rel="noopener noreferrer">arXiv:2310.06770</a>.</p>
+      <div id="humanCoverageSummary" class="formula-grid"></div>
+    </section>
+
+    <section class="panel toolbar">
+      <div class="toolbar-left">
+        <span class="pill">Human review scores loaded from saved study artefacts</span>
+        <span class="pill">Read-only analytical view</span>
+        <span class="pill">Export CSV</span>
+      </div>
+      <div class="toolbar-right">
+        <button id="exportBtn" class="primary">Export final scoring CSV</button>
+      </div>
+    </section>
+
+    <section id="cards" class="cards"></section>
+
+    <section class="two-col">
+      <div class="panel chart-panel">
+        <h2>Comparative scoring overview — full-width axis-swapped view</h2>
+        <div id="chart"></div>
+        <div class="footnote">
+          The full-width axis-swapped chart places score percentage on the horizontal x-axis and AI agents on the vertical y-axis. On tablets and phones, the chart retains a constant 820 px height while its width automatically fits the available panel, with no horizontal overflow. It shows five values for each agent: mean semantic behavioural score, aggregate Common Test accuracy, automated overall score, human review overall score, and combined final score.
+          Human Review Overall and Combined Final remain blank until that agent has N/N terminal Human Review outcomes. Completed non-scorable outcomes contribute an explicit 0%; incomplete or technically unresolved values are never imputed.
+        </div>
+      </div>
+
+      <div class="panel table-panel">
+        <h2>Cross-agent scoring and ranking table</h2>
+        <div id="rankingStatus" class="status-banner provisional"></div>
+        <div id="rankingTable"></div>
+        <div class="footnote">
+          A final cross-agent ranking is produced only when every AI agent has an eligible N/N terminal Human Review set. Before that point, the displayed order is an <strong>automated-only provisional ranking for all agents</strong>; the dashboard never mixes final combined scores and automated-only scores in the same ranking.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const baseData = [{"model":"Claude sonnet 4.6","semanticScore":88.97,"accuracyScore":87.1,"automatedOverall":88.03,"humanScore":97.08,"humanCompletedMeanDescriptive":97.08,"humanReviewsCompleted":50,"humanReviewsScored":50,"humanReviewsCompletedWithoutScore":0,"humanReviewsCompletedWithoutScoreIds":[],"humanReviewsCompletedNonScorable":0,"humanReviewsCompletedNonScorableIds":[],"humanReviewsCompletedUnresolvedMissingScore":0,"humanReviewsCompletedUnresolvedMissingScoreIds":[],"humanReviewsTerminalResolved":50,"humanReviewsRequired":50,"humanReviewCoveragePercentage":100.0,"humanNumericScoreCoveragePercentage":100.0,"humanScoreCoveragePercentage":100.0,"humanTerminalOutcomeCoveragePercentage":100.0,"humanScoreEligible":true,"humanScoreEligibility":"ELIGIBLE_COMPLETE_N_OF_N_WITH_ZERO_CREDIT_NON_SCORABLE","humanZeroCreditRuleApplied":false,"humanZeroCreditCount":0,"humanZeroCreditAlgorithmIds":[],"success":39,"failure":10,"expectedFailure":1,"atReference":34,"belowReference":5,"notEvaluable":11},{"model":"ChatGPT 5.5","semanticScore":84.86,"accuracyScore":84.52,"automatedOverall":84.69,"humanScore":94.98,"humanCompletedMeanDescriptive":94.98,"humanReviewsCompleted":50,"humanReviewsScored":50,"humanReviewsCompletedWithoutScore":0,"humanReviewsCompletedWithoutScoreIds":[],"humanReviewsCompletedNonScorable":0,"humanReviewsCompletedNonScorableIds":[],"humanReviewsCompletedUnresolvedMissingScore":0,"humanReviewsCompletedUnresolvedMissingScoreIds":[],"humanReviewsTerminalResolved":50,"humanReviewsRequired":50,"humanReviewCoveragePercentage":100.0,"humanNumericScoreCoveragePercentage":100.0,"humanScoreCoveragePercentage":100.0,"humanTerminalOutcomeCoveragePercentage":100.0,"humanScoreEligible":true,"humanScoreEligibility":"ELIGIBLE_COMPLETE_N_OF_N_WITH_ZERO_CREDIT_NON_SCORABLE","humanZeroCreditRuleApplied":false,"humanZeroCreditCount":0,"humanZeroCreditAlgorithmIds":[],"success":35,"failure":15,"expectedFailure":0,"atReference":29,"belowReference":6,"notEvaluable":15},{"model":"Deepseek","semanticScore":83.75,"accuracyScore":82.65,"automatedOverall":83.2,"humanScore":96.52,"humanCompletedMeanDescriptive":96.52,"humanReviewsCompleted":50,"humanReviewsScored":50,"humanReviewsCompletedWithoutScore":0,"humanReviewsCompletedWithoutScoreIds":[],"humanReviewsCompletedNonScorable":0,"humanReviewsCompletedNonScorableIds":[],"humanReviewsCompletedUnresolvedMissingScore":0,"humanReviewsCompletedUnresolvedMissingScoreIds":[],"humanReviewsTerminalResolved":50,"humanReviewsRequired":50,"humanReviewCoveragePercentage":100.0,"humanNumericScoreCoveragePercentage":100.0,"humanScoreCoveragePercentage":100.0,"humanTerminalOutcomeCoveragePercentage":100.0,"humanScoreEligible":true,"humanScoreEligibility":"ELIGIBLE_COMPLETE_N_OF_N_WITH_ZERO_CREDIT_NON_SCORABLE","humanZeroCreditRuleApplied":false,"humanZeroCreditCount":0,"humanZeroCreditAlgorithmIds":[],"success":42,"failure":8,"expectedFailure":0,"atReference":33,"belowReference":7,"notEvaluable":10},{"model":"Gemini 3 flash","semanticScore":77.94,"accuracyScore":81.48,"automatedOverall":79.71,"humanScore":93.34,"humanCompletedMeanDescriptive":93.34,"humanReviewsCompleted":50,"humanReviewsScored":50,"humanReviewsCompletedWithoutScore":0,"humanReviewsCompletedWithoutScoreIds":[],"humanReviewsCompletedNonScorable":0,"humanReviewsCompletedNonScorableIds":[],"humanReviewsCompletedUnresolvedMissingScore":0,"humanReviewsCompletedUnresolvedMissingScoreIds":[],"humanReviewsTerminalResolved":50,"humanReviewsRequired":50,"humanReviewCoveragePercentage":100.0,"humanNumericScoreCoveragePercentage":100.0,"humanScoreCoveragePercentage":100.0,"humanTerminalOutcomeCoveragePercentage":100.0,"humanScoreEligible":true,"humanScoreEligibility":"ELIGIBLE_COMPLETE_N_OF_N_WITH_ZERO_CREDIT_NON_SCORABLE","humanZeroCreditRuleApplied":false,"humanZeroCreditCount":0,"humanZeroCreditAlgorithmIds":[],"success":39,"failure":11,"expectedFailure":0,"atReference":26,"belowReference":8,"notEvaluable":16},{"model":"Groq llama-3.3-70b-versatile","semanticScore":79.64,"accuracyScore":75.28,"automatedOverall":77.46,"humanScore":90.91,"humanCompletedMeanDescriptive":92.77,"humanReviewsCompleted":50,"humanReviewsScored":49,"humanReviewsCompletedWithoutScore":1,"humanReviewsCompletedWithoutScoreIds":[49],"humanReviewsCompletedNonScorable":1,"humanReviewsCompletedNonScorableIds":[49],"humanReviewsCompletedUnresolvedMissingScore":0,"humanReviewsCompletedUnresolvedMissingScoreIds":[],"humanReviewsTerminalResolved":50,"humanReviewsRequired":50,"humanReviewCoveragePercentage":100.0,"humanNumericScoreCoveragePercentage":98.0,"humanScoreCoveragePercentage":100.0,"humanTerminalOutcomeCoveragePercentage":100.0,"humanScoreEligible":true,"humanScoreEligibility":"ELIGIBLE_COMPLETE_N_OF_N_WITH_ZERO_CREDIT_NON_SCORABLE","humanZeroCreditRuleApplied":true,"humanZeroCreditCount":1,"humanZeroCreditAlgorithmIds":[49],"success":46,"failure":4,"expectedFailure":0,"atReference":28,"belowReference":9,"notEvaluable":13},{"model":"Qwen 3.6 plus","semanticScore":74.67,"accuracyScore":73.47,"automatedOverall":74.07,"humanScore":95.83,"humanCompletedMeanDescriptive":95.83,"humanReviewsCompleted":50,"humanReviewsScored":50,"humanReviewsCompletedWithoutScore":0,"humanReviewsCompletedWithoutScoreIds":[],"humanReviewsCompletedNonScorable":0,"humanReviewsCompletedNonScorableIds":[],"humanReviewsCompletedUnresolvedMissingScore":0,"humanReviewsCompletedUnresolvedMissingScoreIds":[],"humanReviewsTerminalResolved":50,"humanReviewsRequired":50,"humanReviewCoveragePercentage":100.0,"humanNumericScoreCoveragePercentage":100.0,"humanScoreCoveragePercentage":100.0,"humanTerminalOutcomeCoveragePercentage":100.0,"humanScoreEligible":true,"humanScoreEligibility":"ELIGIBLE_COMPLETE_N_OF_N_WITH_ZERO_CREDIT_NON_SCORABLE","humanZeroCreditRuleApplied":false,"humanZeroCreditCount":0,"humanZeroCreditAlgorithmIds":[],"success":42,"failure":5,"expectedFailure":3,"atReference":29,"belowReference":11,"notEvaluable":10}];
+    function getWorkingData() {
+      return baseData.map(d => {
+        const humanScore = d.humanScoreEligible && d.humanScore != null && !Number.isNaN(+d.humanScore)
+          ? Number((+d.humanScore).toFixed(2))
+          : null;
+        const combinedFinal = humanScore === null
+          ? null
+          : Number(((d.automatedOverall + humanScore) / 2).toFixed(2));
+        return {...d, humanScore, combinedFinal};
+      });
+    }
+
+    function renderHumanCoverageSummary() {
+      const data = getWorkingData();
+      d3.select("#humanCoverageSummary")
+        .selectAll(".eligibility-card")
+        .data(data, d => d.model)
+        .join("div")
+        .attr("class", d => "eligibility-card " + (d.humanScoreEligible ? "eligible" : "withheld"))
+        .html(d => {
+          const descriptive = d.humanCompletedMeanDescriptive == null
+            ? "—"
+            : Number(d.humanCompletedMeanDescriptive).toFixed(2) + "%";
+          const finalHuman = d.humanScore === null ? "WITHHELD" : d.humanScore.toFixed(2) + "%";
+          return `
+            <div class="model">${d.model}</div>
+            <div class="line"><span>Completed reviews</span><strong>${d.humanReviewsCompleted}/${d.humanReviewsRequired}</strong></div>
+            <div class="line"><span>Review completion coverage</span><strong>${Number(d.humanReviewCoveragePercentage).toFixed(2)}%</strong></div>
+            <div class="line"><span>Numerical Human Rubric scores</span><strong>${d.humanReviewsScored}/${d.humanReviewsRequired} (${Number(d.humanNumericScoreCoveragePercentage).toFixed(2)}%)</strong></div>
+            <div class="line"><span>Completed non-scorable → 0%</span><strong>${d.humanReviewsCompletedNonScorable ? `${d.humanReviewsCompletedNonScorable} — Algorithm${d.humanReviewsCompletedNonScorable === 1 ? "" : "s"} ${(d.humanReviewsCompletedNonScorableIds || []).join(", ")}` : "0"}</strong></div>
+            <div class="line"><span>Unresolved completed missing-score records</span><strong>${d.humanReviewsCompletedUnresolvedMissingScore ? `${d.humanReviewsCompletedUnresolvedMissingScore} — Algorithm${d.humanReviewsCompletedUnresolvedMissingScore === 1 ? "" : "s"} ${(d.humanReviewsCompletedUnresolvedMissingScoreIds || []).join(", ")}` : "0"}</strong></div>
+            <div class="line"><span>Terminal outcome coverage</span><strong>${d.humanReviewsTerminalResolved}/${d.humanReviewsRequired} (${Number(d.humanTerminalOutcomeCoveragePercentage).toFixed(2)}%)</strong></div>
+            <div class="line"><span>Numerical-only completed mean</span><strong>${descriptive} (audit only)</strong></div>
+            <div class="line"><span>Human Review Overall</span><strong>${finalHuman}</strong></div>
+            <div class="line"><span>Eligibility</span><strong>${d.humanScoreEligible ? `ELIGIBLE — ${d.humanReviewsRequired}/${d.humanReviewsRequired} TERMINAL; ${d.humanZeroCreditCount} ZERO-CREDIT NON-SCORABLE` : (d.humanReviewsCompletedUnresolvedMissingScore ? "WITHHELD — TECHNICAL/DATA MISSING HUMAN RUBRIC" : "WITHHELD — REVIEW COVERAGE INCOMPLETE")}</strong></div>`;
+        });
+    }
+
+    function renderCards() {
+      const data = getWorkingData();
+      const cards = d3.select("#cards")
+        .selectAll(".score-card")
+        .data(data, d => d.model)
+        .join("section")
+        .attr("class", "panel score-card");
+
+      cards.html("");
+
+      cards.each(function(d) {
+        const card = d3.select(this);
+
+        card.append("h2").text(d.model);
+
+        const metrics = card.append("div").attr("class", "metric-grid");
+
+        const items = [
+          ["Mean semantic behavioural", d.semanticScore.toFixed(2) + "%"],
+          ["Aggregate Common Test accuracy", d.accuracyScore.toFixed(2) + "%"],
+          ["Automated overall score", d.automatedOverall.toFixed(2) + "%"],
+          ["Human review completion", `${d.humanReviewsCompleted}/${d.humanReviewsRequired}; numeric ${d.humanReviewsScored}/${d.humanReviewsRequired}; zero-credit ${d.humanZeroCreditCount}`]
+        ];
+
+        items.forEach(([label, value]) => {
+          const item = metrics.append("div").attr("class", "metric");
+          item.append("div").attr("class", "label").text(label);
+          item.append("div").attr("class", "value").text(value);
+        });
+
+        const humanRow = card.append("div").attr("class", "human-row");
+        humanRow.append("label").text(`Human Review Overall (fixed denominator N=${d.humanReviewsRequired})`);
+        humanRow.append("div")
+          .attr("class", "metric value")
+          .style("text-align", "right")
+          .text(d.humanScore === null ? "—" : d.humanScore.toFixed(2) + "%");
+
+        const finalBox = card.append("div").attr("class", "final-score");
+        finalBox.append("div").attr("class", "label").text("Combined final score");
+        finalBox.append("div").attr("class", "value").text(
+          d.combinedFinal === null ? "—" : d.combinedFinal.toFixed(2) + "%"
+        );
+
+        card.append("div")
+          .attr("class", "status-note")
+          .text(() => {
+            if (d.humanScoreEligible) {
+              const zeroNote = d.humanZeroCreditCount
+                ? ` Completed non-scorable Algorithm${d.humanZeroCreditCount === 1 ? "" : "s"} ${(d.humanZeroCreditAlgorithmIds || []).join(", ")} ${d.humanZeroCreditCount === 1 ? "contributes" : "contribute"} 0% under the declared failure-to-demonstrate rule.`
+                : "";
+              return `Eligible: ${d.humanReviewsRequired}/${d.humanReviewsRequired} planned algorithms have terminal Human Review outcomes. Human Review Overall keeps the fixed denominator N=${d.humanReviewsRequired}.${zeroNote} Combined Final is the average of Automated Overall and Human Review Overall.`;
+            }
+            const descriptive = d.humanCompletedMeanDescriptive == null
+              ? "no numerical completed-review mean is available yet"
+              : `the numerical-only completed-review mean is ${Number(d.humanCompletedMeanDescriptive).toFixed(2)}%`;
+            const unresolved = (d.humanReviewsCompletedUnresolvedMissingScoreIds || []);
+            const reason = unresolved.length
+              ? `Algorithm${unresolved.length === 1 ? "" : "s"} ${unresolved.join(", ")} ${unresolved.length === 1 ? "is" : "are"} complete but missing a Human Rubric percentage without the terminal non-evaluable adjudication status; this is treated as a technical/data-quality exception, not zero.`
+              : `${d.humanReviewsCompleted}/${d.humanReviewsRequired} reviews are complete.`;
+            return `WITHHELD: ${reason} ${d.humanReviewsTerminalResolved}/${d.humanReviewsRequired} terminal Human Review outcomes are available. ${descriptive}; it is audit-only while the final metric is withheld.`;
+          });
+      });
+    }
+
+    function renderChart() {
+      if (typeof d3 === "undefined") {
+        document.getElementById("fallback").style.display = "block";
+        return;
+      }
+
+      const data = getWorkingData();
+      const models = data.map(d => d.model);
+      const measures = [
+        { key: "semanticScore", label: "Mean semantic behavioural", colour: "#6ec5ff" },
+        { key: "accuracyScore", label: "Aggregate Common Test accuracy", colour: "#2ca25f" },
+        { key: "automatedOverall", label: "Automated overall", colour: "#315efb" },
+        { key: "humanScore", label: "Human review overall", colour: "#ffc145" },
+        { key: "combinedFinal", label: "Combined final", colour: "#7a5af8" }
+      ];
+
+      const containerNode = document.getElementById("chart");
+      const measuredWidth = Math.max(320, containerNode.clientWidth || 900);
+
+      const container = d3.select("#chart");
+      container.selectAll("*").remove();
+
+      // Width follows the actual dashboard panel; height remains constant.
+      const width = measuredWidth;
+      const height = 820;
+
+      // Margins adapt on smaller screens so the plot remains legible
+      // without creating horizontal overflow.
+      const compact = width < 760;
+      const veryCompact = width < 520;
+
+      const margin = {
+        top: 30,
+        right: compact ? 26 : 42,
+        bottom: 225,
+        left: veryCompact ? 108 : compact ? 145 : 205
+      };
+
+      const innerWidth = Math.max(120, width - margin.left - margin.right);
+      const innerHeight = height - margin.top - margin.bottom;
+
+      const svg = container.append("svg")
+        .attr("width", width)
+        .attr("height", height)
+        .attr("viewBox", `0 0 ${width} ${height}`)
+        .attr("preserveAspectRatio", "none");
+
+      const g = svg.append("g")
+        .attr("transform", `translate(${margin.left},${margin.top})`);
+
+      const x = d3.scaleLinear()
+        .domain([0, 100])
+        .range([0, innerWidth]);
+
+      const y0 = d3.scaleBand()
+        .domain(models)
+        .range([0, innerHeight])
+        .paddingInner(0.18);
+
+      const y1 = d3.scaleBand()
+        .domain(measures.map(m => m.key))
+        .range([0, y0.bandwidth()])
+        .padding(0.08);
+
+      // Percentage grid.
+      g.append("g")
+        .selectAll("line.score-grid")
+        .data(x.ticks(compact ? 5 : 10))
+        .join("line")
+        .attr("class", "score-grid")
+        .attr("x1", d => x(d))
+        .attr("x2", d => x(d))
+        .attr("y1", 0)
+        .attr("y2", innerHeight)
+        .attr("stroke", "#e7edf5")
+        .attr("stroke-width", 1);
+
+      // X axis.
+      g.append("g")
+        .attr("transform", `translate(0,${innerHeight})`)
+        .call(
+          d3.axisBottom(x)
+            .ticks(compact ? 5 : 10)
+            .tickFormat(d => d + "%")
+        )
+        .selectAll("text")
+        .attr("font-size", compact ? 10.5 : 12);
+
+      // Y axis.
+      const yAxis = g.append("g")
+        .call(d3.axisLeft(y0).tickSizeOuter(0));
+
+      yAxis.selectAll("text")
+        .attr("font-size", veryCompact ? 8.5 : compact ? 10.5 : 13)
+        .attr("font-weight", 650)
+        .attr("fill", "#293246");
+
+      // Shorten long model names only when the available width is extremely narrow.
+      if (veryCompact) {
+        yAxis.selectAll(".tick text")
+          .text(d => {
+            if (d.length <= 15) return d;
+            return d.slice(0, 13) + "…";
+          })
+          .append("title")
+          .text(d => d);
+      }
+
+      const groups = g.selectAll(".model-group")
+        .data(data)
+        .join("g")
+        .attr("class", "model-group")
+        .attr("transform", d => `translate(0,${y0(d.model)})`);
+
+      groups.selectAll("rect")
+        .data(d => measures.map(m => ({
+          model: d.model,
+          key: m.key,
+          label: m.label,
+          colour: m.colour,
+          value: d[m.key]
+        })))
+        .join("rect")
+        .attr("x", 0)
+        .attr("y", d => y1(d.key))
+        .attr("width", d => d.value === null ? 0 : x(d.value))
+        .attr("height", y1.bandwidth())
+        .attr("rx", 3)
+        .attr("fill", d => d.colour)
+        .append("title")
+        .text(d =>
+          `${d.model} — ${d.label}: ${d.value === null ? "not entered" : d.value.toFixed(2) + "%"}`
+        );
+
+      // Value labels are hidden only on very narrow phone widths, where
+      // the tooltip/title remains available and the graph itself stays uncluttered.
+      if (!veryCompact) {
+        groups.selectAll("text.value-label")
+          .data(d => measures.map(m => ({
+            key: m.key,
+            value: d[m.key]
+          })).filter(d => d.value !== null))
+          .join("text")
+          .attr("class", "value-label")
+          .attr("x", d => {
+            const px = x(d.value);
+            return px > innerWidth - 58 ? Math.max(4, px - 5) : px + 6;
+          })
+          .attr("y", d => y1(d.key) + y1.bandwidth() / 2)
+          .attr("dominant-baseline", "middle")
+          .attr("text-anchor", d => x(d.value) > innerWidth - 58 ? "end" : "start")
+          .attr("font-size", compact ? 9.5 : 11.5)
+          .attr("font-weight", 650)
+          .attr("fill", "#52606f")
+          .text(d => d.value.toFixed(2) + "%");
+      }
+
+      svg.append("text")
+        .attr("x", margin.left + innerWidth / 2)
+        .attr("y", margin.top + innerHeight + 48)
+        .attr("text-anchor", "middle")
+        .attr("font-size", compact ? 11.5 : 13)
+        .attr("font-weight", 700)
+        .attr("fill", "#52606f")
+        .text("Score (%)");
+
+      // Colour key beneath the graph. Its width adapts to the chart width,
+      // so it never causes horizontal overflow.
+      const legendWidth = Math.min(430, Math.max(250, width - 40));
+      const legendRowHeight = 27;
+      const legendHeight = 36 + measures.length * legendRowHeight;
+      const legendX = (width - legendWidth) / 2;
+      const legendY = margin.top + innerHeight + 78;
+
+      const legend = svg.append("g")
+        .attr("transform", `translate(${legendX},${legendY})`);
+
+      legend.append("rect")
+        .attr("width", legendWidth)
+        .attr("height", legendHeight)
+        .attr("rx", 12)
+        .attr("fill", "#ffffff")
+        .attr("stroke", "#d9e0ea");
+
+      legend.append("text")
+        .attr("x", 18)
+        .attr("y", 24)
+        .attr("font-size", 12.5)
+        .attr("font-weight", 750)
+        .attr("fill", "#172033")
+        .text("Colour key");
+
+      measures.forEach((m, i) => {
+        const rowY = 40 + i * legendRowHeight;
+
+        legend.append("rect")
+          .attr("x", 18)
+          .attr("y", rowY - 10)
+          .attr("width", 15)
+          .attr("height", 15)
+          .attr("rx", 3)
+          .attr("fill", m.colour);
+
+        legend.append("text")
+          .attr("x", 44)
+          .attr("y", rowY + 2)
+          .attr("font-size", compact ? 10.5 : 12)
+          .attr("fill", "#516070")
+          .text(m.label);
+      });
+    }
+
+    function rankingRows() {
+      const working = getWorkingData();
+      const finalRankingAvailable = working.length > 0 && working.every(d => d.humanScoreEligible && d.combinedFinal !== null);
+      const data = working.map(d => ({
+        ...d,
+        rankingScore: finalRankingAvailable ? d.combinedFinal : d.automatedOverall,
+        rankingBasis: finalRankingAvailable
+          ? "Combined final — final ranking"
+          : "Automated overall — provisional (human terminal outcomes incomplete/unresolved)",
+        finalRankingAvailable
+      }));
+      return data.sort((a, b) => b.rankingScore - a.rankingScore);
+    }
+
+    function renderTable() {
+      const rows = rankingRows();
+      const host = d3.select("#rankingTable");
+      host.selectAll("*").remove();
+
+      const finalRankingAvailable = rows.length > 0 && rows.every(d => d.finalRankingAvailable);
+      d3.select("#rankingStatus")
+        .attr("class", "status-banner " + (finalRankingAvailable ? "final" : "provisional"))
+        .html(finalRankingAvailable
+          ? `<strong>FINAL RANKING ACTIVE:</strong> every AI agent has ${rows[0]?.humanReviewsRequired ?? 0}/${rows[0]?.humanReviewsRequired ?? 0} terminal Human Review outcomes; completed non-scorable outcomes are retained as explicit 0% contributions. All agents are ranked by Combined Final.`
+          : `<strong>FINAL RANKING WITHHELD:</strong> at least one AI agent lacks a complete and resolved ${rows[0]?.humanReviewsRequired ?? 0}/${rows[0]?.humanReviewsRequired ?? 0} Human Review set. All agents are therefore ordered by Automated Overall only; this ranking is provisional.`);
+
+      const table = host.append("table");
+      const thead = table.append("thead").append("tr");
+      ["Rank", "Model", "Automated overall", "Human completion / numeric / zero-credit", "Human Review Overall", "Combined final", "Ranking basis"].forEach(h => {
+        thead.append("th").text(h);
+      });
+
+      const tbody = table.append("tbody");
+      rows.forEach((d, i) => {
+        const tr = tbody.append("tr");
+        tr.append("td").html("<strong>" + (i + 1) + "</strong>");
+        tr.append("td").text(d.model);
+        tr.append("td").text(d.automatedOverall.toFixed(2) + "%");
+        tr.append("td").text(`${d.humanReviewsCompleted}/${d.humanReviewsRequired} complete; ${d.humanReviewsScored}/${d.humanReviewsRequired} numeric; ${d.humanZeroCreditCount} zero-credit`);
+        tr.append("td").text(d.humanScore === null ? "WITHHELD" : d.humanScore.toFixed(2) + "%");
+        tr.append("td").text(d.combinedFinal === null ? "WITHHELD" : d.combinedFinal.toFixed(2) + "%");
+        tr.append("td").text(d.rankingBasis);
+      });
+    }
+
+    function exportCSV() {
+      const rows = rankingRows().map((d, i) => ({
+        Rank: i + 1,
+        Model: d.model,
+        MeanSemanticBehaviouralScore: d.semanticScore.toFixed(2),
+        AggregateCommonTestAccuracy: d.accuracyScore.toFixed(2),
+        AutomatedOverallScore: d.automatedOverall.toFixed(2),
+        HumanReviewsCompleted: d.humanReviewsCompleted,
+        HumanReviewsScored: d.humanReviewsScored,
+        HumanReviewsCompletedWithoutScore: d.humanReviewsCompletedWithoutScore,
+        HumanReviewsCompletedWithoutScoreIds: (d.humanReviewsCompletedWithoutScoreIds || []).join(";"),
+        HumanReviewsCompletedNonScorableZeroCredit: d.humanReviewsCompletedNonScorable,
+        HumanReviewsCompletedNonScorableZeroCreditIds: (d.humanReviewsCompletedNonScorableIds || []).join(";"),
+        HumanReviewsCompletedUnresolvedMissingScore: d.humanReviewsCompletedUnresolvedMissingScore,
+        HumanReviewsCompletedUnresolvedMissingScoreIds: (d.humanReviewsCompletedUnresolvedMissingScoreIds || []).join(";"),
+        HumanReviewsTerminalResolved: d.humanReviewsTerminalResolved,
+        HumanReviewsRequired: d.humanReviewsRequired,
+        HumanReviewCoveragePercentage: Number(d.humanReviewCoveragePercentage).toFixed(2),
+        HumanNumericScoreCoveragePercentage: Number(d.humanNumericScoreCoveragePercentage).toFixed(2),
+        HumanTerminalOutcomeCoveragePercentage: Number(d.humanTerminalOutcomeCoveragePercentage).toFixed(2),
+        HumanScoreEligibility: d.humanScoreEligibility,
+        HumanZeroCreditRuleApplied: d.humanZeroCreditRuleApplied,
+        CompletedHumanMeanDescriptiveOnly: d.humanCompletedMeanDescriptive == null ? "" : Number(d.humanCompletedMeanDescriptive).toFixed(2),
+        HumanReviewOverallScore: d.humanScore === null ? "" : d.humanScore.toFixed(2),
+        CombinedFinalScore: d.combinedFinal === null ? "" : d.combinedFinal.toFixed(2),
+        RankingBasis: d.rankingBasis,
+        Success: d.success,
+        Failure: d.failure,
+        ExpectedFailure: d.expectedFailure,
+        AtReference: d.atReference,
+        BelowReference: d.belowReference,
+        NotEvaluable: d.notEvaluable
+      }));
+
+      const headers = Object.keys(rows[0]);
+      const csv = [
+        headers.join(","),
+        ...rows.map(r => headers.map(h => {
+          const value = String(r[h] ?? "");
+          return /[",\n]/.test(value) ? '"' + value.replace(/"/g, '""') + '"' : value;
+        }).join(","))
+      ].join("\n");
+
+      const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "nl_fdep_final_scoring_dashboard_export.csv";
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    document.getElementById("exportBtn").addEventListener("click", exportCSV);
+
+    renderHumanCoverageSummary();
+    renderCards();
+    renderChart();
+    renderTable();
+
+    let resizeTimer = null;
+    window.addEventListener("resize", () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        renderChart();
+      }, 120);
+    });
+  </script>
+</body>
+</html>
