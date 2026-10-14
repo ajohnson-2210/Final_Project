@@ -1,0 +1,1168 @@
+{
+  "format": "NL-FDEP Flow Diagram",
+  "version": "1.0",
+  "entry_node": "F1",
+  "exit_node": "F2",
+  "nodes": {
+    "F1": {
+      "node_id": "F1",
+      "node_type": "START",
+      "label": "Start",
+      "line": 1,
+      "data": {}
+    },
+    "F2": {
+      "node_id": "F2",
+      "node_type": "END",
+      "label": "End",
+      "line": 1,
+      "data": {}
+    },
+    "F3": {
+      "node_id": "F3",
+      "node_type": "PROCESS",
+      "label": "Set vowel to [\"a\", \"e\", \"i\", \"o\", \"u\"]",
+      "line": 1,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F4": {
+      "node_id": "F4",
+      "node_type": "PROCESS",
+      "label": "Set text to \"This is a sentence that contains vowels\"",
+      "line": 2,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F5": {
+      "node_id": "F5",
+      "node_type": "PROCESS",
+      "label": "Set a to 0",
+      "line": 3,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F6": {
+      "node_id": "F6",
+      "node_type": "PROCESS",
+      "label": "Set e to 0",
+      "line": 4,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F7": {
+      "node_id": "F7",
+      "node_type": "PROCESS",
+      "label": "Set i to 0",
+      "line": 5,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F8": {
+      "node_id": "F8",
+      "node_type": "PROCESS",
+      "label": "Set o to 0",
+      "line": 6,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F9": {
+      "node_id": "F9",
+      "node_type": "PROCESS",
+      "label": "Set u to 0",
+      "line": 7,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F10": {
+      "node_id": "F10",
+      "node_type": "PROCESS",
+      "label": "Set textlist to an empty list",
+      "line": 8,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F11": {
+      "node_id": "F11",
+      "node_type": "LOOP_DECISION",
+      "label": "For each character in text",
+      "line": 9,
+      "data": {
+        "ast_kind": "ForEachNode"
+      }
+    },
+    "F12": {
+      "node_id": "F12",
+      "node_type": "PROCESS",
+      "label": "Append the result of character.lower() to textlist",
+      "line": 10,
+      "data": {
+        "ast_kind": "AppendNode"
+      }
+    },
+    "F13": {
+      "node_id": "F13",
+      "node_type": "LOOP_DECISION",
+      "label": "For b from 0 to the length of textlist",
+      "line": 12,
+      "data": {
+        "ast_kind": "ForRangeNode"
+      }
+    },
+    "F14": {
+      "node_id": "F14",
+      "node_type": "LOOP_DECISION",
+      "label": "For j from 0 to the length of vowel",
+      "line": 13,
+      "data": {
+        "ast_kind": "ForRangeNode"
+      }
+    },
+    "F15": {
+      "node_id": "F15",
+      "node_type": "DECISION",
+      "label": "Item j of vowel is equal to item b of textlist?",
+      "line": 14,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F16": {
+      "node_id": "F16",
+      "node_type": "DECISION",
+      "label": "J is equal to 0?",
+      "line": 15,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F17": {
+      "node_id": "F17",
+      "node_type": "PROCESS",
+      "label": "Set a to a plus 1",
+      "line": 16,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F18": {
+      "node_id": "F18",
+      "node_type": "BREAK",
+      "label": "Exit the current loop",
+      "line": 17,
+      "data": {
+        "ast_kind": "BreakNode"
+      }
+    },
+    "F19": {
+      "node_id": "F19",
+      "node_type": "DECISION",
+      "label": "J is equal to 1?",
+      "line": 18,
+      "data": {
+        "ast_kind": "ElseIfNode"
+      }
+    },
+    "F20": {
+      "node_id": "F20",
+      "node_type": "PROCESS",
+      "label": "Set e to e plus 1",
+      "line": 19,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F21": {
+      "node_id": "F21",
+      "node_type": "BREAK",
+      "label": "Exit the current loop",
+      "line": 20,
+      "data": {
+        "ast_kind": "BreakNode"
+      }
+    },
+    "F22": {
+      "node_id": "F22",
+      "node_type": "DECISION",
+      "label": "J is equal to 2?",
+      "line": 21,
+      "data": {
+        "ast_kind": "ElseIfNode"
+      }
+    },
+    "F23": {
+      "node_id": "F23",
+      "node_type": "PROCESS",
+      "label": "Set i to i plus 1",
+      "line": 22,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F24": {
+      "node_id": "F24",
+      "node_type": "BREAK",
+      "label": "Exit the current loop",
+      "line": 23,
+      "data": {
+        "ast_kind": "BreakNode"
+      }
+    },
+    "F25": {
+      "node_id": "F25",
+      "node_type": "DECISION",
+      "label": "J is equal to 3?",
+      "line": 24,
+      "data": {
+        "ast_kind": "ElseIfNode"
+      }
+    },
+    "F26": {
+      "node_id": "F26",
+      "node_type": "PROCESS",
+      "label": "Set o to o plus 1",
+      "line": 25,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F27": {
+      "node_id": "F27",
+      "node_type": "BREAK",
+      "label": "Exit the current loop",
+      "line": 26,
+      "data": {
+        "ast_kind": "BreakNode"
+      }
+    },
+    "F28": {
+      "node_id": "F28",
+      "node_type": "DECISION",
+      "label": "J is equal to 4?",
+      "line": 27,
+      "data": {
+        "ast_kind": "ElseIfNode"
+      }
+    },
+    "F29": {
+      "node_id": "F29",
+      "node_type": "PROCESS",
+      "label": "Set u to u plus 1",
+      "line": 28,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F30": {
+      "node_id": "F30",
+      "node_type": "BREAK",
+      "label": "Exit the current loop",
+      "line": 29,
+      "data": {
+        "ast_kind": "BreakNode"
+      }
+    },
+    "F31": {
+      "node_id": "F31",
+      "node_type": "OUTPUT",
+      "label": "Display \"The text contains the vowel a {a} times\"",
+      "line": 34,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F32": {
+      "node_id": "F32",
+      "node_type": "OUTPUT",
+      "label": "Display \"The text contains the vowel e {e} times\"",
+      "line": 35,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F33": {
+      "node_id": "F33",
+      "node_type": "OUTPUT",
+      "label": "Display \"The text contains the vowel i {i} times\"",
+      "line": 36,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F34": {
+      "node_id": "F34",
+      "node_type": "OUTPUT",
+      "label": "Display \"The text contains the vowel o {o} times\"",
+      "line": 37,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F35": {
+      "node_id": "F35",
+      "node_type": "OUTPUT",
+      "label": "Display \"The text contains the vowel u {u} times\"",
+      "line": 38,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "F3",
+      "target": "F4",
+      "label": "NEXT"
+    },
+    {
+      "source": "F4",
+      "target": "F5",
+      "label": "NEXT"
+    },
+    {
+      "source": "F5",
+      "target": "F6",
+      "label": "NEXT"
+    },
+    {
+      "source": "F6",
+      "target": "F7",
+      "label": "NEXT"
+    },
+    {
+      "source": "F7",
+      "target": "F8",
+      "label": "NEXT"
+    },
+    {
+      "source": "F8",
+      "target": "F9",
+      "label": "NEXT"
+    },
+    {
+      "source": "F9",
+      "target": "F10",
+      "label": "NEXT"
+    },
+    {
+      "source": "F11",
+      "target": "F12",
+      "label": "ITERATE"
+    },
+    {
+      "source": "F12",
+      "target": "F11",
+      "label": "LOOP"
+    },
+    {
+      "source": "F10",
+      "target": "F11",
+      "label": "NEXT"
+    },
+    {
+      "source": "F17",
+      "target": "F18",
+      "label": "NEXT"
+    },
+    {
+      "source": "F16",
+      "target": "F17",
+      "label": "TRUE"
+    },
+    {
+      "source": "F16",
+      "target": "F19",
+      "label": "FALSE"
+    },
+    {
+      "source": "F20",
+      "target": "F21",
+      "label": "NEXT"
+    },
+    {
+      "source": "F19",
+      "target": "F20",
+      "label": "TRUE"
+    },
+    {
+      "source": "F19",
+      "target": "F22",
+      "label": "FALSE"
+    },
+    {
+      "source": "F23",
+      "target": "F24",
+      "label": "NEXT"
+    },
+    {
+      "source": "F22",
+      "target": "F23",
+      "label": "TRUE"
+    },
+    {
+      "source": "F22",
+      "target": "F25",
+      "label": "FALSE"
+    },
+    {
+      "source": "F26",
+      "target": "F27",
+      "label": "NEXT"
+    },
+    {
+      "source": "F25",
+      "target": "F26",
+      "label": "TRUE"
+    },
+    {
+      "source": "F25",
+      "target": "F28",
+      "label": "FALSE"
+    },
+    {
+      "source": "F29",
+      "target": "F30",
+      "label": "NEXT"
+    },
+    {
+      "source": "F28",
+      "target": "F29",
+      "label": "TRUE"
+    },
+    {
+      "source": "F15",
+      "target": "F16",
+      "label": "TRUE"
+    },
+    {
+      "source": "F14",
+      "target": "F15",
+      "label": "ITERATE"
+    },
+    {
+      "source": "F28",
+      "target": "F14",
+      "label": "LOOP"
+    },
+    {
+      "source": "F15",
+      "target": "F14",
+      "label": "LOOP"
+    },
+    {
+      "source": "F13",
+      "target": "F14",
+      "label": "ITERATE"
+    },
+    {
+      "source": "F14",
+      "target": "F13",
+      "label": "LOOP"
+    },
+    {
+      "source": "F18",
+      "target": "F13",
+      "label": "LOOP"
+    },
+    {
+      "source": "F21",
+      "target": "F13",
+      "label": "LOOP"
+    },
+    {
+      "source": "F24",
+      "target": "F13",
+      "label": "LOOP"
+    },
+    {
+      "source": "F27",
+      "target": "F13",
+      "label": "LOOP"
+    },
+    {
+      "source": "F30",
+      "target": "F13",
+      "label": "LOOP"
+    },
+    {
+      "source": "F11",
+      "target": "F13",
+      "label": "NEXT"
+    },
+    {
+      "source": "F13",
+      "target": "F31",
+      "label": "NEXT"
+    },
+    {
+      "source": "F31",
+      "target": "F32",
+      "label": "NEXT"
+    },
+    {
+      "source": "F32",
+      "target": "F33",
+      "label": "NEXT"
+    },
+    {
+      "source": "F33",
+      "target": "F34",
+      "label": "NEXT"
+    },
+    {
+      "source": "F34",
+      "target": "F35",
+      "label": "NEXT"
+    },
+    {
+      "source": "F1",
+      "target": "F3",
+      "label": "NEXT"
+    },
+    {
+      "source": "F35",
+      "target": "F2",
+      "label": "NEXT"
+    }
+  ],
+  "structured_program": {
+    "kind": "ProgramNode",
+    "line": 1,
+    "body": [
+      {
+        "kind": "AssignmentNode",
+        "line": 1,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 1,
+          "name": "vowel"
+        },
+        "value": {
+          "kind": "ListLiteralNode",
+          "line": 1,
+          "items": [
+            {
+              "kind": "LiteralNode",
+              "line": 1,
+              "value": "a",
+              "data_type": "STRING"
+            },
+            {
+              "kind": "LiteralNode",
+              "line": 1,
+              "value": "e",
+              "data_type": "STRING"
+            },
+            {
+              "kind": "LiteralNode",
+              "line": 1,
+              "value": "i",
+              "data_type": "STRING"
+            },
+            {
+              "kind": "LiteralNode",
+              "line": 1,
+              "value": "o",
+              "data_type": "STRING"
+            },
+            {
+              "kind": "LiteralNode",
+              "line": 1,
+              "value": "u",
+              "data_type": "STRING"
+            }
+          ],
+          "declared_type": null
+        }
+      },
+      {
+        "kind": "AssignmentNode",
+        "line": 2,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 2,
+          "name": "text"
+        },
+        "value": {
+          "kind": "LiteralNode",
+          "line": 2,
+          "value": "This is a sentence that contains vowels",
+          "data_type": "STRING"
+        }
+      },
+      {
+        "kind": "AssignmentNode",
+        "line": 3,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 3,
+          "name": "a"
+        },
+        "value": {
+          "kind": "LiteralNode",
+          "line": 3,
+          "value": 0,
+          "data_type": "INTEGER"
+        }
+      },
+      {
+        "kind": "AssignmentNode",
+        "line": 4,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 4,
+          "name": "e"
+        },
+        "value": {
+          "kind": "LiteralNode",
+          "line": 4,
+          "value": 0,
+          "data_type": "INTEGER"
+        }
+      },
+      {
+        "kind": "AssignmentNode",
+        "line": 5,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 5,
+          "name": "i"
+        },
+        "value": {
+          "kind": "LiteralNode",
+          "line": 5,
+          "value": 0,
+          "data_type": "INTEGER"
+        }
+      },
+      {
+        "kind": "AssignmentNode",
+        "line": 6,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 6,
+          "name": "o"
+        },
+        "value": {
+          "kind": "LiteralNode",
+          "line": 6,
+          "value": 0,
+          "data_type": "INTEGER"
+        }
+      },
+      {
+        "kind": "AssignmentNode",
+        "line": 7,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 7,
+          "name": "u"
+        },
+        "value": {
+          "kind": "LiteralNode",
+          "line": 7,
+          "value": 0,
+          "data_type": "INTEGER"
+        }
+      },
+      {
+        "kind": "AssignmentNode",
+        "line": 8,
+        "target": {
+          "kind": "IdentifierNode",
+          "line": 8,
+          "name": "textlist"
+        },
+        "value": {
+          "kind": "EmptyLiteralNode",
+          "line": 8,
+          "empty_type": "LIST"
+        }
+      },
+      {
+        "kind": "ForEachNode",
+        "line": 9,
+        "variable": {
+          "kind": "IdentifierNode",
+          "line": 9,
+          "name": "character"
+        },
+        "collection": {
+          "kind": "IdentifierNode",
+          "line": 9,
+          "name": "text"
+        },
+        "body": {
+          "kind": "BlockNode",
+          "line": 10,
+          "statements": [
+            {
+              "kind": "AppendNode",
+              "line": 10,
+              "value": {
+                "kind": "MemberCallNode",
+                "line": 10,
+                "object": {
+                  "kind": "IdentifierNode",
+                  "line": 10,
+                  "name": "character"
+                },
+                "member": "lower",
+                "arguments": [],
+                "resolved_intrinsic": null
+              },
+              "collection": {
+                "kind": "IdentifierNode",
+                "line": 10,
+                "name": "textlist"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "kind": "ForRangeNode",
+        "line": 12,
+        "variable": {
+          "kind": "IdentifierNode",
+          "line": 12,
+          "name": "b"
+        },
+        "start": {
+          "kind": "LiteralNode",
+          "line": 12,
+          "value": 0,
+          "data_type": "INTEGER"
+        },
+        "end": {
+          "kind": "LengthNode",
+          "line": 12,
+          "expression": {
+            "kind": "IdentifierNode",
+            "line": 12,
+            "name": "textlist"
+          }
+        },
+        "step": null,
+        "body": {
+          "kind": "BlockNode",
+          "line": 13,
+          "statements": [
+            {
+              "kind": "ForRangeNode",
+              "line": 13,
+              "variable": {
+                "kind": "IdentifierNode",
+                "line": 13,
+                "name": "j"
+              },
+              "start": {
+                "kind": "LiteralNode",
+                "line": 13,
+                "value": 0,
+                "data_type": "INTEGER"
+              },
+              "end": {
+                "kind": "LengthNode",
+                "line": 13,
+                "expression": {
+                  "kind": "IdentifierNode",
+                  "line": 13,
+                  "name": "vowel"
+                }
+              },
+              "step": null,
+              "body": {
+                "kind": "BlockNode",
+                "line": 14,
+                "statements": [
+                  {
+                    "kind": "IfNode",
+                    "line": 14,
+                    "condition": {
+                      "kind": "BinaryNode",
+                      "line": 14,
+                      "operator": "==",
+                      "left": {
+                        "kind": "IndexNode",
+                        "line": 14,
+                        "collection": {
+                          "kind": "IdentifierNode",
+                          "line": 14,
+                          "name": "vowel"
+                        },
+                        "index": {
+                          "kind": "IdentifierNode",
+                          "line": 14,
+                          "name": "j"
+                        }
+                      },
+                      "right": {
+                        "kind": "IndexNode",
+                        "line": 14,
+                        "collection": {
+                          "kind": "IdentifierNode",
+                          "line": 14,
+                          "name": "textlist"
+                        },
+                        "index": {
+                          "kind": "IdentifierNode",
+                          "line": 14,
+                          "name": "b"
+                        }
+                      }
+                    },
+                    "then_body": {
+                      "kind": "BlockNode",
+                      "line": 15,
+                      "statements": [
+                        {
+                          "kind": "IfNode",
+                          "line": 15,
+                          "condition": {
+                            "kind": "BinaryNode",
+                            "line": 15,
+                            "operator": "==",
+                            "left": {
+                              "kind": "IdentifierNode",
+                              "line": 15,
+                              "name": "j"
+                            },
+                            "right": {
+                              "kind": "LiteralNode",
+                              "line": 15,
+                              "value": 0,
+                              "data_type": "INTEGER"
+                            }
+                          },
+                          "then_body": {
+                            "kind": "BlockNode",
+                            "line": 16,
+                            "statements": [
+                              {
+                                "kind": "AssignmentNode",
+                                "line": 16,
+                                "target": {
+                                  "kind": "IdentifierNode",
+                                  "line": 16,
+                                  "name": "a"
+                                },
+                                "value": {
+                                  "kind": "BinaryNode",
+                                  "line": 16,
+                                  "operator": "+",
+                                  "left": {
+                                    "kind": "IdentifierNode",
+                                    "line": 16,
+                                    "name": "a"
+                                  },
+                                  "right": {
+                                    "kind": "LiteralNode",
+                                    "line": 16,
+                                    "value": 1,
+                                    "data_type": "INTEGER"
+                                  }
+                                }
+                              },
+                              {
+                                "kind": "BreakNode",
+                                "line": 17
+                              }
+                            ]
+                          },
+                          "else_if": [
+                            {
+                              "kind": "ElseIfNode",
+                              "line": 18,
+                              "condition": {
+                                "kind": "BinaryNode",
+                                "line": 18,
+                                "operator": "==",
+                                "left": {
+                                  "kind": "IdentifierNode",
+                                  "line": 18,
+                                  "name": "j"
+                                },
+                                "right": {
+                                  "kind": "LiteralNode",
+                                  "line": 18,
+                                  "value": 1,
+                                  "data_type": "INTEGER"
+                                }
+                              },
+                              "body": {
+                                "kind": "BlockNode",
+                                "line": 19,
+                                "statements": [
+                                  {
+                                    "kind": "AssignmentNode",
+                                    "line": 19,
+                                    "target": {
+                                      "kind": "IdentifierNode",
+                                      "line": 19,
+                                      "name": "e"
+                                    },
+                                    "value": {
+                                      "kind": "BinaryNode",
+                                      "line": 19,
+                                      "operator": "+",
+                                      "left": {
+                                        "kind": "IdentifierNode",
+                                        "line": 19,
+                                        "name": "e"
+                                      },
+                                      "right": {
+                                        "kind": "LiteralNode",
+                                        "line": 19,
+                                        "value": 1,
+                                        "data_type": "INTEGER"
+                                      }
+                                    }
+                                  },
+                                  {
+                                    "kind": "BreakNode",
+                                    "line": 20
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "kind": "ElseIfNode",
+                              "line": 21,
+                              "condition": {
+                                "kind": "BinaryNode",
+                                "line": 21,
+                                "operator": "==",
+                                "left": {
+                                  "kind": "IdentifierNode",
+                                  "line": 21,
+                                  "name": "j"
+                                },
+                                "right": {
+                                  "kind": "LiteralNode",
+                                  "line": 21,
+                                  "value": 2,
+                                  "data_type": "INTEGER"
+                                }
+                              },
+                              "body": {
+                                "kind": "BlockNode",
+                                "line": 22,
+                                "statements": [
+                                  {
+                                    "kind": "AssignmentNode",
+                                    "line": 22,
+                                    "target": {
+                                      "kind": "IdentifierNode",
+                                      "line": 22,
+                                      "name": "i"
+                                    },
+                                    "value": {
+                                      "kind": "BinaryNode",
+                                      "line": 22,
+                                      "operator": "+",
+                                      "left": {
+                                        "kind": "IdentifierNode",
+                                        "line": 22,
+                                        "name": "i"
+                                      },
+                                      "right": {
+                                        "kind": "LiteralNode",
+                                        "line": 22,
+                                        "value": 1,
+                                        "data_type": "INTEGER"
+                                      }
+                                    }
+                                  },
+                                  {
+                                    "kind": "BreakNode",
+                                    "line": 23
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "kind": "ElseIfNode",
+                              "line": 24,
+                              "condition": {
+                                "kind": "BinaryNode",
+                                "line": 24,
+                                "operator": "==",
+                                "left": {
+                                  "kind": "IdentifierNode",
+                                  "line": 24,
+                                  "name": "j"
+                                },
+                                "right": {
+                                  "kind": "LiteralNode",
+                                  "line": 24,
+                                  "value": 3,
+                                  "data_type": "INTEGER"
+                                }
+                              },
+                              "body": {
+                                "kind": "BlockNode",
+                                "line": 25,
+                                "statements": [
+                                  {
+                                    "kind": "AssignmentNode",
+                                    "line": 25,
+                                    "target": {
+                                      "kind": "IdentifierNode",
+                                      "line": 25,
+                                      "name": "o"
+                                    },
+                                    "value": {
+                                      "kind": "BinaryNode",
+                                      "line": 25,
+                                      "operator": "+",
+                                      "left": {
+                                        "kind": "IdentifierNode",
+                                        "line": 25,
+                                        "name": "o"
+                                      },
+                                      "right": {
+                                        "kind": "LiteralNode",
+                                        "line": 25,
+                                        "value": 1,
+                                        "data_type": "INTEGER"
+                                      }
+                                    }
+                                  },
+                                  {
+                                    "kind": "BreakNode",
+                                    "line": 26
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "kind": "ElseIfNode",
+                              "line": 27,
+                              "condition": {
+                                "kind": "BinaryNode",
+                                "line": 27,
+                                "operator": "==",
+                                "left": {
+                                  "kind": "IdentifierNode",
+                                  "line": 27,
+                                  "name": "j"
+                                },
+                                "right": {
+                                  "kind": "LiteralNode",
+                                  "line": 27,
+                                  "value": 4,
+                                  "data_type": "INTEGER"
+                                }
+                              },
+                              "body": {
+                                "kind": "BlockNode",
+                                "line": 28,
+                                "statements": [
+                                  {
+                                    "kind": "AssignmentNode",
+                                    "line": 28,
+                                    "target": {
+                                      "kind": "IdentifierNode",
+                                      "line": 28,
+                                      "name": "u"
+                                    },
+                                    "value": {
+                                      "kind": "BinaryNode",
+                                      "line": 28,
+                                      "operator": "+",
+                                      "left": {
+                                        "kind": "IdentifierNode",
+                                        "line": 28,
+                                        "name": "u"
+                                      },
+                                      "right": {
+                                        "kind": "LiteralNode",
+                                        "line": 28,
+                                        "value": 1,
+                                        "data_type": "INTEGER"
+                                      }
+                                    }
+                                  },
+                                  {
+                                    "kind": "BreakNode",
+                                    "line": 29
+                                  }
+                                ]
+                              }
+                            }
+                          ],
+                          "else_body": null
+                        }
+                      ]
+                    },
+                    "else_if": [],
+                    "else_body": null
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "kind": "OutputNode",
+        "line": 34,
+        "expression": {
+          "kind": "LiteralNode",
+          "line": 34,
+          "value": "The text contains the vowel a {a} times",
+          "data_type": "STRING"
+        }
+      },
+      {
+        "kind": "OutputNode",
+        "line": 35,
+        "expression": {
+          "kind": "LiteralNode",
+          "line": 35,
+          "value": "The text contains the vowel e {e} times",
+          "data_type": "STRING"
+        }
+      },
+      {
+        "kind": "OutputNode",
+        "line": 36,
+        "expression": {
+          "kind": "LiteralNode",
+          "line": 36,
+          "value": "The text contains the vowel i {i} times",
+          "data_type": "STRING"
+        }
+      },
+      {
+        "kind": "OutputNode",
+        "line": 37,
+        "expression": {
+          "kind": "LiteralNode",
+          "line": 37,
+          "value": "The text contains the vowel o {o} times",
+          "data_type": "STRING"
+        }
+      },
+      {
+        "kind": "OutputNode",
+        "line": 38,
+        "expression": {
+          "kind": "LiteralNode",
+          "line": 38,
+          "value": "The text contains the vowel u {u} times",
+          "data_type": "STRING"
+        }
+      }
+    ]
+  }
+}
