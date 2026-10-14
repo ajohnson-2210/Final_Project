@@ -1,0 +1,154 @@
+{
+  "program_path": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Pseudocode\\Algorithm - 3\\pipeline_artifacts\\direct_ast_program.py",
+  "success": true,
+  "total_tests": 5,
+  "passed_tests": 5,
+  "failed_tests": 0,
+  "category_summary": {
+    "BRANCH": {
+      "total": 3,
+      "passed": 3,
+      "failed": 0
+    },
+    "NORMAL": {
+      "total": 1,
+      "passed": 1,
+      "failed": 0
+    },
+    "ERROR_BEHAVIOUR": {
+      "total": 1,
+      "passed": 1,
+      "failed": 0
+    }
+  },
+  "results": [
+    {
+      "name": "leap year divisible by 400",
+      "status": "PASSED",
+      "expected_output": [
+        "Enter Year: 2000 Is a Leap Year!"
+      ],
+      "actual_output": [
+        "Enter Year: 2000 Is a Leap Year!"
+      ],
+      "standard_error": "",
+      "return_code": 0,
+      "duration_ms": 39.246,
+      "category": "BRANCH",
+      "semantic_feature": "LEAP_YEAR_400_RULE",
+      "expected_return_code": 0,
+      "expected_error_type": null,
+      "actual_error_type": null,
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "random_seed": null,
+      "environment": {},
+      "requires_modules": []
+    },
+    {
+      "name": "century year not divisible by 400",
+      "status": "PASSED",
+      "expected_output": [
+        "Enter Year: 1900 is Not a Leap Year!"
+      ],
+      "actual_output": [
+        "Enter Year: 1900 is Not a Leap Year!"
+      ],
+      "standard_error": "",
+      "return_code": 0,
+      "duration_ms": 31.796,
+      "category": "BRANCH",
+      "semantic_feature": "LEAP_YEAR_CENTURY_RULE",
+      "expected_return_code": 0,
+      "expected_error_type": null,
+      "actual_error_type": null,
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "random_seed": null,
+      "environment": {},
+      "requires_modules": []
+    },
+    {
+      "name": "ordinary leap year divisible by 4",
+      "status": "PASSED",
+      "expected_output": [
+        "Enter Year: 2024 Is a Leap Year!"
+      ],
+      "actual_output": [
+        "Enter Year: 2024 Is a Leap Year!"
+      ],
+      "standard_error": "",
+      "return_code": 0,
+      "duration_ms": 26.905,
+      "category": "BRANCH",
+      "semantic_feature": "LEAP_YEAR_DIVISIBLE_BY_4",
+      "expected_return_code": 0,
+      "expected_error_type": null,
+      "actual_error_type": null,
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "random_seed": null,
+      "environment": {},
+      "requires_modules": []
+    },
+    {
+      "name": "ordinary non-leap year",
+      "status": "PASSED",
+      "expected_output": [
+        "Enter Year: 2023 is Not a Leap Year!"
+      ],
+      "actual_output": [
+        "Enter Year: 2023 is Not a Leap Year!"
+      ],
+      "standard_error": "",
+      "return_code": 0,
+      "duration_ms": 27.322,
+      "category": "NORMAL",
+      "semantic_feature": "LEAP_YEAR_FALSE_PATH",
+      "expected_return_code": 0,
+      "expected_error_type": null,
+      "actual_error_type": null,
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "random_seed": null,
+      "environment": {},
+      "requires_modules": []
+    },
+    {
+      "name": "invalid input retries then succeeds",
+      "status": "PASSED",
+      "expected_output": [
+        "Enter Year: That's Not a Valid Year, Please Try Again!",
+        "Enter Year: 2024 Is a Leap Year!"
+      ],
+      "actual_output": [
+        "Enter Year: That's Not a Valid Year, Please Try Again!",
+        "Enter Year: 2024 Is a Leap Year!"
+      ],
+      "standard_error": "",
+      "return_code": 0,
+      "duration_ms": 30.146,
+      "category": "ERROR_BEHAVIOUR",
+      "semantic_feature": "INTEGER_INPUT_RETRY",
+      "expected_return_code": 0,
+      "expected_error_type": null,
+      "actual_error_type": null,
+      "criteria_links": [
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "random_seed": null,
+      "environment": {},
+      "requires_modules": []
+    }
+  ]
+}
