@@ -1,0 +1,31 @@
+originalset1 <- LIST [STRING("a"), STRING("b"), STRING("c"), STRING("d"), STRING("e"), 1]
+originalset2 <- LIST [STRING("b"), STRING("c"), STRING("g"), 1]
+set1 <- EMPTY LIST
+FOR EACH x IN originalset1 DO
+    APPEND CALL STRING(x) TO set1
+ENDFOR
+set2 <- EMPTY LIST
+FOR EACH x IN originalset2 DO
+    APPEND CALL STRING(x) TO set2
+ENDFOR
+set1.sort()
+set2.sort()
+unionset <- EMPTY LIST
+len1 <- LENGTH OF set1
+len2 <- LENGTH OF set2
+listPointer1 <- EMPTY STRING
+listPointer2 <- EMPTY STRING
+IF len1 <= len2 THEN
+    listPointer1 <- set1
+    listPointer2 <- set2
+ELSE
+    listPointer1 <- set2
+    listPointer2 <- set1
+ENDIF
+WHILE LENGTH OF listPointer1 > 0 DO
+    element <- listPointer1.pop(0)
+    IF element IN listPointer2 THEN
+        APPEND element TO unionset
+    ENDIF
+ENDWHILE
+OUTPUT STRING("The Common elements from both sets are:\n {unionset}")
