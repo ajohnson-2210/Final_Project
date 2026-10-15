@@ -1,0 +1,184 @@
+{
+  "test_spec_schema_version": "1.3",
+  "test_design_version": "1.2",
+  "algorithm_id": 24,
+  "algorithm_title": "Create a process that determines if a password has 8 characters 1 number and 1 uppercase letter",
+  "suite_role": "COMMON_SEMANTIC_BASELINE_CALIBRATION_AND_EXPERIMENTAL_COMPARISON",
+  "oracle_policy": "TRUSTED_BASELINE_REFERENCE",
+  "evidence_adequacy": "ADEQUATE",
+  "evidence_summary": "This suite provides comparatively broad behavioural evidence using 4 predefined common behavioural tests, with covered normal-path, branch behaviour and partial error evidence.",
+  "coverage_dimensions": {
+    "normal_path": "COVERED",
+    "branch_behaviour": "COVERED",
+    "boundary_behaviour": "NOT_COVERED",
+    "error_behaviour": "PARTIALLY_COVERED",
+    "termination_behaviour": "NOT_COVERED",
+    "state_mutation": "NOT_COVERED"
+  },
+  "coverage_basis": "Assessment is based on the 4 predefined common behavioural tests, the behaviours exposed by the frozen program interface, and the declared coverage dimensions: normal path, branch behaviour, error behaviour.",
+  "interpretation_guidance": "Interpret behavioural accuracy as comparatively broad evidence across the declared exercised behaviours, while not treating the result as exhaustive proof for all possible inputs and states.",
+  "coverage_limitations": [],
+  "manual_review_targets": [],
+  "requires_pipeline_features": [],
+  "tests": [
+    {
+      "name": "valid minimum-style password",
+      "standard_input": [
+        "Abcdefg1"
+      ],
+      "category": "NORMAL",
+      "semantic_feature": "PASSWORD_VALID",
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "COMMON_TEST_STANDARD_INPUT",
+        "oracle_source": "TASK_SEMANTIC_ORACLE_WITH_FROZEN_BASELINE_REFERENCE",
+        "fixture": {
+          "arguments": [
+            "Abcdefg1"
+          ]
+        },
+        "expected_semantic_result": true,
+        "comparison_mode": "EXACT",
+        "entrypoint_candidates": [
+          "unnamed_function"
+        ],
+        "allowed_arities": [
+          1
+        ]
+      }
+    },
+    {
+      "name": "too short then valid",
+      "standard_input": [
+        "Ab1",
+        "Abcdefg1"
+      ],
+      "category": "ERROR_BEHAVIOUR",
+      "semantic_feature": "PASSWORD_LENGTH_REQUIREMENT",
+      "criteria_links": [
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "COMMON_TEST_STANDARD_INPUT",
+        "oracle_source": "TASK_SEMANTIC_ORACLE_WITH_FROZEN_BASELINE_REFERENCE",
+        "fixture": {
+          "arguments": [
+            "Ab1"
+          ]
+        },
+        "expected_semantic_result": false,
+        "comparison_mode": "EXACT",
+        "entrypoint_candidates": [
+          "unnamed_function"
+        ],
+        "allowed_arities": [
+          1
+        ]
+      }
+    },
+    {
+      "name": "missing digit then valid",
+      "standard_input": [
+        "Abcdefgh",
+        "Abcdefg1"
+      ],
+      "category": "BRANCH",
+      "semantic_feature": "PASSWORD_DIGIT_REQUIREMENT",
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "COMMON_TEST_STANDARD_INPUT",
+        "oracle_source": "TASK_SEMANTIC_ORACLE_WITH_FROZEN_BASELINE_REFERENCE",
+        "fixture": {
+          "arguments": [
+            "Abcdefgh"
+          ]
+        },
+        "expected_semantic_result": false,
+        "comparison_mode": "EXACT",
+        "entrypoint_candidates": [
+          "unnamed_function"
+        ],
+        "allowed_arities": [
+          1
+        ]
+      }
+    },
+    {
+      "name": "missing uppercase then valid",
+      "standard_input": [
+        "abcdefg1",
+        "Abcdefg1"
+      ],
+      "category": "BRANCH",
+      "semantic_feature": "PASSWORD_UPPERCASE_REQUIREMENT",
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "COMMON_TEST_STANDARD_INPUT",
+        "oracle_source": "TASK_SEMANTIC_ORACLE_WITH_FROZEN_BASELINE_REFERENCE",
+        "fixture": {
+          "arguments": [
+            "abcdefg1"
+          ]
+        },
+        "expected_semantic_result": false,
+        "comparison_mode": "EXACT",
+        "entrypoint_candidates": [
+          "unnamed_function"
+        ],
+        "allowed_arities": [
+          1
+        ]
+      }
+    }
+  ],
+  "semantic_contract": {
+    "contract_version": "1.2",
+    "contract_source": "ORIGINAL_TASK_SPECIFICATION",
+    "task_statement": "Check whether a password contains at least 8 characters, one number, and one uppercase letter.",
+    "inputs": [
+      {
+        "position": 1,
+        "name": "password",
+        "type": "STRING"
+      }
+    ],
+    "result": {
+      "type": "BOOLEAN",
+      "canonical_semantics": "Valid iff length >=8 and contains at least one digit and one uppercase character."
+    },
+    "automation_status": "AUTOMATED_FUNCTION",
+    "parameter_names_are_semantically_irrelevant": true,
+    "derived_parameters_may_be_supplied_by_adapter": true,
+    "baseline_fixture_source": "Algorithm 24 Baseline Python code.txt",
+    "baseline_source_sha256": "1ea0e1b05eaca4ddd5721b212f0d4a0c2e30a23620e4f6be95fd1230a9c4d778",
+    "oracle_policy": "The original task defines the semantic result where determinate; the frozen trusted baseline supplies concrete fixtures and resolves deterministic task-policy details where the task statement is underspecified. Experimental/model output never defines its own oracle.",
+    "human_review_instruction": "Judge the original model pseudocode against this task-semantic contract even when automated execution is NOT_EVALUABLE."
+  }
+}

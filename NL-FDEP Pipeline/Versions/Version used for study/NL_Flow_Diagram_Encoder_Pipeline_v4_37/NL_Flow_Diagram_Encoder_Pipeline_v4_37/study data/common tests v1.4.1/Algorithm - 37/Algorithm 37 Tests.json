@@ -1,0 +1,148 @@
+{
+  "test_spec_schema_version": "1.6",
+  "test_design_version": "1.4.1",
+  "algorithm_id": 37,
+  "algorithm_title": "Implement a Stack using an Array (push/pop/peek)",
+  "suite_role": "COMMON_FROZEN_TASK_SEMANTIC_EVALUATION",
+  "oracle_policy": "STATIC_PREEXPERIMENT_EXPECTATIONS",
+  "evidence_adequacy": "PARTIAL",
+  "evidence_summary": "This suite provides partial behavioural evidence using one predefined common behavioural test, with partial state-mutation evidence. The embedded sequence covers push, peek, pop and empty-stack attempts; alternative capacities/values are fixed.",
+  "coverage_dimensions": {
+    "normal_path": "NOT_COVERED",
+    "branch_behaviour": "NOT_COVERED",
+    "boundary_behaviour": "NOT_COVERED",
+    "error_behaviour": "NOT_COVERED",
+    "termination_behaviour": "NOT_COVERED",
+    "state_mutation": "PARTIALLY_COVERED"
+  },
+  "coverage_basis": "Assessment is based on the predefined common behavioural test, the behaviours exposed by the frozen program interface, and the declared coverage dimensions: state mutation.",
+  "interpretation_guidance": "Interpret behavioural accuracy as useful but incomplete evidence across the declared exercised behaviours; unexercised behaviours remain outside the direct evidence.",
+  "coverage_limitations": [
+    "The embedded sequence covers push, peek, pop and empty-stack attempts; alternative capacities/values are fixed."
+  ],
+  "manual_review_targets": [],
+  "requires_pipeline_features": [],
+  "tests": [
+    {
+      "name": "default stack operation sequence",
+      "standard_input": [],
+      "category": "STATE_MUTATION",
+      "semantic_feature": "STACK_PUSH_POP_PEEK_EMPTY_BEHAVIOUR",
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "PREEXPERIMENT_FROZEN_FIXTURE",
+        "expectation_policy": "STATIC_FROZEN_VALUE",
+        "fixture": {
+          "execution_target": "CLASS",
+          "required_methods": [
+            "push",
+            "pop",
+            "peek"
+          ],
+          "operations": [
+            {
+              "method": "push",
+              "arguments": [
+                10
+              ]
+            },
+            {
+              "method": "push",
+              "arguments": [
+                20
+              ]
+            },
+            {
+              "method": "push",
+              "arguments": [
+                30
+              ]
+            },
+            {
+              "method": "peek",
+              "observe": true
+            },
+            {
+              "method": "pop",
+              "observe": true
+            },
+            {
+              "method": "peek",
+              "observe": true
+            },
+            {
+              "method": "pop",
+              "observe": true
+            },
+            {
+              "method": "pop",
+              "observe": true
+            },
+            {
+              "method": "pop",
+              "observe": true
+            },
+            {
+              "method": "peek",
+              "observe": true
+            }
+          ]
+        },
+        "expected_semantic_result": [
+          30,
+          30,
+          20,
+          20,
+          10,
+          "EMPTY",
+          "EMPTY"
+        ],
+        "comparison_mode": "EXACT",
+        "observer": {
+          "kind": "EMPTY_AWARE_SEQUENCE",
+          "empty_tokens": [
+            "underflow",
+            "empty"
+          ]
+        }
+      },
+      "score_stream": "CORE_BEHAVIOURAL"
+    }
+  ],
+  "semantic_contract": {
+    "contract_version": "1.4",
+    "contract_source": "ORIGINAL_TASK_SPECIFICATION",
+    "task_statement": "Implement a stack using an array.",
+    "inputs": [
+      {
+        "position": 1,
+        "name": "operations",
+        "type": "STACK_OPERATION_SEQUENCE"
+      }
+    ],
+    "result": {
+      "type": "STACK_TRACE",
+      "canonical_semantics": "LIFO behaviour for push/pop/peek, including empty handling."
+    },
+    "automation_status": "AUTOMATED_CLASS_SEQUENCE",
+    "parameter_names_are_semantically_irrelevant": true,
+    "derived_parameters_may_be_supplied_by_adapter": true,
+    "human_review_instruction": "Judge the original generated pseudocode against this same frozen task-semantic contract, including when automated evaluation is NOT_EVALUABLE.",
+    "fixture_policy": "PREEXPERIMENT_FROZEN_INPUTS",
+    "expectation_policy": "STATIC_PREEXPERIMENT_EXPECTED_VALUES",
+    "runtime_oracle_prohibited": true
+  },
+  "boundary_evaluation_policy": {
+    "measure": "SEMANTIC_BOUNDARY_VARIANCE",
+    "enabled": false,
+    "core_score_separation": "Boundary probes do not contribute to core semantic behavioural accuracy or Common Test accuracy.",
+    "interpretation": "If enabled, variance is the percentage of evaluable out-of-domain probes that the implementation accepts and processes."
+  }
+}

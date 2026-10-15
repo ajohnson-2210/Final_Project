@@ -1,0 +1,40 @@
+{
+  "test_spec_schema_version": "1.2",
+  "test_design_version": "1.1",
+  "algorithm_id": 14,
+  "algorithm_title": "Find the sum of all even numbers in a list",
+  "suite_role": "COMMON_BASELINE_CALIBRATION_AND_EXPERIMENTAL_COMPARISON",
+  "oracle_policy": "TRUSTED_BASELINE_REFERENCE",
+  "evidence_adequacy": "LIMITED",
+  "evidence_summary": "This suite provides limited behavioural evidence using one predefined common behavioural test, with covered normal-path behaviour. List is fixed; empty/no-even/all-even variants are not externally injectable.",
+  "coverage_dimensions": {
+    "normal_path": "COVERED",
+    "branch_behaviour": "NOT_COVERED",
+    "boundary_behaviour": "NOT_COVERED",
+    "error_behaviour": "NOT_COVERED",
+    "termination_behaviour": "NOT_COVERED",
+    "state_mutation": "NOT_COVERED"
+  },
+  "coverage_basis": "Assessment is based on the predefined common behavioural test, the behaviours exposed by the frozen program interface, and the declared coverage dimensions: normal path.",
+  "interpretation_guidance": "Interpret behavioural accuracy as agreement for the specific exercised scenario or scenarios, not as strong evidence of general behavioural equivalence.",
+  "coverage_limitations": [
+    "List is fixed; empty/no-even/all-even variants are not externally injectable."
+  ],
+  "manual_review_targets": [],
+  "requires_pipeline_features": [],
+  "tests": [
+    {
+      "name": "default even-number summation",
+      "standard_input": [],
+      "category": "NORMAL",
+      "semantic_feature": "EVEN_FILTER_AND_ACCUMULATION",
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE"
+    }
+  ]
+}

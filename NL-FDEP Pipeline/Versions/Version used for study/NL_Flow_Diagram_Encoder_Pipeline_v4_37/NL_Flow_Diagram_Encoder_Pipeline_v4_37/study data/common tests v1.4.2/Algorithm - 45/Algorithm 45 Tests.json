@@ -1,0 +1,900 @@
+{
+  "test_spec_schema_version": "1.6",
+  "test_design_version": "1.4.2",
+  "algorithm_id": 45,
+  "algorithm_title": "Create instructions for adding 2 matrices of equal size",
+  "suite_role": "COMMON_TASK_SEMANTIC_EVALUATION_WITH_PRE_FREEZE_VALIDATION",
+  "oracle_policy": "STATIC_PREEXPERIMENT_EXPECTATIONS",
+  "evidence_adequacy": "PARTIAL",
+  "evidence_summary": "This suite retains the three previously frozen seeded matrix-addition cases as core behavioural evidence. Explicit 1×1 and rectangular equal-size cases are retained as provisional pre-freeze validation cases after the RC9 baseline regression and do not affect calibration or experimental core scores. Mismatched dimensions remain a separate semantic-boundary probe.",
+  "coverage_dimensions": {
+    "normal_path": "NOT_COVERED",
+    "branch_behaviour": "NOT_COVERED",
+    "boundary_behaviour": "NOT_COVERED",
+    "error_behaviour": "NOT_COVERED",
+    "termination_behaviour": "NOT_COVERED",
+    "state_mutation": "COVERED"
+  },
+  "coverage_basis": "Core scoring is based on the 3 previously frozen seeded Common Test cases. Two additional valid-domain matrix cases are retained in PRE_FREEZE_VALIDATION and are excluded from core scoring until explicitly baseline-validated. Semantic-boundary probes remain separately descriptive.",
+  "interpretation_guidance": "Interpret core behavioural accuracy only from CORE_BEHAVIOURAL cases. PRE_FREEZE_VALIDATION cases are candidate valid-domain expansions retained for baseline validation and must not affect calibration or experimental core scoring. Interpret Semantic Boundary Variance separately as descriptive out-of-domain evidence.",
+  "coverage_limitations": [
+    "1×1 and rectangular equal-size matrix cases are candidate valid-domain coverage expansions but remain provisional until the established baseline validates their invocation/observation semantics.",
+    "Mismatched matrix dimensions are outside the equal-size addition contract and are reported separately through semantic-boundary variance."
+  ],
+  "manual_review_targets": [],
+  "requires_pipeline_features": [
+    "DETERMINISTIC_RANDOM_SEED"
+  ],
+  "tests": [
+    {
+      "name": "seeded matrix-addition run seed 104729",
+      "standard_input": [],
+      "category": "STATE_MUTATION",
+      "semantic_feature": "MATRIX_ELEMENTWISE_ADDITION",
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "random_seed": 104729,
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "PREEXPERIMENT_FROZEN_FIXTURE",
+        "fixture": {
+          "arguments": [
+            [
+              [
+                -3.96,
+                -6,
+                8.7,
+                -10,
+                5.29
+              ],
+              [
+                -1,
+                -6.16,
+                -5.24,
+                -10,
+                9.3
+              ],
+              [
+                4,
+                2.23,
+                7.92,
+                0,
+                4
+              ]
+            ],
+            [
+              [
+                -7,
+                10,
+                9,
+                -8.07,
+                5
+              ],
+              [
+                8,
+                9,
+                2,
+                2.16,
+                4.99
+              ],
+              [
+                -6.27,
+                6.06,
+                -7.08,
+                8,
+                -9
+              ]
+            ],
+            3,
+            5
+          ],
+          "invocation_variants": [
+            {
+              "arities": [
+                2
+              ],
+              "arguments": [
+                [
+                  [
+                    -3.96,
+                    -6,
+                    8.7,
+                    -10,
+                    5.29
+                  ],
+                  [
+                    -1,
+                    -6.16,
+                    -5.24,
+                    -10,
+                    9.3
+                  ],
+                  [
+                    4,
+                    2.23,
+                    7.92,
+                    0,
+                    4
+                  ]
+                ],
+                [
+                  [
+                    -7,
+                    10,
+                    9,
+                    -8.07,
+                    5
+                  ],
+                  [
+                    8,
+                    9,
+                    2,
+                    2.16,
+                    4.99
+                  ],
+                  [
+                    -6.27,
+                    6.06,
+                    -7.08,
+                    8,
+                    -9
+                  ]
+                ]
+              ]
+            },
+            {
+              "arities": [
+                4
+              ],
+              "arguments": [
+                [
+                  [
+                    -3.96,
+                    -6,
+                    8.7,
+                    -10,
+                    5.29
+                  ],
+                  [
+                    -1,
+                    -6.16,
+                    -5.24,
+                    -10,
+                    9.3
+                  ],
+                  [
+                    4,
+                    2.23,
+                    7.92,
+                    0,
+                    4
+                  ]
+                ],
+                [
+                  [
+                    -7,
+                    10,
+                    9,
+                    -8.07,
+                    5
+                  ],
+                  [
+                    8,
+                    9,
+                    2,
+                    2.16,
+                    4.99
+                  ],
+                  [
+                    -6.27,
+                    6.06,
+                    -7.08,
+                    8,
+                    -9
+                  ]
+                ],
+                3,
+                5
+              ]
+            }
+          ]
+        },
+        "expected_semantic_result": [
+          [
+            -10.96,
+            4.0,
+            17.7,
+            -18.07,
+            10.29
+          ],
+          [
+            7.0,
+            2.84,
+            -3.24,
+            -7.84,
+            14.29
+          ],
+          [
+            -2.27,
+            8.29,
+            0.84,
+            8.0,
+            -5.0
+          ]
+        ],
+        "comparison_mode": "MATRIX_NUMERIC",
+        "allowed_arities": [
+          2,
+          4
+        ],
+        "expectation_policy": "STATIC_FROZEN_VALUE",
+        "observer": {
+          "kind": "MATRIX"
+        },
+        "numeric_tolerance": 1e-09
+      },
+      "score_stream": "CORE_BEHAVIOURAL"
+    },
+    {
+      "name": "seeded matrix-addition run seed 104759",
+      "standard_input": [],
+      "category": "STATE_MUTATION",
+      "semantic_feature": "MATRIX_ELEMENTWISE_ADDITION",
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "random_seed": 104759,
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "PREEXPERIMENT_FROZEN_FIXTURE",
+        "fixture": {
+          "arguments": [
+            [
+              [
+                -2.84,
+                -5.21,
+                3,
+                -2.23
+              ],
+              [
+                -9,
+                -3,
+                -9.04,
+                -8
+              ]
+            ],
+            [
+              [
+                -5.12,
+                6,
+                8,
+                6.48
+              ],
+              [
+                -3.84,
+                -3,
+                8,
+                3.39
+              ]
+            ],
+            2,
+            4
+          ],
+          "invocation_variants": [
+            {
+              "arities": [
+                2
+              ],
+              "arguments": [
+                [
+                  [
+                    -2.84,
+                    -5.21,
+                    3,
+                    -2.23
+                  ],
+                  [
+                    -9,
+                    -3,
+                    -9.04,
+                    -8
+                  ]
+                ],
+                [
+                  [
+                    -5.12,
+                    6,
+                    8,
+                    6.48
+                  ],
+                  [
+                    -3.84,
+                    -3,
+                    8,
+                    3.39
+                  ]
+                ]
+              ]
+            },
+            {
+              "arities": [
+                4
+              ],
+              "arguments": [
+                [
+                  [
+                    -2.84,
+                    -5.21,
+                    3,
+                    -2.23
+                  ],
+                  [
+                    -9,
+                    -3,
+                    -9.04,
+                    -8
+                  ]
+                ],
+                [
+                  [
+                    -5.12,
+                    6,
+                    8,
+                    6.48
+                  ],
+                  [
+                    -3.84,
+                    -3,
+                    8,
+                    3.39
+                  ]
+                ],
+                2,
+                4
+              ]
+            }
+          ]
+        },
+        "expected_semantic_result": [
+          [
+            -7.96,
+            0.79,
+            11.0,
+            4.25
+          ],
+          [
+            -12.84,
+            -6.0,
+            -1.04,
+            -4.61
+          ]
+        ],
+        "comparison_mode": "MATRIX_NUMERIC",
+        "allowed_arities": [
+          2,
+          4
+        ],
+        "expectation_policy": "STATIC_FROZEN_VALUE",
+        "observer": {
+          "kind": "MATRIX"
+        },
+        "numeric_tolerance": 1e-09
+      },
+      "score_stream": "CORE_BEHAVIOURAL"
+    },
+    {
+      "name": "seeded matrix-addition run seed 104761",
+      "standard_input": [],
+      "category": "STATE_MUTATION",
+      "semantic_feature": "MATRIX_ELEMENTWISE_ADDITION",
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "random_seed": 104761,
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "PREEXPERIMENT_FROZEN_FIXTURE",
+        "fixture": {
+          "arguments": [
+            [
+              [
+                1,
+                -3.47
+              ],
+              [
+                9,
+                4
+              ]
+            ],
+            [
+              [
+                1,
+                0.02
+              ],
+              [
+                3,
+                -3
+              ]
+            ],
+            2,
+            2
+          ],
+          "invocation_variants": [
+            {
+              "arities": [
+                2
+              ],
+              "arguments": [
+                [
+                  [
+                    1,
+                    -3.47
+                  ],
+                  [
+                    9,
+                    4
+                  ]
+                ],
+                [
+                  [
+                    1,
+                    0.02
+                  ],
+                  [
+                    3,
+                    -3
+                  ]
+                ]
+              ]
+            },
+            {
+              "arities": [
+                4
+              ],
+              "arguments": [
+                [
+                  [
+                    1,
+                    -3.47
+                  ],
+                  [
+                    9,
+                    4
+                  ]
+                ],
+                [
+                  [
+                    1,
+                    0.02
+                  ],
+                  [
+                    3,
+                    -3
+                  ]
+                ],
+                2,
+                2
+              ]
+            }
+          ]
+        },
+        "expected_semantic_result": [
+          [
+            2.0,
+            -3.45
+          ],
+          [
+            12.0,
+            1.0
+          ]
+        ],
+        "comparison_mode": "MATRIX_NUMERIC",
+        "allowed_arities": [
+          2,
+          4
+        ],
+        "expectation_policy": "STATIC_FROZEN_VALUE",
+        "observer": {
+          "kind": "MATRIX"
+        },
+        "numeric_tolerance": 1e-09
+      },
+      "score_stream": "CORE_BEHAVIOURAL"
+    },
+    {
+      "name": "1x1 matrix addition",
+      "standard_input": [],
+      "category": "BOUNDARY",
+      "semantic_feature": "MATRIX_ADDITION_EDGE",
+      "criteria_links": [
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "score_stream": "PRE_FREEZE_VALIDATION",
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "PROVISIONAL_PRE_FREEZE_FIXTURE",
+        "fixture": {
+          "arguments": [
+            [
+              [
+                2
+              ]
+            ],
+            [
+              [
+                3
+              ]
+            ],
+            1,
+            1
+          ],
+          "invocation_variants": [
+            {
+              "arities": [
+                2
+              ],
+              "arguments": [
+                [
+                  [
+                    2
+                  ]
+                ],
+                [
+                  [
+                    3
+                  ]
+                ]
+              ]
+            },
+            {
+              "arities": [
+                4
+              ],
+              "arguments": [
+                [
+                  [
+                    2
+                  ]
+                ],
+                [
+                  [
+                    3
+                  ]
+                ],
+                1,
+                1
+              ]
+            }
+          ]
+        },
+        "expected_semantic_result": [
+          [
+            5
+          ]
+        ],
+        "comparison_mode": "MATRIX_NUMERIC",
+        "expectation_policy": "PROVISIONAL_PRE_FREEZE_VALUE",
+        "observer": {
+          "kind": "MATRIX"
+        },
+        "allowed_arities": [
+          2,
+          4
+        ]
+      },
+      "validation_status": "PENDING_BASELINE_CONFIRMATION"
+    },
+    {
+      "name": "rectangular equal-size matrix addition",
+      "standard_input": [],
+      "category": "NORMAL",
+      "semantic_feature": "MATRIX_ADDITION_EDGE",
+      "criteria_links": [
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "score_stream": "PRE_FREEZE_VALIDATION",
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "PROVISIONAL_PRE_FREEZE_FIXTURE",
+        "fixture": {
+          "arguments": [
+            [
+              [
+                1,
+                2,
+                3
+              ],
+              [
+                4,
+                5,
+                6
+              ]
+            ],
+            [
+              [
+                6,
+                5,
+                4
+              ],
+              [
+                3,
+                2,
+                1
+              ]
+            ],
+            2,
+            3
+          ],
+          "invocation_variants": [
+            {
+              "arities": [
+                2
+              ],
+              "arguments": [
+                [
+                  [
+                    1,
+                    2,
+                    3
+                  ],
+                  [
+                    4,
+                    5,
+                    6
+                  ]
+                ],
+                [
+                  [
+                    6,
+                    5,
+                    4
+                  ],
+                  [
+                    3,
+                    2,
+                    1
+                  ]
+                ]
+              ]
+            },
+            {
+              "arities": [
+                4
+              ],
+              "arguments": [
+                [
+                  [
+                    1,
+                    2,
+                    3
+                  ],
+                  [
+                    4,
+                    5,
+                    6
+                  ]
+                ],
+                [
+                  [
+                    6,
+                    5,
+                    4
+                  ],
+                  [
+                    3,
+                    2,
+                    1
+                  ]
+                ],
+                2,
+                3
+              ]
+            }
+          ]
+        },
+        "expected_semantic_result": [
+          [
+            7,
+            7,
+            7
+          ],
+          [
+            7,
+            7,
+            7
+          ]
+        ],
+        "comparison_mode": "MATRIX_NUMERIC",
+        "expectation_policy": "PROVISIONAL_PRE_FREEZE_VALUE",
+        "observer": {
+          "kind": "MATRIX"
+        },
+        "allowed_arities": [
+          2,
+          4
+        ]
+      },
+      "validation_status": "PENDING_BASELINE_CONFIRMATION"
+    },
+    {
+      "name": "mismatched dimensions outside matrix-addition contract",
+      "standard_input": [],
+      "category": "SEMANTIC_BOUNDARY",
+      "semantic_feature": "MATRIX_DIMENSION_MISMATCH_PROBE",
+      "criteria_links": [],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "BOUNDARY_OBSERVATION",
+      "score_stream": "SEMANTIC_BOUNDARY_PROBE",
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "PREEXPERIMENT_FROZEN_BOUNDARY_PROBE",
+        "expectation_policy": "BOUNDARY_OBSERVATION",
+        "score_stream": "SEMANTIC_BOUNDARY_PROBE",
+        "fixture": {
+          "arguments": [
+            [
+              [
+                1,
+                2
+              ],
+              [
+                3,
+                4
+              ]
+            ],
+            [
+              [
+                1,
+                2,
+                3
+              ],
+              [
+                4,
+                5,
+                6
+              ]
+            ],
+            2,
+            2
+          ],
+          "invocation_variants": [
+            {
+              "arities": [
+                2
+              ],
+              "arguments": [
+                [
+                  [
+                    1,
+                    2
+                  ],
+                  [
+                    3,
+                    4
+                  ]
+                ],
+                [
+                  [
+                    1,
+                    2,
+                    3
+                  ],
+                  [
+                    4,
+                    5,
+                    6
+                  ]
+                ]
+              ]
+            },
+            {
+              "arities": [
+                4
+              ],
+              "arguments": [
+                [
+                  [
+                    1,
+                    2
+                  ],
+                  [
+                    3,
+                    4
+                  ]
+                ],
+                [
+                  [
+                    1,
+                    2,
+                    3
+                  ],
+                  [
+                    4,
+                    5,
+                    6
+                  ]
+                ],
+                2,
+                2
+              ]
+            }
+          ]
+        },
+        "allowed_arities": [
+          2,
+          4
+        ],
+        "boundary_probe": {
+          "domain_status": "OUT_OF_DOMAIN",
+          "controlled_rejection_error_types": []
+        }
+      }
+    }
+  ],
+  "semantic_contract": {
+    "contract_version": "1.4",
+    "contract_source": "ORIGINAL_TASK_SPECIFICATION",
+    "task_statement": "Create instructions for adding two matrices of equal size.",
+    "inputs": [
+      {
+        "position": 1,
+        "name": "matrix_a",
+        "type": "MATRIX[NUMBER]"
+      },
+      {
+        "position": 2,
+        "name": "matrix_b",
+        "type": "MATRIX[NUMBER]"
+      }
+    ],
+    "result": {
+      "type": "MATRIX[NUMBER]",
+      "canonical_semantics": "Element-wise sum of equal-sized matrices."
+    },
+    "automation_status": "AUTOMATED_FUNCTION",
+    "parameter_names_are_semantically_irrelevant": true,
+    "derived_parameters_may_be_supplied_by_adapter": true,
+    "human_review_instruction": "Judge the original generated pseudocode against this same frozen task-semantic contract, including when automated evaluation is NOT_EVALUABLE.",
+    "fixture_policy": "PREEXPERIMENT_FROZEN_INPUTS",
+    "expectation_policy": "STATIC_PREEXPERIMENT_EXPECTED_VALUES",
+    "runtime_oracle_prohibited": true
+  },
+  "boundary_evaluation_policy": {
+    "measure": "SEMANTIC_BOUNDARY_VARIANCE",
+    "enabled": true,
+    "core_score_separation": "Boundary probes do not contribute to core semantic behavioural accuracy or Common Test accuracy.",
+    "interpretation": "If enabled, variance is the percentage of evaluable out-of-domain probes that the implementation accepts and processes."
+  },
+  "pre_freeze_validation_policy": {
+    "status": "PENDING_BASELINE_CONFIRMATION",
+    "introduced_after": "COMMON_TESTS_V1_3",
+    "trigger": "RC9_BASELINE_REGRESSION",
+    "included_in_core_behavioural_score": false,
+    "included_in_baseline_calibration": false,
+    "promotion_rule": "A provisional case may move to CORE_BEHAVIOURAL only after its invocation, observer and expected result have been explicitly validated against the established baseline before the experimental pack is frozen."
+  }
+}

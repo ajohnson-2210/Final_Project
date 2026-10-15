@@ -1,0 +1,30 @@
+Generic Compatibility Specification v2.0
+Phase 4 - Statement and Built-in Operation Normalisation
+
+Scope
+-----
+These rules apply only to GENERIC_COMPATIBILITY. AJ_DIALECT_STRICT and
+GENERAL_NO_CONVERSION are not altered by this phase.
+
+Rules
+-----
+GC040  length(x) / len(x)            -> LENGTH OF x
+GC041  lowercase(x)/tolower(x)       -> LOWERCASE(x)
+GC042  uppercase(x)/toupper(x)       -> UPPERCASE(x)
+GC043  PRINT value                    -> OUTPUT value
+GC044  DISPLAY value                  -> OUTPUT value
+GC045  object.size()                  -> object~LENGTH
+GC046  object.front()                 -> object[0]
+GC047  object.back()                  -> object[LAST]
+GC048  object.isEmpty()               -> LENGTH OF object == 0
+GC049  SPLIT(value, delimiter)        -> SPLIT value BY delimiter
+GC050  JOIN(values, delimiter)        -> canonical JOIN(values, delimiter)
+GC051  SWAP(a, b)                     -> SWAP a AND b
+GC052  REVERSE(value) standalone      -> REVERSE value
+
+Design constraints
+------------------
+1. Rules are corpus-derived and deliberately conservative.
+2. Domain-specific calls are not rewritten merely because they look like functions.
+3. Nested-call normalisation is deferred where a simple regular expression could alter semantics.
+4. Transformations are logged with GC rule IDs for auditability.

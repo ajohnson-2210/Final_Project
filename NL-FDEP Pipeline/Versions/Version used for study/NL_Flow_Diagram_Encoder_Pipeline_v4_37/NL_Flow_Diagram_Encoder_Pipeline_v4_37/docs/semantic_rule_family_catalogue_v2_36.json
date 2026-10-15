@@ -1,0 +1,124 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "legacy_rule_ids_exposed": false,
+  "families": {
+    "COLLECTION_SELF_ADDITION": {
+      "branches": {
+        "APPEND_SINGLE": "known_list <- known_list + [single_expression]",
+        "EXTEND_LIST": "known_list <- known_list + list_valued_expression"
+      }
+    },
+    "COLLECTION_OPERATION": {
+      "branches": [
+        "PUSH_OR_ENQUEUE",
+        "POP_LAST",
+        "DEQUEUE_FIRST",
+        "EMPTY_TEST",
+        "SET_INSERTION"
+      ],
+      "set_insertion_rule": "ADD/APPEND value TO a collection explicitly initialised as EMPTY SET becomes CALL add_to_set(collection, value); compiler emits set.add(value)"
+    },
+    "OBJECT_PROPERTY": {
+      "branches": [
+        "FLATTENED_PROPERTY",
+        "LINKED_LIST_NEXT",
+        "OTHER_COLLECTION_ELEMENT"
+      ]
+    },
+    "BLOCK_TERMINATOR": {
+      "branches": [
+        "SPACED_END_TO_OPEN_BLOCK"
+      ]
+    },
+    "DECLARATION": {
+      "branches": [
+        "FUNCTION_PARAMETER_REPAIR",
+        "RESERVED_IDENTIFIER_ESCAPE",
+        "CLASS_ACCEPTS",
+        "STACK_OPERATION_BLOCK_BOUNDARIES"
+      ],
+      "stack_operation_block_rule": "For the recognised CREATE Stack + Stack[Top] + PUSH/POP/PEEK idiom, recover only the implicit operation-definition boundaries. Preserve Top-based indexed reads/writes, conditions, and updates exactly; do not substitute append/pop/length-based implementations."
+    },
+    "LITERAL": {
+      "branches": [
+        "EMPTY_DICTIONARY",
+        "LIST_LITERAL",
+        "TUPLE_LITERAL",
+        "EMPTY_COLLECTION"
+      ]
+    },
+    "SEMANTIC_PREDICATE": {
+      "branches": [
+        "IS_A_NUMBER",
+        "NULL_TEST",
+        "COLLECTION_EMPTY_TEST"
+      ]
+    },
+    "ARITHMETIC": {
+      "branches": [
+        "FUNCTION_SHAPED_MODULUS",
+        "INTEGER_DIVISION",
+        "INDEX_REQUIRED_INTEGER"
+      ]
+    },
+    "PROGRAM_BOUNDARY": {
+      "branches": [
+        "POST_COMPLETION_CONTAMINATION"
+      ]
+    },
+    "INPUT_BINDING": {
+      "branches": {
+        "PROMPT_ONLY": "INPUT(STRING(prompt)) does not determine the receiver type",
+        "RETURNING_SCOPE_PARAMETER": "input-bound variable in a returning top-level computation becomes an ACCEPTS parameter",
+        "INDEXED_LIST_EVIDENCE": "LENGTH/index usage establishes list semantics independently of the prompt",
+        "COHERENT_SCOPE_PARAMETERS": "all top-level INPUT-bound dependencies become ACCEPTS parameters when the same coherent scope exposes OUTPUT or RETURN"
+      }
+    },
+    "CONDITIONAL": {
+      "branches": [
+        "CASE_TO_IF_CHAIN"
+      ]
+    },
+    "INPUT_RESOLUTION": {
+      "branches": {
+        "INFER_SEMANTIC_TYPE": "infer data structure from downstream usage",
+        "PROMOTE_TO_PARAMETER": "preserve known structured dependency without inventing external serialisation",
+        "PRESERVE_EXPLICIT_INPUT": "retain input when semantic structure remains weak",
+        "INFER_ENCODING": "only when delimiter/serialisation evidence is explicit",
+        "DO_NOT_INFER_ENCODING": "semantic structure is known but encoding is not",
+        "AMBIGUOUS_INPUT_STRUCTURE": "record conflicting or insufficient structural evidence",
+        "APPLY_DETERMINISTIC_CONVERSION": "apply a lossless type conversion when downstream usage uniquely determines it",
+        "STRING_TO_LIST_OF_CHARACTER": "text input indexed by position and traversed by LENGTH becomes a character list without delimiter inference",
+        "OBJECT_DEPENDENCY_WRAPPER": "bare input used as an existing object dependency is promoted to a wrapper parameter when downstream property usage makes textual encoding unjustified",
+        "NUMERIC_TYPE_FROM_USAGE": "downstream arithmetic overrides the generic STRING input default when numeric semantics are structurally established",
+        "INTEGER_INPUT": "integer-specific operations select INT/INTEGER input semantics"
+      },
+      "principle": "semantic structure and external encoding are scored independently"
+    },
+    "GENERIC_IDENTIFIER": {
+      "branches": {
+        "MISSING_FUNCTION_NAME": "introduce a neutral function identifier only when structure requires a name",
+        "MISSING_COLLECTION_NAME": "introduce a neutral collection identifier only when source omits one",
+        "RESERVED_KEYWORD_ESCAPE": "preserve source identifier using __reserved_keyword__ prefix rather than semantic renaming",
+        "RESOLVE_ANONYMOUS_DECLARATION_FROM_USAGE": "resolve an unnamed structure declaration to a later identifier only when compatible downstream usage uniquely identifies that structure"
+      },
+      "audit_requirement": "every introduced generic identifier must record why the source required one"
+    },
+    "MATRIX_OPERATION": {
+      "branches": {
+        "TRANSPOSE_IN_PLACE": "TRANSPOSE <matrix> becomes an in-place transpose operation"
+      }
+    },
+    "ABSTRACT_PARAMETER": {
+      "branches": {
+        "REDUNDANT_MATRIX_DIMENSION": "preserve conceptual N x N intent in audit while omitting unused N from executable wrapper when Matrix alone drives transpose and row traversal"
+      }
+    },
+    "CONTROL_FLOW": {
+      "branches": [
+        "CONTEXT_SENSITIVE_TERMINATION_LOWERING"
+      ],
+      "termination_rule": "Treat STOP as semantic termination intent, not a fixed keyword synonym: clear loop-only termination may lower to BREAK; termination of a compatibility-generated wrapper representing the whole algorithm lowers to value-less RETURN; genuine top-level termination retains runtime termination semantics; ambiguous cases are not guessed."
+    }
+  }
+}

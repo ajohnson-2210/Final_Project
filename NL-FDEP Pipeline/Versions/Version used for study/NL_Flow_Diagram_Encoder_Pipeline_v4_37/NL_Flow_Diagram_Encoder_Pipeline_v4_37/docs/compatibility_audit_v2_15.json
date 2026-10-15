@@ -1,0 +1,48 @@
+{
+  "version": "2.15",
+  "pending_occurrences_folded_in": [
+    {
+      "model": "source_e",
+      "task_number": 27,
+      "rule": "existing indexed assignment '=' to '<-'",
+      "status": "existing-rule occurrence"
+    },
+    {
+      "model": "source_e",
+      "task_number": 28,
+      "rule": "existing list self-concatenation to APPEND",
+      "status": "existing-rule occurrence"
+    }
+  ],
+  "contextual_assumptions": [
+    {
+      "model": "source_e",
+      "task_number": 35,
+      "assumptions": [
+        {
+          "assumption": "timestamps stores epoch-time values for items",
+          "confidence": "user-confirmed"
+        },
+        {
+          "assumption": "oldest item is the buffered item with the minimum timestamp",
+          "confidence": "user-confirmed"
+        },
+        {
+          "assumption": "removing an item from the buffer also removes its timestamp entry",
+          "confidence": "contextually inferred"
+        }
+      ]
+    },
+    {
+      "model": "source_e",
+      "task_number": 36,
+      "assumptions": [
+        {
+          "assumption": "mid must be integer-valued because it is used directly as an array index",
+          "confidence": "contextually inferred",
+          "canonical_effect": "(low + high) / 2 -> (low + high) INTEGER DIVISION 2"
+        }
+      ]
+    }
+  ]
+}

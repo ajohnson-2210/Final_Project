@@ -1,0 +1,352 @@
+{
+  "format": "NL-FDEP Flow Diagram",
+  "version": "1.0",
+  "entry_node": "F1",
+  "exit_node": "F2",
+  "nodes": {
+    "F1": {
+      "node_id": "F1",
+      "node_type": "START",
+      "label": "Start",
+      "line": 1,
+      "data": {}
+    },
+    "F2": {
+      "node_id": "F2",
+      "node_type": "END",
+      "label": "End",
+      "line": 1,
+      "data": {}
+    },
+    "F3": {
+      "node_id": "F3",
+      "node_type": "FUNCTION",
+      "label": "Run function find_largest with numbers",
+      "line": 1,
+      "data": {
+        "ast_kind": "FunctionNode",
+        "name": "find_largest"
+      }
+    },
+    "F4": {
+      "node_id": "F4",
+      "node_type": "DECISION",
+      "label": "The length of numbers is equal to 0?",
+      "line": 2,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F5": {
+      "node_id": "F5",
+      "node_type": "RAISE",
+      "label": "Raise error \"The list cannot be empty\"",
+      "line": 3,
+      "data": {
+        "ast_kind": "RaiseNode"
+      }
+    },
+    "F6": {
+      "node_id": "F6",
+      "node_type": "PROCESS",
+      "label": "Set largest to item 0 of numbers",
+      "line": 5,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F7": {
+      "node_id": "F7",
+      "node_type": "LOOP_DECISION",
+      "label": "For each number in numbers",
+      "line": 6,
+      "data": {
+        "ast_kind": "ForEachNode"
+      }
+    },
+    "F8": {
+      "node_id": "F8",
+      "node_type": "DECISION",
+      "label": "Number is greater than largest?",
+      "line": 7,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F9": {
+      "node_id": "F9",
+      "node_type": "PROCESS",
+      "label": "Set largest to number",
+      "line": 8,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F10": {
+      "node_id": "F10",
+      "node_type": "OUTPUT",
+      "label": "Display \"The largest value is {largest}\"",
+      "line": 11,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F11": {
+      "node_id": "F11",
+      "node_type": "RETURN",
+      "label": "Return largest",
+      "line": 12,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    },
+    "F12": {
+      "node_id": "F12",
+      "node_type": "END",
+      "label": "End after error",
+      "line": 3,
+      "data": {
+        "terminal_reason": "RAISE",
+        "source_node": "F5"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "F4",
+      "target": "F5",
+      "label": "TRUE"
+    },
+    {
+      "source": "F4",
+      "target": "F6",
+      "label": "FALSE"
+    },
+    {
+      "source": "F8",
+      "target": "F9",
+      "label": "TRUE"
+    },
+    {
+      "source": "F7",
+      "target": "F8",
+      "label": "ITERATE"
+    },
+    {
+      "source": "F9",
+      "target": "F7",
+      "label": "LOOP"
+    },
+    {
+      "source": "F8",
+      "target": "F7",
+      "label": "LOOP"
+    },
+    {
+      "source": "F6",
+      "target": "F7",
+      "label": "NEXT"
+    },
+    {
+      "source": "F7",
+      "target": "F10",
+      "label": "NEXT"
+    },
+    {
+      "source": "F10",
+      "target": "F11",
+      "label": "NEXT"
+    },
+    {
+      "source": "F3",
+      "target": "F4",
+      "label": "BODY"
+    },
+    {
+      "source": "F1",
+      "target": "F3",
+      "label": "NEXT"
+    },
+    {
+      "source": "F11",
+      "target": "F2",
+      "label": "NEXT"
+    },
+    {
+      "source": "F5",
+      "target": "F12",
+      "label": "NEXT"
+    }
+  ],
+  "structured_program": {
+    "kind": "ProgramNode",
+    "line": 1,
+    "body": [
+      {
+        "kind": "FunctionNode",
+        "line": 1,
+        "name": "find_largest",
+        "parameters": [
+          {
+            "kind": "ParameterNode",
+            "line": 1,
+            "name": "numbers",
+            "declared_type": "LIST"
+          }
+        ],
+        "body": {
+          "kind": "BlockNode",
+          "line": 2,
+          "statements": [
+            {
+              "kind": "IfNode",
+              "line": 2,
+              "condition": {
+                "kind": "BinaryNode",
+                "line": 2,
+                "operator": "==",
+                "left": {
+                  "kind": "LengthNode",
+                  "line": 2,
+                  "expression": {
+                    "kind": "IdentifierNode",
+                    "line": 2,
+                    "name": "numbers"
+                  }
+                },
+                "right": {
+                  "kind": "LiteralNode",
+                  "line": 2,
+                  "value": 0,
+                  "data_type": "INTEGER"
+                }
+              },
+              "then_body": {
+                "kind": "BlockNode",
+                "line": 3,
+                "statements": [
+                  {
+                    "kind": "RaiseNode",
+                    "line": 3,
+                    "expression": {
+                      "kind": "LiteralNode",
+                      "line": 3,
+                      "value": "The list cannot be empty",
+                      "data_type": "STRING"
+                    }
+                  }
+                ]
+              },
+              "else_if": [],
+              "else_body": null
+            },
+            {
+              "kind": "AssignmentNode",
+              "line": 5,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 5,
+                "name": "largest"
+              },
+              "value": {
+                "kind": "IndexNode",
+                "line": 5,
+                "collection": {
+                  "kind": "IdentifierNode",
+                  "line": 5,
+                  "name": "numbers"
+                },
+                "index": {
+                  "kind": "LiteralNode",
+                  "line": 5,
+                  "value": 0,
+                  "data_type": "INTEGER"
+                }
+              }
+            },
+            {
+              "kind": "ForEachNode",
+              "line": 6,
+              "variable": {
+                "kind": "IdentifierNode",
+                "line": 6,
+                "name": "number"
+              },
+              "collection": {
+                "kind": "IdentifierNode",
+                "line": 6,
+                "name": "numbers"
+              },
+              "body": {
+                "kind": "BlockNode",
+                "line": 7,
+                "statements": [
+                  {
+                    "kind": "IfNode",
+                    "line": 7,
+                    "condition": {
+                      "kind": "BinaryNode",
+                      "line": 7,
+                      "operator": ">",
+                      "left": {
+                        "kind": "IdentifierNode",
+                        "line": 7,
+                        "name": "number"
+                      },
+                      "right": {
+                        "kind": "IdentifierNode",
+                        "line": 7,
+                        "name": "largest"
+                      }
+                    },
+                    "then_body": {
+                      "kind": "BlockNode",
+                      "line": 8,
+                      "statements": [
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 8,
+                          "target": {
+                            "kind": "IdentifierNode",
+                            "line": 8,
+                            "name": "largest"
+                          },
+                          "value": {
+                            "kind": "IdentifierNode",
+                            "line": 8,
+                            "name": "number"
+                          }
+                        }
+                      ]
+                    },
+                    "else_if": [],
+                    "else_body": null
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "OutputNode",
+              "line": 11,
+              "expression": {
+                "kind": "LiteralNode",
+                "line": 11,
+                "value": "The largest value is {largest}",
+                "data_type": "STRING"
+              }
+            },
+            {
+              "kind": "ReturnNode",
+              "line": 12,
+              "expression": {
+                "kind": "IdentifierNode",
+                "line": 12,
+                "name": "largest"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

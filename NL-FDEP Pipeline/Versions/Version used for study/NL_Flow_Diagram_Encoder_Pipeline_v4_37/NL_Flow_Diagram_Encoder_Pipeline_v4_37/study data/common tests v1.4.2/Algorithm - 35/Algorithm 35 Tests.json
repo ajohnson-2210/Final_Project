@@ -1,0 +1,144 @@
+{
+  "test_spec_schema_version": "1.6",
+  "test_design_version": "1.4.2",
+  "algorithm_id": 35,
+  "algorithm_title": "Design a memory buffer that holds a fixed number of items. When it runs out of space it must discard the item",
+  "suite_role": "COMMON_FROZEN_TASK_SEMANTIC_EVALUATION",
+  "oracle_policy": "STATIC_PREEXPERIMENT_EXPECTATIONS",
+  "evidence_adequacy": "PARTIAL",
+  "evidence_summary": "This suite retains three deterministic seeded LRU state sequences. A non-positive capacity boundary is declared separately, but automatic boundary observation remains unavailable until a safe generic LRU adapter is defined.",
+  "coverage_dimensions": {
+    "normal_path": "NOT_COVERED",
+    "branch_behaviour": "NOT_COVERED",
+    "boundary_behaviour": "NOT_COVERED",
+    "error_behaviour": "NOT_COVERED",
+    "termination_behaviour": "NOT_COVERED",
+    "state_mutation": "COVERED"
+  },
+  "coverage_basis": "Assessment is based on 3 core Common Test cases plus any separately declared semantic-boundary probes; boundary probes do not contribute to core behavioural accuracy.",
+  "interpretation_guidance": "Interpret core behavioural accuracy as evidence within the frozen semantic contract. Interpret Semantic Boundary Variance separately as descriptive evidence of out-of-domain acceptance.",
+  "coverage_limitations": [
+    "Deterministic seeded runs exercise LRU state behaviour, but the generic semantic adapter does not yet support direct hand-crafted LRU operation sequences. Non-positive capacity is declared as a boundary probe but remains automatically NOT_EVALUABLE until a safe generic LRU adapter is added."
+  ],
+  "manual_review_targets": [],
+  "requires_pipeline_features": [
+    "DETERMINISTIC_RANDOM_SEED"
+  ],
+  "tests": [
+    {
+      "name": "seeded LRU access/eviction run seed 104729",
+      "standard_input": [],
+      "category": "STATE_MUTATION",
+      "semantic_feature": "LRU_RECENCY_ACCESS_COUNT_AND_EVICTION",
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "random_seed": 104729,
+      "semantic_test": {
+        "enabled": false,
+        "reason": "The semantic contract is available to the integrated human review, but no safe generic automatic invocation/observer is declared for this task in Common Tests v1.2.",
+        "fixture_source": null,
+        "expectation_policy": "NOT_AUTOMATED"
+      },
+      "score_stream": "CORE_BEHAVIOURAL"
+    },
+    {
+      "name": "seeded LRU access/eviction run seed 104759",
+      "standard_input": [],
+      "category": "STATE_MUTATION",
+      "semantic_feature": "LRU_RECENCY_ACCESS_COUNT_AND_EVICTION",
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "random_seed": 104759,
+      "semantic_test": {
+        "enabled": false,
+        "reason": "The semantic contract is available to the integrated human review, but no safe generic automatic invocation/observer is declared for this task in Common Tests v1.2.",
+        "fixture_source": null,
+        "expectation_policy": "NOT_AUTOMATED"
+      },
+      "score_stream": "CORE_BEHAVIOURAL"
+    },
+    {
+      "name": "seeded LRU access/eviction run seed 104761",
+      "standard_input": [],
+      "category": "STATE_MUTATION",
+      "semantic_feature": "LRU_RECENCY_ACCESS_COUNT_AND_EVICTION",
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "random_seed": 104761,
+      "semantic_test": {
+        "enabled": false,
+        "reason": "The semantic contract is available to the integrated human review, but no safe generic automatic invocation/observer is declared for this task in Common Tests v1.2.",
+        "fixture_source": null,
+        "expectation_policy": "NOT_AUTOMATED"
+      },
+      "score_stream": "CORE_BEHAVIOURAL"
+    },
+    {
+      "name": "non-positive LRU capacity outside contract",
+      "standard_input": [],
+      "category": "SEMANTIC_BOUNDARY",
+      "semantic_feature": "LRU_NON_POSITIVE_CAPACITY_PROBE",
+      "criteria_links": [],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "BOUNDARY_OBSERVATION",
+      "score_stream": "SEMANTIC_BOUNDARY_PROBE",
+      "semantic_test": {
+        "enabled": false,
+        "fixture_source": null,
+        "expectation_policy": "BOUNDARY_OBSERVATION",
+        "score_stream": "SEMANTIC_BOUNDARY_PROBE",
+        "reason": "The semantic boundary is defined (capacity must be positive), but Common Tests v1.4 still lacks a safe generic LRU class/function adapter for automatic invocation."
+      }
+    }
+  ],
+  "semantic_contract": {
+    "contract_version": "1.4",
+    "contract_source": "ORIGINAL_TASK_SPECIFICATION",
+    "task_statement": "Design a memory buffer that discards the least recently accessed item when full.",
+    "inputs": [
+      {
+        "position": 1,
+        "name": "capacity",
+        "type": "POSITIVE_INTEGER"
+      },
+      {
+        "position": 2,
+        "name": "operations",
+        "type": "LRU_OPERATION_SEQUENCE"
+      }
+    ],
+    "result": {
+      "type": "LRU_STATE",
+      "canonical_semantics": "Buffer state after accesses/additions with least-recently-used eviction."
+    },
+    "automation_status": "HUMAN_SUPPORTED",
+    "parameter_names_are_semantically_irrelevant": true,
+    "derived_parameters_may_be_supplied_by_adapter": true,
+    "human_review_instruction": "Judge the original generated pseudocode against this same frozen task-semantic contract, including when automated evaluation is NOT_EVALUABLE.",
+    "fixture_policy": "PREEXPERIMENT_FROZEN_INPUTS",
+    "expectation_policy": "STATIC_PREEXPERIMENT_EXPECTED_VALUES",
+    "runtime_oracle_prohibited": true
+  },
+  "boundary_evaluation_policy": {
+    "measure": "SEMANTIC_BOUNDARY_VARIANCE",
+    "enabled": true,
+    "core_score_separation": "Boundary probes do not contribute to core semantic behavioural accuracy or Common Test accuracy.",
+    "interpretation": "If enabled, variance is the percentage of evaluable out-of-domain probes that the implementation accepts and processes."
+  }
+}

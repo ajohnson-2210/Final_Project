@@ -1,0 +1,66 @@
+NL-FDEP v4.37 — AJ_24038155 DIALECT V1.5 PARSER EXAMPLE
+==============================================================
+
+SOURCE PSEUDOCODE
+
+FUNCTION sum_even ACCEPTS(numbers AS LIST)
+    total <- INTEGER(0)
+
+    FOR EACH number IN numbers DO
+        IF number MODULUS 2 == 0 THEN
+            total <- total + number
+        ENDIF
+    ENDFOR
+
+    OUTPUT total
+    RETURN total
+ENDFUNCTION
+
+PROCESS REPORT
+
+[SUCCESS] INPUT_VALIDATION                   0.004 ms  Input accepted.
+           - characters: 248
+[SUCCESS] LEXICAL_ANALYSIS                   0.452 ms  Source tokenised.
+           - token_count: 51
+[SUCCESS] SYNTAX_ANALYSIS                    0.117 ms  AST constructed.
+           - top_level_nodes: 1
+[SUCCESS] STATIC_SEMANTIC_ANALYSIS           0.719 ms  Static semantic analysis completed.
+           - warning_count: 0
+[SUCCESS] ADJACENCY_LIST_GENERATION          0.101 ms  Adjacency list generated.
+           - node_count: 27
+           - edge_count: 26
+[SUCCESS] PIPELINE_RESULT                    0.000 ms  All stages completed successfully.
+
+AST ADJACENCY LIST
+
+N27 (ProgramNode) -> ['N26']
+N26 (FunctionNode) -> ['N1', 'N25']
+N1 (ParameterNode) -> []
+N25 (BlockNode) -> ['N4', 'N20', 'N22', 'N24']
+N4 (AssignmentNode) -> ['N2', 'N3']
+N2 (IdentifierNode) -> []
+N3 (LiteralNode) -> []
+N20 (ForEachNode) -> ['N19', 'N5', 'N18']
+N19 (IdentifierNode) -> []
+N5 (IdentifierNode) -> []
+N18 (BlockNode) -> ['N17']
+N17 (IfNode) -> ['N10', 'N16']
+N10 (BinaryNode) -> ['N8', 'N9']
+N8 (BinaryNode) -> ['N6', 'N7']
+N6 (IdentifierNode) -> []
+N7 (LiteralNode) -> []
+N9 (LiteralNode) -> []
+N16 (BlockNode) -> ['N15']
+N15 (AssignmentNode) -> ['N11', 'N14']
+N11 (IdentifierNode) -> []
+N14 (BinaryNode) -> ['N12', 'N13']
+N12 (IdentifierNode) -> []
+N13 (IdentifierNode) -> []
+N22 (OutputNode) -> ['N21']
+N21 (IdentifierNode) -> []
+N24 (ReturnNode) -> ['N23']
+N23 (IdentifierNode) -> []
+
+Bundled files:
+- examples/ast_output.json
+- examples/parser_report.json

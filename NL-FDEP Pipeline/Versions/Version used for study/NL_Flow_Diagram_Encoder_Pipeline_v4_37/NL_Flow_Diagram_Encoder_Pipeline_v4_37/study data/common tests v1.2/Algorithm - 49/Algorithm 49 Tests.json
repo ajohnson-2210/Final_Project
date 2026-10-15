@@ -1,0 +1,122 @@
+{
+  "test_spec_schema_version": "1.3",
+  "test_design_version": "1.2",
+  "algorithm_id": 49,
+  "algorithm_title": "Create a pathfinding solution that guides a user through a maze using graph traversal.",
+  "suite_role": "COMMON_SEMANTIC_BASELINE_CALIBRATION_AND_EXPERIMENTAL_COMPARISON",
+  "oracle_policy": "TRUSTED_BASELINE_REFERENCE",
+  "evidence_adequacy": "PARTIAL",
+  "evidence_summary": "This suite provides partial behavioural evidence using 3 predefined common behavioural tests, with covered state-mutation behaviour. Maze generation is random; fixed seeds provide reproducible mazes but do not expose arbitrary grid sizes because create_grid(11, 20) is fixed.",
+  "coverage_dimensions": {
+    "normal_path": "NOT_COVERED",
+    "branch_behaviour": "NOT_COVERED",
+    "boundary_behaviour": "NOT_COVERED",
+    "error_behaviour": "NOT_COVERED",
+    "termination_behaviour": "NOT_COVERED",
+    "state_mutation": "COVERED"
+  },
+  "coverage_basis": "Assessment is based on the 3 predefined common behavioural tests, the behaviours exposed by the frozen program interface, and the declared coverage dimensions: state mutation.",
+  "interpretation_guidance": "Interpret behavioural accuracy as useful but incomplete evidence across the declared exercised behaviours; unexercised behaviours remain outside the direct evidence.",
+  "coverage_limitations": [
+    "Maze generation is random; fixed seeds provide reproducible mazes but do not expose arbitrary grid sizes because create_grid(11, 20) is fixed."
+  ],
+  "manual_review_targets": [],
+  "requires_pipeline_features": [
+    "DETERMINISTIC_RANDOM_SEED"
+  ],
+  "tests": [
+    {
+      "name": "seeded maze generation and BFS solve seed 104729",
+      "standard_input": [],
+      "category": "STATE_MUTATION",
+      "semantic_feature": "MAZE_CARVING_BFS_PATH_AND_MARKING",
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "timeout_seconds": 5.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "random_seed": 104729,
+      "semantic_test": {
+        "enabled": false,
+        "reason": "The semantic contract is available to the integrated human review, but no safe generic automatic invocation/observer is declared for this task in Common Tests v1.2.",
+        "fixture_source": null,
+        "oracle_source": null
+      }
+    },
+    {
+      "name": "seeded maze generation and BFS solve seed 104759",
+      "standard_input": [],
+      "category": "STATE_MUTATION",
+      "semantic_feature": "MAZE_CARVING_BFS_PATH_AND_MARKING",
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "timeout_seconds": 5.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "random_seed": 104759,
+      "semantic_test": {
+        "enabled": false,
+        "reason": "The semantic contract is available to the integrated human review, but no safe generic automatic invocation/observer is declared for this task in Common Tests v1.2.",
+        "fixture_source": null,
+        "oracle_source": null
+      }
+    },
+    {
+      "name": "seeded maze generation and BFS solve seed 104761",
+      "standard_input": [],
+      "category": "STATE_MUTATION",
+      "semantic_feature": "MAZE_CARVING_BFS_PATH_AND_MARKING",
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "timeout_seconds": 5.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "random_seed": 104761,
+      "semantic_test": {
+        "enabled": false,
+        "reason": "The semantic contract is available to the integrated human review, but no safe generic automatic invocation/observer is declared for this task in Common Tests v1.2.",
+        "fixture_source": null,
+        "oracle_source": null
+      }
+    }
+  ],
+  "semantic_contract": {
+    "contract_version": "1.2",
+    "contract_source": "ORIGINAL_TASK_SPECIFICATION",
+    "task_statement": "Create a pathfinding solution through a maze using graph traversal.",
+    "inputs": [
+      {
+        "position": 1,
+        "name": "maze",
+        "type": "GRID"
+      },
+      {
+        "position": 2,
+        "name": "start",
+        "type": "COORDINATE"
+      },
+      {
+        "position": 3,
+        "name": "goal",
+        "type": "COORDINATE"
+      }
+    ],
+    "result": {
+      "type": "PATH_OR_NOT_FOUND",
+      "canonical_semantics": "A valid graph-traversal path from start to goal when one exists."
+    },
+    "automation_status": "HUMAN_SUPPORTED",
+    "parameter_names_are_semantically_irrelevant": true,
+    "derived_parameters_may_be_supplied_by_adapter": true,
+    "baseline_fixture_source": "Algorithm 49 Baseline Python code.txt",
+    "baseline_source_sha256": "780c0e6b1fcba33fc67f70eff66f2c0de29f6e0af5c01993f8c24d7ffb472e8a",
+    "oracle_policy": "The original task defines the semantic result where determinate; the frozen trusted baseline supplies concrete fixtures and resolves deterministic task-policy details where the task statement is underspecified. Experimental/model output never defines its own oracle.",
+    "human_review_instruction": "Judge the original model pseudocode against this task-semantic contract even when automated execution is NOT_EVALUABLE."
+  }
+}

@@ -1,0 +1,32 @@
+Generic Compatibility Specification v2.0 — Phase 8
+Generic Literals and Declarations
+
+Purpose
+-------
+Phase 8 addresses literal and declaration forms observed after Phase 7 statement-boundary reconstruction. These rules apply only to GENERIC_COMPATIBILITY and do not alter AJ_24038155 Dialect v1.0 or GENERAL_NO_CONVERSION.
+
+Rules
+-----
+GC087  CREATE map/hash map/dictionary name -> name <- EMPTY DICTIONARY
+GC088  CREATE list name -> name <- EMPTY LIST; CREATE array name -> name <- CALL create_array(0, NONE)
+GC089  CREATE set name -> name <- EMPTY SET
+GC090  INIT name = value -> name <- value
+GC091  [] -> EMPTY LIST
+GC092  {} -> EMPTY SET only when the target identifier strongly indicates set semantics
+GC093  {} -> EMPTY DICTIONARY only when the target identifier strongly indicates mapping semantics
+GC094  Whole RHS list literal [a, b, ...] -> LIST [a, b, ...]
+GC095  Raw string literals used in executable expressions -> AJ STRING(...); raw empty string -> EMPTY STRING. OUTPUT and COMMENT text are left unchanged for compatibility with existing output handling.
+GC096  Annotated INPUT declarations, e.g. INPUT matrix (N x N), -> explicit AJ INPUT assignment(s)
+GC097  Simple dictionary literals {key:value, ...} -> EMPTY DICTIONARY plus indexed assignments; bare identifier keys and explicitly quoted string-scalar keys are rendered as AJ STRING(...) key expressions
+
+Recovery refinement
+-------------------
+Functionless generic algorithms are wrapped in the synthetic generic_algorithm function when they contain RETURN anywhere in the recovered control structure, not only at indentation level zero. This preserves return semantics in compressed programs whose RETURN was nested by statement-boundary reconstruction.
+
+Conservatism
+------------
+Bare {} remains unchanged unless the target identifier provides strong set/dictionary evidence. Non-empty set literals and complex nested dictionary literals are not guessed. Domain-specific declarations are deferred to later phases.
+
+v2.78 ordering refinement
+-------------------------
+GC078's existing guarded top-level multiple-assignment split is also applied before Phase 8 literal normalisation. This exposes each explicit assignment as a complete statement before GC091/GC094 inspect its right-hand side. The same GC078 top-level comma and independent-assignment safeguards are reused; commas nested inside expressions, collection literals, calls, parentheses, braces, or quoted strings are not broadened into statement boundaries. The later GC078 recovery remains available as a fallback for assignments exposed by subsequent compatibility passes.

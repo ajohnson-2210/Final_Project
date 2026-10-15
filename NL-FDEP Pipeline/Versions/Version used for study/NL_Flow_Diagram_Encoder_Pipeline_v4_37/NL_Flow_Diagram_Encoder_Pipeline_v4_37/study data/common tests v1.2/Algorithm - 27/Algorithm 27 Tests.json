@@ -1,0 +1,114 @@
+{
+  "test_spec_schema_version": "1.3",
+  "test_design_version": "1.2",
+  "algorithm_id": 27,
+  "algorithm_title": "Rotate a 2D matrix 90 degrees clockwise in place",
+  "suite_role": "COMMON_SEMANTIC_BASELINE_CALIBRATION_AND_EXPERIMENTAL_COMPARISON",
+  "oracle_policy": "TRUSTED_BASELINE_REFERENCE",
+  "evidence_adequacy": "LIMITED",
+  "evidence_summary": "This suite provides limited behavioural evidence using one predefined common behavioural test, with partial state-mutation evidence. Matrix is fixed; 1x1, non-square and alternative square matrices are not externally injectable.",
+  "coverage_dimensions": {
+    "normal_path": "NOT_COVERED",
+    "branch_behaviour": "NOT_COVERED",
+    "boundary_behaviour": "NOT_COVERED",
+    "error_behaviour": "NOT_COVERED",
+    "termination_behaviour": "NOT_COVERED",
+    "state_mutation": "PARTIALLY_COVERED"
+  },
+  "coverage_basis": "Assessment is based on the predefined common behavioural test, the behaviours exposed by the frozen program interface, and the declared coverage dimensions: state mutation.",
+  "interpretation_guidance": "Interpret behavioural accuracy as agreement for the specific exercised scenario or scenarios, not as strong evidence of general behavioural equivalence.",
+  "coverage_limitations": [
+    "Matrix is fixed; 1x1, non-square and alternative square matrices are not externally injectable."
+  ],
+  "manual_review_targets": [],
+  "requires_pipeline_features": [],
+  "tests": [
+    {
+      "name": "default in-place matrix rotation",
+      "standard_input": [],
+      "category": "STATE_MUTATION",
+      "semantic_feature": "MATRIX_TRANSPOSE_AND_ROW_REVERSAL",
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "FROZEN_BASELINE_FIXED_INPUT",
+        "oracle_source": "TASK_SEMANTIC_ORACLE_WITH_FROZEN_BASELINE_REFERENCE",
+        "fixture": {
+          "arguments": [
+            [
+              [
+                1,
+                2,
+                3
+              ],
+              [
+                4,
+                5,
+                6
+              ],
+              [
+                7,
+                8,
+                9
+              ]
+            ],
+            3
+          ]
+        },
+        "expected_semantic_result": [
+          [
+            7,
+            4,
+            1
+          ],
+          [
+            8,
+            5,
+            2
+          ],
+          [
+            9,
+            6,
+            3
+          ]
+        ],
+        "comparison_mode": "EXACT",
+        "entrypoint_candidates": [
+          "unnamed_function"
+        ],
+        "allowed_arities": [
+          2
+        ]
+      }
+    }
+  ],
+  "semantic_contract": {
+    "contract_version": "1.2",
+    "contract_source": "ORIGINAL_TASK_SPECIFICATION",
+    "task_statement": "Rotate a square matrix 90° clockwise in-place.",
+    "inputs": [
+      {
+        "position": 1,
+        "name": "matrix",
+        "type": "SQUARE_MATRIX"
+      }
+    ],
+    "result": {
+      "type": "MATRIX",
+      "canonical_semantics": "Matrix rotated 90 degrees clockwise."
+    },
+    "automation_status": "AUTOMATED_FUNCTION",
+    "parameter_names_are_semantically_irrelevant": true,
+    "derived_parameters_may_be_supplied_by_adapter": true,
+    "baseline_fixture_source": "Algorithm 27 Baseline Python code.txt",
+    "baseline_source_sha256": "2b0546962d4aac7f97709793fef643bf8e864f74c6ed63753126e2d37dbf6bd1",
+    "oracle_policy": "The original task defines the semantic result where determinate; the frozen trusted baseline supplies concrete fixtures and resolves deterministic task-policy details where the task statement is underspecified. Experimental/model output never defines its own oracle.",
+    "human_review_instruction": "Judge the original model pseudocode against this task-semantic contract even when automated execution is NOT_EVALUABLE."
+  }
+}

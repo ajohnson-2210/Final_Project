@@ -1,0 +1,278 @@
+{
+  "test_spec_schema_version": "1.5",
+  "test_design_version": "1.4",
+  "algorithm_id": 33,
+  "algorithm_title": "Implement a method to find the exact square root of a non negative integer using binary search rounded down",
+  "suite_role": "COMMON_FROZEN_TASK_SEMANTIC_EVALUATION",
+  "oracle_policy": "STATIC_PREEXPERIMENT_EXPECTATIONS",
+  "evidence_adequacy": "ADEQUATE",
+  "evidence_summary": "This suite evaluates integer square root for zero, one, a perfect square, two non-perfect squares and a larger non-perfect square. Negative integers are evaluated separately as semantic-boundary probes.",
+  "coverage_dimensions": {
+    "normal_path": "COVERED",
+    "branch_behaviour": "COVERED",
+    "boundary_behaviour": "COVERED",
+    "error_behaviour": "NOT_COVERED",
+    "termination_behaviour": "NOT_COVERED",
+    "state_mutation": "NOT_COVERED"
+  },
+  "coverage_basis": "Assessment is based on 6 core Common Test cases plus any separately declared semantic-boundary probes; boundary probes do not contribute to core behavioural accuracy.",
+  "interpretation_guidance": "Interpret core behavioural accuracy as evidence within the frozen semantic contract. Interpret Semantic Boundary Variance separately as descriptive evidence of out-of-domain acceptance.",
+  "coverage_limitations": [
+    "Negative integers are outside the NON_NEGATIVE_INTEGER contract and are reported separately through semantic-boundary variance."
+  ],
+  "manual_review_targets": [],
+  "requires_pipeline_features": [],
+  "tests": [
+    {
+      "name": "perfect square",
+      "standard_input": [
+        "16"
+      ],
+      "category": "NORMAL",
+      "semantic_feature": "INTEGER_SQRT_EXACT",
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "PREEXPERIMENT_FROZEN_FIXTURE",
+        "fixture": {
+          "arguments": [
+            16
+          ]
+        },
+        "expected_semantic_result": 4,
+        "comparison_mode": "EXACT",
+        "allowed_arities": [
+          1
+        ],
+        "expectation_policy": "STATIC_FROZEN_VALUE",
+        "observer": {
+          "kind": "NUMBER"
+        }
+      },
+      "score_stream": "CORE_BEHAVIOURAL"
+    },
+    {
+      "name": "non-perfect square rounds down",
+      "standard_input": [
+        "15"
+      ],
+      "category": "BRANCH",
+      "semantic_feature": "INTEGER_SQRT_FLOOR",
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "PREEXPERIMENT_FROZEN_FIXTURE",
+        "fixture": {
+          "arguments": [
+            15
+          ]
+        },
+        "expected_semantic_result": 3,
+        "comparison_mode": "EXACT",
+        "allowed_arities": [
+          1
+        ],
+        "expectation_policy": "STATIC_FROZEN_VALUE",
+        "observer": {
+          "kind": "NUMBER"
+        }
+      },
+      "score_stream": "CORE_BEHAVIOURAL"
+    },
+    {
+      "name": "small positive one",
+      "standard_input": [
+        "1"
+      ],
+      "category": "BOUNDARY",
+      "semantic_feature": "INTEGER_SQRT_ONE",
+      "criteria_links": [
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "PREEXPERIMENT_FROZEN_FIXTURE",
+        "fixture": {
+          "arguments": [
+            1
+          ]
+        },
+        "expected_semantic_result": 1,
+        "comparison_mode": "EXACT",
+        "allowed_arities": [
+          1
+        ],
+        "expectation_policy": "STATIC_FROZEN_VALUE",
+        "observer": {
+          "kind": "NUMBER"
+        }
+      },
+      "score_stream": "CORE_BEHAVIOURAL"
+    },
+    {
+      "name": "square root of zero",
+      "standard_input": [],
+      "category": "BOUNDARY",
+      "semantic_feature": "INTEGER_SQRT_ZERO",
+      "criteria_links": [
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "score_stream": "CORE_BEHAVIOURAL",
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "PREEXPERIMENT_FROZEN_FIXTURE",
+        "fixture": {
+          "arguments": [
+            0
+          ]
+        },
+        "expected_semantic_result": 0,
+        "comparison_mode": "EXACT",
+        "expectation_policy": "STATIC_FROZEN_VALUE",
+        "observer": {
+          "kind": "NUMBER"
+        },
+        "allowed_arities": [
+          1
+        ]
+      }
+    },
+    {
+      "name": "negative integer outside square-root contract",
+      "standard_input": [],
+      "category": "SEMANTIC_BOUNDARY",
+      "semantic_feature": "NEGATIVE_INTEGER_DOMAIN_PROBE",
+      "criteria_links": [],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "BOUNDARY_OBSERVATION",
+      "score_stream": "SEMANTIC_BOUNDARY_PROBE",
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "PREEXPERIMENT_FROZEN_BOUNDARY_PROBE",
+        "expectation_policy": "BOUNDARY_OBSERVATION",
+        "score_stream": "SEMANTIC_BOUNDARY_PROBE",
+        "fixture": {
+          "arguments": [
+            -4
+          ]
+        },
+        "allowed_arities": [
+          1
+        ],
+        "boundary_probe": {
+          "domain_status": "OUT_OF_DOMAIN",
+          "controlled_rejection_error_types": []
+        }
+      }
+    },
+    {
+      "name": "non-numeric retries",
+      "standard_input": [
+        "abc",
+        "9"
+      ],
+      "category": "ERROR_BEHAVIOUR",
+      "semantic_feature": "INTEGER_INPUT_RETRY",
+      "criteria_links": [
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "semantic_test": {
+        "enabled": false,
+        "reason": "This Common Test remains interaction/reference evidence and is not a canonical task-function test.",
+        "fixture_source": null,
+        "expectation_policy": "NOT_AUTOMATED"
+      },
+      "score_stream": "CORE_BEHAVIOURAL"
+    },
+    {
+      "name": "larger non-perfect square rounds down",
+      "standard_input": [],
+      "category": "NORMAL",
+      "semantic_feature": "INTEGER_SQRT_LARGER_FLOOR",
+      "criteria_links": [
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "score_stream": "CORE_BEHAVIOURAL",
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "PREEXPERIMENT_FROZEN_FIXTURE",
+        "fixture": {
+          "arguments": [
+            26
+          ]
+        },
+        "expected_semantic_result": 5,
+        "comparison_mode": "EXACT",
+        "expectation_policy": "STATIC_FROZEN_VALUE",
+        "observer": {
+          "kind": "NUMBER"
+        },
+        "allowed_arities": [
+          1
+        ]
+      }
+    }
+  ],
+  "semantic_contract": {
+    "contract_version": "1.4",
+    "contract_source": "ORIGINAL_TASK_SPECIFICATION",
+    "task_statement": "Find the square root of a non-negative integer using binary search.",
+    "inputs": [
+      {
+        "position": 1,
+        "name": "number",
+        "type": "NON_NEGATIVE_INTEGER"
+      }
+    ],
+    "result": {
+      "type": "INTEGER",
+      "canonical_semantics": "Floor of the non-negative integer square root."
+    },
+    "automation_status": "AUTOMATED_FUNCTION",
+    "parameter_names_are_semantically_irrelevant": true,
+    "derived_parameters_may_be_supplied_by_adapter": true,
+    "human_review_instruction": "Judge the original generated pseudocode against this same frozen task-semantic contract, including when automated evaluation is NOT_EVALUABLE.",
+    "fixture_policy": "PREEXPERIMENT_FROZEN_INPUTS",
+    "expectation_policy": "STATIC_PREEXPERIMENT_EXPECTED_VALUES",
+    "runtime_oracle_prohibited": true
+  },
+  "boundary_evaluation_policy": {
+    "measure": "SEMANTIC_BOUNDARY_VARIANCE",
+    "enabled": true,
+    "core_score_separation": "Boundary probes do not contribute to core semantic behavioural accuracy or Common Test accuracy.",
+    "interpretation": "If enabled, variance is the percentage of evaluable out-of-domain probes that the implementation accepts and processes."
+  }
+}

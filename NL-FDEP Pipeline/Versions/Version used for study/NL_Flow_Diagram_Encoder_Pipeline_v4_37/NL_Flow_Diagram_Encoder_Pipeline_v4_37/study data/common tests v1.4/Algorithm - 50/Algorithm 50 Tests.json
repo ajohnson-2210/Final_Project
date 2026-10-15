@@ -1,0 +1,99 @@
+{
+  "test_spec_schema_version": "1.5",
+  "test_design_version": "1.4",
+  "algorithm_id": 50,
+  "algorithm_title": "Develop an algorithm enabling autonomous drones to coordinate movement while avoiding collisions.",
+  "suite_role": "COMMON_FROZEN_TASK_SEMANTIC_EVALUATION",
+  "oracle_policy": "STATIC_PREEXPERIMENT_EXPECTATIONS",
+  "evidence_adequacy": "LIMITED",
+  "evidence_summary": "This suite provides limited behavioural evidence using one predefined common behavioural test, with partial termination evidence. The reference is graphical/stateful and has no stdout result representing collision avoidance.",
+  "coverage_dimensions": {
+    "normal_path": "NOT_COVERED",
+    "branch_behaviour": "NOT_COVERED",
+    "boundary_behaviour": "NOT_COVERED",
+    "error_behaviour": "NOT_COVERED",
+    "termination_behaviour": "PARTIALLY_COVERED",
+    "state_mutation": "NOT_COVERED"
+  },
+  "coverage_basis": "Assessment is based on the predefined common behavioural test, the behaviours exposed by the frozen program interface, and the declared coverage dimensions: termination behaviour.",
+  "interpretation_guidance": "Interpret behavioural accuracy as agreement for the specific exercised scenario or scenarios, not as strong evidence of general behavioural equivalence.",
+  "coverage_limitations": [
+    "The reference is graphical/stateful and has no stdout result representing collision avoidance.",
+    "A startup/termination test cannot establish collision-avoidance correctness.",
+    "Meaningful behavioural validation requires state-snapshot assertions over drone positions, velocities, target transitions and obstacle distances."
+  ],
+  "manual_review_targets": [
+    "Review obstacle-avoidance, swarm-update and target-transition state semantics.",
+    "Treat visual rendering itself as non-semantic unless it changes simulation state."
+  ],
+  "requires_pipeline_features": [
+    "DETERMINISTIC_RANDOM_SEED",
+    "OPTIONAL_EXTERNAL_MODULES",
+    "STATE_SNAPSHOT_ASSERTIONS"
+  ],
+  "tests": [
+    {
+      "name": "headless simulation initialisation and bounded execution",
+      "standard_input": [],
+      "category": "TERMINATION",
+      "semantic_feature": "DRONE_SIMULATION_STARTUP_AND_HEADLESS_TERMINATION",
+      "criteria_links": [
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "timeout_seconds": 8.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "random_seed": 104729,
+      "environment": {
+        "MPLBACKEND": "Agg"
+      },
+      "requires_modules": [
+        "numpy",
+        "matplotlib"
+      ],
+      "semantic_test": {
+        "enabled": false,
+        "reason": "The semantic contract is available to the integrated human review, but no safe generic automatic invocation/observer is declared for this task in Common Tests v1.2.",
+        "fixture_source": null,
+        "expectation_policy": "NOT_AUTOMATED"
+      },
+      "score_stream": "CORE_BEHAVIOURAL"
+    }
+  ],
+  "semantic_contract": {
+    "contract_version": "1.4",
+    "contract_source": "ORIGINAL_TASK_SPECIFICATION",
+    "task_statement": "Develop algorithms enabling autonomous drones to coordinate movement while avoiding collisions.",
+    "inputs": [
+      {
+        "position": 1,
+        "name": "drones",
+        "type": "DRONE_STATE_LIST"
+      },
+      {
+        "position": 2,
+        "name": "destination",
+        "type": "COORDINATE"
+      }
+    ],
+    "result": {
+      "type": "SAFE_COORDINATION_OUTCOME",
+      "canonical_semantics": "All drones reach the destination while maintaining collision-avoidance constraints."
+    },
+    "automation_status": "HUMAN_SUPPORTED",
+    "parameter_names_are_semantically_irrelevant": true,
+    "derived_parameters_may_be_supplied_by_adapter": true,
+    "human_review_instruction": "Judge the original generated pseudocode against this same frozen task-semantic contract, including when automated evaluation is NOT_EVALUABLE.",
+    "fixture_policy": "PREEXPERIMENT_FROZEN_INPUTS",
+    "expectation_policy": "STATIC_PREEXPERIMENT_EXPECTED_VALUES",
+    "runtime_oracle_prohibited": true
+  },
+  "boundary_evaluation_policy": {
+    "measure": "SEMANTIC_BOUNDARY_VARIANCE",
+    "enabled": false,
+    "core_score_separation": "Boundary probes do not contribute to core semantic behavioural accuracy or Common Test accuracy.",
+    "interpretation": "If enabled, variance is the percentage of evaluable out-of-domain probes that the implementation accepts and processes."
+  }
+}

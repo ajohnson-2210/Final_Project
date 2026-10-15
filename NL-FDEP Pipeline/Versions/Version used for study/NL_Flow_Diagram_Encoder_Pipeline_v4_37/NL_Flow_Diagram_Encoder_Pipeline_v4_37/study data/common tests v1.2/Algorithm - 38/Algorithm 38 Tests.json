@@ -1,0 +1,99 @@
+{
+  "test_spec_schema_version": "1.3",
+  "test_design_version": "1.2",
+  "algorithm_id": 38,
+  "algorithm_title": "Find the first non-repeating character in a string",
+  "suite_role": "COMMON_SEMANTIC_BASELINE_CALIBRATION_AND_EXPERIMENTAL_COMPARISON",
+  "oracle_policy": "TRUSTED_BASELINE_REFERENCE",
+  "evidence_adequacy": "PARTIAL",
+  "evidence_summary": "This suite provides partial behavioural evidence using one predefined common behavioural test, with partial branch evidence. Embedded examples cover unique-character and no-unique-character cases; empty string is not exercised.",
+  "coverage_dimensions": {
+    "normal_path": "NOT_COVERED",
+    "branch_behaviour": "PARTIALLY_COVERED",
+    "boundary_behaviour": "NOT_COVERED",
+    "error_behaviour": "NOT_COVERED",
+    "termination_behaviour": "NOT_COVERED",
+    "state_mutation": "NOT_COVERED"
+  },
+  "coverage_basis": "Assessment is based on the predefined common behavioural test, the behaviours exposed by the frozen program interface, and the declared coverage dimensions: branch behaviour.",
+  "interpretation_guidance": "Interpret behavioural accuracy as useful but incomplete evidence across the declared exercised behaviours; unexercised behaviours remain outside the direct evidence.",
+  "coverage_limitations": [
+    "Embedded examples cover unique-character and no-unique-character cases; empty string is not exercised."
+  ],
+  "manual_review_targets": [],
+  "requires_pipeline_features": [],
+  "tests": [
+    {
+      "name": "default first-non-repeating examples",
+      "standard_input": [],
+      "category": "BRANCH",
+      "semantic_feature": "FIRST_UNIQUE_FOUND_LATE_AND_NONE",
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "FROZEN_BASELINE_FIXED_EXAMPLES",
+        "oracle_source": "TASK_SEMANTIC_ORACLE_WITH_FROZEN_BASELINE_REFERENCE",
+        "fixture": {
+          "invocations": [
+            {
+              "arguments": [
+                "swiss"
+              ]
+            },
+            {
+              "arguments": [
+                "aabbccd"
+              ]
+            },
+            {
+              "arguments": [
+                "aabbcc"
+              ]
+            }
+          ]
+        },
+        "expected_semantic_result": [
+          "w",
+          "d",
+          "None Found"
+        ],
+        "comparison_mode": "EXACT",
+        "entrypoint_candidates": [
+          "unnamed_function"
+        ],
+        "allowed_arities": [
+          1
+        ]
+      }
+    }
+  ],
+  "semantic_contract": {
+    "contract_version": "1.2",
+    "contract_source": "ORIGINAL_TASK_SPECIFICATION",
+    "task_statement": "Find the first non-repeating character in a string.",
+    "inputs": [
+      {
+        "position": 1,
+        "name": "text",
+        "type": "STRING"
+      }
+    ],
+    "result": {
+      "type": "CHAR_OR_NONE",
+      "canonical_semantics": "First character whose frequency is one, or none."
+    },
+    "automation_status": "AUTOMATED_FUNCTION",
+    "parameter_names_are_semantically_irrelevant": true,
+    "derived_parameters_may_be_supplied_by_adapter": true,
+    "baseline_fixture_source": "Algorithm 38 Baseline Python code.txt",
+    "baseline_source_sha256": "637ff776a93dcc2378c0c662613ea12733b7476f6743576ad09db94cd562ffbc",
+    "oracle_policy": "The original task defines the semantic result where determinate; the frozen trusted baseline supplies concrete fixtures and resolves deterministic task-policy details where the task statement is underspecified. Experimental/model output never defines its own oracle.",
+    "human_review_instruction": "Judge the original model pseudocode against this task-semantic contract even when automated execution is NOT_EVALUABLE."
+  }
+}

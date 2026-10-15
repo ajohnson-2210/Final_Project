@@ -1,0 +1,166 @@
+{
+  "version": "2.59",
+  "rule_policy": {
+    "ascending_inclusive_to": "FOR ... TO U -> AJ end-exclusive TO (U) + 1",
+    "explicit_descending_inclusive": "FOR ... DOWNTO U -> AJ end-exclusive TO (U) - 1 STEP -1",
+    "implicit_last_index_to_zero": "FROM LENGTH(x)-1 TO 0 -> direction-aware TO (0) - 1 STEP -1 (narrow structural recovery)",
+    "idempotence": "already-canonical IN RANGE is unchanged"
+  },
+  "previously_identified_occurrences_addressed": 92,
+  "ascending_gc176_occurrences": 91,
+  "implicit_descending_gc177_occurrences": 1,
+  "explicit_descending_gc178_occurrences": 3,
+  "addressed_by_model": {
+    "source_a": 7,
+    "source_b_source_b_4.6": 17,
+    "source_c": 20,
+    "source_d": 9,
+    "source_e": 21,
+    "source_f_3.6_Plus": 18
+  },
+  "affected_algorithms_by_model": {
+    "source_a": [
+      12,
+      20,
+      22,
+      25,
+      28
+    ],
+    "source_b_source_b_4.6": [
+      8,
+      9,
+      12,
+      20,
+      25,
+      27,
+      28,
+      41,
+      44,
+      45,
+      46
+    ],
+    "source_c": [
+      8,
+      9,
+      12,
+      20,
+      22,
+      25,
+      26,
+      27,
+      28,
+      41,
+      45,
+      46
+    ],
+    "source_d": [
+      8,
+      12,
+      22,
+      25,
+      26,
+      27,
+      28,
+      41,
+      44
+    ],
+    "source_e": [
+      9,
+      12,
+      13,
+      20,
+      25,
+      26,
+      27,
+      28,
+      41,
+      42,
+      45,
+      46
+    ],
+    "source_f_3.6_Plus": [
+      8,
+      9,
+      12,
+      20,
+      22,
+      25,
+      26,
+      27,
+      28,
+      41,
+      45,
+      46,
+      50
+    ]
+  },
+  "implicit_descending": [
+    {
+      "model": "source_e",
+      "algorithm": 13
+    }
+  ],
+  "explicit_descending": [
+    {
+      "model": "source_a",
+      "algorithm": 13
+    },
+    {
+      "model": "source_b_source_b_4.6",
+      "algorithm": 13
+    },
+    {
+      "model": "source_c",
+      "algorithm": 13
+    }
+  ],
+  "residual_endpoint_loss_cases": [],
+  "regression_suite": {
+    "passed": 215,
+    "failed": 0,
+    "warnings": 3
+  },
+  "corpus": {
+    "parsed": 182,
+    "size": 300,
+    "parse_rate_percent": 60.7,
+    "model_summary": {
+      "source_f_3.6_Plus": {
+        "extracted": 50,
+        "parsed": 30,
+        "unsupported": 20,
+        "minimalist_or_insufficient_structure": 0
+      },
+      "source_a": {
+        "extracted": 50,
+        "parsed": 38,
+        "unsupported": 12,
+        "minimalist_or_insufficient_structure": 0
+      },
+      "source_c": {
+        "extracted": 50,
+        "parsed": 35,
+        "unsupported": 15,
+        "minimalist_or_insufficient_structure": 0
+      },
+      "source_b_source_b_4.6": {
+        "extracted": 50,
+        "parsed": 35,
+        "unsupported": 15,
+        "minimalist_or_insufficient_structure": 0
+      },
+      "source_d": {
+        "extracted": 50,
+        "parsed": 0,
+        "unsupported": 50,
+        "minimalist_or_insufficient_structure": 0
+      },
+      "source_e": {
+        "extracted": 50,
+        "parsed": 44,
+        "unsupported": 6,
+        "minimalist_or_insufficient_structure": 0
+      }
+    }
+  }
+}

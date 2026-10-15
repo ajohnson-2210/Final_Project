@@ -1,0 +1,50 @@
+Generic Compatibility Specification v2.0 - Phase 10
+====================================================
+
+Purpose
+-------
+Phase 10 targets only high-confidence, semantics-preserving mismatches observed
+when the 300-example corpus was rerun against v1.29. It does not alter
+AJ_24038155 Dialect v1.0 and deliberately avoids speculative interpretation.
+
+Rules
+-----
+GC098  Raw quoted values after OUTPUT/RETURN -> STRING(...)
+GC099  SORT characters of x -> x <- CALL sort_characters(x)
+GC100  SORT x -> x <- CALL sort_value(x)
+GC101  REVERSE x -> x <- CALL reverse_value(x)
+GC102  SWAP a AND b / SWAP a, b -> three canonical assignments using a fresh non-keyword temporary identifier (historical _swap_temp/temp_var spellings are metavariables, not fixed source names)
+GC103  x EXISTS IN collection -> x IN collection
+GC104  Explicit natural predicates (punctuation, digit, uppercase, file, folder)
+       -> CALL predicate(...) forms
+GC105  LOWERCASE/UPPERCASE/MAX/MIN function forms -> canonical CALL expressions
+GC106  x <- SPLIT y BY spaces -> x <- CALL split_on_space(y)
+GC107  FOR i <- start DOWNTO end -> AJ IN RANGE ... STEP -1 form
+
+Parser correction
+-----------------
+NOT IN was already tokenised as a single AJ operator. The parser incorrectly
+requested an additional IN token. That defect is corrected separately and is
+not counted as a Generic transformation.
+
+Compiler mappings
+-----------------
+sort_characters(x) -> ''.join(sorted(x))
+sort_value(x)      -> sorted(x)
+reverse_value(x)   -> x[::-1]
+lowercase(x)       -> str(x).lower()
+uppercase(x)       -> str(x).upper()
+split_on_space(x)  -> str(x).split(" ")
+split_words(x)     -> str(x).split()
+is_punctuation(x)  -> punctuation predicate
+is_digit(x)        -> x.isdigit()
+is_uppercase(x)    -> x.isupper()
+
+Corpus result
+-------------
+v1.29 baseline: 89 / 300 parsed (29.7%)
+Phase 10:        117 / 300 parsed (39.0%)
+Net gain:         28 algorithms (+9.3 percentage points)
+
+The remaining failures are retained for later analysis where conversion would
+require additional grammar support or semantic inference.

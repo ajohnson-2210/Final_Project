@@ -1,0 +1,9 @@
+NL-FDEP v4.21 optional baseline-reference dependencies
+
+The pipeline itself does not require these packages. They are only needed if a frozen baseline/reference program explicitly imports them.
+
+Algorithm 50 common-test reference execution declares:
+- numpy
+- matplotlib
+
+If these packages are unavailable, v4.21 records that reference test as MISSING_DEPENDENCY / NOT_EVALUABLE rather than treating the missing dependency as expected algorithm behaviour.

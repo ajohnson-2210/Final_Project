@@ -1,0 +1,39 @@
+{
+  "version": "2.38",
+  "title": "Qualitative Completeness and Abstract-Operation Audit Policy",
+  "purpose": "Separate source completeness from parser success so later regression analysis can compare model outputs without hiding abstraction behind canonicalisation.",
+  "principles": [
+    "Explicit procedural logic is preserved as written except for auditable surface/structural canonicalisation.",
+    "An explicitly stated abstract operation may be minimally operationalised when later source statements depend on state or results that the abstraction necessarily establishes.",
+    "Operationalisation must preserve the abstract operation's position in control flow and may not rewrite later explicit procedural logic.",
+    "Task intent is evidence for later correctness analysis and must not override contradictory explicit model procedure during canonicalisation.",
+    "Every operationalised abstract instruction must be recorded in the audit so later analysis can measure canonicalisation burden."
+  ],
+  "recommended_fields": {
+    "algorithmic_intent": [
+      "EXPLICIT",
+      "PARTIAL",
+      "UNCLEAR"
+    ],
+    "procedural_completeness": [
+      "COMPLETE",
+      "PARTIAL",
+      "MINIMAL"
+    ],
+    "abstract_operations_present": "boolean",
+    "abstract_operations": "list of exact or near-exact source operations",
+    "dependency_on_abstract_state": "later source expressions that consume the abstraction",
+    "operationalisation_required_for_execution": "boolean",
+    "semantic_core_preserved": "boolean",
+    "canonicalisation_burden": [
+      "LOW",
+      "MODERATE",
+      "HIGH"
+    ],
+    "confidence": [
+      "HIGH",
+      "MEDIUM",
+      "LOW"
+    ]
+  }
+}

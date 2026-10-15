@@ -1,0 +1,87 @@
+{
+  "test_spec_schema_version": "1.3",
+  "test_design_version": "1.2",
+  "algorithm_id": 10,
+  "algorithm_title": "Scan a given paragraph of text and count how many times each individual vowel appears",
+  "suite_role": "COMMON_SEMANTIC_BASELINE_CALIBRATION_AND_EXPERIMENTAL_COMPARISON",
+  "oracle_policy": "TRUSTED_BASELINE_REFERENCE",
+  "evidence_adequacy": "LIMITED",
+  "evidence_summary": "This suite provides limited behavioural evidence using one predefined common behavioural test, with covered normal-path behaviour. Paragraph is fixed; zero-vowel/uppercase-only variants are not externally injectable.",
+  "coverage_dimensions": {
+    "normal_path": "COVERED",
+    "branch_behaviour": "NOT_COVERED",
+    "boundary_behaviour": "NOT_COVERED",
+    "error_behaviour": "NOT_COVERED",
+    "termination_behaviour": "NOT_COVERED",
+    "state_mutation": "NOT_COVERED"
+  },
+  "coverage_basis": "Assessment is based on the predefined common behavioural test, the behaviours exposed by the frozen program interface, and the declared coverage dimensions: normal path.",
+  "interpretation_guidance": "Interpret behavioural accuracy as agreement for the specific exercised scenario or scenarios, not as strong evidence of general behavioural equivalence.",
+  "coverage_limitations": [
+    "Paragraph is fixed; zero-vowel/uppercase-only variants are not externally injectable."
+  ],
+  "manual_review_targets": [],
+  "requires_pipeline_features": [],
+  "tests": [
+    {
+      "name": "default vowel-frequency count",
+      "standard_input": [],
+      "category": "NORMAL",
+      "semantic_feature": "PER_VOWEL_FREQUENCY_AND_CASE_NORMALISATION",
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "FROZEN_BASELINE_FIXED_INPUT",
+        "oracle_source": "TASK_SEMANTIC_ORACLE_WITH_FROZEN_BASELINE_REFERENCE",
+        "fixture": {
+          "arguments": [
+            "This is a sentence that contains vowels"
+          ]
+        },
+        "expected_semantic_result": {
+          "a": 3,
+          "e": 4,
+          "i": 3,
+          "o": 2,
+          "u": 0
+        },
+        "comparison_mode": "EXACT",
+        "entrypoint_candidates": [
+          "unnamed_function"
+        ],
+        "allowed_arities": [
+          1
+        ]
+      }
+    }
+  ],
+  "semantic_contract": {
+    "contract_version": "1.2",
+    "contract_source": "ORIGINAL_TASK_SPECIFICATION",
+    "task_statement": "Count how many times each vowel appears in a paragraph.",
+    "inputs": [
+      {
+        "position": 1,
+        "name": "text",
+        "type": "STRING"
+      }
+    ],
+    "result": {
+      "type": "VOWEL_COUNT_MAP",
+      "canonical_semantics": "Counts for a,e,i,o,u, case-insensitive."
+    },
+    "automation_status": "AUTOMATED_FUNCTION",
+    "parameter_names_are_semantically_irrelevant": true,
+    "derived_parameters_may_be_supplied_by_adapter": true,
+    "baseline_fixture_source": "Algorithm 10 Baseline Python code.txt",
+    "baseline_source_sha256": "10463e9fcb0673b1ba5e8dd5658fc69d605ad4c5a2e8a655e7410f482e2db988",
+    "oracle_policy": "The original task defines the semantic result where determinate; the frozen trusted baseline supplies concrete fixtures and resolves deterministic task-policy details where the task statement is underspecified. Experimental/model output never defines its own oracle.",
+    "human_review_instruction": "Judge the original model pseudocode against this task-semantic contract even when automated execution is NOT_EVALUABLE."
+  }
+}

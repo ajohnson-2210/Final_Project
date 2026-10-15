@@ -1,0 +1,73 @@
+Generic Compatibility Specification v2.0
+Phase 2 - Operator Normalisation
+
+Scope
+-----
+This phase is derived from the six-model pseudocode corpus containing 300 algorithm responses.
+It applies only to GENERIC_COMPATIBILITY. AJ_DIALECT_STRICT and GENERAL_NO_CONVERSION are not affected.
+
+Rules
+-----
+GC018  Compound addition assignment
+Source: target += value
+Target: target <- target + value
+
+GC019  Compound subtraction assignment
+Source: target -= value
+Target: target <- target - value
+
+GC020  Compound multiplication assignment
+Source: target *= value
+Target: target <- target * value
+
+GC021  Compound division assignment
+Source: target /= value
+Target: target <- target / value
+
+GC022  Compound modulus assignment
+Source: target %= value
+Target: target <- target % value
+
+GC023  Postfix increment
+Source: target++
+Target: target <- target + 1
+
+GC024  Postfix decrement
+Source: target--
+Target: target <- target - 1
+
+GC025  Equality written using a single equals sign in an explicit condition
+Source: IF value = other THEN
+Target: IF value == other THEN
+Context: only IF, ELSE IF and WHILE condition clauses are changed. The rule stops at THEN or ':' so inline statements are not altered.
+
+GC026  Assignment written using a single equals sign
+Source: target = value
+Target: target <- value
+Context: only a leading assignable lvalue is changed. Existing ==, !=, <= and >= comparisons are preserved.
+
+Corpus observations
+-------------------
+The six-model corpus contains a mixture of AJ-style assignment arrows, Python-like assignment equals, comparison equality, compound assignment, and postfix increment/decrement.
+A blind global '=' replacement is prohibited because single '=' is also used as equality by some model outputs.
+
+Observed Phase 2 rule activations across the 300-algorithm corpus:
+GC018: 36
+GC019: 3
+GC020: 1
+GC021: 0
+GC022: 0
+GC023: 10
+GC024: 3
+GC025: 27
+GC026: 335
+
+GC021 and GC022 are retained as safe compatibility rules despite no occurrences in the current corpus because they are direct counterparts of observed compound-assignment syntax.
+
+Audit requirement
+-----------------
+Every applied conversion is recorded in pseudocode_processing_report.json with:
+- source line number
+- GC rule ID
+- source text
+- target text

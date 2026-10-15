@@ -1,0 +1,218 @@
+{
+  "test_spec_schema_version": "1.3",
+  "test_design_version": "1.2",
+  "algorithm_id": 43,
+  "algorithm_title": "Solve the Tower of Hanoi problem for N Discs",
+  "suite_role": "COMMON_SEMANTIC_BASELINE_CALIBRATION_AND_EXPERIMENTAL_COMPARISON",
+  "oracle_policy": "TRUSTED_BASELINE_REFERENCE",
+  "evidence_adequacy": "ADEQUATE",
+  "evidence_summary": "This suite provides comparatively broad behavioural evidence using 4 predefined common behavioural tests, with covered normal-path behaviour and partial branch, boundary, error evidence.",
+  "coverage_dimensions": {
+    "normal_path": "COVERED",
+    "branch_behaviour": "PARTIALLY_COVERED",
+    "boundary_behaviour": "PARTIALLY_COVERED",
+    "error_behaviour": "PARTIALLY_COVERED",
+    "termination_behaviour": "NOT_COVERED",
+    "state_mutation": "NOT_COVERED"
+  },
+  "coverage_basis": "Assessment is based on the 4 predefined common behavioural tests, the behaviours exposed by the frozen program interface, and the declared coverage dimensions: normal path, branch behaviour, boundary behaviour, error behaviour.",
+  "interpretation_guidance": "Interpret behavioural accuracy as comparatively broad evidence across the declared exercised behaviours, while not treating the result as exhaustive proof for all possible inputs and states.",
+  "coverage_limitations": [],
+  "manual_review_targets": [],
+  "requires_pipeline_features": [],
+  "tests": [
+    {
+      "name": "one disc",
+      "standard_input": [
+        "1"
+      ],
+      "category": "BOUNDARY",
+      "semantic_feature": "HANOI_SINGLE_DISC",
+      "criteria_links": [
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "timeout_seconds": 5.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "COMMON_TEST_STANDARD_INPUT",
+        "oracle_source": "TASK_SEMANTIC_ORACLE_WITH_FROZEN_BASELINE_REFERENCE",
+        "fixture": {
+          "arguments": [
+            1
+          ]
+        },
+        "expected_semantic_result": [
+          [
+            "A",
+            "C"
+          ]
+        ],
+        "comparison_mode": "EXACT",
+        "entrypoint_candidates": [
+          "unnamed_function"
+        ],
+        "allowed_arities": [
+          1
+        ]
+      }
+    },
+    {
+      "name": "two discs even branch",
+      "standard_input": [
+        "2"
+      ],
+      "category": "BRANCH",
+      "semantic_feature": "HANOI_EVEN_DISC_TARGET_SWAP",
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "timeout_seconds": 5.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "COMMON_TEST_STANDARD_INPUT",
+        "oracle_source": "TASK_SEMANTIC_ORACLE_WITH_FROZEN_BASELINE_REFERENCE",
+        "fixture": {
+          "arguments": [
+            2
+          ]
+        },
+        "expected_semantic_result": [
+          [
+            "A",
+            "B"
+          ],
+          [
+            "A",
+            "C"
+          ],
+          [
+            "B",
+            "C"
+          ]
+        ],
+        "comparison_mode": "EXACT",
+        "entrypoint_candidates": [
+          "unnamed_function"
+        ],
+        "allowed_arities": [
+          1
+        ]
+      }
+    },
+    {
+      "name": "three discs odd branch",
+      "standard_input": [
+        "3"
+      ],
+      "category": "NORMAL",
+      "semantic_feature": "HANOI_ODD_DISC_SEQUENCE",
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "timeout_seconds": 8.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "COMMON_TEST_STANDARD_INPUT",
+        "oracle_source": "TASK_SEMANTIC_ORACLE_WITH_FROZEN_BASELINE_REFERENCE",
+        "fixture": {
+          "arguments": [
+            3
+          ]
+        },
+        "expected_semantic_result": [
+          [
+            "A",
+            "C"
+          ],
+          [
+            "A",
+            "B"
+          ],
+          [
+            "C",
+            "B"
+          ],
+          [
+            "A",
+            "C"
+          ],
+          [
+            "B",
+            "A"
+          ],
+          [
+            "B",
+            "C"
+          ],
+          [
+            "A",
+            "C"
+          ]
+        ],
+        "comparison_mode": "EXACT",
+        "entrypoint_candidates": [
+          "unnamed_function"
+        ],
+        "allowed_arities": [
+          1
+        ]
+      }
+    },
+    {
+      "name": "invalid input retries",
+      "standard_input": [
+        "abc",
+        "2"
+      ],
+      "category": "ERROR_BEHAVIOUR",
+      "semantic_feature": "HANOI_INTEGER_INPUT_RETRY",
+      "criteria_links": [
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "timeout_seconds": 5.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "semantic_test": {
+        "enabled": false,
+        "reason": "This Common Test remains interaction/reference evidence and is not a canonical task-function test.",
+        "fixture_source": null,
+        "oracle_source": null
+      }
+    }
+  ],
+  "semantic_contract": {
+    "contract_version": "1.2",
+    "contract_source": "ORIGINAL_TASK_SPECIFICATION",
+    "task_statement": "Solve the Tower of Hanoi problem for N discs.",
+    "inputs": [
+      {
+        "position": 1,
+        "name": "n",
+        "type": "POSITIVE_INTEGER"
+      }
+    ],
+    "result": {
+      "type": "HANOI_MOVE_SEQUENCE",
+      "canonical_semantics": "Legal minimal Tower-of-Hanoi move sequence from A to C using B."
+    },
+    "automation_status": "AUTOMATED_FUNCTION",
+    "parameter_names_are_semantically_irrelevant": true,
+    "derived_parameters_may_be_supplied_by_adapter": true,
+    "baseline_fixture_source": "Algorithm 43 Baseline Python code.txt",
+    "baseline_source_sha256": "8fc5ac02d28623ba2ee4571302aa545001820414eaca92bbc9928fb592f5eb06",
+    "oracle_policy": "The original task defines the semantic result where determinate; the frozen trusted baseline supplies concrete fixtures and resolves deterministic task-policy details where the task statement is underspecified. Experimental/model output never defines its own oracle.",
+    "human_review_instruction": "Judge the original model pseudocode against this task-semantic contract even when automated execution is NOT_EVALUABLE."
+  }
+}

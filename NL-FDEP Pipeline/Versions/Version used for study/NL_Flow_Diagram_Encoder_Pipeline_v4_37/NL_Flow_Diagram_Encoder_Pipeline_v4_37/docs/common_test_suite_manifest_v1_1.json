@@ -1,0 +1,41 @@
+{
+  "test_design_version": "1.1",
+  "test_spec_schema_version": "1.2",
+  "target_pipeline": "NL-FDEP v4.29",
+  "target_rubric": "1.1",
+  "language_version": "AJ_24038155_DIALECT_V1.4",
+  "purpose": "Common behavioural test design for baseline calibration and experimental comparison using the same trusted baseline Python and common tests, with descriptive G2 evidence profiles.",
+  "oracle_policy": "Expected outcomes may be omitted and derived from the accepted trusted baseline Python; the same test cases are then applied to generated Python.",
+  "g2_policy": "The G2 headline classification is accompanied by per-suite evidence_summary, six coverage dimensions, coverage_basis, limitations and interpretation guidance; runtime scoring adds declared/evaluable/pass counts and execution-derived evidence.",
+  "test_count": 113,
+  "algorithm_count": 50,
+  "evidence_adequacy_counts": {
+    "LIMITED": 21,
+    "ADEQUATE": 11,
+    "PARTIAL": 18
+  },
+  "category_counts": {
+    "NORMAL": 32,
+    "BRANCH": 20,
+    "ERROR_BEHAVIOUR": 16,
+    "BOUNDARY": 20,
+    "STATE_MUTATION": 23,
+    "TERMINATION": 2
+  },
+  "coverage_dimension_values": [
+    "COVERED",
+    "PARTIALLY_COVERED",
+    "NOT_COVERED",
+    "NOT_APPLICABLE",
+    "NOT_EVALUABLE"
+  ],
+  "deterministic_seed_policy": {
+    "default_seed_set": [
+      104729,
+      104759,
+      104761
+    ],
+    "note": "Fixed seeds are research controls, not correctness criteria."
+  },
+  "compatibility_note": "Test Design v1.1 and its 113 executable test cases are unchanged; v4.29 retains v4.28 reference-execution corrections and adds explicit optional external-module lowering for Algorithm 50; test semantics remain unchanged."
+}

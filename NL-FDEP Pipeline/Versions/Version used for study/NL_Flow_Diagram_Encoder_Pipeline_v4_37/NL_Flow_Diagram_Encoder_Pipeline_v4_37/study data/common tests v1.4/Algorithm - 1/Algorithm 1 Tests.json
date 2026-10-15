@@ -1,0 +1,103 @@
+{
+  "test_spec_schema_version": "1.5",
+  "test_design_version": "1.4",
+  "algorithm_id": 1,
+  "algorithm_title": "Determine if 2 strings are anagrams of each other",
+  "suite_role": "COMMON_FROZEN_TASK_SEMANTIC_EVALUATION",
+  "oracle_policy": "STATIC_PREEXPERIMENT_EXPECTATIONS",
+  "evidence_adequacy": "LIMITED",
+  "evidence_summary": "This suite provides limited behavioural evidence using one predefined common behavioural test, with covered normal-path behaviour. Frozen program uses fixed strings, so alternate anagram/equality/empty cases are not exercised by the current frozen suite without changing the source.",
+  "coverage_dimensions": {
+    "normal_path": "COVERED",
+    "branch_behaviour": "NOT_COVERED",
+    "boundary_behaviour": "NOT_COVERED",
+    "error_behaviour": "NOT_COVERED",
+    "termination_behaviour": "NOT_COVERED",
+    "state_mutation": "NOT_COVERED"
+  },
+  "coverage_basis": "Assessment is based on the predefined common behavioural test, the behaviours exposed by the frozen program interface, and the declared coverage dimensions: normal path.",
+  "interpretation_guidance": "Interpret behavioural accuracy as agreement for the specific exercised scenario or scenarios, not as strong evidence of general behavioural equivalence.",
+  "coverage_limitations": [
+    "Frozen program uses fixed strings, so alternate anagram/equality/empty cases are not exercised by the current frozen suite without changing the source."
+  ],
+  "manual_review_targets": [
+    "Confirm numeric characters participate in comparison and are not filtered."
+  ],
+  "requires_pipeline_features": [],
+  "tests": [
+    {
+      "name": "corrected digit-preserving default anagram case",
+      "standard_input": [],
+      "category": "NORMAL",
+      "semantic_feature": "ANAGRAM_DIGITS_PRESERVED_AND_MISMATCH",
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "PREEXPERIMENT_FROZEN_FIXTURE",
+        "fixture": {
+          "arguments": [
+            "1a23",
+            "45a6"
+          ]
+        },
+        "expected_semantic_result": false,
+        "comparison_mode": "EXACT",
+        "allowed_arities": [
+          2
+        ],
+        "expectation_policy": "STATIC_FROZEN_VALUE",
+        "observer": {
+          "kind": "BOOLEAN",
+          "positive_tokens": [
+            "anagram"
+          ],
+          "negative_tokens": [
+            "not anagram",
+            "not_anagram"
+          ]
+        }
+      },
+      "score_stream": "CORE_BEHAVIOURAL"
+    }
+  ],
+  "semantic_contract": {
+    "contract_version": "1.4",
+    "contract_source": "ORIGINAL_TASK_SPECIFICATION",
+    "task_statement": "Determine whether two given strings are anagrams of each other.",
+    "inputs": [
+      {
+        "position": 1,
+        "name": "string_1",
+        "type": "STRING"
+      },
+      {
+        "position": 2,
+        "name": "string_2",
+        "type": "STRING"
+      }
+    ],
+    "result": {
+      "type": "BOOLEAN",
+      "canonical_semantics": "True iff both strings contain the same multiset of characters."
+    },
+    "automation_status": "AUTOMATED_FUNCTION",
+    "parameter_names_are_semantically_irrelevant": true,
+    "derived_parameters_may_be_supplied_by_adapter": true,
+    "human_review_instruction": "Judge the original generated pseudocode against this same frozen task-semantic contract, including when automated evaluation is NOT_EVALUABLE.",
+    "fixture_policy": "PREEXPERIMENT_FROZEN_INPUTS",
+    "expectation_policy": "STATIC_PREEXPERIMENT_EXPECTED_VALUES",
+    "runtime_oracle_prohibited": true
+  },
+  "boundary_evaluation_policy": {
+    "measure": "SEMANTIC_BOUNDARY_VARIANCE",
+    "enabled": false,
+    "core_score_separation": "Boundary probes do not contribute to core semantic behavioural accuracy or Common Test accuracy.",
+    "interpretation": "If enabled, variance is the percentage of evaluable out-of-domain probes that the implementation accepts and processes."
+  }
+}

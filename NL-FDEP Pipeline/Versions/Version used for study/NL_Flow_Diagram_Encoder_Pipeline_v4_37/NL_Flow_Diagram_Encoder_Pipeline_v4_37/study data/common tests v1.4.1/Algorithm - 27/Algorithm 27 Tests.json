@@ -1,0 +1,688 @@
+{
+  "test_spec_schema_version": "1.6",
+  "test_design_version": "1.4.1",
+  "algorithm_id": 27,
+  "algorithm_title": "Rotate a 2D matrix 90 degrees clockwise in place",
+  "suite_role": "COMMON_FROZEN_TASK_SEMANTIC_EVALUATION",
+  "oracle_policy": "STATIC_PREEXPERIMENT_EXPECTATIONS",
+  "evidence_adequacy": "ADEQUATE",
+  "evidence_summary": "This suite evaluates square-matrix rotation across 1×1, 2×2, 3×3 and 4×4 valid inputs. A 2×3 matrix is evaluated separately as an out-of-domain semantic-boundary probe.",
+  "coverage_dimensions": {
+    "normal_path": "COVERED",
+    "branch_behaviour": "NOT_COVERED",
+    "boundary_behaviour": "COVERED",
+    "error_behaviour": "NOT_COVERED",
+    "termination_behaviour": "NOT_COVERED",
+    "state_mutation": "COVERED"
+  },
+  "coverage_basis": "Assessment is based on 5 core Common Test cases plus any separately declared semantic-boundary probes; boundary probes do not contribute to core behavioural accuracy.",
+  "interpretation_guidance": "Interpret core behavioural accuracy as evidence within the frozen semantic contract. Interpret Semantic Boundary Variance separately as descriptive evidence of out-of-domain acceptance.",
+  "coverage_limitations": [
+    "Rectangular matrices are outside the SQUARE_MATRIX contract; successful processing is recorded as semantic boundary variance rather than core correctness."
+  ],
+  "manual_review_targets": [],
+  "requires_pipeline_features": [],
+  "tests": [
+    {
+      "name": "default in-place matrix rotation",
+      "standard_input": [],
+      "category": "STATE_MUTATION",
+      "semantic_feature": "MATRIX_TRANSPOSE_AND_ROW_REVERSAL",
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "PREEXPERIMENT_FROZEN_FIXTURE",
+        "fixture": {
+          "arguments": [
+            [
+              [
+                1,
+                2,
+                3
+              ],
+              [
+                4,
+                5,
+                6
+              ],
+              [
+                7,
+                8,
+                9
+              ]
+            ],
+            3
+          ],
+          "invocation_variants": [
+            {
+              "arities": [
+                1
+              ],
+              "arguments": [
+                [
+                  [
+                    1,
+                    2,
+                    3
+                  ],
+                  [
+                    4,
+                    5,
+                    6
+                  ],
+                  [
+                    7,
+                    8,
+                    9
+                  ]
+                ]
+              ]
+            },
+            {
+              "arities": [
+                2
+              ],
+              "arguments": [
+                [
+                  [
+                    1,
+                    2,
+                    3
+                  ],
+                  [
+                    4,
+                    5,
+                    6
+                  ],
+                  [
+                    7,
+                    8,
+                    9
+                  ]
+                ],
+                3
+              ]
+            }
+          ]
+        },
+        "expected_semantic_result": [
+          [
+            7,
+            4,
+            1
+          ],
+          [
+            8,
+            5,
+            2
+          ],
+          [
+            9,
+            6,
+            3
+          ]
+        ],
+        "comparison_mode": "EXACT",
+        "allowed_arities": [
+          1,
+          2
+        ],
+        "expectation_policy": "STATIC_FROZEN_VALUE",
+        "observer": {
+          "kind": "MATRIX"
+        }
+      },
+      "score_stream": "CORE_BEHAVIOURAL"
+    },
+    {
+      "name": "1x1 square rotation",
+      "standard_input": [],
+      "category": "BOUNDARY",
+      "semantic_feature": "SQUARE_ROTATION_1",
+      "criteria_links": [
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "score_stream": "CORE_BEHAVIOURAL",
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "PREEXPERIMENT_FROZEN_FIXTURE",
+        "fixture": {
+          "arguments": [
+            [
+              [
+                5
+              ]
+            ],
+            1
+          ],
+          "invocation_variants": [
+            {
+              "arities": [
+                1
+              ],
+              "arguments": [
+                [
+                  [
+                    5
+                  ]
+                ]
+              ]
+            },
+            {
+              "arities": [
+                2
+              ],
+              "arguments": [
+                [
+                  [
+                    5
+                  ]
+                ],
+                1
+              ]
+            }
+          ]
+        },
+        "expected_semantic_result": [
+          [
+            5
+          ]
+        ],
+        "comparison_mode": "EXACT",
+        "expectation_policy": "STATIC_FROZEN_VALUE",
+        "observer": {
+          "kind": "MATRIX"
+        },
+        "allowed_arities": [
+          1,
+          2
+        ]
+      }
+    },
+    {
+      "name": "2x2 square rotation",
+      "standard_input": [],
+      "category": "BOUNDARY",
+      "semantic_feature": "SQUARE_ROTATION_2",
+      "criteria_links": [
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "score_stream": "CORE_BEHAVIOURAL",
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "PREEXPERIMENT_FROZEN_FIXTURE",
+        "fixture": {
+          "arguments": [
+            [
+              [
+                1,
+                2
+              ],
+              [
+                3,
+                4
+              ]
+            ],
+            2
+          ],
+          "invocation_variants": [
+            {
+              "arities": [
+                1
+              ],
+              "arguments": [
+                [
+                  [
+                    1,
+                    2
+                  ],
+                  [
+                    3,
+                    4
+                  ]
+                ]
+              ]
+            },
+            {
+              "arities": [
+                2
+              ],
+              "arguments": [
+                [
+                  [
+                    1,
+                    2
+                  ],
+                  [
+                    3,
+                    4
+                  ]
+                ],
+                2
+              ]
+            }
+          ]
+        },
+        "expected_semantic_result": [
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            2
+          ]
+        ],
+        "comparison_mode": "EXACT",
+        "expectation_policy": "STATIC_FROZEN_VALUE",
+        "observer": {
+          "kind": "MATRIX"
+        },
+        "allowed_arities": [
+          1,
+          2
+        ]
+      }
+    },
+    {
+      "name": "alternate 3x3 square rotation",
+      "standard_input": [],
+      "category": "NORMAL",
+      "semantic_feature": "SQUARE_ROTATION_3",
+      "criteria_links": [
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "score_stream": "CORE_BEHAVIOURAL",
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "PREEXPERIMENT_FROZEN_FIXTURE",
+        "fixture": {
+          "arguments": [
+            [
+              [
+                9,
+                8,
+                7
+              ],
+              [
+                6,
+                5,
+                4
+              ],
+              [
+                3,
+                2,
+                1
+              ]
+            ],
+            3
+          ],
+          "invocation_variants": [
+            {
+              "arities": [
+                1
+              ],
+              "arguments": [
+                [
+                  [
+                    9,
+                    8,
+                    7
+                  ],
+                  [
+                    6,
+                    5,
+                    4
+                  ],
+                  [
+                    3,
+                    2,
+                    1
+                  ]
+                ]
+              ]
+            },
+            {
+              "arities": [
+                2
+              ],
+              "arguments": [
+                [
+                  [
+                    9,
+                    8,
+                    7
+                  ],
+                  [
+                    6,
+                    5,
+                    4
+                  ],
+                  [
+                    3,
+                    2,
+                    1
+                  ]
+                ],
+                3
+              ]
+            }
+          ]
+        },
+        "expected_semantic_result": [
+          [
+            3,
+            6,
+            9
+          ],
+          [
+            2,
+            5,
+            8
+          ],
+          [
+            1,
+            4,
+            7
+          ]
+        ],
+        "comparison_mode": "EXACT",
+        "expectation_policy": "STATIC_FROZEN_VALUE",
+        "observer": {
+          "kind": "MATRIX"
+        },
+        "allowed_arities": [
+          1,
+          2
+        ]
+      }
+    },
+    {
+      "name": "4x4 square rotation",
+      "standard_input": [],
+      "category": "NORMAL",
+      "semantic_feature": "SQUARE_ROTATION_4",
+      "criteria_links": [
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "score_stream": "CORE_BEHAVIOURAL",
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "PREEXPERIMENT_FROZEN_FIXTURE",
+        "fixture": {
+          "arguments": [
+            [
+              [
+                1,
+                2,
+                3,
+                4
+              ],
+              [
+                5,
+                6,
+                7,
+                8
+              ],
+              [
+                9,
+                10,
+                11,
+                12
+              ],
+              [
+                13,
+                14,
+                15,
+                16
+              ]
+            ],
+            4
+          ],
+          "invocation_variants": [
+            {
+              "arities": [
+                1
+              ],
+              "arguments": [
+                [
+                  [
+                    1,
+                    2,
+                    3,
+                    4
+                  ],
+                  [
+                    5,
+                    6,
+                    7,
+                    8
+                  ],
+                  [
+                    9,
+                    10,
+                    11,
+                    12
+                  ],
+                  [
+                    13,
+                    14,
+                    15,
+                    16
+                  ]
+                ]
+              ]
+            },
+            {
+              "arities": [
+                2
+              ],
+              "arguments": [
+                [
+                  [
+                    1,
+                    2,
+                    3,
+                    4
+                  ],
+                  [
+                    5,
+                    6,
+                    7,
+                    8
+                  ],
+                  [
+                    9,
+                    10,
+                    11,
+                    12
+                  ],
+                  [
+                    13,
+                    14,
+                    15,
+                    16
+                  ]
+                ],
+                4
+              ]
+            }
+          ]
+        },
+        "expected_semantic_result": [
+          [
+            13,
+            9,
+            5,
+            1
+          ],
+          [
+            14,
+            10,
+            6,
+            2
+          ],
+          [
+            15,
+            11,
+            7,
+            3
+          ],
+          [
+            16,
+            12,
+            8,
+            4
+          ]
+        ],
+        "comparison_mode": "EXACT",
+        "expectation_policy": "STATIC_FROZEN_VALUE",
+        "observer": {
+          "kind": "MATRIX"
+        },
+        "allowed_arities": [
+          1,
+          2
+        ]
+      }
+    },
+    {
+      "name": "2x3 matrix outside square-matrix contract",
+      "standard_input": [],
+      "category": "SEMANTIC_BOUNDARY",
+      "semantic_feature": "RECTANGULAR_MATRIX_DOMAIN_PROBE",
+      "criteria_links": [],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "BOUNDARY_OBSERVATION",
+      "score_stream": "SEMANTIC_BOUNDARY_PROBE",
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "PREEXPERIMENT_FROZEN_BOUNDARY_PROBE",
+        "expectation_policy": "BOUNDARY_OBSERVATION",
+        "score_stream": "SEMANTIC_BOUNDARY_PROBE",
+        "fixture": {
+          "arguments": [
+            [
+              [
+                1,
+                2,
+                3
+              ],
+              [
+                4,
+                5,
+                6
+              ]
+            ],
+            2
+          ],
+          "invocation_variants": [
+            {
+              "arities": [
+                1
+              ],
+              "arguments": [
+                [
+                  [
+                    1,
+                    2,
+                    3
+                  ],
+                  [
+                    4,
+                    5,
+                    6
+                  ]
+                ]
+              ]
+            },
+            {
+              "arities": [
+                2
+              ],
+              "arguments": [
+                [
+                  [
+                    1,
+                    2,
+                    3
+                  ],
+                  [
+                    4,
+                    5,
+                    6
+                  ]
+                ],
+                2
+              ]
+            }
+          ]
+        },
+        "allowed_arities": [
+          1,
+          2
+        ],
+        "boundary_probe": {
+          "domain_status": "OUT_OF_DOMAIN",
+          "controlled_rejection_error_types": []
+        }
+      }
+    }
+  ],
+  "semantic_contract": {
+    "contract_version": "1.4",
+    "contract_source": "ORIGINAL_TASK_SPECIFICATION",
+    "task_statement": "Rotate a square matrix 90° clockwise in-place.",
+    "inputs": [
+      {
+        "position": 1,
+        "name": "matrix",
+        "type": "SQUARE_MATRIX"
+      }
+    ],
+    "result": {
+      "type": "MATRIX",
+      "canonical_semantics": "Matrix rotated 90 degrees clockwise."
+    },
+    "automation_status": "AUTOMATED_FUNCTION",
+    "parameter_names_are_semantically_irrelevant": true,
+    "derived_parameters_may_be_supplied_by_adapter": true,
+    "human_review_instruction": "Judge the original generated pseudocode against this same frozen task-semantic contract, including when automated evaluation is NOT_EVALUABLE.",
+    "fixture_policy": "PREEXPERIMENT_FROZEN_INPUTS",
+    "expectation_policy": "STATIC_PREEXPERIMENT_EXPECTED_VALUES",
+    "runtime_oracle_prohibited": true
+  },
+  "boundary_evaluation_policy": {
+    "measure": "SEMANTIC_BOUNDARY_VARIANCE",
+    "enabled": true,
+    "core_score_separation": "Boundary probes do not contribute to core semantic behavioural accuracy or Common Test accuracy.",
+    "interpretation": "If enabled, variance is the percentage of evaluable out-of-domain probes that the implementation accepts and processes."
+  }
+}

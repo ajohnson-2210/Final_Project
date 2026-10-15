@@ -1,0 +1,251 @@
+{
+  "test_spec_schema_version": "1.6",
+  "test_design_version": "1.4.2",
+  "algorithm_id": 2,
+  "algorithm_title": "Convert a non negative integer into its binary representation",
+  "suite_role": "COMMON_FROZEN_TASK_SEMANTIC_EVALUATION",
+  "oracle_policy": "STATIC_PREEXPERIMENT_EXPECTATIONS",
+  "evidence_adequacy": "ADEQUATE",
+  "evidence_summary": "This suite provides broad core behavioural evidence using five frozen semantic fixtures covering zero, one, a representative value, a power of two and a larger value. Negative input is evaluated separately through semantic-boundary variance.",
+  "coverage_dimensions": {
+    "normal_path": "COVERED",
+    "branch_behaviour": "NOT_COVERED",
+    "boundary_behaviour": "COVERED",
+    "error_behaviour": "NOT_COVERED",
+    "termination_behaviour": "NOT_COVERED",
+    "state_mutation": "NOT_COVERED"
+  },
+  "coverage_basis": "Assessment is based on 5 core Common Test cases plus any separately declared semantic-boundary probes; boundary probes do not contribute to core behavioural accuracy.",
+  "interpretation_guidance": "Interpret core behavioural accuracy as evidence within the frozen semantic contract. Interpret Semantic Boundary Variance separately as descriptive evidence of out-of-domain acceptance.",
+  "coverage_limitations": [
+    "Negative integers are outside the NON_NEGATIVE_INTEGER contract and are reported separately through the semantic-boundary probe stream."
+  ],
+  "manual_review_targets": [
+    "Confirm assignment corrections remain '=' semantics and bit sequence preserves 23."
+  ],
+  "requires_pipeline_features": [],
+  "tests": [
+    {
+      "name": "default non-negative integer conversion",
+      "standard_input": [],
+      "category": "NORMAL",
+      "semantic_feature": "BINARY_CONVERSION_LOOP_AND_MINIMUM_WIDTH",
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "PREEXPERIMENT_FROZEN_FIXTURE",
+        "fixture": {
+          "arguments": [
+            23
+          ]
+        },
+        "expected_semantic_result": "10111",
+        "comparison_mode": "EXACT",
+        "allowed_arities": [
+          1
+        ],
+        "expectation_policy": "STATIC_FROZEN_VALUE",
+        "observer": {
+          "kind": "BINARY_STRING"
+        }
+      },
+      "score_stream": "CORE_BEHAVIOURAL"
+    },
+    {
+      "name": "binary zero",
+      "standard_input": [],
+      "category": "BOUNDARY",
+      "semantic_feature": "BINARY_ZERO",
+      "criteria_links": [
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "score_stream": "CORE_BEHAVIOURAL",
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "PREEXPERIMENT_FROZEN_FIXTURE",
+        "fixture": {
+          "arguments": [
+            0
+          ]
+        },
+        "expected_semantic_result": "0",
+        "comparison_mode": "EXACT",
+        "expectation_policy": "STATIC_FROZEN_VALUE",
+        "observer": {
+          "kind": "BINARY_STRING"
+        },
+        "allowed_arities": [
+          1
+        ]
+      }
+    },
+    {
+      "name": "binary one",
+      "standard_input": [],
+      "category": "BOUNDARY",
+      "semantic_feature": "BINARY_ONE",
+      "criteria_links": [
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "score_stream": "CORE_BEHAVIOURAL",
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "PREEXPERIMENT_FROZEN_FIXTURE",
+        "fixture": {
+          "arguments": [
+            1
+          ]
+        },
+        "expected_semantic_result": "1",
+        "comparison_mode": "EXACT",
+        "expectation_policy": "STATIC_FROZEN_VALUE",
+        "observer": {
+          "kind": "BINARY_STRING"
+        },
+        "allowed_arities": [
+          1
+        ]
+      }
+    },
+    {
+      "name": "binary power of two",
+      "standard_input": [],
+      "category": "NORMAL",
+      "semantic_feature": "BINARY_POWER_OF_TWO",
+      "criteria_links": [
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "score_stream": "CORE_BEHAVIOURAL",
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "PREEXPERIMENT_FROZEN_FIXTURE",
+        "fixture": {
+          "arguments": [
+            8
+          ]
+        },
+        "expected_semantic_result": "1000",
+        "comparison_mode": "EXACT",
+        "expectation_policy": "STATIC_FROZEN_VALUE",
+        "observer": {
+          "kind": "BINARY_STRING"
+        },
+        "allowed_arities": [
+          1
+        ]
+      }
+    },
+    {
+      "name": "binary larger value",
+      "standard_input": [],
+      "category": "NORMAL",
+      "semantic_feature": "BINARY_LARGER_VALUE",
+      "criteria_links": [
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "score_stream": "CORE_BEHAVIOURAL",
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "PREEXPERIMENT_FROZEN_FIXTURE",
+        "fixture": {
+          "arguments": [
+            255
+          ]
+        },
+        "expected_semantic_result": "11111111",
+        "comparison_mode": "EXACT",
+        "expectation_policy": "STATIC_FROZEN_VALUE",
+        "observer": {
+          "kind": "BINARY_STRING"
+        },
+        "allowed_arities": [
+          1
+        ]
+      }
+    },
+    {
+      "name": "negative integer outside non-negative contract",
+      "standard_input": [],
+      "category": "SEMANTIC_BOUNDARY",
+      "semantic_feature": "NEGATIVE_INTEGER_DOMAIN_PROBE",
+      "criteria_links": [],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "BOUNDARY_OBSERVATION",
+      "score_stream": "SEMANTIC_BOUNDARY_PROBE",
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "PREEXPERIMENT_FROZEN_BOUNDARY_PROBE",
+        "expectation_policy": "BOUNDARY_OBSERVATION",
+        "score_stream": "SEMANTIC_BOUNDARY_PROBE",
+        "fixture": {
+          "arguments": [
+            -1
+          ]
+        },
+        "allowed_arities": [
+          1
+        ],
+        "boundary_probe": {
+          "domain_status": "OUT_OF_DOMAIN",
+          "controlled_rejection_error_types": []
+        }
+      }
+    }
+  ],
+  "semantic_contract": {
+    "contract_version": "1.4",
+    "contract_source": "ORIGINAL_TASK_SPECIFICATION",
+    "task_statement": "Convert a non-negative decimal integer into its binary string representation.",
+    "inputs": [
+      {
+        "position": 1,
+        "name": "number",
+        "type": "NON_NEGATIVE_INTEGER"
+      }
+    ],
+    "result": {
+      "type": "BINARY_STRING",
+      "canonical_semantics": "Binary representation of the supplied decimal integer; leading zeroes are semantically insignificant."
+    },
+    "automation_status": "AUTOMATED_FUNCTION",
+    "parameter_names_are_semantically_irrelevant": true,
+    "derived_parameters_may_be_supplied_by_adapter": true,
+    "human_review_instruction": "Judge the original generated pseudocode against this same frozen task-semantic contract, including when automated evaluation is NOT_EVALUABLE.",
+    "fixture_policy": "PREEXPERIMENT_FROZEN_INPUTS",
+    "expectation_policy": "STATIC_PREEXPERIMENT_EXPECTED_VALUES",
+    "runtime_oracle_prohibited": true
+  },
+  "boundary_evaluation_policy": {
+    "measure": "SEMANTIC_BOUNDARY_VARIANCE",
+    "enabled": true,
+    "core_score_separation": "Boundary probes do not contribute to core semantic behavioural accuracy or Common Test accuracy.",
+    "interpretation": "If enabled, variance is the percentage of evaluable out-of-domain probes that the implementation accepts and processes."
+  }
+}

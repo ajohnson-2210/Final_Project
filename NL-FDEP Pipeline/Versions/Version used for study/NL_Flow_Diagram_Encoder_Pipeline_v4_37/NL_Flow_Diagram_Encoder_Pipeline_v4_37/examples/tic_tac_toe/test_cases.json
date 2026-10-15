@@ -1,0 +1,24 @@
+{
+  "example_id": "TIC_TAC_TOE_DRAWIO_INPUT",
+  "description": "Behavioural demonstration for the NL-FDEP v4.37 Draw.io-input route.",
+  "tests": [
+    {
+      "name": "Player 1 wins across the top row",
+      "standard_input": ["0", "3", "1", "4", "2"],
+      "expected_output": [
+        "Player 1, choose grid square (0-8): Player 2, choose grid square (0-8): Player 1, choose grid square (0-8): Player 2, choose grid square (0-8): Player 1, choose grid square (0-8): Player 1 is declared the winner"
+      ],
+      "expected_return_code": 0,
+      "category": "DEMONSTRATION"
+    },
+    {
+      "name": "Nine-move draw",
+      "standard_input": ["0", "1", "2", "4", "3", "5", "7", "6", "8"],
+      "expected_output": [
+        "Player 1, choose grid square (0-8): Player 2, choose grid square (0-8): Player 1, choose grid square (0-8): Player 2, choose grid square (0-8): Player 1, choose grid square (0-8): Player 2, choose grid square (0-8): Player 1, choose grid square (0-8): Player 2, choose grid square (0-8): Player 1, choose grid square (0-8): Game is declared a draw"
+      ],
+      "expected_return_code": 0,
+      "category": "DEMONSTRATION"
+    }
+  ]
+}

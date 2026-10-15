@@ -1,0 +1,21 @@
+{
+  "version": "2.21",
+  "rule_family": "COLLECTION_OPERATION",
+  "branch": "SWAP_TARGETS",
+  "task_context": "source_a Algorithm 8",
+  "source": "SWAP WordList[j], WordList[j+1]",
+  "canonical": [
+    "temp_var <- WordList[j]",
+    "WordList[j] <- WordList[j+1]",
+    "WordList[j+1] <- temp_var"
+  ],
+  "evidence": [
+    "SWAP explicitly requires exchanging the values held by the two supplied indexed targets"
+  ],
+  "introduced_identifier": {
+    "name": "temp_var",
+    "reason": "temporary storage required for concrete three-assignment exchange"
+  },
+  "confidence": "user_confirmed",
+  "semantic_change": false
+}

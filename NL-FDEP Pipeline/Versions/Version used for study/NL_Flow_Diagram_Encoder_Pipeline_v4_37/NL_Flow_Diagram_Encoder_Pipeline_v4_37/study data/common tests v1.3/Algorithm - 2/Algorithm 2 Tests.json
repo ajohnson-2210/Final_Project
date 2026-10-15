@@ -1,0 +1,83 @@
+{
+  "test_spec_schema_version": "1.4",
+  "test_design_version": "1.3",
+  "algorithm_id": 2,
+  "algorithm_title": "Convert a non negative integer into its binary representation",
+  "suite_role": "COMMON_FROZEN_TASK_SEMANTIC_EVALUATION",
+  "oracle_policy": "STATIC_PREEXPERIMENT_EXPECTATIONS",
+  "evidence_adequacy": "LIMITED",
+  "evidence_summary": "This suite provides limited behavioural evidence using one predefined common behavioural test, with covered normal-path behaviour. Frozen program uses fixed integer 23; zero, one, powers of two and larger values cannot be injected without changing the source.",
+  "coverage_dimensions": {
+    "normal_path": "COVERED",
+    "branch_behaviour": "NOT_COVERED",
+    "boundary_behaviour": "NOT_COVERED",
+    "error_behaviour": "NOT_COVERED",
+    "termination_behaviour": "NOT_COVERED",
+    "state_mutation": "NOT_COVERED"
+  },
+  "coverage_basis": "Assessment is based on the predefined common behavioural test, the behaviours exposed by the frozen program interface, and the declared coverage dimensions: normal path.",
+  "interpretation_guidance": "Interpret behavioural accuracy as agreement for the specific exercised scenario or scenarios, not as strong evidence of general behavioural equivalence.",
+  "coverage_limitations": [
+    "Frozen program uses fixed integer 23; zero, one, powers of two and larger values cannot be injected without changing the source."
+  ],
+  "manual_review_targets": [
+    "Confirm assignment corrections remain '=' semantics and bit sequence preserves 23."
+  ],
+  "requires_pipeline_features": [],
+  "tests": [
+    {
+      "name": "default non-negative integer conversion",
+      "standard_input": [],
+      "category": "NORMAL",
+      "semantic_feature": "BINARY_CONVERSION_LOOP_AND_MINIMUM_WIDTH",
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "PREEXPERIMENT_FROZEN_FIXTURE",
+        "fixture": {
+          "arguments": [
+            23
+          ]
+        },
+        "expected_semantic_result": "10111",
+        "comparison_mode": "EXACT",
+        "allowed_arities": [
+          1
+        ],
+        "expectation_policy": "STATIC_FROZEN_VALUE",
+        "observer": {
+          "kind": "BINARY_STRING"
+        }
+      }
+    }
+  ],
+  "semantic_contract": {
+    "contract_version": "1.3",
+    "contract_source": "ORIGINAL_TASK_SPECIFICATION",
+    "task_statement": "Convert a non-negative decimal integer into its binary string representation.",
+    "inputs": [
+      {
+        "position": 1,
+        "name": "number",
+        "type": "NON_NEGATIVE_INTEGER"
+      }
+    ],
+    "result": {
+      "type": "BINARY_STRING",
+      "canonical_semantics": "Binary representation of the supplied decimal integer; leading zeroes are semantically insignificant."
+    },
+    "automation_status": "AUTOMATED_FUNCTION",
+    "parameter_names_are_semantically_irrelevant": true,
+    "derived_parameters_may_be_supplied_by_adapter": true,
+    "human_review_instruction": "Judge the original generated pseudocode against this same frozen task-semantic contract, including when automated evaluation is NOT_EVALUABLE.",
+    "fixture_policy": "PREEXPERIMENT_FROZEN_INPUTS",
+    "expectation_policy": "STATIC_PREEXPERIMENT_EXPECTED_VALUES",
+    "runtime_oracle_prohibited": true
+  }
+}

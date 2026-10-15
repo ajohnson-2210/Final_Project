@@ -1,0 +1,296 @@
+{
+  "test_spec_schema_version": "1.3",
+  "test_design_version": "1.2",
+  "algorithm_id": 46,
+  "algorithm_title": "Develop a process for multiplying 2 matrices",
+  "suite_role": "COMMON_SEMANTIC_BASELINE_CALIBRATION_AND_EXPERIMENTAL_COMPARISON",
+  "oracle_policy": "TRUSTED_BASELINE_REFERENCE",
+  "evidence_adequacy": "PARTIAL",
+  "evidence_summary": "This suite provides partial behavioural evidence using 3 predefined common behavioural tests, with covered state-mutation behaviour. Matrix dimensions and values are internally random; fixed seeds make the generated compatible matrices reproducible.",
+  "coverage_dimensions": {
+    "normal_path": "NOT_COVERED",
+    "branch_behaviour": "NOT_COVERED",
+    "boundary_behaviour": "NOT_COVERED",
+    "error_behaviour": "NOT_COVERED",
+    "termination_behaviour": "NOT_COVERED",
+    "state_mutation": "COVERED"
+  },
+  "coverage_basis": "Assessment is based on the 3 predefined common behavioural tests, the behaviours exposed by the frozen program interface, and the declared coverage dimensions: state mutation.",
+  "interpretation_guidance": "Interpret behavioural accuracy as useful but incomplete evidence across the declared exercised behaviours; unexercised behaviours remain outside the direct evidence.",
+  "coverage_limitations": [
+    "Matrix dimensions and values are internally random; fixed seeds make the generated compatible matrices reproducible."
+  ],
+  "manual_review_targets": [],
+  "requires_pipeline_features": [
+    "DETERMINISTIC_RANDOM_SEED"
+  ],
+  "tests": [
+    {
+      "name": "seeded matrix-multiplication run seed 104729",
+      "standard_input": [],
+      "category": "STATE_MUTATION",
+      "semantic_feature": "MATRIX_MULTIPLICATION_ACCUMULATION",
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "timeout_seconds": 5.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "random_seed": 104729,
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "FROZEN_BASELINE_SEEDED_GENERATOR",
+        "oracle_source": "TASK_SEMANTIC_ORACLE_WITH_FROZEN_BASELINE_REFERENCE",
+        "fixture": {
+          "arguments": [
+            [
+              [
+                -3.96,
+                -6,
+                8.7,
+                -10
+              ],
+              [
+                5.29,
+                -1,
+                -6.16,
+                -5.24
+              ]
+            ],
+            [
+              [
+                -10,
+                9.3,
+                4
+              ],
+              [
+                2.23,
+                7.92,
+                0
+              ],
+              [
+                4,
+                -7,
+                10
+              ],
+              [
+                9,
+                -8.07,
+                5
+              ]
+            ],
+            2,
+            4,
+            3
+          ]
+        },
+        "expected_semantic_result": [
+          [
+            -28.99,
+            -64.53,
+            21.15
+          ],
+          [
+            -126.93,
+            126.66,
+            -66.64
+          ]
+        ],
+        "comparison_mode": "MATRIX_NUMERIC",
+        "entrypoint_candidates": [
+          "unnamed_function"
+        ],
+        "allowed_arities": [
+          5
+        ]
+      }
+    },
+    {
+      "name": "seeded matrix-multiplication run seed 104759",
+      "standard_input": [],
+      "category": "STATE_MUTATION",
+      "semantic_feature": "MATRIX_MULTIPLICATION_ACCUMULATION",
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "timeout_seconds": 5.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "random_seed": 104759,
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "FROZEN_BASELINE_SEEDED_GENERATOR",
+        "oracle_source": "TASK_SEMANTIC_ORACLE_WITH_FROZEN_BASELINE_REFERENCE",
+        "fixture": {
+          "arguments": [
+            [
+              [
+                -2,
+                -5.21,
+                3
+              ],
+              [
+                -2.23,
+                -9,
+                -3
+              ]
+            ],
+            [
+              [
+                -9.04,
+                -8,
+                -5.12,
+                6
+              ],
+              [
+                8,
+                6.48,
+                -3.84,
+                -3
+              ],
+              [
+                8,
+                3.39,
+                -6.83,
+                -3.28
+              ]
+            ],
+            2,
+            3,
+            4
+          ]
+        },
+        "expected_semantic_result": [
+          [
+            0.39,
+            -7.58,
+            9.75,
+            -6.2
+          ],
+          [
+            -75.84,
+            -50.65,
+            66.45,
+            23.46
+          ]
+        ],
+        "comparison_mode": "MATRIX_NUMERIC",
+        "entrypoint_candidates": [
+          "unnamed_function"
+        ],
+        "allowed_arities": [
+          5
+        ]
+      }
+    },
+    {
+      "name": "seeded matrix-multiplication run seed 104761",
+      "standard_input": [],
+      "category": "STATE_MUTATION",
+      "semantic_feature": "MATRIX_MULTIPLICATION_ACCUMULATION",
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "timeout_seconds": 5.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "random_seed": 104761,
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "FROZEN_BASELINE_SEEDED_GENERATOR",
+        "oracle_source": "TASK_SEMANTIC_ORACLE_WITH_FROZEN_BASELINE_REFERENCE",
+        "fixture": {
+          "arguments": [
+            [
+              [
+                1,
+                -3.47
+              ],
+              [
+                9,
+                4
+              ],
+              [
+                1,
+                0.02
+              ],
+              [
+                3,
+                -3
+              ]
+            ],
+            [
+              [
+                9,
+                6.28
+              ],
+              [
+                -4,
+                8
+              ]
+            ],
+            4,
+            2,
+            2
+          ]
+        },
+        "expected_semantic_result": [
+          [
+            22.88,
+            -21.48
+          ],
+          [
+            65.0,
+            88.52
+          ],
+          [
+            8.92,
+            6.44
+          ],
+          [
+            39.0,
+            -5.16
+          ]
+        ],
+        "comparison_mode": "MATRIX_NUMERIC",
+        "entrypoint_candidates": [
+          "unnamed_function"
+        ],
+        "allowed_arities": [
+          5
+        ]
+      }
+    }
+  ],
+  "semantic_contract": {
+    "contract_version": "1.2",
+    "contract_source": "ORIGINAL_TASK_SPECIFICATION",
+    "task_statement": "Develop a process for multiplying two matrices.",
+    "inputs": [
+      {
+        "position": 1,
+        "name": "matrix_a",
+        "type": "MATRIX[NUMBER]"
+      },
+      {
+        "position": 2,
+        "name": "matrix_b",
+        "type": "MATRIX[NUMBER]"
+      }
+    ],
+    "result": {
+      "type": "MATRIX[NUMBER]",
+      "canonical_semantics": "Matrix product A×B for compatible dimensions."
+    },
+    "automation_status": "AUTOMATED_FUNCTION",
+    "parameter_names_are_semantically_irrelevant": true,
+    "derived_parameters_may_be_supplied_by_adapter": true,
+    "baseline_fixture_source": "Algorithm 46 Baseline Python code.txt",
+    "baseline_source_sha256": "0d9d949e55e1088f7d8677fa757b2176d24d03146c682af0193c3e2cd12923b0",
+    "oracle_policy": "The original task defines the semantic result where determinate; the frozen trusted baseline supplies concrete fixtures and resolves deterministic task-policy details where the task statement is underspecified. Experimental/model output never defines its own oracle.",
+    "human_review_instruction": "Judge the original model pseudocode against this task-semantic contract even when automated execution is NOT_EVALUABLE."
+  }
+}

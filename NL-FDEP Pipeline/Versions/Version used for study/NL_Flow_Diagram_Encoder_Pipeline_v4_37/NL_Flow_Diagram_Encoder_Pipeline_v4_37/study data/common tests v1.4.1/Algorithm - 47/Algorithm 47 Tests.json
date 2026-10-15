@@ -1,0 +1,555 @@
+{
+  "test_spec_schema_version": "1.6",
+  "test_design_version": "1.4.1",
+  "algorithm_id": 47,
+  "algorithm_title": "Create an algorithm that updates inventory quantities after purchases and deliveries",
+  "suite_role": "COMMON_FROZEN_TASK_SEMANTIC_EVALUATION",
+  "oracle_policy": "STATIC_PREEXPERIMENT_EXPECTATIONS",
+  "evidence_adequacy": "PARTIAL",
+  "evidence_summary": "This suite provides partial behavioural evidence using 3 predefined common behavioural tests, with covered state-mutation behaviour. Initial quantities and transaction quantities are internally random; fixed seeds make state transitions reproducible but do not force every exceptional stock branch.",
+  "coverage_dimensions": {
+    "normal_path": "NOT_COVERED",
+    "branch_behaviour": "NOT_COVERED",
+    "boundary_behaviour": "NOT_COVERED",
+    "error_behaviour": "NOT_COVERED",
+    "termination_behaviour": "NOT_COVERED",
+    "state_mutation": "COVERED"
+  },
+  "coverage_basis": "Assessment is based on the 3 predefined common behavioural tests, the behaviours exposed by the frozen program interface, and the declared coverage dimensions: state mutation.",
+  "interpretation_guidance": "Interpret behavioural accuracy as useful but incomplete evidence across the declared exercised behaviours; unexercised behaviours remain outside the direct evidence.",
+  "coverage_limitations": [
+    "Initial quantities and transaction quantities are internally random; fixed seeds make state transitions reproducible but do not force every exceptional stock branch."
+  ],
+  "manual_review_targets": [],
+  "requires_pipeline_features": [
+    "DETERMINISTIC_RANDOM_SEED"
+  ],
+  "tests": [
+    {
+      "name": "seeded inventory purchase/delivery run seed 104729",
+      "standard_input": [],
+      "category": "STATE_MUTATION",
+      "semantic_feature": "INVENTORY_PURCHASE_DELIVERY_AND_ZERO_STOCK",
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "random_seed": 104729,
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "PREEXPERIMENT_FROZEN_FIXTURE",
+        "fixture": {
+          "shared_values": {
+            "inventory": {
+              "Apples": 37,
+              "Bananas": 88,
+              "Oranges": 73,
+              "Pears": 47,
+              "Grapes": 48
+            }
+          },
+          "invocation_variants": [
+            {
+              "arities": [
+                2
+              ],
+              "arguments": [
+                {
+                  "$ref": "inventory"
+                },
+                [
+                  {
+                    "$type": "OBJECT",
+                    "attrs": {
+                      "type": {
+                        "$type": "ENUM_TOKEN",
+                        "value": "Purchase"
+                      },
+                      "item": "Apples",
+                      "quantity": 8
+                    }
+                  },
+                  {
+                    "$type": "OBJECT",
+                    "attrs": {
+                      "type": {
+                        "$type": "ENUM_TOKEN",
+                        "value": "Purchase"
+                      },
+                      "item": "Grapes",
+                      "quantity": 4
+                    }
+                  },
+                  {
+                    "$type": "OBJECT",
+                    "attrs": {
+                      "type": {
+                        "$type": "ENUM_TOKEN",
+                        "value": "Delivery"
+                      },
+                      "item": "Bananas",
+                      "quantity": 12
+                    }
+                  },
+                  {
+                    "$type": "OBJECT",
+                    "attrs": {
+                      "type": {
+                        "$type": "ENUM_TOKEN",
+                        "value": "Delivery"
+                      },
+                      "item": "Oranges",
+                      "quantity": 9
+                    }
+                  }
+                ]
+              ]
+            },
+            {
+              "arities": [
+                4
+              ],
+              "invocations": [
+                {
+                  "arguments": [
+                    {
+                      "$ref": "inventory"
+                    },
+                    {
+                      "$type": "ENUM_TOKEN",
+                      "value": "Purchase"
+                    },
+                    "Apples",
+                    8
+                  ]
+                },
+                {
+                  "arguments": [
+                    {
+                      "$ref": "inventory"
+                    },
+                    {
+                      "$type": "ENUM_TOKEN",
+                      "value": "Purchase"
+                    },
+                    "Grapes",
+                    4
+                  ]
+                },
+                {
+                  "arguments": [
+                    {
+                      "$ref": "inventory"
+                    },
+                    {
+                      "$type": "ENUM_TOKEN",
+                      "value": "Delivery"
+                    },
+                    "Bananas",
+                    12
+                  ]
+                },
+                {
+                  "arguments": [
+                    {
+                      "$ref": "inventory"
+                    },
+                    {
+                      "$type": "ENUM_TOKEN",
+                      "value": "Delivery"
+                    },
+                    "Oranges",
+                    9
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "expected_semantic_result": {
+          "Apples": 29,
+          "Bananas": 100,
+          "Oranges": 82,
+          "Pears": 47,
+          "Grapes": 44
+        },
+        "comparison_mode": "EXACT",
+        "allowed_arities": [
+          2,
+          4
+        ],
+        "expectation_policy": "STATIC_FROZEN_VALUE",
+        "observer": {
+          "kind": "MAP_STATE",
+          "state_name": "inventory"
+        }
+      },
+      "score_stream": "CORE_BEHAVIOURAL"
+    },
+    {
+      "name": "seeded inventory purchase/delivery run seed 104759",
+      "standard_input": [],
+      "category": "STATE_MUTATION",
+      "semantic_feature": "INVENTORY_PURCHASE_DELIVERY_AND_ZERO_STOCK",
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "random_seed": 104759,
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "PREEXPERIMENT_FROZEN_FIXTURE",
+        "fixture": {
+          "shared_values": {
+            "inventory": {
+              "Apples": 16,
+              "Bananas": 46,
+              "Oranges": 87,
+              "Pears": 55,
+              "Grapes": 55
+            }
+          },
+          "invocation_variants": [
+            {
+              "arities": [
+                2
+              ],
+              "arguments": [
+                {
+                  "$ref": "inventory"
+                },
+                [
+                  {
+                    "$type": "OBJECT",
+                    "attrs": {
+                      "type": {
+                        "$type": "ENUM_TOKEN",
+                        "value": "Purchase"
+                      },
+                      "item": "Apples",
+                      "quantity": 5
+                    }
+                  },
+                  {
+                    "$type": "OBJECT",
+                    "attrs": {
+                      "type": {
+                        "$type": "ENUM_TOKEN",
+                        "value": "Purchase"
+                      },
+                      "item": "Grapes",
+                      "quantity": 9
+                    }
+                  },
+                  {
+                    "$type": "OBJECT",
+                    "attrs": {
+                      "type": {
+                        "$type": "ENUM_TOKEN",
+                        "value": "Delivery"
+                      },
+                      "item": "Bananas",
+                      "quantity": 12
+                    }
+                  },
+                  {
+                    "$type": "OBJECT",
+                    "attrs": {
+                      "type": {
+                        "$type": "ENUM_TOKEN",
+                        "value": "Delivery"
+                      },
+                      "item": "Oranges",
+                      "quantity": 13
+                    }
+                  }
+                ]
+              ]
+            },
+            {
+              "arities": [
+                4
+              ],
+              "invocations": [
+                {
+                  "arguments": [
+                    {
+                      "$ref": "inventory"
+                    },
+                    {
+                      "$type": "ENUM_TOKEN",
+                      "value": "Purchase"
+                    },
+                    "Apples",
+                    5
+                  ]
+                },
+                {
+                  "arguments": [
+                    {
+                      "$ref": "inventory"
+                    },
+                    {
+                      "$type": "ENUM_TOKEN",
+                      "value": "Purchase"
+                    },
+                    "Grapes",
+                    9
+                  ]
+                },
+                {
+                  "arguments": [
+                    {
+                      "$ref": "inventory"
+                    },
+                    {
+                      "$type": "ENUM_TOKEN",
+                      "value": "Delivery"
+                    },
+                    "Bananas",
+                    12
+                  ]
+                },
+                {
+                  "arguments": [
+                    {
+                      "$ref": "inventory"
+                    },
+                    {
+                      "$type": "ENUM_TOKEN",
+                      "value": "Delivery"
+                    },
+                    "Oranges",
+                    13
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "expected_semantic_result": {
+          "Apples": 11,
+          "Bananas": 58,
+          "Oranges": 100,
+          "Pears": 55,
+          "Grapes": 46
+        },
+        "comparison_mode": "EXACT",
+        "allowed_arities": [
+          2,
+          4
+        ],
+        "expectation_policy": "STATIC_FROZEN_VALUE",
+        "observer": {
+          "kind": "MAP_STATE",
+          "state_name": "inventory"
+        }
+      },
+      "score_stream": "CORE_BEHAVIOURAL"
+    },
+    {
+      "name": "seeded inventory purchase/delivery run seed 104761",
+      "standard_input": [],
+      "category": "STATE_MUTATION",
+      "semantic_feature": "INVENTORY_PURCHASE_DELIVERY_AND_ZERO_STOCK",
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "random_seed": 104761,
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "PREEXPERIMENT_FROZEN_FIXTURE",
+        "fixture": {
+          "shared_values": {
+            "inventory": {
+              "Apples": 98,
+              "Bananas": 13,
+              "Oranges": 11,
+              "Pears": 27,
+              "Grapes": 97
+            }
+          },
+          "invocation_variants": [
+            {
+              "arities": [
+                2
+              ],
+              "arguments": [
+                {
+                  "$ref": "inventory"
+                },
+                [
+                  {
+                    "$type": "OBJECT",
+                    "attrs": {
+                      "type": {
+                        "$type": "ENUM_TOKEN",
+                        "value": "Purchase"
+                      },
+                      "item": "Apples",
+                      "quantity": 6
+                    }
+                  },
+                  {
+                    "$type": "OBJECT",
+                    "attrs": {
+                      "type": {
+                        "$type": "ENUM_TOKEN",
+                        "value": "Purchase"
+                      },
+                      "item": "Grapes",
+                      "quantity": 5
+                    }
+                  },
+                  {
+                    "$type": "OBJECT",
+                    "attrs": {
+                      "type": {
+                        "$type": "ENUM_TOKEN",
+                        "value": "Delivery"
+                      },
+                      "item": "Bananas",
+                      "quantity": 15
+                    }
+                  },
+                  {
+                    "$type": "OBJECT",
+                    "attrs": {
+                      "type": {
+                        "$type": "ENUM_TOKEN",
+                        "value": "Delivery"
+                      },
+                      "item": "Oranges",
+                      "quantity": 14
+                    }
+                  }
+                ]
+              ]
+            },
+            {
+              "arities": [
+                4
+              ],
+              "invocations": [
+                {
+                  "arguments": [
+                    {
+                      "$ref": "inventory"
+                    },
+                    {
+                      "$type": "ENUM_TOKEN",
+                      "value": "Purchase"
+                    },
+                    "Apples",
+                    6
+                  ]
+                },
+                {
+                  "arguments": [
+                    {
+                      "$ref": "inventory"
+                    },
+                    {
+                      "$type": "ENUM_TOKEN",
+                      "value": "Purchase"
+                    },
+                    "Grapes",
+                    5
+                  ]
+                },
+                {
+                  "arguments": [
+                    {
+                      "$ref": "inventory"
+                    },
+                    {
+                      "$type": "ENUM_TOKEN",
+                      "value": "Delivery"
+                    },
+                    "Bananas",
+                    15
+                  ]
+                },
+                {
+                  "arguments": [
+                    {
+                      "$ref": "inventory"
+                    },
+                    {
+                      "$type": "ENUM_TOKEN",
+                      "value": "Delivery"
+                    },
+                    "Oranges",
+                    14
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "expected_semantic_result": {
+          "Apples": 92,
+          "Bananas": 28,
+          "Oranges": 25,
+          "Pears": 27,
+          "Grapes": 92
+        },
+        "comparison_mode": "EXACT",
+        "allowed_arities": [
+          2,
+          4
+        ],
+        "expectation_policy": "STATIC_FROZEN_VALUE",
+        "observer": {
+          "kind": "MAP_STATE",
+          "state_name": "inventory"
+        }
+      },
+      "score_stream": "CORE_BEHAVIOURAL"
+    }
+  ],
+  "semantic_contract": {
+    "contract_version": "1.4",
+    "contract_source": "ORIGINAL_TASK_SPECIFICATION",
+    "task_statement": "Update inventory quantities after purchases and deliveries.",
+    "inputs": [
+      {
+        "position": 1,
+        "name": "inventory",
+        "type": "MAP[ITEM,QUANTITY]"
+      },
+      {
+        "position": 2,
+        "name": "transactions",
+        "type": "INVENTORY_TRANSACTION_SEQUENCE"
+      }
+    ],
+    "result": {
+      "type": "MAP[ITEM,QUANTITY]",
+      "canonical_semantics": "Inventory quantities after purchases subtract stock and deliveries add stock; stock cannot become negative."
+    },
+    "automation_status": "AUTOMATED_FUNCTION",
+    "parameter_names_are_semantically_irrelevant": true,
+    "derived_parameters_may_be_supplied_by_adapter": true,
+    "human_review_instruction": "Judge the original generated pseudocode against this same frozen task-semantic contract, including when automated evaluation is NOT_EVALUABLE.",
+    "fixture_policy": "PREEXPERIMENT_FROZEN_INPUTS",
+    "expectation_policy": "STATIC_PREEXPERIMENT_EXPECTED_VALUES",
+    "runtime_oracle_prohibited": true
+  },
+  "boundary_evaluation_policy": {
+    "measure": "SEMANTIC_BOUNDARY_VARIANCE",
+    "enabled": false,
+    "core_score_separation": "Boundary probes do not contribute to core semantic behavioural accuracy or Common Test accuracy.",
+    "interpretation": "If enabled, variance is the percentage of evaluable out-of-domain probes that the implementation accepts and processes."
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "version": "1.86",
+  "purpose": "Reuse established canonical rules across model/algorithm outputs.",
+  "shared_rule_layers": {
+    "universal": [
+      "IS NULL / IS NOT NULL and bare NULL canonicalisation",
+      "CALL ASCII(x) -> CHAR(x)",
+      "IS empty / IS NOT empty -> LENGTH OF tests"
+    ],
+    "contextual_collections": [
+      "EMPTY QUEUE/DEQUE -> EMPTY LIST",
+      "ENQUEUE x TO declared collection -> APPEND x TO collection",
+      "x <- DEQUEUE FROM declared collection -> REMOVE FIRST ITEM FROM collection",
+      "collection~LENGTH -> LENGTH OF collection",
+      "declared-set method-shaped remove -> remove_from_set",
+      "declared_collection[LAST] -> declared_collection[-1]",
+      "CALL declared_collection_append(value) -> APPEND value TO declared_collection"
+    ],
+    "contextual_objects": [
+      "binary-tree node_value/node_left/node_right -> node.value/node.left/node.right",
+      "Floyd slow_next/fast_next -> .next properties",
+      "transaction_item/type/quantity -> transaction properties"
+    ],
+    "declarations": [
+      "rows * cols matrix of 0s -> create_matrix(rows, cols, 0)",
+      "array of size N initialized to V -> create_array(N, V)"
+    ]
+  },
+  "removed_redundant_specialised_normalisers": [
+    "_normalise_level_order_tree",
+    "_normalise_source_c_level_order",
+    "_normalise_matrix_addition",
+    "_normalise_source_b_matrix_multiplication",
+    "_normalise_source_c_anagram_array"
+  ],
+  "specialised_rules_retained": [
+    "N-Queens semantic recovery",
+    "maze neighbour/path recovery",
+    "LRU ordered-cache semantics",
+    "matrix multiplication cases that infer external test structures"
+  ]
+}

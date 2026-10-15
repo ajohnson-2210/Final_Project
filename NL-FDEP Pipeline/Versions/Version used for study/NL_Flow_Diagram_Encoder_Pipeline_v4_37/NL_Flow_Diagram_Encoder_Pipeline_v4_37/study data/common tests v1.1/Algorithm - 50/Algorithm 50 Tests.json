@@ -1,0 +1,58 @@
+{
+  "test_spec_schema_version": "1.2",
+  "test_design_version": "1.1",
+  "algorithm_id": 50,
+  "algorithm_title": "Develop an algorithm enabling autonomous drones to coordinate movement while avoiding collisions.",
+  "suite_role": "COMMON_BASELINE_CALIBRATION_AND_EXPERIMENTAL_COMPARISON",
+  "oracle_policy": "TRUSTED_BASELINE_REFERENCE",
+  "evidence_adequacy": "LIMITED",
+  "evidence_summary": "This suite provides limited behavioural evidence using one predefined common behavioural test, with partial termination evidence. The reference is graphical/stateful and has no stdout result representing collision avoidance.",
+  "coverage_dimensions": {
+    "normal_path": "NOT_COVERED",
+    "branch_behaviour": "NOT_COVERED",
+    "boundary_behaviour": "NOT_COVERED",
+    "error_behaviour": "NOT_COVERED",
+    "termination_behaviour": "PARTIALLY_COVERED",
+    "state_mutation": "NOT_COVERED"
+  },
+  "coverage_basis": "Assessment is based on the predefined common behavioural test, the behaviours exposed by the frozen program interface, and the declared coverage dimensions: termination behaviour.",
+  "interpretation_guidance": "Interpret behavioural accuracy as agreement for the specific exercised scenario or scenarios, not as strong evidence of general behavioural equivalence.",
+  "coverage_limitations": [
+    "The reference is graphical/stateful and has no stdout result representing collision avoidance.",
+    "A startup/termination test cannot establish collision-avoidance correctness.",
+    "Meaningful behavioural validation requires state-snapshot assertions over drone positions, velocities, target transitions and obstacle distances."
+  ],
+  "manual_review_targets": [
+    "Review obstacle-avoidance, swarm-update and target-transition state semantics.",
+    "Treat visual rendering itself as non-semantic unless it changes simulation state."
+  ],
+  "requires_pipeline_features": [
+    "DETERMINISTIC_RANDOM_SEED",
+    "OPTIONAL_EXTERNAL_MODULES",
+    "STATE_SNAPSHOT_ASSERTIONS"
+  ],
+  "tests": [
+    {
+      "name": "headless simulation initialisation and bounded execution",
+      "standard_input": [],
+      "category": "TERMINATION",
+      "semantic_feature": "DRONE_SIMULATION_STARTUP_AND_HEADLESS_TERMINATION",
+      "criteria_links": [
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "timeout_seconds": 8.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "random_seed": 104729,
+      "environment": {
+        "MPLBACKEND": "Agg"
+      },
+      "requires_modules": [
+        "numpy",
+        "matplotlib"
+      ]
+    }
+  ]
+}

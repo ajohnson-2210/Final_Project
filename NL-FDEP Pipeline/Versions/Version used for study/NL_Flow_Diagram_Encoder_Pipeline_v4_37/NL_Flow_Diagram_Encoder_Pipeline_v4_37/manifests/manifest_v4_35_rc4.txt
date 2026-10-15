@@ -1,0 +1,30 @@
+NL-FDEP v4.35 Release Candidate 4
+=================================
+Pipeline: 4.35
+AJ dialect: v1.5
+Common Tests: v1.3
+Test-spec schema: v1.4
+Suites: 50
+Retained cases: 113
+Frozen automated semantic cases: 75
+Experimental runtime expected-value generation: FALSE
+Experimental runtime baseline/reference use: FALSE
+Semantic evaluator algorithm-ID dispatch: NONE
+Named model/vendor validation artifacts: NONE
+LLM route procedural baseline readiness gate: REQUIRED
+First LLM run detected baseline: EXPLICIT USER CHOICE REQUIRED
+Detected baseline options: USE / CHOOSE AND RECALIBRATE / QUIT
+No detected baseline: SELECT BASELINE FOLDER THEN CALIBRATE AS REQUIRED
+Required baseline calibration: 50/50 evaluated; 50/50 at 100%
+Baseline path forwarded to experimental scorer: FALSE
+Post-LLM actions: ANOTHER LLM RESULTS / HUMAN EVALUATION / QUIT
+Status: RELEASE CANDIDATE 4 — NOT FINAL STUDY FREEZE
+
+Validation:
+- explicit detected-baseline choice regression: PASS
+- choose-and-recalibrate regression: PASS
+- no-detected-baseline chooser regression: PASS
+- in-session second LLM reuse regression: PASS
+- experimental baseline-separation regression: PASS
+- pytest: 1287 passed, 3 skipped, 5 subtests passed
+- unittest: 414 passed, 1 skipped

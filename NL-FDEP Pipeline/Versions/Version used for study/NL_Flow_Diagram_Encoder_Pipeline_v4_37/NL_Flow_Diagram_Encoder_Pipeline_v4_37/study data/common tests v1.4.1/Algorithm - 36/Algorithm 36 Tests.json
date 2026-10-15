@@ -1,0 +1,317 @@
+{
+  "test_spec_schema_version": "1.6",
+  "test_design_version": "1.4.1",
+  "algorithm_id": 36,
+  "algorithm_title": "An ordered list of numbers was rotated at an unknown pivot point (e.g. [4,5,6,1,2,3]). Find the index of a target",
+  "suite_role": "COMMON_FROZEN_TASK_SEMANTIC_EVALUATION",
+  "oracle_policy": "STATIC_PREEXPERIMENT_EXPECTATIONS",
+  "evidence_adequacy": "ADEQUATE",
+  "evidence_summary": "This suite evaluates rotated-array search across found and missing targets, pivot zero, singleton input and a pivot at the final position. A non-rotation array is observed separately as a semantic-boundary probe.",
+  "coverage_dimensions": {
+    "normal_path": "COVERED",
+    "branch_behaviour": "COVERED",
+    "boundary_behaviour": "COVERED",
+    "error_behaviour": "NOT_COVERED",
+    "termination_behaviour": "NOT_COVERED",
+    "state_mutation": "NOT_COVERED"
+  },
+  "coverage_basis": "Assessment is based on 4 core Common Test cases plus any separately declared semantic-boundary probes; boundary probes do not contribute to core behavioural accuracy.",
+  "interpretation_guidance": "Interpret core behavioural accuracy as evidence within the frozen semantic contract. Interpret Semantic Boundary Variance separately as descriptive evidence of out-of-domain acceptance.",
+  "coverage_limitations": [
+    "Arrays that are not rotations of sorted order are outside the ROTATED_SORTED_ARRAY contract and are reported separately as semantic-boundary variance."
+  ],
+  "manual_review_targets": [],
+  "requires_pipeline_features": [],
+  "tests": [
+    {
+      "name": "default rotated-array search examples",
+      "standard_input": [],
+      "category": "BRANCH",
+      "semantic_feature": "ROTATED_BINARY_SEARCH_FOUND_LEFT_RIGHT_AND_NOT_FOUND",
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "PREEXPERIMENT_FROZEN_FIXTURE",
+        "fixture": {
+          "invocations": [
+            {
+              "arguments": [
+                [
+                  4,
+                  5,
+                  6,
+                  1,
+                  2,
+                  3
+                ],
+                1
+              ]
+            },
+            {
+              "arguments": [
+                [
+                  4,
+                  5,
+                  6,
+                  1,
+                  2,
+                  3
+                ],
+                5
+              ]
+            },
+            {
+              "arguments": [
+                [
+                  4,
+                  5,
+                  6,
+                  1,
+                  2,
+                  3
+                ],
+                9
+              ]
+            }
+          ]
+        },
+        "expected_semantic_result": [
+          3,
+          1,
+          null
+        ],
+        "comparison_mode": "EXACT",
+        "allowed_arities": [
+          2
+        ],
+        "expectation_policy": "STATIC_FROZEN_VALUE",
+        "observer": {
+          "kind": "SEARCH_INDEX",
+          "aggregate": "INVOCATION_SEQUENCE",
+          "not_found_tokens": [
+            "not found",
+            "none",
+            "-1"
+          ],
+          "sentinel_values": [
+            -1
+          ]
+        }
+      },
+      "score_stream": "CORE_BEHAVIOURAL"
+    },
+    {
+      "name": "unrotated sorted array pivot zero",
+      "standard_input": [],
+      "category": "BOUNDARY",
+      "semantic_feature": "ROTATED_SEARCH_PIVOT_ZERO",
+      "criteria_links": [
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "score_stream": "CORE_BEHAVIOURAL",
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "PREEXPERIMENT_FROZEN_FIXTURE",
+        "fixture": {
+          "arguments": [
+            [
+              1,
+              2,
+              3,
+              4
+            ],
+            3
+          ]
+        },
+        "expected_semantic_result": 2,
+        "comparison_mode": "EXACT",
+        "expectation_policy": "STATIC_FROZEN_VALUE",
+        "observer": {
+          "kind": "SEARCH_INDEX",
+          "not_found_tokens": [
+            "not found",
+            "none",
+            "-1"
+          ],
+          "sentinel_values": [
+            -1
+          ]
+        },
+        "allowed_arities": [
+          2
+        ]
+      }
+    },
+    {
+      "name": "singleton rotated array",
+      "standard_input": [],
+      "category": "BOUNDARY",
+      "semantic_feature": "ROTATED_SEARCH_SINGLETON",
+      "criteria_links": [
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "score_stream": "CORE_BEHAVIOURAL",
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "PREEXPERIMENT_FROZEN_FIXTURE",
+        "fixture": {
+          "arguments": [
+            [
+              5
+            ],
+            5
+          ]
+        },
+        "expected_semantic_result": 0,
+        "comparison_mode": "EXACT",
+        "expectation_policy": "STATIC_FROZEN_VALUE",
+        "observer": {
+          "kind": "SEARCH_INDEX",
+          "not_found_tokens": [
+            "not found",
+            "none",
+            "-1"
+          ],
+          "sentinel_values": [
+            -1
+          ]
+        },
+        "allowed_arities": [
+          2
+        ]
+      }
+    },
+    {
+      "name": "pivot at final position",
+      "standard_input": [],
+      "category": "BOUNDARY",
+      "semantic_feature": "ROTATED_SEARCH_PIVOT_LAST",
+      "criteria_links": [
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "score_stream": "CORE_BEHAVIOURAL",
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "PREEXPERIMENT_FROZEN_FIXTURE",
+        "fixture": {
+          "arguments": [
+            [
+              2,
+              3,
+              4,
+              1
+            ],
+            1
+          ]
+        },
+        "expected_semantic_result": 3,
+        "comparison_mode": "EXACT",
+        "expectation_policy": "STATIC_FROZEN_VALUE",
+        "observer": {
+          "kind": "SEARCH_INDEX",
+          "not_found_tokens": [
+            "not found",
+            "none",
+            "-1"
+          ],
+          "sentinel_values": [
+            -1
+          ]
+        },
+        "allowed_arities": [
+          2
+        ]
+      }
+    },
+    {
+      "name": "array not a rotation of sorted order",
+      "standard_input": [],
+      "category": "SEMANTIC_BOUNDARY",
+      "semantic_feature": "UNSORTED_NON_ROTATION_PROBE",
+      "criteria_links": [],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "BOUNDARY_OBSERVATION",
+      "score_stream": "SEMANTIC_BOUNDARY_PROBE",
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "PREEXPERIMENT_FROZEN_BOUNDARY_PROBE",
+        "expectation_policy": "BOUNDARY_OBSERVATION",
+        "score_stream": "SEMANTIC_BOUNDARY_PROBE",
+        "fixture": {
+          "arguments": [
+            [
+              3,
+              1,
+              4,
+              2
+            ],
+            4
+          ]
+        },
+        "allowed_arities": [
+          2
+        ],
+        "boundary_probe": {
+          "domain_status": "OUT_OF_DOMAIN",
+          "controlled_rejection_error_types": []
+        }
+      }
+    }
+  ],
+  "semantic_contract": {
+    "contract_version": "1.4",
+    "contract_source": "ORIGINAL_TASK_SPECIFICATION",
+    "task_statement": "Find a target element in a rotated sorted array.",
+    "inputs": [
+      {
+        "position": 1,
+        "name": "array",
+        "type": "ROTATED_SORTED_ARRAY"
+      },
+      {
+        "position": 2,
+        "name": "target",
+        "type": "NUMBER"
+      }
+    ],
+    "result": {
+      "type": "INDEX_OR_NOT_FOUND",
+      "canonical_semantics": "Index of target in the rotated sorted array, or not-found."
+    },
+    "automation_status": "AUTOMATED_FUNCTION",
+    "parameter_names_are_semantically_irrelevant": true,
+    "derived_parameters_may_be_supplied_by_adapter": true,
+    "human_review_instruction": "Judge the original generated pseudocode against this same frozen task-semantic contract, including when automated evaluation is NOT_EVALUABLE.",
+    "fixture_policy": "PREEXPERIMENT_FROZEN_INPUTS",
+    "expectation_policy": "STATIC_PREEXPERIMENT_EXPECTED_VALUES",
+    "runtime_oracle_prohibited": true
+  },
+  "boundary_evaluation_policy": {
+    "measure": "SEMANTIC_BOUNDARY_VARIANCE",
+    "enabled": true,
+    "core_score_separation": "Boundary probes do not contribute to core semantic behavioural accuracy or Common Test accuracy.",
+    "interpretation": "If enabled, variance is the percentage of evaluable out-of-domain probes that the implementation accepts and processes."
+  }
+}

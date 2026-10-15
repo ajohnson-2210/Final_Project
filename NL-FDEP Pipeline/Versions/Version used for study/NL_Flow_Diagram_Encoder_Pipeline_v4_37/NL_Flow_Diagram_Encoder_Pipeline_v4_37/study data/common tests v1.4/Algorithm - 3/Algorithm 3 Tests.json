@@ -1,0 +1,242 @@
+{
+  "test_spec_schema_version": "1.5",
+  "test_design_version": "1.4",
+  "algorithm_id": 3,
+  "algorithm_title": "Determine if a year satisfies the leap year rules",
+  "suite_role": "COMMON_FROZEN_TASK_SEMANTIC_EVALUATION",
+  "oracle_policy": "STATIC_PREEXPERIMENT_EXPECTATIONS",
+  "evidence_adequacy": "ADEQUATE",
+  "evidence_summary": "This suite provides comparatively broad behavioural evidence using 5 predefined common behavioural tests, with covered normal-path, branch behaviour and partial error evidence.",
+  "coverage_dimensions": {
+    "normal_path": "COVERED",
+    "branch_behaviour": "COVERED",
+    "boundary_behaviour": "NOT_COVERED",
+    "error_behaviour": "PARTIALLY_COVERED",
+    "termination_behaviour": "NOT_COVERED",
+    "state_mutation": "NOT_COVERED"
+  },
+  "coverage_basis": "Assessment is based on the 5 predefined common behavioural tests, the behaviours exposed by the frozen program interface, and the declared coverage dimensions: normal path, branch behaviour, error behaviour.",
+  "interpretation_guidance": "Interpret behavioural accuracy as comparatively broad evidence across the declared exercised behaviours, while not treating the result as exhaustive proof for all possible inputs and states.",
+  "coverage_limitations": [],
+  "manual_review_targets": [],
+  "requires_pipeline_features": [],
+  "tests": [
+    {
+      "name": "leap year divisible by 400",
+      "standard_input": [
+        "2000"
+      ],
+      "category": "BRANCH",
+      "semantic_feature": "LEAP_YEAR_400_RULE",
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "PREEXPERIMENT_FROZEN_FIXTURE",
+        "fixture": {
+          "arguments": [
+            2000
+          ]
+        },
+        "expected_semantic_result": true,
+        "comparison_mode": "EXACT",
+        "allowed_arities": [
+          1
+        ],
+        "expectation_policy": "STATIC_FROZEN_VALUE",
+        "observer": {
+          "kind": "BOOLEAN",
+          "positive_tokens": [
+            "leap year",
+            "leap"
+          ],
+          "negative_tokens": [
+            "not leap"
+          ]
+        }
+      },
+      "score_stream": "CORE_BEHAVIOURAL"
+    },
+    {
+      "name": "century year not divisible by 400",
+      "standard_input": [
+        "1900"
+      ],
+      "category": "BRANCH",
+      "semantic_feature": "LEAP_YEAR_CENTURY_RULE",
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "PREEXPERIMENT_FROZEN_FIXTURE",
+        "fixture": {
+          "arguments": [
+            1900
+          ]
+        },
+        "expected_semantic_result": false,
+        "comparison_mode": "EXACT",
+        "allowed_arities": [
+          1
+        ],
+        "expectation_policy": "STATIC_FROZEN_VALUE",
+        "observer": {
+          "kind": "BOOLEAN",
+          "positive_tokens": [
+            "leap year",
+            "leap"
+          ],
+          "negative_tokens": [
+            "not leap"
+          ]
+        }
+      },
+      "score_stream": "CORE_BEHAVIOURAL"
+    },
+    {
+      "name": "ordinary leap year divisible by 4",
+      "standard_input": [
+        "2024"
+      ],
+      "category": "BRANCH",
+      "semantic_feature": "LEAP_YEAR_DIVISIBLE_BY_4",
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "PREEXPERIMENT_FROZEN_FIXTURE",
+        "fixture": {
+          "arguments": [
+            2024
+          ]
+        },
+        "expected_semantic_result": true,
+        "comparison_mode": "EXACT",
+        "allowed_arities": [
+          1
+        ],
+        "expectation_policy": "STATIC_FROZEN_VALUE",
+        "observer": {
+          "kind": "BOOLEAN",
+          "positive_tokens": [
+            "leap year",
+            "leap"
+          ],
+          "negative_tokens": [
+            "not leap"
+          ]
+        }
+      },
+      "score_stream": "CORE_BEHAVIOURAL"
+    },
+    {
+      "name": "ordinary non-leap year",
+      "standard_input": [
+        "2023"
+      ],
+      "category": "NORMAL",
+      "semantic_feature": "LEAP_YEAR_FALSE_PATH",
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "PREEXPERIMENT_FROZEN_FIXTURE",
+        "fixture": {
+          "arguments": [
+            2023
+          ]
+        },
+        "expected_semantic_result": false,
+        "comparison_mode": "EXACT",
+        "allowed_arities": [
+          1
+        ],
+        "expectation_policy": "STATIC_FROZEN_VALUE",
+        "observer": {
+          "kind": "BOOLEAN",
+          "positive_tokens": [
+            "leap year",
+            "leap"
+          ],
+          "negative_tokens": [
+            "not leap"
+          ]
+        }
+      },
+      "score_stream": "CORE_BEHAVIOURAL"
+    },
+    {
+      "name": "invalid input retries then succeeds",
+      "standard_input": [
+        "not-a-year",
+        "2024"
+      ],
+      "category": "ERROR_BEHAVIOUR",
+      "semantic_feature": "INTEGER_INPUT_RETRY",
+      "criteria_links": [
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "semantic_test": {
+        "enabled": false,
+        "reason": "This Common Test remains interaction/reference evidence and is not a canonical task-function test.",
+        "fixture_source": null,
+        "expectation_policy": "NOT_AUTOMATED"
+      },
+      "score_stream": "CORE_BEHAVIOURAL"
+    }
+  ],
+  "semantic_contract": {
+    "contract_version": "1.4",
+    "contract_source": "ORIGINAL_TASK_SPECIFICATION",
+    "task_statement": "Determine whether a given year satisfies the leap year rules.",
+    "inputs": [
+      {
+        "position": 1,
+        "name": "year",
+        "type": "INTEGER"
+      }
+    ],
+    "result": {
+      "type": "BOOLEAN",
+      "canonical_semantics": "True iff Gregorian leap-year divisibility rules are satisfied."
+    },
+    "automation_status": "AUTOMATED_FUNCTION",
+    "parameter_names_are_semantically_irrelevant": true,
+    "derived_parameters_may_be_supplied_by_adapter": true,
+    "human_review_instruction": "Judge the original generated pseudocode against this same frozen task-semantic contract, including when automated evaluation is NOT_EVALUABLE.",
+    "fixture_policy": "PREEXPERIMENT_FROZEN_INPUTS",
+    "expectation_policy": "STATIC_PREEXPERIMENT_EXPECTED_VALUES",
+    "runtime_oracle_prohibited": true
+  },
+  "boundary_evaluation_policy": {
+    "measure": "SEMANTIC_BOUNDARY_VARIANCE",
+    "enabled": false,
+    "core_score_separation": "Boundary probes do not contribute to core semantic behavioural accuracy or Common Test accuracy.",
+    "interpretation": "If enabled, variance is the percentage of evaluable out-of-domain probes that the implementation accepts and processes."
+  }
+}

@@ -1,0 +1,169 @@
+{
+  "success": true,
+  "status": "SUCCESS",
+  "stages": [
+    {
+      "name": "PSEUDOCODE_PROFILE_PROCESSING",
+      "status": "SUCCESS",
+      "message": "Processed source using AJ_DIALECT_STRICT; 0 transformation(s); 0 header line(s) stripped.",
+      "duration_ms": 1.885
+    },
+    {
+      "name": "PSEUDOCODE_TO_AST",
+      "status": "SUCCESS",
+      "message": "Pseudocode parsed and validated.",
+      "duration_ms": 2.657
+    },
+    {
+      "name": "AST_TO_FLOW_DIAGRAM",
+      "status": "SUCCESS",
+      "message": "Machine-readable flow diagram generated.",
+      "duration_ms": 0.408
+    },
+    {
+      "name": "FLOW_DIAGRAM_TO_DRAWIO",
+      "status": "SUCCESS",
+      "message": "Editable draw.io XML flow diagram generated.",
+      "duration_ms": 184.594
+    },
+    {
+      "name": "FLOW_DIAGRAM_TO_PYTHON",
+      "status": "SUCCESS",
+      "message": "Python source generated and syntax validated.",
+      "duration_ms": 1.081
+    },
+    {
+      "name": "BEHAVIOURAL_TESTING",
+      "status": "SUCCESS",
+      "message": "Passed 4 of 4 tests.",
+      "duration_ms": 43.33
+    }
+  ],
+  "output_files": {
+    "pseudocode_processing_report": "examples/pseudocode_processing_report.json",
+    "processed_pseudocode": "examples/processed_pseudocode.aj",
+    "ast": "examples/ast.json",
+    "parser_report": "examples/parser_report.json",
+    "ast_visualisation": "examples/ast_visualisation.html",
+    "flow_diagram": "examples/flow_diagram.json",
+    "flow_visualisation": "examples/flow_diagram.html",
+    "flow_diagram_drawio": "examples/flow_diagram.drawio",
+    "generated_python": "examples/generated_program.py",
+    "compilation_report": "examples/compilation_report.json",
+    "test_report": "examples/test_report.json",
+    "pipeline_report": "examples/pipeline_report.json"
+  },
+  "test_report": {
+    "program_path": "examples/generated_program.py",
+    "success": true,
+    "total_tests": 4,
+    "passed_tests": 4,
+    "failed_tests": 0,
+    "category_summary": {
+      "DEMONSTRATION": {
+        "total": 4,
+        "passed": 4,
+        "failed": 0
+      }
+    },
+    "results": [
+      {
+        "name": "Zero boundary",
+        "status": "PASSED",
+        "expected_output": [
+          "Enter a non-negative integer: 0"
+        ],
+        "actual_output": [
+          "Enter a non-negative integer: 0"
+        ],
+        "standard_error": "",
+        "return_code": 0,
+        "duration_ms": 11.504,
+        "category": "DEMONSTRATION",
+        "semantic_feature": null,
+        "expected_return_code": null,
+        "expected_error_type": null,
+        "actual_error_type": null,
+        "criteria_links": [],
+        "random_seed": null,
+        "environment": {},
+        "requires_modules": []
+      },
+      {
+        "name": "Single value",
+        "status": "PASSED",
+        "expected_output": [
+          "Enter a non-negative integer: 1"
+        ],
+        "actual_output": [
+          "Enter a non-negative integer: 1"
+        ],
+        "standard_error": "",
+        "return_code": 0,
+        "duration_ms": 10.805,
+        "category": "DEMONSTRATION",
+        "semantic_feature": null,
+        "expected_return_code": null,
+        "expected_error_type": null,
+        "actual_error_type": null,
+        "criteria_links": [],
+        "random_seed": null,
+        "environment": {},
+        "requires_modules": []
+      },
+      {
+        "name": "Typical value",
+        "status": "PASSED",
+        "expected_output": [
+          "Enter a non-negative integer: 15"
+        ],
+        "actual_output": [
+          "Enter a non-negative integer: 15"
+        ],
+        "standard_error": "",
+        "return_code": 0,
+        "duration_ms": 10.44,
+        "category": "DEMONSTRATION",
+        "semantic_feature": null,
+        "expected_return_code": null,
+        "expected_error_type": null,
+        "actual_error_type": null,
+        "criteria_links": [],
+        "random_seed": null,
+        "environment": {},
+        "requires_modules": []
+      },
+      {
+        "name": "Larger value",
+        "status": "PASSED",
+        "expected_output": [
+          "Enter a non-negative integer: 55"
+        ],
+        "actual_output": [
+          "Enter a non-negative integer: 55"
+        ],
+        "standard_error": "",
+        "return_code": 0,
+        "duration_ms": 10.19,
+        "category": "DEMONSTRATION",
+        "semantic_feature": null,
+        "expected_return_code": null,
+        "expected_error_type": null,
+        "actual_error_type": null,
+        "criteria_links": [],
+        "random_seed": null,
+        "environment": {},
+        "requires_modules": []
+      }
+    ]
+  },
+  "error": null,
+  "input_metadata": {
+    "input_type": "PSEUDOCODE",
+    "pseudocode_profile": "AJ_DIALECT_STRICT",
+    "source_modified": true,
+    "transformation_count": 0,
+    "header_comment_removed": false,
+    "header_lines_removed": 0
+  }
+}

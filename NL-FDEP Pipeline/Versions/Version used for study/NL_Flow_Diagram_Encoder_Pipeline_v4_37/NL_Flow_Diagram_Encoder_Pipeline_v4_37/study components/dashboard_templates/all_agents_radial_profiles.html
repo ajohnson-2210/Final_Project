@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NL-FDEP: All AI Agents — __ALGORITHM_COUNT__-Algorithm Radial Profiles</title>
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+<style>
+:root {
+  --bg:#f7f9fc;
+  --panel:#ffffff;
+  --text:#172033;
+  --muted:#667085;
+  --border:#d9e0ea;
+  --shadow:0 12px 30px rgba(16,24,40,.08);
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text)}
+.page{max-width:1600px;margin:0 auto;padding:28px}
+h1{margin:0 0 8px;font-size:clamp(1.75rem,2.7vw,2.5rem);letter-spacing:-.03em}
+.subtitle{margin:0 0 22px;color:var(--muted);line-height:1.5;max-width:1100px}
+.top-panel{background:var(--panel);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);padding:16px 18px;margin-bottom:20px}
+.legend-wrap{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.legend-title{font-weight:700;margin-right:8px}
+.legend-row{display:flex;align-items:center;gap:8px;font-size:.88rem;padding:6px 10px;border:1px solid var(--border);border-radius:999px;background:#fff}
+.swatch{width:16px;height:16px;border-radius:4px;border:1px solid rgba(0,0,0,.18)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(460px,1fr));gap:18px}
+.card{background:var(--panel);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);padding:14px}
+.card-head{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;margin-bottom:8px}
+.card h2{margin:0;font-size:1.12rem}
+.metrics{display:grid;grid-template-columns:1fr 1fr;gap:10px 16px;font-size:.86rem;color:var(--muted);margin:8px 0 10px}
+.metric strong{display:block;color:var(--text);font-size:1rem;margin-top:2px}
+.chart-host{width:100%;min-height:440px;display:grid;place-items:center}
+svg{display:block;max-width:100%;height:auto;overflow:visible}
+.small-note{font-size:.8rem;color:var(--muted);line-height:1.45;margin-top:8px}
+.tooltip{position:fixed;pointer-events:none;z-index:999;opacity:0;background:rgba(16,24,40,.96);color:#fff;padding:10px 12px;border-radius:9px;font-size:.82rem;line-height:1.45;box-shadow:0 8px 24px rgba(0,0,0,.18);max-width:290px}
+.fallback{padding:16px;border-radius:10px;background:#fff4f4;border:1px solid #f2c8c8;color:#8a1c1c;display:none;margin-bottom:18px}
+@media(max-width:600px){
+  .grid{grid-template-columns:1fr}
+  .metrics{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<main class="page">
+  <h1>NL-FDEP: All AI Agents — __ALGORITHM_COUNT__-Algorithm Radial Profiles</h1>
+  <p class="subtitle">
+    This single-page D3 dashboard shows a separate radial profile for each AI agent.
+    In each chart, the __ALGORITHM_COUNT__ study algorithms are arranged around the circle, radial length represents the experimental semantic behavioural score,
+    and colour follows the same five-stop scale used in the earlier approved view.
+  </p>
+
+  <div id="fallback" class="fallback">
+    D3 could not be loaded. This page uses D3 v7 from jsDelivr, so an internet connection is required when opening the HTML file.
+  </div>
+
+  <section class="top-panel">
+    <div class="legend-wrap">
+      <span class="legend-title">Score key</span>
+      <span class="legend-row"><span class="swatch" style="background:#2f6db3"></span>0%</span>
+      <span class="legend-row"><span class="swatch" style="background:#6ec5ff"></span>25%</span>
+      <span class="legend-row"><span class="swatch" style="background:#ffc145"></span>50%</span>
+      <span class="legend-row"><span class="swatch" style="background:#9be564"></span>75%</span>
+      <span class="legend-row"><span class="swatch" style="background:#2ca25f"></span>100%</span>
+      <span class="legend-row"><span class="swatch" style="background:#e5e7eb"></span>Not evaluable</span>
+    </div>
+  </section>
+
+  <section id="grid" class="grid"></section>
+</main>
+
+<div id="tooltip" class="tooltip"></div>
+
+<script>
+const agents = __AGENTS__;
+
+if (typeof d3 === "undefined") {
+  document.getElementById("fallback").style.display = "block";
+} else {
+  const tooltip = d3.select("#tooltip");
+  const grid = d3.select("#grid");
+
+  const colour = d3.scaleLinear()
+    .domain([0, 25, 50, 75, 100])
+    .range(["#2f6db3", "#6ec5ff", "#ffc145", "#9be564", "#2ca25f"])
+    .clamp(true);
+
+  const cards = grid.selectAll(".card")
+    .data(agents)
+    .join("section")
+    .attr("class", "card");
+
+  cards.each(function(agent) {
+    const card = d3.select(this);
+
+    card.append("div")
+      .attr("class", "card-head")
+      .html(`
+        <div>
+          <h2>${agent.name}</h2>
+        </div>
+      `);
+
+    const metrics = card.append("div").attr("class", "metrics");
+    metrics.html(`
+      <div class="metric">Mean semantic behavioural score<strong>${agent.meanSemanticScore.toFixed(2)}%</strong></div>
+      <div class="metric">Aggregate Common Test accuracy<strong>${agent.aggregateAccuracy.toFixed(2)}%</strong></div>
+      <div class="metric">Algorithms represented<strong>${agent.algorithmCount}</strong></div>
+      <div class="metric">Display encoding<strong>Radial length + colour</strong></div>
+    `);
+
+    const host = card.append("div").attr("class", "chart-host");
+    card.append("p")
+      .attr("class", "small-note")
+      .text("Hover over a sector to inspect the algorithm score, pipeline status, comparison status and Common Test evidence.");
+
+    const width = 440;
+    const height = 440;
+    const cx = width / 2;
+    const cy = height / 2;
+    const innerRadius = 58;
+    const maxRadius = 165;
+    const labelRadius = 188;
+
+    const svg = host.append("svg").attr("viewBox", [0, 0, width, height]);
+    const g = svg.append("g").attr("transform", `translate(${cx},${cy})`);
+
+    const n = agent.algorithmCount || agent.algorithms.length;
+    const step = 2 * Math.PI / n;
+    const barAngle = step * 0.80;
+    const angle = i => i * step;
+
+    const radius = d3.scaleLinear().domain([0, 100]).range([innerRadius, maxRadius]);
+
+    // Score rings
+    [25, 50, 75, 100].forEach(t => {
+      g.append("circle")
+        .attr("r", radius(t))
+        .attr("fill", "none")
+        .attr("stroke", "#dde3eb")
+        .attr("stroke-width", 1);
+    });
+
+    // Ring labels in one clean separator gap
+    const tickAngle = step * 0.5;
+    [25, 50, 75, 100].forEach(t => {
+      g.append("text")
+        .attr("x", Math.sin(tickAngle) * radius(t))
+        .attr("y", -Math.cos(tickAngle) * radius(t))
+        .attr("text-anchor", "middle")
+        .attr("dominant-baseline", "middle")
+        .attr("font-size", 8.5)
+        .attr("font-weight", 650)
+        .attr("fill", "#7b8493")
+        .text(t);
+    });
+
+    const arc = d3.arc()
+      .innerRadius(innerRadius)
+      .outerRadius(d => d.score == null ? innerRadius + 8 : radius(d.score))
+      .startAngle((d, i) => angle(i) - barAngle / 2)
+      .endAngle((d, i) => angle(i) + barAngle / 2)
+      .padAngle(0.004)
+      .padRadius(innerRadius);
+
+    g.selectAll(".algorithm-bar")
+      .data(agent.algorithms)
+      .join("path")
+      .attr("class", "algorithm-bar")
+      .attr("d", arc)
+      .attr("fill", d => d.score == null ? "#e5e7eb" : colour(d.score))
+      .attr("stroke", "#fff")
+      .attr("stroke-width", 0.9)
+      .style("cursor", "pointer")
+      .on("mouseenter", (event, d) => {
+        const scoreText = d.score == null ? "Not evaluable" : d.score.toFixed(2) + "%";
+        tooltip
+          .style("opacity", 1)
+          .html(
+            `<strong>${agent.name} — Algorithm ${d.algorithm}</strong><br>` +
+            `Behavioural score: <strong>${scoreText}</strong><br>` +
+            `Pipeline status: ${d.pipelineStatus ?? "—"}<br>` +
+            `Comparison: ${d.comparison ?? "—"}<br>` +
+            `Common Tests: ${d.testsPassed}/${d.testsEvaluable} evaluable tests passed<br>` +
+            `Not evaluable/reference-only: ${d.testsNotEvaluable}`
+          );
+      })
+      .on("mousemove", (event) => {
+        tooltip
+          .style("left", (event.clientX + 14) + "px")
+          .style("top", (event.clientY + 14) + "px");
+      })
+      .on("mouseleave", () => {
+        tooltip.style("opacity", 0);
+      });
+
+    g.selectAll(".algorithm-label")
+      .data(agent.algorithms)
+      .join("text")
+      .attr("class", "algorithm-label")
+      .attr("x", (d, i) => Math.sin(angle(i)) * labelRadius)
+      .attr("y", (d, i) => -Math.cos(angle(i)) * labelRadius)
+      .attr("text-anchor", (d, i) => {
+        const x = Math.sin(angle(i));
+        return x > 0.15 ? "start" : x < -0.15 ? "end" : "middle";
+      })
+      .attr("dominant-baseline", "middle")
+      .attr("font-size", 7.4)
+      .attr("fill", "#4b5565")
+      .text(d => "A" + d.algorithm);
+
+    g.append("text")
+      .attr("text-anchor", "middle")
+      .attr("y", -12)
+      .attr("font-size", 9.5)
+      .attr("fill", "#667085")
+      .text("Mean score");
+
+    g.append("text")
+      .attr("text-anchor", "middle")
+      .attr("y", 10)
+      .attr("font-size", 18)
+      .attr("font-weight", 760)
+      .attr("fill", "#172033")
+      .text(agent.meanSemanticScore.toFixed(2) + "%");
+
+    g.append("text")
+      .attr("text-anchor", "middle")
+      .attr("y", 28)
+      .attr("font-size", 8.8)
+      .attr("fill", "#667085")
+      .text(`${agent.algorithmCount} algorithms`);
+  });
+}
+</script>
+</body>
+</html>

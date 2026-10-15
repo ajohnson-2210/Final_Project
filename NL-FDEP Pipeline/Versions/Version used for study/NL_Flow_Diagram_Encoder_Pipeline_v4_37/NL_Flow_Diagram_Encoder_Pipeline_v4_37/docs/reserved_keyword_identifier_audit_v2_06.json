@@ -1,0 +1,26 @@
+{
+  "version": "2.06",
+  "policy": {
+    "escape_prefix": "__reserved_keyword__",
+    "semantic_rename": false,
+    "reversible": true,
+    "rule": "Reserved identifiers are mechanically escaped only in identifier positions; the original identifier is retained in audit metadata."
+  },
+  "cases": [
+    {
+      "model": "source_e",
+      "task_number": 6,
+      "identifier_kind": "FUNCTION_NAME",
+      "original_identifier": "LENGTH",
+      "canonical_identifier": "__reserved_keyword__LENGTH",
+      "reserved_keyword_collision": true,
+      "reserved_keyword": "LENGTH",
+      "identifier_semantics_preserved": true,
+      "body_primitive": {
+        "source": "NUMBER_OF_CHARACTERS(s)",
+        "canonical": "LENGTH OF s",
+        "meaning": "literal number of characters in s"
+      }
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+Generic Compatibility Specification v2.0 - Phase 7
+====================================================
+
+Purpose
+-------
+Reconstruct logical statement boundaries for pseudocode in which an entire algorithm has been compressed onto one physical line. This phase was introduced because all 50 source_f corpus examples use this style to a significant degree.
+
+Rules
+-----
+GC085 - COMPRESSED STATEMENT BOUNDARY RECONSTRUCTION
+Recognise conservative top-level starts including INPUT, IF, ELSE, WHILE, FOR, RETURN, assignment, increment/decrement, and common collection statements. Insert logical line breaks and reconstruct indentation without splitting quoted strings or nested bracket/parenthesis content.
+
+GC086 - FUNCTIONLESS RETURN WRAPPER
+If a recovered generic algorithm contains a top-level RETURN but no FUNCTION declaration, wrap it as:
+
+FUNCTION generic_algorithm ACCEPTS()
+    ...
+ENDFUNCTION
+CALL generic_algorithm()
+
+This preserves RETURN semantics rather than changing RETURN into OUTPUT.
+
+Profile isolation
+-----------------
+These rules apply only to GENERIC_COMPATIBILITY. GENERAL_NO_CONVERSION remains byte-for-byte unchanged after header preprocessing.
+
+Measured source_f result
+--------------------
+Before Phase 7: 0/50 parsed.
+After Phase 7: 8/50 parsed.
+
+The remaining failures are primarily unsupported literals and semantic shorthand, not missing physical statement boundaries.

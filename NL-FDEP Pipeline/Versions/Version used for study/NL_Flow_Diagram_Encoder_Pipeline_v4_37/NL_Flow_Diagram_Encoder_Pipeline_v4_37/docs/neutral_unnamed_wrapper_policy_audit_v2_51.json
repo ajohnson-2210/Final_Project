@@ -1,0 +1,24 @@
+{
+  "version": "2.51",
+  "policy": "NEUTRAL_UNNAMED_TOP_LEVEL_WRAPPER",
+  "rule_family": "GC160",
+  "approved_behaviour": {
+    "unnamed_input_driven_algorithm": "Use FUNCTION unnamed_function ACCEPTS(input dependencies) when the top-level algorithm has observable OUTPUT/RETURN and no function declaration.",
+    "source_named_function": "Preserve the source-provided function name exactly; do not add unnamed_function around it.",
+    "generated_semantic_names": "Do not generate PROCESS or task-specific semantic function names.",
+    "input_representation": "Once promoted to wrapper parameters, remove the corresponding interactive INPUT assignments from the executable body."
+  },
+  "termination_consequence": {
+    "STOP_inside_generated_wrapper": "RETURN",
+    "algorithm_38": "The character-frequency case now uses RETURN instead of CALL quit() because Text is a wrapper parameter."
+  },
+  "validation": {
+    "pytest_passed": 197,
+    "pytest_failed": 0,
+    "pytest_warnings": 3,
+    "corpus_parsed": 183,
+    "corpus_size": 300,
+    "parse_rate_percent": 61.0,
+    "model_summary_unchanged_from_v2_50": true
+  }
+}

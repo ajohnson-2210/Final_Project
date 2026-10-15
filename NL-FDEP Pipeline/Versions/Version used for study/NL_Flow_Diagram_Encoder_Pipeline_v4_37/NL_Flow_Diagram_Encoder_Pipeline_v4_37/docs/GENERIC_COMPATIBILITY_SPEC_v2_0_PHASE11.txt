@@ -1,0 +1,40 @@
+Generic Compatibility Specification v2.0 - Phase 11
+Structured Multiline Input Detection and Visual Separator Removal
+
+Purpose
+-------
+Phase 11 prevents the compressed-statement reconstruction rule (GC085) from
+being applied to pseudocode that is already formatted as structured multiline
+input. It also removes non-semantic visual separator lines commonly used
+between algorithms in corpus files.
+
+Rules
+-----
+GC100 - Visual separator removal
+Source examples:
+________________________________________
+========================================
+----------------------------------------
+Target: removed before lexical processing.
+
+Structured-input routing
+------------------------
+The GenericStatementBoundaryNormaliser now bypasses GC085 when the source
+contains existing indentation or at least three distinct line-broken control/
+statement lines. This preserves user-supplied statement boundaries and scope.
+
+Rationale
+---------
+The original compressed source_f corpus required GC085. The reformatted source_f TXT
+corpus already provides physical statement boundaries and indentation, so
+reconstructing it as compressed input is unnecessary and may distort scope.
+
+Evaluation checkpoint
+---------------------
+Canonical reformatted source_f corpus: 30/50 parsed (60.0%).
+Full six-model corpus: 120/300 parsed (40.0%).
+Previous v1.30 baseline: 117/300 parsed (39.0%).
+
+AJ Dialect
+----------
+No change to AJ_24038155 Dialect v1.0.

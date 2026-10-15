@@ -1,0 +1,72 @@
+{
+  "pipeline_version": "4.35",
+  "release_candidate": "RC8",
+  "validation_date": "2026-09-14",
+  "common_tests": {
+    "test_design_version": "1.4",
+    "test_spec_schema_version": "1.5",
+    "suite_count": 50,
+    "declared_case_count": 156,
+    "core_semantic_enabled_count": 107,
+    "core_nonautomated_count": 30,
+    "semantic_boundary_probe_count": 19,
+    "semantic_boundary_probe_enabled_count": 17,
+    "semantic_boundary_probe_not_evaluable_count": 2,
+    "runtime_expected_value_generation": false,
+    "runtime_baseline_reference_required_for_experimental_scoring": false,
+    "semantic_boundary_variance_included_in_core_behavioural_score": false
+  },
+  "contract_corrections": {
+    "algorithm_20": "Zero and negative inputs are outside POSITIVE_INTEGER and use SEMANTIC_BOUNDARY_PROBE.",
+    "algorithm_22": "Factorial contract is NON_NEGATIVE_INTEGER; 0! = 1 is a core frozen boundary case.",
+    "algorithm_27": "Core square-matrix coverage expanded; 2x3 rectangular input is a separate boundary probe.",
+    "algorithm_33": "Zero is a valid NON_NEGATIVE_INTEGER core input with expected result 0.",
+    "algorithm_40": "Coverage metadata now records the existing empty-queue dequeue case correctly."
+  },
+  "semantic_boundary_variance": {
+    "formula": "OUT_OF_DOMAIN_ACCEPTED / EVALUABLE_BOUNDARY_PROBES * 100",
+    "classification_values": [
+      "OUT_OF_DOMAIN_ACCEPTED",
+      "CONTROLLED_REJECTION",
+      "INCIDENTAL_FAILURE",
+      "NOT_EVALUABLE"
+    ],
+    "interpretation": "Descriptive semantic-domain extension; not an automatic penalty.",
+    "excluded_from": [
+      "per-algorithm core semantic behavioural percentage",
+      "aggregate task-semantic Common Test accuracy",
+      "automated rubric",
+      "human rubric",
+      "combined rubric"
+    ]
+  },
+  "baseline": {
+    "role": "PROCEDURAL_READINESS_GATE_ONLY",
+    "normal_gate": "50/50 evaluated and 50/50 at 100%",
+    "rc7_degraded_override_retained": true,
+    "degraded_override": "Explicit session-only 49/50 override for exactly one unavailable calibration with all remaining 49 at 100%.",
+    "experimental_runtime_reference_use": false,
+    "actual_user_baseline_revalidated_under_v1_4": false,
+    "final_study_freeze_requirement": "Run Common Tests v1.4 against the user's actual baseline corpus before final study execution."
+  },
+  "tests": {
+    "pytest": {
+      "passed": 1304,
+      "skipped": 3,
+      "subtests_passed": 5,
+      "warnings": 3,
+      "status": "PASS"
+    },
+    "unittest": {
+      "ran": 431,
+      "skipped": 1,
+      "status": "PASS"
+    },
+    "targeted_semantic_boundary_regressions": {
+      "ran": 6,
+      "passed": 6,
+      "status": "PASS"
+    }
+  },
+  "release_status": "RELEASE_CANDIDATE_NOT_FINAL_STUDY_FREEZE"
+}

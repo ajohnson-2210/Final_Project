@@ -1,0 +1,227 @@
+{
+  "test_spec_schema_version": "1.5",
+  "test_design_version": "1.4",
+  "algorithm_id": 4,
+  "algorithm_title": "Find the intersection of 2 sorted arrays and return the common elements",
+  "suite_role": "COMMON_FROZEN_TASK_SEMANTIC_EVALUATION",
+  "oracle_policy": "STATIC_PREEXPERIMENT_EXPECTATIONS",
+  "evidence_adequacy": "PARTIAL",
+  "evidence_summary": "This suite provides core behavioural evidence for a representative sorted-array intersection, an empty-input boundary and disjoint sorted arrays. Unsorted input is observed separately as a semantic-boundary probe.",
+  "coverage_dimensions": {
+    "normal_path": "COVERED",
+    "branch_behaviour": "PARTIALLY_COVERED",
+    "boundary_behaviour": "PARTIALLY_COVERED",
+    "error_behaviour": "NOT_COVERED",
+    "termination_behaviour": "NOT_COVERED",
+    "state_mutation": "NOT_COVERED"
+  },
+  "coverage_basis": "Assessment is based on 3 core Common Test cases plus any separately declared semantic-boundary probes; boundary probes do not contribute to core behavioural accuracy.",
+  "interpretation_guidance": "Interpret core behavioural accuracy as evidence within the frozen semantic contract. Interpret Semantic Boundary Variance separately as descriptive evidence of out-of-domain acceptance.",
+  "coverage_limitations": [
+    "The core suite now exercises empty and disjoint sorted arrays. Unsorted input is outside the stated sorted-array contract and is reported separately as semantic-boundary variance."
+  ],
+  "manual_review_targets": [],
+  "requires_pipeline_features": [],
+  "tests": [
+    {
+      "name": "default sorted-array intersection",
+      "standard_input": [],
+      "category": "NORMAL",
+      "semantic_feature": "INTERSECTION_COMMON_ELEMENTS_AND_POINTER_PROGRESS",
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "PREEXPERIMENT_FROZEN_FIXTURE",
+        "fixture": {
+          "arguments": [
+            [
+              "1",
+              "a",
+              "b",
+              "c",
+              "d",
+              "e"
+            ],
+            [
+              "1",
+              "b",
+              "c",
+              "g"
+            ]
+          ]
+        },
+        "expected_semantic_result": [
+          "1",
+          "b",
+          "c"
+        ],
+        "comparison_mode": "EXACT",
+        "allowed_arities": [
+          2
+        ],
+        "expectation_policy": "STATIC_FROZEN_VALUE",
+        "observer": {
+          "kind": "SEQUENCE"
+        }
+      },
+      "score_stream": "CORE_BEHAVIOURAL"
+    },
+    {
+      "name": "empty sorted-array intersection",
+      "standard_input": [],
+      "category": "BOUNDARY",
+      "semantic_feature": "EMPTY_SORTED_ARRAY_INTERSECTION",
+      "criteria_links": [
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "score_stream": "CORE_BEHAVIOURAL",
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "PREEXPERIMENT_FROZEN_FIXTURE",
+        "fixture": {
+          "arguments": [
+            [],
+            [
+              1,
+              2
+            ]
+          ]
+        },
+        "expected_semantic_result": [],
+        "comparison_mode": "EXACT",
+        "expectation_policy": "STATIC_FROZEN_VALUE",
+        "observer": {
+          "kind": "SEQUENCE"
+        },
+        "allowed_arities": [
+          2
+        ]
+      }
+    },
+    {
+      "name": "disjoint sorted arrays",
+      "standard_input": [],
+      "category": "BRANCH",
+      "semantic_feature": "DISJOINT_SORTED_ARRAYS",
+      "criteria_links": [
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "score_stream": "CORE_BEHAVIOURAL",
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "PREEXPERIMENT_FROZEN_FIXTURE",
+        "fixture": {
+          "arguments": [
+            [
+              1,
+              3,
+              5
+            ],
+            [
+              2,
+              4,
+              6
+            ]
+          ]
+        },
+        "expected_semantic_result": [],
+        "comparison_mode": "EXACT",
+        "expectation_policy": "STATIC_FROZEN_VALUE",
+        "observer": {
+          "kind": "SEQUENCE"
+        },
+        "allowed_arities": [
+          2
+        ]
+      }
+    },
+    {
+      "name": "unsorted input outside sorted-array contract",
+      "standard_input": [],
+      "category": "SEMANTIC_BOUNDARY",
+      "semantic_feature": "UNSORTED_ARRAY_DOMAIN_PROBE",
+      "criteria_links": [],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "BOUNDARY_OBSERVATION",
+      "score_stream": "SEMANTIC_BOUNDARY_PROBE",
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "PREEXPERIMENT_FROZEN_BOUNDARY_PROBE",
+        "expectation_policy": "BOUNDARY_OBSERVATION",
+        "score_stream": "SEMANTIC_BOUNDARY_PROBE",
+        "fixture": {
+          "arguments": [
+            [
+              3,
+              1,
+              2
+            ],
+            [
+              1,
+              2,
+              3
+            ]
+          ]
+        },
+        "allowed_arities": [
+          2
+        ],
+        "boundary_probe": {
+          "domain_status": "OUT_OF_DOMAIN",
+          "controlled_rejection_error_types": []
+        }
+      }
+    }
+  ],
+  "semantic_contract": {
+    "contract_version": "1.4",
+    "contract_source": "ORIGINAL_TASK_SPECIFICATION",
+    "task_statement": "Find the intersection of two sorted arrays.",
+    "inputs": [
+      {
+        "position": 1,
+        "name": "array_1",
+        "type": "ARRAY[COMPARABLE]"
+      },
+      {
+        "position": 2,
+        "name": "array_2",
+        "type": "ARRAY[COMPARABLE]"
+      }
+    ],
+    "result": {
+      "type": "ARRAY",
+      "canonical_semantics": "Intersection elements common to both sorted arrays."
+    },
+    "automation_status": "AUTOMATED_FUNCTION",
+    "parameter_names_are_semantically_irrelevant": true,
+    "derived_parameters_may_be_supplied_by_adapter": true,
+    "human_review_instruction": "Judge the original generated pseudocode against this same frozen task-semantic contract, including when automated evaluation is NOT_EVALUABLE.",
+    "fixture_policy": "PREEXPERIMENT_FROZEN_INPUTS",
+    "expectation_policy": "STATIC_PREEXPERIMENT_EXPECTED_VALUES",
+    "runtime_oracle_prohibited": true
+  },
+  "boundary_evaluation_policy": {
+    "measure": "SEMANTIC_BOUNDARY_VARIANCE",
+    "enabled": true,
+    "core_score_separation": "Boundary probes do not contribute to core semantic behavioural accuracy or Common Test accuracy.",
+    "interpretation": "If enabled, variance is the percentage of evaluable out-of-domain probes that the implementation accepts and processes."
+  }
+}

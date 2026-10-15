@@ -1,0 +1,286 @@
+{
+  "test_spec_schema_version": "1.3",
+  "test_design_version": "1.2",
+  "algorithm_id": 23,
+  "algorithm_title": "Write a process that converts numerical scores into grades such as pass merit or distinction",
+  "suite_role": "COMMON_SEMANTIC_BASELINE_CALIBRATION_AND_EXPERIMENTAL_COMPARISON",
+  "oracle_policy": "TRUSTED_BASELINE_REFERENCE",
+  "evidence_adequacy": "ADEQUATE",
+  "evidence_summary": "This suite provides comparatively broad behavioural evidence using 8 predefined common behavioural tests, with covered boundary, error behaviour and partial branch evidence.",
+  "coverage_dimensions": {
+    "normal_path": "NOT_COVERED",
+    "branch_behaviour": "PARTIALLY_COVERED",
+    "boundary_behaviour": "COVERED",
+    "error_behaviour": "COVERED",
+    "termination_behaviour": "NOT_COVERED",
+    "state_mutation": "NOT_COVERED"
+  },
+  "coverage_basis": "Assessment is based on the 8 predefined common behavioural tests, the behaviours exposed by the frozen program interface, and the declared coverage dimensions: branch behaviour, boundary behaviour, error behaviour.",
+  "interpretation_guidance": "Interpret behavioural accuracy as comparatively broad evidence across the declared exercised behaviours, while not treating the result as exhaustive proof for all possible inputs and states.",
+  "coverage_limitations": [],
+  "manual_review_targets": [],
+  "requires_pipeline_features": [],
+  "tests": [
+    {
+      "name": "below pass threshold",
+      "standard_input": [
+        "59.9"
+      ],
+      "category": "BRANCH",
+      "semantic_feature": "GRADE_FAIL",
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "COMMON_TEST_STANDARD_INPUT",
+        "oracle_source": "TASK_SEMANTIC_ORACLE_WITH_FROZEN_BASELINE_REFERENCE",
+        "fixture": {
+          "arguments": [
+            59.9
+          ]
+        },
+        "expected_semantic_result": "FAIL",
+        "comparison_mode": "EXACT",
+        "entrypoint_candidates": [
+          "unnamed_function"
+        ],
+        "allowed_arities": [
+          1
+        ]
+      }
+    },
+    {
+      "name": "pass lower boundary",
+      "standard_input": [
+        "60"
+      ],
+      "category": "BOUNDARY",
+      "semantic_feature": "GRADE_PASS_BOUNDARY",
+      "criteria_links": [
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "COMMON_TEST_STANDARD_INPUT",
+        "oracle_source": "TASK_SEMANTIC_ORACLE_WITH_FROZEN_BASELINE_REFERENCE",
+        "fixture": {
+          "arguments": [
+            60.0
+          ]
+        },
+        "expected_semantic_result": "PASS",
+        "comparison_mode": "EXACT",
+        "entrypoint_candidates": [
+          "unnamed_function"
+        ],
+        "allowed_arities": [
+          1
+        ]
+      }
+    },
+    {
+      "name": "merit lower boundary",
+      "standard_input": [
+        "70"
+      ],
+      "category": "BOUNDARY",
+      "semantic_feature": "GRADE_MERIT_BOUNDARY",
+      "criteria_links": [
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "COMMON_TEST_STANDARD_INPUT",
+        "oracle_source": "TASK_SEMANTIC_ORACLE_WITH_FROZEN_BASELINE_REFERENCE",
+        "fixture": {
+          "arguments": [
+            70.0
+          ]
+        },
+        "expected_semantic_result": "MERIT",
+        "comparison_mode": "EXACT",
+        "entrypoint_candidates": [
+          "unnamed_function"
+        ],
+        "allowed_arities": [
+          1
+        ]
+      }
+    },
+    {
+      "name": "distinction lower boundary",
+      "standard_input": [
+        "80"
+      ],
+      "category": "BOUNDARY",
+      "semantic_feature": "GRADE_DISTINCTION_BOUNDARY",
+      "criteria_links": [
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "COMMON_TEST_STANDARD_INPUT",
+        "oracle_source": "TASK_SEMANTIC_ORACLE_WITH_FROZEN_BASELINE_REFERENCE",
+        "fixture": {
+          "arguments": [
+            80.0
+          ]
+        },
+        "expected_semantic_result": "DISTINCTION",
+        "comparison_mode": "EXACT",
+        "entrypoint_candidates": [
+          "unnamed_function"
+        ],
+        "allowed_arities": [
+          1
+        ]
+      }
+    },
+    {
+      "name": "perfect score branch",
+      "standard_input": [
+        "100"
+      ],
+      "category": "BOUNDARY",
+      "semantic_feature": "GRADE_PERFECT_100",
+      "criteria_links": [
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "COMMON_TEST_STANDARD_INPUT",
+        "oracle_source": "TASK_SEMANTIC_ORACLE_WITH_FROZEN_BASELINE_REFERENCE",
+        "fixture": {
+          "arguments": [
+            100.0
+          ]
+        },
+        "expected_semantic_result": "DISTINCTION",
+        "comparison_mode": "EXACT",
+        "entrypoint_candidates": [
+          "unnamed_function"
+        ],
+        "allowed_arities": [
+          1
+        ]
+      }
+    },
+    {
+      "name": "out-of-range low retries",
+      "standard_input": [
+        "-1",
+        "60"
+      ],
+      "category": "ERROR_BEHAVIOUR",
+      "semantic_feature": "GRADE_RANGE_LOW_RETRY",
+      "criteria_links": [
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "semantic_test": {
+        "enabled": false,
+        "reason": "This Common Test remains interaction/reference evidence and is not a canonical task-function test.",
+        "fixture_source": null,
+        "oracle_source": null
+      }
+    },
+    {
+      "name": "out-of-range high retries",
+      "standard_input": [
+        "101",
+        "70"
+      ],
+      "category": "ERROR_BEHAVIOUR",
+      "semantic_feature": "GRADE_RANGE_HIGH_RETRY",
+      "criteria_links": [
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "semantic_test": {
+        "enabled": false,
+        "reason": "This Common Test remains interaction/reference evidence and is not a canonical task-function test.",
+        "fixture_source": null,
+        "oracle_source": null
+      }
+    },
+    {
+      "name": "non-numeric retries",
+      "standard_input": [
+        "abc",
+        "80"
+      ],
+      "category": "ERROR_BEHAVIOUR",
+      "semantic_feature": "NUMERIC_INPUT_RETRY",
+      "criteria_links": [
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "semantic_test": {
+        "enabled": false,
+        "reason": "This Common Test remains interaction/reference evidence and is not a canonical task-function test.",
+        "fixture_source": null,
+        "oracle_source": null
+      }
+    }
+  ],
+  "semantic_contract": {
+    "contract_version": "1.2",
+    "contract_source": "ORIGINAL_TASK_SPECIFICATION",
+    "task_statement": "Convert numerical scores into grade categories (Pass, Merit, Distinction).",
+    "inputs": [
+      {
+        "position": 1,
+        "name": "score",
+        "type": "NUMBER_0_TO_100"
+      }
+    ],
+    "result": {
+      "type": "GRADE",
+      "canonical_semantics": "Grade category according to the frozen task thresholds: <60 FAIL, 60-<70 PASS, 70-<80 MERIT, >=80 DISTINCTION."
+    },
+    "automation_status": "AUTOMATED_FUNCTION",
+    "parameter_names_are_semantically_irrelevant": true,
+    "derived_parameters_may_be_supplied_by_adapter": true,
+    "baseline_fixture_source": "Algorithm 23 Baseline Python code.txt",
+    "baseline_source_sha256": "627c3dc7f71275c2eb57110ba586953150646428c0ea5b8c9f4a6b2f01f76792",
+    "oracle_policy": "The original task defines the semantic result where determinate; the frozen trusted baseline supplies concrete fixtures and resolves deterministic task-policy details where the task statement is underspecified. Experimental/model output never defines its own oracle.",
+    "human_review_instruction": "Judge the original model pseudocode against this task-semantic contract even when automated execution is NOT_EVALUABLE."
+  }
+}

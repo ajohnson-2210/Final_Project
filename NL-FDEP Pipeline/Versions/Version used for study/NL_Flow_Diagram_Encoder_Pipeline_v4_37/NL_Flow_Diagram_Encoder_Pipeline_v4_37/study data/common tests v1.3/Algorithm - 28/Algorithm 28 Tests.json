@@ -1,0 +1,104 @@
+{
+  "test_spec_schema_version": "1.4",
+  "test_design_version": "1.3",
+  "algorithm_id": 28,
+  "algorithm_title": "For a fixed window size sliding across an array return the maximum value within each window position",
+  "suite_role": "COMMON_FROZEN_TASK_SEMANTIC_EVALUATION",
+  "oracle_policy": "STATIC_PREEXPERIMENT_EXPECTATIONS",
+  "evidence_adequacy": "LIMITED",
+  "evidence_summary": "This suite provides limited behavioural evidence using one predefined common behavioural test, with covered normal-path behaviour. Array and window size are fixed; k=1, k=len(arr), invalid k and negative-only arrays are not externally injectable.",
+  "coverage_dimensions": {
+    "normal_path": "COVERED",
+    "branch_behaviour": "NOT_COVERED",
+    "boundary_behaviour": "NOT_COVERED",
+    "error_behaviour": "NOT_COVERED",
+    "termination_behaviour": "NOT_COVERED",
+    "state_mutation": "NOT_COVERED"
+  },
+  "coverage_basis": "Assessment is based on the predefined common behavioural test, the behaviours exposed by the frozen program interface, and the declared coverage dimensions: normal path.",
+  "interpretation_guidance": "Interpret behavioural accuracy as agreement for the specific exercised scenario or scenarios, not as strong evidence of general behavioural equivalence.",
+  "coverage_limitations": [
+    "Array and window size are fixed; k=1, k=len(arr), invalid k and negative-only arrays are not externally injectable."
+  ],
+  "manual_review_targets": [],
+  "requires_pipeline_features": [],
+  "tests": [
+    {
+      "name": "default sliding-window maxima",
+      "standard_input": [],
+      "category": "NORMAL",
+      "semantic_feature": "WINDOW_MAXIMUM_AND_LOOP_TERMINATION",
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "PREEXPERIMENT_FROZEN_FIXTURE",
+        "fixture": {
+          "arguments": [
+            [
+              1,
+              3,
+              -1,
+              -3,
+              5,
+              3,
+              6,
+              7
+            ],
+            2
+          ]
+        },
+        "expected_semantic_result": [
+          3,
+          3,
+          -1,
+          5,
+          5,
+          6,
+          7
+        ],
+        "comparison_mode": "EXACT",
+        "allowed_arities": [
+          2
+        ],
+        "expectation_policy": "STATIC_FROZEN_VALUE",
+        "observer": {
+          "kind": "SEQUENCE"
+        }
+      }
+    }
+  ],
+  "semantic_contract": {
+    "contract_version": "1.3",
+    "contract_source": "ORIGINAL_TASK_SPECIFICATION",
+    "task_statement": "Return the maximum value in every sliding window.",
+    "inputs": [
+      {
+        "position": 1,
+        "name": "array",
+        "type": "ARRAY[NUMBER]"
+      },
+      {
+        "position": 2,
+        "name": "window_size",
+        "type": "POSITIVE_INTEGER"
+      }
+    ],
+    "result": {
+      "type": "ARRAY[NUMBER]",
+      "canonical_semantics": "Maximum value from each contiguous sliding window."
+    },
+    "automation_status": "AUTOMATED_FUNCTION",
+    "parameter_names_are_semantically_irrelevant": true,
+    "derived_parameters_may_be_supplied_by_adapter": true,
+    "human_review_instruction": "Judge the original generated pseudocode against this same frozen task-semantic contract, including when automated evaluation is NOT_EVALUABLE.",
+    "fixture_policy": "PREEXPERIMENT_FROZEN_INPUTS",
+    "expectation_policy": "STATIC_PREEXPERIMENT_EXPECTED_VALUES",
+    "runtime_oracle_prohibited": true
+  }
+}

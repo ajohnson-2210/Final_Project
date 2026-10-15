@@ -1,0 +1,20 @@
+{
+  "version": "2.20",
+  "rule_family": "INPUT_BINDING",
+  "task_context": "source_a Algorithm 8",
+  "source": "WordList <- INPUT(STRING(\"Enter WordList\"))",
+  "interpretation": {
+    "prompt_role": "STRING(\"Enter WordList\") is display text only",
+    "receiver": "WordList",
+    "receiver_type": "LIST OF STRING",
+    "evidence": [
+      "LENGTH OF WordList",
+      "WordList[j]",
+      "WordList[j+1]",
+      "alphabetical comparison and indexed swap"
+    ],
+    "returning_scope_parameterisation": "when RETURN is present in the same top-level computational scope, WordList becomes an ACCEPTS parameter"
+  },
+  "confidence": "user_confirmed",
+  "semantic_change": false
+}

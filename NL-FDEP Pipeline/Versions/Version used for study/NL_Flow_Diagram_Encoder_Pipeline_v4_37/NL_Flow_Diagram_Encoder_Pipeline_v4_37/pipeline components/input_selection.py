@@ -1,0 +1,521 @@
+"""Interactive input-route and file selection for the PyCharm application."""
+
+from __future__ import annotations
+
+from enum import Enum
+from pathlib import Path
+from tkinter import Button, Label, Tk, filedialog, messagebox
+
+from pseudocode_profiles import PseudocodeProfile
+
+
+class InputRoute(str, Enum):
+    """Supported controlled input routes."""
+
+    PSEUDOCODE = "PSEUDOCODE"
+    FLOW_DIAGRAM = "FLOW_DIAGRAM"
+    LLM_RESULTS_FOLDER = "LLM_RESULTS_FOLDER"
+    BASELINE_BENCHMARK_FOLDER = "BASELINE_BENCHMARK_FOLDER"
+    HUMAN_REVIEW_FOLDER = "HUMAN_REVIEW_FOLDER"
+
+
+
+
+class BaselineStartupAction(str, Enum):
+    """Choices offered when a previously selected baseline is detected."""
+
+    USE_DETECTED_BASELINE = "USE_DETECTED_BASELINE"
+    CHOOSE_AND_RECALIBRATE = "CHOOSE_AND_RECALIBRATE"
+    QUIT = "QUIT"
+
+
+class PostLLMAction(str, Enum):
+    """Actions available after an LLM study batch completes."""
+
+    ANOTHER_LLM_RESULTS_FOLDER = "ANOTHER_LLM_RESULTS_FOLDER"
+    HUMAN_EVALUATION = "HUMAN_EVALUATION"
+    QUIT = "QUIT"
+
+
+class HumanReviewStartupAction(str, Enum):
+    """How a standalone Human Review session should build its dataset registry."""
+
+    RESUME_DISCOVER_EXISTING_STUDY = "RESUME_DISCOVER_EXISTING_STUDY"
+    START_FRESH = "START_FRESH"
+
+
+class InputSelectionCancelledError(Exception):
+    """Raised when the user closes or cancels an input-selection dialog."""
+
+
+class InputSelectionDialog:
+    """Displays route-selection and file-selection windows."""
+
+    def select_route(self) -> InputRoute:
+        """Asks the user which type of source file they want to import."""
+
+        selected_route: list[InputRoute] = []
+
+        selection_window = Tk()
+        selection_window.title("NL to Flow Diagram Encoder Pipeline")
+        selection_window.resizable(False, False)
+        selection_window.attributes("-topmost", True)
+
+        instruction_label = Label(
+            selection_window,
+            text="What would you like to import?",
+            padx=30,
+            pady=18,
+        )
+        instruction_label.pack()
+
+        pseudocode_button = Button(
+            selection_window,
+            text="Pseudocode file",
+            width=28,
+            command=lambda: self._select_and_close(
+                selected_route=selected_route,
+                route=InputRoute.PSEUDOCODE,
+                window=selection_window,
+            ),
+        )
+        pseudocode_button.pack(padx=30, pady=6)
+
+        flow_diagram_button = Button(
+            selection_window,
+            text="Flow diagram file",
+            width=28,
+            command=lambda: self._select_and_close(
+                selected_route=selected_route,
+                route=InputRoute.FLOW_DIAGRAM,
+                window=selection_window,
+            ),
+        )
+        flow_diagram_button.pack(padx=30, pady=6)
+
+        llm_folder_button = Button(
+            selection_window,
+            text="LLM results folder",
+            width=28,
+            command=lambda: self._select_and_close(
+                selected_route=selected_route,
+                route=InputRoute.LLM_RESULTS_FOLDER,
+                window=selection_window,
+            ),
+        )
+        llm_folder_button.pack(padx=30, pady=6)
+
+        baseline_button = Button(
+            selection_window,
+            text="Baseline benchmark folder",
+            width=28,
+            command=lambda: self._select_and_close(
+                selected_route=selected_route,
+                route=InputRoute.BASELINE_BENCHMARK_FOLDER,
+                window=selection_window,
+            ),
+        )
+        baseline_button.pack(padx=30, pady=6)
+
+        review_button = Button(
+            selection_window,
+            text="Human review folder",
+            width=28,
+            command=lambda: self._select_and_close(
+                selected_route=selected_route,
+                route=InputRoute.HUMAN_REVIEW_FOLDER,
+                window=selection_window,
+            ),
+        )
+        review_button.pack(padx=30, pady=(6, 20))
+
+        selection_window.protocol(
+            "WM_DELETE_WINDOW",
+            selection_window.destroy,
+        )
+        selection_window.mainloop()
+
+        if not selected_route:
+            raise InputSelectionCancelledError(
+                "Input type selection was cancelled."
+            )
+
+        return selected_route[0]
+
+
+    def select_pseudocode_profile(self) -> PseudocodeProfile:
+        """Asks how a selected pseudocode file should be processed."""
+
+        selected_profile: list[PseudocodeProfile] = []
+
+        profile_window = Tk()
+        profile_window.title("Pseudocode processing profile")
+        profile_window.resizable(False, False)
+        profile_window.attributes("-topmost", True)
+
+        instruction_label = Label(
+            profile_window,
+            text="How should the pseudocode be processed?",
+            padx=30,
+            pady=18,
+        )
+        instruction_label.pack()
+
+        profile_options = [
+            (
+                "AJ Dialect — strict",
+                PseudocodeProfile.AJ_DIALECT_STRICT,
+            ),
+            (
+                "Generic — convert compatible syntax",
+                PseudocodeProfile.GENERIC_COMPATIBILITY,
+            ),
+            (
+                "General — parse without conversion",
+                PseudocodeProfile.GENERAL_NO_CONVERSION,
+            ),
+        ]
+
+        for button_text, profile in profile_options:
+            profile_button = Button(
+                profile_window,
+                text=button_text,
+                width=38,
+                command=lambda selected_profile_value=profile: self._select_profile_and_close(
+                    selected_profiles=selected_profile,
+                    profile=selected_profile_value,
+                    window=profile_window,
+                ),
+            )
+            profile_button.pack(
+                padx=30,
+                pady=6,
+            )
+
+        cancel_button = Button(
+            profile_window,
+            text="Cancel",
+            width=38,
+            command=profile_window.destroy,
+        )
+        cancel_button.pack(
+            padx=30,
+            pady=(6, 20),
+        )
+
+        profile_window.protocol(
+            "WM_DELETE_WINDOW",
+            profile_window.destroy,
+        )
+        profile_window.mainloop()
+
+        if not selected_profile:
+            raise InputSelectionCancelledError(
+                "Pseudocode profile selection was cancelled."
+            )
+
+        return selected_profile[0]
+
+
+    def select_detected_baseline_action(
+        self,
+        baseline_root: Path,
+        study_ready: bool,
+    ) -> BaselineStartupAction:
+        """Ask whether to reuse a detected baseline or choose and recalibrate one."""
+
+        selected_action: list[BaselineStartupAction] = []
+
+        action_window = Tk()
+        action_window.title("Baseline recovery hint detected")
+        action_window.resizable(False, False)
+        action_window.attributes("-topmost", True)
+
+        readiness = (
+            "Current calibration: STUDY-READY (50/50 pipeline-successful; all behaviourally evaluable calibrations at 100%)."
+            if study_ready
+            else "Current calibration: NOT CURRENTLY STUDY-READY; reuse will require calibration."
+        )
+        instruction_label = Label(
+            action_window,
+            text=(
+                "A baseline reference from an unfinished or earlier runner session was detected:\n\n"
+                f"{Path(baseline_root).resolve()}\n\n"
+                f"{readiness}\n\n"
+                "What would you like to do?"
+            ),
+            padx=30,
+            pady=18,
+            justify="left",
+        )
+        instruction_label.pack()
+
+        options = [
+            ("Use detected baseline", BaselineStartupAction.USE_DETECTED_BASELINE),
+            ("Choose baseline folder and recalibrate", BaselineStartupAction.CHOOSE_AND_RECALIBRATE),
+            ("Quit", BaselineStartupAction.QUIT),
+        ]
+        for button_text, action in options:
+            button = Button(
+                action_window,
+                text=button_text,
+                width=42,
+                command=lambda selected_action_value=action: self._select_action_and_close(
+                    selected_actions=selected_action,
+                    action=selected_action_value,
+                    window=action_window,
+                ),
+            )
+            button.pack(padx=30, pady=6)
+
+        action_window.protocol("WM_DELETE_WINDOW", action_window.destroy)
+        action_window.mainloop()
+
+        if not selected_action:
+            raise InputSelectionCancelledError("Baseline selection was cancelled.")
+
+        return selected_action[0]
+
+
+    def select_post_llm_action(self) -> PostLLMAction:
+        """Ask what to do after a completed LLM-results batch."""
+
+        selected_action: list[PostLLMAction] = []
+
+        action_window = Tk()
+        action_window.title("LLM study batch complete")
+        action_window.resizable(False, False)
+        action_window.attributes("-topmost", True)
+
+        instruction_label = Label(
+            action_window,
+            text="What would you like to do next?",
+            padx=30,
+            pady=18,
+        )
+        instruction_label.pack()
+
+        options = [
+            ("Choose another LLM results folder", PostLLMAction.ANOTHER_LLM_RESULTS_FOLDER),
+            ("Proceed with human evaluation", PostLLMAction.HUMAN_EVALUATION),
+            ("Quit", PostLLMAction.QUIT),
+        ]
+        for button_text, action in options:
+            button = Button(
+                action_window,
+                text=button_text,
+                width=38,
+                command=lambda selected_action_value=action: self._select_action_and_close(
+                    selected_actions=selected_action,
+                    action=selected_action_value,
+                    window=action_window,
+                ),
+            )
+            button.pack(padx=30, pady=6)
+
+        action_window.protocol("WM_DELETE_WINDOW", action_window.destroy)
+        action_window.mainloop()
+
+        if not selected_action:
+            raise InputSelectionCancelledError("Post-LLM action selection was cancelled.")
+
+        return selected_action[0]
+
+    def select_human_review_startup_action(self) -> HumanReviewStartupAction:
+        """Choose whether standalone Human Review discovers siblings or starts fresh."""
+
+        selected_action: list[HumanReviewStartupAction] = []
+
+        action_window = Tk()
+        action_window.title("Human Review")
+        action_window.resizable(False, False)
+        action_window.attributes("-topmost", True)
+
+        instruction_label = Label(
+            action_window,
+            text=(
+                "How would you like to start Human Review?\n\n"
+                "Detect previous study opens the most recently remembered experimental study "
+                "directly and rebuilds the AI-agent selector from completed review artefacts on disk.\n\n"
+                "Start fresh loads only the LLM dataset you select. You can add further datasets "
+                "from inside the review window."
+            ),
+            padx=30,
+            pady=18,
+            justify="left",
+            wraplength=560,
+        )
+        instruction_label.pack()
+
+        options = [
+            ("Detect previous study", HumanReviewStartupAction.RESUME_DISCOVER_EXISTING_STUDY),
+            ("Start fresh", HumanReviewStartupAction.START_FRESH),
+        ]
+        for button_text, action in options:
+            button = Button(
+                action_window,
+                text=button_text,
+                width=40,
+                command=lambda selected_action_value=action: self._select_human_review_action_and_close(
+                    selected_actions=selected_action,
+                    action=selected_action_value,
+                    window=action_window,
+                ),
+            )
+            button.pack(padx=30, pady=6)
+
+        cancel_button = Button(
+            action_window,
+            text="Cancel",
+            width=40,
+            command=action_window.destroy,
+        )
+        cancel_button.pack(padx=30, pady=(6, 20))
+
+        action_window.protocol("WM_DELETE_WINDOW", action_window.destroy)
+        action_window.mainloop()
+
+        if not selected_action:
+            raise InputSelectionCancelledError("Human Review startup selection was cancelled.")
+
+        return selected_action[0]
+
+    def select_file(self, route: InputRoute) -> Path:
+        """Displays a file chooser configured for the selected route."""
+
+        file_window = Tk()
+        file_window.withdraw()
+        file_window.attributes("-topmost", True)
+
+        if route in {InputRoute.LLM_RESULTS_FOLDER, InputRoute.BASELINE_BENCHMARK_FOLDER, InputRoute.HUMAN_REVIEW_FOLDER}:
+            selected_path = filedialog.askdirectory(
+                title=self._file_dialog_title(route),
+            )
+        else:
+            selected_path = filedialog.askopenfilename(
+                title=self._file_dialog_title(route),
+                filetypes=self._file_types(route),
+            )
+
+        file_window.destroy()
+
+        if not selected_path:
+            raise InputSelectionCancelledError(
+                "Input file selection was cancelled."
+            )
+
+        return Path(selected_path)
+
+    def select_optional_directory(self, title: str) -> Path | None:
+        """Displays an optional directory chooser; cancelling returns None."""
+
+        folder_window = Tk()
+        folder_window.withdraw()
+        folder_window.attributes("-topmost", True)
+        selected_path = filedialog.askdirectory(title=title)
+        folder_window.destroy()
+        return Path(selected_path) if selected_path else None
+
+    def ask_yes_no(self, title: str, message: str) -> bool:
+        """Displays a modal yes/no question and returns the selected answer."""
+
+        question_window = Tk()
+        question_window.withdraw()
+        question_window.attributes("-topmost", True)
+        answer = bool(messagebox.askyesno(title=title, message=message, parent=question_window))
+        question_window.destroy()
+        return answer
+
+    def show_error(self, title: str, message: str) -> None:
+        """Displays a modal error message."""
+
+        error_window = Tk()
+        error_window.withdraw()
+        error_window.attributes("-topmost", True)
+        messagebox.showerror(title=title, message=message, parent=error_window)
+        error_window.destroy()
+
+    def show_info(self, title: str, message: str) -> None:
+        """Displays a modal information message."""
+
+        info_window = Tk()
+        info_window.withdraw()
+        info_window.attributes("-topmost", True)
+        messagebox.showinfo(title=title, message=message, parent=info_window)
+        info_window.destroy()
+
+    def _select_and_close(
+        self,
+        selected_route: list[InputRoute],
+        route: InputRoute,
+        window: Tk,
+    ) -> None:
+        """Stores the selected route and closes the route-selection window."""
+
+        selected_route.append(route)
+        window.destroy()
+
+
+    def _select_profile_and_close(
+        self,
+        selected_profiles: list[PseudocodeProfile],
+        profile: PseudocodeProfile,
+        window: Tk,
+    ) -> None:
+        """Stores the selected pseudocode profile and closes the window."""
+
+        selected_profiles.append(
+            profile
+        )
+        window.destroy()
+
+
+    def _select_action_and_close(
+        self,
+        selected_actions: list[PostLLMAction],
+        action: PostLLMAction,
+        window: Tk,
+    ) -> None:
+        """Stores the selected post-LLM action and closes the window."""
+
+        selected_actions.append(action)
+        window.destroy()
+
+    def _select_human_review_action_and_close(
+        self,
+        selected_actions: list[HumanReviewStartupAction],
+        action: HumanReviewStartupAction,
+        window: Tk,
+    ) -> None:
+        """Store the selected standalone Human Review startup mode and close the window."""
+
+        selected_actions.append(action)
+        window.destroy()
+
+    def _file_dialog_title(self, route: InputRoute) -> str:
+        """Returns the file-dialog title for a selected route."""
+
+        if route == InputRoute.FLOW_DIAGRAM:
+            return "Select a controlled draw.io flow diagram"
+        if route == InputRoute.LLM_RESULTS_FOLDER:
+            return "Select the LLM dataset or results folder containing Algorithm - n folders"
+        if route == InputRoute.BASELINE_BENCHMARK_FOLDER:
+            return "Select the Baseline folder containing pseudocode and python folders"
+        if route == InputRoute.HUMAN_REVIEW_FOLDER:
+            return "Select an LLM results folder (outer model folder or Results folder)"
+
+        return "Select AJ pseudocode"
+
+    def _file_types(self, route: InputRoute) -> list[tuple[str, str]]:
+        """Returns accepted file filters for a selected route."""
+
+        if route == InputRoute.FLOW_DIAGRAM:
+            return [
+                ("draw.io files", "*.drawio *.xml *.svg"),
+                ("All files", "*.*"),
+            ]
+
+        return [
+            ("AJ pseudocode", "*.aj *.txt"),
+            ("All files", "*.*"),
+        ]

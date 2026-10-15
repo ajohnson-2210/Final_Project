@@ -1,0 +1,248 @@
+{
+  "test_spec_schema_version": "1.5",
+  "test_design_version": "1.4",
+  "algorithm_id": 21,
+  "algorithm_title": "Create a process that determines whether a number is even or odd",
+  "suite_role": "COMMON_FROZEN_TASK_SEMANTIC_EVALUATION",
+  "oracle_policy": "STATIC_PREEXPERIMENT_EXPECTATIONS",
+  "evidence_adequacy": "ADEQUATE",
+  "evidence_summary": "This suite provides comparatively broad behavioural evidence using 5 predefined common behavioural tests, with covered normal-path, boundary behaviour and partial branch, error evidence.",
+  "coverage_dimensions": {
+    "normal_path": "COVERED",
+    "branch_behaviour": "PARTIALLY_COVERED",
+    "boundary_behaviour": "COVERED",
+    "error_behaviour": "PARTIALLY_COVERED",
+    "termination_behaviour": "NOT_COVERED",
+    "state_mutation": "NOT_COVERED"
+  },
+  "coverage_basis": "Assessment is based on the 5 predefined common behavioural tests, the behaviours exposed by the frozen program interface, and the declared coverage dimensions: normal path, branch behaviour, boundary behaviour, error behaviour.",
+  "interpretation_guidance": "Interpret behavioural accuracy as comparatively broad evidence across the declared exercised behaviours, while not treating the result as exhaustive proof for all possible inputs and states.",
+  "coverage_limitations": [],
+  "manual_review_targets": [],
+  "requires_pipeline_features": [],
+  "tests": [
+    {
+      "name": "positive even",
+      "standard_input": [
+        "8"
+      ],
+      "category": "NORMAL",
+      "semantic_feature": "EVEN_BRANCH",
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "PREEXPERIMENT_FROZEN_FIXTURE",
+        "fixture": {
+          "arguments": [
+            8
+          ]
+        },
+        "expected_semantic_result": "EVEN",
+        "comparison_mode": "EXACT",
+        "allowed_arities": [
+          1
+        ],
+        "expectation_policy": "STATIC_FROZEN_VALUE",
+        "observer": {
+          "kind": "ENUM",
+          "values": {
+            "EVEN": [
+              "even"
+            ],
+            "ODD": [
+              "odd"
+            ]
+          }
+        }
+      },
+      "score_stream": "CORE_BEHAVIOURAL"
+    },
+    {
+      "name": "positive odd",
+      "standard_input": [
+        "7"
+      ],
+      "category": "BRANCH",
+      "semantic_feature": "ODD_BRANCH",
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "PREEXPERIMENT_FROZEN_FIXTURE",
+        "fixture": {
+          "arguments": [
+            7
+          ]
+        },
+        "expected_semantic_result": "ODD",
+        "comparison_mode": "EXACT",
+        "allowed_arities": [
+          1
+        ],
+        "expectation_policy": "STATIC_FROZEN_VALUE",
+        "observer": {
+          "kind": "ENUM",
+          "values": {
+            "EVEN": [
+              "even"
+            ],
+            "ODD": [
+              "odd"
+            ]
+          }
+        }
+      },
+      "score_stream": "CORE_BEHAVIOURAL"
+    },
+    {
+      "name": "zero is even",
+      "standard_input": [
+        "0"
+      ],
+      "category": "BOUNDARY",
+      "semantic_feature": "ZERO_PARITY",
+      "criteria_links": [
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "PREEXPERIMENT_FROZEN_FIXTURE",
+        "fixture": {
+          "arguments": [
+            0
+          ]
+        },
+        "expected_semantic_result": "EVEN",
+        "comparison_mode": "EXACT",
+        "allowed_arities": [
+          1
+        ],
+        "expectation_policy": "STATIC_FROZEN_VALUE",
+        "observer": {
+          "kind": "ENUM",
+          "values": {
+            "EVEN": [
+              "even"
+            ],
+            "ODD": [
+              "odd"
+            ]
+          }
+        }
+      },
+      "score_stream": "CORE_BEHAVIOURAL"
+    },
+    {
+      "name": "negative odd",
+      "standard_input": [
+        "-3"
+      ],
+      "category": "BOUNDARY",
+      "semantic_feature": "NEGATIVE_PARITY",
+      "criteria_links": [
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "semantic_test": {
+        "enabled": true,
+        "fixture_source": "PREEXPERIMENT_FROZEN_FIXTURE",
+        "fixture": {
+          "arguments": [
+            -3
+          ]
+        },
+        "expected_semantic_result": "ODD",
+        "comparison_mode": "EXACT",
+        "allowed_arities": [
+          1
+        ],
+        "expectation_policy": "STATIC_FROZEN_VALUE",
+        "observer": {
+          "kind": "ENUM",
+          "values": {
+            "EVEN": [
+              "even"
+            ],
+            "ODD": [
+              "odd"
+            ]
+          }
+        }
+      },
+      "score_stream": "CORE_BEHAVIOURAL"
+    },
+    {
+      "name": "invalid input retries",
+      "standard_input": [
+        "x",
+        "4"
+      ],
+      "category": "ERROR_BEHAVIOUR",
+      "semantic_feature": "INTEGER_INPUT_RETRY",
+      "criteria_links": [
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "semantic_test": {
+        "enabled": false,
+        "reason": "This Common Test remains interaction/reference evidence and is not a canonical task-function test.",
+        "fixture_source": null,
+        "expectation_policy": "NOT_AUTOMATED"
+      },
+      "score_stream": "CORE_BEHAVIOURAL"
+    }
+  ],
+  "semantic_contract": {
+    "contract_version": "1.4",
+    "contract_source": "ORIGINAL_TASK_SPECIFICATION",
+    "task_statement": "Determine whether a number is even or odd.",
+    "inputs": [
+      {
+        "position": 1,
+        "name": "number",
+        "type": "INTEGER"
+      }
+    ],
+    "result": {
+      "type": "PARITY",
+      "canonical_semantics": "EVEN iff number mod 2 equals zero; otherwise ODD."
+    },
+    "automation_status": "AUTOMATED_FUNCTION",
+    "parameter_names_are_semantically_irrelevant": true,
+    "derived_parameters_may_be_supplied_by_adapter": true,
+    "human_review_instruction": "Judge the original generated pseudocode against this same frozen task-semantic contract, including when automated evaluation is NOT_EVALUABLE.",
+    "fixture_policy": "PREEXPERIMENT_FROZEN_INPUTS",
+    "expectation_policy": "STATIC_PREEXPERIMENT_EXPECTED_VALUES",
+    "runtime_oracle_prohibited": true
+  },
+  "boundary_evaluation_policy": {
+    "measure": "SEMANTIC_BOUNDARY_VARIANCE",
+    "enabled": false,
+    "core_score_separation": "Boundary probes do not contribute to core semantic behavioural accuracy or Common Test accuracy.",
+    "interpretation": "If enabled, variance is the percentage of evaluable out-of-domain probes that the implementation accepts and processes."
+  }
+}

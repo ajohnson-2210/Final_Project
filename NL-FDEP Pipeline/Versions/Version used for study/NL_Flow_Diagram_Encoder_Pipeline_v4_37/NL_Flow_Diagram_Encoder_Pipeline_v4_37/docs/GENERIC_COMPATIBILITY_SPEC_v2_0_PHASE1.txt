@@ -1,0 +1,62 @@
+GENERIC COMPATIBILITY SPECIFICATION v2.0
+PHASE 1 - CHARACTER NORMALISATION
+==============================================
+
+Purpose
+-------
+Phase 1 normalises non-ASCII characters observed in the six-model corpus of 300 pseudocode algorithms before generic lexing. These rules apply only to GENERIC_COMPATIBILITY. GENERAL_NO_CONVERSION remains unchanged. AJ_DIALECT_STRICT retains its existing safe-cleanup behaviour.
+
+Corpus
+------
+source_a: 50 algorithms
+source_b: 50 algorithms
+source_c: 50 algorithms
+source_e: 50 algorithms
+source_f: 50 algorithms
+source_d: 50 algorithms
+Total: 300 algorithms
+
+Rules
+-----
+GC001  ≠       -> !=          Unicode not-equal operator
+GC002  ≤       -> <=          Unicode less-than-or-equal operator
+GC003  ≥       -> >=          Unicode greater-than-or-equal operator
+GC004  ←       -> <-          Unicode assignment arrow
+GC005  ×       -> *           Unicode multiplication operator
+GC006  ∞       -> INFINITY    Unicode infinity symbol
+GC007  →       -> TO          Unicode right arrow
+GC008  “       -> "           Opening smart double quote
+GC009  ”       -> "           Closing smart double quote
+GC010  ‘       -> '           Opening smart single quote
+GC011  ’       -> '           Closing smart single quote
+GC012  –       -> -           Unicode en dash
+GC013  U+2005  -> SPACE       Four-per-em space
+GC014  U+00A0  -> SPACE       Non-breaking space
+GC015  U+200B  -> REMOVE      Zero-width space
+GC016  U+FEFF  -> REMOVE      UTF-8 BOM / zero-width no-break space
+GC017  n°      -> n DEG       Degree suffix when immediately preceded by a digit
+
+Observed corpus counts before normalisation
+--------------------------------------------
+←  246
+”   28
+“   21
+’   20
+‘   15
+≠   14
+×   13
+–   10
+∞    5
+≤    4
+°    3
+→    2
+U+2005 2
+≥    1
+
+Validation
+----------
+All non-ASCII characters observed in the six supplied corpora are covered by Phase 1 rules. Corpus-wide post-normalisation scan: 0 unhandled non-ASCII characters.
+
+Audit behaviour
+---------------
+Every application records its line number, GC rule identifier, source text and transformed text in pseudocode_processing_report.json.

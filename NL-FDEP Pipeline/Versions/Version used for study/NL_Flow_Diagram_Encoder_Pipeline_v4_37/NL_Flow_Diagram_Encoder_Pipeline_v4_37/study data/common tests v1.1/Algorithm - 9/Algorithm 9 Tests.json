@@ -1,0 +1,42 @@
+{
+  "test_spec_schema_version": "1.2",
+  "test_design_version": "1.1",
+  "algorithm_id": 9,
+  "algorithm_title": "Given an unsorted list of integers and a target value $t. Find the exact position of $t in the list or report that it",
+  "suite_role": "COMMON_BASELINE_CALIBRATION_AND_EXPERIMENTAL_COMPARISON",
+  "oracle_policy": "TRUSTED_BASELINE_REFERENCE",
+  "evidence_adequacy": "LIMITED",
+  "evidence_summary": "This suite provides limited behavioural evidence using one predefined common behavioural test, with covered normal-path behaviour. Target and list are fixed; the not-found branch cannot be exercised externally.",
+  "coverage_dimensions": {
+    "normal_path": "COVERED",
+    "branch_behaviour": "NOT_COVERED",
+    "boundary_behaviour": "NOT_COVERED",
+    "error_behaviour": "NOT_COVERED",
+    "termination_behaviour": "NOT_COVERED",
+    "state_mutation": "NOT_COVERED"
+  },
+  "coverage_basis": "Assessment is based on the predefined common behavioural test, the behaviours exposed by the frozen program interface, and the declared coverage dimensions: normal path.",
+  "interpretation_guidance": "Interpret behavioural accuracy as agreement for the specific exercised scenario or scenarios, not as strong evidence of general behavioural equivalence.",
+  "coverage_limitations": [
+    "Target and list are fixed; the not-found branch cannot be exercised externally."
+  ],
+  "manual_review_targets": [
+    "Inspect preserved not-found control path structurally through C3/A3/F2-F4."
+  ],
+  "requires_pipeline_features": [],
+  "tests": [
+    {
+      "name": "default successful linear search",
+      "standard_input": [],
+      "category": "NORMAL",
+      "semantic_feature": "TARGET_FOUND_POSITION",
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE"
+    }
+  ]
+}

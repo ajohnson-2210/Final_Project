@@ -1,0 +1,292 @@
+"""Versioned scoring rubric for the NL-FDEP study layer.
+
+The rubric intentionally measures semantic preservation and behavioural correctness,
+not general compiler completeness.  Questions are embedded in every per-algorithm
+score file so that downstream tables and visualisations remain self-describing.
+"""
+
+from __future__ import annotations
+
+from copy import deepcopy
+from typing import Any
+
+RUBRIC_VERSION = "1.1"
+SCORING_SCHEMA_VERSION = "1.5"
+PIPELINE_VERSION = "4.37"
+LANGUAGE_VERSION = "AJ_24038155_DIALECT_V1.5"
+
+SCALE = {
+    "2": "Criterion fully satisfied; no material semantic discrepancy detected.",
+    "1": "Partially satisfied, or the available evidence is insufficient to establish complete semantic preservation.",
+    "0": "Criterion not satisfied; a material semantic discrepancy or stage failure is present.",
+    "NA": "Criterion cannot legitimately be evaluated from the available artefacts.",
+}
+
+SOURCE_GATE = {
+    "criterion_id": "G1",
+    "stage_id": "G",
+    "stage_name": "Source Sufficiency",
+    "question": (
+        "Does the original pseudocode contain sufficient explicit information to determine "
+        "the algorithm's behaviour without inventing missing semantics?"
+    ),
+    "scored": False,
+    "allowed_results": ["EVALUABLE", "EXPECTED_FAILURE", "REVIEW_REQUIRED"],
+}
+
+BEHAVIOURAL_EVIDENCE_GATE = {
+    "criterion_id": "G2",
+    "stage_id": "G",
+    "stage_name": "Behavioural Evidence Adequacy",
+    "question": (
+        "How strong, representative and reproducible is the behavioural evidence supporting the automated "
+        "behavioural score, and what important behaviour remains untested or non-evaluable?"
+    ),
+    "scored": False,
+    "allowed_results": ["ADEQUATE", "PARTIAL", "LIMITED", "NOT_EVALUABLE", "NOT_DECLARED"],
+    "coverage_dimension_results": [
+        "COVERED", "PARTIALLY_COVERED", "NOT_COVERED", "NOT_APPLICABLE", "NOT_EVALUABLE"
+    ],
+    "required_descriptive_fields": [
+        "summary", "test_counts", "coverage_dimensions", "strengths", "limitations",
+        "coverage_basis", "interpretation"
+    ],
+    "interpretation": (
+        "The short G2 result is only a headline classification. G2 must also provide a descriptive evidence "
+        "profile explaining the number of declared/evaluable/passing tests, normal-path, branch, boundary, "
+        "error, termination and state-mutation coverage, reproducibility controls, strengths, limitations and "
+        "how narrowly or broadly the behavioural accuracy may be interpreted. G2 is not an algorithm-correctness "
+        "score and must not be added to or subtracted from the C/A/F/P stage percentages."
+    ),
+}
+
+TEST_CATEGORIES = {
+    "NORMAL": "Representative main-path behaviour.",
+    "BRANCH": "A distinct decision/alternative path that is externally exercisable.",
+    "BOUNDARY": "Source-defined or implementation-defined boundary behaviour.",
+    "ERROR_BEHAVIOUR": "Invalid-input, exception, retry or explicit error-handling behaviour.",
+    "TERMINATION": "Explicit quit/return/stop/loop-termination behaviour.",
+    "STATE_MUTATION": "Observable state or data-structure mutation across an operation sequence.",
+}
+
+STAGES: dict[str, dict[str, Any]] = {
+    "canonicalisation": {
+        "stage_id": "C",
+        "stage_name": "Pseudocode Canonicalisation",
+        "stage_description": (
+            "Measures whether conversion from the source pseudocode to canonical AJ "
+            "preserves the supplied algorithm semantics."
+        ),
+        "criteria": [
+            {
+                "criterion_id": "C1",
+                "question": (
+                    "Does the canonical pseudocode conform to the AJ grammar sufficiently "
+                    "for deterministic interpretation by the next pipeline stage?"
+                ),
+                "critical_semantic_criterion": False,
+            },
+            {
+                "criterion_id": "C2",
+                "question": (
+                    "Are all semantically relevant operations from the source pseudocode "
+                    "preserved in the canonical representation with equivalent meaning?"
+                ),
+                "critical_semantic_criterion": True,
+            },
+            {
+                "criterion_id": "C3",
+                "question": (
+                    "Are conditions, branches, loop bounds, iteration behaviour, state changes "
+                    "and termination behaviour preserved from the source?"
+                ),
+                "critical_semantic_criterion": True,
+            },
+            {
+                "criterion_id": "C4",
+                "question": (
+                    "Has canonicalisation avoided introducing algorithmic behaviour that was "
+                    "not explicitly supported by the source?"
+                ),
+                "critical_semantic_criterion": True,
+            },
+        ],
+    },
+    "ast": {
+        "stage_id": "A",
+        "stage_name": "AST Semantic Alignment",
+        "stage_description": (
+            "Measures whether the abstract syntax tree faithfully represents the canonical AJ program."
+        ),
+        "criteria": [
+            {
+                "criterion_id": "A1",
+                "question": (
+                    "Does every semantically relevant construct in the canonical pseudocode have "
+                    "an appropriate AST representation without missing or spurious executable nodes?"
+                ),
+                "critical_semantic_criterion": False,
+            },
+            {
+                "criterion_id": "A2",
+                "question": (
+                    "Does the AST correctly represent the operands, operators, literals, indexing, "
+                    "collection access and call relationships of the canonical pseudocode?"
+                ),
+                "critical_semantic_criterion": True,
+            },
+            {
+                "criterion_id": "A3",
+                "question": (
+                    "Are branch relationships, loop bodies, returns, loop-control operations, "
+                    "variable scope and nested declarations represented in the correct structural context?"
+                ),
+                "critical_semantic_criterion": True,
+            },
+            {
+                "criterion_id": "A4",
+                "question": (
+                    "If the AST were interpreted directly, would it permit the same observable "
+                    "algorithmic behaviour as the canonical pseudocode?"
+                ),
+                "critical_semantic_criterion": True,
+            },
+        ],
+    },
+    "flow_diagram": {
+        "stage_id": "F",
+        "stage_name": "Flow Diagram Logical Structure",
+        "stage_description": (
+            "Measures whether the generated flow representation preserves the AST's executable control structure."
+        ),
+        "criteria": [
+            {
+                "criterion_id": "F1",
+                "question": (
+                    "Are all semantically relevant actions, decisions, entry/exit points and returns "
+                    "represented in the flow diagram?"
+                ),
+                "critical_semantic_criterion": False,
+            },
+            {
+                "criterion_id": "F2",
+                "question": (
+                    "Do the diagram connections correctly represent execution sequence, branch "
+                    "destinations, loop-back edges and exit paths?"
+                ),
+                "critical_semantic_criterion": True,
+            },
+            {
+                "criterion_id": "F3",
+                "question": (
+                    "For every meaningful execution path represented by the AST, is there a corresponding "
+                    "path through the flow diagram without additional semantically unsupported paths?"
+                ),
+                "critical_semantic_criterion": True,
+            },
+            {
+                "criterion_id": "F4",
+                "question": (
+                    "Do decision conditions, TRUE/FALSE routing, loop-entry conditions and loop-termination "
+                    "behaviour preserve the logic represented by the AST?"
+                ),
+                "critical_semantic_criterion": True,
+            },
+        ],
+    },
+    "python": {
+        "stage_id": "P",
+        "stage_name": "Generated Python Correctness",
+        "stage_description": (
+            "Measures whether generated Python is executable and behaviourally/semantically faithful "
+            "to the represented algorithm."
+        ),
+        "criteria": [
+            {
+                "criterion_id": "P1",
+                "question": (
+                    "Is the generated Python syntactically valid and executable for inputs valid under "
+                    "the source algorithm's assumptions?"
+                ),
+                "critical_semantic_criterion": False,
+            },
+            {
+                "criterion_id": "P2",
+                "question": (
+                    "Does the generated Python produce the expected outputs and observable state changes "
+                    "across the predefined behavioural tests?"
+                ),
+                "critical_semantic_criterion": True,
+            },
+            {
+                "criterion_id": "P3",
+                "question": (
+                    "Does the generated Python preserve source-defined boundary behaviour, termination "
+                    "behaviour, returns and errors?"
+                ),
+                "critical_semantic_criterion": True,
+            },
+            {
+                "criterion_id": "P4",
+                "question": (
+                    "Does the generated Python preserve the algorithm's control flow, state changes, "
+                    "data-structure effects and observable behaviour without introducing or removing meaningful behaviour?"
+                ),
+                "critical_semantic_criterion": True,
+            },
+        ],
+    },
+}
+
+ACADEMIC_BASIS = [
+    {
+        "key": "HOARE_1969",
+        "citation": "Hoare, C. A. R. (1969). An Axiomatic Basis for Computer Programming. Communications of the ACM, 12(10), 576-580.",
+        "doi": "10.1145/363235.363259",
+        "supports": ["program correctness", "semantic reasoning"],
+    },
+    {
+        "key": "GERHART_1975",
+        "citation": "Gerhart, S. L. (1975). Correctness-preserving program transformations. POPL '75, 54-66.",
+        "doi": "10.1145/512976.512983",
+        "supports": ["semantic preservation during transformation"],
+    },
+    {
+        "key": "LEROY_2009",
+        "citation": "Leroy, X. (2009). Formal Verification of a Realistic Compiler. Communications of the ACM, 52(7), 107-115.",
+        "doi": "10.1145/1538788.1538814",
+        "supports": ["source-target semantic preservation", "compiler correctness"],
+    },
+    {
+        "key": "MCCABE_1976",
+        "citation": "McCabe, T. J. (1976). A Complexity Measure. IEEE Transactions on Software Engineering, SE-2(4), 308-320.",
+        "doi": "10.1109/TSE.1976.233837",
+        "supports": ["control-flow structure", "cyclomatic complexity"],
+    },
+    {
+        "key": "BARR_ET_AL_2015",
+        "citation": "Barr, E. T., Harman, M., McMinn, P., Shahbaz, M., & Yoo, S. (2015). The Oracle Problem in Software Testing: A Survey. IEEE TSE, 41(5), 507-525.",
+        "doi": "10.1109/TSE.2014.2472785",
+        "supports": ["behavioural test oracle", "functional correctness"],
+    },
+]
+
+
+def rubric_document() -> dict[str, Any]:
+    """Return a deep-copy, JSON-ready master rubric."""
+    return {
+        "scoring_schema_version": SCORING_SCHEMA_VERSION,
+        "rubric_version": RUBRIC_VERSION,
+        "pipeline_version": PIPELINE_VERSION,
+        "language_version": LANGUAGE_VERSION,
+        "purpose": (
+            "Evidence-based scoring of semantic preservation and behavioural correctness. "
+            "The rubric deliberately does not attempt to measure general compiler completeness."
+        ),
+        "scale": deepcopy(SCALE),
+        "source_gate": deepcopy(SOURCE_GATE),
+        "behavioural_evidence_gate": deepcopy(BEHAVIOURAL_EVIDENCE_GATE),
+        "test_categories": deepcopy(TEST_CATEGORIES),
+        "stages": deepcopy(STAGES),
+        "academic_basis": deepcopy(ACADEMIC_BASIS),
+    }

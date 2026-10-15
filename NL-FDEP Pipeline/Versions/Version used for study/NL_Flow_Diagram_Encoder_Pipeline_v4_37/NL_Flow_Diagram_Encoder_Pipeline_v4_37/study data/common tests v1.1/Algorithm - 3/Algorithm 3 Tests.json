@@ -1,0 +1,102 @@
+{
+  "test_spec_schema_version": "1.2",
+  "test_design_version": "1.1",
+  "algorithm_id": 3,
+  "algorithm_title": "Determine if a year satisfies the leap year rules",
+  "suite_role": "COMMON_BASELINE_CALIBRATION_AND_EXPERIMENTAL_COMPARISON",
+  "oracle_policy": "TRUSTED_BASELINE_REFERENCE",
+  "evidence_adequacy": "ADEQUATE",
+  "evidence_summary": "This suite provides comparatively broad behavioural evidence using 5 predefined common behavioural tests, with covered normal-path, branch behaviour and partial error evidence.",
+  "coverage_dimensions": {
+    "normal_path": "COVERED",
+    "branch_behaviour": "COVERED",
+    "boundary_behaviour": "NOT_COVERED",
+    "error_behaviour": "PARTIALLY_COVERED",
+    "termination_behaviour": "NOT_COVERED",
+    "state_mutation": "NOT_COVERED"
+  },
+  "coverage_basis": "Assessment is based on the 5 predefined common behavioural tests, the behaviours exposed by the frozen program interface, and the declared coverage dimensions: normal path, branch behaviour, error behaviour.",
+  "interpretation_guidance": "Interpret behavioural accuracy as comparatively broad evidence across the declared exercised behaviours, while not treating the result as exhaustive proof for all possible inputs and states.",
+  "coverage_limitations": [],
+  "manual_review_targets": [],
+  "requires_pipeline_features": [],
+  "tests": [
+    {
+      "name": "leap year divisible by 400",
+      "standard_input": [
+        "2000"
+      ],
+      "category": "BRANCH",
+      "semantic_feature": "LEAP_YEAR_400_RULE",
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE"
+    },
+    {
+      "name": "century year not divisible by 400",
+      "standard_input": [
+        "1900"
+      ],
+      "category": "BRANCH",
+      "semantic_feature": "LEAP_YEAR_CENTURY_RULE",
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE"
+    },
+    {
+      "name": "ordinary leap year divisible by 4",
+      "standard_input": [
+        "2024"
+      ],
+      "category": "BRANCH",
+      "semantic_feature": "LEAP_YEAR_DIVISIBLE_BY_4",
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE"
+    },
+    {
+      "name": "ordinary non-leap year",
+      "standard_input": [
+        "2023"
+      ],
+      "category": "NORMAL",
+      "semantic_feature": "LEAP_YEAR_FALSE_PATH",
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE"
+    },
+    {
+      "name": "invalid input retries then succeeds",
+      "standard_input": [
+        "not-a-year",
+        "2024"
+      ],
+      "category": "ERROR_BEHAVIOUR",
+      "semantic_feature": "INTEGER_INPUT_RETRY",
+      "criteria_links": [
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE"
+    }
+  ]
+}

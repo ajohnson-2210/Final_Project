@@ -1,0 +1,101 @@
+{
+  "test_spec_schema_version": "1.2",
+  "test_design_version": "1.1",
+  "algorithm_id": 32,
+  "algorithm_title": "Build a question answering system to answer user queries based on a given text",
+  "suite_role": "COMMON_BASELINE_CALIBRATION_AND_EXPERIMENTAL_COMPARISON",
+  "oracle_policy": "TRUSTED_BASELINE_REFERENCE",
+  "evidence_adequacy": "ADEQUATE",
+  "evidence_summary": "This suite provides comparatively broad behavioural evidence using 5 predefined common behavioural tests, with covered branch behaviour and partial boundary evidence.",
+  "coverage_dimensions": {
+    "normal_path": "NOT_COVERED",
+    "branch_behaviour": "COVERED",
+    "boundary_behaviour": "PARTIALLY_COVERED",
+    "error_behaviour": "NOT_COVERED",
+    "termination_behaviour": "NOT_COVERED",
+    "state_mutation": "NOT_COVERED"
+  },
+  "coverage_basis": "Assessment is based on the 5 predefined common behavioural tests, the behaviours exposed by the frozen program interface, and the declared coverage dimensions: branch behaviour, boundary behaviour.",
+  "interpretation_guidance": "Interpret behavioural accuracy as comparatively broad evidence across the declared exercised behaviours, while not treating the result as exhaustive proof for all possible inputs and states.",
+  "coverage_limitations": [],
+  "manual_review_targets": [],
+  "requires_pipeline_features": [],
+  "tests": [
+    {
+      "name": "who question",
+      "standard_input": [
+        "Who was spring-cleaning his little home?"
+      ],
+      "category": "BRANCH",
+      "semantic_feature": "QA_WHO_QUERY",
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE"
+    },
+    {
+      "name": "where question",
+      "standard_input": [
+        "Where did the Mole find himself rolling?"
+      ],
+      "category": "BRANCH",
+      "semantic_feature": "QA_WHERE_QUERY",
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE"
+    },
+    {
+      "name": "what question",
+      "standard_input": [
+        "What did the Mole say about whitewash?"
+      ],
+      "category": "BRANCH",
+      "semantic_feature": "QA_WHAT_QUERY",
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE"
+    },
+    {
+      "name": "how-many category question",
+      "standard_input": [
+        "How many animals are mentioned?"
+      ],
+      "category": "BRANCH",
+      "semantic_feature": "QA_HOW_MANY_CATEGORY_QUERY",
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE"
+    },
+    {
+      "name": "unanswerable question",
+      "standard_input": [
+        "Who invented the telescope?"
+      ],
+      "category": "BOUNDARY",
+      "semantic_feature": "QA_NO_MATCH_FALLBACK",
+      "criteria_links": [
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE"
+    }
+  ]
+}

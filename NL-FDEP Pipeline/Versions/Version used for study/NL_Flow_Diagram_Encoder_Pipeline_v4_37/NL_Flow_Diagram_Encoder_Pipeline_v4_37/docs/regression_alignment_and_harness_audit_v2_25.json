@@ -1,0 +1,18 @@
+{
+  "version": "2.25",
+  "updated_regression_expectations": [
+    "GCD INPUT dependencies promoted to ACCEPTS parameters",
+    "annotated INPUT dependency promoted to ACCEPTS parameter",
+    "non-empty list literal canonicalised as CALL list_value(...)",
+    "queue/deque canonicalised to list-backed collections",
+    "negative infinity canonicalised as CALL negative_infinity()",
+    "legacy GC numeric rule-ID assertions removed in favour of semantic behaviour"
+  ],
+  "harness_resolution": {
+    "failing_test": "test_generated_python_passes_harness",
+    "generated_program": "correct; outputs 10",
+    "root_cause": "interpreter site startup triggers unrelated artifact/spreadsheet warm-up that can exceed the 3-second program timeout",
+    "change": "run generated programs with the same Python executable using -S so site.py/sitecustomize startup is skipped",
+    "semantic_change_to_generated_program": false
+  }
+}

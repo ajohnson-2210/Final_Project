@@ -1,0 +1,39 @@
+NL-FDEP v4.35 Release Candidate 7
+=================================
+Pipeline: 4.35
+AJ dialect: v1.5
+Scoring Rubric: v1.1
+Scoring Schema: v1.5
+Human Review Questionnaire Schema: v1.3
+Common Tests: v1.3
+Test-spec schema: v1.4
+Suites: 50
+Retained cases: 113
+Experimental runtime expected-value generation: FALSE
+Experimental runtime baseline/reference use: FALSE
+Baseline role: PROCEDURAL_READINESS_GATE_ONLY
+Normal baseline readiness gate: 50/50 evaluated + 50/50 at 100%
+Degraded baseline continuation: EXPLICIT SESSION-ONLY 49/50 OVERRIDE
+Degraded override eligibility: exactly one unavailable calibration; 49/50 evaluated; 49/50 at 100%
+Below-100 evaluated calibration eligible for override: FALSE
+Degraded override persistence: FALSE
+Degraded override supplied to experimental scoring: FALSE
+Degraded override revalidated before every LLM batch: TRUE
+Calibration failure reason surfaced to user: TRUE
+RC6 parallel automated/human rubric scoring retained: TRUE
+Combined rubric method: (AUTOMATED_RUBRIC_PERCENT + HUMAN_RUBRIC_PERCENT) / 2
+Combined rubric weights: 50% AUTOMATED / 50% HUMAN
+Behavioural metrics included in rubric average: FALSE
+Status: RELEASE CANDIDATE 7 — NOT FINAL STUDY FREEZE
+
+Validation:
+- Existing strict 50/50 baseline gate regressions: PASS
+- Explicit 49/50 unavailable-calibration override regression: PASS
+- Failure-reason popup regression: PASS
+- Override decline blocks LLM operation: PASS
+- Below-100 calibration cannot use degraded override: PASS
+- Accepted override invalidated when baseline state changes: PASS
+- Common Tests v1.3 unchanged from RC6: PASS
+- scoring/rubric semantics unchanged from RC6: PASS
+- pytest: 1298 passed, 3 skipped, 5 subtests passed
+- unittest: 425 passed, 1 skipped

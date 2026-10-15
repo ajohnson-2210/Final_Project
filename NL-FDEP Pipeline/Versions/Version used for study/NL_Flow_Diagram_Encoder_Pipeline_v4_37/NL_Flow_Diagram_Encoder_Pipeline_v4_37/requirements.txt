@@ -1,0 +1,14 @@
+# NL-FDEP v4.37 dependencies
+# Runtime pipeline code uses only the Python standard library.
+# pytest is required for the bundled regression test suite.
+# External baseline-reference dependencies are optional and declared per test; see docs/optional_reference_requirements_v4_29.txt.
+pytest>=9.0,<10.0
+
+# If the release ZIP was extracted into an outer folder with the same name,
+# enter the actual project root before installing optional dependencies:
+# cd .\NL_Flow_Diagram_Encoder_Pipeline_v4_37\
+#
+# The interactive v4.37 runner verifies this file and requirements-optional.txt
+# before Baseline/LLM study processing and can install missing packages into the
+# active Python environment automatically. Manual installation remains available:
+# python -m pip install -r requirements-optional.txt

@@ -1,0 +1,78 @@
+{
+  "test_spec_schema_version": "1.2",
+  "test_design_version": "1.1",
+  "algorithm_id": 42,
+  "algorithm_title": "Find all pairs in an array that match a given number",
+  "suite_role": "COMMON_BASELINE_CALIBRATION_AND_EXPERIMENTAL_COMPARISON",
+  "oracle_policy": "TRUSTED_BASELINE_REFERENCE",
+  "evidence_adequacy": "PARTIAL",
+  "evidence_summary": "This suite provides partial behavioural evidence using 3 predefined common behavioural tests, with covered normal-path behaviour and partial branch, boundary evidence. The random array requires deterministic seeding; exact pair multiplicity depends on the seeded generated array.",
+  "coverage_dimensions": {
+    "normal_path": "COVERED",
+    "branch_behaviour": "PARTIALLY_COVERED",
+    "boundary_behaviour": "PARTIALLY_COVERED",
+    "error_behaviour": "NOT_COVERED",
+    "termination_behaviour": "NOT_COVERED",
+    "state_mutation": "NOT_COVERED"
+  },
+  "coverage_basis": "Assessment is based on the 3 predefined common behavioural tests, the behaviours exposed by the frozen program interface, and the declared coverage dimensions: normal path, branch behaviour, boundary behaviour.",
+  "interpretation_guidance": "Interpret behavioural accuracy as useful but incomplete evidence across the declared exercised behaviours; unexercised behaviours remain outside the direct evidence.",
+  "coverage_limitations": [
+    "The random array requires deterministic seeding; exact pair multiplicity depends on the seeded generated array."
+  ],
+  "manual_review_targets": [],
+  "requires_pipeline_features": [
+    "DETERMINISTIC_RANDOM_SEED"
+  ],
+  "tests": [
+    {
+      "name": "seeded pair-match run with known attainable target",
+      "standard_input": [
+        "3.08"
+      ],
+      "category": "NORMAL",
+      "semantic_feature": "PAIR_SUM_MATCHES",
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "random_seed": 104729
+    },
+    {
+      "name": "seeded pair-match run with another attainable target",
+      "standard_input": [
+        "14"
+      ],
+      "category": "BRANCH",
+      "semantic_feature": "PAIR_SUM_MULTIPLE_SEARCH_PATHS",
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "random_seed": 104759
+    },
+    {
+      "name": "seeded no-match target",
+      "standard_input": [
+        "1000"
+      ],
+      "category": "BOUNDARY",
+      "semantic_feature": "PAIR_SUM_NO_MATCH",
+      "criteria_links": [
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE",
+      "random_seed": 104761
+    }
+  ]
+}

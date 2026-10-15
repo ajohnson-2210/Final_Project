@@ -1,0 +1,65 @@
+{
+  "success": true,
+  "status": "SUCCESS",
+  "stages": [
+    {
+      "name": "PSEUDOCODE_PROFILE_PROCESSING",
+      "status": "SUCCESS",
+      "message": "Processed source using AJ_DIALECT_STRICT; 0 transformation(s); 0 header line(s) stripped.",
+      "duration_ms": 1.53
+    },
+    {
+      "name": "PSEUDOCODE_TO_AST",
+      "status": "SUCCESS",
+      "message": "Pseudocode parsed and validated.",
+      "duration_ms": 4.119
+    },
+    {
+      "name": "AST_TO_FLOW_DIAGRAM",
+      "status": "SUCCESS",
+      "message": "Machine-readable flow diagram generated.",
+      "duration_ms": 0.245
+    },
+    {
+      "name": "FLOW_DIAGRAM_TO_DRAWIO",
+      "status": "SUCCESS",
+      "message": "Editable draw.io XML flow diagram generated.",
+      "duration_ms": 0.832
+    },
+    {
+      "name": "FLOW_DIAGRAM_TO_PYTHON",
+      "status": "SUCCESS",
+      "message": "Python source generated and syntax validated.",
+      "duration_ms": 0.78
+    },
+    {
+      "name": "BEHAVIOURAL_TESTING",
+      "status": "NOT_RUN",
+      "message": "No behavioural tests were supplied.",
+      "duration_ms": 0.0
+    }
+  ],
+  "output_files": {
+    "pseudocode_processing_report": "examples/example_pseudocode_processing_report.json",
+    "processed_pseudocode": "examples/example.aj",
+    "ast": "examples/example_ast.json",
+    "parser_report": "examples/example_report.json",
+    "ast_visualisation": "examples/ast_visualisation.html",
+    "flow_diagram": "examples/example_flow_diagram.json",
+    "flow_visualisation": "examples/example_flow_diagram.html",
+    "flow_diagram_drawio": "examples/example_flow_diagram.drawio",
+    "generated_python": "examples/example_generated_program.py",
+    "compilation_report": "examples/example_compilation_report.json",
+    "pipeline_report": "examples/example_pipeline_report.json"
+  },
+  "test_report": null,
+  "error": null,
+  "input_metadata": {
+    "input_type": "PSEUDOCODE",
+    "pseudocode_profile": "AJ_DIALECT_STRICT",
+    "source_modified": true,
+    "transformation_count": 0,
+    "header_comment_removed": false,
+    "header_lines_removed": 0
+  }
+}

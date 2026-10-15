@@ -1,0 +1,101 @@
+{
+  "release": "NL-FDEP v4.37",
+  "pipeline_version": "4.37",
+  "pytest": {
+    "passed": 1377,
+    "skipped": 3,
+    "subtests_passed": 5,
+    "warnings": 4
+  },
+  "unittest": {
+    "passed": 481,
+    "skipped": 1,
+    "environment": "release root plus parser/compiler/pipeline/flow/study/cli component directories on PYTHONPATH"
+  },
+  "promoted_v4_37_regressions": {
+    "decision_vertex_priority": "PASS",
+    "process_midpoint_priority": "PASS",
+    "crossing_aware_primary_anchor_selection": "PASS",
+    "algorithm_27_repeat_yes_crossing_avoidance": "PASS",
+    "loop_exit_no_label": "PASS",
+    "stale_drawio_refresh_before_resume_classification": "PASS",
+    "human_review_launcher_close_preserves_save_service": "PASS",
+    "human_review_failed_fetch_backup": "PASS",
+    "reviewer_identity_auto_population": "PASS",
+    "rendered_questionnaire_javascript_syntax": "PASS",
+    "v4_36_baseline_semantic_resume_compatibility": "PASS",
+    "changed_v4_36_baseline_invalidates_resume": "PASS",
+    "legacy_v4_36_rubric_hash_currentness": "PASS",
+    "real_v4_36_50_algorithm_resume_without_recalibration": "PASS",
+    "comment_nodes_excluded_from_flow_graph": "PASS",
+    "comment_only_program_start_to_end": "PASS",
+    "peer_facing_primary_anchor_selection": "PASS",
+    "overlapping_column_vertical_anchor_preference": "PASS",
+    "legacy_comment_flow_selective_regeneration": "PASS",
+    "shared_repeat_trunk_preservation_with_peer_facing_rules": "PASS",
+    "comparative_dashboard_canonical_filename": "PASS",
+    "single_comparative_heatmap_output": "PASS",
+    "comparative_radial_highest_mean_callout": "PASS",
+    "comparative_radial_rendered_javascript_syntax": "PASS"
+  },
+  "common_test_provenance": {
+    "active_pack": "v1.4.2",
+    "suites": 50,
+    "declared_cases": 156,
+    "study_data_changed_from_v4_36": false
+  },
+  "study_methodology_changed_from_v4_36": false,
+  "compiled_cache_files_in_release": 0,
+  "baseline_resume_compatibility": {
+    "accepted_prior_pipeline_versions": [
+      "4.36",
+      "4.37"
+    ],
+    "scope": "baseline resume/currentness only",
+    "requires_matching_semantic_fingerprints": true,
+    "fingerprints": [
+      "source_pseudocode",
+      "reference_python",
+      "tests",
+      "rubric",
+      "dependency_environment",
+      "pseudocode_profile"
+    ],
+    "reason": "v4.37 preserves fast baseline resume when semantic fingerprints match; legacy flow graphs containing COMMENT nodes are selectively regenerated so comments cannot affect flow scoring.",
+    "version_specific_rubric_provenance": true,
+    "v4_36_rubric_sha256": "72c285d390630dc4e1d341537de06f025b4a49b4eb023f94215f70ee0d6dfb72",
+    "end_to_end_resume_check": {
+      "source_processor": "v4.36",
+      "algorithm_count": 50,
+      "v4_37_actions": {
+        "SKIPPED_CURRENT": 50
+      },
+      "reprocessed": 0
+    },
+    "requires_comment_free_canonical_flow": true,
+    "legacy_comment_node_policy": "REGENERATE_AFFECTED_ALGORITHM_ONLY"
+  },
+  "drawio_layout_revision": "v4.37-layout-20260922-1",
+  "checksum_files_verified": 1087,
+  "zip_integrity": "PASS",
+  "checksum_known_preexisting_mismatches": [
+    "flow diagram components/flow_diagram.py"
+  ],
+  "presentation_examples": {
+    "pseudocode_input_run": {
+      "route": "NLFlowDiagramEncoderPipeline",
+      "status": "PASS",
+      "behavioural_tests": "4/4",
+      "batch_run": false
+    },
+    "tic_tac_toe_drawio_input_run": {
+      "route": "DrawIOFlowInputPipeline",
+      "input": "examples/tic_tac_toe/tic_tac_toe.drawio",
+      "imported_shapes": 35,
+      "imported_connectors": 50,
+      "status": "PASS",
+      "behavioural_tests": "2/2",
+      "batch_run": false
+    }
+  }
+}

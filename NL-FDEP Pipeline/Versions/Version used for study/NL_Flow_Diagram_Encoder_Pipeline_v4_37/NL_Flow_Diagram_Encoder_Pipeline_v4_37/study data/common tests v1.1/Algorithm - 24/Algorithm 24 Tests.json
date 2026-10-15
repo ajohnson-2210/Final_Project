@@ -1,0 +1,89 @@
+{
+  "test_spec_schema_version": "1.2",
+  "test_design_version": "1.1",
+  "algorithm_id": 24,
+  "algorithm_title": "Create a process that determines if a password has 8 characters 1 number and 1 uppercase letter",
+  "suite_role": "COMMON_BASELINE_CALIBRATION_AND_EXPERIMENTAL_COMPARISON",
+  "oracle_policy": "TRUSTED_BASELINE_REFERENCE",
+  "evidence_adequacy": "ADEQUATE",
+  "evidence_summary": "This suite provides comparatively broad behavioural evidence using 4 predefined common behavioural tests, with covered normal-path, branch behaviour and partial error evidence.",
+  "coverage_dimensions": {
+    "normal_path": "COVERED",
+    "branch_behaviour": "COVERED",
+    "boundary_behaviour": "NOT_COVERED",
+    "error_behaviour": "PARTIALLY_COVERED",
+    "termination_behaviour": "NOT_COVERED",
+    "state_mutation": "NOT_COVERED"
+  },
+  "coverage_basis": "Assessment is based on the 4 predefined common behavioural tests, the behaviours exposed by the frozen program interface, and the declared coverage dimensions: normal path, branch behaviour, error behaviour.",
+  "interpretation_guidance": "Interpret behavioural accuracy as comparatively broad evidence across the declared exercised behaviours, while not treating the result as exhaustive proof for all possible inputs and states.",
+  "coverage_limitations": [],
+  "manual_review_targets": [],
+  "requires_pipeline_features": [],
+  "tests": [
+    {
+      "name": "valid minimum-style password",
+      "standard_input": [
+        "Abcdefg1"
+      ],
+      "category": "NORMAL",
+      "semantic_feature": "PASSWORD_VALID",
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE"
+    },
+    {
+      "name": "too short then valid",
+      "standard_input": [
+        "Ab1",
+        "Abcdefg1"
+      ],
+      "category": "ERROR_BEHAVIOUR",
+      "semantic_feature": "PASSWORD_LENGTH_REQUIREMENT",
+      "criteria_links": [
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE"
+    },
+    {
+      "name": "missing digit then valid",
+      "standard_input": [
+        "Abcdefgh",
+        "Abcdefg1"
+      ],
+      "category": "BRANCH",
+      "semantic_feature": "PASSWORD_DIGIT_REQUIREMENT",
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE"
+    },
+    {
+      "name": "missing uppercase then valid",
+      "standard_input": [
+        "abcdefg1",
+        "Abcdefg1"
+      ],
+      "category": "BRANCH",
+      "semantic_feature": "PASSWORD_UPPERCASE_REQUIREMENT",
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "timeout_seconds": 3.0,
+      "execution_mode": "PROGRAM",
+      "observation_mode": "STDOUT_REFERENCE"
+    }
+  ]
+}

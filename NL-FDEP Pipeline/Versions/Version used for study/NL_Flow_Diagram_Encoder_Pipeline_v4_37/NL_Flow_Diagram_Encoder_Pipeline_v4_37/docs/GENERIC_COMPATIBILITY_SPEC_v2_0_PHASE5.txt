@@ -1,0 +1,39 @@
+Generic Compatibility Specification v2.0 - Phase 5
+Grammar Normalisation
+
+Scope
+-----
+Structural normalisation rules derived from the six-model, 300-algorithm corpus.
+These rules apply only to GENERIC_COMPATIBILITY. AJ_DIALECT_STRICT and
+GENERAL_NO_CONVERSION are not changed by this phase.
+
+Rules
+-----
+GC053  Remove standalone BEGIN program wrapper.
+GC054  Remove standalone END program wrapper.
+GC055  FUNCTION name(args): -> FUNCTION name ACCEPTS(args)
+GC056  PROCEDURE name(args): -> FUNCTION name ACCEPTS(args)
+GC057  END FUNCTION -> ENDFUNCTION
+GC058  END PROCEDURE -> ENDFUNCTION
+GC059  END IF -> ENDIF
+GC060  END WHILE -> ENDWHILE
+GC061  END FOR -> ENDFOR
+GC062  ELSE: -> ELSE
+GC063  ELSE IF condition: -> ELSE IF condition THEN
+GC064  IF condition THEN RETURN value -> multiline IF/RETURN/ENDIF
+GC065  IF condition RETURN value -> multiline IF/RETURN/ENDIF
+GC066  IF condition: -> IF condition THEN
+GC067  WHILE condition: -> WHILE condition DO
+GC068  FOR EACH item IN values: -> FOR EACH item IN values DO
+GC069  FOR item IN values: -> FOR EACH item IN values DO
+GC070  FOR i FROM a TO b / DOWNTO b -> AJ IN RANGE form (STEP -1 for DOWNTO)
+GC071  FOR i <- a TO b / FOR i = a TO b -> AJ IN RANGE form
+GC072  Remove a trailing structural colon when no more specific grammar rule applies.
+
+Safety notes
+------------
+* Bare END is removed only when it occupies a complete line and is treated as a
+  top-level wrapper form observed in the corpus.
+* Bare {} remains outside this phase because its collection semantics are ambiguous.
+* Domain-specific calls are not rewritten.
+* GENERAL_NO_CONVERSION remains byte-for-byte unchanged after header preprocessing.

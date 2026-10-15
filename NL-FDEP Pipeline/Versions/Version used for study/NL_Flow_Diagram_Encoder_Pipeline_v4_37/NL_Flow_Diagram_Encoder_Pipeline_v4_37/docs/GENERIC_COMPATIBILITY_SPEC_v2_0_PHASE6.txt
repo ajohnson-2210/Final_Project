@@ -1,0 +1,59 @@
+GENERIC COMPATIBILITY SPECIFICATION v2.0 - PHASE 6
+
+Purpose
+-------
+Phase 6 was derived from actual parser failures after Phases 1-5 were run against the six-model, 300-algorithm corpus. It adds parser-recovery normalisation without changing AJ_24038155 Dialect v1.0.
+
+Rules
+-----
+GC073  # comment                     -> COMMENT ...
+GC074  // comment                    -> COMMENT ...
+GC075  INPUT x, y                    -> x <- INPUT(STRING("Enter x")) and y <- INPUT(STRING("Enter y"))
+GC076  Generic identifiers colliding with AJ keywords are renamed in controlled cases (for example char -> character, list -> values).
+GC077  TRUE/FALSE                    -> BOOLEAN(True)/BOOLEAN(False)
+GC078  a <- 1, b <- 2                -> two assignment statements
+GC079  a <- b <- value               -> b <- value; a <- b
+GC080  RETURN a, b / RETURN (a, b)  -> RETURN TUPLE(a, b)
+GC081  OUTPUT a, b -> OUTPUT CALL output_values(a, b); OUTPUT (a, b) -> OUTPUT TUPLE(a, b)
+GC082  object.member                 -> object_member
+GC083  genericFunction(args)         -> CALL genericFunction(args), where the call is not an AJ built-in
+GC084  indentation-implied IF/WHILE/FOR/FUNCTION closure -> explicit AJ block terminator
+
+Corpus Result
+-------------
+Before Phase 6: 14 / 300 parsed successfully (4.7%).
+After Phase 6:  58 / 300 parsed successfully (19.3%).
+
+By model after Phase 6
+----------------------
+source_a   12 / 50
+source_b    11 / 50
+source_c   9 / 50
+source_e      14 / 50
+source_f       0 / 50
+source_d    12 / 50
+
+Scope decision
+--------------
+source_f's corpus is predominantly compressed so that an entire program appears on one physical line. Phase 6 does not guess statement boundaries inside these lines. A dedicated statement-boundary reconstruction phase is required because incorrect splitting could change algorithm semantics.
+
+v2.78 ordering note
+-------------------
+GC078 is reused before literal normalisation as well as in the later recovery pass. This is an execution-order refinement only: the recognised assignment shape and top-level comma safeguards are unchanged.
+
+
+v2.91 tuple-statement note
+--------------------------
+GC080/GC081 also recognise one outer parenthesis pair when it contains multiple
+top-level values. A single grouped expression such as RETURN (a + b) remains a
+single expression. GC083 treats RETURN and OUTPUT as statement keywords and must
+never prefix them as free function calls. The older GC152 repair for already-
+mangled CALL RETURN(...) input remains only as backwards compatibility.
+
+v2.92 nested list-append note
+-----------------------------
+GC200 supplements the legacy GC033 `.append(...)` surface conversion only when
+an explicitly list-backed simple identifier has a standalone append argument
+containing nested parentheses. The argument is balanced structurally rather than
+matched with `[^()]*`. No arbitrary receiver is inferred to be a list; existing
+simple GC033 behaviour remains unchanged.

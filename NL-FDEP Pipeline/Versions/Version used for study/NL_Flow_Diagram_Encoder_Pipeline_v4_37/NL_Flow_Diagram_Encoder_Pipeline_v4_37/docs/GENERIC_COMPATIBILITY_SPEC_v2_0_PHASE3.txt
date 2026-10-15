@@ -1,0 +1,46 @@
+GENERIC COMPATIBILITY SPECIFICATION v2.0 - PHASE 3
+COLLECTION AND DATA-STRUCTURE NORMALISATION
+
+Scope
+-----
+These rules apply only to GENERIC_COMPATIBILITY. GENERAL_NO_CONVERSION remains unchanged. Ambiguous bare {} literals are intentionally not rewritten without type context.
+
+Rules
+-----
+GC027  empty List                         -> EMPTY LIST
+GC028  empty Set                          -> EMPTY SET
+GC029  empty Hash Map / Dictionary / Map -> EMPTY DICTIONARY
+GC030  ordered dictionary                 -> EMPTY DICTIONARY
+GC031  empty Queue                         -> EMPTY QUEUE
+GC032  empty Deque / DoubleEndedQueue      -> EMPTY DEQUE
+GC033  collection.append(x)                -> APPEND x TO collection
+GC034  collection.add(x)                   -> ADD x TO collection
+GC035  queue.enqueue(x)                    -> ENQUEUE x TO queue
+GC036  queue.dequeue()                     -> DEQUEUE FROM queue
+GC037  stack/deque.push[_back](x)          -> PUSH x TO collection
+GC038  deque.pop_front()                   -> REMOVE FIRST ITEM FROM deque
+GC039  deque.pop_back()                    -> REMOVE LAST ITEM FROM deque
+
+Design constraints
+------------------
+- No global conversion of {} because it is used as both a set and dictionary in the corpus.
+- No conversion is applied in GENERAL_NO_CONVERSION.
+- Each conversion is logged with rule ID, source line and target line.
+
+Corpus summary
+--------------
+Derived from six model datasets, 50 algorithms each (300 total).
+Total Phase 3 transformations observed: 97
+GC027: 23
+GC028: 14
+GC029: 11
+GC030: 1
+GC031: 5
+GC032: 1
+GC033: 19
+GC034: 7
+GC035: 5
+GC036: 3
+GC037: 6
+GC038: 1
+GC039: 1

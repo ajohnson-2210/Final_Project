@@ -1,0 +1,98 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "legacy_rule_ids_exposed": false,
+  "families": {
+    "COLLECTION_SELF_ADDITION": {
+      "branches": {
+        "APPEND_SINGLE": "known_list <- known_list + [single_expression]",
+        "EXTEND_LIST": "known_list <- known_list + list_valued_expression"
+      }
+    },
+    "COLLECTION_OPERATION": {
+      "branches": [
+        "PUSH_OR_ENQUEUE",
+        "POP_LAST",
+        "DEQUEUE_FIRST",
+        "EMPTY_TEST"
+      ]
+    },
+    "OBJECT_PROPERTY": {
+      "branches": [
+        "FLATTENED_PROPERTY",
+        "LINKED_LIST_NEXT",
+        "OTHER_COLLECTION_ELEMENT"
+      ]
+    },
+    "BLOCK_TERMINATOR": {
+      "branches": [
+        "SPACED_END_TO_OPEN_BLOCK"
+      ]
+    },
+    "DECLARATION": {
+      "branches": [
+        "FUNCTION_PARAMETER_REPAIR",
+        "RESERVED_IDENTIFIER_ESCAPE",
+        "CLASS_ACCEPTS"
+      ]
+    },
+    "LITERAL": {
+      "branches": [
+        "EMPTY_DICTIONARY",
+        "LIST_LITERAL",
+        "TUPLE_LITERAL",
+        "EMPTY_COLLECTION"
+      ]
+    },
+    "SEMANTIC_PREDICATE": {
+      "branches": [
+        "IS_A_NUMBER",
+        "NULL_TEST",
+        "COLLECTION_EMPTY_TEST"
+      ]
+    },
+    "ARITHMETIC": {
+      "branches": [
+        "FUNCTION_SHAPED_MODULUS",
+        "INTEGER_DIVISION",
+        "INDEX_REQUIRED_INTEGER"
+      ]
+    },
+    "PROGRAM_BOUNDARY": {
+      "branches": [
+        "POST_COMPLETION_CONTAMINATION"
+      ]
+    },
+    "INPUT_BINDING": {
+      "branches": {
+        "PROMPT_ONLY": "INPUT(STRING(prompt)) does not determine the receiver type",
+        "RETURNING_SCOPE_PARAMETER": "input-bound variable in a returning top-level computation becomes an ACCEPTS parameter",
+        "INDEXED_LIST_EVIDENCE": "LENGTH/index usage establishes list semantics independently of the prompt",
+        "COHERENT_SCOPE_PARAMETERS": "all top-level INPUT-bound dependencies become ACCEPTS parameters when the same coherent scope exposes OUTPUT or RETURN"
+      }
+    },
+    "CONDITIONAL": {
+      "branches": [
+        "CASE_TO_IF_CHAIN"
+      ]
+    },
+    "INPUT_RESOLUTION": {
+      "branches": {
+        "INFER_SEMANTIC_TYPE": "infer data structure from downstream usage",
+        "PROMOTE_TO_PARAMETER": "preserve known structured dependency without inventing external serialisation",
+        "PRESERVE_EXPLICIT_INPUT": "retain input when semantic structure remains weak",
+        "INFER_ENCODING": "only when delimiter/serialisation evidence is explicit",
+        "DO_NOT_INFER_ENCODING": "semantic structure is known but encoding is not",
+        "AMBIGUOUS_INPUT_STRUCTURE": "record conflicting or insufficient structural evidence"
+      },
+      "principle": "semantic structure and external encoding are scored independently"
+    },
+    "GENERIC_IDENTIFIER": {
+      "branches": {
+        "MISSING_FUNCTION_NAME": "introduce a neutral function identifier only when structure requires a name",
+        "MISSING_COLLECTION_NAME": "introduce a neutral collection identifier only when source omits one",
+        "RESERVED_KEYWORD_ESCAPE": "preserve source identifier using __reserved_keyword__ prefix rather than semantic renaming"
+      },
+      "audit_requirement": "every introduced generic identifier must record why the source required one"
+    }
+  }
+}

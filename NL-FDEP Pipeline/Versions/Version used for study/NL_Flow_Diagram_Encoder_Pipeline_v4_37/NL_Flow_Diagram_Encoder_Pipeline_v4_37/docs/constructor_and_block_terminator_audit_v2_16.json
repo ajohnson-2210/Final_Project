@@ -1,0 +1,21 @@
+{
+  "version": "2.16",
+  "model": "source_e",
+  "task_number": 37,
+  "rules": [
+    {
+      "source": "CALL Constructor()",
+      "resolution": "removed as redundant structural marker",
+      "assumption": "CLASS declaration implies constructor existence",
+      "confidence": "user-confirmed",
+      "semantic_change": false
+    },
+    {
+      "source": "END CLASS",
+      "resolution": "ENDCLASS",
+      "assumption": "The currently open block is CLASS, so END CLASS can only terminate that class",
+      "confidence": "contextually certain",
+      "semantic_change": false
+    }
+  ]
+}

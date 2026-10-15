@@ -1,0 +1,16 @@
+{
+  "version": "v2.57",
+  "change_type": "methodology clarification and regression guard",
+  "dialect": "AJ_24038155 Dialect v1.0",
+  "canonical_assignment_operator": "<-",
+  "question_mark_policy": {
+    "is_aj_token": false,
+    "is_assignment_alias": false,
+    "strict_parser_behaviour": "reject bare ? as an unrecognised character",
+    "legacy_exception": "algorithm-specific compatibility recognisers may inspect ? only as evidence of lossy stored-corpus glyph corruption before the canonical AJ boundary",
+    "canonical_output_requirement": "a successful recovery must emit only valid AJ tokens; ? must not survive as canonical syntax"
+  },
+  "scope": "isolated clarification; existing legacy source-recovery recognisers are retained",
+  "algorithm_semantics_changed": false,
+  "grammar_changed": false
+}
