@@ -1,0 +1,130 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 10,
+  "transformations": [
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  tortoise = head",
+      "canonical": "  tortoise <- head",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  hare = head",
+      "canonical": "  hare <- head",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    tortoise = tortoise.next",
+      "canonical": "    tortoise <- tortoise.next",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 6,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    hare = hare.next.next",
+      "canonical": "    hare <- hare.next.next",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION HAS_CYCLE(head)",
+      "canonical": "FUNCTION HAS_CYCLE ACCEPTS(head)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "FUNCTION HAS_CYCLE ACCEPTS(head)\n  tortoise <- head\n  hare <- head\n  WHILE tortoise != NULL AND hare != NULL AND hare.next != NULL\n    tortoise <- tortoise.next\n    hare <- hare.next.next\n    IF tortoise == hare THEN\n      RETURN TRUE\n    END IF\n  END WHILE\n  RETURN FALSE\nEND FUNCTION",
+      "canonical": "FUNCTION HAS_CYCLE ACCEPTS(head)\n  tortoise <- head\n  hare <- head\n  WHILE tortoise != NULL AND hare != NULL AND hare.next != NULL\n    tortoise <- tortoise.next\n    hare <- hare.next.next\n    IF tortoise == hare THEN\n      RETURN TRUE\n    ENDIF\n  END WHILE\n  RETURN FALSE\nENDFUNCTION",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  WHILE tortoise != NULL AND hare != NULL AND hare.next != NULL",
+      "canonical": "  WHILE tortoise != NULL AND hare != NULL AND hare.next != NULL DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 10,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "  END WHILE",
+      "canonical": "  ENDWHILE",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 8,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "      RETURN TRUE",
+      "canonical": "      RETURN BOOLEAN(True)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 11,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  RETURN FALSE",
+      "canonical": "  RETURN BOOLEAN(False)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 1
+}

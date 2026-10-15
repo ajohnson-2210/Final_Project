@@ -1,0 +1,190 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 15,
+  "transformations": [
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    text_chunks = ChunkDocument(context_text, chunk_size=500)",
+      "canonical": "    text_chunks <- ChunkDocument(context_text, chunk_size=500)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    chunk_embeddings = Embed(text_chunks)",
+      "canonical": "    chunk_embeddings <- Embed(text_chunks)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    query_embedding = Embed(user_query)",
+      "canonical": "    query_embedding <- Embed(user_query)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 6,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    best_chunk = FindHighestCosineSimilarity(query_embedding, chunk_embeddings)",
+      "canonical": "    best_chunk <- FindHighestCosineSimilarity(query_embedding, chunk_embeddings)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 7,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    answer = ExtractOrGenerateAnswer(user_query, best_chunk)",
+      "canonical": "    answer <- ExtractOrGenerateAnswer(user_query, best_chunk)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "FUNCTION AnswerQuestion(user_query, context_text):\n    text_chunks <- ChunkDocument(context_text, chunk_size=500)\n    chunk_embeddings <- Embed(text_chunks)\n    query_embedding <- Embed(user_query)\n    \n    best_chunk <- FindHighestCosineSimilarity(query_embedding, chunk_embeddings)\n    answer <- ExtractOrGenerateAnswer(user_query, best_chunk)\n    \n    RETURN answer\nEND FUNCTION",
+      "canonical": "FUNCTION AnswerQuestion(user_query, context_text):\n    text_chunks <- ChunkDocument(context_text, chunk_size=500)\n    chunk_embeddings <- Embed(text_chunks)\n    query_embedding <- Embed(user_query)\n    \n    best_chunk <- FindHighestCosineSimilarity(query_embedding, chunk_embeddings)\n    answer <- ExtractOrGenerateAnswer(user_query, best_chunk)\n    \n    RETURN answer\nENDFUNCTION",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    text_chunks <- ChunkDocument(context_text, chunk_size=500)",
+      "canonical": "    text_chunks <- ChunkDocument(context_text\n    chunk_size <- 500)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION AnswerQuestion(user_query, context_text):",
+      "canonical": "FUNCTION AnswerQuestion ACCEPTS(user_query, context_text)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    text_chunks <- ChunkDocument(context_text",
+      "canonical": "    text_chunks <- CALL ChunkDocument(context_text",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    chunk_embeddings <- Embed(text_chunks)",
+      "canonical": "    chunk_embeddings <- CALL Embed(text_chunks)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    query_embedding <- Embed(user_query)",
+      "canonical": "    query_embedding <- CALL Embed(user_query)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 7,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    best_chunk <- FindHighestCosineSimilarity(query_embedding, chunk_embeddings)",
+      "canonical": "    best_chunk <- CALL FindHighestCosineSimilarity(query_embedding, chunk_embeddings)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 8,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    answer <- ExtractOrGenerateAnswer(user_query, best_chunk)",
+      "canonical": "    answer <- CALL ExtractOrGenerateAnswer(user_query, best_chunk)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 6,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    ",
+      "canonical": "",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 9,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    ",
+      "canonical": "",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 1
+}

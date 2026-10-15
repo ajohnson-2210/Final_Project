@@ -1,0 +1,283 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 22,
+  "transformations": [
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    board = N x N grid initialized to 0",
+      "canonical": "    board <- N x N grid initialized to 0",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    solutions = empty List",
+      "canonical": "    solutions <- empty List",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 18,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            board[row][col] = 0 // Backtrack",
+      "canonical": "            board[row][col] = 0\n            // Backtrack",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    solutions <- empty List",
+      "canonical": "    solutions <- EMPTY LIST",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 23,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    Backtrack(0, empty Set, empty Set, empty Set)",
+      "canonical": "    Backtrack(0, EMPTY SET, EMPTY SET, EMPTY SET)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "FUNCTION SolveNQueens(N):\n    board <- N x N grid initialized to 0\n    solutions <- EMPTY LIST\n    \n    PROCEDURE Backtrack(row, cols, diag1, diag2):\n        IF row == N THEN\n            APPEND Copy(board) TO solutions\n            RETURN\n        END IF\n        \n        FOR col FROM 0 TO N - 1 DO\n            IF col IN cols OR (row - col) IN diag1 OR (row + col) IN diag2 THEN\n                CONTINUE\n            END IF\n            \n            board[row][col] = 1\n            Backtrack(row + 1, cols + {col}, diag1 + {row - col}, diag2 + {row + col})\n            board[row][col] = 0\n            // Backtrack\n        END FOR\n    END PROCEDURE\n\n    Backtrack(0, EMPTY SET, EMPTY SET, EMPTY SET)\n    RETURN solutions\nEND FUNCTION",
+      "canonical": "FUNCTION SolveNQueens(N):\n    board <- N x N grid initialized to 0\n    solutions <- EMPTY LIST\n    \n    PROCEDURE Backtrack(row, cols, diag1, diag2):\n        IF row == N THEN\n            APPEND Copy(board) TO solutions\n            RETURN\n        ENDIF\n        \n        FOR col FROM 0 TO N - 1 DO\n            IF col IN cols OR (row - col) IN diag1 OR (row + col) IN diag2 THEN\n                CONTINUE\n            ENDIF\n            \n            board[row][col] = 1\n            Backtrack(row + 1, cols + {col}, diag1 + {row - col}, diag2 + {row + col})\n            board[row][col] = 0\n            // Backtrack\n        ENDFOR\n    END PROCEDURE\n\n    Backtrack(0, EMPTY SET, EMPTY SET, EMPTY SET)\n    RETURN solutions\nENDFUNCTION",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 2,
+      "rule_family": "MATRIX_DECLARATION",
+      "branch": "EXPLICIT_SQUARE_GRID_ZERO_INITIALISATION",
+      "source": "    board <- N x N grid initialized to 0",
+      "canonical": "    board <- CALL create_matrix(N, N, 0)",
+      "evidence": [
+        "source explicitly declares a direct N x N grid initialized to 0",
+        "the row and column dimensions are the same single source identifier",
+        "the pipeline already provides create_matrix(rows, cols, fill) for deterministic matrix allocation",
+        "rectangular grids, other fill values, missing initialisers, and expression dimensions remain untouched"
+      ],
+      "confidence": "source_proven",
+      "semantic_change": false
+    },
+    {
+      "line": 7,
+      "rule_family": "COLLECTION_COPY",
+      "branch": "EVIDENCED_2D_LIST_ROW_COPY",
+      "source": "            APPEND Copy(board) TO solutions",
+      "canonical": "            APPEND CALL copy_2d_list(board) TO solutions",
+      "evidence": [
+        "source explicitly calls free Copy(name) with exactly one simple identifier argument",
+        "that identifier is already evidenced as a 2D matrix by create_matrix(...) in the same lexical scope or a readable enclosing scope",
+        "the approved copy operation duplicates the outer list and each row via list(map(list, name)) so later indexed board mutation cannot alter a saved snapshot",
+        "unproven values, shadowed parameters, direct reassignments, member calls, wrong arities, comments, and quoted text remain untouched"
+      ],
+      "confidence": "user_confirmed",
+      "semantic_change": false
+    },
+    {
+      "line": 16,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            board[row][col] = 1",
+      "canonical": "            board[row][col] <- 1",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 18,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            board[row][col] = 0",
+      "canonical": "            board[row][col] <- 0",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION SolveNQueens(N):",
+      "canonical": "FUNCTION SolveNQueens ACCEPTS(N)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    PROCEDURE Backtrack(row, cols, diag1, diag2):",
+      "canonical": "    FUNCTION Backtrack ACCEPTS(row, cols, diag1, diag2)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 11,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        FOR col FROM 0 TO N - 1 DO",
+      "canonical": "        FOR col <- IN RANGE 0 TO (N - 1) + 1 DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 21,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    END PROCEDURE",
+      "canonical": "    ENDFUNCTION",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 12,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            IF col IN cols OR (row - col) IN diag1 OR (row + col) IN diag2 THEN",
+      "canonical": "            IF col IN cols CALL OR (row - col) IN diag1 CALL OR (row + col) IN diag2 THEN",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 17,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            Backtrack(row + 1, cols + {col}, diag1 + {row - col}, diag2 + {row + col})",
+      "canonical": "            CALL Backtrack(row + 1, cols + {col}, diag1 + {row - col}, diag2 + {row + col})",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 19,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            // Backtrack",
+      "canonical": "            COMMENT Backtrack",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 23,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    Backtrack(0, EMPTY SET, EMPTY SET, EMPTY SET)",
+      "canonical": "    CALL Backtrack(0, EMPTY SET, EMPTY SET, EMPTY SET)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 17,
+      "rule_family": "SET_EXPRESSION",
+      "branch": "EVIDENCED_NON_MUTATING_SINGLETON_SET_EXTENSION",
+      "source": "            CALL Backtrack(row + 1, cols + {col}, diag1 + {row - col}, diag2 + {row + col})",
+      "canonical": "            CALL Backtrack(row + 1, CALL to_set(CALL to_list(cols) + CALL list_value(col)), CALL to_set(CALL to_list(diag1) + CALL list_value(row - col)), CALL to_set(CALL to_list(diag2) + CALL list_value(row + col)))",
+      "evidence": [
+        "a canonical routine call explicitly supplies EMPTY SET for the corresponding formal parameter",
+        "inside that same routine the source forms a new value with parameter + {single_expression}",
+        "the approved representation converts the existing set to a list, appends exactly one source-supplied value through list_value, then converts the result back to a set",
+        "the original set is not mutated and no removal/backtracking operation is invented"
+      ],
+      "confidence": "user_confirmed",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    ",
+      "canonical": "",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 10,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        ",
+      "canonical": "",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 15,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            ",
+      "canonical": "",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 1
+}

@@ -1,0 +1,27 @@
+# Check whether a password contains at least 8 characters, one number, and one uppercase letter.
+BEGIN
+    INPUT Password
+
+    HasNumber ← FALSE
+    HasUpper ← FALSE
+
+    IF LENGTH(Password) < 8 THEN
+        OUTPUT "Invalid Password"
+    ELSE
+        FOR EACH Character IN Password
+            IF Character is a digit THEN
+                HasNumber ← TRUE
+            ENDIF
+
+            IF Character is an uppercase letter THEN
+                HasUpper ← TRUE
+            ENDIF
+        ENDFOR
+
+        IF HasNumber = TRUE AND HasUpper = TRUE THEN
+            OUTPUT "Valid Password"
+        ELSE
+            OUTPUT "Invalid Password"
+        ENDIF
+    ENDIF
+END

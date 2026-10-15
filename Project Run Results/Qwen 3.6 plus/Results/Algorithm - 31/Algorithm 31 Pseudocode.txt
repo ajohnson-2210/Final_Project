@@ -1,0 +1,12 @@
+# Co-Reference Resolution
+
+INPUT text
+
+mentions = extractNounPhrasesAndPronouns(text)
+
+FOR each pronoun in mentions:
+    candidates = filterCompatibleAntecedents(pronoun, mentions)
+    antecedent = scoreAndSelect(candidates)
+    link(pronoun, antecedent)
+
+RETURN resolvedMentions

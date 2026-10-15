@@ -1,0 +1,18 @@
+# Detect cycle in a singly linked list (Floyd’s algorithm)    
+FUNCTION HasCycle(head):
+    IF head IS NULL OR head.next IS NULL THEN RETURN False
+    
+    slow = head
+    fast = head
+    
+    WHILE fast IS NOT NULL AND fast.next IS NOT NULL DO
+        slow = slow.next
+        fast = fast.next.next
+        
+        IF slow == fast THEN
+            RETURN True
+        END IF
+    END WHILE
+    
+    RETURN False
+END FUNCTION

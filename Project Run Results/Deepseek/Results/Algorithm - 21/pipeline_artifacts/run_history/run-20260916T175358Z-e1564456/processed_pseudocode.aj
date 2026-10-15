@@ -1,0 +1,7 @@
+FUNCTION isEven ACCEPTS(n)
+    IF n MODULUS 2 == 0 THEN
+        RETURN STRING("Even")
+    ELSE
+        RETURN STRING("Odd")
+    ENDIF
+ENDFUNCTION

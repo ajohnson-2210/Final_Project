@@ -1,0 +1,256 @@
+{
+  "format": "NL-FDEP Flow Diagram",
+  "version": "1.0",
+  "entry_node": "F1",
+  "exit_node": "F2",
+  "nodes": {
+    "F1": {
+      "node_id": "F1",
+      "node_type": "START",
+      "label": "Start",
+      "line": 1,
+      "data": {}
+    },
+    "F2": {
+      "node_id": "F2",
+      "node_type": "END",
+      "label": "End",
+      "line": 1,
+      "data": {}
+    },
+    "F3": {
+      "node_id": "F3",
+      "node_type": "FUNCTION",
+      "label": "Run function isAnagram with str1, str2",
+      "line": 1,
+      "data": {
+        "ast_kind": "FunctionNode",
+        "name": "isAnagram"
+      }
+    },
+    "F4": {
+      "node_id": "F4",
+      "node_type": "DECISION",
+      "label": "The length of str1 is not equal to the length of str2?",
+      "line": 2,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F5": {
+      "node_id": "F5",
+      "node_type": "RETURN",
+      "label": "Return false",
+      "line": 3,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    },
+    "F6": {
+      "node_id": "F6",
+      "node_type": "PROCESS",
+      "label": "Set sorted1 to the result of sort_characters(str1)",
+      "line": 5,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F7": {
+      "node_id": "F7",
+      "node_type": "PROCESS",
+      "label": "Set sorted2 to the result of sort_characters(str2)",
+      "line": 6,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F8": {
+      "node_id": "F8",
+      "node_type": "RETURN",
+      "label": "Return sorted1 is equal to sorted2",
+      "line": 7,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "F4",
+      "target": "F5",
+      "label": "TRUE"
+    },
+    {
+      "source": "F4",
+      "target": "F6",
+      "label": "NEXT"
+    },
+    {
+      "source": "F6",
+      "target": "F7",
+      "label": "NEXT"
+    },
+    {
+      "source": "F7",
+      "target": "F8",
+      "label": "NEXT"
+    },
+    {
+      "source": "F3",
+      "target": "F4",
+      "label": "BODY"
+    },
+    {
+      "source": "F1",
+      "target": "F3",
+      "label": "NEXT"
+    },
+    {
+      "source": "F5",
+      "target": "F2",
+      "label": "NEXT"
+    },
+    {
+      "source": "F8",
+      "target": "F2",
+      "label": "NEXT"
+    }
+  ],
+  "structured_program": {
+    "kind": "ProgramNode",
+    "line": 1,
+    "body": [
+      {
+        "kind": "FunctionNode",
+        "line": 1,
+        "name": "isAnagram",
+        "parameters": [
+          {
+            "kind": "ParameterNode",
+            "line": 1,
+            "name": "str1",
+            "declared_type": null
+          },
+          {
+            "kind": "ParameterNode",
+            "line": 1,
+            "name": "str2",
+            "declared_type": null
+          }
+        ],
+        "body": {
+          "kind": "BlockNode",
+          "line": 2,
+          "statements": [
+            {
+              "kind": "IfNode",
+              "line": 2,
+              "condition": {
+                "kind": "BinaryNode",
+                "line": 2,
+                "operator": "!=",
+                "left": {
+                  "kind": "LengthNode",
+                  "line": 2,
+                  "expression": {
+                    "kind": "IdentifierNode",
+                    "line": 2,
+                    "name": "str1"
+                  }
+                },
+                "right": {
+                  "kind": "LengthNode",
+                  "line": 2,
+                  "expression": {
+                    "kind": "IdentifierNode",
+                    "line": 2,
+                    "name": "str2"
+                  }
+                }
+              },
+              "then_body": {
+                "kind": "BlockNode",
+                "line": 3,
+                "statements": [
+                  {
+                    "kind": "ReturnNode",
+                    "line": 3,
+                    "expression": {
+                      "kind": "LiteralNode",
+                      "line": 3,
+                      "value": false,
+                      "data_type": "BOOLEAN"
+                    }
+                  }
+                ]
+              },
+              "else_if": [],
+              "else_body": null
+            },
+            {
+              "kind": "AssignmentNode",
+              "line": 5,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 5,
+                "name": "sorted1"
+              },
+              "value": {
+                "kind": "CallNode",
+                "line": 5,
+                "name": "sort_characters",
+                "arguments": [
+                  {
+                    "kind": "IdentifierNode",
+                    "line": 5,
+                    "name": "str1"
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "AssignmentNode",
+              "line": 6,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 6,
+                "name": "sorted2"
+              },
+              "value": {
+                "kind": "CallNode",
+                "line": 6,
+                "name": "sort_characters",
+                "arguments": [
+                  {
+                    "kind": "IdentifierNode",
+                    "line": 6,
+                    "name": "str2"
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "ReturnNode",
+              "line": 7,
+              "expression": {
+                "kind": "BinaryNode",
+                "line": 7,
+                "operator": "==",
+                "left": {
+                  "kind": "IdentifierNode",
+                  "line": 7,
+                  "name": "sorted1"
+                },
+                "right": {
+                  "kind": "IdentifierNode",
+                  "line": 7,
+                  "name": "sorted2"
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

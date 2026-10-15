@@ -1,0 +1,12 @@
+# Write a process that converts numerical scores into grade categories such as Pass, Merit, or Distinction
+FUNCTION CONVERT_SCORE(score)
+  IF score >= 90 THEN
+    RETURN "Distinction"
+  ELSE IF score >= 70 AND score < 90 THEN
+    RETURN "Merit"
+  ELSE IF score >= 50 AND score < 70 THEN
+    RETURN "Pass"
+  ELSE
+    RETURN "Fail"
+  END IF
+END FUNCTION

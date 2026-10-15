@@ -1,0 +1,70 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 5,
+  "transformations": [
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION IS_EVEN(n)",
+      "canonical": "FUNCTION IS_EVEN ACCEPTS(n)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "FUNCTION IS_EVEN ACCEPTS(n)\n  IF n MOD 2 == 0 THEN\n    RETURN TRUE\n  ELSE\n    RETURN FALSE\n  END IF\nEND FUNCTION",
+      "canonical": "FUNCTION IS_EVEN ACCEPTS(n)\n  IF n MOD 2 == 0 THEN\n    RETURN TRUE\n  ELSE\n    RETURN FALSE\n  ENDIF\nENDFUNCTION",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    RETURN TRUE",
+      "canonical": "    RETURN BOOLEAN(True)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    RETURN FALSE",
+      "canonical": "    RETURN BOOLEAN(False)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  IF n MOD 2 == 0 THEN",
+      "canonical": "  IF n MODULUS 2 == 0 THEN",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 1
+}

@@ -1,0 +1,274 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 22,
+  "transformations": [
+    {
+      "line": 9,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    charCounts[char]++",
+      "canonical": "    charCounts[char] <- charCounts[char] + 1",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 12,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    charCounts[char]--",
+      "canonical": "    charCounts[char] <- charCounts[char] - 1",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "INPUT str1, str2\n\nIF length(str1) != length(str2):\n    RETURN FALSE\n\nCREATE map charCounts\n\nFOR each char in str1:\n    charCounts[char] <- charCounts[char] + 1\n\nFOR each char in str2:\n    charCounts[char] <- charCounts[char] - 1\n\nFOR each count in charCounts:\n    IF count != 0:\n        RETURN FALSE\n\nRETURN TRUE",
+      "canonical": "FUNCTION unnamed_function ACCEPTS(str1, str2)\n    IF length(str1) != length(str2):\n        RETURN FALSE\n\n    CREATE map charCounts\n\n    FOR each char in str1:\n        charCounts[char] <- charCounts[char] + 1\n\n    FOR each char in str2:\n        charCounts[char] <- charCounts[char] - 1\n\n    FOR each count in charCounts:\n        IF count != 0:\n            RETURN FALSE\n\n    RETURN TRUE\nENDFUNCTION",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    CREATE map charCounts",
+      "canonical": "    charCounts <- EMPTY DICTIONARY",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    IF length(str1) != length(str2):",
+      "canonical": "    IF LENGTH OF str1 != LENGTH OF str2:",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    IF LENGTH OF str1 != LENGTH OF str2:",
+      "canonical": "    IF LENGTH OF str1 != LENGTH OF str2 THEN",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 7,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    FOR each char in str1:",
+      "canonical": "    FOR EACH char IN str1 DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 10,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    FOR each char in str2:",
+      "canonical": "    FOR EACH char IN str2 DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 13,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    FOR each count in charCounts:",
+      "canonical": "    FOR EACH count IN charCounts DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 14,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        IF count != 0:",
+      "canonical": "        IF count != 0 THEN",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        RETURN FALSE",
+      "canonical": "        RETURN BOOLEAN(False)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 7,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    FOR EACH char IN str1 DO",
+      "canonical": "    FOR EACH __reserved_keyword__char IN str1 DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 8,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        charCounts[char] <- charCounts[char] + 1",
+      "canonical": "        charCounts[__reserved_keyword__char] <- charCounts[__reserved_keyword__char] + 1",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 10,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    FOR EACH char IN str2 DO",
+      "canonical": "    FOR EACH __reserved_keyword__char IN str2 DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 11,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        charCounts[char] <- charCounts[char] - 1",
+      "canonical": "        charCounts[__reserved_keyword__char] <- charCounts[__reserved_keyword__char] - 1",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 15,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            RETURN FALSE",
+      "canonical": "            RETURN BOOLEAN(False)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 17,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    RETURN TRUE",
+      "canonical": "    RETURN BOOLEAN(True)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDIF",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 10,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDFOR",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 13,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDFOR",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 17,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDIF",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 17,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDFOR",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 2
+}

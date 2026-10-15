@@ -1,0 +1,1343 @@
+{
+  "scoring_schema_version": "1.4",
+  "rubric_version": "1.1",
+  "pipeline_version": "4.34",
+  "language_version": "AJ_24038155_DIALECT_V1.5",
+  "generated_at_utc": "2026-09-05T22:52:16.499243+00:00",
+  "rubric": {
+    "scale": {
+      "2": "Criterion fully satisfied; no material semantic discrepancy detected.",
+      "1": "Partially satisfied, or the available evidence is insufficient to establish complete semantic preservation.",
+      "0": "Criterion not satisfied; a material semantic discrepancy or stage failure is present.",
+      "NA": "Criterion cannot legitimately be evaluated from the available artefacts."
+    }
+  },
+  "algorithm": {
+    "algorithm_id": 43,
+    "dataset": "Claude sonnet 4.6",
+    "source_type": "llm_pseudocode",
+    "source_file": "Algorithm 43 Pseudocode.txt",
+    "source_file_resolved": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Claude sonnet 4.6\\Results\\Algorithm - 43\\Algorithm 43 Pseudocode.txt",
+    "is_baseline": false,
+    "baseline_algorithm_id": 43,
+    "baseline_reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 43\\Algorithm 43 Baseline Python code.txt"
+  },
+  "source_sufficiency": {
+    "criterion_id": "G1",
+    "stage_id": "G",
+    "stage_name": "Source Sufficiency",
+    "question": "Does the original pseudocode contain sufficient explicit information to determine the algorithm's behaviour without inventing missing semantics?",
+    "scored": false,
+    "allowed_results": [
+      "EVALUABLE",
+      "EXPECTED_FAILURE",
+      "REVIEW_REQUIRED"
+    ],
+    "result": "EVALUABLE",
+    "automated": true,
+    "justification": "The available artefacts do not identify unresolved source semantics that require invention.",
+    "human_assessment": {
+      "completed": false,
+      "result": null,
+      "agreement_with_automated_result": null,
+      "reviewer_justification": null
+    }
+  },
+  "behavioural_evidence_adequacy": {
+    "criterion_id": "G2",
+    "stage_id": "G",
+    "stage_name": "Behavioural Evidence Adequacy",
+    "question": "How strong, representative and reproducible is the behavioural evidence supporting the automated behavioural score, and what important behaviour remains untested or non-evaluable?",
+    "scored": false,
+    "allowed_results": [
+      "ADEQUATE",
+      "PARTIAL",
+      "LIMITED",
+      "NOT_EVALUABLE",
+      "NOT_DECLARED"
+    ],
+    "coverage_dimension_results": [
+      "COVERED",
+      "PARTIALLY_COVERED",
+      "NOT_COVERED",
+      "NOT_APPLICABLE",
+      "NOT_EVALUABLE"
+    ],
+    "required_descriptive_fields": [
+      "summary",
+      "test_counts",
+      "coverage_dimensions",
+      "strengths",
+      "limitations",
+      "coverage_basis",
+      "interpretation"
+    ],
+    "interpretation": "Interpret behavioural accuracy as comparatively broad evidence across the declared exercised behaviours, while not treating the result as exhaustive proof for all possible inputs and states.",
+    "result": "ADEQUATE",
+    "automated": true,
+    "justification": "The test-suite specification declares behavioural evidence adequacy as ADEQUATE.",
+    "evidence": {
+      "test_evidence_schema_version": "1.2",
+      "test_design_version": "1.2",
+      "test_spec_schema_version": "1.3",
+      "tests_file": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\Pipeline Versions\\NL_Flow_Diagram_Encoder_Pipeline_v4_34\\NL_Flow_Diagram_Encoder_Pipeline_v4_34\\study data\\common tests v1.2\\Algorithm - 43\\Algorithm 43 Tests.json",
+      "semantic_contract": {
+        "contract_version": "1.2",
+        "contract_source": "ORIGINAL_TASK_SPECIFICATION",
+        "task_statement": "Solve the Tower of Hanoi problem for N discs.",
+        "inputs": [
+          {
+            "position": 1,
+            "name": "n",
+            "type": "POSITIVE_INTEGER"
+          }
+        ],
+        "result": {
+          "type": "HANOI_MOVE_SEQUENCE",
+          "canonical_semantics": "Legal minimal Tower-of-Hanoi move sequence from A to C using B."
+        },
+        "automation_status": "AUTOMATED_FUNCTION",
+        "parameter_names_are_semantically_irrelevant": true,
+        "derived_parameters_may_be_supplied_by_adapter": true,
+        "baseline_fixture_source": "Algorithm 43 Baseline Python code.txt",
+        "baseline_source_sha256": "8fc5ac02d28623ba2ee4571302aa545001820414eaca92bbc9928fb592f5eb06",
+        "oracle_policy": "The original task defines the semantic result where determinate; the frozen trusted baseline supplies concrete fixtures and resolves deterministic task-policy details where the task statement is underspecified. Experimental/model output never defines its own oracle.",
+        "human_review_instruction": "Judge the original model pseudocode against this task-semantic contract even when automated execution is NOT_EVALUABLE."
+      },
+      "semantic_test_count": 3,
+      "interaction_or_reference_only_test_count": 1,
+      "declared_evidence_adequacy": "ADEQUATE",
+      "declared_evidence_summary": "This suite provides comparatively broad behavioural evidence using 4 predefined common behavioural tests, with covered normal-path behaviour and partial branch, boundary, error evidence.",
+      "declared_coverage_dimensions": {
+        "normal_path": "COVERED",
+        "branch_behaviour": "PARTIALLY_COVERED",
+        "boundary_behaviour": "PARTIALLY_COVERED",
+        "error_behaviour": "PARTIALLY_COVERED",
+        "termination_behaviour": "NOT_COVERED",
+        "state_mutation": "NOT_COVERED"
+      },
+      "coverage_basis": "Assessment is based on the 4 predefined common behavioural tests, the behaviours exposed by the frozen program interface, and the declared coverage dimensions: normal path, branch behaviour, boundary behaviour, error behaviour.",
+      "interpretation_guidance": "Interpret behavioural accuracy as comparatively broad evidence across the declared exercised behaviours, while not treating the result as exhaustive proof for all possible inputs and states.",
+      "coverage_limitations": [],
+      "manual_review_targets": [],
+      "requires_pipeline_features": [],
+      "test_count": 4,
+      "category_counts": {
+        "BOUNDARY": 1,
+        "BRANCH": 1,
+        "ERROR_BEHAVIOUR": 1,
+        "NORMAL": 1
+      },
+      "criteria_link_counts": {
+        "P2": 4,
+        "P3": 2,
+        "P4": 4
+      },
+      "seeded_test_count": 0,
+      "environment_controlled_test_count": 0,
+      "has_normal_or_branch_test": true,
+      "has_boundary_error_or_termination_test": true,
+      "has_state_mutation_test": false
+    },
+    "human_assessment": {
+      "completed": false,
+      "result": null,
+      "agreement_with_automated_result": null,
+      "reviewer_justification": null
+    },
+    "summary": "This suite provides comparatively broad behavioural evidence using 4 predefined common behavioural tests, with covered normal-path behaviour and partial branch, boundary, error evidence. Runtime evidence: 4 of 4 declared test(s) were evaluable and 0 passed.",
+    "test_counts": {
+      "declared": 4,
+      "evaluable": 4,
+      "passed": 0,
+      "failed": 4,
+      "not_evaluable": 0
+    },
+    "coverage_dimensions": {
+      "normal_path": {
+        "label": "Normal-path coverage",
+        "status": "COVERED",
+        "tests_declared": 1,
+        "tests_evaluable": 0,
+        "tests_passed": 0,
+        "evidence": "1 NORMAL test(s) are declared, but none were evaluable in this run."
+      },
+      "branch_behaviour": {
+        "label": "Branch coverage",
+        "status": "PARTIALLY_COVERED",
+        "tests_declared": 1,
+        "tests_evaluable": 0,
+        "tests_passed": 0,
+        "evidence": "1 BRANCH test(s) are declared, but none were evaluable in this run."
+      },
+      "boundary_behaviour": {
+        "label": "Boundary coverage",
+        "status": "PARTIALLY_COVERED",
+        "tests_declared": 1,
+        "tests_evaluable": 0,
+        "tests_passed": 0,
+        "evidence": "1 BOUNDARY test(s) are declared, but none were evaluable in this run."
+      },
+      "error_behaviour": {
+        "label": "Error-behaviour coverage",
+        "status": "PARTIALLY_COVERED",
+        "tests_declared": 1,
+        "tests_evaluable": 0,
+        "tests_passed": 0,
+        "evidence": "1 ERROR_BEHAVIOUR test(s) are declared, but none were evaluable in this run."
+      },
+      "termination_behaviour": {
+        "label": "Termination coverage",
+        "status": "NOT_COVERED",
+        "tests_declared": 0,
+        "tests_evaluable": 0,
+        "tests_passed": 0,
+        "evidence": "No TERMINATION test is declared in the common suite."
+      },
+      "state_mutation": {
+        "label": "State-mutation coverage",
+        "status": "NOT_COVERED",
+        "tests_declared": 0,
+        "tests_evaluable": 0,
+        "tests_passed": 0,
+        "evidence": "No STATE_MUTATION test is declared in the common suite."
+      }
+    },
+    "strengths": [
+      "The suite provides direct behavioural evidence for normal-path coverage.",
+      "The suite provides some evidence for branch coverage, boundary coverage, error-behaviour coverage, although coverage is incomplete.",
+      "0 of 4 evaluable behavioural test(s) passed in this run."
+    ],
+    "limitations": [
+      "No direct common-test evidence is declared for: Termination coverage, State-mutation coverage."
+    ],
+    "coverage_basis": "Assessment is based on the 4 predefined common behavioural tests, the behaviours exposed by the frozen program interface, and the declared coverage dimensions: normal path, branch behaviour, boundary behaviour, error behaviour.",
+    "manual_review_targets": [],
+    "reproducibility": {
+      "seeded_test_count": 0,
+      "environment_controlled_test_count": 0
+    }
+  },
+  "stages": {
+    "canonicalisation": {
+      "stage_id": "C",
+      "stage_name": "Pseudocode Canonicalisation",
+      "stage_description": "Measures whether conversion from the source pseudocode to canonical AJ preserves the supplied algorithm semantics.",
+      "criteria": [
+        {
+          "criterion_id": "C1",
+          "question": "Does the canonical pseudocode conform to the AJ grammar sufficiently for deterministic interpretation by the next pipeline stage?",
+          "maximum_score": 2,
+          "critical_semantic_criterion": false,
+          "automated_assessment": {
+            "score": 2,
+            "status": "PASS",
+            "confidence": "HIGH",
+            "justification": "Canonical AJ completed syntax/static validation and produced an AST.",
+            "scoring_method": {
+              "type": "AUTOMATED",
+              "rule_id": "CANON_PARSE_SUCCESS_001"
+            }
+          },
+          "evidence": [
+            {
+              "artifact": "parser_report.json",
+              "observed_value": "SUCCESS"
+            }
+          ],
+          "human_assessment": {
+            "completed": false,
+            "score": null,
+            "agreement_with_automated_score": null,
+            "semantic_issue": null,
+            "reviewer_justification": null
+          }
+        },
+        {
+          "criterion_id": "C2",
+          "question": "Are all semantically relevant operations from the source pseudocode preserved in the canonical representation with equivalent meaning?",
+          "maximum_score": 2,
+          "critical_semantic_criterion": true,
+          "automated_assessment": {
+            "score": 2,
+            "status": "PASS",
+            "confidence": "HIGH",
+            "justification": "All logged transformations are from audited evidence categories and none declares a semantic change.",
+            "scoring_method": {
+              "type": "AUTOMATED",
+              "rule_id": "CANON_OPERATION_PRESERVATION_001"
+            }
+          },
+          "evidence": [
+            {
+              "artifact": "pseudocode_processing_report.json",
+              "transformation_count": 9,
+              "semantic_change_count": 0,
+              "uncertain_transformation_count": 0,
+              "rule_families": [
+                "SOURCE_NORMALISATION"
+              ]
+            }
+          ],
+          "human_assessment": {
+            "completed": false,
+            "score": null,
+            "agreement_with_automated_score": null,
+            "semantic_issue": null,
+            "reviewer_justification": null
+          }
+        },
+        {
+          "criterion_id": "C3",
+          "question": "Are conditions, branches, loop bounds, iteration behaviour, state changes and termination behaviour preserved from the source?",
+          "maximum_score": 2,
+          "critical_semantic_criterion": true,
+          "automated_assessment": {
+            "score": 2,
+            "status": "PASS",
+            "confidence": "HIGH",
+            "justification": "No logged transformation declares a change to control/state semantics; all transformations have accepted audit evidence.",
+            "scoring_method": {
+              "type": "AUTOMATED",
+              "rule_id": "CANON_CONTROL_STATE_001"
+            }
+          },
+          "evidence": [
+            {
+              "artifact": "pseudocode_processing_report.json",
+              "transformation_count": 9,
+              "semantic_change_count": 0,
+              "uncertain_transformation_count": 0,
+              "rule_families": [
+                "SOURCE_NORMALISATION"
+              ]
+            }
+          ],
+          "human_assessment": {
+            "completed": false,
+            "score": null,
+            "agreement_with_automated_score": null,
+            "semantic_issue": null,
+            "reviewer_justification": null
+          }
+        },
+        {
+          "criterion_id": "C4",
+          "question": "Has canonicalisation avoided introducing algorithmic behaviour that was not explicitly supported by the source?",
+          "maximum_score": 2,
+          "critical_semantic_criterion": true,
+          "automated_assessment": {
+            "score": 2,
+            "status": "PASS",
+            "confidence": "HIGH",
+            "justification": "No transformation is marked as semantic-changing and all transformations use accepted audit-evidence categories.",
+            "scoring_method": {
+              "type": "AUTOMATED",
+              "rule_id": "CANON_NO_INVENTION_001"
+            }
+          },
+          "evidence": [
+            {
+              "artifact": "pseudocode_processing_report.json",
+              "transformation_count": 9,
+              "semantic_change_count": 0,
+              "uncertain_transformation_count": 0,
+              "rule_families": [
+                "SOURCE_NORMALISATION"
+              ]
+            }
+          ],
+          "human_assessment": {
+            "completed": false,
+            "score": null,
+            "agreement_with_automated_score": null,
+            "semantic_issue": null,
+            "reviewer_justification": null
+          }
+        }
+      ],
+      "stage_summary": {
+        "score_obtained": 8,
+        "maximum_applicable_score": 8,
+        "percentage": 100.0,
+        "semantic_failure": false,
+        "review_required": false,
+        "status": "PASS"
+      }
+    },
+    "ast": {
+      "stage_id": "A",
+      "stage_name": "AST Semantic Alignment",
+      "stage_description": "Measures whether the abstract syntax tree faithfully represents the canonical AJ program.",
+      "criteria": [
+        {
+          "criterion_id": "A1",
+          "question": "Does every semantically relevant construct in the canonical pseudocode have an appropriate AST representation without missing or spurious executable nodes?",
+          "maximum_score": 2,
+          "critical_semantic_criterion": false,
+          "automated_assessment": {
+            "score": 2,
+            "status": "PASS",
+            "confidence": "HIGH",
+            "justification": "The parser produced a complete adjacency AST after syntax and static-semantic analysis.",
+            "scoring_method": {
+              "type": "AUTOMATED",
+              "rule_id": "AST_CONSTRUCT_CORRESPONDENCE_001"
+            }
+          },
+          "evidence": [
+            {
+              "artifact": "parser_report.json",
+              "parser_success": true,
+              "static_semantic_status": "SUCCESS",
+              "warning_count": 0
+            },
+            {
+              "artifact": "ast.json",
+              "node_count": 47,
+              "operator_multiset": {
+                "+": 8,
+                "-": 2,
+                "==": 1
+              }
+            }
+          ],
+          "human_assessment": {
+            "completed": false,
+            "score": null,
+            "agreement_with_automated_score": null,
+            "semantic_issue": null,
+            "reviewer_justification": null
+          }
+        },
+        {
+          "criterion_id": "A2",
+          "question": "Does the AST correctly represent the operands, operators, literals, indexing, collection access and call relationships of the canonical pseudocode?",
+          "maximum_score": 2,
+          "critical_semantic_criterion": true,
+          "automated_assessment": {
+            "score": 2,
+            "status": "PASS",
+            "confidence": "MEDIUM",
+            "justification": "Operator/literal relationships were accepted by syntax and static-semantic analysis. No semantic warnings were reported.",
+            "scoring_method": {
+              "type": "AUTOMATED",
+              "rule_id": "AST_EXPRESSION_ALIGNMENT_001"
+            }
+          },
+          "evidence": [
+            {
+              "artifact": "parser_report.json",
+              "parser_success": true,
+              "static_semantic_status": "SUCCESS",
+              "warning_count": 0
+            },
+            {
+              "artifact": "ast.json",
+              "node_count": 47,
+              "operator_multiset": {
+                "+": 8,
+                "-": 2,
+                "==": 1
+              }
+            }
+          ],
+          "human_assessment": {
+            "completed": false,
+            "score": null,
+            "agreement_with_automated_score": null,
+            "semantic_issue": null,
+            "reviewer_justification": null
+          }
+        },
+        {
+          "criterion_id": "A3",
+          "question": "Are branch relationships, loop bodies, returns, loop-control operations, variable scope and nested declarations represented in the correct structural context?",
+          "maximum_score": 2,
+          "critical_semantic_criterion": true,
+          "automated_assessment": {
+            "score": 2,
+            "status": "PASS",
+            "confidence": "MEDIUM",
+            "justification": "Control/scope relationships passed parser static-semantic analysis. No semantic warnings were reported.",
+            "scoring_method": {
+              "type": "AUTOMATED",
+              "rule_id": "AST_CONTROL_SCOPE_001"
+            }
+          },
+          "evidence": [
+            {
+              "artifact": "parser_report.json",
+              "parser_success": true,
+              "static_semantic_status": "SUCCESS",
+              "warning_count": 0
+            },
+            {
+              "artifact": "ast.json",
+              "node_count": 47,
+              "operator_multiset": {
+                "+": 8,
+                "-": 2,
+                "==": 1
+              }
+            }
+          ],
+          "human_assessment": {
+            "completed": false,
+            "score": null,
+            "agreement_with_automated_score": null,
+            "semantic_issue": null,
+            "reviewer_justification": null
+          }
+        },
+        {
+          "criterion_id": "A4",
+          "question": "If the AST were interpreted directly, would it permit the same observable algorithmic behaviour as the canonical pseudocode?",
+          "maximum_score": 2,
+          "critical_semantic_criterion": true,
+          "automated_assessment": {
+            "score": 2,
+            "status": "PASS",
+            "confidence": "MEDIUM",
+            "justification": "The canonical program was accepted as a semantically valid AST by the parser. This automated judgement is retained for human verification rather than treated as an independent proof.",
+            "scoring_method": {
+              "type": "AUTOMATED",
+              "rule_id": "AST_SEMANTIC_EQUIVALENCE_001"
+            }
+          },
+          "evidence": [
+            {
+              "artifact": "parser_report.json",
+              "parser_success": true,
+              "static_semantic_status": "SUCCESS",
+              "warning_count": 0
+            },
+            {
+              "artifact": "ast.json",
+              "node_count": 47,
+              "operator_multiset": {
+                "+": 8,
+                "-": 2,
+                "==": 1
+              }
+            }
+          ],
+          "human_assessment": {
+            "completed": false,
+            "score": null,
+            "agreement_with_automated_score": null,
+            "semantic_issue": null,
+            "reviewer_justification": null
+          }
+        }
+      ],
+      "stage_summary": {
+        "score_obtained": 8,
+        "maximum_applicable_score": 8,
+        "percentage": 100.0,
+        "semantic_failure": false,
+        "review_required": false,
+        "status": "PASS"
+      }
+    },
+    "flow_diagram": {
+      "stage_id": "F",
+      "stage_name": "Flow Diagram Logical Structure",
+      "stage_description": "Measures whether the generated flow representation preserves the AST's executable control structure.",
+      "criteria": [
+        {
+          "criterion_id": "F1",
+          "question": "Are all semantically relevant actions, decisions, entry/exit points and returns represented in the flow diagram?",
+          "maximum_score": 2,
+          "critical_semantic_criterion": false,
+          "automated_assessment": {
+            "score": 2,
+            "status": "PASS",
+            "confidence": "HIGH",
+            "justification": "Every executable AST construct has a corresponding visual flow node count.",
+            "scoring_method": {
+              "type": "AUTOMATED",
+              "rule_id": "FLOW_NODE_COMPLETENESS_001"
+            }
+          },
+          "evidence": [
+            {
+              "artifact": "flow_diagram.json",
+              "expected_executable_ast_counts": {
+                "CallNode": 2,
+                "FunctionNode": 1,
+                "IfNode": 1,
+                "OutputNode": 2,
+                "ReturnNode": 1
+              },
+              "visual_flow_ast_counts": {
+                "CallNode": 2,
+                "FunctionNode": 1,
+                "IfNode": 1,
+                "OutputNode": 2,
+                "ReturnNode": 1
+              },
+              "graph_validation": {
+                "valid": true,
+                "issues": [],
+                "warnings": [],
+                "node_count": 9,
+                "edge_count": 9,
+                "decision_node_count": 1,
+                "loop_decision_count": 0,
+                "loop_back_edge_count": 0,
+                "unreachable_nodes": []
+              }
+            },
+            {
+              "artifact": "ast.json + flow_diagram.json:structured_program",
+              "signature_comparison": {
+                "equivalent": true,
+                "review_required": false,
+                "differences": []
+              }
+            }
+          ],
+          "human_assessment": {
+            "completed": false,
+            "score": null,
+            "agreement_with_automated_score": null,
+            "semantic_issue": null,
+            "reviewer_justification": null
+          }
+        },
+        {
+          "criterion_id": "F2",
+          "question": "Do the diagram connections correctly represent execution sequence, branch destinations, loop-back edges and exit paths?",
+          "maximum_score": 2,
+          "critical_semantic_criterion": true,
+          "automated_assessment": {
+            "score": 2,
+            "status": "PASS",
+            "confidence": "HIGH",
+            "justification": "Flow graph entry/exit, edge references, decision out-degree and loop routing invariants passed.",
+            "scoring_method": {
+              "type": "AUTOMATED",
+              "rule_id": "FLOW_EDGE_CORRECTNESS_001"
+            }
+          },
+          "evidence": [
+            {
+              "artifact": "flow_diagram.json",
+              "expected_executable_ast_counts": {
+                "CallNode": 2,
+                "FunctionNode": 1,
+                "IfNode": 1,
+                "OutputNode": 2,
+                "ReturnNode": 1
+              },
+              "visual_flow_ast_counts": {
+                "CallNode": 2,
+                "FunctionNode": 1,
+                "IfNode": 1,
+                "OutputNode": 2,
+                "ReturnNode": 1
+              },
+              "graph_validation": {
+                "valid": true,
+                "issues": [],
+                "warnings": [],
+                "node_count": 9,
+                "edge_count": 9,
+                "decision_node_count": 1,
+                "loop_decision_count": 0,
+                "loop_back_edge_count": 0,
+                "unreachable_nodes": []
+              }
+            },
+            {
+              "artifact": "ast.json + flow_diagram.json:structured_program",
+              "signature_comparison": {
+                "equivalent": true,
+                "review_required": false,
+                "differences": []
+              }
+            }
+          ],
+          "human_assessment": {
+            "completed": false,
+            "score": null,
+            "agreement_with_automated_score": null,
+            "semantic_issue": null,
+            "reviewer_justification": null
+          }
+        },
+        {
+          "criterion_id": "F3",
+          "question": "For every meaningful execution path represented by the AST, is there a corresponding path through the flow diagram without additional semantically unsupported paths?",
+          "maximum_score": 2,
+          "critical_semantic_criterion": true,
+          "automated_assessment": {
+            "score": 2,
+            "status": "PASS",
+            "confidence": "HIGH",
+            "justification": "The flow structured-program signature exactly matches the AST and graph invariants pass.",
+            "scoring_method": {
+              "type": "AUTOMATED",
+              "rule_id": "FLOW_PATH_EQUIVALENCE_001"
+            }
+          },
+          "evidence": [
+            {
+              "artifact": "flow_diagram.json",
+              "expected_executable_ast_counts": {
+                "CallNode": 2,
+                "FunctionNode": 1,
+                "IfNode": 1,
+                "OutputNode": 2,
+                "ReturnNode": 1
+              },
+              "visual_flow_ast_counts": {
+                "CallNode": 2,
+                "FunctionNode": 1,
+                "IfNode": 1,
+                "OutputNode": 2,
+                "ReturnNode": 1
+              },
+              "graph_validation": {
+                "valid": true,
+                "issues": [],
+                "warnings": [],
+                "node_count": 9,
+                "edge_count": 9,
+                "decision_node_count": 1,
+                "loop_decision_count": 0,
+                "loop_back_edge_count": 0,
+                "unreachable_nodes": []
+              }
+            },
+            {
+              "artifact": "ast.json + flow_diagram.json:structured_program",
+              "signature_comparison": {
+                "equivalent": true,
+                "review_required": false,
+                "differences": []
+              }
+            }
+          ],
+          "human_assessment": {
+            "completed": false,
+            "score": null,
+            "agreement_with_automated_score": null,
+            "semantic_issue": null,
+            "reviewer_justification": null
+          }
+        },
+        {
+          "criterion_id": "F4",
+          "question": "Do decision conditions, TRUE/FALSE routing, loop-entry conditions and loop-termination behaviour preserve the logic represented by the AST?",
+          "maximum_score": 2,
+          "critical_semantic_criterion": true,
+          "automated_assessment": {
+            "score": 2,
+            "status": "PASS",
+            "confidence": "HIGH",
+            "justification": "Structured AST contains 1 control decision(s); flow graph contains 1 decision node(s). Decision routing invariants passed.",
+            "scoring_method": {
+              "type": "AUTOMATED",
+              "rule_id": "FLOW_DECISION_FIDELITY_001"
+            }
+          },
+          "evidence": [
+            {
+              "artifact": "flow_diagram.json",
+              "expected_executable_ast_counts": {
+                "CallNode": 2,
+                "FunctionNode": 1,
+                "IfNode": 1,
+                "OutputNode": 2,
+                "ReturnNode": 1
+              },
+              "visual_flow_ast_counts": {
+                "CallNode": 2,
+                "FunctionNode": 1,
+                "IfNode": 1,
+                "OutputNode": 2,
+                "ReturnNode": 1
+              },
+              "graph_validation": {
+                "valid": true,
+                "issues": [],
+                "warnings": [],
+                "node_count": 9,
+                "edge_count": 9,
+                "decision_node_count": 1,
+                "loop_decision_count": 0,
+                "loop_back_edge_count": 0,
+                "unreachable_nodes": []
+              }
+            },
+            {
+              "artifact": "ast.json + flow_diagram.json:structured_program",
+              "signature_comparison": {
+                "equivalent": true,
+                "review_required": false,
+                "differences": []
+              }
+            }
+          ],
+          "human_assessment": {
+            "completed": false,
+            "score": null,
+            "agreement_with_automated_score": null,
+            "semantic_issue": null,
+            "reviewer_justification": null
+          }
+        }
+      ],
+      "stage_summary": {
+        "score_obtained": 8,
+        "maximum_applicable_score": 8,
+        "percentage": 100.0,
+        "semantic_failure": false,
+        "review_required": false,
+        "status": "PASS"
+      }
+    },
+    "python": {
+      "stage_id": "P",
+      "stage_name": "Generated Python Correctness",
+      "stage_description": "Measures whether generated Python is executable and behaviourally/semantically faithful to the represented algorithm.",
+      "criteria": [
+        {
+          "criterion_id": "P1",
+          "question": "Is the generated Python syntactically valid and executable for inputs valid under the source algorithm's assumptions?",
+          "maximum_score": 2,
+          "critical_semantic_criterion": false,
+          "automated_assessment": {
+            "score": 2,
+            "status": "PASS",
+            "confidence": "HIGH",
+            "justification": "Python source was generated and syntax-validated by the compiler.",
+            "scoring_method": {
+              "type": "AUTOMATED",
+              "rule_id": "PY_EXECUTABILITY_001"
+            }
+          },
+          "evidence": [
+            {
+              "artifact": "compilation_report.json",
+              "status": "SUCCESS"
+            }
+          ],
+          "human_assessment": {
+            "completed": false,
+            "score": null,
+            "agreement_with_automated_score": null,
+            "semantic_issue": null,
+            "reviewer_justification": null
+          }
+        },
+        {
+          "criterion_id": "P2",
+          "question": "Does the generated Python produce the expected outputs and observable state changes across the predefined behavioural tests?",
+          "maximum_score": 2,
+          "critical_semantic_criterion": true,
+          "automated_assessment": {
+            "score": null,
+            "status": "NOT_EVALUABLE",
+            "confidence": "HIGH",
+            "justification": "No behavioural tests were executed for this algorithm.",
+            "scoring_method": {
+              "type": "AUTOMATED",
+              "rule_id": "PY_FUNCTIONAL_TESTS_NA_001"
+            }
+          },
+          "evidence": [],
+          "human_assessment": {
+            "completed": false,
+            "score": null,
+            "agreement_with_automated_score": null,
+            "semantic_issue": null,
+            "reviewer_justification": null
+          }
+        },
+        {
+          "criterion_id": "P3",
+          "question": "Does the generated Python preserve source-defined boundary behaviour, termination behaviour, returns and errors?",
+          "maximum_score": 2,
+          "critical_semantic_criterion": true,
+          "automated_assessment": {
+            "score": null,
+            "status": "NOT_EVALUABLE",
+            "confidence": "HIGH",
+            "justification": "No tests are tagged BOUNDARY, ERROR_BEHAVIOUR or TERMINATION, so boundary/error/termination preservation cannot be scored automatically.",
+            "scoring_method": {
+              "type": "AUTOMATED",
+              "rule_id": "PY_BOUNDARY_ERROR_NA_001"
+            }
+          },
+          "evidence": [],
+          "human_assessment": {
+            "completed": false,
+            "score": null,
+            "agreement_with_automated_score": null,
+            "semantic_issue": null,
+            "reviewer_justification": null
+          }
+        },
+        {
+          "criterion_id": "P4",
+          "question": "Does the generated Python preserve the algorithm's control flow, state changes, data-structure effects and observable behaviour without introducing or removing meaningful behaviour?",
+          "maximum_score": 2,
+          "critical_semantic_criterion": true,
+          "automated_assessment": {
+            "score": 1,
+            "status": "REVIEW_REQUIRED",
+            "confidence": "LOW",
+            "justification": "Python compilation succeeded, but no behavioural oracle was executed; full source-target semantic preservation requires human review.",
+            "scoring_method": {
+              "type": "AUTOMATED",
+              "rule_id": "PY_SEMANTIC_PRESERVATION_NO_TESTS_001"
+            }
+          },
+          "evidence": [
+            {
+              "artifact": "compilation_report.json",
+              "status": "SUCCESS"
+            }
+          ],
+          "human_assessment": {
+            "completed": false,
+            "score": null,
+            "agreement_with_automated_score": null,
+            "semantic_issue": null,
+            "reviewer_justification": null
+          }
+        }
+      ],
+      "stage_summary": {
+        "score_obtained": 3,
+        "maximum_applicable_score": 4,
+        "percentage": 75.0,
+        "semantic_failure": false,
+        "review_required": true,
+        "status": "REVIEW_REQUIRED"
+      }
+    }
+  },
+  "behavioural_testing": {
+    "tests_total": 0,
+    "tests_passed": 0,
+    "tests_failed": 0,
+    "accuracy_percentage": null,
+    "complete_correctness": null,
+    "category_metrics": {},
+    "criteria_link_metrics": {},
+    "evidence_adequacy": "ADEQUATE",
+    "observation_mode": "TASK_SEMANTIC_FUNCTION",
+    "semantic_contract_version": "1.2",
+    "semantic_tests_not_evaluable": 4
+  },
+  "semantic_contract": {
+    "contract_version": "1.2",
+    "contract_source": "ORIGINAL_TASK_SPECIFICATION",
+    "task_statement": "Solve the Tower of Hanoi problem for N discs.",
+    "inputs": [
+      {
+        "position": 1,
+        "name": "n",
+        "type": "POSITIVE_INTEGER"
+      }
+    ],
+    "result": {
+      "type": "HANOI_MOVE_SEQUENCE",
+      "canonical_semantics": "Legal minimal Tower-of-Hanoi move sequence from A to C using B."
+    },
+    "automation_status": "AUTOMATED_FUNCTION",
+    "parameter_names_are_semantically_irrelevant": true,
+    "derived_parameters_may_be_supplied_by_adapter": true,
+    "baseline_fixture_source": "Algorithm 43 Baseline Python code.txt",
+    "baseline_source_sha256": "8fc5ac02d28623ba2ee4571302aa545001820414eaca92bbc9928fb592f5eb06",
+    "oracle_policy": "The original task defines the semantic result where determinate; the frozen trusted baseline supplies concrete fixtures and resolves deterministic task-policy details where the task statement is underspecified. Experimental/model output never defines its own oracle.",
+    "human_review_instruction": "Judge the original model pseudocode against this task-semantic contract even when automated execution is NOT_EVALUABLE."
+  },
+  "semantic_behavioural_evidence": {
+    "semantic_report_schema_version": "1.0",
+    "program_path": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Claude sonnet 4.6\\Results\\Algorithm - 43\\pipeline_artifacts\\generated_program.py",
+    "algorithm_id": 43,
+    "contract_version": "1.2",
+    "evaluable_tests": 0,
+    "passed_tests": 0,
+    "failed_tests": 0,
+    "not_evaluable_tests": 4,
+    "accuracy_percentage": null,
+    "results": [
+      {
+        "name": "one disc",
+        "status": "NOT_EVALUABLE",
+        "expected_semantic_result": [
+          [
+            "A",
+            "C"
+          ]
+        ],
+        "actual_semantic_result": null,
+        "semantic_match": null,
+        "reason": "No unambiguous task entrypoint function could be identified.",
+        "duration_ms": 107.315,
+        "category": "BOUNDARY",
+        "semantic_feature": "HANOI_SINGLE_DISC",
+        "fixture_source": "COMMON_TEST_STANDARD_INPUT",
+        "oracle_source": "TASK_SEMANTIC_ORACLE_WITH_FROZEN_BASELINE_REFERENCE",
+        "selected_entrypoint": null,
+        "invocation_capture": {
+          "status": "NOT_EVALUABLE",
+          "reason": "No unambiguous task entrypoint function could be identified.",
+          "top_level_functions": [
+            "hanoi"
+          ]
+        }
+      },
+      {
+        "name": "two discs even branch",
+        "status": "NOT_EVALUABLE",
+        "expected_semantic_result": [
+          [
+            "A",
+            "B"
+          ],
+          [
+            "A",
+            "C"
+          ],
+          [
+            "B",
+            "C"
+          ]
+        ],
+        "actual_semantic_result": null,
+        "semantic_match": null,
+        "reason": "No unambiguous task entrypoint function could be identified.",
+        "duration_ms": 92.555,
+        "category": "BRANCH",
+        "semantic_feature": "HANOI_EVEN_DISC_TARGET_SWAP",
+        "fixture_source": "COMMON_TEST_STANDARD_INPUT",
+        "oracle_source": "TASK_SEMANTIC_ORACLE_WITH_FROZEN_BASELINE_REFERENCE",
+        "selected_entrypoint": null,
+        "invocation_capture": {
+          "status": "NOT_EVALUABLE",
+          "reason": "No unambiguous task entrypoint function could be identified.",
+          "top_level_functions": [
+            "hanoi"
+          ]
+        }
+      },
+      {
+        "name": "three discs odd branch",
+        "status": "NOT_EVALUABLE",
+        "expected_semantic_result": [
+          [
+            "A",
+            "C"
+          ],
+          [
+            "A",
+            "B"
+          ],
+          [
+            "C",
+            "B"
+          ],
+          [
+            "A",
+            "C"
+          ],
+          [
+            "B",
+            "A"
+          ],
+          [
+            "B",
+            "C"
+          ],
+          [
+            "A",
+            "C"
+          ]
+        ],
+        "actual_semantic_result": null,
+        "semantic_match": null,
+        "reason": "No unambiguous task entrypoint function could be identified.",
+        "duration_ms": 91.451,
+        "category": "NORMAL",
+        "semantic_feature": "HANOI_ODD_DISC_SEQUENCE",
+        "fixture_source": "COMMON_TEST_STANDARD_INPUT",
+        "oracle_source": "TASK_SEMANTIC_ORACLE_WITH_FROZEN_BASELINE_REFERENCE",
+        "selected_entrypoint": null,
+        "invocation_capture": {
+          "status": "NOT_EVALUABLE",
+          "reason": "No unambiguous task entrypoint function could be identified.",
+          "top_level_functions": [
+            "hanoi"
+          ]
+        }
+      },
+      {
+        "name": "invalid input retries",
+        "status": "NOT_EVALUABLE",
+        "expected_semantic_result": null,
+        "actual_semantic_result": null,
+        "semantic_match": null,
+        "reason": "This Common Test remains interaction/reference evidence and is not a canonical task-function test.",
+        "duration_ms": null,
+        "category": "ERROR_BEHAVIOUR",
+        "semantic_feature": "HANOI_INTEGER_INPUT_RETRY",
+        "fixture_source": null,
+        "oracle_source": null,
+        "selected_entrypoint": null,
+        "invocation_capture": null
+      }
+    ]
+  },
+  "benchmark": {
+    "comparison_schema_version": "1.1",
+    "comparison_role": "EXPERIMENTAL_SEMANTIC_VS_PIPELINE_CALIBRATION",
+    "is_baseline": false,
+    "reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 43\\Algorithm 43 Baseline Python code.txt",
+    "tests_file": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\Pipeline Versions\\NL_Flow_Diagram_Encoder_Pipeline_v4_34\\NL_Flow_Diagram_Encoder_Pipeline_v4_34\\study data\\common tests v1.2\\Algorithm - 43\\Algorithm 43 Tests.json",
+    "common_test_set": true,
+    "baseline_reference_validation": {
+      "validation_schema_version": "1.0",
+      "reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 43\\Algorithm 43 Baseline Python code.txt",
+      "reference_source_preparation": {
+        "reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 43\\Algorithm 43 Baseline Python code.txt",
+        "raw_sha256": "a776f24f5ea5a85a43f333169fea161b1d50342883fcec81ba29d413d1280c4a",
+        "raw_syntax_valid": false,
+        "execution_syntax_valid": true,
+        "normalisation_applied": true,
+        "normalisation_rule": "COMMENT_MATCHED_TEST_SUITE_ALGORITHM_TITLE",
+        "raw_syntax_error": "invalid syntax (<unknown>, line 1)",
+        "normalised_line_number": 1,
+        "declared_algorithm_title": "Solve the Tower of Hanoi problem for N Discs",
+        "reference_heading": "Solve the Tower of Hanoi problem for N Discs",
+        "execution_sha256": "64a61c0ef16117159d5c0c31172ce859f5eb406ca0494bbe0d2c1bdd4e188693"
+      },
+      "status": "TRUSTED_REFERENCE",
+      "reason": "No independent expected outcomes are present. The frozen baseline Python is accepted as the trusted behavioural reference by the study design; this is not an independent validation claim.",
+      "explicit_tests_total": 0,
+      "tests": []
+    },
+    "baseline_calibration_status": "EVALUATED",
+    "baseline_calibration_score_percentage": 100.0,
+    "experimental_behavioural_score_percentage": null,
+    "experimental_tests_total": 0,
+    "experimental_tests_passed": 0,
+    "experimental_observation_mode": "TASK_SEMANTIC_FUNCTION",
+    "semantic_test_report": {
+      "semantic_report_schema_version": "1.0",
+      "program_path": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Claude sonnet 4.6\\Results\\Algorithm - 43\\pipeline_artifacts\\generated_program.py",
+      "algorithm_id": 43,
+      "contract_version": "1.2",
+      "evaluable_tests": 0,
+      "passed_tests": 0,
+      "failed_tests": 0,
+      "not_evaluable_tests": 4,
+      "accuracy_percentage": null,
+      "results": [
+        {
+          "name": "one disc",
+          "status": "NOT_EVALUABLE",
+          "expected_semantic_result": [
+            [
+              "A",
+              "C"
+            ]
+          ],
+          "actual_semantic_result": null,
+          "semantic_match": null,
+          "reason": "No unambiguous task entrypoint function could be identified.",
+          "duration_ms": 107.315,
+          "category": "BOUNDARY",
+          "semantic_feature": "HANOI_SINGLE_DISC",
+          "fixture_source": "COMMON_TEST_STANDARD_INPUT",
+          "oracle_source": "TASK_SEMANTIC_ORACLE_WITH_FROZEN_BASELINE_REFERENCE",
+          "selected_entrypoint": null,
+          "invocation_capture": {
+            "status": "NOT_EVALUABLE",
+            "reason": "No unambiguous task entrypoint function could be identified.",
+            "top_level_functions": [
+              "hanoi"
+            ]
+          }
+        },
+        {
+          "name": "two discs even branch",
+          "status": "NOT_EVALUABLE",
+          "expected_semantic_result": [
+            [
+              "A",
+              "B"
+            ],
+            [
+              "A",
+              "C"
+            ],
+            [
+              "B",
+              "C"
+            ]
+          ],
+          "actual_semantic_result": null,
+          "semantic_match": null,
+          "reason": "No unambiguous task entrypoint function could be identified.",
+          "duration_ms": 92.555,
+          "category": "BRANCH",
+          "semantic_feature": "HANOI_EVEN_DISC_TARGET_SWAP",
+          "fixture_source": "COMMON_TEST_STANDARD_INPUT",
+          "oracle_source": "TASK_SEMANTIC_ORACLE_WITH_FROZEN_BASELINE_REFERENCE",
+          "selected_entrypoint": null,
+          "invocation_capture": {
+            "status": "NOT_EVALUABLE",
+            "reason": "No unambiguous task entrypoint function could be identified.",
+            "top_level_functions": [
+              "hanoi"
+            ]
+          }
+        },
+        {
+          "name": "three discs odd branch",
+          "status": "NOT_EVALUABLE",
+          "expected_semantic_result": [
+            [
+              "A",
+              "C"
+            ],
+            [
+              "A",
+              "B"
+            ],
+            [
+              "C",
+              "B"
+            ],
+            [
+              "A",
+              "C"
+            ],
+            [
+              "B",
+              "A"
+            ],
+            [
+              "B",
+              "C"
+            ],
+            [
+              "A",
+              "C"
+            ]
+          ],
+          "actual_semantic_result": null,
+          "semantic_match": null,
+          "reason": "No unambiguous task entrypoint function could be identified.",
+          "duration_ms": 91.451,
+          "category": "NORMAL",
+          "semantic_feature": "HANOI_ODD_DISC_SEQUENCE",
+          "fixture_source": "COMMON_TEST_STANDARD_INPUT",
+          "oracle_source": "TASK_SEMANTIC_ORACLE_WITH_FROZEN_BASELINE_REFERENCE",
+          "selected_entrypoint": null,
+          "invocation_capture": {
+            "status": "NOT_EVALUABLE",
+            "reason": "No unambiguous task entrypoint function could be identified.",
+            "top_level_functions": [
+              "hanoi"
+            ]
+          }
+        },
+        {
+          "name": "invalid input retries",
+          "status": "NOT_EVALUABLE",
+          "expected_semantic_result": null,
+          "actual_semantic_result": null,
+          "semantic_match": null,
+          "reason": "This Common Test remains interaction/reference evidence and is not a canonical task-function test.",
+          "duration_ms": null,
+          "category": "ERROR_BEHAVIOUR",
+          "semantic_feature": "HANOI_INTEGER_INPUT_RETRY",
+          "fixture_source": null,
+          "oracle_source": null,
+          "selected_entrypoint": null,
+          "invocation_capture": null
+        }
+      ]
+    },
+    "delta_from_baseline_percentage_points": null,
+    "comparison_to_baseline": "NOT_EVALUABLE",
+    "comparison_status": "NOT_EVALUABLE",
+    "oracle_records": [],
+    "interpretation_note": "The baseline score measures pipeline calibration on frozen baseline pseudocode. The experimental score measures task-semantic correctness using the Common Tests semantic contract and explicit baseline-derived fixtures; legacy PROGRAM/stdout execution is not used as the experimental accuracy metric. The percentage-point delta is descriptive and is not a causal correction or adjusted accuracy score.",
+    "baseline_algorithm_id": 43,
+    "baseline_calibration_run_id": "run-20260905T223739Z-31a34baf",
+    "semantic_contract": {
+      "contract_version": "1.2",
+      "contract_source": "ORIGINAL_TASK_SPECIFICATION",
+      "task_statement": "Solve the Tower of Hanoi problem for N discs.",
+      "inputs": [
+        {
+          "position": 1,
+          "name": "n",
+          "type": "POSITIVE_INTEGER"
+        }
+      ],
+      "result": {
+        "type": "HANOI_MOVE_SEQUENCE",
+        "canonical_semantics": "Legal minimal Tower-of-Hanoi move sequence from A to C using B."
+      },
+      "automation_status": "AUTOMATED_FUNCTION",
+      "parameter_names_are_semantically_irrelevant": true,
+      "derived_parameters_may_be_supplied_by_adapter": true,
+      "baseline_fixture_source": "Algorithm 43 Baseline Python code.txt",
+      "baseline_source_sha256": "8fc5ac02d28623ba2ee4571302aa545001820414eaca92bbc9928fb592f5eb06",
+      "oracle_policy": "The original task defines the semantic result where determinate; the frozen trusted baseline supplies concrete fixtures and resolves deterministic task-policy details where the task statement is underspecified. Experimental/model output never defines its own oracle.",
+      "human_review_instruction": "Judge the original model pseudocode against this task-semantic contract even when automated execution is NOT_EVALUABLE."
+    },
+    "semantic_contract_version": "1.2",
+    "oracle_source": "TASK_SEMANTIC_CONTRACT_V1.2",
+    "baseline_reference_oracle_eligible": true,
+    "oracle_block_reason": null
+  },
+  "derived_metrics": {
+    "pre_flow_stage_percentage": 100.0,
+    "post_flow_stage_percentage": 100.0,
+    "stage_score_difference": 0.0,
+    "stage_score_effect": "NO_CHANGE",
+    "flowchart_delta": 0.0,
+    "flowchart_effect": "NO_CHANGE",
+    "flowchart_delta_note": "Legacy/descriptive difference between the AST and flow-stage rubric percentages; the stages use different questions. Do not interpret this value as a causal accuracy benefit of flowcharts.",
+    "flow_mediation_delta": null,
+    "flow_mediation_effect": "NOT_EVALUABLE",
+    "direct_ast_test_accuracy_percentage": null,
+    "flow_mediated_test_accuracy_percentage": null,
+    "flow_structured_program_matches_direct_ast": true,
+    "direct_vs_flow_python_source_match": true,
+    "flow_mediation_note": "Paired control comparing direct AST-structured compilation with the pipeline flow-structured compilation. This measures machine-readable flow mediation, not accuracy from submitting a rendered flowchart to an LLM.",
+    "first_semantic_loss": null,
+    "failure_taxonomy": null
+  },
+  "complexity": {
+    "cyclomatic_complexity": 2,
+    "decision_count": 1,
+    "loop_count": 0,
+    "maximum_loop_nesting": 0,
+    "ast_executable_nodes": 7,
+    "note": "Cyclomatic complexity is reported as 1 + control-decision count for study stratification."
+  },
+  "review": {
+    "status": "PENDING_HUMAN_REVIEW",
+    "reviewer_id": null,
+    "reviewed_at_utc": null,
+    "overall_reviewer_confidence": null
+  },
+  "score_status": "PROVISIONAL_AUTOMATED",
+  "adjudication": {
+    "human_review_completed": false,
+    "final_score_source": "AUTOMATED",
+    "note": "Use human review artefacts to adjudicate criterion scores before final study analysis."
+  }
+}

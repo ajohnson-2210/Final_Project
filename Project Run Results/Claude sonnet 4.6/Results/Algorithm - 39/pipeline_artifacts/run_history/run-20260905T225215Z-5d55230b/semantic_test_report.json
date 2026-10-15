@@ -1,0 +1,94 @@
+{
+  "semantic_report_schema_version": "1.0",
+  "program_path": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Claude sonnet 4.6\\Results\\Algorithm - 39\\pipeline_artifacts\\generated_program.py",
+  "algorithm_id": 39,
+  "contract_version": "1.2",
+  "evaluable_tests": 1,
+  "passed_tests": 0,
+  "failed_tests": 1,
+  "not_evaluable_tests": 0,
+  "accuracy_percentage": 0.0,
+  "results": [
+    {
+      "name": "default linked-list cycle lifecycle",
+      "status": "FAILED",
+      "expected_semantic_result": true,
+      "actual_semantic_result": {
+        "runtime_errors": [
+          {
+            "type": "AttributeError",
+            "message": "'Obj' object has no attribute 'next'"
+          }
+        ]
+      },
+      "semantic_match": false,
+      "reason": "The task entrypoint raised a runtime error for the semantic fixture.",
+      "duration_ms": 80.825,
+      "category": "STATE_MUTATION",
+      "semantic_feature": "CYCLE_CREATE_DETECT_REMOVE_AND_NO_CYCLE",
+      "fixture_source": "FROZEN_BASELINE_FIXED_INPUT",
+      "oracle_source": "TASK_SEMANTIC_ORACLE_WITH_FROZEN_BASELINE_REFERENCE",
+      "selected_entrypoint": "hasCycle",
+      "invocation_capture": {
+        "status": "ERROR",
+        "selected_entrypoint": "hasCycle",
+        "prints": [],
+        "returns": [
+          null
+        ],
+        "post_arguments": [
+          [
+            {
+              "$object": "Obj",
+              "attrs": {
+                "Value": 10,
+                "Next": {
+                  "$object": "Obj",
+                  "attrs": {
+                    "Value": 20,
+                    "Next": {
+                      "$object": "Obj",
+                      "attrs": {
+                        "Value": 30,
+                        "Next": {
+                          "$object": "Obj",
+                          "attrs": {
+                            "Value": 40,
+                            "Next": {
+                              "$object": "Obj",
+                              "attrs": {
+                                "Value": 50,
+                                "Next": {
+                                  "$object": "Obj",
+                                  "attrs": {
+                                    "Value": {
+                                      "$repr": "60"
+                                    },
+                                    "Next": {
+                                      "$repr": "<__main__.Obj object at 0x000001D62628D640>"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        ],
+        "shared_values": {},
+        "errors": [
+          {
+            "type": "AttributeError",
+            "message": "'Obj' object has no attribute 'next'"
+          }
+        ]
+      }
+    }
+  ]
+}

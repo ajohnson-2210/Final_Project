@@ -1,0 +1,14 @@
+# Queue Using Two Stacks
+
+FUNCTION Queue():
+    stack1 ← [], stack2 ← []
+    
+    FUNCTION enqueue(item):
+        PUSH item ONTO stack1
+    
+    FUNCTION dequeue():
+        IF stack2 is empty THEN
+            WHILE stack1 is not empty:
+                PUSH POP(stack1) ONTO stack2
+        IF stack2 is empty THEN RETURN "Underflow"
+        RETURN POP(stack2)

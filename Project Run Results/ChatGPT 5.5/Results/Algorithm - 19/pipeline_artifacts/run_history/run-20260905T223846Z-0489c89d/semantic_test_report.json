@@ -1,0 +1,58 @@
+{
+  "semantic_report_schema_version": "1.0",
+  "program_path": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\ChatGPT 5.5\\Results\\Algorithm - 19\\pipeline_artifacts\\generated_program.py",
+  "algorithm_id": 19,
+  "contract_version": "1.2",
+  "evaluable_tests": 1,
+  "passed_tests": 0,
+  "failed_tests": 1,
+  "not_evaluable_tests": 0,
+  "accuracy_percentage": 0.0,
+  "results": [
+    {
+      "name": "default mixed-type swap",
+      "status": "FAILED",
+      "expected_semantic_result": [
+        "tree",
+        3
+      ],
+      "actual_semantic_result": {
+        "runtime_errors": [
+          {
+            "type": "TypeError",
+            "message": "unsupported operand type(s) for +: 'int' and 'str'"
+          }
+        ]
+      },
+      "semantic_match": false,
+      "reason": "The task entrypoint raised a runtime error for the semantic fixture.",
+      "duration_ms": 200.097,
+      "category": "BRANCH",
+      "semantic_feature": "MIXED_TYPE_STRING_CAST_SWAP",
+      "fixture_source": "FROZEN_BASELINE_FIXED_INPUT",
+      "oracle_source": "TASK_SEMANTIC_ORACLE_WITH_FROZEN_BASELINE_REFERENCE",
+      "selected_entrypoint": "unnamed_function",
+      "invocation_capture": {
+        "status": "ERROR",
+        "selected_entrypoint": "unnamed_function",
+        "prints": [],
+        "returns": [
+          null
+        ],
+        "post_arguments": [
+          [
+            3,
+            "tree"
+          ]
+        ],
+        "shared_values": {},
+        "errors": [
+          {
+            "type": "TypeError",
+            "message": "unsupported operand type(s) for +: 'int' and 'str'"
+          }
+        ]
+      }
+    }
+  ]
+}

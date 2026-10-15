@@ -1,0 +1,547 @@
+{
+  "format": "NL-FDEP Flow Diagram",
+  "version": "1.0",
+  "entry_node": "F1",
+  "exit_node": "F2",
+  "nodes": {
+    "F1": {
+      "node_id": "F1",
+      "node_type": "START",
+      "label": "Start",
+      "line": 1,
+      "data": {}
+    },
+    "F2": {
+      "node_id": "F2",
+      "node_type": "END",
+      "label": "End",
+      "line": 1,
+      "data": {}
+    },
+    "F3": {
+      "node_id": "F3",
+      "node_type": "FUNCTION",
+      "label": "Run function unnamed_function with Text",
+      "line": 1,
+      "data": {
+        "ast_kind": "FunctionNode",
+        "name": "unnamed_function"
+      }
+    },
+    "F4": {
+      "node_id": "F4",
+      "node_type": "PROCESS",
+      "label": "Set MaxLength to 0",
+      "line": 2,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F5": {
+      "node_id": "F5",
+      "node_type": "LOOP_DECISION",
+      "label": "For Start from 0 to the length of Text minus 1 plus 1",
+      "line": 4,
+      "data": {
+        "ast_kind": "ForRangeNode"
+      }
+    },
+    "F6": {
+      "node_id": "F6",
+      "node_type": "PROCESS",
+      "label": "Set Seen to an empty set",
+      "line": 5,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F7": {
+      "node_id": "F7",
+      "node_type": "PROCESS",
+      "label": "Set CurrentLength to 0",
+      "line": 6,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F8": {
+      "node_id": "F8",
+      "node_type": "LOOP_DECISION",
+      "label": "For End from Start to the length of Text minus 1 plus 1",
+      "line": 8,
+      "data": {
+        "ast_kind": "ForRangeNode"
+      }
+    },
+    "F9": {
+      "node_id": "F9",
+      "node_type": "DECISION",
+      "label": "Item End of Text is contained in Seen?",
+      "line": 9,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F10": {
+      "node_id": "F10",
+      "node_type": "BREAK",
+      "label": "Exit the current loop",
+      "line": 10,
+      "data": {
+        "ast_kind": "BreakNode"
+      }
+    },
+    "F11": {
+      "node_id": "F11",
+      "node_type": "CALL",
+      "label": "Call add_to_set with Seen, item End of Text",
+      "line": 13,
+      "data": {
+        "ast_kind": "CallNode"
+      }
+    },
+    "F12": {
+      "node_id": "F12",
+      "node_type": "PROCESS",
+      "label": "Set CurrentLength to CurrentLength plus 1",
+      "line": 14,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F13": {
+      "node_id": "F13",
+      "node_type": "DECISION",
+      "label": "CurrentLength is greater than MaxLength?",
+      "line": 17,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F14": {
+      "node_id": "F14",
+      "node_type": "PROCESS",
+      "label": "Set MaxLength to CurrentLength",
+      "line": 18,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F15": {
+      "node_id": "F15",
+      "node_type": "OUTPUT",
+      "label": "Display MaxLength",
+      "line": 22,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "F6",
+      "target": "F7",
+      "label": "NEXT"
+    },
+    {
+      "source": "F9",
+      "target": "F10",
+      "label": "TRUE"
+    },
+    {
+      "source": "F9",
+      "target": "F11",
+      "label": "NEXT"
+    },
+    {
+      "source": "F11",
+      "target": "F12",
+      "label": "NEXT"
+    },
+    {
+      "source": "F8",
+      "target": "F9",
+      "label": "ITERATE"
+    },
+    {
+      "source": "F12",
+      "target": "F8",
+      "label": "LOOP"
+    },
+    {
+      "source": "F7",
+      "target": "F8",
+      "label": "NEXT"
+    },
+    {
+      "source": "F13",
+      "target": "F14",
+      "label": "TRUE"
+    },
+    {
+      "source": "F8",
+      "target": "F13",
+      "label": "NEXT"
+    },
+    {
+      "source": "F10",
+      "target": "F13",
+      "label": "NEXT"
+    },
+    {
+      "source": "F5",
+      "target": "F6",
+      "label": "ITERATE"
+    },
+    {
+      "source": "F14",
+      "target": "F5",
+      "label": "LOOP"
+    },
+    {
+      "source": "F13",
+      "target": "F5",
+      "label": "LOOP"
+    },
+    {
+      "source": "F4",
+      "target": "F5",
+      "label": "NEXT"
+    },
+    {
+      "source": "F5",
+      "target": "F15",
+      "label": "NEXT"
+    },
+    {
+      "source": "F3",
+      "target": "F4",
+      "label": "BODY"
+    },
+    {
+      "source": "F1",
+      "target": "F3",
+      "label": "NEXT"
+    },
+    {
+      "source": "F15",
+      "target": "F2",
+      "label": "NEXT"
+    }
+  ],
+  "structured_program": {
+    "kind": "ProgramNode",
+    "line": 1,
+    "body": [
+      {
+        "kind": "FunctionNode",
+        "line": 1,
+        "name": "unnamed_function",
+        "parameters": [
+          {
+            "kind": "ParameterNode",
+            "line": 1,
+            "name": "Text",
+            "declared_type": null
+          }
+        ],
+        "body": {
+          "kind": "BlockNode",
+          "line": 2,
+          "statements": [
+            {
+              "kind": "AssignmentNode",
+              "line": 2,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 2,
+                "name": "MaxLength"
+              },
+              "value": {
+                "kind": "LiteralNode",
+                "line": 2,
+                "value": 0,
+                "data_type": "INTEGER"
+              }
+            },
+            {
+              "kind": "ForRangeNode",
+              "line": 4,
+              "variable": {
+                "kind": "IdentifierNode",
+                "line": 4,
+                "name": "Start"
+              },
+              "start": {
+                "kind": "LiteralNode",
+                "line": 4,
+                "value": 0,
+                "data_type": "INTEGER"
+              },
+              "end": {
+                "kind": "BinaryNode",
+                "line": 4,
+                "operator": "+",
+                "left": {
+                  "kind": "BinaryNode",
+                  "line": 4,
+                  "operator": "-",
+                  "left": {
+                    "kind": "LengthNode",
+                    "line": 4,
+                    "expression": {
+                      "kind": "IdentifierNode",
+                      "line": 4,
+                      "name": "Text"
+                    }
+                  },
+                  "right": {
+                    "kind": "LiteralNode",
+                    "line": 4,
+                    "value": 1,
+                    "data_type": "INTEGER"
+                  }
+                },
+                "right": {
+                  "kind": "LiteralNode",
+                  "line": 4,
+                  "value": 1,
+                  "data_type": "INTEGER"
+                }
+              },
+              "step": null,
+              "body": {
+                "kind": "BlockNode",
+                "line": 5,
+                "statements": [
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 5,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 5,
+                      "name": "Seen"
+                    },
+                    "value": {
+                      "kind": "EmptyLiteralNode",
+                      "line": 5,
+                      "empty_type": "SET"
+                    }
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 6,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 6,
+                      "name": "CurrentLength"
+                    },
+                    "value": {
+                      "kind": "LiteralNode",
+                      "line": 6,
+                      "value": 0,
+                      "data_type": "INTEGER"
+                    }
+                  },
+                  {
+                    "kind": "ForRangeNode",
+                    "line": 8,
+                    "variable": {
+                      "kind": "IdentifierNode",
+                      "line": 8,
+                      "name": "End"
+                    },
+                    "start": {
+                      "kind": "IdentifierNode",
+                      "line": 8,
+                      "name": "Start"
+                    },
+                    "end": {
+                      "kind": "BinaryNode",
+                      "line": 8,
+                      "operator": "+",
+                      "left": {
+                        "kind": "BinaryNode",
+                        "line": 8,
+                        "operator": "-",
+                        "left": {
+                          "kind": "LengthNode",
+                          "line": 8,
+                          "expression": {
+                            "kind": "IdentifierNode",
+                            "line": 8,
+                            "name": "Text"
+                          }
+                        },
+                        "right": {
+                          "kind": "LiteralNode",
+                          "line": 8,
+                          "value": 1,
+                          "data_type": "INTEGER"
+                        }
+                      },
+                      "right": {
+                        "kind": "LiteralNode",
+                        "line": 8,
+                        "value": 1,
+                        "data_type": "INTEGER"
+                      }
+                    },
+                    "step": null,
+                    "body": {
+                      "kind": "BlockNode",
+                      "line": 9,
+                      "statements": [
+                        {
+                          "kind": "IfNode",
+                          "line": 9,
+                          "condition": {
+                            "kind": "BinaryNode",
+                            "line": 9,
+                            "operator": "IN",
+                            "left": {
+                              "kind": "IndexNode",
+                              "line": 9,
+                              "collection": {
+                                "kind": "IdentifierNode",
+                                "line": 9,
+                                "name": "Text"
+                              },
+                              "index": {
+                                "kind": "IdentifierNode",
+                                "line": 9,
+                                "name": "End"
+                              }
+                            },
+                            "right": {
+                              "kind": "IdentifierNode",
+                              "line": 9,
+                              "name": "Seen"
+                            }
+                          },
+                          "then_body": {
+                            "kind": "BlockNode",
+                            "line": 10,
+                            "statements": [
+                              {
+                                "kind": "BreakNode",
+                                "line": 10
+                              }
+                            ]
+                          },
+                          "else_if": [],
+                          "else_body": null
+                        },
+                        {
+                          "kind": "CallNode",
+                          "line": 13,
+                          "name": "add_to_set",
+                          "arguments": [
+                            {
+                              "kind": "IdentifierNode",
+                              "line": 13,
+                              "name": "Seen"
+                            },
+                            {
+                              "kind": "IndexNode",
+                              "line": 13,
+                              "collection": {
+                                "kind": "IdentifierNode",
+                                "line": 13,
+                                "name": "Text"
+                              },
+                              "index": {
+                                "kind": "IdentifierNode",
+                                "line": 13,
+                                "name": "End"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 14,
+                          "target": {
+                            "kind": "IdentifierNode",
+                            "line": 14,
+                            "name": "CurrentLength"
+                          },
+                          "value": {
+                            "kind": "BinaryNode",
+                            "line": 14,
+                            "operator": "+",
+                            "left": {
+                              "kind": "IdentifierNode",
+                              "line": 14,
+                              "name": "CurrentLength"
+                            },
+                            "right": {
+                              "kind": "LiteralNode",
+                              "line": 14,
+                              "value": 1,
+                              "data_type": "INTEGER"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "kind": "IfNode",
+                    "line": 17,
+                    "condition": {
+                      "kind": "BinaryNode",
+                      "line": 17,
+                      "operator": ">",
+                      "left": {
+                        "kind": "IdentifierNode",
+                        "line": 17,
+                        "name": "CurrentLength"
+                      },
+                      "right": {
+                        "kind": "IdentifierNode",
+                        "line": 17,
+                        "name": "MaxLength"
+                      }
+                    },
+                    "then_body": {
+                      "kind": "BlockNode",
+                      "line": 18,
+                      "statements": [
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 18,
+                          "target": {
+                            "kind": "IdentifierNode",
+                            "line": 18,
+                            "name": "MaxLength"
+                          },
+                          "value": {
+                            "kind": "IdentifierNode",
+                            "line": 18,
+                            "name": "CurrentLength"
+                          }
+                        }
+                      ]
+                    },
+                    "else_if": [],
+                    "else_body": null
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "OutputNode",
+              "line": 22,
+              "expression": {
+                "kind": "IdentifierNode",
+                "line": 22,
+                "name": "MaxLength"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

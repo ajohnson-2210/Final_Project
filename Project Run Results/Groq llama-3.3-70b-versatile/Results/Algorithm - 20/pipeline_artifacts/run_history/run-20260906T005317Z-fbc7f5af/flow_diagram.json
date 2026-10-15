@@ -1,0 +1,262 @@
+{
+  "format": "NL-FDEP Flow Diagram",
+  "version": "1.0",
+  "entry_node": "F1",
+  "exit_node": "F2",
+  "nodes": {
+    "F1": {
+      "node_id": "F1",
+      "node_type": "START",
+      "label": "Start",
+      "line": 1,
+      "data": {}
+    },
+    "F2": {
+      "node_id": "F2",
+      "node_type": "END",
+      "label": "End",
+      "line": 1,
+      "data": {}
+    },
+    "F3": {
+      "node_id": "F3",
+      "node_type": "FUNCTION",
+      "label": "Run function FIND_DIVISORS with n",
+      "line": 1,
+      "data": {
+        "ast_kind": "FunctionNode",
+        "name": "FIND_DIVISORS"
+      }
+    },
+    "F4": {
+      "node_id": "F4",
+      "node_type": "PROCESS",
+      "label": "Set divisors to an empty list",
+      "line": 2,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F5": {
+      "node_id": "F5",
+      "node_type": "LOOP_DECISION",
+      "label": "For i from 1 to n plus 1",
+      "line": 3,
+      "data": {
+        "ast_kind": "ForRangeNode"
+      }
+    },
+    "F6": {
+      "node_id": "F6",
+      "node_type": "DECISION",
+      "label": "N modulo i is equal to 0?",
+      "line": 4,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F7": {
+      "node_id": "F7",
+      "node_type": "PROCESS",
+      "label": "Append i to divisors",
+      "line": 5,
+      "data": {
+        "ast_kind": "AppendNode"
+      }
+    },
+    "F8": {
+      "node_id": "F8",
+      "node_type": "RETURN",
+      "label": "Return divisors",
+      "line": 8,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "F6",
+      "target": "F7",
+      "label": "TRUE"
+    },
+    {
+      "source": "F5",
+      "target": "F6",
+      "label": "ITERATE"
+    },
+    {
+      "source": "F7",
+      "target": "F5",
+      "label": "LOOP"
+    },
+    {
+      "source": "F6",
+      "target": "F5",
+      "label": "LOOP"
+    },
+    {
+      "source": "F4",
+      "target": "F5",
+      "label": "NEXT"
+    },
+    {
+      "source": "F5",
+      "target": "F8",
+      "label": "NEXT"
+    },
+    {
+      "source": "F3",
+      "target": "F4",
+      "label": "BODY"
+    },
+    {
+      "source": "F1",
+      "target": "F3",
+      "label": "NEXT"
+    },
+    {
+      "source": "F8",
+      "target": "F2",
+      "label": "NEXT"
+    }
+  ],
+  "structured_program": {
+    "kind": "ProgramNode",
+    "line": 1,
+    "body": [
+      {
+        "kind": "FunctionNode",
+        "line": 1,
+        "name": "FIND_DIVISORS",
+        "parameters": [
+          {
+            "kind": "ParameterNode",
+            "line": 1,
+            "name": "n",
+            "declared_type": null
+          }
+        ],
+        "body": {
+          "kind": "BlockNode",
+          "line": 2,
+          "statements": [
+            {
+              "kind": "AssignmentNode",
+              "line": 2,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 2,
+                "name": "divisors"
+              },
+              "value": {
+                "kind": "EmptyLiteralNode",
+                "line": 2,
+                "empty_type": "LIST"
+              }
+            },
+            {
+              "kind": "ForRangeNode",
+              "line": 3,
+              "variable": {
+                "kind": "IdentifierNode",
+                "line": 3,
+                "name": "i"
+              },
+              "start": {
+                "kind": "LiteralNode",
+                "line": 3,
+                "value": 1,
+                "data_type": "INTEGER"
+              },
+              "end": {
+                "kind": "BinaryNode",
+                "line": 3,
+                "operator": "+",
+                "left": {
+                  "kind": "IdentifierNode",
+                  "line": 3,
+                  "name": "n"
+                },
+                "right": {
+                  "kind": "LiteralNode",
+                  "line": 3,
+                  "value": 1,
+                  "data_type": "INTEGER"
+                }
+              },
+              "step": null,
+              "body": {
+                "kind": "BlockNode",
+                "line": 4,
+                "statements": [
+                  {
+                    "kind": "IfNode",
+                    "line": 4,
+                    "condition": {
+                      "kind": "BinaryNode",
+                      "line": 4,
+                      "operator": "==",
+                      "left": {
+                        "kind": "BinaryNode",
+                        "line": 4,
+                        "operator": "MODULUS",
+                        "left": {
+                          "kind": "IdentifierNode",
+                          "line": 4,
+                          "name": "n"
+                        },
+                        "right": {
+                          "kind": "IdentifierNode",
+                          "line": 4,
+                          "name": "i"
+                        }
+                      },
+                      "right": {
+                        "kind": "LiteralNode",
+                        "line": 4,
+                        "value": 0,
+                        "data_type": "INTEGER"
+                      }
+                    },
+                    "then_body": {
+                      "kind": "BlockNode",
+                      "line": 5,
+                      "statements": [
+                        {
+                          "kind": "AppendNode",
+                          "line": 5,
+                          "value": {
+                            "kind": "IdentifierNode",
+                            "line": 5,
+                            "name": "i"
+                          },
+                          "collection": {
+                            "kind": "IdentifierNode",
+                            "line": 5,
+                            "name": "divisors"
+                          }
+                        }
+                      ]
+                    },
+                    "else_if": [],
+                    "else_body": null
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "ReturnNode",
+              "line": 8,
+              "expression": {
+                "kind": "IdentifierNode",
+                "line": 8,
+                "name": "divisors"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

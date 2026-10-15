@@ -1,0 +1,8 @@
+# Character Frequency Count
+
+FUNCTION charFrequency(str):
+    freq ← empty dictionary
+    FOR each char IN str:
+        IF char IN freq THEN freq[char]++
+        ELSE freq[char] ← 1
+    RETURN freq

@@ -1,0 +1,23 @@
+# Sliding window maximum    
+FUNCTION SlidingWindowMaximum(arr, k):
+    result = empty List
+    deque = empty DoubleEndedQueue // Stores indices
+    
+    FOR i FROM 0 TO length(arr) - 1 DO
+        IF deque IS NOT EMPTY AND deque.front() <= i - k THEN
+            REMOVE FRONT FROM deque
+        END IF
+        
+        WHILE deque IS NOT EMPTY AND arr[deque.back()] <= arr[i] DO
+            REMOVE BACK FROM deque
+        END WHILE
+        
+        ADD BACK i TO deque
+        
+        IF i >= k - 1 THEN
+            APPEND arr[deque.front()] TO result
+        END IF
+    END FOR
+    
+    RETURN result
+END FUNCTION

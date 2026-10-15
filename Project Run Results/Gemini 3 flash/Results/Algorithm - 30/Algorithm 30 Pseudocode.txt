@@ -1,0 +1,14 @@
+# Topic modelling system (LDA approach)    
+PROCEDURE TopicModellingSystem(corpus, num_topics):
+    cleaned_corpus = RemoveStopwordsAndPunctuation(corpus)
+    tokenized_docs = TokenizeAndStem(cleaned_corpus)
+    
+    doc_term_matrix = CreateDocumentTermMatrix(tokenized_docs)
+    lda_model = InitializeLDAModel(num_topics)
+    
+    FitLDAModel(lda_model, doc_term_matrix)
+    
+    FOR EACH topic IN lda_model.get_topics() DO
+        PRINT ExtractTopWords(topic, top_n=10)
+    END FOR
+END PROCEDURE

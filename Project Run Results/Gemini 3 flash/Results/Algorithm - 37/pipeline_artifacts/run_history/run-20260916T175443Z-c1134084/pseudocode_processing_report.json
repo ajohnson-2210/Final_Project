@@ -1,0 +1,235 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 18,
+  "transformations": [
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        self.arr = Array of size capacity",
+      "canonical": "        self.arr <- Array of size capacity",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        self.top_index = -1",
+      "canonical": "        self.top_index <- -1",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 8,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        self.top_index = self.top_index + 1",
+      "canonical": "        self.top_index <- self.top_index + 1",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 9,
+      "rule_family": "ASSIGNMENT_SURFACE",
+      "branch": "MEMBER_INDEXED_LVALUE_EQUALS",
+      "source": "        self.arr[self.top_index] = item",
+      "canonical": "        self.arr[self.top_index] <- item",
+      "evidence": [
+        "source uses a single assignment equals on an explicit object.member[index] lvalue",
+        "the existing AJ assignment operator is <- and indexed member storage is already supported by the class/compiler path",
+        "the transformation changes only the assignment token and preserves target, index expression, and right-hand value verbatim",
+        "comparison spellings ==, !=, <=, and >= remain outside the rule"
+      ],
+      "confidence": "source_proven",
+      "semantic_change": false
+    },
+    {
+      "line": 13,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        item = self.arr[self.top_index]",
+      "canonical": "        item <- self.arr[self.top_index]",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 14,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        self.top_index = self.top_index - 1",
+      "canonical": "        self.top_index <- self.top_index - 1",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 7,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        IF self.top_index == length(self.arr) - 1 THEN RETURN \"Overflow Error\"",
+      "canonical": "        IF self.top_index == length(self.arr) - 1 THEN RETURN STRING(\"Overflow Error\")",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 12,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        IF self.top_index == -1 THEN RETURN \"Underflow Error\"",
+      "canonical": "        IF self.top_index == -1 THEN RETURN STRING(\"Underflow Error\")",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 18,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        IF self.top_index == -1 THEN RETURN \"Stack Empty\"",
+      "canonical": "        IF self.top_index == -1 THEN RETURN STRING(\"Stack Empty\")",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 7,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        IF self.top_index == length(self.arr) - 1 THEN RETURN STRING(\"Overflow Error\")",
+      "canonical": "        IF self.top_index == LENGTH OF self.arr - 1 THEN RETURN STRING(\"Overflow Error\")",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "COLLECTION_INITIALISATION",
+      "branch": "USER_CONFIRMED_NONE_FILLED_FIXED_ARRAY",
+      "source": "CLASS Stack:\n    CONSTRUCTOR(capacity):\n        self.arr <- Array of size capacity\n        self.top_index <- -1\n\n    PROCEDURE Push(item):\n        IF self.top_index == LENGTH OF self.arr - 1 THEN RETURN STRING(\"Overflow Error\")\n        self.top_index <- self.top_index + 1\n        self.arr[self.top_index] <- item\n\n    FUNCTION Pop():\n        IF self.top_index == -1 THEN RETURN STRING(\"Underflow Error\")\n        item <- self.arr[self.top_index]\n        self.top_index <- self.top_index - 1\n        RETURN item\n\n    FUNCTION Peek():\n        IF self.top_index == -1 THEN RETURN STRING(\"Stack Empty\")\n        RETURN self.arr[self.top_index]",
+      "canonical": "CLASS Stack:\n    CONSTRUCTOR(capacity):\n        self.arr <- CALL create_array(capacity, NONE)\n        self.top_index <- -1\n\n    PROCEDURE Push(item):\n        IF self.top_index == LENGTH OF self.arr - 1 THEN RETURN STRING(\"Overflow Error\")\n        self.top_index <- self.top_index + 1\n        self.arr[self.top_index] <- item\n\n    FUNCTION Pop():\n        IF self.top_index == -1 THEN RETURN STRING(\"Underflow Error\")\n        item <- self.arr[self.top_index]\n        self.top_index <- self.top_index - 1\n        RETURN item\n\n    FUNCTION Peek():\n        IF self.top_index == -1 THEN RETURN STRING(\"Stack Empty\")\n        RETURN self.arr[self.top_index]",
+      "evidence": [
+        "source explicitly declares Array of size N without a fill value",
+        "project rule explicitly defines that surface as N writable slots initialised to NONE",
+        "the existing create_array(size, value) compatibility intrinsic can represent those slots without changing AJ v1.1",
+        "deterministic Python lowering for the NONE-filled case is [None] * N; declarations with an explicit fill value remain unchanged"
+      ],
+      "confidence": "user_confirmed",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "CLASS_STRUCTURE",
+      "branch": "CONTEXTUAL_CLASS_ROUTINE_RECOVERY",
+      "source": "CLASS Stack:\n    CONSTRUCTOR(capacity):\n        self.arr <- CALL create_array(capacity, NONE)\n        self.top_index <- -1\n\n    PROCEDURE Push(item):\n        IF self.top_index == LENGTH OF self.arr - 1 THEN RETURN STRING(\"Overflow Error\")\n        self.top_index <- self.top_index + 1\n        self.arr[self.top_index] <- item\n\n    FUNCTION Pop():\n        IF self.top_index == -1 THEN RETURN STRING(\"Underflow Error\")\n        item <- self.arr[self.top_index]\n        self.top_index <- self.top_index - 1\n        RETURN item\n\n    FUNCTION Peek():\n        IF self.top_index == -1 THEN RETURN STRING(\"Stack Empty\")\n        RETURN self.arr[self.top_index]",
+      "canonical": "CLASS Stack\n    CONSTRUCTOR ACCEPTS(capacity)\n        self.arr <- CALL create_array(capacity, NONE)\n        self.top_index <- -1\n\n    ENDCONSTRUCTOR\n    METHOD Push ACCEPTS(item)\n        IF self.top_index == LENGTH OF self.arr - 1 THEN RETURN STRING(\"Overflow Error\")\n        self.top_index <- self.top_index + 1\n        self.arr[self.top_index] <- item\n\n    ENDMETHOD\n    METHOD Pop ACCEPTS()\n        IF self.top_index == -1 THEN RETURN STRING(\"Underflow Error\")\n        item <- self.arr[self.top_index]\n        self.top_index <- self.top_index - 1\n        RETURN item\n\n    ENDMETHOD\n    METHOD Peek ACCEPTS()\n        IF self.top_index == -1 THEN RETURN STRING(\"Stack Empty\")\n        RETURN self.arr[self.top_index]\n    ENDMETHOD\nENDCLASS",
+      "evidence": [
+        "source explicitly declares a CLASS container",
+        "direct-child CONSTRUCTOR(...), PROCEDURE name(...), and FUNCTION name(...) declarations are routine declarations in that class context",
+        "frozen AJ v1.1 represents class routines as CONSTRUCTOR ... ENDCONSTRUCTOR and METHOD ... ENDMETHOD",
+        "routine bodies and member semantics are preserved; GC241 does not infer properties, assignments, return values, or external class behaviour"
+      ],
+      "confidence": "user_confirmed",
+      "semantic_change": false
+    },
+    {
+      "line": 8,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        IF self.top_index == LENGTH OF self.arr - 1 THEN RETURN STRING(\"Overflow Error\")",
+      "canonical": "        IF self.top_index == LENGTH OF self.arr - 1 THEN\n            RETURN STRING(\"Overflow Error\")",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 14,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        IF self.top_index == -1 THEN RETURN STRING(\"Underflow Error\")",
+      "canonical": "        IF self.top_index == -1 THEN\n            RETURN STRING(\"Underflow Error\")",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 21,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        IF self.top_index == -1 THEN RETURN STRING(\"Stack Empty\")",
+      "canonical": "        IF self.top_index == -1 THEN\n            RETURN STRING(\"Stack Empty\")",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 10,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDIF",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 17,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDIF",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 25,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDIF",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 1
+}

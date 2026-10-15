@@ -1,0 +1,94 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 7,
+  "transformations": [
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  model = TRAIN_MODEL(categories)",
+      "canonical": "  model <- TRAIN_MODEL(categories)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION TEXT_CLASSIFICATION(text, categories)",
+      "canonical": "FUNCTION TEXT_CLASSIFICATION ACCEPTS(text, categories)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "FUNCTION TEXT_CLASSIFICATION ACCEPTS(text, categories)\n  # Train a machine learning model using the given categories\n  model <- TRAIN_MODEL(categories)\n  # Use the trained model to classify the given text\n  RETURN CLASSIFY_TEXT(text, model)\nEND FUNCTION",
+      "canonical": "FUNCTION TEXT_CLASSIFICATION ACCEPTS(text, categories)\n  # Train a machine learning model using the given categories\n  model <- TRAIN_MODEL(categories)\n  # Use the trained model to classify the given text\n  RETURN CLASSIFY_TEXT(text, model)\nENDFUNCTION",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  # Train a machine learning model using the given categories",
+      "canonical": "  COMMENT Train a machine learning model using the given categories",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  model <- TRAIN_MODEL(categories)",
+      "canonical": "  model <- CALL TRAIN_MODEL(categories)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  # Use the trained model to classify the given text",
+      "canonical": "  COMMENT Use the trained model to classify the given text",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  RETURN CLASSIFY_TEXT(text, model)",
+      "canonical": "  RETURN CALL CLASSIFY_TEXT(text, model)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 1
+}

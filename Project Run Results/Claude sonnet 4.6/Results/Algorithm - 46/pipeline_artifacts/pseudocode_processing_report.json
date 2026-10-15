@@ -1,0 +1,178 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 14,
+  "transformations": [
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    // A is n\u00d7m, B is m\u00d7p",
+      "canonical": "    // A is n*m, B is m*p",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    result \u2190 n \u00d7 p matrix of 0s",
+      "canonical": "    result <- n \u00d7 p matrix of 0s",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    result <- n \u00d7 p matrix of 0s",
+      "canonical": "    result <- n * p matrix of 0s",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 7,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "                result[i][j] \u2190 result[i][j] + A[i][k] * B[k][j]",
+      "canonical": "                result[i][j] <- result[i][j] + A[i][k] * B[k][j]",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION multiplyMatrices(A, B, n, m, p):\n    // A is n*m, B is m*p\n    result <- n * p matrix of 0s\n    FOR i FROM 0 TO n - 1:\n        FOR j FROM 0 TO p - 1:\n            FOR k FROM 0 TO m - 1:\n                result[i][j] <- result[i][j] + A[i][k] * B[k][j]\n    RETURN result",
+      "canonical": "FUNCTION multiplyMatrices(A, B, n, m, p):\n    // A is n*m, B is m*p\n    result <- CALL create_matrix(n, p, 0)\n    FOR i FROM 0 TO n - 1:\n        FOR j FROM 0 TO p - 1:\n            FOR k FROM 0 TO m - 1:\n                result[i][j] <- result[i][j] + A[i][k] * B[k][j]\n    RETURN result",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION multiplyMatrices(A, B, n, m, p):",
+      "canonical": "FUNCTION multiplyMatrices ACCEPTS(A, B, n, m, p)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    FOR i FROM 0 TO n - 1:",
+      "canonical": "    FOR i <- IN RANGE 0 TO (n - 1) + 1 DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        FOR j FROM 0 TO p - 1:",
+      "canonical": "        FOR j <- IN RANGE 0 TO (p - 1) + 1 DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 6,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            FOR k FROM 0 TO m - 1:",
+      "canonical": "            FOR k <- IN RANGE 0 TO (m - 1) + 1 DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    // A is n*m, B is m*p",
+      "canonical": "    COMMENT A is n*m, B is m*p",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 8,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDFOR",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 8,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDFOR",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 8,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDFOR",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDFUNCTION",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 2
+}

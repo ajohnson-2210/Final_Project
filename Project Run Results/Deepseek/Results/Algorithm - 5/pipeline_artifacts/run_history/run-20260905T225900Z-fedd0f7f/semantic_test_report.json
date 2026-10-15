@@ -1,0 +1,44 @@
+{
+  "semantic_report_schema_version": "1.0",
+  "program_path": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Deepseek\\Results\\Algorithm - 5\\pipeline_artifacts\\generated_program.py",
+  "algorithm_id": 5,
+  "contract_version": "1.2",
+  "evaluable_tests": 1,
+  "passed_tests": 0,
+  "failed_tests": 1,
+  "not_evaluable_tests": 0,
+  "accuracy_percentage": 0.0,
+  "results": [
+    {
+      "name": "default punctuation removal",
+      "status": "FAILED",
+      "expected_semantic_result": "This is a sentence that has punctuation",
+      "actual_semantic_result": "This/_@^*%<>is&*asentencethathaspunctuation",
+      "semantic_match": false,
+      "reason": "Observed task-semantic result did not match the expected semantic result.",
+      "duration_ms": 96.219,
+      "category": "NORMAL",
+      "semantic_feature": "PUNCTUATION_FILTERING_PRESERVES_NON_PUNCTUATION",
+      "fixture_source": "FROZEN_BASELINE_FIXED_INPUT",
+      "oracle_source": "TASK_SEMANTIC_ORACLE_WITH_FROZEN_BASELINE_REFERENCE",
+      "selected_entrypoint": "removePunctuation",
+      "invocation_capture": {
+        "status": "COMPLETED",
+        "selected_entrypoint": "removePunctuation",
+        "prints": [],
+        "returns": [
+          "This/_@^*%<>is&*asentencethathaspunctuation"
+        ],
+        "post_arguments": [
+          [
+            "This /_@!^*%<>is &*;:'a sentence, that has punctuation!"
+          ]
+        ],
+        "shared_values": {},
+        "errors": [
+          null
+        ]
+      }
+    }
+  ]
+}

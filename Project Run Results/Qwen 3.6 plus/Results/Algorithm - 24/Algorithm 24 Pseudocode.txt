@@ -1,0 +1,18 @@
+# Password Validator
+
+INPUT pwd
+
+IF length(pwd) < 8:
+    RETURN FALSE
+
+hasNum = FALSE
+hasUpper = FALSE
+
+FOR char in pwd:
+    IF char is digit:
+        hasNum = TRUE
+    IF char is uppercase:
+        hasUpper = TRUE
+
+RETURN hasNum AND hasUpper
+

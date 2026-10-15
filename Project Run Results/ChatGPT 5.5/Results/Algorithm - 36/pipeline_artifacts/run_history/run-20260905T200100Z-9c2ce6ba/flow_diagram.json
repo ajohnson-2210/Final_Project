@@ -1,0 +1,764 @@
+{
+  "format": "NL-FDEP Flow Diagram",
+  "version": "1.0",
+  "entry_node": "F1",
+  "exit_node": "F2",
+  "nodes": {
+    "F1": {
+      "node_id": "F1",
+      "node_type": "START",
+      "label": "Start",
+      "line": 1,
+      "data": {}
+    },
+    "F2": {
+      "node_id": "F2",
+      "node_type": "END",
+      "label": "End",
+      "line": 1,
+      "data": {}
+    },
+    "F3": {
+      "node_id": "F3",
+      "node_type": "FUNCTION",
+      "label": "Run function unnamed_function with Array, Target",
+      "line": 1,
+      "data": {
+        "ast_kind": "FunctionNode",
+        "name": "unnamed_function"
+      }
+    },
+    "F4": {
+      "node_id": "F4",
+      "node_type": "PROCESS",
+      "label": "Set Low to 0",
+      "line": 2,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F5": {
+      "node_id": "F5",
+      "node_type": "PROCESS",
+      "label": "Set High to the length of Array minus 1",
+      "line": 3,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F6": {
+      "node_id": "F6",
+      "node_type": "LOOP_DECISION",
+      "label": "Low is less than or equal to High?",
+      "line": 5,
+      "data": {
+        "ast_kind": "WhileNode"
+      }
+    },
+    "F7": {
+      "node_id": "F7",
+      "node_type": "PROCESS",
+      "label": "Set Mid to Low plus High integer-divided by 2",
+      "line": 6,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F8": {
+      "node_id": "F8",
+      "node_type": "DECISION",
+      "label": "Item Mid of Array is equal to Target?",
+      "line": 8,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F9": {
+      "node_id": "F9",
+      "node_type": "OUTPUT",
+      "label": "Display Mid",
+      "line": 9,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F10": {
+      "node_id": "F10",
+      "node_type": "RETURN",
+      "label": "Return from the function",
+      "line": 10,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    },
+    "F11": {
+      "node_id": "F11",
+      "node_type": "DECISION",
+      "label": "Item Low of Array is less than or equal to item Mid of Array?",
+      "line": 13,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F12": {
+      "node_id": "F12",
+      "node_type": "DECISION",
+      "label": "Is Target is greater than or equal to item Low of Array and Target is less than item Mid of Array true?",
+      "line": 14,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F13": {
+      "node_id": "F13",
+      "node_type": "PROCESS",
+      "label": "Set High to Mid minus 1",
+      "line": 15,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F14": {
+      "node_id": "F14",
+      "node_type": "PROCESS",
+      "label": "Set Low to Mid plus 1",
+      "line": 17,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F15": {
+      "node_id": "F15",
+      "node_type": "DECISION",
+      "label": "Is Target is greater than item Mid of Array and Target is less than or equal to item High of Array true?",
+      "line": 20,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F16": {
+      "node_id": "F16",
+      "node_type": "PROCESS",
+      "label": "Set Low to Mid plus 1",
+      "line": 21,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F17": {
+      "node_id": "F17",
+      "node_type": "PROCESS",
+      "label": "Set High to Mid minus 1",
+      "line": 23,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F18": {
+      "node_id": "F18",
+      "node_type": "OUTPUT",
+      "label": "Display \"Not Found\"",
+      "line": 28,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "F4",
+      "target": "F5",
+      "label": "NEXT"
+    },
+    {
+      "source": "F9",
+      "target": "F10",
+      "label": "NEXT"
+    },
+    {
+      "source": "F8",
+      "target": "F9",
+      "label": "TRUE"
+    },
+    {
+      "source": "F7",
+      "target": "F8",
+      "label": "NEXT"
+    },
+    {
+      "source": "F12",
+      "target": "F13",
+      "label": "TRUE"
+    },
+    {
+      "source": "F12",
+      "target": "F14",
+      "label": "FALSE"
+    },
+    {
+      "source": "F11",
+      "target": "F12",
+      "label": "TRUE"
+    },
+    {
+      "source": "F15",
+      "target": "F16",
+      "label": "TRUE"
+    },
+    {
+      "source": "F15",
+      "target": "F17",
+      "label": "FALSE"
+    },
+    {
+      "source": "F11",
+      "target": "F15",
+      "label": "FALSE"
+    },
+    {
+      "source": "F8",
+      "target": "F11",
+      "label": "NEXT"
+    },
+    {
+      "source": "F6",
+      "target": "F7",
+      "label": "TRUE"
+    },
+    {
+      "source": "F13",
+      "target": "F6",
+      "label": "LOOP"
+    },
+    {
+      "source": "F14",
+      "target": "F6",
+      "label": "LOOP"
+    },
+    {
+      "source": "F16",
+      "target": "F6",
+      "label": "LOOP"
+    },
+    {
+      "source": "F17",
+      "target": "F6",
+      "label": "LOOP"
+    },
+    {
+      "source": "F5",
+      "target": "F6",
+      "label": "NEXT"
+    },
+    {
+      "source": "F6",
+      "target": "F18",
+      "label": "NEXT"
+    },
+    {
+      "source": "F3",
+      "target": "F4",
+      "label": "BODY"
+    },
+    {
+      "source": "F1",
+      "target": "F3",
+      "label": "NEXT"
+    },
+    {
+      "source": "F10",
+      "target": "F2",
+      "label": "NEXT"
+    },
+    {
+      "source": "F18",
+      "target": "F2",
+      "label": "NEXT"
+    }
+  ],
+  "structured_program": {
+    "kind": "ProgramNode",
+    "line": 1,
+    "body": [
+      {
+        "kind": "FunctionNode",
+        "line": 1,
+        "name": "unnamed_function",
+        "parameters": [
+          {
+            "kind": "ParameterNode",
+            "line": 1,
+            "name": "Array",
+            "declared_type": null
+          },
+          {
+            "kind": "ParameterNode",
+            "line": 1,
+            "name": "Target",
+            "declared_type": null
+          }
+        ],
+        "body": {
+          "kind": "BlockNode",
+          "line": 2,
+          "statements": [
+            {
+              "kind": "AssignmentNode",
+              "line": 2,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 2,
+                "name": "Low"
+              },
+              "value": {
+                "kind": "LiteralNode",
+                "line": 2,
+                "value": 0,
+                "data_type": "INTEGER"
+              }
+            },
+            {
+              "kind": "AssignmentNode",
+              "line": 3,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 3,
+                "name": "High"
+              },
+              "value": {
+                "kind": "BinaryNode",
+                "line": 3,
+                "operator": "-",
+                "left": {
+                  "kind": "LengthNode",
+                  "line": 3,
+                  "expression": {
+                    "kind": "IdentifierNode",
+                    "line": 3,
+                    "name": "Array"
+                  }
+                },
+                "right": {
+                  "kind": "LiteralNode",
+                  "line": 3,
+                  "value": 1,
+                  "data_type": "INTEGER"
+                }
+              }
+            },
+            {
+              "kind": "WhileNode",
+              "line": 5,
+              "condition": {
+                "kind": "BinaryNode",
+                "line": 5,
+                "operator": "<=",
+                "left": {
+                  "kind": "IdentifierNode",
+                  "line": 5,
+                  "name": "Low"
+                },
+                "right": {
+                  "kind": "IdentifierNode",
+                  "line": 5,
+                  "name": "High"
+                }
+              },
+              "body": {
+                "kind": "BlockNode",
+                "line": 6,
+                "statements": [
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 6,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 6,
+                      "name": "Mid"
+                    },
+                    "value": {
+                      "kind": "BinaryNode",
+                      "line": 6,
+                      "operator": "INTEGER DIVISION",
+                      "left": {
+                        "kind": "BinaryNode",
+                        "line": 6,
+                        "operator": "+",
+                        "left": {
+                          "kind": "IdentifierNode",
+                          "line": 6,
+                          "name": "Low"
+                        },
+                        "right": {
+                          "kind": "IdentifierNode",
+                          "line": 6,
+                          "name": "High"
+                        }
+                      },
+                      "right": {
+                        "kind": "LiteralNode",
+                        "line": 6,
+                        "value": 2,
+                        "data_type": "INTEGER"
+                      }
+                    }
+                  },
+                  {
+                    "kind": "IfNode",
+                    "line": 8,
+                    "condition": {
+                      "kind": "BinaryNode",
+                      "line": 8,
+                      "operator": "==",
+                      "left": {
+                        "kind": "IndexNode",
+                        "line": 8,
+                        "collection": {
+                          "kind": "IdentifierNode",
+                          "line": 8,
+                          "name": "Array"
+                        },
+                        "index": {
+                          "kind": "IdentifierNode",
+                          "line": 8,
+                          "name": "Mid"
+                        }
+                      },
+                      "right": {
+                        "kind": "IdentifierNode",
+                        "line": 8,
+                        "name": "Target"
+                      }
+                    },
+                    "then_body": {
+                      "kind": "BlockNode",
+                      "line": 9,
+                      "statements": [
+                        {
+                          "kind": "OutputNode",
+                          "line": 9,
+                          "expression": {
+                            "kind": "IdentifierNode",
+                            "line": 9,
+                            "name": "Mid"
+                          }
+                        },
+                        {
+                          "kind": "ReturnNode",
+                          "line": 10,
+                          "expression": null
+                        }
+                      ]
+                    },
+                    "else_if": [],
+                    "else_body": null
+                  },
+                  {
+                    "kind": "IfNode",
+                    "line": 13,
+                    "condition": {
+                      "kind": "BinaryNode",
+                      "line": 13,
+                      "operator": "<=",
+                      "left": {
+                        "kind": "IndexNode",
+                        "line": 13,
+                        "collection": {
+                          "kind": "IdentifierNode",
+                          "line": 13,
+                          "name": "Array"
+                        },
+                        "index": {
+                          "kind": "IdentifierNode",
+                          "line": 13,
+                          "name": "Low"
+                        }
+                      },
+                      "right": {
+                        "kind": "IndexNode",
+                        "line": 13,
+                        "collection": {
+                          "kind": "IdentifierNode",
+                          "line": 13,
+                          "name": "Array"
+                        },
+                        "index": {
+                          "kind": "IdentifierNode",
+                          "line": 13,
+                          "name": "Mid"
+                        }
+                      }
+                    },
+                    "then_body": {
+                      "kind": "BlockNode",
+                      "line": 14,
+                      "statements": [
+                        {
+                          "kind": "IfNode",
+                          "line": 14,
+                          "condition": {
+                            "kind": "BinaryNode",
+                            "line": 14,
+                            "operator": "AND",
+                            "left": {
+                              "kind": "BinaryNode",
+                              "line": 14,
+                              "operator": ">=",
+                              "left": {
+                                "kind": "IdentifierNode",
+                                "line": 14,
+                                "name": "Target"
+                              },
+                              "right": {
+                                "kind": "IndexNode",
+                                "line": 14,
+                                "collection": {
+                                  "kind": "IdentifierNode",
+                                  "line": 14,
+                                  "name": "Array"
+                                },
+                                "index": {
+                                  "kind": "IdentifierNode",
+                                  "line": 14,
+                                  "name": "Low"
+                                }
+                              }
+                            },
+                            "right": {
+                              "kind": "BinaryNode",
+                              "line": 14,
+                              "operator": "<",
+                              "left": {
+                                "kind": "IdentifierNode",
+                                "line": 14,
+                                "name": "Target"
+                              },
+                              "right": {
+                                "kind": "IndexNode",
+                                "line": 14,
+                                "collection": {
+                                  "kind": "IdentifierNode",
+                                  "line": 14,
+                                  "name": "Array"
+                                },
+                                "index": {
+                                  "kind": "IdentifierNode",
+                                  "line": 14,
+                                  "name": "Mid"
+                                }
+                              }
+                            }
+                          },
+                          "then_body": {
+                            "kind": "BlockNode",
+                            "line": 15,
+                            "statements": [
+                              {
+                                "kind": "AssignmentNode",
+                                "line": 15,
+                                "target": {
+                                  "kind": "IdentifierNode",
+                                  "line": 15,
+                                  "name": "High"
+                                },
+                                "value": {
+                                  "kind": "BinaryNode",
+                                  "line": 15,
+                                  "operator": "-",
+                                  "left": {
+                                    "kind": "IdentifierNode",
+                                    "line": 15,
+                                    "name": "Mid"
+                                  },
+                                  "right": {
+                                    "kind": "LiteralNode",
+                                    "line": 15,
+                                    "value": 1,
+                                    "data_type": "INTEGER"
+                                  }
+                                }
+                              }
+                            ]
+                          },
+                          "else_if": [],
+                          "else_body": {
+                            "kind": "BlockNode",
+                            "line": 17,
+                            "statements": [
+                              {
+                                "kind": "AssignmentNode",
+                                "line": 17,
+                                "target": {
+                                  "kind": "IdentifierNode",
+                                  "line": 17,
+                                  "name": "Low"
+                                },
+                                "value": {
+                                  "kind": "BinaryNode",
+                                  "line": 17,
+                                  "operator": "+",
+                                  "left": {
+                                    "kind": "IdentifierNode",
+                                    "line": 17,
+                                    "name": "Mid"
+                                  },
+                                  "right": {
+                                    "kind": "LiteralNode",
+                                    "line": 17,
+                                    "value": 1,
+                                    "data_type": "INTEGER"
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    "else_if": [],
+                    "else_body": {
+                      "kind": "BlockNode",
+                      "line": 20,
+                      "statements": [
+                        {
+                          "kind": "IfNode",
+                          "line": 20,
+                          "condition": {
+                            "kind": "BinaryNode",
+                            "line": 20,
+                            "operator": "AND",
+                            "left": {
+                              "kind": "BinaryNode",
+                              "line": 20,
+                              "operator": ">",
+                              "left": {
+                                "kind": "IdentifierNode",
+                                "line": 20,
+                                "name": "Target"
+                              },
+                              "right": {
+                                "kind": "IndexNode",
+                                "line": 20,
+                                "collection": {
+                                  "kind": "IdentifierNode",
+                                  "line": 20,
+                                  "name": "Array"
+                                },
+                                "index": {
+                                  "kind": "IdentifierNode",
+                                  "line": 20,
+                                  "name": "Mid"
+                                }
+                              }
+                            },
+                            "right": {
+                              "kind": "BinaryNode",
+                              "line": 20,
+                              "operator": "<=",
+                              "left": {
+                                "kind": "IdentifierNode",
+                                "line": 20,
+                                "name": "Target"
+                              },
+                              "right": {
+                                "kind": "IndexNode",
+                                "line": 20,
+                                "collection": {
+                                  "kind": "IdentifierNode",
+                                  "line": 20,
+                                  "name": "Array"
+                                },
+                                "index": {
+                                  "kind": "IdentifierNode",
+                                  "line": 20,
+                                  "name": "High"
+                                }
+                              }
+                            }
+                          },
+                          "then_body": {
+                            "kind": "BlockNode",
+                            "line": 21,
+                            "statements": [
+                              {
+                                "kind": "AssignmentNode",
+                                "line": 21,
+                                "target": {
+                                  "kind": "IdentifierNode",
+                                  "line": 21,
+                                  "name": "Low"
+                                },
+                                "value": {
+                                  "kind": "BinaryNode",
+                                  "line": 21,
+                                  "operator": "+",
+                                  "left": {
+                                    "kind": "IdentifierNode",
+                                    "line": 21,
+                                    "name": "Mid"
+                                  },
+                                  "right": {
+                                    "kind": "LiteralNode",
+                                    "line": 21,
+                                    "value": 1,
+                                    "data_type": "INTEGER"
+                                  }
+                                }
+                              }
+                            ]
+                          },
+                          "else_if": [],
+                          "else_body": {
+                            "kind": "BlockNode",
+                            "line": 23,
+                            "statements": [
+                              {
+                                "kind": "AssignmentNode",
+                                "line": 23,
+                                "target": {
+                                  "kind": "IdentifierNode",
+                                  "line": 23,
+                                  "name": "High"
+                                },
+                                "value": {
+                                  "kind": "BinaryNode",
+                                  "line": 23,
+                                  "operator": "-",
+                                  "left": {
+                                    "kind": "IdentifierNode",
+                                    "line": 23,
+                                    "name": "Mid"
+                                  },
+                                  "right": {
+                                    "kind": "LiteralNode",
+                                    "line": 23,
+                                    "value": 1,
+                                    "data_type": "INTEGER"
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "OutputNode",
+              "line": 28,
+              "expression": {
+                "kind": "LiteralNode",
+                "line": 28,
+                "value": "Not Found",
+                "data_type": "STRING"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

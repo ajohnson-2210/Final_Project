@@ -1,0 +1,186 @@
+{
+  "root_id": "N11264",
+  "nodes": {
+    "N11264": {
+      "kind": "ProgramNode",
+      "line": 1,
+      "attributes": {}
+    },
+    "N11263": {
+      "kind": "FunctionNode",
+      "line": 1,
+      "attributes": {
+        "name": "unnamed_function"
+      }
+    },
+    "N11245": {
+      "kind": "ParameterNode",
+      "line": 1,
+      "attributes": {
+        "name": "trainingTexts",
+        "declared_type": null
+      }
+    },
+    "N11246": {
+      "kind": "ParameterNode",
+      "line": 1,
+      "attributes": {
+        "name": "labels",
+        "declared_type": null
+      }
+    },
+    "N11262": {
+      "kind": "BlockNode",
+      "line": 2,
+      "attributes": {}
+    },
+    "N11250": {
+      "kind": "AssignmentNode",
+      "line": 2,
+      "attributes": {}
+    },
+    "N11247": {
+      "kind": "IdentifierNode",
+      "line": 2,
+      "attributes": {
+        "name": "tokens"
+      }
+    },
+    "N11249": {
+      "kind": "CallNode",
+      "line": 2,
+      "attributes": {
+        "name": "tokenizeAndClean"
+      }
+    },
+    "N11248": {
+      "kind": "IdentifierNode",
+      "line": 2,
+      "attributes": {
+        "name": "trainingTexts"
+      }
+    },
+    "N11254": {
+      "kind": "AssignmentNode",
+      "line": 3,
+      "attributes": {}
+    },
+    "N11251": {
+      "kind": "IdentifierNode",
+      "line": 3,
+      "attributes": {
+        "name": "vectors"
+      }
+    },
+    "N11253": {
+      "kind": "CallNode",
+      "line": 3,
+      "attributes": {
+        "name": "convertToTFIDF"
+      }
+    },
+    "N11252": {
+      "kind": "IdentifierNode",
+      "line": 3,
+      "attributes": {
+        "name": "tokens"
+      }
+    },
+    "N11259": {
+      "kind": "AssignmentNode",
+      "line": 4,
+      "attributes": {}
+    },
+    "N11255": {
+      "kind": "IdentifierNode",
+      "line": 4,
+      "attributes": {
+        "name": "model"
+      }
+    },
+    "N11258": {
+      "kind": "CallNode",
+      "line": 4,
+      "attributes": {
+        "name": "trainClassifier"
+      }
+    },
+    "N11256": {
+      "kind": "IdentifierNode",
+      "line": 4,
+      "attributes": {
+        "name": "vectors"
+      }
+    },
+    "N11257": {
+      "kind": "IdentifierNode",
+      "line": 4,
+      "attributes": {
+        "name": "labels"
+      }
+    },
+    "N11261": {
+      "kind": "ReturnNode",
+      "line": 6,
+      "attributes": {}
+    },
+    "N11260": {
+      "kind": "IdentifierNode",
+      "line": 6,
+      "attributes": {
+        "name": "model"
+      }
+    }
+  },
+  "adjacency": {
+    "N11264": [
+      "N11263"
+    ],
+    "N11263": [
+      "N11245",
+      "N11246",
+      "N11262"
+    ],
+    "N11245": [],
+    "N11246": [],
+    "N11262": [
+      "N11250",
+      "N11254",
+      "N11259",
+      "N11261"
+    ],
+    "N11250": [
+      "N11247",
+      "N11249"
+    ],
+    "N11247": [],
+    "N11249": [
+      "N11248"
+    ],
+    "N11248": [],
+    "N11254": [
+      "N11251",
+      "N11253"
+    ],
+    "N11251": [],
+    "N11253": [
+      "N11252"
+    ],
+    "N11252": [],
+    "N11259": [
+      "N11255",
+      "N11258"
+    ],
+    "N11255": [],
+    "N11258": [
+      "N11256",
+      "N11257"
+    ],
+    "N11256": [],
+    "N11257": [],
+    "N11261": [
+      "N11260"
+    ],
+    "N11260": []
+  }
+}

@@ -1,0 +1,154 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 12,
+  "transformations": [
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    vowel_counts = {'a': 0, 'e': 0, 'i': 0, 'o': 0, 'u': 0}",
+      "canonical": "    vowel_counts <- {'a': 0, 'e': 0, 'i': 0, 'o': 0, 'u': 0}",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 6,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            vowel_counts[char] = vowel_counts[char] + 1",
+      "canonical": "            vowel_counts[char] <- vowel_counts[char] + 1",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    vowel_counts <- {'a': 0, 'e': 0, 'i': 0, 'o': 0, 'u': 0}",
+      "canonical": "    vowel_counts <- EMPTY DICTIONARY\n    vowel_counts[STRING(\"a\")] <- 0\n    vowel_counts[STRING(\"e\")] <- 0\n    vowel_counts[STRING(\"i\")] <- 0\n    vowel_counts[STRING(\"o\")] <- 0\n    vowel_counts[STRING(\"u\")] <- 0",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 9,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    FOR EACH char IN lowercase(text) DO",
+      "canonical": "    FOR EACH char IN LOWERCASE(text) DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "FUNCTION CountVowels(text):\n    vowel_counts <- EMPTY DICTIONARY\n    vowel_counts[STRING(\"a\")] <- 0\n    vowel_counts[STRING(\"e\")] <- 0\n    vowel_counts[STRING(\"i\")] <- 0\n    vowel_counts[STRING(\"o\")] <- 0\n    vowel_counts[STRING(\"u\")] <- 0\n    \n    FOR EACH char IN LOWERCASE(text) DO\n        IF char IN vowel_counts THEN\n            vowel_counts[char] <- vowel_counts[char] + 1\n        END IF\n    END FOR\n    \n    RETURN vowel_counts\nEND FUNCTION",
+      "canonical": "FUNCTION CountVowels(text):\n    vowel_counts <- EMPTY DICTIONARY\n    vowel_counts[STRING(\"a\")] <- 0\n    vowel_counts[STRING(\"e\")] <- 0\n    vowel_counts[STRING(\"i\")] <- 0\n    vowel_counts[STRING(\"o\")] <- 0\n    vowel_counts[STRING(\"u\")] <- 0\n    \n    FOR EACH char IN LOWERCASE(text) DO\n        IF char IN vowel_counts THEN\n            vowel_counts[char] <- vowel_counts[char] + 1\n        ENDIF\n    ENDFOR\n    \n    RETURN vowel_counts\nENDFUNCTION",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 9,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    FOR EACH char IN LOWERCASE(text) DO",
+      "canonical": "    FOR EACH char IN CALL lowercase(text) DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION CountVowels(text):",
+      "canonical": "FUNCTION CountVowels ACCEPTS(text)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 9,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    FOR EACH char IN CALL lowercase(text) DO",
+      "canonical": "    FOR EACH __reserved_keyword__char IN CALL lowercase(text) DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 10,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        IF char IN vowel_counts THEN",
+      "canonical": "        IF __reserved_keyword__char IN vowel_counts THEN",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 11,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            vowel_counts[char] <- vowel_counts[char] + 1",
+      "canonical": "            vowel_counts[__reserved_keyword__char] <- vowel_counts[__reserved_keyword__char] + 1",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 8,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    ",
+      "canonical": "",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 14,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    ",
+      "canonical": "",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 1
+}

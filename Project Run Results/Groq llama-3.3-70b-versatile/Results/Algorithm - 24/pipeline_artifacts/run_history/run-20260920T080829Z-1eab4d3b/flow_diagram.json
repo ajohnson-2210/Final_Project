@@ -1,0 +1,483 @@
+{
+  "format": "NL-FDEP Flow Diagram",
+  "version": "1.0",
+  "entry_node": "F1",
+  "exit_node": "F2",
+  "nodes": {
+    "F1": {
+      "node_id": "F1",
+      "node_type": "START",
+      "label": "Start",
+      "line": 1,
+      "data": {}
+    },
+    "F2": {
+      "node_id": "F2",
+      "node_type": "END",
+      "label": "End",
+      "line": 1,
+      "data": {}
+    },
+    "F3": {
+      "node_id": "F3",
+      "node_type": "FUNCTION",
+      "label": "Run function CHECK_PASSWORD with password",
+      "line": 1,
+      "data": {
+        "ast_kind": "FunctionNode",
+        "name": "CHECK_PASSWORD"
+      }
+    },
+    "F4": {
+      "node_id": "F4",
+      "node_type": "DECISION",
+      "label": "The length of password is less than 8?",
+      "line": 2,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F5": {
+      "node_id": "F5",
+      "node_type": "RETURN",
+      "label": "Return false",
+      "line": 3,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    },
+    "F6": {
+      "node_id": "F6",
+      "node_type": "PROCESS",
+      "label": "Set has_number to false",
+      "line": 5,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F7": {
+      "node_id": "F7",
+      "node_type": "PROCESS",
+      "label": "Set has_uppercase to false",
+      "line": 6,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F8": {
+      "node_id": "F8",
+      "node_type": "LOOP_DECISION",
+      "label": "For each c in password",
+      "line": 7,
+      "data": {
+        "ast_kind": "ForEachNode"
+      }
+    },
+    "F9": {
+      "node_id": "F9",
+      "node_type": "DECISION",
+      "label": "Is the result of is_number(c) true?",
+      "line": 8,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F10": {
+      "node_id": "F10",
+      "node_type": "PROCESS",
+      "label": "Set has_number to true",
+      "line": 9,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F11": {
+      "node_id": "F11",
+      "node_type": "DECISION",
+      "label": "Is the result of is_uppercase(c) true?",
+      "line": 10,
+      "data": {
+        "ast_kind": "ElseIfNode"
+      }
+    },
+    "F12": {
+      "node_id": "F12",
+      "node_type": "PROCESS",
+      "label": "Set has_uppercase to true",
+      "line": 11,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F13": {
+      "node_id": "F13",
+      "node_type": "DECISION",
+      "label": "Is has_number and has_uppercase true?",
+      "line": 14,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F14": {
+      "node_id": "F14",
+      "node_type": "RETURN",
+      "label": "Return true",
+      "line": 15,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    },
+    "F15": {
+      "node_id": "F15",
+      "node_type": "RETURN",
+      "label": "Return false",
+      "line": 17,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "F4",
+      "target": "F5",
+      "label": "TRUE"
+    },
+    {
+      "source": "F4",
+      "target": "F6",
+      "label": "NEXT"
+    },
+    {
+      "source": "F6",
+      "target": "F7",
+      "label": "NEXT"
+    },
+    {
+      "source": "F9",
+      "target": "F10",
+      "label": "TRUE"
+    },
+    {
+      "source": "F9",
+      "target": "F11",
+      "label": "FALSE"
+    },
+    {
+      "source": "F11",
+      "target": "F12",
+      "label": "TRUE"
+    },
+    {
+      "source": "F8",
+      "target": "F9",
+      "label": "ITERATE"
+    },
+    {
+      "source": "F10",
+      "target": "F8",
+      "label": "LOOP"
+    },
+    {
+      "source": "F12",
+      "target": "F8",
+      "label": "LOOP"
+    },
+    {
+      "source": "F11",
+      "target": "F8",
+      "label": "LOOP"
+    },
+    {
+      "source": "F7",
+      "target": "F8",
+      "label": "NEXT"
+    },
+    {
+      "source": "F13",
+      "target": "F14",
+      "label": "TRUE"
+    },
+    {
+      "source": "F13",
+      "target": "F15",
+      "label": "FALSE"
+    },
+    {
+      "source": "F8",
+      "target": "F13",
+      "label": "NEXT"
+    },
+    {
+      "source": "F3",
+      "target": "F4",
+      "label": "BODY"
+    },
+    {
+      "source": "F1",
+      "target": "F3",
+      "label": "NEXT"
+    },
+    {
+      "source": "F5",
+      "target": "F2",
+      "label": "NEXT"
+    },
+    {
+      "source": "F14",
+      "target": "F2",
+      "label": "NEXT"
+    },
+    {
+      "source": "F15",
+      "target": "F2",
+      "label": "NEXT"
+    }
+  ],
+  "structured_program": {
+    "kind": "ProgramNode",
+    "line": 1,
+    "body": [
+      {
+        "kind": "FunctionNode",
+        "line": 1,
+        "name": "CHECK_PASSWORD",
+        "parameters": [
+          {
+            "kind": "ParameterNode",
+            "line": 1,
+            "name": "password",
+            "declared_type": null
+          }
+        ],
+        "body": {
+          "kind": "BlockNode",
+          "line": 2,
+          "statements": [
+            {
+              "kind": "IfNode",
+              "line": 2,
+              "condition": {
+                "kind": "BinaryNode",
+                "line": 2,
+                "operator": "<",
+                "left": {
+                  "kind": "LengthNode",
+                  "line": 2,
+                  "expression": {
+                    "kind": "IdentifierNode",
+                    "line": 2,
+                    "name": "password"
+                  }
+                },
+                "right": {
+                  "kind": "LiteralNode",
+                  "line": 2,
+                  "value": 8,
+                  "data_type": "INTEGER"
+                }
+              },
+              "then_body": {
+                "kind": "BlockNode",
+                "line": 3,
+                "statements": [
+                  {
+                    "kind": "ReturnNode",
+                    "line": 3,
+                    "expression": {
+                      "kind": "LiteralNode",
+                      "line": 3,
+                      "value": false,
+                      "data_type": "BOOLEAN"
+                    }
+                  }
+                ]
+              },
+              "else_if": [],
+              "else_body": null
+            },
+            {
+              "kind": "AssignmentNode",
+              "line": 5,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 5,
+                "name": "has_number"
+              },
+              "value": {
+                "kind": "LiteralNode",
+                "line": 5,
+                "value": false,
+                "data_type": "BOOLEAN"
+              }
+            },
+            {
+              "kind": "AssignmentNode",
+              "line": 6,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 6,
+                "name": "has_uppercase"
+              },
+              "value": {
+                "kind": "LiteralNode",
+                "line": 6,
+                "value": false,
+                "data_type": "BOOLEAN"
+              }
+            },
+            {
+              "kind": "ForEachNode",
+              "line": 7,
+              "variable": {
+                "kind": "IdentifierNode",
+                "line": 7,
+                "name": "c"
+              },
+              "collection": {
+                "kind": "IdentifierNode",
+                "line": 7,
+                "name": "password"
+              },
+              "body": {
+                "kind": "BlockNode",
+                "line": 8,
+                "statements": [
+                  {
+                    "kind": "IfNode",
+                    "line": 8,
+                    "condition": {
+                      "kind": "CallNode",
+                      "line": 8,
+                      "name": "is_number",
+                      "arguments": [
+                        {
+                          "kind": "IdentifierNode",
+                          "line": 8,
+                          "name": "c"
+                        }
+                      ]
+                    },
+                    "then_body": {
+                      "kind": "BlockNode",
+                      "line": 9,
+                      "statements": [
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 9,
+                          "target": {
+                            "kind": "IdentifierNode",
+                            "line": 9,
+                            "name": "has_number"
+                          },
+                          "value": {
+                            "kind": "LiteralNode",
+                            "line": 9,
+                            "value": true,
+                            "data_type": "BOOLEAN"
+                          }
+                        }
+                      ]
+                    },
+                    "else_if": [
+                      {
+                        "kind": "ElseIfNode",
+                        "line": 10,
+                        "condition": {
+                          "kind": "CallNode",
+                          "line": 10,
+                          "name": "is_uppercase",
+                          "arguments": [
+                            {
+                              "kind": "IdentifierNode",
+                              "line": 10,
+                              "name": "c"
+                            }
+                          ]
+                        },
+                        "body": {
+                          "kind": "BlockNode",
+                          "line": 11,
+                          "statements": [
+                            {
+                              "kind": "AssignmentNode",
+                              "line": 11,
+                              "target": {
+                                "kind": "IdentifierNode",
+                                "line": 11,
+                                "name": "has_uppercase"
+                              },
+                              "value": {
+                                "kind": "LiteralNode",
+                                "line": 11,
+                                "value": true,
+                                "data_type": "BOOLEAN"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "else_body": null
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "IfNode",
+              "line": 14,
+              "condition": {
+                "kind": "BinaryNode",
+                "line": 14,
+                "operator": "AND",
+                "left": {
+                  "kind": "IdentifierNode",
+                  "line": 14,
+                  "name": "has_number"
+                },
+                "right": {
+                  "kind": "IdentifierNode",
+                  "line": 14,
+                  "name": "has_uppercase"
+                }
+              },
+              "then_body": {
+                "kind": "BlockNode",
+                "line": 15,
+                "statements": [
+                  {
+                    "kind": "ReturnNode",
+                    "line": 15,
+                    "expression": {
+                      "kind": "LiteralNode",
+                      "line": 15,
+                      "value": true,
+                      "data_type": "BOOLEAN"
+                    }
+                  }
+                ]
+              },
+              "else_if": [],
+              "else_body": {
+                "kind": "BlockNode",
+                "line": 17,
+                "statements": [
+                  {
+                    "kind": "ReturnNode",
+                    "line": 17,
+                    "expression": {
+                      "kind": "LiteralNode",
+                      "line": 17,
+                      "value": false,
+                      "data_type": "BOOLEAN"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

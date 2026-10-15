@@ -1,0 +1,12 @@
+# Intersection of Unsorted Lists
+
+INPUT list1, list2
+
+set1 = set(list1)
+result = []
+
+FOR item in list2:
+    IF item in set1 AND item not in result:
+        result.append(item)
+
+RETURN unique(result)

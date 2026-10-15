@@ -1,0 +1,17 @@
+INPUT drones, targets, safetyRadius
+
+WHILE not allDronesReachedTargets():
+    plannedPaths <- []
+
+    FOR each drone in drones:
+        path <- computeAStar(drone.pos, drone.target)
+        plannedPaths.__reserved_keyword__append(path)
+
+    adjustedPaths <- resolveConflicts(plannedPaths, safetyRadius)
+
+    FOR i from 0 to length(drones)-1:
+        drones[i].moveAlong(adjustedPaths[i])
+
+    syncPositions()
+
+RETURN success

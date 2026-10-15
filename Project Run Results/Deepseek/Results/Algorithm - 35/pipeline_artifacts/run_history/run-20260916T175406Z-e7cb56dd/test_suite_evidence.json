@@ -1,0 +1,73 @@
+{
+  "test_evidence_schema_version": "1.2",
+  "test_design_version": "1.4.1",
+  "test_spec_schema_version": "1.6",
+  "tests_file": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\Pipeline Versions\\NL_Flow_Diagram_Encoder_Pipeline_v4_35_RC10\\NL_Flow_Diagram_Encoder_Pipeline_v4_35\\study data\\common tests v1.4.1\\Algorithm - 35\\Algorithm 35 Tests.json",
+  "semantic_contract": {
+    "contract_version": "1.4",
+    "contract_source": "ORIGINAL_TASK_SPECIFICATION",
+    "task_statement": "Design a memory buffer that discards the least recently accessed item when full.",
+    "inputs": [
+      {
+        "position": 1,
+        "name": "capacity",
+        "type": "POSITIVE_INTEGER"
+      },
+      {
+        "position": 2,
+        "name": "operations",
+        "type": "LRU_OPERATION_SEQUENCE"
+      }
+    ],
+    "result": {
+      "type": "LRU_STATE",
+      "canonical_semantics": "Buffer state after accesses/additions with least-recently-used eviction."
+    },
+    "automation_status": "HUMAN_SUPPORTED",
+    "parameter_names_are_semantically_irrelevant": true,
+    "derived_parameters_may_be_supplied_by_adapter": true,
+    "human_review_instruction": "Judge the original generated pseudocode against this same frozen task-semantic contract, including when automated evaluation is NOT_EVALUABLE.",
+    "fixture_policy": "PREEXPERIMENT_FROZEN_INPUTS",
+    "expectation_policy": "STATIC_PREEXPERIMENT_EXPECTED_VALUES",
+    "runtime_oracle_prohibited": true
+  },
+  "semantic_test_count": 0,
+  "interaction_or_reference_only_test_count": 3,
+  "semantic_boundary_probe_count": 1,
+  "semantic_boundary_probe_enabled_count": 0,
+  "pre_freeze_validation_count": 0,
+  "pre_freeze_validation_enabled_count": 0,
+  "core_test_count": 3,
+  "declared_evidence_adequacy": "PARTIAL",
+  "declared_evidence_summary": "This suite retains three deterministic seeded LRU state sequences. A non-positive capacity boundary is declared separately, but automatic boundary observation remains unavailable until a safe generic LRU adapter is defined.",
+  "declared_coverage_dimensions": {
+    "normal_path": "NOT_COVERED",
+    "branch_behaviour": "NOT_COVERED",
+    "boundary_behaviour": "NOT_COVERED",
+    "error_behaviour": "NOT_COVERED",
+    "termination_behaviour": "NOT_COVERED",
+    "state_mutation": "COVERED"
+  },
+  "coverage_basis": "Assessment is based on 3 core Common Test cases plus any separately declared semantic-boundary probes; boundary probes do not contribute to core behavioural accuracy.",
+  "interpretation_guidance": "Interpret core behavioural accuracy as evidence within the frozen semantic contract. Interpret Semantic Boundary Variance separately as descriptive evidence of out-of-domain acceptance.",
+  "coverage_limitations": [
+    "Deterministic seeded runs exercise LRU state behaviour, but the generic semantic adapter does not yet support direct hand-crafted LRU operation sequences. Non-positive capacity is declared as a boundary probe but remains automatically NOT_EVALUABLE until a safe generic LRU adapter is added."
+  ],
+  "manual_review_targets": [],
+  "requires_pipeline_features": [
+    "DETERMINISTIC_RANDOM_SEED"
+  ],
+  "test_count": 4,
+  "category_counts": {
+    "STATE_MUTATION": 3
+  },
+  "criteria_link_counts": {
+    "P2": 3,
+    "P4": 3
+  },
+  "seeded_test_count": 3,
+  "environment_controlled_test_count": 0,
+  "has_normal_or_branch_test": false,
+  "has_boundary_error_or_termination_test": false,
+  "has_state_mutation_test": true
+}

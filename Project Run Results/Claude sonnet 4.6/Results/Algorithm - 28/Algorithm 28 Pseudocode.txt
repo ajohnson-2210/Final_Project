@@ -1,0 +1,13 @@
+# Sliding Window Maximum
+
+FUNCTION slidingWindowMax(arr, k):
+    result ← []
+    deque ← []   // stores indices
+    FOR i FROM 0 TO length(arr) - 1:
+        WHILE deque not empty AND deque.front < i - k + 1:
+            REMOVE front of deque
+        WHILE deque not empty AND arr[deque.back] < arr[i]:
+            REMOVE back of deque
+        APPEND i TO back of deque
+        IF i >= k - 1 THEN APPEND arr[deque.front] TO result
+    RETURN result

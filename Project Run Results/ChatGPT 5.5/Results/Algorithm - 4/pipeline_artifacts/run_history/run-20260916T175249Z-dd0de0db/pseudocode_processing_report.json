@@ -1,0 +1,142 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 11,
+  "transformations": [
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    i \u2190 0",
+      "canonical": "    i <- 0",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    j \u2190 0",
+      "canonical": "    j <- 0",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 9,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            i \u2190 i + 1",
+      "canonical": "            i <- i + 1",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 10,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            j \u2190 j + 1",
+      "canonical": "            j <- j + 1",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 12,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            i \u2190 i + 1",
+      "canonical": "            i <- i + 1",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 14,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            j \u2190 j + 1",
+      "canonical": "            j <- j + 1",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 7,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        IF Array1[i] = Array2[j] THEN",
+      "canonical": "        IF Array1[i] == Array2[j] THEN",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    INPUT Array1, Array2\n\n    i <- 0\n    j <- 0\n\n    WHILE i < LENGTH(Array1) AND j < LENGTH(Array2)\n        IF Array1[i] == Array2[j] THEN\n            OUTPUT Array1[i]\n            i <- i + 1\n            j <- j + 1\n        ELSE IF Array1[i] < Array2[j] THEN\n            i <- i + 1\n        ELSE\n            j <- j + 1\n        ENDIF\n    ENDWHILE\nEND",
+      "canonical": "FUNCTION unnamed_function ACCEPTS(Array1, Array2)\n        i <- 0\n        j <- 0\n\n        WHILE i < LENGTH(Array1) AND j < LENGTH(Array2)\n            IF Array1[i] == Array2[j] THEN\n                OUTPUT Array1[i]\n                i <- i + 1\n                j <- j + 1\n            ELSE IF Array1[i] < Array2[j] THEN\n                i <- i + 1\n            ELSE\n                j <- j + 1\n            ENDIF\n        ENDWHILE\n    END\nENDFUNCTION",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        WHILE i < LENGTH(Array1) AND j < LENGTH(Array2)",
+      "canonical": "        WHILE i < LENGTH OF Array1 AND j < LENGTH OF Array2",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        WHILE i < LENGTH OF Array1 AND j < LENGTH OF Array2",
+      "canonical": "        WHILE i < LENGTH OF Array1 AND j < LENGTH OF Array2 DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 16,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    END",
+      "canonical": "",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 2
+}

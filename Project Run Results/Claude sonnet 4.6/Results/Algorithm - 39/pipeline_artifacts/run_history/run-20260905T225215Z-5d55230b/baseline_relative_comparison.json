@@ -1,0 +1,163 @@
+{
+  "comparison_schema_version": "1.1",
+  "comparison_role": "EXPERIMENTAL_SEMANTIC_VS_PIPELINE_CALIBRATION",
+  "is_baseline": false,
+  "reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 39\\Algorithm 39 Baseline Python code.txt",
+  "tests_file": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\Pipeline Versions\\NL_Flow_Diagram_Encoder_Pipeline_v4_34\\NL_Flow_Diagram_Encoder_Pipeline_v4_34\\study data\\common tests v1.2\\Algorithm - 39\\Algorithm 39 Tests.json",
+  "common_test_set": true,
+  "baseline_reference_validation": {
+    "validation_schema_version": "1.0",
+    "reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 39\\Algorithm 39 Baseline Python code.txt",
+    "reference_source_preparation": {
+      "reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 39\\Algorithm 39 Baseline Python code.txt",
+      "raw_sha256": "dc6f4dfe197e83a5fd77f5ef4c6f4d9915f932c7afeac881019c26ac62291240",
+      "raw_syntax_valid": false,
+      "execution_syntax_valid": true,
+      "normalisation_applied": true,
+      "normalisation_rule": "COMMENT_MATCHED_TEST_SUITE_ALGORITHM_TITLE",
+      "raw_syntax_error": "unterminated string literal (detected at line 1) (<unknown>, line 1)",
+      "normalised_line_number": 1,
+      "declared_algorithm_title": "Detect a cycle in a single linked list (Floyd's Cycle Detection)",
+      "reference_heading": "Detect a cycle in a single linked list (Floyd's Cycle Detection)",
+      "execution_sha256": "0f606b2f9ad7afc91b990d6591bab87abe053254de0be27e1e248b73114fd78d"
+    },
+    "status": "TRUSTED_REFERENCE",
+    "reason": "No independent expected outcomes are present. The frozen baseline Python is accepted as the trusted behavioural reference by the study design; this is not an independent validation claim.",
+    "explicit_tests_total": 0,
+    "tests": []
+  },
+  "baseline_calibration_status": "EVALUATED",
+  "baseline_calibration_score_percentage": 100.0,
+  "experimental_behavioural_score_percentage": 0.0,
+  "experimental_tests_total": 1,
+  "experimental_tests_passed": 0,
+  "experimental_observation_mode": "TASK_SEMANTIC_FUNCTION",
+  "semantic_test_report": {
+    "semantic_report_schema_version": "1.0",
+    "program_path": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Claude sonnet 4.6\\Results\\Algorithm - 39\\pipeline_artifacts\\generated_program.py",
+    "algorithm_id": 39,
+    "contract_version": "1.2",
+    "evaluable_tests": 1,
+    "passed_tests": 0,
+    "failed_tests": 1,
+    "not_evaluable_tests": 0,
+    "accuracy_percentage": 0.0,
+    "results": [
+      {
+        "name": "default linked-list cycle lifecycle",
+        "status": "FAILED",
+        "expected_semantic_result": true,
+        "actual_semantic_result": {
+          "runtime_errors": [
+            {
+              "type": "AttributeError",
+              "message": "'Obj' object has no attribute 'next'"
+            }
+          ]
+        },
+        "semantic_match": false,
+        "reason": "The task entrypoint raised a runtime error for the semantic fixture.",
+        "duration_ms": 80.825,
+        "category": "STATE_MUTATION",
+        "semantic_feature": "CYCLE_CREATE_DETECT_REMOVE_AND_NO_CYCLE",
+        "fixture_source": "FROZEN_BASELINE_FIXED_INPUT",
+        "oracle_source": "TASK_SEMANTIC_ORACLE_WITH_FROZEN_BASELINE_REFERENCE",
+        "selected_entrypoint": "hasCycle",
+        "invocation_capture": {
+          "status": "ERROR",
+          "selected_entrypoint": "hasCycle",
+          "prints": [],
+          "returns": [
+            null
+          ],
+          "post_arguments": [
+            [
+              {
+                "$object": "Obj",
+                "attrs": {
+                  "Value": 10,
+                  "Next": {
+                    "$object": "Obj",
+                    "attrs": {
+                      "Value": 20,
+                      "Next": {
+                        "$object": "Obj",
+                        "attrs": {
+                          "Value": 30,
+                          "Next": {
+                            "$object": "Obj",
+                            "attrs": {
+                              "Value": 40,
+                              "Next": {
+                                "$object": "Obj",
+                                "attrs": {
+                                  "Value": 50,
+                                  "Next": {
+                                    "$object": "Obj",
+                                    "attrs": {
+                                      "Value": {
+                                        "$repr": "60"
+                                      },
+                                      "Next": {
+                                        "$repr": "<__main__.Obj object at 0x000001D62628D640>"
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          ],
+          "shared_values": {},
+          "errors": [
+            {
+              "type": "AttributeError",
+              "message": "'Obj' object has no attribute 'next'"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "delta_from_baseline_percentage_points": -100.0,
+  "comparison_to_baseline": "BELOW_BASELINE",
+  "comparison_status": "COMPARABLE",
+  "oracle_records": [],
+  "interpretation_note": "The baseline score measures pipeline calibration on frozen baseline pseudocode. The experimental score measures task-semantic correctness using the Common Tests semantic contract and explicit baseline-derived fixtures; legacy PROGRAM/stdout execution is not used as the experimental accuracy metric. The percentage-point delta is descriptive and is not a causal correction or adjusted accuracy score.",
+  "baseline_algorithm_id": 39,
+  "baseline_calibration_run_id": "run-20260905T223736Z-bf07fc4d",
+  "semantic_contract": {
+    "contract_version": "1.2",
+    "contract_source": "ORIGINAL_TASK_SPECIFICATION",
+    "task_statement": "Detect a cycle in a singly linked list (Floyd's Cycle Detection).",
+    "inputs": [
+      {
+        "position": 1,
+        "name": "head",
+        "type": "SINGLY_LINKED_LIST"
+      }
+    ],
+    "result": {
+      "type": "BOOLEAN",
+      "canonical_semantics": "True iff the linked list contains a cycle."
+    },
+    "automation_status": "AUTOMATED_FUNCTION",
+    "parameter_names_are_semantically_irrelevant": true,
+    "derived_parameters_may_be_supplied_by_adapter": true,
+    "baseline_fixture_source": "Algorithm 39 Baseline Python code.txt",
+    "baseline_source_sha256": "457e7befec5238dec11a09ee154b1c88728d410138c2d36fecf3b41679718303",
+    "oracle_policy": "The original task defines the semantic result where determinate; the frozen trusted baseline supplies concrete fixtures and resolves deterministic task-policy details where the task statement is underspecified. Experimental/model output never defines its own oracle.",
+    "human_review_instruction": "Judge the original model pseudocode against this task-semantic contract even when automated execution is NOT_EVALUABLE."
+  },
+  "semantic_contract_version": "1.2",
+  "oracle_source": "TASK_SEMANTIC_CONTRACT_V1.2",
+  "baseline_reference_oracle_eligible": true,
+  "oracle_block_reason": null
+}

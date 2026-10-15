@@ -1,0 +1,70 @@
+{
+  "test_evidence_schema_version": "1.2",
+  "test_design_version": "1.4.2",
+  "test_spec_schema_version": "1.6",
+  "tests_file": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\Pipeline Versions\\NL_Flow_Diagram_Encoder_Pipeline_v4_36\\NL_Flow_Diagram_Encoder_Pipeline_v4_36\\study data\\common tests v1.4.2\\Algorithm - 41\\Algorithm 41 Tests.json",
+  "semantic_contract": {
+    "contract_version": "1.4",
+    "contract_source": "ORIGINAL_TASK_SPECIFICATION",
+    "task_statement": "Solve the N Queens Problem for an arbitrary board size N.",
+    "inputs": [
+      {
+        "position": 1,
+        "name": "n",
+        "type": "POSITIVE_INTEGER"
+      }
+    ],
+    "result": {
+      "type": "NQUEENS_SOLUTIONS",
+      "canonical_semantics": "Valid placements of N queens with no shared row, column or diagonal."
+    },
+    "automation_status": "HUMAN_SUPPORTED",
+    "parameter_names_are_semantically_irrelevant": true,
+    "derived_parameters_may_be_supplied_by_adapter": true,
+    "human_review_instruction": "Judge the original generated pseudocode against this same frozen task-semantic contract, including when automated evaluation is NOT_EVALUABLE.",
+    "fixture_policy": "PREEXPERIMENT_FROZEN_INPUTS",
+    "expectation_policy": "STATIC_PREEXPERIMENT_EXPECTED_VALUES",
+    "runtime_oracle_prohibited": true
+  },
+  "semantic_test_count": 0,
+  "interaction_or_reference_only_test_count": 6,
+  "semantic_boundary_probe_count": 1,
+  "semantic_boundary_probe_enabled_count": 0,
+  "pre_freeze_validation_count": 0,
+  "pre_freeze_validation_enabled_count": 0,
+  "core_test_count": 6,
+  "declared_evidence_adequacy": "ADEQUATE",
+  "declared_evidence_summary": "This suite provides comparatively broad behavioural evidence using 6 predefined common behavioural tests, with covered boundary, error behaviour and partial termination, state-mutation evidence.",
+  "declared_coverage_dimensions": {
+    "normal_path": "NOT_COVERED",
+    "branch_behaviour": "NOT_COVERED",
+    "boundary_behaviour": "COVERED",
+    "error_behaviour": "COVERED",
+    "termination_behaviour": "PARTIALLY_COVERED",
+    "state_mutation": "PARTIALLY_COVERED"
+  },
+  "coverage_basis": "Assessment is based on the 6 predefined common behavioural tests, the behaviours exposed by the frozen program interface, and the declared coverage dimensions: boundary behaviour, error behaviour, termination behaviour, state mutation.",
+  "interpretation_guidance": "Interpret behavioural accuracy as comparatively broad evidence across the declared exercised behaviours, while not treating the result as exhaustive proof for all possible inputs and states.",
+  "coverage_limitations": [
+    "N<=0 is outside the POSITIVE_INTEGER contract and is declared as a semantic-boundary probe, but automatic boundary observation remains NOT_EVALUABLE until a safe generic N-Queens adapter is available."
+  ],
+  "manual_review_targets": [],
+  "requires_pipeline_features": [],
+  "test_count": 7,
+  "category_counts": {
+    "BOUNDARY": 2,
+    "ERROR_BEHAVIOUR": 2,
+    "STATE_MUTATION": 1,
+    "TERMINATION": 1
+  },
+  "criteria_link_counts": {
+    "P2": 6,
+    "P3": 5,
+    "P4": 6
+  },
+  "seeded_test_count": 0,
+  "environment_controlled_test_count": 0,
+  "has_normal_or_branch_test": false,
+  "has_boundary_error_or_termination_test": true,
+  "has_state_mutation_test": true
+}

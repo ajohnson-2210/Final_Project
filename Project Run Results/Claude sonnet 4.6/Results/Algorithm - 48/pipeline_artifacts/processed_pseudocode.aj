@@ -1,0 +1,8 @@
+FUNCTION findFilesByType(folder, targetExtension):
+    results <- []
+    FOR each item IN folder.contents:
+        IF item is a file AND item.extension == targetExtension THEN
+            APPEND item.path TO results
+        ELSE IF item is a folder THEN
+            results <- results + findFilesByType(item, targetExtension)
+    RETURN results

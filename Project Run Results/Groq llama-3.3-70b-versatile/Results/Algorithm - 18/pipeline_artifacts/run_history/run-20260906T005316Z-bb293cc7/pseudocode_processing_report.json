@@ -1,0 +1,108 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 8,
+  "transformations": [
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  counts = {}",
+      "canonical": "  counts <- {}",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "      counts[c] += 1",
+      "canonical": "      counts[c] <- counts[c] + 1",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 7,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "      counts[c] = 1",
+      "canonical": "      counts[c] <- 1",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 2,
+      "rule_family": "COLLECTION_TYPE_EVIDENCE",
+      "branch": "EMPTY_BRACES_FROM_INDEXED_WRITE",
+      "source": "  counts <- {}",
+      "canonical": "  counts <- EMPTY DICTIONARY",
+      "evidence": [
+        "source explicitly initialises a simple receiver with bare empty braces",
+        "a later same-scope assignment writes through an index on that receiver before any direct rebind",
+        "indexed write is incompatible with set semantics and directly evidences keyed mapping use"
+      ],
+      "confidence": "source_proven",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION COUNT_CHARACTERS(s)",
+      "canonical": "FUNCTION COUNT_CHARACTERS ACCEPTS(s)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "FUNCTION COUNT_CHARACTERS ACCEPTS(s)\n  counts <- EMPTY DICTIONARY\n  FOR c IN s\n    IF c IN counts THEN\n      counts[c] <- counts[c] + 1\n    ELSE\n      counts[c] <- 1\n    END IF\n  END FOR\n  RETURN counts\nEND FUNCTION",
+      "canonical": "FUNCTION COUNT_CHARACTERS ACCEPTS(s)\n  counts <- EMPTY DICTIONARY\n  FOR c IN s\n    IF c IN counts THEN\n      counts[c] <- counts[c] + 1\n    ELSE\n      counts[c] <- 1\n    ENDIF\n  END FOR\n  RETURN counts\nENDFUNCTION",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  FOR c IN s",
+      "canonical": "  FOR EACH c IN s DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 9,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "  END FOR",
+      "canonical": "  ENDFOR",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 1
+}

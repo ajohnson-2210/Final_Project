@@ -1,0 +1,213 @@
+{
+  "semantic_report_schema_version": "1.0",
+  "program_path": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Claude sonnet 4.6\\Results\\Algorithm - 23\\pipeline_artifacts\\generated_program.py",
+  "algorithm_id": 23,
+  "contract_version": "1.2",
+  "evaluable_tests": 0,
+  "passed_tests": 0,
+  "failed_tests": 0,
+  "not_evaluable_tests": 8,
+  "accuracy_percentage": null,
+  "results": [
+    {
+      "name": "below pass threshold",
+      "status": "NOT_EVALUABLE",
+      "expected_semantic_result": "FAIL",
+      "actual_semantic_result": null,
+      "semantic_match": null,
+      "reason": "The semantic observer could not derive the task result from the invocation evidence.",
+      "duration_ms": 80.486,
+      "category": "BRANCH",
+      "semantic_feature": "GRADE_FAIL",
+      "fixture_source": "COMMON_TEST_STANDARD_INPUT",
+      "oracle_source": "TASK_SEMANTIC_ORACLE_WITH_FROZEN_BASELINE_REFERENCE",
+      "selected_entrypoint": "scoreToGrade",
+      "invocation_capture": {
+        "status": "COMPLETED",
+        "selected_entrypoint": "scoreToGrade",
+        "prints": [],
+        "returns": [
+          "Merit"
+        ],
+        "post_arguments": [
+          [
+            59.9
+          ]
+        ],
+        "shared_values": {},
+        "errors": [
+          null
+        ]
+      }
+    },
+    {
+      "name": "pass lower boundary",
+      "status": "NOT_EVALUABLE",
+      "expected_semantic_result": "PASS",
+      "actual_semantic_result": null,
+      "semantic_match": null,
+      "reason": "The semantic observer could not derive the task result from the invocation evidence.",
+      "duration_ms": 90.669,
+      "category": "BOUNDARY",
+      "semantic_feature": "GRADE_PASS_BOUNDARY",
+      "fixture_source": "COMMON_TEST_STANDARD_INPUT",
+      "oracle_source": "TASK_SEMANTIC_ORACLE_WITH_FROZEN_BASELINE_REFERENCE",
+      "selected_entrypoint": "scoreToGrade",
+      "invocation_capture": {
+        "status": "COMPLETED",
+        "selected_entrypoint": "scoreToGrade",
+        "prints": [],
+        "returns": [
+          "Merit"
+        ],
+        "post_arguments": [
+          [
+            60.0
+          ]
+        ],
+        "shared_values": {},
+        "errors": [
+          null
+        ]
+      }
+    },
+    {
+      "name": "merit lower boundary",
+      "status": "NOT_EVALUABLE",
+      "expected_semantic_result": "MERIT",
+      "actual_semantic_result": null,
+      "semantic_match": null,
+      "reason": "The semantic observer could not derive the task result from the invocation evidence.",
+      "duration_ms": 102.91,
+      "category": "BOUNDARY",
+      "semantic_feature": "GRADE_MERIT_BOUNDARY",
+      "fixture_source": "COMMON_TEST_STANDARD_INPUT",
+      "oracle_source": "TASK_SEMANTIC_ORACLE_WITH_FROZEN_BASELINE_REFERENCE",
+      "selected_entrypoint": "scoreToGrade",
+      "invocation_capture": {
+        "status": "COMPLETED",
+        "selected_entrypoint": "scoreToGrade",
+        "prints": [],
+        "returns": [
+          "Distinction"
+        ],
+        "post_arguments": [
+          [
+            70.0
+          ]
+        ],
+        "shared_values": {},
+        "errors": [
+          null
+        ]
+      }
+    },
+    {
+      "name": "distinction lower boundary",
+      "status": "NOT_EVALUABLE",
+      "expected_semantic_result": "DISTINCTION",
+      "actual_semantic_result": null,
+      "semantic_match": null,
+      "reason": "The semantic observer could not derive the task result from the invocation evidence.",
+      "duration_ms": 102.457,
+      "category": "BOUNDARY",
+      "semantic_feature": "GRADE_DISTINCTION_BOUNDARY",
+      "fixture_source": "COMMON_TEST_STANDARD_INPUT",
+      "oracle_source": "TASK_SEMANTIC_ORACLE_WITH_FROZEN_BASELINE_REFERENCE",
+      "selected_entrypoint": "scoreToGrade",
+      "invocation_capture": {
+        "status": "COMPLETED",
+        "selected_entrypoint": "scoreToGrade",
+        "prints": [],
+        "returns": [
+          "Distinction"
+        ],
+        "post_arguments": [
+          [
+            80.0
+          ]
+        ],
+        "shared_values": {},
+        "errors": [
+          null
+        ]
+      }
+    },
+    {
+      "name": "perfect score branch",
+      "status": "NOT_EVALUABLE",
+      "expected_semantic_result": "DISTINCTION",
+      "actual_semantic_result": null,
+      "semantic_match": null,
+      "reason": "The semantic observer could not derive the task result from the invocation evidence.",
+      "duration_ms": 87.934,
+      "category": "BOUNDARY",
+      "semantic_feature": "GRADE_PERFECT_100",
+      "fixture_source": "COMMON_TEST_STANDARD_INPUT",
+      "oracle_source": "TASK_SEMANTIC_ORACLE_WITH_FROZEN_BASELINE_REFERENCE",
+      "selected_entrypoint": "scoreToGrade",
+      "invocation_capture": {
+        "status": "COMPLETED",
+        "selected_entrypoint": "scoreToGrade",
+        "prints": [],
+        "returns": [
+          "Distinction"
+        ],
+        "post_arguments": [
+          [
+            100.0
+          ]
+        ],
+        "shared_values": {},
+        "errors": [
+          null
+        ]
+      }
+    },
+    {
+      "name": "out-of-range low retries",
+      "status": "NOT_EVALUABLE",
+      "expected_semantic_result": null,
+      "actual_semantic_result": null,
+      "semantic_match": null,
+      "reason": "This Common Test remains interaction/reference evidence and is not a canonical task-function test.",
+      "duration_ms": null,
+      "category": "ERROR_BEHAVIOUR",
+      "semantic_feature": "GRADE_RANGE_LOW_RETRY",
+      "fixture_source": null,
+      "oracle_source": null,
+      "selected_entrypoint": null,
+      "invocation_capture": null
+    },
+    {
+      "name": "out-of-range high retries",
+      "status": "NOT_EVALUABLE",
+      "expected_semantic_result": null,
+      "actual_semantic_result": null,
+      "semantic_match": null,
+      "reason": "This Common Test remains interaction/reference evidence and is not a canonical task-function test.",
+      "duration_ms": null,
+      "category": "ERROR_BEHAVIOUR",
+      "semantic_feature": "GRADE_RANGE_HIGH_RETRY",
+      "fixture_source": null,
+      "oracle_source": null,
+      "selected_entrypoint": null,
+      "invocation_capture": null
+    },
+    {
+      "name": "non-numeric retries",
+      "status": "NOT_EVALUABLE",
+      "expected_semantic_result": null,
+      "actual_semantic_result": null,
+      "semantic_match": null,
+      "reason": "This Common Test remains interaction/reference evidence and is not a canonical task-function test.",
+      "duration_ms": null,
+      "category": "ERROR_BEHAVIOUR",
+      "semantic_feature": "NUMERIC_INPUT_RETRY",
+      "fixture_source": null,
+      "oracle_source": null,
+      "selected_entrypoint": null,
+      "invocation_capture": null
+    }
+  ]
+}

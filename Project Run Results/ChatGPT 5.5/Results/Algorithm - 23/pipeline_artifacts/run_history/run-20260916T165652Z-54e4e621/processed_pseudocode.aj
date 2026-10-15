@@ -1,0 +1,12 @@
+    INPUT Score
+
+    IF Score >= 70 THEN
+        OUTPUT "Distinction"
+    ELSE IF Score >= 50 THEN
+        OUTPUT "Merit"
+    ELSE IF Score >= 40 THEN
+        OUTPUT "Pass"
+    ELSE
+        OUTPUT "Fail"
+    ENDIF
+END

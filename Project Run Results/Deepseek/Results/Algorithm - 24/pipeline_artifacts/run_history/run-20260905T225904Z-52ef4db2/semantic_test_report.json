@@ -1,0 +1,137 @@
+{
+  "semantic_report_schema_version": "1.0",
+  "program_path": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Deepseek\\Results\\Algorithm - 24\\pipeline_artifacts\\generated_program.py",
+  "algorithm_id": 24,
+  "contract_version": "1.2",
+  "evaluable_tests": 0,
+  "passed_tests": 0,
+  "failed_tests": 0,
+  "not_evaluable_tests": 4,
+  "accuracy_percentage": null,
+  "results": [
+    {
+      "name": "valid minimum-style password",
+      "status": "NOT_EVALUABLE",
+      "expected_semantic_result": true,
+      "actual_semantic_result": null,
+      "semantic_match": null,
+      "reason": "The semantic observer could not derive the task result from the invocation evidence.",
+      "duration_ms": 85.249,
+      "category": "NORMAL",
+      "semantic_feature": "PASSWORD_VALID",
+      "fixture_source": "COMMON_TEST_STANDARD_INPUT",
+      "oracle_source": "TASK_SEMANTIC_ORACLE_WITH_FROZEN_BASELINE_REFERENCE",
+      "selected_entrypoint": "isPasswordStrong",
+      "invocation_capture": {
+        "status": "COMPLETED",
+        "selected_entrypoint": "isPasswordStrong",
+        "prints": [],
+        "returns": [
+          true
+        ],
+        "post_arguments": [
+          [
+            "Abcdefg1"
+          ]
+        ],
+        "shared_values": {},
+        "errors": [
+          null
+        ]
+      }
+    },
+    {
+      "name": "too short then valid",
+      "status": "NOT_EVALUABLE",
+      "expected_semantic_result": false,
+      "actual_semantic_result": null,
+      "semantic_match": null,
+      "reason": "The semantic observer could not derive the task result from the invocation evidence.",
+      "duration_ms": 101.606,
+      "category": "ERROR_BEHAVIOUR",
+      "semantic_feature": "PASSWORD_LENGTH_REQUIREMENT",
+      "fixture_source": "COMMON_TEST_STANDARD_INPUT",
+      "oracle_source": "TASK_SEMANTIC_ORACLE_WITH_FROZEN_BASELINE_REFERENCE",
+      "selected_entrypoint": "isPasswordStrong",
+      "invocation_capture": {
+        "status": "COMPLETED",
+        "selected_entrypoint": "isPasswordStrong",
+        "prints": [],
+        "returns": [
+          false
+        ],
+        "post_arguments": [
+          [
+            "Ab1"
+          ]
+        ],
+        "shared_values": {},
+        "errors": [
+          null
+        ]
+      }
+    },
+    {
+      "name": "missing digit then valid",
+      "status": "NOT_EVALUABLE",
+      "expected_semantic_result": false,
+      "actual_semantic_result": null,
+      "semantic_match": null,
+      "reason": "The semantic observer could not derive the task result from the invocation evidence.",
+      "duration_ms": 97.534,
+      "category": "BRANCH",
+      "semantic_feature": "PASSWORD_DIGIT_REQUIREMENT",
+      "fixture_source": "COMMON_TEST_STANDARD_INPUT",
+      "oracle_source": "TASK_SEMANTIC_ORACLE_WITH_FROZEN_BASELINE_REFERENCE",
+      "selected_entrypoint": "isPasswordStrong",
+      "invocation_capture": {
+        "status": "COMPLETED",
+        "selected_entrypoint": "isPasswordStrong",
+        "prints": [],
+        "returns": [
+          false
+        ],
+        "post_arguments": [
+          [
+            "Abcdefgh"
+          ]
+        ],
+        "shared_values": {},
+        "errors": [
+          null
+        ]
+      }
+    },
+    {
+      "name": "missing uppercase then valid",
+      "status": "NOT_EVALUABLE",
+      "expected_semantic_result": false,
+      "actual_semantic_result": null,
+      "semantic_match": null,
+      "reason": "The semantic observer could not derive the task result from the invocation evidence.",
+      "duration_ms": 88.162,
+      "category": "BRANCH",
+      "semantic_feature": "PASSWORD_UPPERCASE_REQUIREMENT",
+      "fixture_source": "COMMON_TEST_STANDARD_INPUT",
+      "oracle_source": "TASK_SEMANTIC_ORACLE_WITH_FROZEN_BASELINE_REFERENCE",
+      "selected_entrypoint": "isPasswordStrong",
+      "invocation_capture": {
+        "status": "COMPLETED",
+        "selected_entrypoint": "isPasswordStrong",
+        "prints": [],
+        "returns": [
+          false
+        ],
+        "post_arguments": [
+          [
+            "abcdefg1"
+          ]
+        ],
+        "shared_values": {},
+        "errors": [
+          null
+        ]
+      }
+    }
+  ]
+}

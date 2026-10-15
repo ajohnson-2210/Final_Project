@@ -1,0 +1,82 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 6,
+  "transformations": [
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    UniqueIPs \u2190 Empty Set",
+      "canonical": "    UniqueIPs <- Empty Set",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    INPUT IP_List\n\n    UniqueIPs <- Empty Set\n\n    FOR EACH IP IN IP_List\n        ADD IP TO UniqueIPs\n    ENDFOR\n\n    OUTPUT UniqueIPs\nEND",
+      "canonical": "FUNCTION unnamed_function ACCEPTS(IP_List)\n        UniqueIPs <- Empty Set\n\n        FOR EACH IP IN IP_List\n            ADD IP TO UniqueIPs\n        ENDFOR\n\n        OUTPUT UniqueIPs\n    END\nENDFUNCTION",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        UniqueIPs <- Empty Set",
+      "canonical": "        UniqueIPs <- EMPTY SET",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION unnamed_function ACCEPTS(IP_List)\n        UniqueIPs <- EMPTY SET\n\n        FOR EACH IP IN IP_List\n            ADD IP TO UniqueIPs\n        ENDFOR\n\n        OUTPUT UniqueIPs\n    END\nENDFUNCTION",
+      "canonical": "FUNCTION unnamed_function ACCEPTS(IP_List)\n        UniqueIPs <- EMPTY SET\n\n        FOR EACH IP IN IP_List\n            CALL add_to_set(UniqueIPs, IP)\n        ENDFOR\n\n        OUTPUT UniqueIPs\n    END\nENDFUNCTION",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        FOR EACH IP IN IP_List",
+      "canonical": "        FOR EACH IP IN IP_List DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 9,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    END",
+      "canonical": "",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 2
+}

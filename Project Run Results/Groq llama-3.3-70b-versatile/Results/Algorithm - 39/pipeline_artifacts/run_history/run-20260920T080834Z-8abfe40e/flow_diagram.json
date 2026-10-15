@@ -1,0 +1,379 @@
+{
+  "format": "NL-FDEP Flow Diagram",
+  "version": "1.0",
+  "entry_node": "F1",
+  "exit_node": "F2",
+  "nodes": {
+    "F1": {
+      "node_id": "F1",
+      "node_type": "START",
+      "label": "Start",
+      "line": 1,
+      "data": {}
+    },
+    "F2": {
+      "node_id": "F2",
+      "node_type": "END",
+      "label": "End",
+      "line": 1,
+      "data": {}
+    },
+    "F3": {
+      "node_id": "F3",
+      "node_type": "FUNCTION",
+      "label": "Run function HAS_CYCLE with head",
+      "line": 1,
+      "data": {
+        "ast_kind": "FunctionNode",
+        "name": "HAS_CYCLE"
+      }
+    },
+    "F4": {
+      "node_id": "F4",
+      "node_type": "PROCESS",
+      "label": "Set tortoise to head",
+      "line": 2,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F5": {
+      "node_id": "F5",
+      "node_type": "PROCESS",
+      "label": "Set hare to head",
+      "line": 3,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F6": {
+      "node_id": "F6",
+      "node_type": "LOOP_DECISION",
+      "label": "Continue while tortoise is not equal to NULL and hare is not equal to NULL and next of hare is not equal to NULL?",
+      "line": 4,
+      "data": {
+        "ast_kind": "WhileNode"
+      }
+    },
+    "F7": {
+      "node_id": "F7",
+      "node_type": "PROCESS",
+      "label": "Set tortoise to next of tortoise",
+      "line": 5,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F8": {
+      "node_id": "F8",
+      "node_type": "PROCESS",
+      "label": "Set hare to next of next of hare",
+      "line": 6,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F9": {
+      "node_id": "F9",
+      "node_type": "DECISION",
+      "label": "Tortoise is equal to hare?",
+      "line": 7,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F10": {
+      "node_id": "F10",
+      "node_type": "RETURN",
+      "label": "Return true",
+      "line": 8,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    },
+    "F11": {
+      "node_id": "F11",
+      "node_type": "RETURN",
+      "label": "Return false",
+      "line": 11,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "F4",
+      "target": "F5",
+      "label": "NEXT"
+    },
+    {
+      "source": "F7",
+      "target": "F8",
+      "label": "NEXT"
+    },
+    {
+      "source": "F9",
+      "target": "F10",
+      "label": "TRUE"
+    },
+    {
+      "source": "F8",
+      "target": "F9",
+      "label": "NEXT"
+    },
+    {
+      "source": "F6",
+      "target": "F7",
+      "label": "TRUE"
+    },
+    {
+      "source": "F9",
+      "target": "F6",
+      "label": "LOOP"
+    },
+    {
+      "source": "F5",
+      "target": "F6",
+      "label": "NEXT"
+    },
+    {
+      "source": "F6",
+      "target": "F11",
+      "label": "NEXT"
+    },
+    {
+      "source": "F3",
+      "target": "F4",
+      "label": "BODY"
+    },
+    {
+      "source": "F1",
+      "target": "F3",
+      "label": "NEXT"
+    },
+    {
+      "source": "F10",
+      "target": "F2",
+      "label": "NEXT"
+    },
+    {
+      "source": "F11",
+      "target": "F2",
+      "label": "NEXT"
+    }
+  ],
+  "structured_program": {
+    "kind": "ProgramNode",
+    "line": 1,
+    "body": [
+      {
+        "kind": "FunctionNode",
+        "line": 1,
+        "name": "HAS_CYCLE",
+        "parameters": [
+          {
+            "kind": "ParameterNode",
+            "line": 1,
+            "name": "head",
+            "declared_type": null
+          }
+        ],
+        "body": {
+          "kind": "BlockNode",
+          "line": 2,
+          "statements": [
+            {
+              "kind": "AssignmentNode",
+              "line": 2,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 2,
+                "name": "tortoise"
+              },
+              "value": {
+                "kind": "IdentifierNode",
+                "line": 2,
+                "name": "head"
+              }
+            },
+            {
+              "kind": "AssignmentNode",
+              "line": 3,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 3,
+                "name": "hare"
+              },
+              "value": {
+                "kind": "IdentifierNode",
+                "line": 3,
+                "name": "head"
+              }
+            },
+            {
+              "kind": "WhileNode",
+              "line": 4,
+              "condition": {
+                "kind": "BinaryNode",
+                "line": 4,
+                "operator": "AND",
+                "left": {
+                  "kind": "BinaryNode",
+                  "line": 4,
+                  "operator": "AND",
+                  "left": {
+                    "kind": "BinaryNode",
+                    "line": 4,
+                    "operator": "!=",
+                    "left": {
+                      "kind": "IdentifierNode",
+                      "line": 4,
+                      "name": "tortoise"
+                    },
+                    "right": {
+                      "kind": "IdentifierNode",
+                      "line": 4,
+                      "name": "NULL"
+                    }
+                  },
+                  "right": {
+                    "kind": "BinaryNode",
+                    "line": 4,
+                    "operator": "!=",
+                    "left": {
+                      "kind": "IdentifierNode",
+                      "line": 4,
+                      "name": "hare"
+                    },
+                    "right": {
+                      "kind": "IdentifierNode",
+                      "line": 4,
+                      "name": "NULL"
+                    }
+                  }
+                },
+                "right": {
+                  "kind": "BinaryNode",
+                  "line": 4,
+                  "operator": "!=",
+                  "left": {
+                    "kind": "MemberAccessNode",
+                    "line": 4,
+                    "object": {
+                      "kind": "IdentifierNode",
+                      "line": 4,
+                      "name": "hare"
+                    },
+                    "member": "next"
+                  },
+                  "right": {
+                    "kind": "IdentifierNode",
+                    "line": 4,
+                    "name": "NULL"
+                  }
+                }
+              },
+              "body": {
+                "kind": "BlockNode",
+                "line": 5,
+                "statements": [
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 5,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 5,
+                      "name": "tortoise"
+                    },
+                    "value": {
+                      "kind": "MemberAccessNode",
+                      "line": 5,
+                      "object": {
+                        "kind": "IdentifierNode",
+                        "line": 5,
+                        "name": "tortoise"
+                      },
+                      "member": "next"
+                    }
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 6,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 6,
+                      "name": "hare"
+                    },
+                    "value": {
+                      "kind": "MemberAccessNode",
+                      "line": 6,
+                      "object": {
+                        "kind": "MemberAccessNode",
+                        "line": 6,
+                        "object": {
+                          "kind": "IdentifierNode",
+                          "line": 6,
+                          "name": "hare"
+                        },
+                        "member": "next"
+                      },
+                      "member": "next"
+                    }
+                  },
+                  {
+                    "kind": "IfNode",
+                    "line": 7,
+                    "condition": {
+                      "kind": "BinaryNode",
+                      "line": 7,
+                      "operator": "==",
+                      "left": {
+                        "kind": "IdentifierNode",
+                        "line": 7,
+                        "name": "tortoise"
+                      },
+                      "right": {
+                        "kind": "IdentifierNode",
+                        "line": 7,
+                        "name": "hare"
+                      }
+                    },
+                    "then_body": {
+                      "kind": "BlockNode",
+                      "line": 8,
+                      "statements": [
+                        {
+                          "kind": "ReturnNode",
+                          "line": 8,
+                          "expression": {
+                            "kind": "LiteralNode",
+                            "line": 8,
+                            "value": true,
+                            "data_type": "BOOLEAN"
+                          }
+                        }
+                      ]
+                    },
+                    "else_if": [],
+                    "else_body": null
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "ReturnNode",
+              "line": 11,
+              "expression": {
+                "kind": "LiteralNode",
+                "line": 11,
+                "value": false,
+                "data_type": "BOOLEAN"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

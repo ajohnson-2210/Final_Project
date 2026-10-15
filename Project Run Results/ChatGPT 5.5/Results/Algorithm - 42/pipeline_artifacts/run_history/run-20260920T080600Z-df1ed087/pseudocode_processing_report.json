@@ -1,0 +1,58 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 4,
+  "transformations": [
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    FOR i \u2190 0 TO LENGTH(Array)-2",
+      "canonical": "    FOR i <- 0 TO LENGTH(Array)-2",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        FOR j \u2190 i+1 TO LENGTH(Array)-1",
+      "canonical": "        FOR j <- i+1 TO LENGTH(Array)-1",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            IF Array[i] + Array[j] = Target THEN",
+      "canonical": "            IF Array[i] + Array[j] == Target THEN",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    INPUT Array, Target\n\n    FOR i <- 0 TO LENGTH(Array)-2\n        FOR j <- i+1 TO LENGTH(Array)-1\n            IF Array[i] + Array[j] == Target THEN\n                OUTPUT Array[i], Array[j]\n            ENDIF\n        ENDFOR\n    ENDFOR\nEND",
+      "canonical": "FUNCTION unnamed_function ACCEPTS(Array, Target)\n    FOR i <- IN RANGE 0 TO (LENGTH OF Array - 2) + 1 DO\n        FOR j <- IN RANGE i + 1 TO (LENGTH OF Array - 1) + 1 DO\n            IF Array[i] + Array[j] == Target THEN\n                OUTPUT CALL output_values(Array[i], Array[j])\n            ENDIF\n        ENDFOR\n    ENDFOR\nENDFUNCTION",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 2
+}

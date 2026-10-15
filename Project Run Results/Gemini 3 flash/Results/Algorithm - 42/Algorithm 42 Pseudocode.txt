@@ -1,0 +1,15 @@
+# Find all pairs in an array that sum to a target value    
+FUNCTION FindPairsWithSum(arr, target):
+    seen = empty Set
+    pairs = empty Set
+    
+    FOR EACH num IN arr DO
+        complement = target - num
+        IF complement IN seen THEN
+            ADD (MIN(num, complement), MAX(num, complement)) TO pairs
+        END IF
+        ADD num TO seen
+    END FOR
+    
+    RETURN pairs
+END FUNCTION

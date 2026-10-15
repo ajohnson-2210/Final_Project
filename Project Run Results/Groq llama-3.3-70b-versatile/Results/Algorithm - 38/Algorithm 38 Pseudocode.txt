@@ -1,0 +1,17 @@
+# Find the first non-repeating character in a string
+FUNCTION FIRST_NON_REPEATING_CHARACTER(s)
+  char_count = {}
+  FOR c IN s
+    IF c IN char_count THEN
+      char_count[c] += 1
+    ELSE
+      char_count[c] = 1
+    END IF
+  END FOR
+  FOR c IN s
+    IF char_count[c] == 1 THEN
+      RETURN c
+    END IF
+  END FOR
+  RETURN NULL
+END FUNCTION

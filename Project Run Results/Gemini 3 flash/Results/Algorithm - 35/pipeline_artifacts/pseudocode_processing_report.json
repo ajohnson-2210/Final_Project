@@ -1,0 +1,210 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 16,
+  "transformations": [
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        self.capacity = capacity",
+      "canonical": "        self.capacity <- capacity",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        self.map = empty Hash Map",
+      "canonical": "        self.map <- empty Hash Map",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        self.doubly_linked_list = empty DoublyLinkedList",
+      "canonical": "        self.doubly_linked_list <- empty DoublyLinkedList",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 9,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        node = self.map[key]",
+      "canonical": "        node <- self.map[key]",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 15,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            node = self.map[key]",
+      "canonical": "            node <- self.map[key]",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 16,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            node.value = value",
+      "canonical": "            node.value <- value",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 20,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "                tail_node = self.doubly_linked_list.removeTail()",
+      "canonical": "                tail_node <- self.doubly_linked_list.removeTail()",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 23,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            new_node = CreateNode(key, value)",
+      "canonical": "            new_node <- CreateNode(key, value)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 25,
+      "rule_family": "ASSIGNMENT_SURFACE",
+      "branch": "MEMBER_INDEXED_LVALUE_EQUALS",
+      "source": "            self.map[key] = new_node",
+      "canonical": "            self.map[key] <- new_node",
+      "evidence": [
+        "source uses a single assignment equals on an explicit object.member[index] lvalue",
+        "the existing AJ assignment operator is <- and indexed member storage is already supported by the class/compiler path",
+        "the transformation changes only the assignment token and preserves target, index expression, and right-hand value verbatim",
+        "comparison spellings ==, !=, <=, and >= remain outside the rule"
+      ],
+      "confidence": "source_proven",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        self.map <- empty Hash Map",
+      "canonical": "        self.map <- EMPTY DICTIONARY",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 19,
+      "rule_family": "COLLECTION_OPERATION",
+      "branch": "EVIDENCED_COLLECTION_QUERY_ACCESS",
+      "source": "            IF self.map.size() >= self.capacity THEN",
+      "canonical": "            IF self.map~LENGTH >= self.capacity THEN",
+      "evidence": [
+        "receiver type is independently established by an explicit collection declaration or constructor in readable lexical scope",
+        "query/access spelling is accepted only for collection kinds that support the corresponding length/front/back/empty operation",
+        "method spelling never establishes collection type and direct rebinds/formal-parameter shadowing invalidate inherited evidence"
+      ],
+      "confidence": "source_proven",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "CLASS LRUCache:\n    CONSTRUCTOR(capacity):\n        self.capacity <- capacity\n        self.map <- EMPTY DICTIONARY\n        self.doubly_linked_list <- empty DoublyLinkedList\n\n    FUNCTION Get(key):\n        IF key NOT IN self.map THEN RETURN -1\n        node <- self.map[key]\n        self.doubly_linked_list.moveToHead(node)\n        RETURN node.value\n\n    PROCEDURE Put(key, value):\n        IF key IN self.map THEN\n            node <- self.map[key]\n            node.value <- value\n            self.doubly_linked_list.moveToHead(node)\n        ELSE\n            IF self.map~LENGTH >= self.capacity THEN\n                tail_node <- self.doubly_linked_list.removeTail()\n                REMOVE tail_node.key FROM self.map\n            END IF\n            new_node <- CreateNode(key, value)\n            self.doubly_linked_list.addToHead(new_node)\n            self.map[key] <- new_node\n        END IF\n    END PROCEDURE",
+      "canonical": "CLASS LRUCache:\n    CONSTRUCTOR(capacity):\n        self.capacity <- capacity\n        self.map <- EMPTY DICTIONARY\n        self.doubly_linked_list <- empty DoublyLinkedList\n\n    FUNCTION Get(key):\n        IF key NOT IN self.map THEN RETURN -1\n        node <- self.map[key]\n        self.doubly_linked_list.moveToHead(node)\n        RETURN node.value\n\n    PROCEDURE Put(key, value):\n        IF key IN self.map THEN\n            node <- self.map[key]\n            node.value <- value\n            self.doubly_linked_list.moveToHead(node)\n        ELSE\n            IF self.map~LENGTH >= self.capacity THEN\n                tail_node <- self.doubly_linked_list.removeTail()\n                REMOVE tail_node.key FROM self.map\n            ENDIF\n            new_node <- CreateNode(key, value)\n            self.doubly_linked_list.addToHead(new_node)\n            self.map[key] <- new_node\n        ENDIF\n    END PROCEDURE",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "CLASS_STRUCTURE",
+      "branch": "CONTEXTUAL_CLASS_ROUTINE_RECOVERY",
+      "source": "CLASS LRUCache:\n    CONSTRUCTOR(capacity):\n        self.capacity <- capacity\n        self.map <- EMPTY DICTIONARY\n        self.doubly_linked_list <- empty DoublyLinkedList\n\n    FUNCTION Get(key):\n        IF key NOT IN self.map THEN RETURN -1\n        node <- self.map[key]\n        self.doubly_linked_list.moveToHead(node)\n        RETURN node.value\n\n    PROCEDURE Put(key, value):\n        IF key IN self.map THEN\n            node <- self.map[key]\n            node.value <- value\n            self.doubly_linked_list.moveToHead(node)\n        ELSE\n            IF self.map~LENGTH >= self.capacity THEN\n                tail_node <- self.doubly_linked_list.removeTail()\n                REMOVE tail_node.key FROM self.map\n            ENDIF\n            new_node <- CreateNode(key, value)\n            self.doubly_linked_list.addToHead(new_node)\n            self.map[key] <- new_node\n        ENDIF\n    END PROCEDURE",
+      "canonical": "CLASS LRUCache\n    CONSTRUCTOR ACCEPTS(capacity)\n        self.capacity <- capacity\n        self.map <- EMPTY DICTIONARY\n        self.doubly_linked_list <- empty DoublyLinkedList\n\n    ENDCONSTRUCTOR\n    METHOD Get ACCEPTS(key)\n        IF key NOT IN self.map THEN RETURN -1\n        node <- self.map[key]\n        self.doubly_linked_list.moveToHead(node)\n        RETURN node.value\n\n    ENDMETHOD\n    METHOD Put ACCEPTS(key, value)\n        IF key IN self.map THEN\n            node <- self.map[key]\n            node.value <- value\n            self.doubly_linked_list.moveToHead(node)\n        ELSE\n            IF self.map~LENGTH >= self.capacity THEN\n                tail_node <- self.doubly_linked_list.removeTail()\n                REMOVE tail_node.key FROM self.map\n            ENDIF\n            new_node <- CreateNode(key, value)\n            self.doubly_linked_list.addToHead(new_node)\n            self.map[key] <- new_node\n        ENDIF\n    ENDMETHOD\nENDCLASS",
+      "evidence": [
+        "source explicitly declares a CLASS container",
+        "direct-child CONSTRUCTOR(...), PROCEDURE name(...), and FUNCTION name(...) declarations are routine declarations in that class context",
+        "frozen AJ v1.1 represents class routines as CONSTRUCTOR ... ENDCONSTRUCTOR and METHOD ... ENDMETHOD",
+        "routine bodies and member semantics are preserved; GC241 does not infer properties, assignments, return values, or external class behaviour"
+      ],
+      "confidence": "user_confirmed",
+      "semantic_change": false
+    },
+    {
+      "line": 9,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        IF key NOT IN self.map THEN RETURN -1",
+      "canonical": "        IF key NOT IN self.map THEN\n            RETURN -1",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 26,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            new_node <- CreateNode(key, value)",
+      "canonical": "            new_node <- CALL CreateNode(key, value)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 11,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDIF",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 1
+}

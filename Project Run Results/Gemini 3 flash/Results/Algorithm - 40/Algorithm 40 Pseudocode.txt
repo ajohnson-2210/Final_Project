@@ -1,0 +1,18 @@
+# Implement a Queue using two Stacks    
+CLASS QueueUsingStacks:
+    CONSTRUCTOR():
+        self.stack_in = Stack()
+        self.stack_out = Stack()
+
+    PROCEDURE Enqueue(item):
+        self.stack_in.push(item)
+
+    FUNCTION Dequeue():
+        IF self.stack_out.isEmpty() THEN
+            WHILE NOT self.stack_in.isEmpty() DO
+                self.stack_out.push(self.stack_in.pop())
+            END WHILE
+        END IF
+        
+        IF self.stack_out.isEmpty() THEN RETURN "Queue Empty"
+        RETURN self.stack_out.pop()

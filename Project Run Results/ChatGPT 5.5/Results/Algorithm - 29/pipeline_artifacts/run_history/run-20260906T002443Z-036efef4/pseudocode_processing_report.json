@@ -1,0 +1,46 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 3,
+  "transformations": [
+    {
+      "line": 11,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    Category \u2190 ClassificationModel.PREDICT(NewText)",
+      "canonical": "    Category <- ClassificationModel.PREDICT(NewText)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    PREPROCESS text\n    EXTRACT text features\n\n    TRAIN ClassificationModel\n\n    INPUT NewText\n\n    PREPROCESS NewText\n    EXTRACT features\n\n    Category <- ClassificationModel.PREDICT(NewText)\n\n    OUTPUT Category\nEND",
+      "canonical": "FUNCTION unnamed_function ACCEPTS(NewText)\n        PREPROCESS text\n        EXTRACT text features\n\n        TRAIN ClassificationModel\n\n\n        PREPROCESS NewText\n        EXTRACT features\n\n        Category <- ClassificationModel.PREDICT(NewText)\n\n        OUTPUT Category\n    END\nENDFUNCTION",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 14,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    END",
+      "canonical": "",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 4
+}

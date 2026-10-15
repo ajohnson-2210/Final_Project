@@ -1,0 +1,220 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 17,
+  "transformations": [
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "seen = {}",
+      "canonical": "seen <- {}",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "pairs = []",
+      "canonical": "pairs <- []",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 7,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    comp = target - num",
+      "canonical": "    comp <- target - num",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 12,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    seen[num] = true",
+      "canonical": "    seen[num] <- true",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "INPUT arr, target\n\nseen <- {}\npairs <- []\n\nFOR num in arr:\n    comp <- target - num\n\n    IF comp in seen:\n        pairs.add((MIN(num, comp), MAX(num, comp)))\n\n    seen[num] <- true\n\nRETURN unique(pairs)",
+      "canonical": "FUNCTION unnamed_function ACCEPTS(arr, target)\n    seen <- {}\n    pairs <- []\n\n    FOR num in arr:\n        comp <- target - num\n\n        IF comp in seen:\n            pairs.add((MIN(num, comp), MAX(num, comp)))\n\n        seen[num] <- true\n\n    RETURN unique(pairs)\nENDFUNCTION",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 2,
+      "rule_family": "COLLECTION_TYPE_EVIDENCE",
+      "branch": "EMPTY_BRACES_FROM_INDEXED_WRITE",
+      "source": "    seen <- {}",
+      "canonical": "    seen <- EMPTY DICTIONARY",
+      "evidence": [
+        "source explicitly initialises a simple receiver with bare empty braces",
+        "a later same-scope assignment writes through an index on that receiver before any direct rebind",
+        "indexed write is incompatible with set semantics and directly evidences keyed mapping use"
+      ],
+      "confidence": "source_proven",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    pairs <- []",
+      "canonical": "    pairs <- EMPTY LIST",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 9,
+      "rule_family": "COLLECTION_OPERATION",
+      "branch": "EVIDENCED_LIST_BALANCED_ADD",
+      "source": "            pairs.add((MIN(num, comp), MAX(num, comp)))",
+      "canonical": "            APPEND (MIN(num, comp), MAX(num, comp)) TO pairs",
+      "evidence": [
+        "receiver is independently established as list-backed by explicit list initialisation",
+        "source uses standalone .add(...) collection insertion syntax",
+        "balanced-parenthesis scanning preserves the complete nested source expression without inferring a new value"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 9,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            APPEND (MIN(num, comp), MAX(num, comp)) TO pairs",
+      "canonical": "            APPEND TUPLE(CALL min(num, comp), CALL max(num, comp)) TO pairs",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 9,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            APPEND (MIN(num, comp), MAX(num, comp)) TO pairs",
+      "canonical": "            APPEND TUPLE(CALL min(num, comp), CALL max(num, comp)) TO pairs",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    FOR num in arr:",
+      "canonical": "    FOR EACH num IN arr DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 8,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        IF comp in seen:",
+      "canonical": "        IF comp in seen THEN",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 11,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        seen[num] <- true",
+      "canonical": "        seen[num] <- BOOLEAN(True)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 13,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    RETURN unique(pairs)",
+      "canonical": "    RETURN CALL unique(pairs)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 11,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDIF",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 13,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDFOR",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 15,
+      "rule_family": "COLLECTION_DEDUPLICATION",
+      "branch": "EXACT_UNIQUE_TO_SET_INTRINSIC",
+      "source": "    RETURN CALL unique(pairs)",
+      "canonical": "    RETURN CALL to_set(pairs)",
+      "evidence": [
+        "source explicitly calls unique(collection) as a one-argument deduplication operation",
+        "AJ v1.1 already has native set semantics, while the compatibility layer may lower that exact source operation to the existing to_set intrinsic",
+        "the pair-search algorithm and collection contents are unchanged; only duplicate elimination is represented"
+      ],
+      "confidence": "user_confirmed",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 2
+}

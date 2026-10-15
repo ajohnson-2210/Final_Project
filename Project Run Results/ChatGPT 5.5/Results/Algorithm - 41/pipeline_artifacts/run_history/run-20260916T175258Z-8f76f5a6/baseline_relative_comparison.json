@@ -1,0 +1,93 @@
+{
+  "comparison_schema_version": "1.3",
+  "comparison_role": "EXPERIMENTAL_VS_FROZEN_STATIC_SEMANTIC_REFERENCE",
+  "is_baseline": false,
+  "reference_python": null,
+  "tests_file": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\Pipeline Versions\\NL_Flow_Diagram_Encoder_Pipeline_v4_35_RC10\\NL_Flow_Diagram_Encoder_Pipeline_v4_35\\study data\\common tests v1.4.1\\Algorithm - 41\\Algorithm 41 Tests.json",
+  "common_test_set": true,
+  "expected_value_policy": "STATIC_PREEXPERIMENT_EXPECTATIONS",
+  "runtime_expected_value_generation": false,
+  "runtime_baseline_reference_used": false,
+  "frozen_reference_score_percentage": null,
+  "experimental_behavioural_score_percentage": null,
+  "experimental_tests_total": 0,
+  "experimental_tests_passed": 0,
+  "experimental_observation_mode": "FROZEN_TASK_SEMANTIC",
+  "semantic_test_report": {
+    "semantic_report_schema_version": "1.2",
+    "runtime_expected_value_generation": false,
+    "program_path": null,
+    "algorithm_id": 41,
+    "contract_version": "1.4",
+    "evaluable_tests": 0,
+    "passed_tests": 0,
+    "failed_tests": 0,
+    "not_evaluable_tests": 6,
+    "accuracy_percentage": null,
+    "pre_freeze_validation": {
+      "declared_cases": 0,
+      "evaluable_cases": 0,
+      "passed_cases": 0,
+      "failed_cases": 0,
+      "not_evaluable": 0,
+      "accuracy_percentage": null,
+      "included_in_core_behavioural_score": false,
+      "included_in_baseline_calibration": false
+    },
+    "semantic_boundary": {
+      "measure": "SEMANTIC_BOUNDARY_VARIANCE",
+      "declared_probes": 1,
+      "evaluable_probes": 0,
+      "out_of_domain_accepted": 0,
+      "controlled_rejection": 0,
+      "incidental_failure": 0,
+      "not_evaluable": 1,
+      "variance_percentage": null
+    },
+    "status": "NOT_EVALUABLE",
+    "reason": "Expected '('. Found 'N' at line 1, column 11.",
+    "results": []
+  },
+  "semantic_boundary": {
+    "measure": "SEMANTIC_BOUNDARY_VARIANCE",
+    "declared_probes": 1,
+    "evaluable_probes": 0,
+    "out_of_domain_accepted": 0,
+    "controlled_rejection": 0,
+    "incidental_failure": 0,
+    "not_evaluable": 1,
+    "variance_percentage": null
+  },
+  "delta_from_frozen_reference_percentage_points": null,
+  "comparison_to_frozen_reference": "NOT_EVALUABLE",
+  "comparison_status": "NOT_EVALUABLE",
+  "interpretation_note": "The experimental score is calculated only from static pre-experiment semantic fixtures and expected values. No baseline/reference implementation or executable oracle is run to derive expected outcomes during experimental evaluation.",
+  "baseline_calibration_score_percentage": null,
+  "delta_from_baseline_percentage_points": null,
+  "comparison_to_baseline": "NOT_EVALUABLE",
+  "semantic_contract": {
+    "contract_version": "1.4",
+    "contract_source": "ORIGINAL_TASK_SPECIFICATION",
+    "task_statement": "Solve the N Queens Problem for an arbitrary board size N.",
+    "inputs": [
+      {
+        "position": 1,
+        "name": "n",
+        "type": "POSITIVE_INTEGER"
+      }
+    ],
+    "result": {
+      "type": "NQUEENS_SOLUTIONS",
+      "canonical_semantics": "Valid placements of N queens with no shared row, column or diagonal."
+    },
+    "automation_status": "HUMAN_SUPPORTED",
+    "parameter_names_are_semantically_irrelevant": true,
+    "derived_parameters_may_be_supplied_by_adapter": true,
+    "human_review_instruction": "Judge the original generated pseudocode against this same frozen task-semantic contract, including when automated evaluation is NOT_EVALUABLE.",
+    "fixture_policy": "PREEXPERIMENT_FROZEN_INPUTS",
+    "expectation_policy": "STATIC_PREEXPERIMENT_EXPECTED_VALUES",
+    "runtime_oracle_prohibited": true
+  },
+  "semantic_contract_version": "1.4",
+  "baseline_root_supplied_but_not_used": false
+}

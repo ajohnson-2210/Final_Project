@@ -1,0 +1,46 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 3,
+  "transformations": [
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION FACTORIAL(n)",
+      "canonical": "FUNCTION FACTORIAL ACCEPTS(n)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "FUNCTION FACTORIAL ACCEPTS(n)\n  IF n == 0 OR n == 1 THEN\n    RETURN 1\n  ELSE\n    RETURN n * FACTORIAL(n - 1)\n  END IF\nEND FUNCTION",
+      "canonical": "FUNCTION FACTORIAL ACCEPTS(n)\n  IF n == 0 OR n == 1 THEN\n    RETURN 1\n  ELSE\n    RETURN n * FACTORIAL(n - 1)\n  ENDIF\nENDFUNCTION",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    RETURN n * FACTORIAL(n - 1)",
+      "canonical": "    RETURN n * CALL FACTORIAL(n - 1)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 1
+}

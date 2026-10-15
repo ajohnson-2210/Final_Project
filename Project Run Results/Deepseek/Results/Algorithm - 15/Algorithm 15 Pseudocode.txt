@@ -1,0 +1,13 @@
+# Find the second largest in an array.
+FUNCTION secondLargest(arr):
+    IF length(arr) < 2:
+        RETURN NULL // or error
+    largest = -infinity
+    second = -infinity
+    FOR each num in arr:
+        IF num > largest:
+            second = largest
+            largest = num
+        ELSE IF num > second AND num != largest:
+            second = num
+    RETURN second

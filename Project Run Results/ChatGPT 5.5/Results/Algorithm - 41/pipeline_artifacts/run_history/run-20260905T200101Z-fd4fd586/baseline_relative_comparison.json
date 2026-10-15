@@ -1,0 +1,523 @@
+{
+  "comparison_schema_version": "1.0",
+  "comparison_role": "EXPERIMENTAL_VS_PIPELINE_CALIBRATION",
+  "is_baseline": false,
+  "reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 41\\Algorithm 41 Baseline Python code.txt",
+  "tests_file": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\Pipeline Versions\\NL_Flow_Diagram_Encoder_Pipeline_v4_32\\NL_Flow_Diagram_Encoder_Pipeline_v4_32\\study data\\common tests v1.1\\Algorithm - 41\\Algorithm 41 Tests.json",
+  "common_test_set": true,
+  "baseline_reference_validation": {
+    "validation_schema_version": "1.0",
+    "reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 41\\Algorithm 41 Baseline Python code.txt",
+    "reference_source_preparation": {
+      "reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 41\\Algorithm 41 Baseline Python code.txt",
+      "raw_sha256": "1aca344560a3921341d635eb03d887f0c0cef9886dbce65bafaaa04725d8aafe",
+      "raw_syntax_valid": false,
+      "execution_syntax_valid": true,
+      "normalisation_applied": true,
+      "normalisation_rule": "COMMENT_MATCHED_TEST_SUITE_ALGORITHM_TITLE",
+      "raw_syntax_error": "invalid syntax (<unknown>, line 1)",
+      "normalised_line_number": 1,
+      "declared_algorithm_title": "Solve the N Queens Problem for an arbitrary board size N",
+      "reference_heading": "Solve the N Queens Problem for an arbitrary board size N",
+      "execution_sha256": "1f4114ffe2c192c4c82fec45839f0658ee7ae8d921acc745fa69641afcc79fea"
+    },
+    "status": "TRUSTED_REFERENCE",
+    "reason": "No independent expected outcomes are present. The frozen baseline Python is accepted as the trusted behavioural reference by the study design; this is not an independent validation claim.",
+    "explicit_tests_total": 0,
+    "tests": []
+  },
+  "baseline_calibration_status": "EVALUATED",
+  "baseline_calibration_score_percentage": 100.0,
+  "experimental_behavioural_score_percentage": null,
+  "experimental_tests_total": 0,
+  "experimental_tests_passed": 0,
+  "delta_from_baseline_percentage_points": null,
+  "comparison_to_baseline": "NOT_EVALUABLE",
+  "comparison_status": "NOT_EVALUABLE",
+  "oracle_records": [
+    {
+      "name": "N=1 show solution then quit",
+      "reference": {
+        "status": "COMPLETED",
+        "standard_input": [
+          "1",
+          "1",
+          "6"
+        ],
+        "stdout": [
+          "Enter board size N: ",
+          "Solved 1-Queens.",
+          "Total solutions: 1",
+          "",
+          "Menu:",
+          "  1 - Show current solution",
+          "  2 - Next solution",
+          "  3 - Previous solution",
+          "  4 - Go to solution number",
+          "  5 - Show ALL solutions",
+          "  6 - Quit",
+          "Enter choice: ",
+          "Showing solution 1 of 1:",
+          "",
+          "Q ",
+          "",
+          "Menu:",
+          "  1 - Show current solution",
+          "  2 - Next solution",
+          "  3 - Previous solution",
+          "  4 - Go to solution number",
+          "  5 - Show ALL solutions",
+          "  6 - Quit",
+          "Enter choice: ",
+          "Exiting program.",
+          ""
+        ],
+        "stderr": "",
+        "return_code": 0,
+        "error_type": null,
+        "duration_ms": 67.428,
+        "category": "BOUNDARY",
+        "semantic_feature": "NQUEENS_SINGLE_SOLUTION_AND_TERMINATION",
+        "criteria_links": [
+          "P2",
+          "P3",
+          "P4"
+        ],
+        "random_seed": null,
+        "environment": {},
+        "requires_modules": [],
+        "reference_source_preparation": {
+          "reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 41\\Algorithm 41 Baseline Python code.txt",
+          "raw_sha256": "1aca344560a3921341d635eb03d887f0c0cef9886dbce65bafaaa04725d8aafe",
+          "raw_syntax_valid": false,
+          "execution_syntax_valid": true,
+          "normalisation_applied": true,
+          "normalisation_rule": "COMMENT_MATCHED_TEST_SUITE_ALGORITHM_TITLE",
+          "raw_syntax_error": "invalid syntax (<unknown>, line 1)",
+          "normalised_line_number": 1,
+          "declared_algorithm_title": "Solve the N Queens Problem for an arbitrary board size N",
+          "reference_heading": "Solve the N Queens Problem for an arbitrary board size N",
+          "execution_sha256": "1f4114ffe2c192c4c82fec45839f0658ee7ae8d921acc745fa69641afcc79fea"
+        }
+      },
+      "expected_result_source": "REFERENCE_PYTHON",
+      "explicit_expectation_fields": [],
+      "derived_expectation_fields": [
+        "expected_output",
+        "expected_return_code"
+      ],
+      "evaluable_expectation_fields": [
+        "expected_output",
+        "expected_return_code"
+      ],
+      "test_case_status": "EVALUABLE"
+    },
+    {
+      "name": "N=2 no-solution branch then quit",
+      "reference": {
+        "status": "COMPLETED",
+        "standard_input": [
+          "2",
+          "1",
+          "6"
+        ],
+        "stdout": [
+          "Enter board size N: ",
+          "Solved 2-Queens.",
+          "Total solutions: 0",
+          "",
+          "Menu:",
+          "  1 - Show current solution",
+          "  2 - Next solution",
+          "  3 - Previous solution",
+          "  4 - Go to solution number",
+          "  5 - Show ALL solutions",
+          "  6 - Quit",
+          "Enter choice: ",
+          "No solutions exist for this N.",
+          "",
+          "Menu:",
+          "  1 - Show current solution",
+          "  2 - Next solution",
+          "  3 - Previous solution",
+          "  4 - Go to solution number",
+          "  5 - Show ALL solutions",
+          "  6 - Quit",
+          "Enter choice: ",
+          "Exiting program.",
+          ""
+        ],
+        "stderr": "",
+        "return_code": 0,
+        "error_type": null,
+        "duration_ms": 70.718,
+        "category": "BOUNDARY",
+        "semantic_feature": "NQUEENS_NO_SOLUTION",
+        "criteria_links": [
+          "P2",
+          "P3",
+          "P4"
+        ],
+        "random_seed": null,
+        "environment": {},
+        "requires_modules": [],
+        "reference_source_preparation": {
+          "reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 41\\Algorithm 41 Baseline Python code.txt",
+          "raw_sha256": "1aca344560a3921341d635eb03d887f0c0cef9886dbce65bafaaa04725d8aafe",
+          "raw_syntax_valid": false,
+          "execution_syntax_valid": true,
+          "normalisation_applied": true,
+          "normalisation_rule": "COMMENT_MATCHED_TEST_SUITE_ALGORITHM_TITLE",
+          "raw_syntax_error": "invalid syntax (<unknown>, line 1)",
+          "normalised_line_number": 1,
+          "declared_algorithm_title": "Solve the N Queens Problem for an arbitrary board size N",
+          "reference_heading": "Solve the N Queens Problem for an arbitrary board size N",
+          "execution_sha256": "1f4114ffe2c192c4c82fec45839f0658ee7ae8d921acc745fa69641afcc79fea"
+        }
+      },
+      "expected_result_source": "REFERENCE_PYTHON",
+      "explicit_expectation_fields": [],
+      "derived_expectation_fields": [
+        "expected_output",
+        "expected_return_code"
+      ],
+      "evaluable_expectation_fields": [
+        "expected_output",
+        "expected_return_code"
+      ],
+      "test_case_status": "EVALUABLE"
+    },
+    {
+      "name": "N=4 navigate next previous and quit",
+      "reference": {
+        "status": "COMPLETED",
+        "standard_input": [
+          "4",
+          "1",
+          "2",
+          "3",
+          "6"
+        ],
+        "stdout": [
+          "Enter board size N: ",
+          "Solved 4-Queens.",
+          "Total solutions: 2",
+          "",
+          "Menu:",
+          "  1 - Show current solution",
+          "  2 - Next solution",
+          "  3 - Previous solution",
+          "  4 - Go to solution number",
+          "  5 - Show ALL solutions",
+          "  6 - Quit",
+          "Enter choice: ",
+          "Showing solution 1 of 2:",
+          "",
+          ". Q . . ",
+          ". . . Q ",
+          "Q . . . ",
+          ". . Q . ",
+          "",
+          "Menu:",
+          "  1 - Show current solution",
+          "  2 - Next solution",
+          "  3 - Previous solution",
+          "  4 - Go to solution number",
+          "  5 - Show ALL solutions",
+          "  6 - Quit",
+          "Enter choice: ",
+          "Showing solution 2 of 2:",
+          "",
+          ". . Q . ",
+          "Q . . . ",
+          ". . . Q ",
+          ". Q . . ",
+          "",
+          "Menu:",
+          "  1 - Show current solution",
+          "  2 - Next solution",
+          "  3 - Previous solution",
+          "  4 - Go to solution number",
+          "  5 - Show ALL solutions",
+          "  6 - Quit",
+          "Enter choice: ",
+          "Showing solution 1 of 2:",
+          "",
+          ". Q . . ",
+          ". . . Q ",
+          "Q . . . ",
+          ". . Q . ",
+          "",
+          "Menu:",
+          "  1 - Show current solution",
+          "  2 - Next solution",
+          "  3 - Previous solution",
+          "  4 - Go to solution number",
+          "  5 - Show ALL solutions",
+          "  6 - Quit",
+          "Enter choice: ",
+          "Exiting program.",
+          ""
+        ],
+        "stderr": "",
+        "return_code": 0,
+        "error_type": null,
+        "duration_ms": 58.849,
+        "category": "STATE_MUTATION",
+        "semantic_feature": "NQUEENS_MENU_NAVIGATION",
+        "criteria_links": [
+          "P2",
+          "P4"
+        ],
+        "random_seed": null,
+        "environment": {},
+        "requires_modules": [],
+        "reference_source_preparation": {
+          "reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 41\\Algorithm 41 Baseline Python code.txt",
+          "raw_sha256": "1aca344560a3921341d635eb03d887f0c0cef9886dbce65bafaaa04725d8aafe",
+          "raw_syntax_valid": false,
+          "execution_syntax_valid": true,
+          "normalisation_applied": true,
+          "normalisation_rule": "COMMENT_MATCHED_TEST_SUITE_ALGORITHM_TITLE",
+          "raw_syntax_error": "invalid syntax (<unknown>, line 1)",
+          "normalised_line_number": 1,
+          "declared_algorithm_title": "Solve the N Queens Problem for an arbitrary board size N",
+          "reference_heading": "Solve the N Queens Problem for an arbitrary board size N",
+          "execution_sha256": "1f4114ffe2c192c4c82fec45839f0658ee7ae8d921acc745fa69641afcc79fea"
+        }
+      },
+      "expected_result_source": "REFERENCE_PYTHON",
+      "explicit_expectation_fields": [],
+      "derived_expectation_fields": [
+        "expected_output",
+        "expected_return_code"
+      ],
+      "evaluable_expectation_fields": [
+        "expected_output",
+        "expected_return_code"
+      ],
+      "test_case_status": "EVALUABLE"
+    },
+    {
+      "name": "N=4 invalid menu option then quit",
+      "reference": {
+        "status": "COMPLETED",
+        "standard_input": [
+          "4",
+          "9",
+          "6"
+        ],
+        "stdout": [
+          "Enter board size N: ",
+          "Solved 4-Queens.",
+          "Total solutions: 2",
+          "",
+          "Menu:",
+          "  1 - Show current solution",
+          "  2 - Next solution",
+          "  3 - Previous solution",
+          "  4 - Go to solution number",
+          "  5 - Show ALL solutions",
+          "  6 - Quit",
+          "Enter choice: ",
+          "Invalid option.",
+          "",
+          "Menu:",
+          "  1 - Show current solution",
+          "  2 - Next solution",
+          "  3 - Previous solution",
+          "  4 - Go to solution number",
+          "  5 - Show ALL solutions",
+          "  6 - Quit",
+          "Enter choice: ",
+          "Exiting program.",
+          ""
+        ],
+        "stderr": "",
+        "return_code": 0,
+        "error_type": null,
+        "duration_ms": 58.545,
+        "category": "ERROR_BEHAVIOUR",
+        "semantic_feature": "NQUEENS_INVALID_MENU_OPTION",
+        "criteria_links": [
+          "P2",
+          "P3",
+          "P4"
+        ],
+        "random_seed": null,
+        "environment": {},
+        "requires_modules": [],
+        "reference_source_preparation": {
+          "reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 41\\Algorithm 41 Baseline Python code.txt",
+          "raw_sha256": "1aca344560a3921341d635eb03d887f0c0cef9886dbce65bafaaa04725d8aafe",
+          "raw_syntax_valid": false,
+          "execution_syntax_valid": true,
+          "normalisation_applied": true,
+          "normalisation_rule": "COMMENT_MATCHED_TEST_SUITE_ALGORITHM_TITLE",
+          "raw_syntax_error": "invalid syntax (<unknown>, line 1)",
+          "normalised_line_number": 1,
+          "declared_algorithm_title": "Solve the N Queens Problem for an arbitrary board size N",
+          "reference_heading": "Solve the N Queens Problem for an arbitrary board size N",
+          "execution_sha256": "1f4114ffe2c192c4c82fec45839f0658ee7ae8d921acc745fa69641afcc79fea"
+        }
+      },
+      "expected_result_source": "REFERENCE_PYTHON",
+      "explicit_expectation_fields": [],
+      "derived_expectation_fields": [
+        "expected_output",
+        "expected_return_code"
+      ],
+      "evaluable_expectation_fields": [
+        "expected_output",
+        "expected_return_code"
+      ],
+      "test_case_status": "EVALUABLE"
+    },
+    {
+      "name": "N=4 invalid solution number then quit",
+      "reference": {
+        "status": "COMPLETED",
+        "standard_input": [
+          "4",
+          "4",
+          "99",
+          "6"
+        ],
+        "stdout": [
+          "Enter board size N: ",
+          "Solved 4-Queens.",
+          "Total solutions: 2",
+          "",
+          "Menu:",
+          "  1 - Show current solution",
+          "  2 - Next solution",
+          "  3 - Previous solution",
+          "  4 - Go to solution number",
+          "  5 - Show ALL solutions",
+          "  6 - Quit",
+          "Enter choice: Enter solution number: ",
+          "Invalid number.",
+          "",
+          "Menu:",
+          "  1 - Show current solution",
+          "  2 - Next solution",
+          "  3 - Previous solution",
+          "  4 - Go to solution number",
+          "  5 - Show ALL solutions",
+          "  6 - Quit",
+          "Enter choice: ",
+          "Exiting program.",
+          ""
+        ],
+        "stderr": "",
+        "return_code": 0,
+        "error_type": null,
+        "duration_ms": 64.428,
+        "category": "ERROR_BEHAVIOUR",
+        "semantic_feature": "NQUEENS_INVALID_SOLUTION_NUMBER",
+        "criteria_links": [
+          "P2",
+          "P3",
+          "P4"
+        ],
+        "random_seed": null,
+        "environment": {},
+        "requires_modules": [],
+        "reference_source_preparation": {
+          "reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 41\\Algorithm 41 Baseline Python code.txt",
+          "raw_sha256": "1aca344560a3921341d635eb03d887f0c0cef9886dbce65bafaaa04725d8aafe",
+          "raw_syntax_valid": false,
+          "execution_syntax_valid": true,
+          "normalisation_applied": true,
+          "normalisation_rule": "COMMENT_MATCHED_TEST_SUITE_ALGORITHM_TITLE",
+          "raw_syntax_error": "invalid syntax (<unknown>, line 1)",
+          "normalised_line_number": 1,
+          "declared_algorithm_title": "Solve the N Queens Problem for an arbitrary board size N",
+          "reference_heading": "Solve the N Queens Problem for an arbitrary board size N",
+          "execution_sha256": "1f4114ffe2c192c4c82fec45839f0658ee7ae8d921acc745fa69641afcc79fea"
+        }
+      },
+      "expected_result_source": "REFERENCE_PYTHON",
+      "explicit_expectation_fields": [],
+      "derived_expectation_fields": [
+        "expected_output",
+        "expected_return_code"
+      ],
+      "evaluable_expectation_fields": [
+        "expected_output",
+        "expected_return_code"
+      ],
+      "test_case_status": "EVALUABLE"
+    },
+    {
+      "name": "N=4 quit path",
+      "reference": {
+        "status": "COMPLETED",
+        "standard_input": [
+          "4",
+          "6"
+        ],
+        "stdout": [
+          "Enter board size N: ",
+          "Solved 4-Queens.",
+          "Total solutions: 2",
+          "",
+          "Menu:",
+          "  1 - Show current solution",
+          "  2 - Next solution",
+          "  3 - Previous solution",
+          "  4 - Go to solution number",
+          "  5 - Show ALL solutions",
+          "  6 - Quit",
+          "Enter choice: ",
+          "Exiting program.",
+          ""
+        ],
+        "stderr": "",
+        "return_code": 0,
+        "error_type": null,
+        "duration_ms": 61.607,
+        "category": "TERMINATION",
+        "semantic_feature": "NQUEENS_EXPLICIT_QUIT",
+        "criteria_links": [
+          "P2",
+          "P3",
+          "P4"
+        ],
+        "random_seed": null,
+        "environment": {},
+        "requires_modules": [],
+        "reference_source_preparation": {
+          "reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 41\\Algorithm 41 Baseline Python code.txt",
+          "raw_sha256": "1aca344560a3921341d635eb03d887f0c0cef9886dbce65bafaaa04725d8aafe",
+          "raw_syntax_valid": false,
+          "execution_syntax_valid": true,
+          "normalisation_applied": true,
+          "normalisation_rule": "COMMENT_MATCHED_TEST_SUITE_ALGORITHM_TITLE",
+          "raw_syntax_error": "invalid syntax (<unknown>, line 1)",
+          "normalised_line_number": 1,
+          "declared_algorithm_title": "Solve the N Queens Problem for an arbitrary board size N",
+          "reference_heading": "Solve the N Queens Problem for an arbitrary board size N",
+          "execution_sha256": "1f4114ffe2c192c4c82fec45839f0658ee7ae8d921acc745fa69641afcc79fea"
+        }
+      },
+      "expected_result_source": "REFERENCE_PYTHON",
+      "explicit_expectation_fields": [],
+      "derived_expectation_fields": [
+        "expected_output",
+        "expected_return_code"
+      ],
+      "evaluable_expectation_fields": [
+        "expected_output",
+        "expected_return_code"
+      ],
+      "test_case_status": "EVALUABLE"
+    }
+  ],
+  "interpretation_note": "The baseline score measures pipeline calibration on frozen baseline pseudocode. The experimental score measures the experimental pseudocode through the same pipeline against the same trusted baseline Python/test set. The percentage-point delta is descriptive and is not a causal correction or adjusted accuracy score.",
+  "baseline_algorithm_id": 41,
+  "baseline_calibration_run_id": "run-20260905T195949Z-33ca84dc",
+  "oracle_source": "BASELINE_REFERENCE_PYTHON",
+  "baseline_reference_oracle_eligible": true,
+  "oracle_block_reason": null
+}

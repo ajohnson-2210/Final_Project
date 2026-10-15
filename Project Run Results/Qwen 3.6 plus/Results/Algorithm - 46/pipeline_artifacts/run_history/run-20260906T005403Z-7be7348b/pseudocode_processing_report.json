@@ -1,0 +1,194 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 14,
+  "transformations": [
+    {
+      "line": 7,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        sum = 0",
+      "canonical": "        sum <- 0",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 10,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            sum += A[i][k] * B[k][j]",
+      "canonical": "            sum <- sum + A[i][k] * B[k][j]",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "SHAPE_ANNOTATION",
+      "branch": "EVIDENCED_LINKED_MATRIX_MULTIPLICATION_DIMENSIONS",
+      "source": "INIT C as M x P matrix",
+      "canonical": "C <- CALL create_matrix(LENGTH OF A, LENGTH OF B[0], NONE)",
+      "evidence": [
+        "source explicitly links A as M x N and B as N x P, proving one shared inner dimension",
+        "source explicitly requests an M x P result matrix and supplies the complete M/P/N loop bounds",
+        "the supplied inner accumulation is exactly sum += A[i][k] * B[k][j], followed by direct C[i][j] = sum",
+        "M, N and P have no independent runtime bindings, so matrix lengths represent only the source-supplied shape annotations",
+        "when the source omits an initial cell value, allocated C cells use NONE; an explicit zero initialiser remains zero-filled"
+      ],
+      "confidence": "source_proven",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "SHAPE_ANNOTATION",
+      "branch": "EVIDENCED_LINKED_MATRIX_MULTIPLICATION_DIMENSIONS",
+      "source": "FOR i from 0 to M-1:",
+      "canonical": "FOR i from 0 to LENGTH OF A-1:",
+      "evidence": [
+        "source explicitly links A as M x N and B as N x P, proving one shared inner dimension",
+        "source explicitly requests an M x P result matrix and supplies the complete M/P/N loop bounds",
+        "the supplied inner accumulation is exactly sum += A[i][k] * B[k][j], followed by direct C[i][j] = sum",
+        "M, N and P have no independent runtime bindings, so matrix lengths represent only the source-supplied shape annotations",
+        "when the source omits an initial cell value, allocated C cells use NONE; an explicit zero initialiser remains zero-filled"
+      ],
+      "confidence": "source_proven",
+      "semantic_change": false
+    },
+    {
+      "line": 6,
+      "rule_family": "SHAPE_ANNOTATION",
+      "branch": "EVIDENCED_LINKED_MATRIX_MULTIPLICATION_DIMENSIONS",
+      "source": "    FOR j from 0 to P-1:",
+      "canonical": "    FOR j from 0 to LENGTH OF B[0]-1:",
+      "evidence": [
+        "source explicitly links A as M x N and B as N x P, proving one shared inner dimension",
+        "source explicitly requests an M x P result matrix and supplies the complete M/P/N loop bounds",
+        "the supplied inner accumulation is exactly sum += A[i][k] * B[k][j], followed by direct C[i][j] = sum",
+        "M, N and P have no independent runtime bindings, so matrix lengths represent only the source-supplied shape annotations",
+        "when the source omits an initial cell value, allocated C cells use NONE; an explicit zero initialiser remains zero-filled"
+      ],
+      "confidence": "source_proven",
+      "semantic_change": false
+    },
+    {
+      "line": 9,
+      "rule_family": "SHAPE_ANNOTATION",
+      "branch": "EVIDENCED_LINKED_MATRIX_MULTIPLICATION_DIMENSIONS",
+      "source": "        FOR k from 0 to N-1:",
+      "canonical": "        FOR k from 0 to LENGTH OF B-1:",
+      "evidence": [
+        "source explicitly links A as M x N and B as N x P, proving one shared inner dimension",
+        "source explicitly requests an M x P result matrix and supplies the complete M/P/N loop bounds",
+        "the supplied inner accumulation is exactly sum += A[i][k] * B[k][j], followed by direct C[i][j] = sum",
+        "M, N and P have no independent runtime bindings, so matrix lengths represent only the source-supplied shape annotations",
+        "when the source omits an initial cell value, allocated C cells use NONE; an explicit zero initialiser remains zero-filled"
+      ],
+      "confidence": "source_proven",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "INPUT A (M x N), B (N x P)\n\nC <- CALL create_matrix(LENGTH OF A, LENGTH OF B[0], NONE)\n\nFOR i from 0 to LENGTH OF A-1:\n    FOR j from 0 to LENGTH OF B[0]-1:\n        sum <- 0\n\n        FOR k from 0 to LENGTH OF B-1:\n            sum <- sum + A[i][k] * B[k][j]\n\n        C[i][j] = sum\n\nRETURN C",
+      "canonical": "FUNCTION unnamed_function ACCEPTS(A, B)\n    C <- CALL create_matrix(LENGTH OF A, LENGTH OF B[0], NONE)\n\n    FOR i from 0 to LENGTH OF A-1:\n        FOR j from 0 to LENGTH OF B[0]-1:\n            sum <- 0\n\n            FOR k from 0 to LENGTH OF B-1:\n                sum <- sum + A[i][k] * B[k][j]\n\n            C[i][j] = sum\n\n    RETURN C\nENDFUNCTION",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 11,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            C[i][j] = sum",
+      "canonical": "            C[i][j] <- sum",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    FOR i from 0 to LENGTH OF A-1:",
+      "canonical": "    FOR i <- IN RANGE 0 TO (LENGTH OF A-1) + 1 DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        FOR j from 0 to LENGTH OF B[0]-1:",
+      "canonical": "        FOR j <- IN RANGE 0 TO (LENGTH OF B[0]-1) + 1 DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 8,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            FOR k from 0 to LENGTH OF B-1:",
+      "canonical": "            FOR k <- IN RANGE 0 TO (LENGTH OF B-1) + 1 DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 11,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDFOR",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 13,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDFOR",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 13,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDFOR",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 2
+}

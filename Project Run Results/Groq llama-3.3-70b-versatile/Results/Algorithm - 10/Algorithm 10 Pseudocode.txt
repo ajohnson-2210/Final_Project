@@ -1,0 +1,15 @@
+# Scan a paragraph of text and count how many times each individual vowel (a, e, i, o, u) appears
+FUNCTION COUNT_VOWELS(text)
+  vowels = ["a", "e", "i", "o", "u"]
+  counts = []
+  FOR v IN vowels
+    count = 0
+    FOR c IN text
+      IF c == v THEN
+        count += 1
+      END IF
+    END FOR
+    counts += [count]
+  END FOR
+  RETURN counts
+END FUNCTION

@@ -1,0 +1,14 @@
+# Design a memory buffer that holds a fixed number of items. When it runs out of space, it must automatically discard the item that hasn't been accessed for the longest time
+FUNCTION MEMORY_BUFFER(capacity)
+  buffer = []
+  timestamps = {}
+  FOR item IN ITEMS
+    IF LENGTH(buffer) >= capacity THEN
+      oldest_item = FIND_OLDEST_ITEM(buffer, timestamps)
+      REMOVE_ITEM(buffer, oldest_item)
+    END IF
+    ADD_ITEM(buffer, item)
+    UPDATE_TIMESTAMP(timestamps, item)
+  END FOR
+  RETURN buffer
+END FUNCTION

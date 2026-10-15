@@ -1,0 +1,166 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 13,
+  "transformations": [
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  buffer = []",
+      "canonical": "  buffer <- []",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  timestamps = {}",
+      "canonical": "  timestamps <- {}",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 6,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "      oldest_item = FIND_OLDEST_ITEM(buffer, timestamps)",
+      "canonical": "      oldest_item <- FIND_OLDEST_ITEM(buffer, timestamps)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  buffer <- []",
+      "canonical": "  buffer <- EMPTY LIST",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    IF LENGTH(buffer) >= capacity THEN",
+      "canonical": "    IF LENGTH OF buffer >= capacity THEN",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION MEMORY_BUFFER(capacity)",
+      "canonical": "FUNCTION MEMORY_BUFFER ACCEPTS(capacity)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "FUNCTION MEMORY_BUFFER ACCEPTS(capacity)\n  buffer <- EMPTY LIST\n  timestamps <- {}\n  FOR item IN ITEMS\n    IF LENGTH OF buffer >= capacity THEN\n      oldest_item <- FIND_OLDEST_ITEM(buffer, timestamps)\n      REMOVE_ITEM(buffer, oldest_item)\n    END IF\n    ADD_ITEM(buffer, item)\n    UPDATE_TIMESTAMP(timestamps, item)\n  END FOR\n  RETURN buffer\nEND FUNCTION",
+      "canonical": "FUNCTION MEMORY_BUFFER ACCEPTS(capacity)\n  buffer <- EMPTY LIST\n  timestamps <- {}\n  FOR item IN ITEMS\n    IF LENGTH OF buffer >= capacity THEN\n      oldest_item <- FIND_OLDEST_ITEM(buffer, timestamps)\n      REMOVE_ITEM(buffer, oldest_item)\n    ENDIF\n    ADD_ITEM(buffer, item)\n    UPDATE_TIMESTAMP(timestamps, item)\n  END FOR\n  RETURN buffer\nENDFUNCTION",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  FOR item IN ITEMS",
+      "canonical": "  FOR EACH item IN ITEMS DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 11,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "  END FOR",
+      "canonical": "  ENDFOR",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 6,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "      oldest_item <- FIND_OLDEST_ITEM(buffer, timestamps)",
+      "canonical": "      oldest_item <- CALL FIND_OLDEST_ITEM(buffer, timestamps)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 7,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "      REMOVE_ITEM(buffer, oldest_item)",
+      "canonical": "      CALL REMOVE_ITEM(buffer, oldest_item)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 9,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    ADD_ITEM(buffer, item)",
+      "canonical": "    CALL ADD_ITEM(buffer, item)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 10,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    UPDATE_TIMESTAMP(timestamps, item)",
+      "canonical": "    CALL UPDATE_TIMESTAMP(timestamps, item)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 1
+}

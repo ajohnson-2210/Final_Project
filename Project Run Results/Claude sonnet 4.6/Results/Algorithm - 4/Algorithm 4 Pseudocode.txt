@@ -1,0 +1,12 @@
+# Intersection of Two Sorted Arrays
+
+FUNCTION intersection(A, B):
+    result ← []
+    i ← 0, j ← 0
+    WHILE i < length(A) AND j < length(B):
+        IF A[i] == B[j] THEN
+            APPEND A[i] TO result
+            i++, j++
+        ELSE IF A[i] < B[j] THEN i++
+        ELSE j++
+    RETURN result

@@ -1,0 +1,12 @@
+# Count the frequency of each character in a string
+FUNCTION COUNT_CHARACTERS(s)
+  counts = {}
+  FOR c IN s
+    IF c IN counts THEN
+      counts[c] += 1
+    ELSE
+      counts[c] = 1
+    END IF
+  END FOR
+  RETURN counts
+END FUNCTION

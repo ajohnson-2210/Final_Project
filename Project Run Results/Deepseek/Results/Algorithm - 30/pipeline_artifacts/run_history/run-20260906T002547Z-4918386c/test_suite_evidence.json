@@ -1,0 +1,61 @@
+{
+  "test_evidence_schema_version": "1.2",
+  "test_design_version": "1.3",
+  "test_spec_schema_version": "1.4",
+  "tests_file": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\Pipeline Versions\\NL_Flow_Diagram_Encoder_Pipeline_v4_35_RC4\\NL_Flow_Diagram_Encoder_Pipeline_v4_35\\study data\\common tests v1.3\\Algorithm - 30\\Algorithm 30 Tests.json",
+  "semantic_contract": {
+    "contract_version": "1.3",
+    "contract_source": "ORIGINAL_TASK_SPECIFICATION",
+    "task_statement": "Create a topic modelling system to extract topics from a corpus.",
+    "inputs": [
+      {
+        "position": 1,
+        "name": "documents",
+        "type": "TEXT_CORPUS"
+      }
+    ],
+    "result": {
+      "type": "TOPIC_MODEL",
+      "canonical_semantics": "Extracted topics represented by coherent topic keywords/categories."
+    },
+    "automation_status": "HUMAN_SUPPORTED",
+    "parameter_names_are_semantically_irrelevant": true,
+    "derived_parameters_may_be_supplied_by_adapter": true,
+    "human_review_instruction": "Judge the original generated pseudocode against this same frozen task-semantic contract, including when automated evaluation is NOT_EVALUABLE.",
+    "fixture_policy": "PREEXPERIMENT_FROZEN_INPUTS",
+    "expectation_policy": "STATIC_PREEXPERIMENT_EXPECTED_VALUES",
+    "runtime_oracle_prohibited": true
+  },
+  "semantic_test_count": 0,
+  "interaction_or_reference_only_test_count": 1,
+  "declared_evidence_adequacy": "PARTIAL",
+  "declared_evidence_summary": "This suite provides partial behavioural evidence using one predefined common behavioural test, with partial state-mutation evidence. Corpus and model parameters are fixed; alternate corpora and empty-corpus boundaries are not externally injectable.",
+  "declared_coverage_dimensions": {
+    "normal_path": "NOT_COVERED",
+    "branch_behaviour": "NOT_COVERED",
+    "boundary_behaviour": "NOT_COVERED",
+    "error_behaviour": "NOT_COVERED",
+    "termination_behaviour": "NOT_COVERED",
+    "state_mutation": "PARTIALLY_COVERED"
+  },
+  "coverage_basis": "Assessment is based on the predefined common behavioural test, the behaviours exposed by the frozen program interface, and the declared coverage dimensions: state mutation.",
+  "interpretation_guidance": "Interpret behavioural accuracy as useful but incomplete evidence across the declared exercised behaviours; unexercised behaviours remain outside the direct evidence.",
+  "coverage_limitations": [
+    "Corpus and model parameters are fixed; alternate corpora and empty-corpus boundaries are not externally injectable."
+  ],
+  "manual_review_targets": [],
+  "requires_pipeline_features": [],
+  "test_count": 1,
+  "category_counts": {
+    "STATE_MUTATION": 1
+  },
+  "criteria_link_counts": {
+    "P2": 1,
+    "P4": 1
+  },
+  "seeded_test_count": 0,
+  "environment_controlled_test_count": 0,
+  "has_normal_or_branch_test": false,
+  "has_boundary_error_or_termination_test": false,
+  "has_state_mutation_test": true
+}

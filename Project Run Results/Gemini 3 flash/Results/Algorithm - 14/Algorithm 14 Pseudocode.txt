@@ -1,0 +1,10 @@
+# Find the sum of all even numbers in a list    
+FUNCTION SumEvenNumbers(numbers):
+    total_sum = 0
+    FOR EACH num IN numbers DO
+        IF num MOD 2 == 0 THEN
+            total_sum = total_sum + num
+        END IF
+    END FOR
+    RETURN total_sum
+END FUNCTION

@@ -1,0 +1,224 @@
+{
+  "format": "NL-FDEP Flow Diagram",
+  "version": "1.0",
+  "entry_node": "F1",
+  "exit_node": "F2",
+  "nodes": {
+    "F1": {
+      "node_id": "F1",
+      "node_type": "START",
+      "label": "Start",
+      "line": 1,
+      "data": {}
+    },
+    "F2": {
+      "node_id": "F2",
+      "node_type": "END",
+      "label": "End",
+      "line": 1,
+      "data": {}
+    },
+    "F3": {
+      "node_id": "F3",
+      "node_type": "FUNCTION",
+      "label": "Run function unnamed_function with A, B",
+      "line": 1,
+      "data": {
+        "ast_kind": "FunctionNode",
+        "name": "unnamed_function"
+      }
+    },
+    "F4": {
+      "node_id": "F4",
+      "node_type": "PROCESS",
+      "label": "Set A to A plus B",
+      "line": 2,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F5": {
+      "node_id": "F5",
+      "node_type": "PROCESS",
+      "label": "Set B to A minus B",
+      "line": 3,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F6": {
+      "node_id": "F6",
+      "node_type": "PROCESS",
+      "label": "Set A to A minus B",
+      "line": 4,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F7": {
+      "node_id": "F7",
+      "node_type": "OUTPUT",
+      "label": "Display the result of output_values(A, B)",
+      "line": 6,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "F4",
+      "target": "F5",
+      "label": "NEXT"
+    },
+    {
+      "source": "F5",
+      "target": "F6",
+      "label": "NEXT"
+    },
+    {
+      "source": "F6",
+      "target": "F7",
+      "label": "NEXT"
+    },
+    {
+      "source": "F3",
+      "target": "F4",
+      "label": "BODY"
+    },
+    {
+      "source": "F1",
+      "target": "F3",
+      "label": "NEXT"
+    },
+    {
+      "source": "F7",
+      "target": "F2",
+      "label": "NEXT"
+    }
+  ],
+  "structured_program": {
+    "kind": "ProgramNode",
+    "line": 1,
+    "body": [
+      {
+        "kind": "FunctionNode",
+        "line": 1,
+        "name": "unnamed_function",
+        "parameters": [
+          {
+            "kind": "ParameterNode",
+            "line": 1,
+            "name": "A",
+            "declared_type": null
+          },
+          {
+            "kind": "ParameterNode",
+            "line": 1,
+            "name": "B",
+            "declared_type": null
+          }
+        ],
+        "body": {
+          "kind": "BlockNode",
+          "line": 2,
+          "statements": [
+            {
+              "kind": "AssignmentNode",
+              "line": 2,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 2,
+                "name": "A"
+              },
+              "value": {
+                "kind": "BinaryNode",
+                "line": 2,
+                "operator": "+",
+                "left": {
+                  "kind": "IdentifierNode",
+                  "line": 2,
+                  "name": "A"
+                },
+                "right": {
+                  "kind": "IdentifierNode",
+                  "line": 2,
+                  "name": "B"
+                }
+              }
+            },
+            {
+              "kind": "AssignmentNode",
+              "line": 3,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 3,
+                "name": "B"
+              },
+              "value": {
+                "kind": "BinaryNode",
+                "line": 3,
+                "operator": "-",
+                "left": {
+                  "kind": "IdentifierNode",
+                  "line": 3,
+                  "name": "A"
+                },
+                "right": {
+                  "kind": "IdentifierNode",
+                  "line": 3,
+                  "name": "B"
+                }
+              }
+            },
+            {
+              "kind": "AssignmentNode",
+              "line": 4,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 4,
+                "name": "A"
+              },
+              "value": {
+                "kind": "BinaryNode",
+                "line": 4,
+                "operator": "-",
+                "left": {
+                  "kind": "IdentifierNode",
+                  "line": 4,
+                  "name": "A"
+                },
+                "right": {
+                  "kind": "IdentifierNode",
+                  "line": 4,
+                  "name": "B"
+                }
+              }
+            },
+            {
+              "kind": "OutputNode",
+              "line": 6,
+              "expression": {
+                "kind": "CallNode",
+                "line": 6,
+                "name": "output_values",
+                "arguments": [
+                  {
+                    "kind": "IdentifierNode",
+                    "line": 6,
+                    "name": "A"
+                  },
+                  {
+                    "kind": "IdentifierNode",
+                    "line": 6,
+                    "name": "B"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

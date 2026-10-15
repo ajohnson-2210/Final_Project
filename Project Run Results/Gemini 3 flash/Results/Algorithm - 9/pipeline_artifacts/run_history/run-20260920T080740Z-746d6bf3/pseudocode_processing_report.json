@@ -1,0 +1,82 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 6,
+  "transformations": [
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            RETURN \"Target found at index: \" + index",
+      "canonical": "            RETURN STRING(\"Target found at index: \") + index",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 7,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    RETURN \"Target does not exist in the list.\"",
+      "canonical": "    RETURN STRING(\"Target does not exist in the list.\")",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    FOR index FROM 0 TO length(arr) - 1 DO",
+      "canonical": "    FOR index FROM 0 TO LENGTH OF arr - 1 DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "FUNCTION LinearSearch(arr, T):\n    FOR index FROM 0 TO LENGTH OF arr - 1 DO\n        IF arr[index] == T THEN\n            RETURN STRING(\"Target found at index: \") + index\n        END IF\n    END FOR\n    RETURN STRING(\"Target does not exist in the list.\")\nEND FUNCTION",
+      "canonical": "FUNCTION LinearSearch(arr, T):\n    FOR index FROM 0 TO LENGTH OF arr - 1 DO\n        IF arr[index] == T THEN\n            RETURN STRING(\"Target found at index: \") + index\n        ENDIF\n    ENDFOR\n    RETURN STRING(\"Target does not exist in the list.\")\nENDFUNCTION",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION LinearSearch(arr, T):",
+      "canonical": "FUNCTION LinearSearch ACCEPTS(arr, T)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    FOR index FROM 0 TO LENGTH OF arr - 1 DO",
+      "canonical": "    FOR index <- IN RANGE 0 TO (LENGTH OF arr - 1) + 1 DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 1
+}

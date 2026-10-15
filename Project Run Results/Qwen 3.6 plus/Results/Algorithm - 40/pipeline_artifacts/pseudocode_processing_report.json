@@ -1,0 +1,231 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 18,
+  "transformations": [
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "s2 = []",
+      "canonical": "s2 <- []",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "INIT s1 = []",
+      "canonical": "s1 <- EMPTY LIST",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "INIT s1 = []",
+      "canonical": "s1 <- EMPTY LIST",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "s2 <- []",
+      "canonical": "s2 <- EMPTY LIST",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "COLLECTION_OPERATION",
+      "branch": "EVIDENCED_SIMPLE_COLLECTION_METHOD",
+      "source": "    s1.push(x)",
+      "canonical": "    PUSH x TO s1",
+      "evidence": [
+        "receiver type is independently established by an explicit collection declaration or constructor in readable lexical scope",
+        "method spelling selects an operation only after receiver evidence exists and never establishes collection type by itself",
+        "direct rebinds and formal-parameter shadowing invalidate inherited receiver evidence"
+      ],
+      "confidence": "source_proven",
+      "semantic_change": false
+    },
+    {
+      "line": 10,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            s2.push(s1.pop())",
+      "canonical": "            PUSH s1.pop() TO s2",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "s1 <- EMPTY LIST\ns2 <- EMPTY LIST\n\nFUNCTION enqueue(x):\n    PUSH x TO s1\n\nFUNCTION dequeue():\n    IF s2 is empty:\n        WHILE s1 not empty:\n            PUSH s1.pop() TO s2\n\n    RETURN s2.pop()",
+      "canonical": "s1 <- EMPTY LIST\ns2 <- EMPTY LIST\n\nFUNCTION enqueue(x):\n    PUSH x TO s1\n\nFUNCTION dequeue():\n    IF LENGTH OF s2 == 0:\n        WHILE s1 not empty:\n            PUSH s1.pop() TO s2\n\n    RETURN s2.pop()",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "s1 <- EMPTY LIST\ns2 <- EMPTY LIST\n\nFUNCTION enqueue(x):\n    PUSH x TO s1\n\nFUNCTION dequeue():\n    IF LENGTH OF s2 == 0:\n        WHILE s1 not empty:\n            PUSH s1.pop() TO s2\n\n    RETURN s2.pop()",
+      "canonical": "s1 <- EMPTY LIST\ns2 <- EMPTY LIST\n\nFUNCTION enqueue(x):\n    APPEND x TO s1\nFUNCTION dequeue():\n    IF LENGTH OF s2 == 0:\n        WHILE s1 not empty:\n            APPEND s1.pop() TO s2\n    RETURN s2.pop()",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 8,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        WHILE s1 not empty:",
+      "canonical": "        WHILE LENGTH OF s1 > 0:",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION enqueue(x):",
+      "canonical": "FUNCTION enqueue ACCEPTS(x)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 6,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION dequeue():",
+      "canonical": "FUNCTION dequeue ACCEPTS()",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 7,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    IF LENGTH OF s2 == 0:",
+      "canonical": "    IF LENGTH OF s2 == 0 THEN",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 8,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        WHILE LENGTH OF s1 > 0:",
+      "canonical": "        WHILE LENGTH OF s1 > 0 DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 6,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDFUNCTION",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 10,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDWHILE",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 10,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDIF",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 6,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDFUNCTION",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "STATEFUL_ADT_STRUCTURE",
+      "branch": "EVIDENCED_CONNECTED_MULTI_LIST_CONSTRUCTOR",
+      "source": "s1 <- EMPTY LIST\ns2 <- EMPTY LIST\n\nFUNCTION enqueue ACCEPTS(x)\n    APPEND x TO s1\nENDFUNCTION\nFUNCTION dequeue ACCEPTS()\n    IF LENGTH OF s2 == 0 THEN\n        WHILE LENGTH OF s1 > 0 DO\n            APPEND s1.pop() TO s2\n        ENDWHILE\n    ENDIF\n    RETURN s2.pop()\nENDFUNCTION",
+      "canonical": "CLASS unnamed_class\n    PROPERTY s1 AS LIST\n    PROPERTY s2 AS LIST\n\n    CONSTRUCTOR ACCEPTS()\n        PROPERTY THIS.s1 <- EMPTY LIST\n        PROPERTY THIS.s2 <- EMPTY LIST\n    ENDCONSTRUCTOR\n\n    METHOD enqueue ACCEPTS(x)\n        APPEND x TO THIS.s1\n    ENDMETHOD\n\n    METHOD dequeue ACCEPTS()\n        IF LENGTH OF THIS.s2 == 0 THEN\n            WHILE LENGTH OF THIS.s1 > 0 DO\n                APPEND THIS.s1.pop() TO THIS.s2\n            ENDWHILE\n        ENDIF\n        RETURN THIS.s2.pop()\n    ENDMETHOD\nENDCLASS",
+      "evidence": [
+        "source explicitly initialises multiple persistent list states as EMPTY LIST",
+        "top-level operations and list states form one connected state/operation graph",
+        "source includes an explicit destructive transfer from one evidenced list state into another",
+        "the recovered zero-argument constructor reuses only source-supplied empty-list initial values"
+      ],
+      "confidence": "source_proven",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 2
+}

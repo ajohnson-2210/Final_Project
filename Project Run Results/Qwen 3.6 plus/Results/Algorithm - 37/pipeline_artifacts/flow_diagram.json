@@ -1,0 +1,663 @@
+{
+  "format": "NL-FDEP Flow Diagram",
+  "version": "1.0",
+  "entry_node": "F1",
+  "exit_node": "F2",
+  "nodes": {
+    "F1": {
+      "node_id": "F1",
+      "node_type": "START",
+      "label": "Start",
+      "line": 1,
+      "data": {}
+    },
+    "F2": {
+      "node_id": "F2",
+      "node_type": "END",
+      "label": "End",
+      "line": 1,
+      "data": {}
+    },
+    "F3": {
+      "node_id": "F3",
+      "node_type": "CLASS",
+      "label": "Class unnamed_class",
+      "line": 1,
+      "data": {
+        "ast_kind": "ClassNode",
+        "name": "unnamed_class"
+      }
+    },
+    "F4": {
+      "node_id": "F4",
+      "node_type": "DECLARATION",
+      "label": "Declare property stack as LIST",
+      "line": 2,
+      "data": {
+        "ast_kind": "PropertyDeclarationNode"
+      }
+    },
+    "F5": {
+      "node_id": "F5",
+      "node_type": "DECLARATION",
+      "label": "Declare property size as INTEGER",
+      "line": 3,
+      "data": {
+        "ast_kind": "PropertyDeclarationNode"
+      }
+    },
+    "F6": {
+      "node_id": "F6",
+      "node_type": "CONSTRUCTOR",
+      "label": "Run constructor",
+      "line": 5,
+      "data": {
+        "ast_kind": "ConstructorNode"
+      }
+    },
+    "F7": {
+      "node_id": "F7",
+      "node_type": "PROCESS",
+      "label": "Set stack of THIS to an empty list",
+      "line": 6,
+      "data": {
+        "ast_kind": "PropertyAssignmentNode"
+      }
+    },
+    "F8": {
+      "node_id": "F8",
+      "node_type": "PROCESS",
+      "label": "Set size of THIS to 0",
+      "line": 7,
+      "data": {
+        "ast_kind": "PropertyAssignmentNode"
+      }
+    },
+    "F9": {
+      "node_id": "F9",
+      "node_type": "METHOD",
+      "label": "Run method push with x",
+      "line": 10,
+      "data": {
+        "ast_kind": "MethodNode",
+        "name": "push"
+      }
+    },
+    "F10": {
+      "node_id": "F10",
+      "node_type": "PROCESS",
+      "label": "Append x to stack of THIS",
+      "line": 11,
+      "data": {
+        "ast_kind": "AppendNode"
+      }
+    },
+    "F11": {
+      "node_id": "F11",
+      "node_type": "PROCESS",
+      "label": "Set size of THIS to size of THIS plus 1",
+      "line": 12,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F12": {
+      "node_id": "F12",
+      "node_type": "METHOD",
+      "label": "Run method pop",
+      "line": 16,
+      "data": {
+        "ast_kind": "MethodNode",
+        "name": "pop"
+      }
+    },
+    "F13": {
+      "node_id": "F13",
+      "node_type": "DECISION",
+      "label": "Size of THIS is greater than 0?",
+      "line": 17,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F14": {
+      "node_id": "F14",
+      "node_type": "PROCESS",
+      "label": "Set size of THIS to size of THIS minus 1",
+      "line": 18,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F15": {
+      "node_id": "F15",
+      "node_type": "RETURN",
+      "label": "Return the result of stack of THIS.pop()",
+      "line": 19,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    },
+    "F16": {
+      "node_id": "F16",
+      "node_type": "RAISE",
+      "label": "Raise error \"ERROR\"",
+      "line": 21,
+      "data": {
+        "ast_kind": "RaiseNode"
+      }
+    },
+    "F17": {
+      "node_id": "F17",
+      "node_type": "METHOD",
+      "label": "Run method peek",
+      "line": 26,
+      "data": {
+        "ast_kind": "MethodNode",
+        "name": "peek"
+      }
+    },
+    "F18": {
+      "node_id": "F18",
+      "node_type": "DECISION",
+      "label": "Size of THIS is greater than 0?",
+      "line": 27,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F19": {
+      "node_id": "F19",
+      "node_type": "RETURN",
+      "label": "Return item size of THIS minus 1 of stack of THIS",
+      "line": 28,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    },
+    "F20": {
+      "node_id": "F20",
+      "node_type": "RAISE",
+      "label": "Raise error \"ERROR\"",
+      "line": 30,
+      "data": {
+        "ast_kind": "RaiseNode"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "F4",
+      "target": "F5",
+      "label": "NEXT"
+    },
+    {
+      "source": "F7",
+      "target": "F8",
+      "label": "NEXT"
+    },
+    {
+      "source": "F6",
+      "target": "F7",
+      "label": "BODY"
+    },
+    {
+      "source": "F5",
+      "target": "F6",
+      "label": "NEXT"
+    },
+    {
+      "source": "F10",
+      "target": "F11",
+      "label": "NEXT"
+    },
+    {
+      "source": "F9",
+      "target": "F10",
+      "label": "BODY"
+    },
+    {
+      "source": "F8",
+      "target": "F9",
+      "label": "NEXT"
+    },
+    {
+      "source": "F14",
+      "target": "F15",
+      "label": "NEXT"
+    },
+    {
+      "source": "F13",
+      "target": "F14",
+      "label": "TRUE"
+    },
+    {
+      "source": "F13",
+      "target": "F16",
+      "label": "FALSE"
+    },
+    {
+      "source": "F12",
+      "target": "F13",
+      "label": "BODY"
+    },
+    {
+      "source": "F11",
+      "target": "F12",
+      "label": "NEXT"
+    },
+    {
+      "source": "F18",
+      "target": "F19",
+      "label": "TRUE"
+    },
+    {
+      "source": "F18",
+      "target": "F20",
+      "label": "FALSE"
+    },
+    {
+      "source": "F17",
+      "target": "F18",
+      "label": "BODY"
+    },
+    {
+      "source": "F3",
+      "target": "F4",
+      "label": "BODY"
+    },
+    {
+      "source": "F1",
+      "target": "F3",
+      "label": "NEXT"
+    },
+    {
+      "source": "F15",
+      "target": "F2",
+      "label": "NEXT"
+    },
+    {
+      "source": "F16",
+      "target": "F2",
+      "label": "NEXT"
+    },
+    {
+      "source": "F19",
+      "target": "F2",
+      "label": "NEXT"
+    },
+    {
+      "source": "F20",
+      "target": "F2",
+      "label": "NEXT"
+    }
+  ],
+  "structured_program": {
+    "kind": "ProgramNode",
+    "line": 1,
+    "body": [
+      {
+        "kind": "ClassNode",
+        "line": 1,
+        "name": "unnamed_class",
+        "parameters": [],
+        "body": {
+          "kind": "BlockNode",
+          "line": 2,
+          "statements": [
+            {
+              "kind": "PropertyDeclarationNode",
+              "line": 2,
+              "name": "stack",
+              "declared_type": "LIST"
+            },
+            {
+              "kind": "PropertyDeclarationNode",
+              "line": 3,
+              "name": "size",
+              "declared_type": "INTEGER"
+            },
+            {
+              "kind": "ConstructorNode",
+              "line": 5,
+              "parameters": [],
+              "body": {
+                "kind": "BlockNode",
+                "line": 6,
+                "statements": [
+                  {
+                    "kind": "PropertyAssignmentNode",
+                    "line": 6,
+                    "target": {
+                      "kind": "MemberAccessNode",
+                      "line": 6,
+                      "object": {
+                        "kind": "IdentifierNode",
+                        "line": 6,
+                        "name": "THIS"
+                      },
+                      "member": "stack"
+                    },
+                    "value": {
+                      "kind": "EmptyLiteralNode",
+                      "line": 6,
+                      "empty_type": "LIST"
+                    }
+                  },
+                  {
+                    "kind": "PropertyAssignmentNode",
+                    "line": 7,
+                    "target": {
+                      "kind": "MemberAccessNode",
+                      "line": 7,
+                      "object": {
+                        "kind": "IdentifierNode",
+                        "line": 7,
+                        "name": "THIS"
+                      },
+                      "member": "size"
+                    },
+                    "value": {
+                      "kind": "LiteralNode",
+                      "line": 7,
+                      "value": 0,
+                      "data_type": "INTEGER"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "MethodNode",
+              "line": 10,
+              "name": "push",
+              "parameters": [
+                {
+                  "kind": "ParameterNode",
+                  "line": 10,
+                  "name": "x",
+                  "declared_type": null
+                }
+              ],
+              "body": {
+                "kind": "BlockNode",
+                "line": 11,
+                "statements": [
+                  {
+                    "kind": "AppendNode",
+                    "line": 11,
+                    "value": {
+                      "kind": "IdentifierNode",
+                      "line": 11,
+                      "name": "x"
+                    },
+                    "collection": {
+                      "kind": "MemberAccessNode",
+                      "line": 11,
+                      "object": {
+                        "kind": "IdentifierNode",
+                        "line": 11,
+                        "name": "THIS"
+                      },
+                      "member": "stack"
+                    }
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 12,
+                    "target": {
+                      "kind": "MemberAccessNode",
+                      "line": 12,
+                      "object": {
+                        "kind": "IdentifierNode",
+                        "line": 12,
+                        "name": "THIS"
+                      },
+                      "member": "size"
+                    },
+                    "value": {
+                      "kind": "BinaryNode",
+                      "line": 12,
+                      "operator": "+",
+                      "left": {
+                        "kind": "MemberAccessNode",
+                        "line": 12,
+                        "object": {
+                          "kind": "IdentifierNode",
+                          "line": 12,
+                          "name": "THIS"
+                        },
+                        "member": "size"
+                      },
+                      "right": {
+                        "kind": "LiteralNode",
+                        "line": 12,
+                        "value": 1,
+                        "data_type": "INTEGER"
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "MethodNode",
+              "line": 16,
+              "name": "pop",
+              "parameters": [],
+              "body": {
+                "kind": "BlockNode",
+                "line": 17,
+                "statements": [
+                  {
+                    "kind": "IfNode",
+                    "line": 17,
+                    "condition": {
+                      "kind": "BinaryNode",
+                      "line": 17,
+                      "operator": ">",
+                      "left": {
+                        "kind": "MemberAccessNode",
+                        "line": 17,
+                        "object": {
+                          "kind": "IdentifierNode",
+                          "line": 17,
+                          "name": "THIS"
+                        },
+                        "member": "size"
+                      },
+                      "right": {
+                        "kind": "LiteralNode",
+                        "line": 17,
+                        "value": 0,
+                        "data_type": "INTEGER"
+                      }
+                    },
+                    "then_body": {
+                      "kind": "BlockNode",
+                      "line": 18,
+                      "statements": [
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 18,
+                          "target": {
+                            "kind": "MemberAccessNode",
+                            "line": 18,
+                            "object": {
+                              "kind": "IdentifierNode",
+                              "line": 18,
+                              "name": "THIS"
+                            },
+                            "member": "size"
+                          },
+                          "value": {
+                            "kind": "BinaryNode",
+                            "line": 18,
+                            "operator": "-",
+                            "left": {
+                              "kind": "MemberAccessNode",
+                              "line": 18,
+                              "object": {
+                                "kind": "IdentifierNode",
+                                "line": 18,
+                                "name": "THIS"
+                              },
+                              "member": "size"
+                            },
+                            "right": {
+                              "kind": "LiteralNode",
+                              "line": 18,
+                              "value": 1,
+                              "data_type": "INTEGER"
+                            }
+                          }
+                        },
+                        {
+                          "kind": "ReturnNode",
+                          "line": 19,
+                          "expression": {
+                            "kind": "MemberCallNode",
+                            "line": 19,
+                            "object": {
+                              "kind": "MemberAccessNode",
+                              "line": 19,
+                              "object": {
+                                "kind": "IdentifierNode",
+                                "line": 19,
+                                "name": "THIS"
+                              },
+                              "member": "stack"
+                            },
+                            "member": "pop",
+                            "arguments": [],
+                            "resolved_intrinsic": null
+                          }
+                        }
+                      ]
+                    },
+                    "else_if": [],
+                    "else_body": {
+                      "kind": "BlockNode",
+                      "line": 21,
+                      "statements": [
+                        {
+                          "kind": "RaiseNode",
+                          "line": 21,
+                          "expression": {
+                            "kind": "LiteralNode",
+                            "line": 21,
+                            "value": "ERROR",
+                            "data_type": "STRING"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "MethodNode",
+              "line": 26,
+              "name": "peek",
+              "parameters": [],
+              "body": {
+                "kind": "BlockNode",
+                "line": 27,
+                "statements": [
+                  {
+                    "kind": "IfNode",
+                    "line": 27,
+                    "condition": {
+                      "kind": "BinaryNode",
+                      "line": 27,
+                      "operator": ">",
+                      "left": {
+                        "kind": "MemberAccessNode",
+                        "line": 27,
+                        "object": {
+                          "kind": "IdentifierNode",
+                          "line": 27,
+                          "name": "THIS"
+                        },
+                        "member": "size"
+                      },
+                      "right": {
+                        "kind": "LiteralNode",
+                        "line": 27,
+                        "value": 0,
+                        "data_type": "INTEGER"
+                      }
+                    },
+                    "then_body": {
+                      "kind": "BlockNode",
+                      "line": 28,
+                      "statements": [
+                        {
+                          "kind": "ReturnNode",
+                          "line": 28,
+                          "expression": {
+                            "kind": "IndexNode",
+                            "line": 28,
+                            "collection": {
+                              "kind": "MemberAccessNode",
+                              "line": 28,
+                              "object": {
+                                "kind": "IdentifierNode",
+                                "line": 28,
+                                "name": "THIS"
+                              },
+                              "member": "stack"
+                            },
+                            "index": {
+                              "kind": "BinaryNode",
+                              "line": 28,
+                              "operator": "-",
+                              "left": {
+                                "kind": "MemberAccessNode",
+                                "line": 28,
+                                "object": {
+                                  "kind": "IdentifierNode",
+                                  "line": 28,
+                                  "name": "THIS"
+                                },
+                                "member": "size"
+                              },
+                              "right": {
+                                "kind": "LiteralNode",
+                                "line": 28,
+                                "value": 1,
+                                "data_type": "INTEGER"
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "else_if": [],
+                    "else_body": {
+                      "kind": "BlockNode",
+                      "line": 30,
+                      "statements": [
+                        {
+                          "kind": "RaiseNode",
+                          "line": 30,
+                          "expression": {
+                            "kind": "LiteralNode",
+                            "line": 30,
+                            "value": "ERROR",
+                            "data_type": "STRING"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 3,
+  "transformations": [
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    INPUT Text\n\n    PREPROCESS Text\n\n    IDENTIFY all nouns\n    IDENTIFY all pronouns\n\n    FOR EACH Pronoun\n        FIND the most likely matching noun\n        LINK Pronoun to Noun\n    ENDFOR\n\n    OUTPUT Linked References\nEND",
+      "canonical": "FUNCTION unnamed_function ACCEPTS(Text)\n        PREPROCESS Text\n\n        IDENTIFY all nouns\n        IDENTIFY all pronouns\n\n        FOR EACH Pronoun\n            FIND the most likely matching noun\n            LINK Pronoun to Noun\n        ENDFOR\n\n        OUTPUT Linked References\n    END\nENDFUNCTION",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 13,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    END",
+      "canonical": "",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 10,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDFUNCTION",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 2
+}

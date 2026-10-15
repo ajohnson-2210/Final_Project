@@ -1,0 +1,12 @@
+# Sort a list of words in alphabetical order    
+FUNCTION BubbleSortWords(words):
+    n = length(words)
+    FOR i FROM 0 TO n - 1 DO
+        FOR j FROM 0 TO n - i - 2 DO
+            IF words[j] > words[j + 1] THEN
+                SWAP words[j] AND words[j + 1]
+            END IF
+        END FOR
+    END FOR
+    RETURN words
+END FUNCTION

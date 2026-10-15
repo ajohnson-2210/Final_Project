@@ -1,0 +1,10 @@
+# Find all pairs in an array that sum to a given target value.
+FUNCTION findPairs(arr, target):
+    seen = empty set
+    result = empty list
+    FOR each num in arr:
+        complement = target - num
+        IF complement IN seen:
+            result.append((num, complement))
+        seen.add(num)
+    RETURN result

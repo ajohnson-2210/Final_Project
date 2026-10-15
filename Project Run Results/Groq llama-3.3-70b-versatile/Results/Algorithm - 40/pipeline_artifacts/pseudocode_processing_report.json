@@ -1,0 +1,204 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 16,
+  "transformations": [
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  stack1 = []",
+      "canonical": "  stack1 <- []",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  stack2 = []",
+      "canonical": "  stack2 <- []",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  stack1 <- []",
+      "canonical": "  stack1 <- EMPTY LIST",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  stack2 <- []",
+      "canonical": "  stack2 <- EMPTY LIST",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 6,
+      "rule_family": "COLLECTION_OPERATION",
+      "branch": "EVIDENCED_SIMPLE_COLLECTION_METHOD",
+      "source": "    stack1.push(element)",
+      "canonical": "    PUSH element TO stack1",
+      "evidence": [
+        "receiver type is independently established by an explicit collection declaration or constructor in readable lexical scope",
+        "method spelling selects an operation only after receiver evidence exists and never establishes collection type by itself",
+        "direct rebinds and formal-parameter shadowing invalidate inherited receiver evidence"
+      ],
+      "confidence": "source_proven",
+      "semantic_change": false
+    },
+    {
+      "line": 11,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        stack2.push(stack1.pop())",
+      "canonical": "        PUSH stack1.pop() TO stack2",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  FUNCTION ENQUEUE(element)",
+      "canonical": "  FUNCTION ENQUEUE ACCEPTS(element)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  FUNCTION DEQUEUE()",
+      "canonical": "  FUNCTION DEQUEUE ACCEPTS()",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "CLASS QUEUE\n  stack1 <- EMPTY LIST\n  stack2 <- EMPTY LIST\n\n  FUNCTION ENQUEUE ACCEPTS(element)\n    PUSH element TO stack1\n\n  FUNCTION DEQUEUE ACCEPTS()\n    IF stack2 IS EMPTY THEN\n      WHILE stack1 IS NOT EMPTY\n        PUSH stack1.pop() TO stack2\n      END WHILE\n    END IF\n    RETURN stack2.pop()\n\nEND CLASS",
+      "canonical": "CLASS QUEUE ACCEPTS()\n  stack1 <- EMPTY LIST\n  stack2 <- EMPTY LIST\n\n  FUNCTION ENQUEUE ACCEPTS(element)\n    PUSH element TO stack1\n\n  FUNCTION DEQUEUE ACCEPTS()\n    IF LENGTH OF stack2 == 0 THEN\n      WHILE LENGTH OF stack1 > 0\n        PUSH stack1.pop() TO stack2\n      END WHILE\n    ENDIF\n    RETURN stack2.pop()\n\nEND CLASS",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "CLASS QUEUE ACCEPTS()\n  stack1 <- EMPTY LIST\n  stack2 <- EMPTY LIST\n\n  FUNCTION ENQUEUE ACCEPTS(element)\n    PUSH element TO stack1\n\n  FUNCTION DEQUEUE ACCEPTS()\n    IF LENGTH OF stack2 == 0 THEN\n      WHILE LENGTH OF stack1 > 0\n        PUSH stack1.pop() TO stack2\n      END WHILE\n    ENDIF\n    RETURN stack2.pop()\n\nEND CLASS",
+      "canonical": "CLASS QUEUE ACCEPTS()\n  stack1 <- EMPTY LIST\n  stack2 <- EMPTY LIST\n\n  FUNCTION ENQUEUE ACCEPTS(element)\n    APPEND element TO stack1\n  FUNCTION DEQUEUE ACCEPTS()\n    IF LENGTH OF stack2 == 0 THEN\n      WHILE LENGTH OF stack1 > 0\n        APPEND stack1.pop() TO stack2\n      END WHILE\n    ENDIF\n    RETURN stack2.pop()\n\nEND CLASS",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 9,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "      WHILE LENGTH OF stack1 > 0",
+      "canonical": "      WHILE LENGTH OF stack1 > 0 DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 11,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "      END WHILE",
+      "canonical": "      ENDWHILE",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 15,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "END CLASS",
+      "canonical": "ENDCLASS",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 7,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDFUNCTION",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 15,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDFUNCTION",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "CLASS QUEUE ACCEPTS()\n  stack1 <- EMPTY LIST\n  stack2 <- EMPTY LIST\n\n  FUNCTION ENQUEUE ACCEPTS(element)\n    APPEND element TO stack1\n  ENDFUNCTION\n  FUNCTION DEQUEUE ACCEPTS()\n    IF LENGTH OF stack2 == 0 THEN\n      WHILE LENGTH OF stack1 > 0 DO\n        APPEND stack1.pop() TO stack2\n      ENDWHILE\n    ENDIF\n    RETURN stack2.pop()\n\n  ENDFUNCTION\nENDCLASS",
+      "canonical": "CLASS QUEUE\n    PROPERTY stack1 AS LIST\n    PROPERTY stack2 AS LIST\n\n    CONSTRUCTOR ACCEPTS()\n        PROPERTY THIS.stack1 <- EMPTY LIST\n        PROPERTY THIS.stack2 <- EMPTY LIST\n    ENDCONSTRUCTOR\n\n  METHOD ENQUEUE ACCEPTS(element)\n    APPEND element TO THIS.stack1\n  ENDMETHOD\n\n  METHOD DEQUEUE ACCEPTS()\n    IF LENGTH OF THIS.stack2 == 0 THEN\n      WHILE LENGTH OF THIS.stack1 > 0 DO\n        APPEND THIS.stack1.pop() TO THIS.stack2\n      ENDWHILE\n    ENDIF\n    RETURN THIS.stack2.pop()\n\n  ENDMETHOD\nENDCLASS",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 1
+}

@@ -1,0 +1,16 @@
+# Find the first non-repeating character in a string     
+FUNCTION FirstNonRepeatingChar(str):
+    counts = empty Hash Map
+    
+    FOR EACH char IN str DO
+        counts[char] = counts[char] + 1
+    END FOR
+    
+    FOR EACH char IN str DO
+        IF counts[char] == 1 THEN
+            RETURN char
+        END IF
+    END FOR
+    
+    RETURN NULL
+END FUNCTION

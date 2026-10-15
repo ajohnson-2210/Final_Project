@@ -1,0 +1,12 @@
+# Compute the sum and average of a list of numbers    
+FUNCTION ComputeSumAndAverage(numbers):
+    IF length(numbers) == 0 THEN RETURN (0, 0)
+    
+    total_sum = 0
+    FOR EACH num IN numbers DO
+        total_sum = total_sum + num
+    END FOR
+    
+    average = total_sum / length(numbers)
+    RETURN (total_sum, average)
+END FUNCTION

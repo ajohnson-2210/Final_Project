@@ -1,0 +1,15 @@
+# Stack Using Array
+
+FUNCTION Stack():
+    data ← []
+    
+    FUNCTION push(item):
+        APPEND item TO data
+    
+    FUNCTION pop():
+        IF data is empty THEN RETURN "Underflow"
+        REMOVE and RETURN last item of data
+    
+    FUNCTION peek():
+        IF data is empty THEN RETURN "Empty"
+        RETURN last item of data

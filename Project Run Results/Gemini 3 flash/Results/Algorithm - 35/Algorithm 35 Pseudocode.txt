@@ -1,0 +1,28 @@
+# Least Recently Used (LRU) Cache     
+CLASS LRUCache:
+    CONSTRUCTOR(capacity):
+        self.capacity = capacity
+        self.map = empty Hash Map
+        self.doubly_linked_list = empty DoublyLinkedList
+
+    FUNCTION Get(key):
+        IF key NOT IN self.map THEN RETURN -1
+        node = self.map[key]
+        self.doubly_linked_list.moveToHead(node)
+        RETURN node.value
+
+    PROCEDURE Put(key, value):
+        IF key IN self.map THEN
+            node = self.map[key]
+            node.value = value
+            self.doubly_linked_list.moveToHead(node)
+        ELSE
+            IF self.map.size() >= self.capacity THEN
+                tail_node = self.doubly_linked_list.removeTail()
+                REMOVE tail_node.key FROM self.map
+            END IF
+            new_node = CreateNode(key, value)
+            self.doubly_linked_list.addToHead(new_node)
+            self.map[key] = new_node
+        END IF
+    END PROCEDURE

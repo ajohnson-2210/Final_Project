@@ -1,0 +1,9 @@
+# Tower of Hanoi
+
+FUNCTION hanoi(n, source, destination, auxiliary):
+    IF n == 1 THEN
+        PRINT "Move disc 1 from " + source + " to " + destination
+        RETURN
+    hanoi(n - 1, source, auxiliary, destination)
+    PRINT "Move disc " + n + " from " + source + " to " + destination
+    hanoi(n - 1, auxiliary, destination, source)

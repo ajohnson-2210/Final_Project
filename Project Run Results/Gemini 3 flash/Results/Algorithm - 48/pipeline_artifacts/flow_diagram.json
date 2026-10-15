@@ -1,0 +1,344 @@
+{
+  "format": "NL-FDEP Flow Diagram",
+  "version": "1.0",
+  "entry_node": "F1",
+  "exit_node": "F2",
+  "nodes": {
+    "F1": {
+      "node_id": "F1",
+      "node_type": "START",
+      "label": "Start",
+      "line": 1,
+      "data": {}
+    },
+    "F2": {
+      "node_id": "F2",
+      "node_type": "END",
+      "label": "End",
+      "line": 1,
+      "data": {}
+    },
+    "F3": {
+      "node_id": "F3",
+      "node_type": "FUNCTION",
+      "label": "Run function SearchFiles with directory, target_extension",
+      "line": 1,
+      "data": {
+        "ast_kind": "FunctionNode",
+        "name": "SearchFiles"
+      }
+    },
+    "F4": {
+      "node_id": "F4",
+      "node_type": "PROCESS",
+      "label": "Set matching_files to an empty list",
+      "line": 2,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F5": {
+      "node_id": "F5",
+      "node_type": "LOOP_DECISION",
+      "label": "For each item in the result of directory.getItems()",
+      "line": 4,
+      "data": {
+        "ast_kind": "ForEachNode"
+      }
+    },
+    "F6": {
+      "node_id": "F6",
+      "node_type": "DECISION",
+      "label": "Is the result of item.isFolder() true?",
+      "line": 5,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F7": {
+      "node_id": "F7",
+      "node_type": "PROCESS",
+      "label": "Call matching_files.extend with the result of SearchFiles(item, target_extension)",
+      "line": 6,
+      "data": {
+        "ast_kind": "MemberCallNode"
+      }
+    },
+    "F8": {
+      "node_id": "F8",
+      "node_type": "DECISION",
+      "label": "The result of item.getExtension() is equal to target_extension?",
+      "line": 7,
+      "data": {
+        "ast_kind": "ElseIfNode"
+      }
+    },
+    "F9": {
+      "node_id": "F9",
+      "node_type": "PROCESS",
+      "label": "Append path of item to matching_files",
+      "line": 8,
+      "data": {
+        "ast_kind": "AppendNode"
+      }
+    },
+    "F10": {
+      "node_id": "F10",
+      "node_type": "RETURN",
+      "label": "Return matching_files",
+      "line": 12,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "F6",
+      "target": "F7",
+      "label": "TRUE"
+    },
+    {
+      "source": "F6",
+      "target": "F8",
+      "label": "FALSE"
+    },
+    {
+      "source": "F8",
+      "target": "F9",
+      "label": "TRUE"
+    },
+    {
+      "source": "F5",
+      "target": "F6",
+      "label": "ITERATE"
+    },
+    {
+      "source": "F7",
+      "target": "F5",
+      "label": "LOOP"
+    },
+    {
+      "source": "F9",
+      "target": "F5",
+      "label": "LOOP"
+    },
+    {
+      "source": "F8",
+      "target": "F5",
+      "label": "LOOP"
+    },
+    {
+      "source": "F4",
+      "target": "F5",
+      "label": "NEXT"
+    },
+    {
+      "source": "F5",
+      "target": "F10",
+      "label": "NEXT"
+    },
+    {
+      "source": "F3",
+      "target": "F4",
+      "label": "BODY"
+    },
+    {
+      "source": "F1",
+      "target": "F3",
+      "label": "NEXT"
+    },
+    {
+      "source": "F10",
+      "target": "F2",
+      "label": "NEXT"
+    }
+  ],
+  "structured_program": {
+    "kind": "ProgramNode",
+    "line": 1,
+    "body": [
+      {
+        "kind": "FunctionNode",
+        "line": 1,
+        "name": "SearchFiles",
+        "parameters": [
+          {
+            "kind": "ParameterNode",
+            "line": 1,
+            "name": "directory",
+            "declared_type": null
+          },
+          {
+            "kind": "ParameterNode",
+            "line": 1,
+            "name": "target_extension",
+            "declared_type": null
+          }
+        ],
+        "body": {
+          "kind": "BlockNode",
+          "line": 2,
+          "statements": [
+            {
+              "kind": "AssignmentNode",
+              "line": 2,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 2,
+                "name": "matching_files"
+              },
+              "value": {
+                "kind": "EmptyLiteralNode",
+                "line": 2,
+                "empty_type": "LIST"
+              }
+            },
+            {
+              "kind": "ForEachNode",
+              "line": 4,
+              "variable": {
+                "kind": "IdentifierNode",
+                "line": 4,
+                "name": "item"
+              },
+              "collection": {
+                "kind": "MemberCallNode",
+                "line": 4,
+                "object": {
+                  "kind": "IdentifierNode",
+                  "line": 4,
+                  "name": "directory"
+                },
+                "member": "getItems",
+                "arguments": [],
+                "resolved_intrinsic": null
+              },
+              "body": {
+                "kind": "BlockNode",
+                "line": 5,
+                "statements": [
+                  {
+                    "kind": "IfNode",
+                    "line": 5,
+                    "condition": {
+                      "kind": "MemberCallNode",
+                      "line": 5,
+                      "object": {
+                        "kind": "IdentifierNode",
+                        "line": 5,
+                        "name": "item"
+                      },
+                      "member": "isFolder",
+                      "arguments": [],
+                      "resolved_intrinsic": null
+                    },
+                    "then_body": {
+                      "kind": "BlockNode",
+                      "line": 6,
+                      "statements": [
+                        {
+                          "kind": "MemberCallNode",
+                          "line": 6,
+                          "object": {
+                            "kind": "IdentifierNode",
+                            "line": 6,
+                            "name": "matching_files"
+                          },
+                          "member": "extend",
+                          "arguments": [
+                            {
+                              "kind": "CallNode",
+                              "line": 6,
+                              "name": "SearchFiles",
+                              "arguments": [
+                                {
+                                  "kind": "IdentifierNode",
+                                  "line": 6,
+                                  "name": "item"
+                                },
+                                {
+                                  "kind": "IdentifierNode",
+                                  "line": 6,
+                                  "name": "target_extension"
+                                }
+                              ]
+                            }
+                          ],
+                          "resolved_intrinsic": null
+                        }
+                      ]
+                    },
+                    "else_if": [
+                      {
+                        "kind": "ElseIfNode",
+                        "line": 7,
+                        "condition": {
+                          "kind": "BinaryNode",
+                          "line": 7,
+                          "operator": "==",
+                          "left": {
+                            "kind": "MemberCallNode",
+                            "line": 7,
+                            "object": {
+                              "kind": "IdentifierNode",
+                              "line": 7,
+                              "name": "item"
+                            },
+                            "member": "getExtension",
+                            "arguments": [],
+                            "resolved_intrinsic": null
+                          },
+                          "right": {
+                            "kind": "IdentifierNode",
+                            "line": 7,
+                            "name": "target_extension"
+                          }
+                        },
+                        "body": {
+                          "kind": "BlockNode",
+                          "line": 8,
+                          "statements": [
+                            {
+                              "kind": "AppendNode",
+                              "line": 8,
+                              "value": {
+                                "kind": "MemberAccessNode",
+                                "line": 8,
+                                "object": {
+                                  "kind": "IdentifierNode",
+                                  "line": 8,
+                                  "name": "item"
+                                },
+                                "member": "path"
+                              },
+                              "collection": {
+                                "kind": "IdentifierNode",
+                                "line": 8,
+                                "name": "matching_files"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "else_body": null
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "ReturnNode",
+              "line": 12,
+              "expression": {
+                "kind": "IdentifierNode",
+                "line": 12,
+                "name": "matching_files"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

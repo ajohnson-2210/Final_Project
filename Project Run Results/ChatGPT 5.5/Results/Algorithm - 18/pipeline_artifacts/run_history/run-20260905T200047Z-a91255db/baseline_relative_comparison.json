@@ -1,0 +1,108 @@
+{
+  "comparison_schema_version": "1.0",
+  "comparison_role": "EXPERIMENTAL_VS_PIPELINE_CALIBRATION",
+  "is_baseline": false,
+  "reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 18\\Algorithm 18 Baseline Python code.txt",
+  "tests_file": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\Pipeline Versions\\NL_Flow_Diagram_Encoder_Pipeline_v4_32\\NL_Flow_Diagram_Encoder_Pipeline_v4_32\\study data\\common tests v1.1\\Algorithm - 18\\Algorithm 18 Tests.json",
+  "common_test_set": true,
+  "baseline_reference_validation": {
+    "validation_schema_version": "1.0",
+    "reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 18\\Algorithm 18 Baseline Python code.txt",
+    "reference_source_preparation": {
+      "reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 18\\Algorithm 18 Baseline Python code.txt",
+      "raw_sha256": "c59e9a642ee8a15585347f2df5d20ac023601beb14bc5e856ed3a3ff8f97b854",
+      "raw_syntax_valid": false,
+      "execution_syntax_valid": true,
+      "normalisation_applied": true,
+      "normalisation_rule": "COMMENT_MATCHED_TEST_SUITE_ALGORITHM_TITLE",
+      "raw_syntax_error": "invalid syntax (<unknown>, line 1)",
+      "normalised_line_number": 1,
+      "declared_algorithm_title": "Compute the frequency of each character in a string",
+      "reference_heading": "Compute the frequency of each character in a string",
+      "execution_sha256": "9ffee873daad243b877425d97f4afb635086a0dd22f0790cffbc84cef94f91c4"
+    },
+    "status": "TRUSTED_REFERENCE",
+    "reason": "No independent expected outcomes are present. The frozen baseline Python is accepted as the trusted behavioural reference by the study design; this is not an independent validation claim.",
+    "explicit_tests_total": 0,
+    "tests": []
+  },
+  "baseline_calibration_status": "EVALUATED",
+  "baseline_calibration_score_percentage": 100.0,
+  "experimental_behavioural_score_percentage": 0.0,
+  "experimental_tests_total": 1,
+  "experimental_tests_passed": 0,
+  "delta_from_baseline_percentage_points": -100.0,
+  "comparison_to_baseline": "BELOW_BASELINE",
+  "comparison_status": "COMPARABLE",
+  "oracle_records": [
+    {
+      "name": "default character frequencies",
+      "reference": {
+        "status": "COMPLETED",
+        "standard_input": [],
+        "stdout": [
+          "Character T appears 1 times",
+          "Character h appears 4 times",
+          "Character i appears 2 times",
+          "Character s appears 4 times",
+          "Character   appears 8 times",
+          "Character a appears 3 times",
+          "Character S appears 1 times",
+          "Character e appears 7 times",
+          "Character n appears 4 times",
+          "Character t appears 5 times",
+          "Character c appears 3 times",
+          "Character , appears 1 times",
+          "Character d appears 2 times",
+          "Character r appears 1 times",
+          "Character o appears 1 times",
+          "Character u appears 1 times",
+          "Character ! appears 2 times"
+        ],
+        "stderr": "",
+        "return_code": 0,
+        "error_type": null,
+        "duration_ms": 43.17,
+        "category": "NORMAL",
+        "semantic_feature": "CHARACTER_FREQUENCY_DICTIONARY",
+        "criteria_links": [
+          "P2",
+          "P4"
+        ],
+        "random_seed": null,
+        "environment": {},
+        "requires_modules": [],
+        "reference_source_preparation": {
+          "reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 18\\Algorithm 18 Baseline Python code.txt",
+          "raw_sha256": "c59e9a642ee8a15585347f2df5d20ac023601beb14bc5e856ed3a3ff8f97b854",
+          "raw_syntax_valid": false,
+          "execution_syntax_valid": true,
+          "normalisation_applied": true,
+          "normalisation_rule": "COMMENT_MATCHED_TEST_SUITE_ALGORITHM_TITLE",
+          "raw_syntax_error": "invalid syntax (<unknown>, line 1)",
+          "normalised_line_number": 1,
+          "declared_algorithm_title": "Compute the frequency of each character in a string",
+          "reference_heading": "Compute the frequency of each character in a string",
+          "execution_sha256": "9ffee873daad243b877425d97f4afb635086a0dd22f0790cffbc84cef94f91c4"
+        }
+      },
+      "expected_result_source": "REFERENCE_PYTHON",
+      "explicit_expectation_fields": [],
+      "derived_expectation_fields": [
+        "expected_output",
+        "expected_return_code"
+      ],
+      "evaluable_expectation_fields": [
+        "expected_output",
+        "expected_return_code"
+      ],
+      "test_case_status": "EVALUABLE"
+    }
+  ],
+  "interpretation_note": "The baseline score measures pipeline calibration on frozen baseline pseudocode. The experimental score measures the experimental pseudocode through the same pipeline against the same trusted baseline Python/test set. The percentage-point delta is descriptive and is not a causal correction or adjusted accuracy score.",
+  "baseline_algorithm_id": 18,
+  "baseline_calibration_run_id": "run-20260905T195931Z-5a5c64bb",
+  "oracle_source": "BASELINE_REFERENCE_PYTHON",
+  "baseline_reference_oracle_eligible": true,
+  "oracle_block_reason": null
+}

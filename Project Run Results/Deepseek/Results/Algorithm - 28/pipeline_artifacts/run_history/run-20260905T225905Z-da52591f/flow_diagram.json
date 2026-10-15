@@ -1,0 +1,642 @@
+{
+  "format": "NL-FDEP Flow Diagram",
+  "version": "1.0",
+  "entry_node": "F1",
+  "exit_node": "F2",
+  "nodes": {
+    "F1": {
+      "node_id": "F1",
+      "node_type": "START",
+      "label": "Start",
+      "line": 1,
+      "data": {}
+    },
+    "F2": {
+      "node_id": "F2",
+      "node_type": "END",
+      "label": "End",
+      "line": 1,
+      "data": {}
+    },
+    "F3": {
+      "node_id": "F3",
+      "node_type": "FUNCTION",
+      "label": "Run function slidingWindowMax with arr, k",
+      "line": 1,
+      "data": {
+        "ast_kind": "FunctionNode",
+        "name": "slidingWindowMax"
+      }
+    },
+    "F4": {
+      "node_id": "F4",
+      "node_type": "PROCESS",
+      "label": "Set result to an empty list",
+      "line": 2,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F5": {
+      "node_id": "F5",
+      "node_type": "PROCESS",
+      "label": "Set deque to the result of create_deque()",
+      "line": 3,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F6": {
+      "node_id": "F6",
+      "node_type": "LOOP_DECISION",
+      "label": "For i from 0 to the length of arr minus 1 plus 1",
+      "line": 4,
+      "data": {
+        "ast_kind": "ForRangeNode"
+      }
+    },
+    "F7": {
+      "node_id": "F7",
+      "node_type": "COMMENT",
+      "label": "Remove elements out of window from front",
+      "line": 5,
+      "data": {
+        "ast_kind": "CommentNode"
+      }
+    },
+    "F8": {
+      "node_id": "F8",
+      "node_type": "LOOP_DECISION",
+      "label": "Continue while not the result of deque_is_empty(deque) and the result of deque_front(deque) is less than or equal to i minus k?",
+      "line": 6,
+      "data": {
+        "ast_kind": "WhileNode"
+      }
+    },
+    "F9": {
+      "node_id": "F9",
+      "node_type": "CALL",
+      "label": "Call deque_pop_front with deque",
+      "line": 7,
+      "data": {
+        "ast_kind": "CallNode"
+      }
+    },
+    "F10": {
+      "node_id": "F10",
+      "node_type": "COMMENT",
+      "label": "Maintain decreasing order in deque",
+      "line": 8,
+      "data": {
+        "ast_kind": "CommentNode"
+      }
+    },
+    "F11": {
+      "node_id": "F11",
+      "node_type": "LOOP_DECISION",
+      "label": "Continue while not the result of deque_is_empty(deque) and item the result of deque_back(deque) of arr is less than or equal to item i of arr?",
+      "line": 10,
+      "data": {
+        "ast_kind": "WhileNode"
+      }
+    },
+    "F12": {
+      "node_id": "F12",
+      "node_type": "CALL",
+      "label": "Call deque_pop_back with deque",
+      "line": 11,
+      "data": {
+        "ast_kind": "CallNode"
+      }
+    },
+    "F13": {
+      "node_id": "F13",
+      "node_type": "CALL",
+      "label": "Call deque_push_back with deque, i",
+      "line": 13,
+      "data": {
+        "ast_kind": "CallNode"
+      }
+    },
+    "F14": {
+      "node_id": "F14",
+      "node_type": "COMMENT",
+      "label": "Add max to result once window is full",
+      "line": 14,
+      "data": {
+        "ast_kind": "CommentNode"
+      }
+    },
+    "F15": {
+      "node_id": "F15",
+      "node_type": "DECISION",
+      "label": "I is greater than or equal to k minus 1?",
+      "line": 15,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F16": {
+      "node_id": "F16",
+      "node_type": "PROCESS",
+      "label": "Append item the result of deque_front(deque) of arr to result",
+      "line": 16,
+      "data": {
+        "ast_kind": "AppendNode"
+      }
+    },
+    "F17": {
+      "node_id": "F17",
+      "node_type": "RETURN",
+      "label": "Return result",
+      "line": 19,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "F4",
+      "target": "F5",
+      "label": "NEXT"
+    },
+    {
+      "source": "F9",
+      "target": "F10",
+      "label": "NEXT"
+    },
+    {
+      "source": "F8",
+      "target": "F9",
+      "label": "TRUE"
+    },
+    {
+      "source": "F10",
+      "target": "F8",
+      "label": "LOOP"
+    },
+    {
+      "source": "F7",
+      "target": "F8",
+      "label": "NEXT"
+    },
+    {
+      "source": "F11",
+      "target": "F12",
+      "label": "TRUE"
+    },
+    {
+      "source": "F12",
+      "target": "F11",
+      "label": "LOOP"
+    },
+    {
+      "source": "F8",
+      "target": "F11",
+      "label": "NEXT"
+    },
+    {
+      "source": "F11",
+      "target": "F13",
+      "label": "NEXT"
+    },
+    {
+      "source": "F13",
+      "target": "F14",
+      "label": "NEXT"
+    },
+    {
+      "source": "F15",
+      "target": "F16",
+      "label": "TRUE"
+    },
+    {
+      "source": "F14",
+      "target": "F15",
+      "label": "NEXT"
+    },
+    {
+      "source": "F6",
+      "target": "F7",
+      "label": "ITERATE"
+    },
+    {
+      "source": "F16",
+      "target": "F6",
+      "label": "LOOP"
+    },
+    {
+      "source": "F15",
+      "target": "F6",
+      "label": "LOOP"
+    },
+    {
+      "source": "F5",
+      "target": "F6",
+      "label": "NEXT"
+    },
+    {
+      "source": "F6",
+      "target": "F17",
+      "label": "NEXT"
+    },
+    {
+      "source": "F3",
+      "target": "F4",
+      "label": "BODY"
+    },
+    {
+      "source": "F1",
+      "target": "F3",
+      "label": "NEXT"
+    },
+    {
+      "source": "F17",
+      "target": "F2",
+      "label": "NEXT"
+    }
+  ],
+  "structured_program": {
+    "kind": "ProgramNode",
+    "line": 1,
+    "body": [
+      {
+        "kind": "FunctionNode",
+        "line": 1,
+        "name": "slidingWindowMax",
+        "parameters": [
+          {
+            "kind": "ParameterNode",
+            "line": 1,
+            "name": "arr",
+            "declared_type": null
+          },
+          {
+            "kind": "ParameterNode",
+            "line": 1,
+            "name": "k",
+            "declared_type": null
+          }
+        ],
+        "body": {
+          "kind": "BlockNode",
+          "line": 2,
+          "statements": [
+            {
+              "kind": "AssignmentNode",
+              "line": 2,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 2,
+                "name": "result"
+              },
+              "value": {
+                "kind": "EmptyLiteralNode",
+                "line": 2,
+                "empty_type": "LIST"
+              }
+            },
+            {
+              "kind": "AssignmentNode",
+              "line": 3,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 3,
+                "name": "deque"
+              },
+              "value": {
+                "kind": "CallNode",
+                "line": 3,
+                "name": "create_deque",
+                "arguments": []
+              }
+            },
+            {
+              "kind": "ForRangeNode",
+              "line": 4,
+              "variable": {
+                "kind": "IdentifierNode",
+                "line": 4,
+                "name": "i"
+              },
+              "start": {
+                "kind": "LiteralNode",
+                "line": 4,
+                "value": 0,
+                "data_type": "INTEGER"
+              },
+              "end": {
+                "kind": "BinaryNode",
+                "line": 4,
+                "operator": "+",
+                "left": {
+                  "kind": "BinaryNode",
+                  "line": 4,
+                  "operator": "-",
+                  "left": {
+                    "kind": "LengthNode",
+                    "line": 4,
+                    "expression": {
+                      "kind": "IdentifierNode",
+                      "line": 4,
+                      "name": "arr"
+                    }
+                  },
+                  "right": {
+                    "kind": "LiteralNode",
+                    "line": 4,
+                    "value": 1,
+                    "data_type": "INTEGER"
+                  }
+                },
+                "right": {
+                  "kind": "LiteralNode",
+                  "line": 4,
+                  "value": 1,
+                  "data_type": "INTEGER"
+                }
+              },
+              "step": null,
+              "body": {
+                "kind": "BlockNode",
+                "line": 5,
+                "statements": [
+                  {
+                    "kind": "CommentNode",
+                    "line": 5,
+                    "text": "Remove elements out of window from front"
+                  },
+                  {
+                    "kind": "WhileNode",
+                    "line": 6,
+                    "condition": {
+                      "kind": "BinaryNode",
+                      "line": 6,
+                      "operator": "AND",
+                      "left": {
+                        "kind": "UnaryNode",
+                        "line": 6,
+                        "operator": "NOT",
+                        "operand": {
+                          "kind": "CallNode",
+                          "line": 6,
+                          "name": "deque_is_empty",
+                          "arguments": [
+                            {
+                              "kind": "IdentifierNode",
+                              "line": 6,
+                              "name": "deque"
+                            }
+                          ]
+                        }
+                      },
+                      "right": {
+                        "kind": "BinaryNode",
+                        "line": 6,
+                        "operator": "<=",
+                        "left": {
+                          "kind": "CallNode",
+                          "line": 6,
+                          "name": "deque_front",
+                          "arguments": [
+                            {
+                              "kind": "IdentifierNode",
+                              "line": 6,
+                              "name": "deque"
+                            }
+                          ]
+                        },
+                        "right": {
+                          "kind": "BinaryNode",
+                          "line": 6,
+                          "operator": "-",
+                          "left": {
+                            "kind": "IdentifierNode",
+                            "line": 6,
+                            "name": "i"
+                          },
+                          "right": {
+                            "kind": "IdentifierNode",
+                            "line": 6,
+                            "name": "k"
+                          }
+                        }
+                      }
+                    },
+                    "body": {
+                      "kind": "BlockNode",
+                      "line": 7,
+                      "statements": [
+                        {
+                          "kind": "CallNode",
+                          "line": 7,
+                          "name": "deque_pop_front",
+                          "arguments": [
+                            {
+                              "kind": "IdentifierNode",
+                              "line": 7,
+                              "name": "deque"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "CommentNode",
+                          "line": 8,
+                          "text": "Maintain decreasing order in deque"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "kind": "WhileNode",
+                    "line": 10,
+                    "condition": {
+                      "kind": "BinaryNode",
+                      "line": 10,
+                      "operator": "AND",
+                      "left": {
+                        "kind": "UnaryNode",
+                        "line": 10,
+                        "operator": "NOT",
+                        "operand": {
+                          "kind": "CallNode",
+                          "line": 10,
+                          "name": "deque_is_empty",
+                          "arguments": [
+                            {
+                              "kind": "IdentifierNode",
+                              "line": 10,
+                              "name": "deque"
+                            }
+                          ]
+                        }
+                      },
+                      "right": {
+                        "kind": "BinaryNode",
+                        "line": 10,
+                        "operator": "<=",
+                        "left": {
+                          "kind": "IndexNode",
+                          "line": 10,
+                          "collection": {
+                            "kind": "IdentifierNode",
+                            "line": 10,
+                            "name": "arr"
+                          },
+                          "index": {
+                            "kind": "CallNode",
+                            "line": 10,
+                            "name": "deque_back",
+                            "arguments": [
+                              {
+                                "kind": "IdentifierNode",
+                                "line": 10,
+                                "name": "deque"
+                              }
+                            ]
+                          }
+                        },
+                        "right": {
+                          "kind": "IndexNode",
+                          "line": 10,
+                          "collection": {
+                            "kind": "IdentifierNode",
+                            "line": 10,
+                            "name": "arr"
+                          },
+                          "index": {
+                            "kind": "IdentifierNode",
+                            "line": 10,
+                            "name": "i"
+                          }
+                        }
+                      }
+                    },
+                    "body": {
+                      "kind": "BlockNode",
+                      "line": 11,
+                      "statements": [
+                        {
+                          "kind": "CallNode",
+                          "line": 11,
+                          "name": "deque_pop_back",
+                          "arguments": [
+                            {
+                              "kind": "IdentifierNode",
+                              "line": 11,
+                              "name": "deque"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "kind": "CallNode",
+                    "line": 13,
+                    "name": "deque_push_back",
+                    "arguments": [
+                      {
+                        "kind": "IdentifierNode",
+                        "line": 13,
+                        "name": "deque"
+                      },
+                      {
+                        "kind": "IdentifierNode",
+                        "line": 13,
+                        "name": "i"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "CommentNode",
+                    "line": 14,
+                    "text": "Add max to result once window is full"
+                  },
+                  {
+                    "kind": "IfNode",
+                    "line": 15,
+                    "condition": {
+                      "kind": "BinaryNode",
+                      "line": 15,
+                      "operator": ">=",
+                      "left": {
+                        "kind": "IdentifierNode",
+                        "line": 15,
+                        "name": "i"
+                      },
+                      "right": {
+                        "kind": "BinaryNode",
+                        "line": 15,
+                        "operator": "-",
+                        "left": {
+                          "kind": "IdentifierNode",
+                          "line": 15,
+                          "name": "k"
+                        },
+                        "right": {
+                          "kind": "LiteralNode",
+                          "line": 15,
+                          "value": 1,
+                          "data_type": "INTEGER"
+                        }
+                      }
+                    },
+                    "then_body": {
+                      "kind": "BlockNode",
+                      "line": 16,
+                      "statements": [
+                        {
+                          "kind": "AppendNode",
+                          "line": 16,
+                          "value": {
+                            "kind": "IndexNode",
+                            "line": 16,
+                            "collection": {
+                              "kind": "IdentifierNode",
+                              "line": 16,
+                              "name": "arr"
+                            },
+                            "index": {
+                              "kind": "CallNode",
+                              "line": 16,
+                              "name": "deque_front",
+                              "arguments": [
+                                {
+                                  "kind": "IdentifierNode",
+                                  "line": 16,
+                                  "name": "deque"
+                                }
+                              ]
+                            }
+                          },
+                          "collection": {
+                            "kind": "IdentifierNode",
+                            "line": 16,
+                            "name": "result"
+                          }
+                        }
+                      ]
+                    },
+                    "else_if": [],
+                    "else_body": null
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "ReturnNode",
+              "line": 19,
+              "expression": {
+                "kind": "IdentifierNode",
+                "line": 19,
+                "name": "result"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

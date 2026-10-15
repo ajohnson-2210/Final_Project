@@ -1,0 +1,320 @@
+{
+  "root_id": "N14132",
+  "nodes": {
+    "N14132": {
+      "kind": "ProgramNode",
+      "line": 1,
+      "attributes": {}
+    },
+    "N14131": {
+      "kind": "FunctionNode",
+      "line": 1,
+      "attributes": {
+        "name": "SearchFiles"
+      }
+    },
+    "N14099": {
+      "kind": "ParameterNode",
+      "line": 1,
+      "attributes": {
+        "name": "directory",
+        "declared_type": null
+      }
+    },
+    "N14100": {
+      "kind": "ParameterNode",
+      "line": 1,
+      "attributes": {
+        "name": "target_extension",
+        "declared_type": null
+      }
+    },
+    "N14130": {
+      "kind": "BlockNode",
+      "line": 2,
+      "attributes": {}
+    },
+    "N14103": {
+      "kind": "AssignmentNode",
+      "line": 2,
+      "attributes": {}
+    },
+    "N14101": {
+      "kind": "IdentifierNode",
+      "line": 2,
+      "attributes": {
+        "name": "matching_files"
+      }
+    },
+    "N14102": {
+      "kind": "EmptyLiteralNode",
+      "line": 2,
+      "attributes": {
+        "empty_type": "LIST"
+      }
+    },
+    "N14127": {
+      "kind": "ForEachNode",
+      "line": 4,
+      "attributes": {}
+    },
+    "N14126": {
+      "kind": "IdentifierNode",
+      "line": 4,
+      "attributes": {
+        "name": "item"
+      }
+    },
+    "N14105": {
+      "kind": "MemberCallNode",
+      "line": 4,
+      "attributes": {
+        "member": "getItems",
+        "arguments": [],
+        "resolved_intrinsic": null
+      }
+    },
+    "N14104": {
+      "kind": "IdentifierNode",
+      "line": 4,
+      "attributes": {
+        "name": "directory"
+      }
+    },
+    "N14125": {
+      "kind": "BlockNode",
+      "line": 5,
+      "attributes": {}
+    },
+    "N14124": {
+      "kind": "IfNode",
+      "line": 5,
+      "attributes": {
+        "else_body": null
+      }
+    },
+    "N14107": {
+      "kind": "MemberCallNode",
+      "line": 5,
+      "attributes": {
+        "member": "isFolder",
+        "arguments": [],
+        "resolved_intrinsic": null
+      }
+    },
+    "N14106": {
+      "kind": "IdentifierNode",
+      "line": 5,
+      "attributes": {
+        "name": "item"
+      }
+    },
+    "N14113": {
+      "kind": "BlockNode",
+      "line": 6,
+      "attributes": {}
+    },
+    "N14112": {
+      "kind": "MemberCallNode",
+      "line": 6,
+      "attributes": {
+        "member": "extend",
+        "resolved_intrinsic": null
+      }
+    },
+    "N14108": {
+      "kind": "IdentifierNode",
+      "line": 6,
+      "attributes": {
+        "name": "matching_files"
+      }
+    },
+    "N14111": {
+      "kind": "CallNode",
+      "line": 6,
+      "attributes": {
+        "name": "SearchFiles"
+      }
+    },
+    "N14109": {
+      "kind": "IdentifierNode",
+      "line": 6,
+      "attributes": {
+        "name": "item"
+      }
+    },
+    "N14110": {
+      "kind": "IdentifierNode",
+      "line": 6,
+      "attributes": {
+        "name": "target_extension"
+      }
+    },
+    "N14123": {
+      "kind": "ElseIfNode",
+      "line": 7,
+      "attributes": {}
+    },
+    "N14117": {
+      "kind": "BinaryNode",
+      "line": 7,
+      "attributes": {
+        "operator": "=="
+      }
+    },
+    "N14115": {
+      "kind": "MemberCallNode",
+      "line": 7,
+      "attributes": {
+        "member": "getExtension",
+        "arguments": [],
+        "resolved_intrinsic": null
+      }
+    },
+    "N14114": {
+      "kind": "IdentifierNode",
+      "line": 7,
+      "attributes": {
+        "name": "item"
+      }
+    },
+    "N14116": {
+      "kind": "IdentifierNode",
+      "line": 7,
+      "attributes": {
+        "name": "target_extension"
+      }
+    },
+    "N14122": {
+      "kind": "BlockNode",
+      "line": 8,
+      "attributes": {}
+    },
+    "N14121": {
+      "kind": "AppendNode",
+      "line": 8,
+      "attributes": {}
+    },
+    "N14119": {
+      "kind": "MemberAccessNode",
+      "line": 8,
+      "attributes": {
+        "member": "path"
+      }
+    },
+    "N14118": {
+      "kind": "IdentifierNode",
+      "line": 8,
+      "attributes": {
+        "name": "item"
+      }
+    },
+    "N14120": {
+      "kind": "IdentifierNode",
+      "line": 8,
+      "attributes": {
+        "name": "matching_files"
+      }
+    },
+    "N14129": {
+      "kind": "ReturnNode",
+      "line": 12,
+      "attributes": {}
+    },
+    "N14128": {
+      "kind": "IdentifierNode",
+      "line": 12,
+      "attributes": {
+        "name": "matching_files"
+      }
+    }
+  },
+  "adjacency": {
+    "N14132": [
+      "N14131"
+    ],
+    "N14131": [
+      "N14099",
+      "N14100",
+      "N14130"
+    ],
+    "N14099": [],
+    "N14100": [],
+    "N14130": [
+      "N14103",
+      "N14127",
+      "N14129"
+    ],
+    "N14103": [
+      "N14101",
+      "N14102"
+    ],
+    "N14101": [],
+    "N14102": [],
+    "N14127": [
+      "N14126",
+      "N14105",
+      "N14125"
+    ],
+    "N14126": [],
+    "N14105": [
+      "N14104"
+    ],
+    "N14104": [],
+    "N14125": [
+      "N14124"
+    ],
+    "N14124": [
+      "N14107",
+      "N14113",
+      "N14123"
+    ],
+    "N14107": [
+      "N14106"
+    ],
+    "N14106": [],
+    "N14113": [
+      "N14112"
+    ],
+    "N14112": [
+      "N14108",
+      "N14111"
+    ],
+    "N14108": [],
+    "N14111": [
+      "N14109",
+      "N14110"
+    ],
+    "N14109": [],
+    "N14110": [],
+    "N14123": [
+      "N14117",
+      "N14122"
+    ],
+    "N14117": [
+      "N14115",
+      "N14116"
+    ],
+    "N14115": [
+      "N14114"
+    ],
+    "N14114": [],
+    "N14116": [],
+    "N14122": [
+      "N14121"
+    ],
+    "N14121": [
+      "N14119",
+      "N14120"
+    ],
+    "N14119": [
+      "N14118"
+    ],
+    "N14118": [],
+    "N14120": [],
+    "N14129": [
+      "N14128"
+    ],
+    "N14128": []
+  }
+}

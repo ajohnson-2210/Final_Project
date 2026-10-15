@@ -1,0 +1,142 @@
+{
+  "root_id": "N16410",
+  "nodes": {
+    "N16410": {
+      "kind": "ProgramNode",
+      "line": 1,
+      "attributes": {}
+    },
+    "N16409": {
+      "kind": "FunctionNode",
+      "line": 1,
+      "attributes": {
+        "name": "TEXT_CLASSIFICATION"
+      }
+    },
+    "N16396": {
+      "kind": "ParameterNode",
+      "line": 1,
+      "attributes": {
+        "name": "text",
+        "declared_type": null
+      }
+    },
+    "N16397": {
+      "kind": "ParameterNode",
+      "line": 1,
+      "attributes": {
+        "name": "categories",
+        "declared_type": null
+      }
+    },
+    "N16408": {
+      "kind": "BlockNode",
+      "line": 2,
+      "attributes": {}
+    },
+    "N16398": {
+      "kind": "CommentNode",
+      "line": 2,
+      "attributes": {
+        "text": "Train a machine learning model using the given categories"
+      }
+    },
+    "N16402": {
+      "kind": "AssignmentNode",
+      "line": 3,
+      "attributes": {}
+    },
+    "N16399": {
+      "kind": "IdentifierNode",
+      "line": 3,
+      "attributes": {
+        "name": "model"
+      }
+    },
+    "N16401": {
+      "kind": "CallNode",
+      "line": 3,
+      "attributes": {
+        "name": "TRAIN_MODEL"
+      }
+    },
+    "N16400": {
+      "kind": "IdentifierNode",
+      "line": 3,
+      "attributes": {
+        "name": "categories"
+      }
+    },
+    "N16403": {
+      "kind": "CommentNode",
+      "line": 4,
+      "attributes": {
+        "text": "Use the trained model to classify the given text"
+      }
+    },
+    "N16407": {
+      "kind": "ReturnNode",
+      "line": 5,
+      "attributes": {}
+    },
+    "N16406": {
+      "kind": "CallNode",
+      "line": 5,
+      "attributes": {
+        "name": "CLASSIFY_TEXT"
+      }
+    },
+    "N16404": {
+      "kind": "IdentifierNode",
+      "line": 5,
+      "attributes": {
+        "name": "text"
+      }
+    },
+    "N16405": {
+      "kind": "IdentifierNode",
+      "line": 5,
+      "attributes": {
+        "name": "model"
+      }
+    }
+  },
+  "adjacency": {
+    "N16410": [
+      "N16409"
+    ],
+    "N16409": [
+      "N16396",
+      "N16397",
+      "N16408"
+    ],
+    "N16396": [],
+    "N16397": [],
+    "N16408": [
+      "N16398",
+      "N16402",
+      "N16403",
+      "N16407"
+    ],
+    "N16398": [],
+    "N16402": [
+      "N16399",
+      "N16401"
+    ],
+    "N16399": [],
+    "N16401": [
+      "N16400"
+    ],
+    "N16400": [],
+    "N16403": [],
+    "N16407": [
+      "N16406"
+    ],
+    "N16406": [
+      "N16404",
+      "N16405"
+    ],
+    "N16404": [],
+    "N16405": []
+  }
+}

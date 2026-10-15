@@ -1,0 +1,82 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 6,
+  "transformations": [
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    INPUT Score\n\n    IF Score >= 70 THEN\n        OUTPUT \"Distinction\"\n    ELSE IF Score >= 50 THEN\n        OUTPUT \"Merit\"\n    ELSE IF Score >= 40 THEN\n        OUTPUT \"Pass\"\n    ELSE\n        OUTPUT \"Fail\"\n    ENDIF\nEND",
+      "canonical": "FUNCTION unnamed_function ACCEPTS(Score)\n        IF Score >= 70 THEN\n            OUTPUT \"Distinction\"\n        ELSE IF Score >= 50 THEN\n            OUTPUT \"Merit\"\n        ELSE IF Score >= 40 THEN\n            OUTPUT \"Pass\"\n        ELSE\n            OUTPUT \"Fail\"\n        ENDIF\n    END\nENDFUNCTION",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            OUTPUT \"Distinction\"",
+      "canonical": "            OUTPUT STRING(\"Distinction\")",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            OUTPUT \"Merit\"",
+      "canonical": "            OUTPUT STRING(\"Merit\")",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 7,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            OUTPUT \"Pass\"",
+      "canonical": "            OUTPUT STRING(\"Pass\")",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 9,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            OUTPUT \"Fail\"",
+      "canonical": "            OUTPUT STRING(\"Fail\")",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 11,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    END",
+      "canonical": "",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 2
+}

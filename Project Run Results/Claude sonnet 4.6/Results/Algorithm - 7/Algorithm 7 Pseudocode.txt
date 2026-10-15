@@ -1,0 +1,13 @@
+# Split Sentence into Words
+
+FUNCTION splitIntoWords(sentence):
+    words ← []
+    currentWord ← ""
+    FOR each char IN sentence:
+        IF char == " " THEN
+            IF currentWord ≠ "" THEN APPEND currentWord TO words
+            currentWord ← ""
+        ELSE
+            currentWord ← currentWord + char
+    IF currentWord ≠ "" THEN APPEND currentWord TO words
+    RETURN words

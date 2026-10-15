@@ -1,0 +1,9 @@
+# Sort a list of words in alphabetical order.
+FUNCTION sortWords(words):
+    // Using a simple bubble sort for demonstration
+    n = length(words)
+    FOR i FROM 0 TO n-2:
+        FOR j FROM 0 TO n-i-2:
+            IF words[j] > words[j+1]:
+                SWAP(words[j], words[j+1])
+    RETURN words

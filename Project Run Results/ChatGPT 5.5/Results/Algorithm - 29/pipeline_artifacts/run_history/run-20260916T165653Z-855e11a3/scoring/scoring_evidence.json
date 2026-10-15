@@ -1,0 +1,179 @@
+{
+  "scoring_schema_version": "1.5",
+  "rubric_version": "1.1",
+  "algorithm": {
+    "algorithm_id": 29,
+    "dataset": "ChatGPT 5.5",
+    "source_type": "llm_pseudocode",
+    "source_file": "Algorithm 29 Pseudocode.txt",
+    "source_file_resolved": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\ChatGPT 5.5\\Results\\Algorithm - 29\\Algorithm 29 Pseudocode.txt",
+    "is_baseline": false,
+    "experimental_expected_value_policy": "STATIC_PREEXPERIMENT_EXPECTATIONS",
+    "runtime_baseline_reference_used": false
+  },
+  "criterion_evidence": [
+    {
+      "criterion_id": "C1",
+      "question": "Does the canonical pseudocode conform to the AJ grammar sufficiently for deterministic interpretation by the next pipeline stage?",
+      "score": 0,
+      "status": "FAIL",
+      "justification": "Canonical AJ did not produce a validated AST.",
+      "evidence": [
+        {
+          "artifact": "pipeline_report.json",
+          "observed_value": "PSEUDOCODE_TO_AST=FAILURE"
+        }
+      ]
+    },
+    {
+      "criterion_id": "C2",
+      "question": "Are all semantically relevant operations from the source pseudocode preserved in the canonical representation with equivalent meaning?",
+      "score": 2,
+      "status": "PASS",
+      "justification": "All logged transformations are from audited evidence categories and none declares a semantic change.",
+      "evidence": [
+        {
+          "artifact": "pseudocode_processing_report.json",
+          "transformation_count": 1,
+          "semantic_change_count": 0,
+          "uncertain_transformation_count": 0,
+          "rule_families": [
+            "SOURCE_NORMALISATION"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion_id": "C3",
+      "question": "Are conditions, branches, loop bounds, iteration behaviour, state changes and termination behaviour preserved from the source?",
+      "score": 2,
+      "status": "PASS",
+      "justification": "No logged transformation declares a change to control/state semantics; all transformations have accepted audit evidence.",
+      "evidence": [
+        {
+          "artifact": "pseudocode_processing_report.json",
+          "transformation_count": 1,
+          "semantic_change_count": 0,
+          "uncertain_transformation_count": 0,
+          "rule_families": [
+            "SOURCE_NORMALISATION"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion_id": "C4",
+      "question": "Has canonicalisation avoided introducing algorithmic behaviour that was not explicitly supported by the source?",
+      "score": 2,
+      "status": "PASS",
+      "justification": "No transformation is marked as semantic-changing and all transformations use accepted audit-evidence categories.",
+      "evidence": [
+        {
+          "artifact": "pseudocode_processing_report.json",
+          "transformation_count": 1,
+          "semantic_change_count": 0,
+          "uncertain_transformation_count": 0,
+          "rule_families": [
+            "SOURCE_NORMALISATION"
+          ]
+        }
+      ]
+    },
+    {
+      "criterion_id": "A1",
+      "question": "Does every semantically relevant construct in the canonical pseudocode have an appropriate AST representation without missing or spurious executable nodes?",
+      "score": null,
+      "status": "NOT_EVALUABLE",
+      "justification": "A validated AST/parser report is not available.",
+      "evidence": []
+    },
+    {
+      "criterion_id": "A2",
+      "question": "Does the AST correctly represent the operands, operators, literals, indexing, collection access and call relationships of the canonical pseudocode?",
+      "score": null,
+      "status": "NOT_EVALUABLE",
+      "justification": "A validated AST/parser report is not available.",
+      "evidence": []
+    },
+    {
+      "criterion_id": "A3",
+      "question": "Are branch relationships, loop bodies, returns, loop-control operations, variable scope and nested declarations represented in the correct structural context?",
+      "score": null,
+      "status": "NOT_EVALUABLE",
+      "justification": "A validated AST/parser report is not available.",
+      "evidence": []
+    },
+    {
+      "criterion_id": "A4",
+      "question": "If the AST were interpreted directly, would it permit the same observable algorithmic behaviour as the canonical pseudocode?",
+      "score": null,
+      "status": "NOT_EVALUABLE",
+      "justification": "A validated AST/parser report is not available.",
+      "evidence": []
+    },
+    {
+      "criterion_id": "F1",
+      "question": "Are all semantically relevant actions, decisions, entry/exit points and returns represented in the flow diagram?",
+      "score": null,
+      "status": "NOT_EVALUABLE",
+      "justification": "Flow and/or AST evidence is unavailable.",
+      "evidence": []
+    },
+    {
+      "criterion_id": "F2",
+      "question": "Do the diagram connections correctly represent execution sequence, branch destinations, loop-back edges and exit paths?",
+      "score": null,
+      "status": "NOT_EVALUABLE",
+      "justification": "Flow and/or AST evidence is unavailable.",
+      "evidence": []
+    },
+    {
+      "criterion_id": "F3",
+      "question": "For every meaningful execution path represented by the AST, is there a corresponding path through the flow diagram without additional semantically unsupported paths?",
+      "score": null,
+      "status": "NOT_EVALUABLE",
+      "justification": "Flow and/or AST evidence is unavailable.",
+      "evidence": []
+    },
+    {
+      "criterion_id": "F4",
+      "question": "Do decision conditions, TRUE/FALSE routing, loop-entry conditions and loop-termination behaviour preserve the logic represented by the AST?",
+      "score": null,
+      "status": "NOT_EVALUABLE",
+      "justification": "Flow and/or AST evidence is unavailable.",
+      "evidence": []
+    },
+    {
+      "criterion_id": "P1",
+      "question": "Is the generated Python syntactically valid and executable for inputs valid under the source algorithm's assumptions?",
+      "score": null,
+      "status": "NOT_EVALUABLE",
+      "justification": "No compilation report is available.",
+      "evidence": []
+    },
+    {
+      "criterion_id": "P2",
+      "question": "Does the generated Python produce the expected outputs and observable state changes across the predefined behavioural tests?",
+      "score": null,
+      "status": "NOT_EVALUABLE",
+      "justification": "No behavioural tests were executed for this algorithm.",
+      "evidence": []
+    },
+    {
+      "criterion_id": "P3",
+      "question": "Does the generated Python preserve source-defined boundary behaviour, termination behaviour, returns and errors?",
+      "score": null,
+      "status": "NOT_EVALUABLE",
+      "justification": "No tests are tagged BOUNDARY, ERROR_BEHAVIOUR or TERMINATION, so boundary/error/termination preservation cannot be scored automatically.",
+      "evidence": []
+    },
+    {
+      "criterion_id": "P4",
+      "question": "Does the generated Python preserve the algorithm's control flow, state changes, data-structure effects and observable behaviour without introducing or removing meaningful behaviour?",
+      "score": 0,
+      "status": "FAIL",
+      "justification": "A valid generated Python representation was not produced.",
+      "evidence": []
+    }
+  ]
+}

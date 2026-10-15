@@ -1,0 +1,28 @@
+# Binary Tree Level-Order Traversal
+
+INPUT root
+
+IF root == null:
+    RETURN []
+
+queue = [root]
+result = []
+
+WHILE queue not empty:
+    levelSize = length(queue)
+    currentLevel = []
+
+    FOR _ from 0 to levelSize-1:
+        node = queue.pop(0)
+        currentLevel.append(node.value)
+
+        IF node.left:
+            queue.append(node.left)
+
+        IF node.right:
+            queue.append(node.right)
+
+    result.append(currentLevel)
+
+RETURN result
+

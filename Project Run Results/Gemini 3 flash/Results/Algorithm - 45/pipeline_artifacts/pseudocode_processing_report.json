@@ -1,0 +1,97 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 7,
+  "transformations": [
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    C = rows x cols matrix filled with 0",
+      "canonical": "    C <- rows x cols matrix filled with 0",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "FUNCTION AddMatrices(A, B, rows, cols):\n    C <- rows x cols matrix filled with 0\n    FOR i FROM 0 TO rows - 1 DO\n        FOR j FROM 0 TO cols - 1 DO\n            C[i][j] = A[i][j] + B[i][j]\n        END FOR\n    END FOR\n    RETURN C\nEND FUNCTION",
+      "canonical": "FUNCTION AddMatrices(A, B, rows, cols):\n    C <- rows x cols matrix filled with 0\n    FOR i FROM 0 TO rows - 1 DO\n        FOR j FROM 0 TO cols - 1 DO\n            C[i][j] = A[i][j] + B[i][j]\n        ENDFOR\n    ENDFOR\n    RETURN C\nENDFUNCTION",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 2,
+      "rule_family": "MATRIX_DECLARATION",
+      "branch": "EXPLICIT_RECTANGULAR_MATRIX_ZERO_FILL",
+      "source": "    C <- rows x cols matrix filled with 0",
+      "canonical": "    C <- CALL create_matrix(rows, cols, 0)",
+      "evidence": [
+        "source explicitly declares rows x cols matrix filled with 0",
+        "both row and column dimensions are preserved as simple source identifiers",
+        "the pipeline already provides create_matrix(rows, cols, fill) for deterministic matrix allocation",
+        "expression dimensions, non-zero or missing fills, grid spellings, and prose remain untouched"
+      ],
+      "confidence": "source_proven",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            C[i][j] = A[i][j] + B[i][j]",
+      "canonical": "            C[i][j] <- A[i][j] + B[i][j]",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION AddMatrices(A, B, rows, cols):",
+      "canonical": "FUNCTION AddMatrices ACCEPTS(A, B, rows, cols)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    FOR i FROM 0 TO rows - 1 DO",
+      "canonical": "    FOR i <- IN RANGE 0 TO (rows - 1) + 1 DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        FOR j FROM 0 TO cols - 1 DO",
+      "canonical": "        FOR j <- IN RANGE 0 TO (cols - 1) + 1 DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 1
+}

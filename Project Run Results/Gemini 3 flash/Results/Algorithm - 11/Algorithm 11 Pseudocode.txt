@@ -1,0 +1,8 @@
+# Remove duplicate IP addresses and return unique IPs    
+FUNCTION GetUniqueIPs(ip_list):
+    unique_set = empty Set
+    FOR EACH ip IN ip_list DO
+        ADD ip TO unique_set
+    END FOR
+    RETURN ConvertSetToList(unique_set)
+END FUNCTION

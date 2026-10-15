@@ -1,0 +1,178 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 14,
+  "transformations": [
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  result = []",
+      "canonical": "  result <- []",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    max_value = NEGATIVE_INFINITY",
+      "canonical": "    max_value <- NEGATIVE_INFINITY",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 7,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        max_value = arr[j]",
+      "canonical": "        max_value <- arr[j]",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 10,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    result += [max_value]",
+      "canonical": "    result <- result + [max_value]",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  result <- []",
+      "canonical": "  result <- EMPTY LIST",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  FOR i FROM 0 TO LENGTH(arr) - window_size",
+      "canonical": "  FOR i FROM 0 TO LENGTH OF arr - window_size",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION MAX_IN_WINDOW(arr, window_size)",
+      "canonical": "FUNCTION MAX_IN_WINDOW ACCEPTS(arr, window_size)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "FUNCTION MAX_IN_WINDOW ACCEPTS(arr, window_size)\n  result <- EMPTY LIST\n  FOR i FROM 0 TO LENGTH OF arr - window_size\n    max_value <- NEGATIVE_INFINITY\n    FOR j FROM i TO i + window_size - 1\n      IF arr[j] > max_value THEN\n        max_value <- arr[j]\n      END IF\n    END FOR\n    result <- result + [max_value]\n  END FOR\n  RETURN result\nEND FUNCTION",
+      "canonical": "FUNCTION MAX_IN_WINDOW ACCEPTS(arr, window_size)\n  result <- EMPTY LIST\n  FOR i FROM 0 TO LENGTH OF arr - window_size\n    max_value <- NEGATIVE_INFINITY\n    FOR j FROM i TO i + window_size - 1\n      IF arr[j] > max_value THEN\n        max_value <- arr[j]\n      ENDIF\n    END FOR\n    result <- result + [max_value]\n  END FOR\n  RETURN result\nENDFUNCTION",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "FUNCTION MAX_IN_WINDOW ACCEPTS(arr, window_size)\n  result <- EMPTY LIST\n  FOR i FROM 0 TO LENGTH OF arr - window_size\n    max_value <- NEGATIVE_INFINITY\n    FOR j FROM i TO i + window_size - 1\n      IF arr[j] > max_value THEN\n        max_value <- arr[j]\n      ENDIF\n    END FOR\n    result <- result + [max_value]\n  END FOR\n  RETURN result\nENDFUNCTION",
+      "canonical": "FUNCTION MAX_IN_WINDOW ACCEPTS(arr, window_size)\n  result <- EMPTY LIST\n  FOR i FROM 0 TO LENGTH OF arr - window_size\n    max_value <- NEGATIVE_INFINITY\n    FOR j FROM i TO i + window_size - 1\n      IF arr[j] > max_value THEN\n        max_value <- arr[j]\n      ENDIF\n    END FOR\n    APPEND max_value TO result\n  END FOR\n  RETURN result\nENDFUNCTION",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    max_value <- NEGATIVE_INFINITY",
+      "canonical": "    max_value <- CALL negative_infinity()",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  FOR i FROM 0 TO LENGTH OF arr - window_size",
+      "canonical": "  FOR i <- IN RANGE 0 TO (LENGTH OF arr - window_size) + 1 DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    FOR j FROM i TO i + window_size - 1",
+      "canonical": "    FOR j <- IN RANGE i TO (i + window_size - 1) + 1 DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 9,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "    END FOR",
+      "canonical": "    ENDFOR",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 11,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "  END FOR",
+      "canonical": "  ENDFOR",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 1
+}

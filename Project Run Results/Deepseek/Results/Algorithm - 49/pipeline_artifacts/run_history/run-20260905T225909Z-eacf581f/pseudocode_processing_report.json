@@ -1,0 +1,146 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 11,
+  "transformations": [
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    queue = empty queue",
+      "canonical": "    queue <- empty queue",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    visited = 2D boolean array same size as maze initialized to False",
+      "canonical": "    visited <- 2D boolean array same size as maze initialized to False",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    parent = 2D array to store previous cell for reconstruction",
+      "canonical": "    parent <- 2D array to store previous cell for reconstruction",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 10,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    directions = [(0,1), (1,0), (0,-1), (-1,0)] // right, down, left, up",
+      "canonical": "    directions <- [(0,1), (1,0), (0,-1), (-1,0)] // right, down, left, up",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 13,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        current = queue.dequeue()",
+      "canonical": "        current <- queue.dequeue()",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 16,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            path = empty list",
+      "canonical": "            path <- empty list",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 19,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "                current = parent[current.row][current.col]",
+      "canonical": "                current <- parent[current.row][current.col]",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 24,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            newRow = current.row + direction.row",
+      "canonical": "            newRow <- current.row + direction.row",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 25,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            newCol = current.col + direction.col",
+      "canonical": "            newCol <- current.col + direction.col",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 19,
+      "rule_family": "RESERVED_IDENTIFIER_ESCAPE",
+      "branch": "SOURCE_PROVEN_BINDING_ESCAPE",
+      "source": "                path.append(current)",
+      "canonical": "                path.__reserved_keyword__append(current)",
+      "evidence": [
+        "the source uses an AJ reserved keyword in an unambiguous identifier-binding position",
+        "the protected __reserved_keyword__ prefix preserves the source identifier spelling without assigning new algorithmic meaning",
+        "corresponding identifier occurrences are rewritten while quoted text and recognised AJ keyword syntax are preserved"
+      ],
+      "confidence": "source_proven",
+      "semantic_change": false
+    },
+    {
+      "line": 21,
+      "rule_family": "RESERVED_IDENTIFIER_ESCAPE",
+      "branch": "SOURCE_PROVEN_BINDING_ESCAPE",
+      "source": "            path.append(start)",
+      "canonical": "            path.__reserved_keyword__append(start)",
+      "evidence": [
+        "the source uses an AJ reserved keyword in an unambiguous identifier-binding position",
+        "the protected __reserved_keyword__ prefix preserves the source identifier spelling without assigning new algorithmic meaning",
+        "corresponding identifier occurrences are rewritten while quoted text and recognised AJ keyword syntax are preserved"
+      ],
+      "confidence": "source_proven",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 1
+}

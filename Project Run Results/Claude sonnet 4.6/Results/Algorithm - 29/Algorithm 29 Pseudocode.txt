@@ -1,0 +1,8 @@
+# Text Classification Model
+
+FUNCTION classifyText(text, categories, trainingData):
+    preprocessed ← tokenize(lowercase(removeStopWords(text)))
+    features ← extractFeatures(preprocessed)   // e.g. TF-IDF
+    FOR each category IN categories:
+        score[category] ← computeSimilarity(features, trainingData[category])
+    RETURN category with highest score

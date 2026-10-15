@@ -1,0 +1,13 @@
+# Find the length of the longest substring without repeating characters in a given string.
+FUNCTION longestSubstringLength(str):
+    n = length(str)
+    seen = empty set
+    maxLen = 0
+    left = 0
+    FOR right FROM 0 TO n-1:
+        WHILE str[right] IN seen:
+            seen.remove(str[left])
+            left = left + 1
+        seen.add(str[right])
+        maxLen = MAX(maxLen, right - left + 1)
+    RETURN maxLen

@@ -1,0 +1,20 @@
+# Rotate a square 2D matrix 90 degrees clockwise in-place    
+PROCEDURE RotateMatrixClockwise(matrix, N):
+    // Step 1: Transpose matrix
+    FOR i FROM 0 TO N - 1 DO
+        FOR j FROM i TO N - 1 DO
+            SWAP matrix[i][j] AND matrix[j][i]
+        END FOR
+    END FOR
+    
+    // Step 2: Reverse each row
+    FOR i FROM 0 TO N - 1 DO
+        left = 0
+        right = N - 1
+        WHILE left < right DO
+            SWAP matrix[i][left] AND matrix[i][right]
+            left = left + 1
+            right = right - 1
+        END WHILE
+    END FOR
+END PROCEDURE

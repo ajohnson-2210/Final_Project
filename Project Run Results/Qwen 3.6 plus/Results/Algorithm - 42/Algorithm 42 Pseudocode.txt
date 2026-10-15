@@ -1,0 +1,17 @@
+# Find Pairs Summing to Target
+
+INPUT arr, target
+
+seen = {}
+pairs = []
+
+FOR num in arr:
+    comp = target - num
+
+    IF comp in seen:
+        pairs.add((MIN(num, comp), MAX(num, comp)))
+
+    seen[num] = true
+
+RETURN unique(pairs)
+

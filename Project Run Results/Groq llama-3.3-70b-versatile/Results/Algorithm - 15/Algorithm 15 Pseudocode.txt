@@ -1,0 +1,14 @@
+# Find the second largest in an array
+FUNCTION SECOND_LARGEST(arr)
+  max = NEGATIVE_INFINITY
+  second_max = NEGATIVE_INFINITY
+  FOR num IN arr
+    IF num > max THEN
+      second_max = max
+      max = num
+    ELSE IF num > second_max AND num != max THEN
+      second_max = num
+    END IF
+  END FOR
+  RETURN second_max
+END FUNCTION

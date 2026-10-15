@@ -1,0 +1,14 @@
+# Create a topic modelling system to extract topics from a corpus.
+BEGIN
+    LOAD Documents
+
+    PREPROCESS Documents
+
+    CREATE Document-Term Matrix
+
+    APPLY Topic Modelling Algorithm
+
+    FOR EACH Topic
+        OUTPUT Topic Keywords
+    ENDFOR
+END

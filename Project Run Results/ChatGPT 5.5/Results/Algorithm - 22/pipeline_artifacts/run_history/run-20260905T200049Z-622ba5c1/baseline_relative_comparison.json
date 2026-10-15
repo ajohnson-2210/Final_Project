@@ -1,0 +1,296 @@
+{
+  "comparison_schema_version": "1.0",
+  "comparison_role": "EXPERIMENTAL_VS_PIPELINE_CALIBRATION",
+  "is_baseline": false,
+  "reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 22\\Algorithm 22 Baseline Python code.txt",
+  "tests_file": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\Pipeline Versions\\NL_Flow_Diagram_Encoder_Pipeline_v4_32\\NL_Flow_Diagram_Encoder_Pipeline_v4_32\\study data\\common tests v1.1\\Algorithm - 22\\Algorithm 22 Tests.json",
+  "common_test_set": true,
+  "baseline_reference_validation": {
+    "validation_schema_version": "1.0",
+    "reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 22\\Algorithm 22 Baseline Python code.txt",
+    "reference_source_preparation": {
+      "reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 22\\Algorithm 22 Baseline Python code.txt",
+      "raw_sha256": "1c6e91e072556cf9262ba41eae46d396dd124fcb7b65130f0fd82118f974025d",
+      "raw_syntax_valid": false,
+      "execution_syntax_valid": true,
+      "normalisation_applied": true,
+      "normalisation_rule": "COMMENT_MATCHED_TEST_SUITE_ALGORITHM_TITLE",
+      "raw_syntax_error": "invalid syntax (<unknown>, line 1)",
+      "normalised_line_number": 1,
+      "declared_algorithm_title": "Design a process that computes the factorial of a given integer",
+      "reference_heading": "Design a process that computes the factorial of a given integer",
+      "execution_sha256": "8a5175ccb13a66acec0b6821bd9fabb1e86e85e955755924db4a27b3ae4a727f"
+    },
+    "status": "TRUSTED_REFERENCE",
+    "reason": "No independent expected outcomes are present. The frozen baseline Python is accepted as the trusted behavioural reference by the study design; this is not an independent validation claim.",
+    "explicit_tests_total": 0,
+    "tests": []
+  },
+  "baseline_calibration_status": "EVALUATED",
+  "baseline_calibration_score_percentage": 100.0,
+  "experimental_behavioural_score_percentage": 0.0,
+  "experimental_tests_total": 5,
+  "experimental_tests_passed": 0,
+  "delta_from_baseline_percentage_points": -100.0,
+  "comparison_to_baseline": "BELOW_BASELINE",
+  "comparison_status": "COMPARABLE",
+  "oracle_records": [
+    {
+      "name": "factorial of five",
+      "reference": {
+        "status": "COMPLETED",
+        "standard_input": [
+          "5"
+        ],
+        "stdout": [
+          "Enter Number: Factoral = 120"
+        ],
+        "stderr": "",
+        "return_code": 0,
+        "error_type": null,
+        "duration_ms": 46.597,
+        "category": "NORMAL",
+        "semantic_feature": "FACTORIAL_LOOP",
+        "criteria_links": [
+          "P2",
+          "P4"
+        ],
+        "random_seed": null,
+        "environment": {},
+        "requires_modules": [],
+        "reference_source_preparation": {
+          "reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 22\\Algorithm 22 Baseline Python code.txt",
+          "raw_sha256": "1c6e91e072556cf9262ba41eae46d396dd124fcb7b65130f0fd82118f974025d",
+          "raw_syntax_valid": false,
+          "execution_syntax_valid": true,
+          "normalisation_applied": true,
+          "normalisation_rule": "COMMENT_MATCHED_TEST_SUITE_ALGORITHM_TITLE",
+          "raw_syntax_error": "invalid syntax (<unknown>, line 1)",
+          "normalised_line_number": 1,
+          "declared_algorithm_title": "Design a process that computes the factorial of a given integer",
+          "reference_heading": "Design a process that computes the factorial of a given integer",
+          "execution_sha256": "8a5175ccb13a66acec0b6821bd9fabb1e86e85e955755924db4a27b3ae4a727f"
+        }
+      },
+      "expected_result_source": "REFERENCE_PYTHON",
+      "explicit_expectation_fields": [],
+      "derived_expectation_fields": [
+        "expected_output",
+        "expected_return_code"
+      ],
+      "evaluable_expectation_fields": [
+        "expected_output",
+        "expected_return_code"
+      ],
+      "test_case_status": "EVALUABLE"
+    },
+    {
+      "name": "factorial of one",
+      "reference": {
+        "status": "COMPLETED",
+        "standard_input": [
+          "1"
+        ],
+        "stdout": [
+          "Enter Number: Factoral = 1"
+        ],
+        "stderr": "",
+        "return_code": 0,
+        "error_type": null,
+        "duration_ms": 42.965,
+        "category": "BOUNDARY",
+        "semantic_feature": "FACTORIAL_ONE",
+        "criteria_links": [
+          "P2",
+          "P3",
+          "P4"
+        ],
+        "random_seed": null,
+        "environment": {},
+        "requires_modules": [],
+        "reference_source_preparation": {
+          "reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 22\\Algorithm 22 Baseline Python code.txt",
+          "raw_sha256": "1c6e91e072556cf9262ba41eae46d396dd124fcb7b65130f0fd82118f974025d",
+          "raw_syntax_valid": false,
+          "execution_syntax_valid": true,
+          "normalisation_applied": true,
+          "normalisation_rule": "COMMENT_MATCHED_TEST_SUITE_ALGORITHM_TITLE",
+          "raw_syntax_error": "invalid syntax (<unknown>, line 1)",
+          "normalised_line_number": 1,
+          "declared_algorithm_title": "Design a process that computes the factorial of a given integer",
+          "reference_heading": "Design a process that computes the factorial of a given integer",
+          "execution_sha256": "8a5175ccb13a66acec0b6821bd9fabb1e86e85e955755924db4a27b3ae4a727f"
+        }
+      },
+      "expected_result_source": "REFERENCE_PYTHON",
+      "explicit_expectation_fields": [],
+      "derived_expectation_fields": [
+        "expected_output",
+        "expected_return_code"
+      ],
+      "evaluable_expectation_fields": [
+        "expected_output",
+        "expected_return_code"
+      ],
+      "test_case_status": "EVALUABLE"
+    },
+    {
+      "name": "factorial of zero",
+      "reference": {
+        "status": "COMPLETED",
+        "standard_input": [
+          "0"
+        ],
+        "stdout": [
+          "Enter Number: Factoral = 1"
+        ],
+        "stderr": "",
+        "return_code": 0,
+        "error_type": null,
+        "duration_ms": 44.674,
+        "category": "BOUNDARY",
+        "semantic_feature": "FACTORIAL_ZERO_REFERENCE_BEHAVIOUR",
+        "criteria_links": [
+          "P2",
+          "P3",
+          "P4"
+        ],
+        "random_seed": null,
+        "environment": {},
+        "requires_modules": [],
+        "reference_source_preparation": {
+          "reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 22\\Algorithm 22 Baseline Python code.txt",
+          "raw_sha256": "1c6e91e072556cf9262ba41eae46d396dd124fcb7b65130f0fd82118f974025d",
+          "raw_syntax_valid": false,
+          "execution_syntax_valid": true,
+          "normalisation_applied": true,
+          "normalisation_rule": "COMMENT_MATCHED_TEST_SUITE_ALGORITHM_TITLE",
+          "raw_syntax_error": "invalid syntax (<unknown>, line 1)",
+          "normalised_line_number": 1,
+          "declared_algorithm_title": "Design a process that computes the factorial of a given integer",
+          "reference_heading": "Design a process that computes the factorial of a given integer",
+          "execution_sha256": "8a5175ccb13a66acec0b6821bd9fabb1e86e85e955755924db4a27b3ae4a727f"
+        }
+      },
+      "expected_result_source": "REFERENCE_PYTHON",
+      "explicit_expectation_fields": [],
+      "derived_expectation_fields": [
+        "expected_output",
+        "expected_return_code"
+      ],
+      "evaluable_expectation_fields": [
+        "expected_output",
+        "expected_return_code"
+      ],
+      "test_case_status": "EVALUABLE"
+    },
+    {
+      "name": "negative integer follows frozen reference behaviour",
+      "reference": {
+        "status": "COMPLETED",
+        "standard_input": [
+          "-3"
+        ],
+        "stdout": [
+          "Enter Number: Factoral = 1"
+        ],
+        "stderr": "",
+        "return_code": 0,
+        "error_type": null,
+        "duration_ms": 40.782,
+        "category": "BOUNDARY",
+        "semantic_feature": "FACTORIAL_NEGATIVE_REFERENCE_BEHAVIOUR",
+        "criteria_links": [
+          "P2",
+          "P3",
+          "P4"
+        ],
+        "random_seed": null,
+        "environment": {},
+        "requires_modules": [],
+        "reference_source_preparation": {
+          "reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 22\\Algorithm 22 Baseline Python code.txt",
+          "raw_sha256": "1c6e91e072556cf9262ba41eae46d396dd124fcb7b65130f0fd82118f974025d",
+          "raw_syntax_valid": false,
+          "execution_syntax_valid": true,
+          "normalisation_applied": true,
+          "normalisation_rule": "COMMENT_MATCHED_TEST_SUITE_ALGORITHM_TITLE",
+          "raw_syntax_error": "invalid syntax (<unknown>, line 1)",
+          "normalised_line_number": 1,
+          "declared_algorithm_title": "Design a process that computes the factorial of a given integer",
+          "reference_heading": "Design a process that computes the factorial of a given integer",
+          "execution_sha256": "8a5175ccb13a66acec0b6821bd9fabb1e86e85e955755924db4a27b3ae4a727f"
+        }
+      },
+      "expected_result_source": "REFERENCE_PYTHON",
+      "explicit_expectation_fields": [],
+      "derived_expectation_fields": [
+        "expected_output",
+        "expected_return_code"
+      ],
+      "evaluable_expectation_fields": [
+        "expected_output",
+        "expected_return_code"
+      ],
+      "test_case_status": "EVALUABLE"
+    },
+    {
+      "name": "invalid input retries",
+      "reference": {
+        "status": "COMPLETED",
+        "standard_input": [
+          "x",
+          "4"
+        ],
+        "stdout": [
+          "Enter Number: That's Not an Integer, Please Try Again!",
+          "Enter Number: Factoral = 24"
+        ],
+        "stderr": "",
+        "return_code": 0,
+        "error_type": null,
+        "duration_ms": 45.972,
+        "category": "ERROR_BEHAVIOUR",
+        "semantic_feature": "INTEGER_INPUT_RETRY",
+        "criteria_links": [
+          "P2",
+          "P3",
+          "P4"
+        ],
+        "random_seed": null,
+        "environment": {},
+        "requires_modules": [],
+        "reference_source_preparation": {
+          "reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 22\\Algorithm 22 Baseline Python code.txt",
+          "raw_sha256": "1c6e91e072556cf9262ba41eae46d396dd124fcb7b65130f0fd82118f974025d",
+          "raw_syntax_valid": false,
+          "execution_syntax_valid": true,
+          "normalisation_applied": true,
+          "normalisation_rule": "COMMENT_MATCHED_TEST_SUITE_ALGORITHM_TITLE",
+          "raw_syntax_error": "invalid syntax (<unknown>, line 1)",
+          "normalised_line_number": 1,
+          "declared_algorithm_title": "Design a process that computes the factorial of a given integer",
+          "reference_heading": "Design a process that computes the factorial of a given integer",
+          "execution_sha256": "8a5175ccb13a66acec0b6821bd9fabb1e86e85e955755924db4a27b3ae4a727f"
+        }
+      },
+      "expected_result_source": "REFERENCE_PYTHON",
+      "explicit_expectation_fields": [],
+      "derived_expectation_fields": [
+        "expected_output",
+        "expected_return_code"
+      ],
+      "evaluable_expectation_fields": [
+        "expected_output",
+        "expected_return_code"
+      ],
+      "test_case_status": "EVALUABLE"
+    }
+  ],
+  "interpretation_note": "The baseline score measures pipeline calibration on frozen baseline pseudocode. The experimental score measures the experimental pseudocode through the same pipeline against the same trusted baseline Python/test set. The percentage-point delta is descriptive and is not a causal correction or adjusted accuracy score.",
+  "baseline_algorithm_id": 22,
+  "baseline_calibration_run_id": "run-20260905T195933Z-29c5d922",
+  "oracle_source": "BASELINE_REFERENCE_PYTHON",
+  "baseline_reference_oracle_eligible": true,
+  "oracle_block_reason": null
+}

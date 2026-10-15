@@ -1,0 +1,10 @@
+# Add two matrices of equal size    
+FUNCTION AddMatrices(A, B, rows, cols):
+    C = rows x cols matrix filled with 0
+    FOR i FROM 0 TO rows - 1 DO
+        FOR j FROM 0 TO cols - 1 DO
+            C[i][j] = A[i][j] + B[i][j]
+        END FOR
+    END FOR
+    RETURN C
+END FUNCTION

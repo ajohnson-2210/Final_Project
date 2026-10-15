@@ -1,0 +1,20 @@
+# Intersection of Sorted Arrays
+
+INPUT arr1, arr2
+
+i = 0
+j = 0
+result = []
+
+WHILE i < length(arr1) AND j < length(arr2):
+    IF arr1[i] == arr2[j]:
+        result.append(arr1[i])
+        i++
+        j++
+    ELSE IF arr1[i] < arr2[j]:
+        i++
+    ELSE:
+        j++
+
+RETURN result
+

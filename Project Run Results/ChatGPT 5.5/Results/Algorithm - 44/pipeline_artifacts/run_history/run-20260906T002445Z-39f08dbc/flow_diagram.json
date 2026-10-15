@@ -1,0 +1,382 @@
+{
+  "format": "NL-FDEP Flow Diagram",
+  "version": "1.0",
+  "entry_node": "F1",
+  "exit_node": "F2",
+  "nodes": {
+    "F1": {
+      "node_id": "F1",
+      "node_type": "START",
+      "label": "Start",
+      "line": 1,
+      "data": {}
+    },
+    "F2": {
+      "node_id": "F2",
+      "node_type": "END",
+      "label": "End",
+      "line": 1,
+      "data": {}
+    },
+    "F3": {
+      "node_id": "F3",
+      "node_type": "FUNCTION",
+      "label": "Run function unnamed_function with Array",
+      "line": 1,
+      "data": {
+        "ast_kind": "FunctionNode",
+        "name": "unnamed_function"
+      }
+    },
+    "F4": {
+      "node_id": "F4",
+      "node_type": "PROCESS",
+      "label": "Set CurrentSum to item 0 of Array",
+      "line": 2,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F5": {
+      "node_id": "F5",
+      "node_type": "PROCESS",
+      "label": "Set MaxSum to item 0 of Array",
+      "line": 3,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F6": {
+      "node_id": "F6",
+      "node_type": "LOOP_DECISION",
+      "label": "For i from 1 to the length of Array minus 1 plus 1",
+      "line": 5,
+      "data": {
+        "ast_kind": "ForRangeNode"
+      }
+    },
+    "F7": {
+      "node_id": "F7",
+      "node_type": "PROCESS",
+      "label": "Set CurrentSum to the result of max(item i of Array, CurrentSum plus item i of Array)",
+      "line": 6,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F8": {
+      "node_id": "F8",
+      "node_type": "DECISION",
+      "label": "CurrentSum is greater than MaxSum?",
+      "line": 8,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F9": {
+      "node_id": "F9",
+      "node_type": "PROCESS",
+      "label": "Set MaxSum to CurrentSum",
+      "line": 9,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F10": {
+      "node_id": "F10",
+      "node_type": "OUTPUT",
+      "label": "Display MaxSum",
+      "line": 13,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "F4",
+      "target": "F5",
+      "label": "NEXT"
+    },
+    {
+      "source": "F8",
+      "target": "F9",
+      "label": "TRUE"
+    },
+    {
+      "source": "F7",
+      "target": "F8",
+      "label": "NEXT"
+    },
+    {
+      "source": "F6",
+      "target": "F7",
+      "label": "ITERATE"
+    },
+    {
+      "source": "F9",
+      "target": "F6",
+      "label": "LOOP"
+    },
+    {
+      "source": "F8",
+      "target": "F6",
+      "label": "LOOP"
+    },
+    {
+      "source": "F5",
+      "target": "F6",
+      "label": "NEXT"
+    },
+    {
+      "source": "F6",
+      "target": "F10",
+      "label": "NEXT"
+    },
+    {
+      "source": "F3",
+      "target": "F4",
+      "label": "BODY"
+    },
+    {
+      "source": "F1",
+      "target": "F3",
+      "label": "NEXT"
+    },
+    {
+      "source": "F10",
+      "target": "F2",
+      "label": "NEXT"
+    }
+  ],
+  "structured_program": {
+    "kind": "ProgramNode",
+    "line": 1,
+    "body": [
+      {
+        "kind": "FunctionNode",
+        "line": 1,
+        "name": "unnamed_function",
+        "parameters": [
+          {
+            "kind": "ParameterNode",
+            "line": 1,
+            "name": "Array",
+            "declared_type": null
+          }
+        ],
+        "body": {
+          "kind": "BlockNode",
+          "line": 2,
+          "statements": [
+            {
+              "kind": "AssignmentNode",
+              "line": 2,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 2,
+                "name": "CurrentSum"
+              },
+              "value": {
+                "kind": "IndexNode",
+                "line": 2,
+                "collection": {
+                  "kind": "IdentifierNode",
+                  "line": 2,
+                  "name": "Array"
+                },
+                "index": {
+                  "kind": "LiteralNode",
+                  "line": 2,
+                  "value": 0,
+                  "data_type": "INTEGER"
+                }
+              }
+            },
+            {
+              "kind": "AssignmentNode",
+              "line": 3,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 3,
+                "name": "MaxSum"
+              },
+              "value": {
+                "kind": "IndexNode",
+                "line": 3,
+                "collection": {
+                  "kind": "IdentifierNode",
+                  "line": 3,
+                  "name": "Array"
+                },
+                "index": {
+                  "kind": "LiteralNode",
+                  "line": 3,
+                  "value": 0,
+                  "data_type": "INTEGER"
+                }
+              }
+            },
+            {
+              "kind": "ForRangeNode",
+              "line": 5,
+              "variable": {
+                "kind": "IdentifierNode",
+                "line": 5,
+                "name": "i"
+              },
+              "start": {
+                "kind": "LiteralNode",
+                "line": 5,
+                "value": 1,
+                "data_type": "INTEGER"
+              },
+              "end": {
+                "kind": "BinaryNode",
+                "line": 5,
+                "operator": "+",
+                "left": {
+                  "kind": "BinaryNode",
+                  "line": 5,
+                  "operator": "-",
+                  "left": {
+                    "kind": "LengthNode",
+                    "line": 5,
+                    "expression": {
+                      "kind": "IdentifierNode",
+                      "line": 5,
+                      "name": "Array"
+                    }
+                  },
+                  "right": {
+                    "kind": "LiteralNode",
+                    "line": 5,
+                    "value": 1,
+                    "data_type": "INTEGER"
+                  }
+                },
+                "right": {
+                  "kind": "LiteralNode",
+                  "line": 5,
+                  "value": 1,
+                  "data_type": "INTEGER"
+                }
+              },
+              "step": null,
+              "body": {
+                "kind": "BlockNode",
+                "line": 6,
+                "statements": [
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 6,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 6,
+                      "name": "CurrentSum"
+                    },
+                    "value": {
+                      "kind": "CallNode",
+                      "line": 6,
+                      "name": "max",
+                      "arguments": [
+                        {
+                          "kind": "IndexNode",
+                          "line": 6,
+                          "collection": {
+                            "kind": "IdentifierNode",
+                            "line": 6,
+                            "name": "Array"
+                          },
+                          "index": {
+                            "kind": "IdentifierNode",
+                            "line": 6,
+                            "name": "i"
+                          }
+                        },
+                        {
+                          "kind": "BinaryNode",
+                          "line": 6,
+                          "operator": "+",
+                          "left": {
+                            "kind": "IdentifierNode",
+                            "line": 6,
+                            "name": "CurrentSum"
+                          },
+                          "right": {
+                            "kind": "IndexNode",
+                            "line": 6,
+                            "collection": {
+                              "kind": "IdentifierNode",
+                              "line": 6,
+                              "name": "Array"
+                            },
+                            "index": {
+                              "kind": "IdentifierNode",
+                              "line": 6,
+                              "name": "i"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "kind": "IfNode",
+                    "line": 8,
+                    "condition": {
+                      "kind": "BinaryNode",
+                      "line": 8,
+                      "operator": ">",
+                      "left": {
+                        "kind": "IdentifierNode",
+                        "line": 8,
+                        "name": "CurrentSum"
+                      },
+                      "right": {
+                        "kind": "IdentifierNode",
+                        "line": 8,
+                        "name": "MaxSum"
+                      }
+                    },
+                    "then_body": {
+                      "kind": "BlockNode",
+                      "line": 9,
+                      "statements": [
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 9,
+                          "target": {
+                            "kind": "IdentifierNode",
+                            "line": 9,
+                            "name": "MaxSum"
+                          },
+                          "value": {
+                            "kind": "IdentifierNode",
+                            "line": 9,
+                            "name": "CurrentSum"
+                          }
+                        }
+                      ]
+                    },
+                    "else_if": [],
+                    "else_body": null
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "OutputNode",
+              "line": 13,
+              "expression": {
+                "kind": "IdentifierNode",
+                "line": 13,
+                "name": "MaxSum"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

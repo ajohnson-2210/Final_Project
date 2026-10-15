@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NL-FDEP Flow Diagram</title>
+<style>
+:root { color-scheme: light; }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Arial, Helvetica, sans-serif; background: #f4f5f7; color: #16191f; }
+header { position: sticky; top: 0; z-index: 10; padding: 14px 18px; background: white; border-bottom: 1px solid #c9cdd3; }
+header h1 { margin: 0 0 4px; font-size: 20px; }
+header p { margin: 0; color: #555d69; font-size: 13px; }
+.controls { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.controls input { min-width: 220px; flex: 1; padding: 8px 10px; border: 1px solid #9da4ae; border-radius: 5px; }
+.controls button { padding: 8px 12px; border: 1px solid #8f97a3; border-radius: 5px; background: white; cursor: pointer; }
+.viewport { overflow: hidden; width: 100%; height: calc(100vh - 108px); background: white; cursor: grab; }
+.viewport.dragging { cursor: grabbing; }
+svg { width: 100%; height: 100%; user-select: none; }
+.flow-node { cursor: pointer; }
+.flow-node .shape { fill: white; stroke: #20242a; stroke-width: 1.6; vector-effect: non-scaling-stroke; }
+.flow-node text { fill: #111418; font-size: 13px; text-anchor: middle; dominant-baseline: middle; pointer-events: none; }
+.flow-node .metadata { fill: #606874; font-size: 10px; }
+.flow-node.match .shape { stroke: #d18b00; stroke-width: 4; }
+.flow-node.selected .shape { stroke: #1769aa; stroke-width: 4; }
+.flow-edge { fill: none; stroke: #252a31; stroke-width: 1.45; vector-effect: non-scaling-stroke; marker-end: url(#arrowhead); }
+.edge-label rect { fill: white; stroke: none; }
+.edge-label text { fill: #20242a; font-size: 11px; text-anchor: middle; dominant-baseline: middle; }
+.legend { position: fixed; right: 14px; bottom: 14px; padding: 9px 11px; background: rgba(255,255,255,.94); border: 1px solid #c9cdd3; border-radius: 6px; font-size: 11px; line-height: 1.6; }
+</style>
+</head>
+<body>
+<header>
+<h1>NL to Flow Diagram Encoder Pipeline</h1>
+<p>Standard flowchart notation generated from AJ pseudocode.</p>
+<div class="controls">
+<input id="search" placeholder="Search step, type, line, or node ID">
+<button id="zoom-in" type="button">Zoom in</button>
+<button id="zoom-out" type="button">Zoom out</button>
+<button id="fit" type="button">Fit diagram</button>
+</div>
+</header>
+<div id="viewport" class="viewport">
+<svg id="diagram" viewBox="0 0 760 3247" role="img" aria-label="Generated program flow diagram">
+<defs>
+<marker id="arrowhead" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto" markerUnits="strokeWidth">
+<path d="M 0 0 L 9 3.5 L 0 7 z" fill="#252a31"></path>
+</marker>
+</defs>
+<g id="canvas"><path class="flow-edge" d="M 380.0 596 L 380.0 638.5 L 205.0 638.5 L 205.0 681"></path><g class="edge-label"><rect x="276.0" y="620.5" width="33" height="18" rx="3"></rect><text x="292.5" y="629.5">Yes</text></g><path class="flow-edge" d="M 380.0 596 L 380.0 638.5 L 555.0 638.5 L 555.0 681"></path><path class="flow-edge" d="M 555.0 745 L 555.0 811.5 L 380.0 811.5 L 380.0 878"></path><path class="flow-edge" d="M 380.0 942 L 380.0 1008.5 L 380.0 1008.5 L 380.0 1075"></path><path class="flow-edge" d="M 205.0 1533 L 205.0 1599.5 L 555.0 1599.5 L 555.0 1666"></path><path class="flow-edge" d="M 205.0 2124 L 205.0 2190.5 L 380.0 2190.5 L 380.0 2257"></path><path class="flow-edge" d="M 380.0 2566 L 380.0 2608.5 L 380.0 2608.5 L 380.0 2651"></path><g class="edge-label"><rect x="363.5" y="2590.5" width="33" height="18" rx="3"></rect><text x="380.0" y="2599.5">Yes</text></g><path class="flow-edge" d="M 380.0 2321 L 380.0 2387.5 L 380.0 2387.5 L 380.0 2454"></path><path class="flow-edge" d="M 380.0 2960 L 380.0 3002.5 L 380.0 3002.5 L 380.0 3045"></path><g class="edge-label"><rect x="363.5" y="2984.5" width="33" height="18" rx="3"></rect><text x="380.0" y="2993.5">Yes</text></g><path class="flow-edge" d="M 380.0 2715 L 380.0 2781.5 L 380.0 2781.5 L 380.0 2848"></path><path class="flow-edge" d="M 380.0 2566 L 380.0 2707.0 L 380.0 2707.0 L 380.0 2848"></path><path class="flow-edge" d="M 380.0 1975 L 380.0 2017.5 L 205.0 2017.5 L 205.0 2060"></path><g class="edge-label"><rect x="276.0" y="1999.5" width="33" height="18" rx="3"></rect><text x="292.5" y="2008.5">Yes</text></g><path class="flow-edge" d="M 265.0 3077.0 L 210.0 3077.0 L 210.0 1919.0 L 265.0 1919.0"></path><g class="edge-label"><rect x="183.0" y="2480.0" width="54" height="18" rx="3"></rect><text x="210.0" y="2489.0">Repeat</text></g><path class="flow-edge" d="M 265.0 2904.0 L 210.0 2904.0 L 210.0 1919.0 L 265.0 1919.0"></path><g class="edge-label"><rect x="183.0" y="2393.5" width="54" height="18" rx="3"></rect><text x="210.0" y="2402.5">Repeat</text></g><path class="flow-edge" d="M 555.0 1730 L 555.0 1796.5 L 380.0 1796.5 L 380.0 1863"></path><path class="flow-edge" d="M 380.0 1975 L 380.0 2017.5 L 555.0 2017.5 L 555.0 2060"></path><path class="flow-edge" d="M 380.0 1384 L 380.0 1426.5 L 205.0 1426.5 L 205.0 1469"></path><g class="edge-label"><rect x="276.0" y="1408.5" width="33" height="18" rx="3"></rect><text x="292.5" y="1417.5">Yes</text></g><path class="flow-edge" d="M 440.0 2092.0 L 210.0 2092.0 L 210.0 1328.0 L 265.0 1328.0"></path><g class="edge-label"><rect x="183.0" y="1692.0" width="54" height="18" rx="3"></rect><text x="210.0" y="1701.0">Repeat</text></g><path class="flow-edge" d="M 380.0 1139 L 380.0 1205.5 L 380.0 1205.5 L 380.0 1272"></path><path class="flow-edge" d="M 380.0 1384 L 380.0 1426.5 L 555.0 1426.5 L 555.0 1469"></path><path class="flow-edge" d="M 380.0 351 L 380.0 417.5 L 380.0 417.5 L 380.0 484"></path><path class="flow-edge" d="M 380.0 154 L 380.0 220.5 L 380.0 220.5 L 380.0 287"></path><path class="flow-edge" d="M 205.0 745 L 205.0 1205.5 L 205.0 1205.5 L 205.0 1666"></path><path class="flow-edge" d="M 555.0 1533 L 555.0 1599.5 L 205.0 1599.5 L 205.0 1666"></path><g class="flow-node" data-node-id="F1"><title>START | Line 1 | F1</title><rect class="shape" x="265.0" y="90" width="230" height="64" rx="32" ry="32"></rect><text x="380.0" y="115.0"><tspan x="380.0" dy="0">Start</tspan></text><text class="metadata" x="380.0" y="141">Line 1 · F1</text></g><g class="flow-node" data-node-id="F2"><title>END | Line 1 | F2</title><rect class="shape" x="90.0" y="1666" width="230" height="64" rx="32" ry="32"></rect><text x="205.0" y="1691.0"><tspan x="205.0" dy="0">End</tspan></text><text class="metadata" x="205.0" y="1717">Line 1 · F2</text></g><g class="flow-node" data-node-id="F3"><title>FUNCTION | Line 1 | F3</title><rect class="shape" x="265.0" y="287" width="230" height="64"></rect><line class="shape" x1="277.0" y1="287" x2="277.0" y2="351"></line><line class="shape" x1="483.0" y1="287" x2="483.0" y2="351"></line><text x="380.0" y="304.0"><tspan x="380.0" dy="0">Run function</tspan><tspan x="380.0" dy="16">LevelOrderTraversal with root</tspan></text><text class="metadata" x="380.0" y="338">Line 1 · F3</text></g><g class="flow-node" data-node-id="F4"><title>DECISION | Line 2 | F4</title><polygon class="shape" points="380.0,484 495.0,540.0 380.0,596 265.0,540.0"></polygon><text x="380.0" y="533.0"><tspan x="380.0" dy="0">Root is equal to NULL?</tspan></text><text class="metadata" x="380.0" y="583">Line 2 · F4</text></g><g class="flow-node" data-node-id="F5"><title>RETURN | Line 3 | F5</title><rect class="shape" x="90.0" y="681" width="230" height="64" rx="4" ry="4"></rect><text x="205.0" y="706.0"><tspan x="205.0" dy="0">Return an empty list</tspan></text><text class="metadata" x="205.0" y="732">Line 3 · F5</text></g><g class="flow-node" data-node-id="F6"><title>PROCESS | Line 6 | F6</title><rect class="shape" x="440.0" y="681" width="230" height="64" rx="4" ry="4"></rect><text x="555.0" y="706.0"><tspan x="555.0" dy="0">Set result to an empty list</tspan></text><text class="metadata" x="555.0" y="732">Line 6 · F6</text></g><g class="flow-node" data-node-id="F7"><title>PROCESS | Line 7 | F7</title><rect class="shape" x="265.0" y="878" width="230" height="64" rx="4" ry="4"></rect><text x="380.0" y="895.0"><tspan x="380.0" dy="0">Set queue to the result of</tspan><tspan x="380.0" dy="16">create_queue()</tspan></text><text class="metadata" x="380.0" y="929">Line 7 · F7</text></g><g class="flow-node" data-node-id="F8"><title>CALL | Line 8 | F8</title><rect class="shape" x="265.0" y="1075" width="230" height="64"></rect><line class="shape" x1="277.0" y1="1075" x2="277.0" y2="1139"></line><line class="shape" x1="483.0" y1="1075" x2="483.0" y2="1139"></line><text x="380.0" y="1100.0"><tspan x="380.0" dy="0">Call ENQUEUE with queue, root</tspan></text><text class="metadata" x="380.0" y="1126">Line 8 · F8</text></g><g class="flow-node" data-node-id="F9"><title>LOOP_DECISION | Line 9 | F9</title><polygon class="shape" points="380.0,1272 495.0,1328.0 380.0,1384 265.0,1328.0"></polygon><text x="380.0" y="1313.0"><tspan x="380.0" dy="0">Continue while not the result</tspan><tspan x="380.0" dy="16">of queue_is_empty(queue)?</tspan></text><text class="metadata" x="380.0" y="1371">Line 9 · F9</text></g><g class="flow-node" data-node-id="F10"><title>PROCESS | Line 10 | F10</title><rect class="shape" x="90.0" y="1469" width="230" height="64" rx="4" ry="4"></rect><text x="205.0" y="1486.0"><tspan x="205.0" dy="0">Set level_size to the result</tspan><tspan x="205.0" dy="16">of queue_size(queue)</tspan></text><text class="metadata" x="205.0" y="1520">Line 10 · F10</text></g><g class="flow-node" data-node-id="F11"><title>PROCESS | Line 11 | F11</title><rect class="shape" x="440.0" y="1666" width="230" height="64" rx="4" ry="4"></rect><text x="555.0" y="1683.0"><tspan x="555.0" dy="0">Set current_level to an empty</tspan><tspan x="555.0" dy="16">list</tspan></text><text class="metadata" x="555.0" y="1717">Line 11 · F11</text></g><g class="flow-node" data-node-id="F12"><title>LOOP_DECISION | Line 13 | F12</title><polygon class="shape" points="380.0,1863 495.0,1919.0 380.0,1975 265.0,1919.0"></polygon><text x="380.0" y="1904.0"><tspan x="380.0" dy="0">For i from 1 to level_size</tspan><tspan x="380.0" dy="16">plus 1</tspan></text><text class="metadata" x="380.0" y="1962">Line 13 · F12</text></g><g class="flow-node" data-node-id="F13"><title>PROCESS | Line 14 | F13</title><rect class="shape" x="90.0" y="2060" width="230" height="64" rx="4" ry="4"></rect><text x="205.0" y="2077.0"><tspan x="205.0" dy="0">Set node to the result of</tspan><tspan x="205.0" dy="16">DEQUEUE(queue)</tspan></text><text class="metadata" x="205.0" y="2111">Line 14 · F13</text></g><g class="flow-node" data-node-id="F14"><title>PROCESS | Line 15 | F14</title><rect class="shape" x="265.0" y="2257" width="230" height="64" rx="4" ry="4"></rect><text x="380.0" y="2274.0"><tspan x="380.0" dy="0">Append value of node to</tspan><tspan x="380.0" dy="16">current_level</tspan></text><text class="metadata" x="380.0" y="2308">Line 15 · F14</text></g><g class="flow-node" data-node-id="F15"><title>DECISION | Line 17 | F15</title><polygon class="shape" points="380.0,2454 495.0,2510.0 380.0,2566 265.0,2510.0"></polygon><text x="380.0" y="2495.0"><tspan x="380.0" dy="0">Left of node is not equal to</tspan><tspan x="380.0" dy="16">NULL?</tspan></text><text class="metadata" x="380.0" y="2553">Line 17 · F15</text></g><g class="flow-node" data-node-id="F16"><title>CALL | Line 18 | F16</title><rect class="shape" x="265.0" y="2651" width="230" height="64"></rect><line class="shape" x1="277.0" y1="2651" x2="277.0" y2="2715"></line><line class="shape" x1="483.0" y1="2651" x2="483.0" y2="2715"></line><text x="380.0" y="2668.0"><tspan x="380.0" dy="0">Call ENQUEUE with queue, left</tspan><tspan x="380.0" dy="16">of node</tspan></text><text class="metadata" x="380.0" y="2702">Line 18 · F16</text></g><g class="flow-node" data-node-id="F17"><title>DECISION | Line 20 | F17</title><polygon class="shape" points="380.0,2848 495.0,2904.0 380.0,2960 265.0,2904.0"></polygon><text x="380.0" y="2889.0"><tspan x="380.0" dy="0">Right of node is not equal to</tspan><tspan x="380.0" dy="16">NULL?</tspan></text><text class="metadata" x="380.0" y="2947">Line 20 · F17</text></g><g class="flow-node" data-node-id="F18"><title>CALL | Line 21 | F18</title><rect class="shape" x="265.0" y="3045" width="230" height="64"></rect><line class="shape" x1="277.0" y1="3045" x2="277.0" y2="3109"></line><line class="shape" x1="483.0" y1="3045" x2="483.0" y2="3109"></line><text x="380.0" y="3062.0"><tspan x="380.0" dy="0">Call ENQUEUE with queue, right</tspan><tspan x="380.0" dy="16">of node</tspan></text><text class="metadata" x="380.0" y="3096">Line 21 · F18</text></g><g class="flow-node" data-node-id="F19"><title>PROCESS | Line 25 | F19</title><rect class="shape" x="440.0" y="2060" width="230" height="64" rx="4" ry="4"></rect><text x="555.0" y="2085.0"><tspan x="555.0" dy="0">Append current_level to result</tspan></text><text class="metadata" x="555.0" y="2111">Line 25 · F19</text></g><g class="flow-node" data-node-id="F20"><title>RETURN | Line 28 | F20</title><rect class="shape" x="440.0" y="1469" width="230" height="64" rx="4" ry="4"></rect><text x="555.0" y="1494.0"><tspan x="555.0" dy="0">Return result</tspan></text><text class="metadata" x="555.0" y="1520">Line 28 · F20</text></g></g>
+</svg>
+</div>
+<div class="legend">Oval: Start/End<br>Diamond: Decision<br>Parallelogram: Input/Output<br>Rectangle: Process<br>Double rectangle: Function/Call</div>
+<script>
+const diagramData = {"format": "NL-FDEP Flow Diagram", "version": "1.0", "entry_node": "F1", "exit_node": "F2", "nodes": {"F1": {"node_id": "F1", "node_type": "START", "label": "Start", "line": 1, "data": {}}, "F2": {"node_id": "F2", "node_type": "END", "label": "End", "line": 1, "data": {}}, "F3": {"node_id": "F3", "node_type": "FUNCTION", "label": "Run function LevelOrderTraversal with root", "line": 1, "data": {"ast_kind": "FunctionNode", "name": "LevelOrderTraversal"}}, "F4": {"node_id": "F4", "node_type": "DECISION", "label": "Root is equal to NULL?", "line": 2, "data": {"ast_kind": "IfNode"}}, "F5": {"node_id": "F5", "node_type": "RETURN", "label": "Return an empty list", "line": 3, "data": {"ast_kind": "ReturnNode"}}, "F6": {"node_id": "F6", "node_type": "PROCESS", "label": "Set result to an empty list", "line": 6, "data": {"ast_kind": "AssignmentNode"}}, "F7": {"node_id": "F7", "node_type": "PROCESS", "label": "Set queue to the result of create_queue()", "line": 7, "data": {"ast_kind": "AssignmentNode"}}, "F8": {"node_id": "F8", "node_type": "CALL", "label": "Call ENQUEUE with queue, root", "line": 8, "data": {"ast_kind": "CallNode"}}, "F9": {"node_id": "F9", "node_type": "LOOP_DECISION", "label": "Continue while not the result of queue_is_empty(queue)?", "line": 9, "data": {"ast_kind": "WhileNode"}}, "F10": {"node_id": "F10", "node_type": "PROCESS", "label": "Set level_size to the result of queue_size(queue)", "line": 10, "data": {"ast_kind": "AssignmentNode"}}, "F11": {"node_id": "F11", "node_type": "PROCESS", "label": "Set current_level to an empty list", "line": 11, "data": {"ast_kind": "AssignmentNode"}}, "F12": {"node_id": "F12", "node_type": "LOOP_DECISION", "label": "For i from 1 to level_size plus 1", "line": 13, "data": {"ast_kind": "ForRangeNode"}}, "F13": {"node_id": "F13", "node_type": "PROCESS", "label": "Set node to the result of DEQUEUE(queue)", "line": 14, "data": {"ast_kind": "AssignmentNode"}}, "F14": {"node_id": "F14", "node_type": "PROCESS", "label": "Append value of node to current_level", "line": 15, "data": {"ast_kind": "AppendNode"}}, "F15": {"node_id": "F15", "node_type": "DECISION", "label": "Left of node is not equal to NULL?", "line": 17, "data": {"ast_kind": "IfNode"}}, "F16": {"node_id": "F16", "node_type": "CALL", "label": "Call ENQUEUE with queue, left of node", "line": 18, "data": {"ast_kind": "CallNode"}}, "F17": {"node_id": "F17", "node_type": "DECISION", "label": "Right of node is not equal to NULL?", "line": 20, "data": {"ast_kind": "IfNode"}}, "F18": {"node_id": "F18", "node_type": "CALL", "label": "Call ENQUEUE with queue, right of node", "line": 21, "data": {"ast_kind": "CallNode"}}, "F19": {"node_id": "F19", "node_type": "PROCESS", "label": "Append current_level to result", "line": 25, "data": {"ast_kind": "AppendNode"}}, "F20": {"node_id": "F20", "node_type": "RETURN", "label": "Return result", "line": 28, "data": {"ast_kind": "ReturnNode"}}}, "edges": [{"source": "F4", "target": "F5", "label": "TRUE"}, {"source": "F4", "target": "F6", "label": "NEXT"}, {"source": "F6", "target": "F7", "label": "NEXT"}, {"source": "F7", "target": "F8", "label": "NEXT"}, {"source": "F10", "target": "F11", "label": "NEXT"}, {"source": "F13", "target": "F14", "label": "NEXT"}, {"source": "F15", "target": "F16", "label": "TRUE"}, {"source": "F14", "target": "F15", "label": "NEXT"}, {"source": "F17", "target": "F18", "label": "TRUE"}, {"source": "F16", "target": "F17", "label": "NEXT"}, {"source": "F15", "target": "F17", "label": "NEXT"}, {"source": "F12", "target": "F13", "label": "ITERATE"}, {"source": "F18", "target": "F12", "label": "LOOP"}, {"source": "F17", "target": "F12", "label": "LOOP"}, {"source": "F11", "target": "F12", "label": "NEXT"}, {"source": "F12", "target": "F19", "label": "NEXT"}, {"source": "F9", "target": "F10", "label": "TRUE"}, {"source": "F19", "target": "F9", "label": "LOOP"}, {"source": "F8", "target": "F9", "label": "NEXT"}, {"source": "F9", "target": "F20", "label": "NEXT"}, {"source": "F3", "target": "F4", "label": "BODY"}, {"source": "F1", "target": "F3", "label": "NEXT"}, {"source": "F5", "target": "F2", "label": "NEXT"}, {"source": "F20", "target": "F2", "label": "NEXT"}], "structured_program": {"kind": "ProgramNode", "line": 1, "body": [{"kind": "FunctionNode", "line": 1, "name": "LevelOrderTraversal", "parameters": [{"kind": "ParameterNode", "line": 1, "name": "root", "declared_type": null}], "body": {"kind": "BlockNode", "line": 2, "statements": [{"kind": "IfNode", "line": 2, "condition": {"kind": "BinaryNode", "line": 2, "operator": "==", "left": {"kind": "IdentifierNode", "line": 2, "name": "root"}, "right": {"kind": "IdentifierNode", "line": 2, "name": "NULL"}}, "then_body": {"kind": "BlockNode", "line": 3, "statements": [{"kind": "ReturnNode", "line": 3, "expression": {"kind": "EmptyLiteralNode", "line": 3, "empty_type": "LIST"}}]}, "else_if": [], "else_body": null}, {"kind": "AssignmentNode", "line": 6, "target": {"kind": "IdentifierNode", "line": 6, "name": "result"}, "value": {"kind": "EmptyLiteralNode", "line": 6, "empty_type": "LIST"}}, {"kind": "AssignmentNode", "line": 7, "target": {"kind": "IdentifierNode", "line": 7, "name": "queue"}, "value": {"kind": "CallNode", "line": 7, "name": "create_queue", "arguments": []}}, {"kind": "CallNode", "line": 8, "name": "ENQUEUE", "arguments": [{"kind": "IdentifierNode", "line": 8, "name": "queue"}, {"kind": "IdentifierNode", "line": 8, "name": "root"}]}, {"kind": "WhileNode", "line": 9, "condition": {"kind": "UnaryNode", "line": 9, "operator": "NOT", "operand": {"kind": "CallNode", "line": 9, "name": "queue_is_empty", "arguments": [{"kind": "IdentifierNode", "line": 9, "name": "queue"}]}}, "body": {"kind": "BlockNode", "line": 10, "statements": [{"kind": "AssignmentNode", "line": 10, "target": {"kind": "IdentifierNode", "line": 10, "name": "level_size"}, "value": {"kind": "CallNode", "line": 10, "name": "queue_size", "arguments": [{"kind": "IdentifierNode", "line": 10, "name": "queue"}]}}, {"kind": "AssignmentNode", "line": 11, "target": {"kind": "IdentifierNode", "line": 11, "name": "current_level"}, "value": {"kind": "EmptyLiteralNode", "line": 11, "empty_type": "LIST"}}, {"kind": "ForRangeNode", "line": 13, "variable": {"kind": "IdentifierNode", "line": 13, "name": "i"}, "start": {"kind": "LiteralNode", "line": 13, "value": 1, "data_type": "INTEGER"}, "end": {"kind": "BinaryNode", "line": 13, "operator": "+", "left": {"kind": "IdentifierNode", "line": 13, "name": "level_size"}, "right": {"kind": "LiteralNode", "line": 13, "value": 1, "data_type": "INTEGER"}}, "step": null, "body": {"kind": "BlockNode", "line": 14, "statements": [{"kind": "AssignmentNode", "line": 14, "target": {"kind": "IdentifierNode", "line": 14, "name": "node"}, "value": {"kind": "CallNode", "line": 14, "name": "DEQUEUE", "arguments": [{"kind": "IdentifierNode", "line": 14, "name": "queue"}]}}, {"kind": "AppendNode", "line": 15, "value": {"kind": "MemberAccessNode", "line": 15, "object": {"kind": "IdentifierNode", "line": 15, "name": "node"}, "member": "value"}, "collection": {"kind": "IdentifierNode", "line": 15, "name": "current_level"}}, {"kind": "IfNode", "line": 17, "condition": {"kind": "BinaryNode", "line": 17, "operator": "!=", "left": {"kind": "MemberAccessNode", "line": 17, "object": {"kind": "IdentifierNode", "line": 17, "name": "node"}, "member": "left"}, "right": {"kind": "IdentifierNode", "line": 17, "name": "NULL"}}, "then_body": {"kind": "BlockNode", "line": 18, "statements": [{"kind": "CallNode", "line": 18, "name": "ENQUEUE", "arguments": [{"kind": "IdentifierNode", "line": 18, "name": "queue"}, {"kind": "MemberAccessNode", "line": 18, "object": {"kind": "IdentifierNode", "line": 18, "name": "node"}, "member": "left"}]}]}, "else_if": [], "else_body": null}, {"kind": "IfNode", "line": 20, "condition": {"kind": "BinaryNode", "line": 20, "operator": "!=", "left": {"kind": "MemberAccessNode", "line": 20, "object": {"kind": "IdentifierNode", "line": 20, "name": "node"}, "member": "right"}, "right": {"kind": "IdentifierNode", "line": 20, "name": "NULL"}}, "then_body": {"kind": "BlockNode", "line": 21, "statements": [{"kind": "CallNode", "line": 21, "name": "ENQUEUE", "arguments": [{"kind": "IdentifierNode", "line": 21, "name": "queue"}, {"kind": "MemberAccessNode", "line": 21, "object": {"kind": "IdentifierNode", "line": 21, "name": "node"}, "member": "right"}]}]}, "else_if": [], "else_body": null}]}}, {"kind": "AppendNode", "line": 25, "value": {"kind": "IdentifierNode", "line": 25, "name": "current_level"}, "collection": {"kind": "IdentifierNode", "line": 25, "name": "result"}}]}}, {"kind": "ReturnNode", "line": 28, "expression": {"kind": "IdentifierNode", "line": 28, "name": "result"}}]}}]}};
+const svg = document.getElementById('diagram');
+const canvas = document.getElementById('canvas');
+const viewport = document.getElementById('viewport');
+const INITIAL_SCALE = 1.15;
+let scale = INITIAL_SCALE;
+let translateX = 0;
+let translateY = 0;
+let dragging = false;
+let startX = 0;
+let startY = 0;
+
+function applyTransform() {
+    canvas.setAttribute('transform', `translate(${translateX} ${translateY}) scale(${scale})`);
+}
+
+function initialView() {
+    const box = canvas.getBBox();
+    const visibleWidth = viewport.clientWidth;
+    scale = INITIAL_SCALE;
+    translateX = (visibleWidth - box.width * scale) / 2 - box.x * scale;
+    translateY = 28 - box.y * scale;
+    applyTransform();
+}
+
+function fitDiagram() {
+    const box = canvas.getBBox();
+    const visibleWidth = viewport.clientWidth;
+    const visibleHeight = viewport.clientHeight;
+    scale = Math.min(visibleWidth / (box.width + 80), visibleHeight / (box.height + 80), 1.3);
+    translateX = (visibleWidth - box.width * scale) / 2 - box.x * scale;
+    translateY = (visibleHeight - box.height * scale) / 2 - box.y * scale;
+    applyTransform();
+}
+
+document.getElementById('zoom-in').addEventListener('click', () => { scale *= 1.15; applyTransform(); });
+document.getElementById('zoom-out').addEventListener('click', () => { scale /= 1.15; applyTransform(); });
+document.getElementById('fit').addEventListener('click', fitDiagram);
+
+document.getElementById('search').addEventListener('input', event => {
+    const query = event.target.value.trim().toLowerCase();
+    document.querySelectorAll('.flow-node').forEach(node => {
+        node.classList.toggle('match', query.length > 0 && node.textContent.toLowerCase().includes(query));
+    });
+});
+
+document.querySelectorAll('.flow-node').forEach(node => {
+    node.addEventListener('click', () => node.classList.toggle('selected'));
+});
+
+viewport.addEventListener('mousedown', event => {
+    dragging = true;
+    startX = event.clientX - translateX;
+    startY = event.clientY - translateY;
+    viewport.classList.add('dragging');
+});
+window.addEventListener('mousemove', event => {
+    if (!dragging) return;
+    translateX = event.clientX - startX;
+    translateY = event.clientY - startY;
+    applyTransform();
+});
+window.addEventListener('mouseup', () => { dragging = false; viewport.classList.remove('dragging'); });
+viewport.addEventListener('wheel', event => {
+    event.preventDefault();
+    const factor = event.deltaY < 0 ? 1.1 : 0.9;
+    scale *= factor;
+    applyTransform();
+}, { passive: false });
+window.addEventListener('load', initialView);
+window.addEventListener('resize', initialView);
+</script>
+</body>
+</html>

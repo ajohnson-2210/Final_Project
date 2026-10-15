@@ -1,0 +1,208 @@
+{
+  "format": "NL-FDEP Flow Diagram",
+  "version": "1.0",
+  "entry_node": "F1",
+  "exit_node": "F2",
+  "nodes": {
+    "F1": {
+      "node_id": "F1",
+      "node_type": "START",
+      "label": "Start",
+      "line": 1,
+      "data": {}
+    },
+    "F2": {
+      "node_id": "F2",
+      "node_type": "END",
+      "label": "End",
+      "line": 1,
+      "data": {}
+    },
+    "F3": {
+      "node_id": "F3",
+      "node_type": "FUNCTION",
+      "label": "Run function unnamed_function with trainingTexts, labels",
+      "line": 1,
+      "data": {
+        "ast_kind": "FunctionNode",
+        "name": "unnamed_function"
+      }
+    },
+    "F4": {
+      "node_id": "F4",
+      "node_type": "PROCESS",
+      "label": "Set tokens to the result of tokenizeAndClean(trainingTexts)",
+      "line": 2,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F5": {
+      "node_id": "F5",
+      "node_type": "PROCESS",
+      "label": "Set vectors to the result of convertToTFIDF(tokens)",
+      "line": 3,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F6": {
+      "node_id": "F6",
+      "node_type": "PROCESS",
+      "label": "Set model to the result of trainClassifier(vectors, labels)",
+      "line": 4,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F7": {
+      "node_id": "F7",
+      "node_type": "RETURN",
+      "label": "Return model",
+      "line": 6,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "F4",
+      "target": "F5",
+      "label": "NEXT"
+    },
+    {
+      "source": "F5",
+      "target": "F6",
+      "label": "NEXT"
+    },
+    {
+      "source": "F6",
+      "target": "F7",
+      "label": "NEXT"
+    },
+    {
+      "source": "F3",
+      "target": "F4",
+      "label": "BODY"
+    },
+    {
+      "source": "F1",
+      "target": "F3",
+      "label": "NEXT"
+    },
+    {
+      "source": "F7",
+      "target": "F2",
+      "label": "NEXT"
+    }
+  ],
+  "structured_program": {
+    "kind": "ProgramNode",
+    "line": 1,
+    "body": [
+      {
+        "kind": "FunctionNode",
+        "line": 1,
+        "name": "unnamed_function",
+        "parameters": [
+          {
+            "kind": "ParameterNode",
+            "line": 1,
+            "name": "trainingTexts",
+            "declared_type": null
+          },
+          {
+            "kind": "ParameterNode",
+            "line": 1,
+            "name": "labels",
+            "declared_type": null
+          }
+        ],
+        "body": {
+          "kind": "BlockNode",
+          "line": 2,
+          "statements": [
+            {
+              "kind": "AssignmentNode",
+              "line": 2,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 2,
+                "name": "tokens"
+              },
+              "value": {
+                "kind": "CallNode",
+                "line": 2,
+                "name": "tokenizeAndClean",
+                "arguments": [
+                  {
+                    "kind": "IdentifierNode",
+                    "line": 2,
+                    "name": "trainingTexts"
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "AssignmentNode",
+              "line": 3,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 3,
+                "name": "vectors"
+              },
+              "value": {
+                "kind": "CallNode",
+                "line": 3,
+                "name": "convertToTFIDF",
+                "arguments": [
+                  {
+                    "kind": "IdentifierNode",
+                    "line": 3,
+                    "name": "tokens"
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "AssignmentNode",
+              "line": 4,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 4,
+                "name": "model"
+              },
+              "value": {
+                "kind": "CallNode",
+                "line": 4,
+                "name": "trainClassifier",
+                "arguments": [
+                  {
+                    "kind": "IdentifierNode",
+                    "line": 4,
+                    "name": "vectors"
+                  },
+                  {
+                    "kind": "IdentifierNode",
+                    "line": 4,
+                    "name": "labels"
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "ReturnNode",
+              "line": 6,
+              "expression": {
+                "kind": "IdentifierNode",
+                "line": 6,
+                "name": "model"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

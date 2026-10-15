@@ -1,0 +1,6 @@
+# Given an unsorted list of integers and a target value T, find the exact position of T in the list, or report that it doesn't exist.
+FUNCTION linearSearch(list, T):
+    FOR i FROM 0 TO length(list)-1:
+        IF list[i] == T:
+            RETURN i
+    RETURN -1  // Indicates not found

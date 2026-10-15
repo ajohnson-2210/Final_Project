@@ -1,0 +1,14 @@
+# Multiply two matrices    
+FUNCTION MultiplyMatrices(A, B, r1, c1, r2, c2):
+    IF c1 != r2 THEN RETURN "Invalid matrix dimensions"
+    
+    C = r1 x c2 matrix filled with 0
+    FOR i FROM 0 TO r1 - 1 DO
+        FOR j FROM 0 TO c2 - 1 DO
+            FOR k FROM 0 TO c1 - 1 DO
+                C[i][j] = C[i][j] + (A[i][k] * B[k][j])
+            END FOR
+        END FOR
+    END FOR
+    RETURN C
+END FUNCTION

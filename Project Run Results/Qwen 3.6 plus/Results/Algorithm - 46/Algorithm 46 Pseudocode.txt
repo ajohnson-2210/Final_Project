@@ -1,0 +1,17 @@
+# Matrix Multiplication
+
+INPUT A (M x N), B (N x P)
+
+INIT C as M x P matrix
+
+FOR i from 0 to M-1:
+    FOR j from 0 to P-1:
+        sum = 0
+
+        FOR k from 0 to N-1:
+            sum += A[i][k] * B[k][j]
+
+        C[i][j] = sum
+
+RETURN C
+

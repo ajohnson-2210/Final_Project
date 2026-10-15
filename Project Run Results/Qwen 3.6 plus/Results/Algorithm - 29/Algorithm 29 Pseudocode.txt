@@ -1,0 +1,9 @@
+# Text Classification Model
+
+INPUT trainingTexts, labels
+
+tokens = tokenizeAndClean(trainingTexts)
+vectors = convertToTFIDF(tokens)
+model = trainClassifier(vectors, labels)
+
+RETURN model

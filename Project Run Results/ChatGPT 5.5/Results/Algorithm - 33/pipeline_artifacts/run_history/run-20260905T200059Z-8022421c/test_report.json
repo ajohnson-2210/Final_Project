@@ -1,0 +1,176 @@
+{
+  "program_path": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\ChatGPT 5.5\\Results\\Algorithm - 33\\pipeline_artifacts\\generated_program.py",
+  "success": false,
+  "total_tests": 6,
+  "passed_tests": 0,
+  "failed_tests": 6,
+  "category_summary": {
+    "NORMAL": {
+      "total": 1,
+      "passed": 0,
+      "failed": 1
+    },
+    "BRANCH": {
+      "total": 1,
+      "passed": 0,
+      "failed": 1
+    },
+    "BOUNDARY": {
+      "total": 1,
+      "passed": 0,
+      "failed": 1
+    },
+    "ERROR_BEHAVIOUR": {
+      "total": 3,
+      "passed": 0,
+      "failed": 3
+    }
+  },
+  "results": [
+    {
+      "name": "perfect square",
+      "status": "FAILED",
+      "expected_output": [
+        "Enter a Positive Integer to find the Square Root: The Square Root of 16 Rounded Down to the Nearest Integer =  4"
+      ],
+      "actual_output": [],
+      "standard_error": "",
+      "return_code": 0,
+      "duration_ms": 46.559,
+      "category": "NORMAL",
+      "semantic_feature": "INTEGER_SQRT_EXACT",
+      "expected_return_code": 0,
+      "expected_error_type": null,
+      "actual_error_type": null,
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "random_seed": null,
+      "environment": {},
+      "requires_modules": []
+    },
+    {
+      "name": "non-perfect square rounds down",
+      "status": "FAILED",
+      "expected_output": [
+        "Enter a Positive Integer to find the Square Root: The Square Root of 15 Rounded Down to the Nearest Integer =  3"
+      ],
+      "actual_output": [],
+      "standard_error": "",
+      "return_code": 0,
+      "duration_ms": 45.524,
+      "category": "BRANCH",
+      "semantic_feature": "INTEGER_SQRT_FLOOR",
+      "expected_return_code": 0,
+      "expected_error_type": null,
+      "actual_error_type": null,
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "random_seed": null,
+      "environment": {},
+      "requires_modules": []
+    },
+    {
+      "name": "small positive one",
+      "status": "FAILED",
+      "expected_output": [
+        "Enter a Positive Integer to find the Square Root: The Square Root of 1 Rounded Down to the Nearest Integer =  1"
+      ],
+      "actual_output": [],
+      "standard_error": "",
+      "return_code": 0,
+      "duration_ms": 46.754,
+      "category": "BOUNDARY",
+      "semantic_feature": "INTEGER_SQRT_ONE",
+      "expected_return_code": 0,
+      "expected_error_type": null,
+      "actual_error_type": null,
+      "criteria_links": [
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "random_seed": null,
+      "environment": {},
+      "requires_modules": []
+    },
+    {
+      "name": "zero rejected then valid",
+      "status": "FAILED",
+      "expected_output": [
+        "Enter a Positive Integer to find the Square Root: That's Not a Valid Number, Please Try Again!",
+        "Enter a Positive Integer to find the Square Root: The Square Root of 9 Rounded Down to the Nearest Integer =  3"
+      ],
+      "actual_output": [],
+      "standard_error": "",
+      "return_code": 0,
+      "duration_ms": 44.784,
+      "category": "ERROR_BEHAVIOUR",
+      "semantic_feature": "NON_POSITIVE_INPUT_RETRY",
+      "expected_return_code": 0,
+      "expected_error_type": null,
+      "actual_error_type": null,
+      "criteria_links": [
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "random_seed": null,
+      "environment": {},
+      "requires_modules": []
+    },
+    {
+      "name": "negative rejected then valid",
+      "status": "FAILED",
+      "expected_output": [
+        "Enter a Positive Integer to find the Square Root: That's Not a Valid Number, Please Try Again!",
+        "Enter a Positive Integer to find the Square Root: The Square Root of 9 Rounded Down to the Nearest Integer =  3"
+      ],
+      "actual_output": [],
+      "standard_error": "",
+      "return_code": 0,
+      "duration_ms": 46.572,
+      "category": "ERROR_BEHAVIOUR",
+      "semantic_feature": "NEGATIVE_INPUT_RETRY",
+      "expected_return_code": 0,
+      "expected_error_type": null,
+      "actual_error_type": null,
+      "criteria_links": [
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "random_seed": null,
+      "environment": {},
+      "requires_modules": []
+    },
+    {
+      "name": "non-numeric retries",
+      "status": "FAILED",
+      "expected_output": [
+        "Enter a Positive Integer to find the Square Root: That's Not a Valid Number, Please Try Again!",
+        "Enter a Positive Integer to find the Square Root: The Square Root of 9 Rounded Down to the Nearest Integer =  3"
+      ],
+      "actual_output": [],
+      "standard_error": "",
+      "return_code": 0,
+      "duration_ms": 44.418,
+      "category": "ERROR_BEHAVIOUR",
+      "semantic_feature": "INTEGER_INPUT_RETRY",
+      "expected_return_code": 0,
+      "expected_error_type": null,
+      "actual_error_type": null,
+      "criteria_links": [
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "random_seed": null,
+      "environment": {},
+      "requires_modules": []
+    }
+  ]
+}

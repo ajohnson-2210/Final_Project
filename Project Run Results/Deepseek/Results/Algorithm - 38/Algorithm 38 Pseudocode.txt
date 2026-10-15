@@ -1,0 +1,9 @@
+# Find the first non-repeating character in a string.
+FUNCTION firstNonRepeating(str):
+    freqMap = empty dictionary
+    FOR each char in str:
+        freqMap[char] = freqMap.get(char, 0) + 1
+    FOR each char in str:
+        IF freqMap[char] == 1:
+            RETURN char
+    RETURN NULL // or special character

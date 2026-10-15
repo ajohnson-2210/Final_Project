@@ -1,0 +1,336 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 27,
+  "transformations": [
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    result = empty List",
+      "canonical": "    result <- empty List",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    queue = empty Queue",
+      "canonical": "    queue <- empty Queue",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 9,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        level_size = queue.size()",
+      "canonical": "        level_size <- queue.size()",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 10,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        current_level = empty List",
+      "canonical": "        current_level <- empty List",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 13,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            node = DEQUEUE from queue",
+      "canonical": "            node <- DEQUEUE from queue",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    IF root IS NULL THEN RETURN empty List",
+      "canonical": "    IF root IS NULL THEN RETURN EMPTY LIST",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    result <- empty List",
+      "canonical": "    result <- EMPTY LIST",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    queue <- empty Queue",
+      "canonical": "    queue <- EMPTY QUEUE",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 9,
+      "rule_family": "COLLECTION_OPERATION",
+      "branch": "EVIDENCED_COLLECTION_QUERY_ACCESS",
+      "source": "        level_size <- queue.size()",
+      "canonical": "        level_size <- queue~LENGTH",
+      "evidence": [
+        "receiver type is independently established by an explicit collection declaration or constructor in readable lexical scope",
+        "query/access spelling is accepted only for collection kinds that support the corresponding length/front/back/empty operation",
+        "method spelling never establishes collection type and direct rebinds/formal-parameter shadowing invalidate inherited evidence"
+      ],
+      "confidence": "source_proven",
+      "semantic_change": false
+    },
+    {
+      "line": 10,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        current_level <- empty List",
+      "canonical": "        current_level <- EMPTY LIST",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "FUNCTION LevelOrderTraversal(root):\n    IF root IS NULL THEN RETURN EMPTY LIST\n    \n    result <- EMPTY LIST\n    queue <- EMPTY QUEUE\n    ENQUEUE root TO queue\n    \n    WHILE queue IS NOT EMPTY DO\n        level_size <- queue~LENGTH\n        current_level <- EMPTY LIST\n        \n        FOR i FROM 1 TO level_size DO\n            node <- DEQUEUE from queue\n            APPEND node.value TO current_level\n            \n            IF node.left IS NOT NULL THEN ENQUEUE node.left TO queue\n            IF node.right IS NOT NULL THEN ENQUEUE node.right TO queue\n        END FOR\n        \n        APPEND current_level TO result\n    END WHILE\n    \n    RETURN result\nEND FUNCTION",
+      "canonical": "FUNCTION LevelOrderTraversal(root):\n    IF root == NULL THEN RETURN EMPTY LIST\n    \n    result <- EMPTY LIST\n    queue <- EMPTY QUEUE\n    ENQUEUE root TO queue\n    \n    WHILE LENGTH OF queue > 0 DO\n        level_size <- queue~LENGTH\n        current_level <- EMPTY LIST\n        \n        FOR i FROM 1 TO level_size DO\n            node <- DEQUEUE from queue\n            APPEND node.value TO current_level\n            \n            IF node.left != NULL THEN ENQUEUE node.left TO queue\n            IF node.right != NULL THEN ENQUEUE node.right TO queue\n        ENDFOR\n        \n        APPEND current_level TO result\n    ENDWHILE\n    \n    RETURN result\nENDFUNCTION",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION LevelOrderTraversal(root):\n    IF root == NULL THEN RETURN EMPTY LIST\n    \n    result <- EMPTY LIST\n    queue <- EMPTY QUEUE\n    ENQUEUE root TO queue\n    \n    WHILE LENGTH OF queue > 0 DO\n        level_size <- queue~LENGTH\n        current_level <- EMPTY LIST\n        \n        FOR i FROM 1 TO level_size DO\n            node <- DEQUEUE from queue\n            APPEND node.value TO current_level\n            \n            IF node.left != NULL THEN ENQUEUE node.left TO queue\n            IF node.right != NULL THEN ENQUEUE node.right TO queue\n        ENDFOR\n        \n        APPEND current_level TO result\n    ENDWHILE\n    \n    RETURN result\nENDFUNCTION",
+      "canonical": "FUNCTION LevelOrderTraversal(root):\n    IF root == NULL THEN RETURN EMPTY LIST\n    \n    result <- EMPTY LIST\n    queue <- CALL create_queue()\n    CALL ENQUEUE(queue, root)\n    WHILE NOT CALL queue_is_empty(queue) DO\n        level_size <- CALL queue_size(queue)\n        current_level <- EMPTY LIST\n        \n        FOR i FROM 1 TO level_size DO\n            node <- CALL DEQUEUE(queue)\n            APPEND node.value TO current_level\n            \n            IF node.left != NULL THEN ENQUEUE node.left TO queue\n            IF node.right != NULL THEN ENQUEUE node.right TO queue\n        ENDFOR\n        \n        APPEND current_level TO result\n    ENDWHILE\n    \n    RETURN result\nENDFUNCTION",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION LevelOrderTraversal(root):",
+      "canonical": "FUNCTION LevelOrderTraversal ACCEPTS(root)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    IF root == NULL THEN RETURN EMPTY LIST",
+      "canonical": "    IF root == NULL THEN\n        RETURN EMPTY LIST",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 11,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        FOR i FROM 1 TO level_size DO",
+      "canonical": "        FOR i <- IN RANGE 1 TO (level_size) + 1 DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 15,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            IF node.left != NULL THEN ENQUEUE node.left TO queue",
+      "canonical": "            IF node.left != NULL THEN\n                ENQUEUE node.left TO queue",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 16,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            IF node.right != NULL THEN ENQUEUE node.right TO queue",
+      "canonical": "            IF node.right != NULL THEN\n                ENQUEUE node.right TO queue",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDIF",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 18,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDIF",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 20,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDIF",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 18,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "                ENQUEUE node.left TO queue",
+      "canonical": "                CALL ENQUEUE(queue, node.left)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 21,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "                ENQUEUE node.right TO queue",
+      "canonical": "                CALL ENQUEUE(queue, node.right)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    ",
+      "canonical": "",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 12,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        ",
+      "canonical": "",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 16,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            ",
+      "canonical": "",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 24,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        ",
+      "canonical": "",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 27,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    ",
+      "canonical": "",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 1
+}

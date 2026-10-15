@@ -1,0 +1,60 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 4,
+  "transformations": [
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    plannedPaths = []",
+      "canonical": "    plannedPaths <- []",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 7,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        path = computeAStar(drone.pos, drone.target)",
+      "canonical": "        path <- computeAStar(drone.pos, drone.target)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 10,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    adjustedPaths = resolveConflicts(plannedPaths, safetyRadius)",
+      "canonical": "    adjustedPaths <- resolveConflicts(plannedPaths, safetyRadius)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 8,
+      "rule_family": "RESERVED_IDENTIFIER_ESCAPE",
+      "branch": "SOURCE_PROVEN_BINDING_ESCAPE",
+      "source": "        plannedPaths.append(path)",
+      "canonical": "        plannedPaths.__reserved_keyword__append(path)",
+      "evidence": [
+        "the source uses an AJ reserved keyword in an unambiguous identifier-binding position",
+        "the protected __reserved_keyword__ prefix preserves the source identifier spelling without assigning new algorithmic meaning",
+        "corresponding identifier occurrences are rewritten while quoted text and recognised AJ keyword syntax are preserved"
+      ],
+      "confidence": "source_proven",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 2
+}

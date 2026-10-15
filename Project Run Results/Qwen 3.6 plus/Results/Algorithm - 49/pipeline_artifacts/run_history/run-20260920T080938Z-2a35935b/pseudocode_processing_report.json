@@ -1,0 +1,48 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 3,
+  "transformations": [
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "queue = [(start, [start])]",
+      "canonical": "queue <- [(start, [start])]",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "visited = {start}",
+      "canonical": "visited <- {start}",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 15,
+      "rule_family": "RESERVED_IDENTIFIER_ESCAPE",
+      "branch": "SOURCE_PROVEN_BINDING_ESCAPE",
+      "source": "            queue.append((neighbor, path + [neighbor]))",
+      "canonical": "            queue.__reserved_keyword__append((neighbor, path + [neighbor]))",
+      "evidence": [
+        "the source uses an AJ reserved keyword in an unambiguous identifier-binding position",
+        "the protected __reserved_keyword__ prefix preserves the source identifier spelling without assigning new algorithmic meaning",
+        "corresponding identifier occurrences are rewritten while quoted text and recognised AJ keyword syntax are preserved"
+      ],
+      "confidence": "source_proven",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 2
+}

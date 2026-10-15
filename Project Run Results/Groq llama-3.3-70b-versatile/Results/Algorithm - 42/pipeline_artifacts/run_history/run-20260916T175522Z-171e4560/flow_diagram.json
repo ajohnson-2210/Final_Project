@@ -1,0 +1,411 @@
+{
+  "format": "NL-FDEP Flow Diagram",
+  "version": "1.0",
+  "entry_node": "F1",
+  "exit_node": "F2",
+  "nodes": {
+    "F1": {
+      "node_id": "F1",
+      "node_type": "START",
+      "label": "Start",
+      "line": 1,
+      "data": {}
+    },
+    "F2": {
+      "node_id": "F2",
+      "node_type": "END",
+      "label": "End",
+      "line": 1,
+      "data": {}
+    },
+    "F3": {
+      "node_id": "F3",
+      "node_type": "FUNCTION",
+      "label": "Run function FIND_PAIRS with arr, target",
+      "line": 1,
+      "data": {
+        "ast_kind": "FunctionNode",
+        "name": "FIND_PAIRS"
+      }
+    },
+    "F4": {
+      "node_id": "F4",
+      "node_type": "PROCESS",
+      "label": "Set pairs to an empty list",
+      "line": 2,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F5": {
+      "node_id": "F5",
+      "node_type": "LOOP_DECISION",
+      "label": "For i from 0 to the length of arr minus 1 plus 1",
+      "line": 3,
+      "data": {
+        "ast_kind": "ForRangeNode"
+      }
+    },
+    "F6": {
+      "node_id": "F6",
+      "node_type": "LOOP_DECISION",
+      "label": "For j from i plus 1 to the length of arr minus 1 plus 1",
+      "line": 4,
+      "data": {
+        "ast_kind": "ForRangeNode"
+      }
+    },
+    "F7": {
+      "node_id": "F7",
+      "node_type": "DECISION",
+      "label": "Item i of arr plus item j of arr is equal to target?",
+      "line": 5,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F8": {
+      "node_id": "F8",
+      "node_type": "PROCESS",
+      "label": "Append (item i of arr, item j of arr) to pairs",
+      "line": 6,
+      "data": {
+        "ast_kind": "AppendNode"
+      }
+    },
+    "F9": {
+      "node_id": "F9",
+      "node_type": "RETURN",
+      "label": "Return pairs",
+      "line": 10,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "F7",
+      "target": "F8",
+      "label": "TRUE"
+    },
+    {
+      "source": "F6",
+      "target": "F7",
+      "label": "ITERATE"
+    },
+    {
+      "source": "F8",
+      "target": "F6",
+      "label": "LOOP"
+    },
+    {
+      "source": "F7",
+      "target": "F6",
+      "label": "LOOP"
+    },
+    {
+      "source": "F5",
+      "target": "F6",
+      "label": "ITERATE"
+    },
+    {
+      "source": "F6",
+      "target": "F5",
+      "label": "LOOP"
+    },
+    {
+      "source": "F4",
+      "target": "F5",
+      "label": "NEXT"
+    },
+    {
+      "source": "F5",
+      "target": "F9",
+      "label": "NEXT"
+    },
+    {
+      "source": "F3",
+      "target": "F4",
+      "label": "BODY"
+    },
+    {
+      "source": "F1",
+      "target": "F3",
+      "label": "NEXT"
+    },
+    {
+      "source": "F9",
+      "target": "F2",
+      "label": "NEXT"
+    }
+  ],
+  "structured_program": {
+    "kind": "ProgramNode",
+    "line": 1,
+    "body": [
+      {
+        "kind": "FunctionNode",
+        "line": 1,
+        "name": "FIND_PAIRS",
+        "parameters": [
+          {
+            "kind": "ParameterNode",
+            "line": 1,
+            "name": "arr",
+            "declared_type": null
+          },
+          {
+            "kind": "ParameterNode",
+            "line": 1,
+            "name": "target",
+            "declared_type": null
+          }
+        ],
+        "body": {
+          "kind": "BlockNode",
+          "line": 2,
+          "statements": [
+            {
+              "kind": "AssignmentNode",
+              "line": 2,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 2,
+                "name": "pairs"
+              },
+              "value": {
+                "kind": "EmptyLiteralNode",
+                "line": 2,
+                "empty_type": "LIST"
+              }
+            },
+            {
+              "kind": "ForRangeNode",
+              "line": 3,
+              "variable": {
+                "kind": "IdentifierNode",
+                "line": 3,
+                "name": "i"
+              },
+              "start": {
+                "kind": "LiteralNode",
+                "line": 3,
+                "value": 0,
+                "data_type": "INTEGER"
+              },
+              "end": {
+                "kind": "BinaryNode",
+                "line": 3,
+                "operator": "+",
+                "left": {
+                  "kind": "BinaryNode",
+                  "line": 3,
+                  "operator": "-",
+                  "left": {
+                    "kind": "LengthNode",
+                    "line": 3,
+                    "expression": {
+                      "kind": "IdentifierNode",
+                      "line": 3,
+                      "name": "arr"
+                    }
+                  },
+                  "right": {
+                    "kind": "LiteralNode",
+                    "line": 3,
+                    "value": 1,
+                    "data_type": "INTEGER"
+                  }
+                },
+                "right": {
+                  "kind": "LiteralNode",
+                  "line": 3,
+                  "value": 1,
+                  "data_type": "INTEGER"
+                }
+              },
+              "step": null,
+              "body": {
+                "kind": "BlockNode",
+                "line": 4,
+                "statements": [
+                  {
+                    "kind": "ForRangeNode",
+                    "line": 4,
+                    "variable": {
+                      "kind": "IdentifierNode",
+                      "line": 4,
+                      "name": "j"
+                    },
+                    "start": {
+                      "kind": "BinaryNode",
+                      "line": 4,
+                      "operator": "+",
+                      "left": {
+                        "kind": "IdentifierNode",
+                        "line": 4,
+                        "name": "i"
+                      },
+                      "right": {
+                        "kind": "LiteralNode",
+                        "line": 4,
+                        "value": 1,
+                        "data_type": "INTEGER"
+                      }
+                    },
+                    "end": {
+                      "kind": "BinaryNode",
+                      "line": 4,
+                      "operator": "+",
+                      "left": {
+                        "kind": "BinaryNode",
+                        "line": 4,
+                        "operator": "-",
+                        "left": {
+                          "kind": "LengthNode",
+                          "line": 4,
+                          "expression": {
+                            "kind": "IdentifierNode",
+                            "line": 4,
+                            "name": "arr"
+                          }
+                        },
+                        "right": {
+                          "kind": "LiteralNode",
+                          "line": 4,
+                          "value": 1,
+                          "data_type": "INTEGER"
+                        }
+                      },
+                      "right": {
+                        "kind": "LiteralNode",
+                        "line": 4,
+                        "value": 1,
+                        "data_type": "INTEGER"
+                      }
+                    },
+                    "step": null,
+                    "body": {
+                      "kind": "BlockNode",
+                      "line": 5,
+                      "statements": [
+                        {
+                          "kind": "IfNode",
+                          "line": 5,
+                          "condition": {
+                            "kind": "BinaryNode",
+                            "line": 5,
+                            "operator": "==",
+                            "left": {
+                              "kind": "BinaryNode",
+                              "line": 5,
+                              "operator": "+",
+                              "left": {
+                                "kind": "IndexNode",
+                                "line": 5,
+                                "collection": {
+                                  "kind": "IdentifierNode",
+                                  "line": 5,
+                                  "name": "arr"
+                                },
+                                "index": {
+                                  "kind": "IdentifierNode",
+                                  "line": 5,
+                                  "name": "i"
+                                }
+                              },
+                              "right": {
+                                "kind": "IndexNode",
+                                "line": 5,
+                                "collection": {
+                                  "kind": "IdentifierNode",
+                                  "line": 5,
+                                  "name": "arr"
+                                },
+                                "index": {
+                                  "kind": "IdentifierNode",
+                                  "line": 5,
+                                  "name": "j"
+                                }
+                              }
+                            },
+                            "right": {
+                              "kind": "IdentifierNode",
+                              "line": 5,
+                              "name": "target"
+                            }
+                          },
+                          "then_body": {
+                            "kind": "BlockNode",
+                            "line": 6,
+                            "statements": [
+                              {
+                                "kind": "AppendNode",
+                                "line": 6,
+                                "value": {
+                                  "kind": "TupleLiteralNode",
+                                  "line": 6,
+                                  "items": [
+                                    {
+                                      "kind": "IndexNode",
+                                      "line": 6,
+                                      "collection": {
+                                        "kind": "IdentifierNode",
+                                        "line": 6,
+                                        "name": "arr"
+                                      },
+                                      "index": {
+                                        "kind": "IdentifierNode",
+                                        "line": 6,
+                                        "name": "i"
+                                      }
+                                    },
+                                    {
+                                      "kind": "IndexNode",
+                                      "line": 6,
+                                      "collection": {
+                                        "kind": "IdentifierNode",
+                                        "line": 6,
+                                        "name": "arr"
+                                      },
+                                      "index": {
+                                        "kind": "IdentifierNode",
+                                        "line": 6,
+                                        "name": "j"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "collection": {
+                                  "kind": "IdentifierNode",
+                                  "line": 6,
+                                  "name": "pairs"
+                                }
+                              }
+                            ]
+                          },
+                          "else_if": [],
+                          "else_body": null
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "ReturnNode",
+              "line": 10,
+              "expression": {
+                "kind": "IdentifierNode",
+                "line": 10,
+                "name": "pairs"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

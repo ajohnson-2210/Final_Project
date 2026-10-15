@@ -1,0 +1,10 @@
+# Given an unsorted list of integers and a target value T, find the exact position of T
+T in the list, or report that it doesn't exist
+FUNCTION FIND_TARGET(arr, target)
+  FOR i FROM 0 TO LENGTH(arr) - 1
+    IF arr[i] == target THEN
+      RETURN i
+    END IF
+  END FOR
+  RETURN -1
+END FUNCTION

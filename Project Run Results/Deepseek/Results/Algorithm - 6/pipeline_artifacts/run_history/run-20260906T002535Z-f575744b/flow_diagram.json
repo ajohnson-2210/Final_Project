@@ -1,0 +1,199 @@
+{
+  "format": "NL-FDEP Flow Diagram",
+  "version": "1.0",
+  "entry_node": "F1",
+  "exit_node": "F2",
+  "nodes": {
+    "F1": {
+      "node_id": "F1",
+      "node_type": "START",
+      "label": "Start",
+      "line": 1,
+      "data": {}
+    },
+    "F2": {
+      "node_id": "F2",
+      "node_type": "END",
+      "label": "End",
+      "line": 1,
+      "data": {}
+    },
+    "F3": {
+      "node_id": "F3",
+      "node_type": "FUNCTION",
+      "label": "Run function stringLength with str",
+      "line": 1,
+      "data": {
+        "ast_kind": "FunctionNode",
+        "name": "stringLength"
+      }
+    },
+    "F4": {
+      "node_id": "F4",
+      "node_type": "PROCESS",
+      "label": "Set count to 0",
+      "line": 2,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F5": {
+      "node_id": "F5",
+      "node_type": "LOOP_DECISION",
+      "label": "For each character in str",
+      "line": 3,
+      "data": {
+        "ast_kind": "ForEachNode"
+      }
+    },
+    "F6": {
+      "node_id": "F6",
+      "node_type": "PROCESS",
+      "label": "Set count to count plus 1",
+      "line": 4,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F7": {
+      "node_id": "F7",
+      "node_type": "RETURN",
+      "label": "Return count",
+      "line": 6,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "F5",
+      "target": "F6",
+      "label": "ITERATE"
+    },
+    {
+      "source": "F6",
+      "target": "F5",
+      "label": "LOOP"
+    },
+    {
+      "source": "F4",
+      "target": "F5",
+      "label": "NEXT"
+    },
+    {
+      "source": "F5",
+      "target": "F7",
+      "label": "NEXT"
+    },
+    {
+      "source": "F3",
+      "target": "F4",
+      "label": "BODY"
+    },
+    {
+      "source": "F1",
+      "target": "F3",
+      "label": "NEXT"
+    },
+    {
+      "source": "F7",
+      "target": "F2",
+      "label": "NEXT"
+    }
+  ],
+  "structured_program": {
+    "kind": "ProgramNode",
+    "line": 1,
+    "body": [
+      {
+        "kind": "FunctionNode",
+        "line": 1,
+        "name": "stringLength",
+        "parameters": [
+          {
+            "kind": "ParameterNode",
+            "line": 1,
+            "name": "str",
+            "declared_type": null
+          }
+        ],
+        "body": {
+          "kind": "BlockNode",
+          "line": 2,
+          "statements": [
+            {
+              "kind": "AssignmentNode",
+              "line": 2,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 2,
+                "name": "count"
+              },
+              "value": {
+                "kind": "LiteralNode",
+                "line": 2,
+                "value": 0,
+                "data_type": "INTEGER"
+              }
+            },
+            {
+              "kind": "ForEachNode",
+              "line": 3,
+              "variable": {
+                "kind": "IdentifierNode",
+                "line": 3,
+                "name": "character"
+              },
+              "collection": {
+                "kind": "IdentifierNode",
+                "line": 3,
+                "name": "str"
+              },
+              "body": {
+                "kind": "BlockNode",
+                "line": 4,
+                "statements": [
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 4,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 4,
+                      "name": "count"
+                    },
+                    "value": {
+                      "kind": "BinaryNode",
+                      "line": 4,
+                      "operator": "+",
+                      "left": {
+                        "kind": "IdentifierNode",
+                        "line": 4,
+                        "name": "count"
+                      },
+                      "right": {
+                        "kind": "LiteralNode",
+                        "line": 4,
+                        "value": 1,
+                        "data_type": "INTEGER"
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "ReturnNode",
+              "line": 6,
+              "expression": {
+                "kind": "IdentifierNode",
+                "line": 6,
+                "name": "count"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

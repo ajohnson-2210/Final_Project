@@ -1,0 +1,226 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 18,
+  "transformations": [
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  result = []",
+      "canonical": "  result <- []",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  queue = [root]",
+      "canonical": "  queue <- [root]",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    level = []",
+      "canonical": "    level <- []",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 7,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "      node = DEQUEUE(queue)",
+      "canonical": "      node <- DEQUEUE(queue)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 8,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "      level += [node.value]",
+      "canonical": "      level <- level + [node.value]",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 16,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    result += [level]",
+      "canonical": "    result <- result + [level]",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  result <- []",
+      "canonical": "  result <- EMPTY LIST",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  queue <- [root]",
+      "canonical": "  queue <- LIST [root]",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    level <- []",
+      "canonical": "    level <- EMPTY LIST",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 6,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    FOR i FROM 0 TO LENGTH(queue) - 1",
+      "canonical": "    FOR i FROM 0 TO LENGTH OF queue - 1",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION LEVEL_ORDER_TRAVERSAL(root)",
+      "canonical": "FUNCTION LEVEL_ORDER_TRAVERSAL ACCEPTS(root)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "FUNCTION LEVEL_ORDER_TRAVERSAL ACCEPTS(root)\n  result <- EMPTY LIST\n  queue <- LIST [root]\n  WHILE queue IS NOT EMPTY\n    level <- EMPTY LIST\n    FOR i FROM 0 TO LENGTH OF queue - 1\n      node <- DEQUEUE(queue)\n      level <- level + [node.value]\n      IF node.left IS NOT NULL THEN\n        ENQUEUE(queue, node.left)\n      END IF\n      IF node.right IS NOT NULL THEN\n        ENQUEUE(queue, node.right)\n      END IF\n    END FOR\n    result <- result + [level]\n  END WHILE\n  RETURN result\nEND FUNCTION",
+      "canonical": "FUNCTION LEVEL_ORDER_TRAVERSAL ACCEPTS(root)\n  result <- EMPTY LIST\n  queue <- CALL list_value(root)\n  WHILE LENGTH OF queue > 0\n    level <- EMPTY LIST\n    FOR i FROM 0 TO LENGTH OF queue - 1\n      node <- DEQUEUE(queue)\n      level <- level + [node.value]\n      IF node.left != NULL THEN\n        ENQUEUE(queue, node.left)\n      ENDIF\n      IF node.right != NULL THEN\n        ENQUEUE(queue, node.right)\n      ENDIF\n    END FOR\n    result <- result + [level]\n  END WHILE\n  RETURN result\nENDFUNCTION",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "FUNCTION LEVEL_ORDER_TRAVERSAL ACCEPTS(root)\n  result <- EMPTY LIST\n  queue <- CALL list_value(root)\n  WHILE LENGTH OF queue > 0\n    level <- EMPTY LIST\n    FOR i FROM 0 TO LENGTH OF queue - 1\n      node <- DEQUEUE(queue)\n      level <- level + [node.value]\n      IF node.left != NULL THEN\n        ENQUEUE(queue, node.left)\n      ENDIF\n      IF node.right != NULL THEN\n        ENQUEUE(queue, node.right)\n      ENDIF\n    END FOR\n    result <- result + [level]\n  END WHILE\n  RETURN result\nENDFUNCTION",
+      "canonical": "FUNCTION LEVEL_ORDER_TRAVERSAL ACCEPTS(root)\n  result <- EMPTY LIST\n  queue <- CALL list_value(root)\n  WHILE LENGTH OF queue > 0\n    level <- EMPTY LIST\n    FOR i FROM 0 TO LENGTH OF queue - 1\n      node <- REMOVE FIRST ITEM FROM queue\n      level <- level + [node.value]\n      IF node.left != NULL THEN\n        APPEND node.left TO queue\n      ENDIF\n      IF node.right != NULL THEN\n        APPEND node.right TO queue\n      ENDIF\n    END FOR\n    result <- result + [level]\n  END WHILE\n  RETURN result\nENDFUNCTION",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "FUNCTION LEVEL_ORDER_TRAVERSAL ACCEPTS(root)\n  result <- EMPTY LIST\n  queue <- CALL list_value(root)\n  WHILE LENGTH OF queue > 0\n    level <- EMPTY LIST\n    FOR i FROM 0 TO LENGTH OF queue - 1\n      node <- REMOVE FIRST ITEM FROM queue\n      level <- level + [node.value]\n      IF node.left != NULL THEN\n        APPEND node.left TO queue\n      ENDIF\n      IF node.right != NULL THEN\n        APPEND node.right TO queue\n      ENDIF\n    END FOR\n    result <- result + [level]\n  END WHILE\n  RETURN result\nENDFUNCTION",
+      "canonical": "FUNCTION LEVEL_ORDER_TRAVERSAL ACCEPTS(root)\n  result <- EMPTY LIST\n  queue <- CALL list_value(root)\n  WHILE LENGTH OF queue > 0\n    level <- EMPTY LIST\n    FOR i FROM 0 TO LENGTH OF queue - 1\n      node <- REMOVE FIRST ITEM FROM queue\n      APPEND node.value TO level\n      IF node.left != NULL THEN\n        APPEND node.left TO queue\n      ENDIF\n      IF node.right != NULL THEN\n        APPEND node.right TO queue\n      ENDIF\n    END FOR\n    APPEND level TO result\n  END WHILE\n  RETURN result\nENDFUNCTION",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  WHILE LENGTH OF queue > 0",
+      "canonical": "  WHILE LENGTH OF queue > 0 DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 6,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    FOR i FROM 0 TO LENGTH OF queue - 1",
+      "canonical": "    FOR i <- IN RANGE 0 TO (LENGTH OF queue - 1) + 1 DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 15,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "    END FOR",
+      "canonical": "    ENDFOR",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 17,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "  END WHILE",
+      "canonical": "  ENDWHILE",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 1
+}

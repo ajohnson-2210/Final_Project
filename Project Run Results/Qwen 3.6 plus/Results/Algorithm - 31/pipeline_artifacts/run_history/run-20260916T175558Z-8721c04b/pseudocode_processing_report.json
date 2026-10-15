@@ -1,0 +1,130 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 10,
+  "transformations": [
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "mentions = extractNounPhrasesAndPronouns(text)",
+      "canonical": "mentions <- extractNounPhrasesAndPronouns(text)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 6,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    candidates = filterCompatibleAntecedents(pronoun, mentions)",
+      "canonical": "    candidates <- filterCompatibleAntecedents(pronoun, mentions)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 7,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    antecedent = scoreAndSelect(candidates)",
+      "canonical": "    antecedent <- scoreAndSelect(candidates)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "INPUT text\n\nmentions <- extractNounPhrasesAndPronouns(text)\n\nFOR each pronoun in mentions:\n    candidates <- filterCompatibleAntecedents(pronoun, mentions)\n    antecedent <- scoreAndSelect(candidates)\n    link(pronoun, antecedent)\n\nRETURN resolvedMentions",
+      "canonical": "FUNCTION unnamed_function ACCEPTS(text)\n    mentions <- extractNounPhrasesAndPronouns(text)\n\n    FOR each pronoun in mentions:\n        candidates <- filterCompatibleAntecedents(pronoun, mentions)\n        antecedent <- scoreAndSelect(candidates)\n        link(pronoun, antecedent)\n\n    RETURN resolvedMentions\nENDFUNCTION",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    FOR each pronoun in mentions:",
+      "canonical": "    FOR EACH pronoun IN mentions DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    mentions <- extractNounPhrasesAndPronouns(text)",
+      "canonical": "    mentions <- CALL extractNounPhrasesAndPronouns(text)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        candidates <- filterCompatibleAntecedents(pronoun, mentions)",
+      "canonical": "        candidates <- CALL filterCompatibleAntecedents(pronoun, mentions)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 6,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        antecedent <- scoreAndSelect(candidates)",
+      "canonical": "        antecedent <- CALL scoreAndSelect(candidates)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 7,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        link(pronoun, antecedent)",
+      "canonical": "        CALL link(pronoun, antecedent)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 9,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDFOR",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 2
+}

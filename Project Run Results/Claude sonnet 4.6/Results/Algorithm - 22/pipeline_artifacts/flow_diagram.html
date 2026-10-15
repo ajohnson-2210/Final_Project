@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NL-FDEP Flow Diagram</title>
+<style>
+:root { color-scheme: light; }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Arial, Helvetica, sans-serif; background: #f4f5f7; color: #16191f; }
+header { position: sticky; top: 0; z-index: 10; padding: 14px 18px; background: white; border-bottom: 1px solid #c9cdd3; }
+header h1 { margin: 0 0 4px; font-size: 20px; }
+header p { margin: 0; color: #555d69; font-size: 13px; }
+.controls { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.controls input { min-width: 220px; flex: 1; padding: 8px 10px; border: 1px solid #9da4ae; border-radius: 5px; }
+.controls button { padding: 8px 12px; border: 1px solid #8f97a3; border-radius: 5px; background: white; cursor: pointer; }
+.viewport { overflow: hidden; width: 100%; height: calc(100vh - 108px); background: white; cursor: grab; }
+.viewport.dragging { cursor: grabbing; }
+svg { width: 100%; height: 100%; user-select: none; }
+.flow-node { cursor: pointer; }
+.flow-node .shape { fill: white; stroke: #20242a; stroke-width: 1.6; vector-effect: non-scaling-stroke; }
+.flow-node text { fill: #111418; font-size: 13px; text-anchor: middle; dominant-baseline: middle; pointer-events: none; }
+.flow-node .metadata { fill: #606874; font-size: 10px; }
+.flow-node.match .shape { stroke: #d18b00; stroke-width: 4; }
+.flow-node.selected .shape { stroke: #1769aa; stroke-width: 4; }
+.flow-edge { fill: none; stroke: #252a31; stroke-width: 1.45; vector-effect: non-scaling-stroke; marker-end: url(#arrowhead); }
+.shared-return-follower { marker-end: none; }
+.edge-label rect { fill: white; stroke: none; }
+.edge-label text { fill: #20242a; font-size: 11px; text-anchor: middle; dominant-baseline: middle; }
+.legend { position: fixed; right: 14px; bottom: 14px; padding: 9px 11px; background: rgba(255,255,255,.94); border: 1px solid #c9cdd3; border-radius: 6px; font-size: 11px; line-height: 1.6; }
+</style>
+</head>
+<body>
+<header>
+<h1>NL to Flow Diagram Encoder Pipeline</h1>
+<p>Standard flowchart notation generated from AJ pseudocode.</p>
+<div class="controls">
+<input id="search" placeholder="Search step, type, line, or node ID">
+<button id="zoom-in" type="button">Zoom in</button>
+<button id="zoom-out" type="button">Zoom out</button>
+<button id="fit" type="button">Fit diagram</button>
+</div>
+</header>
+<div id="viewport" class="viewport">
+<svg id="diagram" viewBox="0 0 760 1080" role="img" aria-label="Generated program flow diagram">
+<defs>
+<marker id="arrowhead" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto" markerUnits="strokeWidth">
+<path d="M 0 0 L 9 3.5 L 0 7 z" fill="#252a31"></path>
+</marker>
+</defs>
+<g id="canvas"><path class="flow-edge" d="M 380.0 596 L 380.0 657.0 L 205.0 657.0 L 205.0 681"></path><g class="edge-label"><rect x="276.0" y="639.0" width="33" height="18" rx="3"></rect><text x="292.5" y="648.0">Yes</text></g><path class="flow-edge" d="M 495.0 540.0 L 519.0 540.0 L 519.0 657.0 L 555.0 657.0 L 555.0 681"></path><path class="flow-edge" d="M 380.0 351 L 380.0 484"></path><path class="flow-edge" d="M 380.0 154 L 380.0 287"></path><path class="flow-edge" d="M 205.0 745 L 205.0 854.0 L 380.0 854.0 L 380.0 878"></path><path class="flow-edge" d="M 555.0 745 L 555.0 769 L 710.0 769 L 710.0 910.0 L 495.0 910.0"></path><g class="flow-node" data-node-id="F1"><title>START | Line 1 | F1</title><rect class="shape" x="265.0" y="90" width="230" height="64" rx="32" ry="32"></rect><text x="380.0" y="115.0"><tspan x="380.0" dy="0">Start</tspan></text><text class="metadata" x="380.0" y="141">Line 1 · F1</text></g><g class="flow-node" data-node-id="F2"><title>END | Line 1 | F2</title><rect class="shape" x="265.0" y="878" width="230" height="64" rx="32" ry="32"></rect><text x="380.0" y="903.0"><tspan x="380.0" dy="0">End</tspan></text><text class="metadata" x="380.0" y="929">Line 1 · F2</text></g><g class="flow-node" data-node-id="F3"><title>FUNCTION | Line 1 | F3</title><rect class="shape" x="265.0" y="287" width="230" height="64"></rect><line class="shape" x1="277.0" y1="287" x2="277.0" y2="351"></line><line class="shape" x1="483.0" y1="287" x2="483.0" y2="351"></line><text x="380.0" y="312.0"><tspan x="380.0" dy="0">Run function factorial with n</tspan></text><text class="metadata" x="380.0" y="338">Line 1 · F3</text></g><g class="flow-node" data-node-id="F4"><title>DECISION | Line 2 | F4</title><polygon class="shape" points="380.0,484 495.0,540.0 380.0,596 265.0,540.0"></polygon><text x="380.0" y="525.0"><tspan x="380.0" dy="0">Is n is equal to 0 or n is</tspan><tspan x="380.0" dy="16">equal to 1 true?</tspan></text><text class="metadata" x="380.0" y="583">Line 2 · F4</text></g><g class="flow-node" data-node-id="F5"><title>RETURN | Line 3 | F5</title><rect class="shape" x="90.0" y="681" width="230" height="64" rx="4" ry="4"></rect><text x="205.0" y="706.0"><tspan x="205.0" dy="0">Return 1</tspan></text><text class="metadata" x="205.0" y="732">Line 3 · F5</text></g><g class="flow-node" data-node-id="F6"><title>RETURN | Line 5 | F6</title><rect class="shape" x="440.0" y="681" width="230" height="64" rx="4" ry="4"></rect><text x="555.0" y="698.0"><tspan x="555.0" dy="0">Return n multiplied by the</tspan><tspan x="555.0" dy="16">result of factorial(n minus 1)</tspan></text><text class="metadata" x="555.0" y="732">Line 5 · F6</text></g></g>
+</svg>
+</div>
+<div class="legend">Oval: Start/End<br>Diamond: Decision<br>Parallelogram: Input/Output<br>Rectangle: Process<br>Double rectangle: Function/Call</div>
+<script>
+const diagramData = {"format": "NL-FDEP Flow Diagram", "version": "1.0", "entry_node": "F1", "exit_node": "F2", "nodes": {"F1": {"node_id": "F1", "node_type": "START", "label": "Start", "line": 1, "data": {}}, "F2": {"node_id": "F2", "node_type": "END", "label": "End", "line": 1, "data": {}}, "F3": {"node_id": "F3", "node_type": "FUNCTION", "label": "Run function factorial with n", "line": 1, "data": {"ast_kind": "FunctionNode", "name": "factorial"}}, "F4": {"node_id": "F4", "node_type": "DECISION", "label": "Is n is equal to 0 or n is equal to 1 true?", "line": 2, "data": {"ast_kind": "IfNode"}}, "F5": {"node_id": "F5", "node_type": "RETURN", "label": "Return 1", "line": 3, "data": {"ast_kind": "ReturnNode"}}, "F6": {"node_id": "F6", "node_type": "RETURN", "label": "Return n multiplied by the result of factorial(n minus 1)", "line": 5, "data": {"ast_kind": "ReturnNode"}}}, "edges": [{"source": "F4", "target": "F5", "label": "TRUE"}, {"source": "F4", "target": "F6", "label": "NEXT"}, {"source": "F3", "target": "F4", "label": "BODY"}, {"source": "F1", "target": "F3", "label": "NEXT"}, {"source": "F5", "target": "F2", "label": "NEXT"}, {"source": "F6", "target": "F2", "label": "NEXT"}], "structured_program": {"kind": "ProgramNode", "line": 1, "body": [{"kind": "FunctionNode", "line": 1, "name": "factorial", "parameters": [{"kind": "ParameterNode", "line": 1, "name": "n", "declared_type": null}], "body": {"kind": "BlockNode", "line": 2, "statements": [{"kind": "IfNode", "line": 2, "condition": {"kind": "BinaryNode", "line": 2, "operator": "OR", "left": {"kind": "BinaryNode", "line": 2, "operator": "==", "left": {"kind": "IdentifierNode", "line": 2, "name": "n"}, "right": {"kind": "LiteralNode", "line": 2, "value": 0, "data_type": "INTEGER"}}, "right": {"kind": "BinaryNode", "line": 2, "operator": "==", "left": {"kind": "IdentifierNode", "line": 2, "name": "n"}, "right": {"kind": "LiteralNode", "line": 2, "value": 1, "data_type": "INTEGER"}}}, "then_body": {"kind": "BlockNode", "line": 3, "statements": [{"kind": "ReturnNode", "line": 3, "expression": {"kind": "LiteralNode", "line": 3, "value": 1, "data_type": "INTEGER"}}]}, "else_if": [], "else_body": null}, {"kind": "ReturnNode", "line": 5, "expression": {"kind": "BinaryNode", "line": 5, "operator": "*", "left": {"kind": "IdentifierNode", "line": 5, "name": "n"}, "right": {"kind": "CallNode", "line": 5, "name": "factorial", "arguments": [{"kind": "BinaryNode", "line": 5, "operator": "-", "left": {"kind": "IdentifierNode", "line": 5, "name": "n"}, "right": {"kind": "LiteralNode", "line": 5, "value": 1, "data_type": "INTEGER"}}]}}}]}}]}};
+const svg = document.getElementById('diagram');
+const canvas = document.getElementById('canvas');
+const viewport = document.getElementById('viewport');
+const INITIAL_SCALE = 1.15;
+let scale = INITIAL_SCALE;
+let translateX = 0;
+let translateY = 0;
+let dragging = false;
+let startX = 0;
+let startY = 0;
+
+function applyTransform() {
+    canvas.setAttribute('transform', `translate(${translateX} ${translateY}) scale(${scale})`);
+}
+
+function initialView() {
+    const box = canvas.getBBox();
+    const visibleWidth = viewport.clientWidth;
+    scale = INITIAL_SCALE;
+    translateX = (visibleWidth - box.width * scale) / 2 - box.x * scale;
+    translateY = 28 - box.y * scale;
+    applyTransform();
+}
+
+function fitDiagram() {
+    const box = canvas.getBBox();
+    const visibleWidth = viewport.clientWidth;
+    const visibleHeight = viewport.clientHeight;
+    scale = Math.min(visibleWidth / (box.width + 80), visibleHeight / (box.height + 80), 1.3);
+    translateX = (visibleWidth - box.width * scale) / 2 - box.x * scale;
+    translateY = (visibleHeight - box.height * scale) / 2 - box.y * scale;
+    applyTransform();
+}
+
+document.getElementById('zoom-in').addEventListener('click', () => { scale *= 1.15; applyTransform(); });
+document.getElementById('zoom-out').addEventListener('click', () => { scale /= 1.15; applyTransform(); });
+document.getElementById('fit').addEventListener('click', fitDiagram);
+
+document.getElementById('search').addEventListener('input', event => {
+    const query = event.target.value.trim().toLowerCase();
+    document.querySelectorAll('.flow-node').forEach(node => {
+        node.classList.toggle('match', query.length > 0 && node.textContent.toLowerCase().includes(query));
+    });
+});
+
+document.querySelectorAll('.flow-node').forEach(node => {
+    node.addEventListener('click', () => node.classList.toggle('selected'));
+});
+
+viewport.addEventListener('mousedown', event => {
+    dragging = true;
+    startX = event.clientX - translateX;
+    startY = event.clientY - translateY;
+    viewport.classList.add('dragging');
+});
+window.addEventListener('mousemove', event => {
+    if (!dragging) return;
+    translateX = event.clientX - startX;
+    translateY = event.clientY - startY;
+    applyTransform();
+});
+window.addEventListener('mouseup', () => { dragging = false; viewport.classList.remove('dragging'); });
+viewport.addEventListener('wheel', event => {
+    event.preventDefault();
+    const factor = event.deltaY < 0 ? 1.1 : 0.9;
+    scale *= factor;
+    applyTransform();
+}, { passive: false });
+window.addEventListener('load', initialView);
+window.addEventListener('resize', initialView);
+</script>
+</body>
+</html>

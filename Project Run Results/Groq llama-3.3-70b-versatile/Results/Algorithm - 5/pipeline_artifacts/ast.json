@@ -1,0 +1,88 @@
+{
+  "root_id": "N14558",
+  "nodes": {
+    "N14558": {
+      "kind": "ProgramNode",
+      "line": 1,
+      "attributes": {}
+    },
+    "N14557": {
+      "kind": "FunctionNode",
+      "line": 1,
+      "attributes": {
+        "name": "REMOVE_PUNCTUATION"
+      }
+    },
+    "N14550": {
+      "kind": "ParameterNode",
+      "line": 1,
+      "attributes": {
+        "name": "sentence",
+        "declared_type": null
+      }
+    },
+    "N14556": {
+      "kind": "BlockNode",
+      "line": 2,
+      "attributes": {}
+    },
+    "N14555": {
+      "kind": "ReturnNode",
+      "line": 2,
+      "attributes": {}
+    },
+    "N14554": {
+      "kind": "CallNode",
+      "line": 2,
+      "attributes": {
+        "name": "regex_replace"
+      }
+    },
+    "N14551": {
+      "kind": "IdentifierNode",
+      "line": 2,
+      "attributes": {
+        "name": "sentence"
+      }
+    },
+    "N14552": {
+      "kind": "LiteralNode",
+      "line": 2,
+      "attributes": {
+        "value": "[^a-zA-Z0-9\\s]",
+        "data_type": "STRING"
+      }
+    },
+    "N14553": {
+      "kind": "EmptyLiteralNode",
+      "line": 2,
+      "attributes": {
+        "empty_type": "STRING"
+      }
+    }
+  },
+  "adjacency": {
+    "N14558": [
+      "N14557"
+    ],
+    "N14557": [
+      "N14550",
+      "N14556"
+    ],
+    "N14550": [],
+    "N14556": [
+      "N14555"
+    ],
+    "N14555": [
+      "N14554"
+    ],
+    "N14554": [
+      "N14551",
+      "N14552",
+      "N14553"
+    ],
+    "N14551": [],
+    "N14552": [],
+    "N14553": []
+  }
+}

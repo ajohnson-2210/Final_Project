@@ -1,0 +1,20 @@
+    INPUT Text
+
+    A <- 0
+    E <- 0
+    I <- 0
+    O <- 0
+    U <- 0
+
+    FOR EACH Character IN LOWERCASE(Text)
+        CASE Character OF
+            'a': A <- A + 1
+            'e': E <- E + 1
+            'i': I <- I + 1
+            'o': O <- O + 1
+            'u': U <- U + 1
+        ENDCASE
+    ENDFOR
+
+    OUTPUT A, E, I, O, U
+END

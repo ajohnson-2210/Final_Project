@@ -1,0 +1,94 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 7,
+  "transformations": [
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    Result \u2190 Empty Set",
+      "canonical": "    Result <- Empty Set",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    INPUT List1, List2\n\n    Result <- Empty Set\n\n    FOR EACH Item IN List1\n        IF Item EXISTS IN List2 THEN\n            ADD Item TO Result\n        ENDIF\n    ENDFOR\n\n    OUTPUT Result\nEND",
+      "canonical": "FUNCTION unnamed_function ACCEPTS(List1, List2)\n        Result <- Empty Set\n\n        FOR EACH Item IN List1\n            IF Item EXISTS IN List2 THEN\n                ADD Item TO Result\n            ENDIF\n        ENDFOR\n\n        OUTPUT Result\n    END\nENDFUNCTION",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        Result <- Empty Set",
+      "canonical": "        Result <- EMPTY SET",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION unnamed_function ACCEPTS(List1, List2)\n        Result <- EMPTY SET\n\n        FOR EACH Item IN List1\n            IF Item EXISTS IN List2 THEN\n                ADD Item TO Result\n            ENDIF\n        ENDFOR\n\n        OUTPUT Result\n    END\nENDFUNCTION",
+      "canonical": "FUNCTION unnamed_function ACCEPTS(List1, List2)\n        Result <- EMPTY SET\n\n        FOR EACH Item IN List1\n            IF Item EXISTS IN List2 THEN\n                CALL add_to_set(Result, Item)\n            ENDIF\n        ENDFOR\n\n        OUTPUT Result\n    END\nENDFUNCTION",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            IF Item EXISTS IN List2 THEN",
+      "canonical": "            IF Item IN List2 THEN",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        FOR EACH Item IN List1",
+      "canonical": "        FOR EACH Item IN List1 DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 11,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    END",
+      "canonical": "",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 2
+}

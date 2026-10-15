@@ -1,0 +1,9 @@
+FUNCTION FIND_DIVISORS ACCEPTS(n)
+  divisors <- EMPTY LIST
+  FOR i <- IN RANGE 1 TO (n) + 1 DO
+    IF n MODULUS i == 0 THEN
+      APPEND i TO divisors
+    ENDIF
+  ENDFOR
+  RETURN divisors
+ENDFUNCTION

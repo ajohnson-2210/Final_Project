@@ -1,0 +1,17 @@
+# Longest Substring Without Repeating Chars
+
+INPUT s
+
+maxLen = 0
+start = 0
+seen = {}
+
+FOR i from 0 to length(s)-1:
+    IF s[i] in seen AND seen[s[i]] >= start:
+        start = seen[s[i]] + 1
+
+    seen[s[i]] = i
+    maxLen = MAX(maxLen, i - start + 1)
+
+RETURN maxLen
+

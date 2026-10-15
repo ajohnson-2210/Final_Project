@@ -1,0 +1,94 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 7,
+  "transformations": [
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    matching_files = empty List",
+      "canonical": "    matching_files <- empty List",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    matching_files <- empty List",
+      "canonical": "    matching_files <- EMPTY LIST",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "FUNCTION SearchFiles(directory, target_extension):\n    matching_files <- EMPTY LIST\n    \n    FOR EACH item IN directory.getItems() DO\n        IF item.isFolder() THEN\n            matching_files.extend(SearchFiles(item, target_extension))\n        ELSE IF item.getExtension() == target_extension THEN\n            APPEND item.path TO matching_files\n        END IF\n    END FOR\n    \n    RETURN matching_files\nEND FUNCTION",
+      "canonical": "FUNCTION SearchFiles(directory, target_extension):\n    matching_files <- EMPTY LIST\n    \n    FOR EACH item IN directory.getItems() DO\n        IF item.isFolder() THEN\n            matching_files.extend(SearchFiles(item, target_extension))\n        ELSE IF item.getExtension() == target_extension THEN\n            APPEND item.path TO matching_files\n        ENDIF\n    ENDFOR\n    \n    RETURN matching_files\nENDFUNCTION",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION SearchFiles(directory, target_extension):",
+      "canonical": "FUNCTION SearchFiles ACCEPTS(directory, target_extension)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 6,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            matching_files.extend(SearchFiles(item, target_extension))",
+      "canonical": "            matching_files.extend(CALL SearchFiles(item, target_extension))",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    ",
+      "canonical": "",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 11,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    ",
+      "canonical": "",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 1
+}

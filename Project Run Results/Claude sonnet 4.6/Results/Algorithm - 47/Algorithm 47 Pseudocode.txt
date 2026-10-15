@@ -1,0 +1,14 @@
+# Inventory Update
+
+FUNCTION updateInventory(inventory, transactions):
+    FOR each transaction IN transactions:
+        item ← transaction.item
+        type ← transaction.type
+        quantity ← transaction.quantity
+        IF item NOT IN inventory THEN inventory[item] ← 0
+        IF type == "purchase" THEN
+            inventory[item] ← inventory[item] - quantity
+        ELSE IF type == "delivery" THEN
+            inventory[item] ← inventory[item] + quantity
+        IF inventory[item] < 0 THEN ALERT "Insufficient stock for " + item
+    RETURN inventory

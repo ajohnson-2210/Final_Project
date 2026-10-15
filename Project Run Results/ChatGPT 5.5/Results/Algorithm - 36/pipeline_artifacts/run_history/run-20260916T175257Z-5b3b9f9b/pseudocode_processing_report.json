@@ -1,0 +1,238 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 19,
+  "transformations": [
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    Low \u2190 0",
+      "canonical": "    Low <- 0",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    High \u2190 LENGTH(Array) - 1",
+      "canonical": "    High <- LENGTH(Array) - 1",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 6,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    WHILE Low \u2264 High",
+      "canonical": "    WHILE Low <= High",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 7,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        Mid \u2190 (Low + High) DIV 2",
+      "canonical": "        Mid <- (Low + High) DIV 2",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 14,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        IF Array[Low] \u2264 Array[Mid] THEN",
+      "canonical": "        IF Array[Low] <= Array[Mid] THEN",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 15,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            IF Target \u2265 Array[Low] AND Target < Array[Mid] THEN",
+      "canonical": "            IF Target >= Array[Low] AND Target < Array[Mid] THEN",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 16,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "                High \u2190 Mid - 1",
+      "canonical": "                High <- Mid - 1",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 18,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "                Low \u2190 Mid + 1",
+      "canonical": "                Low <- Mid + 1",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 21,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            IF Target > Array[Mid] AND Target \u2264 Array[High] THEN",
+      "canonical": "            IF Target > Array[Mid] AND Target <= Array[High] THEN",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 22,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "                Low \u2190 Mid + 1",
+      "canonical": "                Low <- Mid + 1",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 24,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "                High \u2190 Mid - 1",
+      "canonical": "                High <- Mid - 1",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 9,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        IF Array[Mid] = Target THEN",
+      "canonical": "        IF Array[Mid] == Target THEN",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    INPUT Array, Target\n\n    Low <- 0\n    High <- LENGTH(Array) - 1\n\n    WHILE Low <= High\n        Mid <- (Low + High) DIV 2\n\n        IF Array[Mid] == Target THEN\n            OUTPUT Mid\n            STOP\n        ENDIF\n\n        IF Array[Low] <= Array[Mid] THEN\n            IF Target >= Array[Low] AND Target < Array[Mid] THEN\n                High <- Mid - 1\n            ELSE\n                Low <- Mid + 1\n            ENDIF\n        ELSE\n            IF Target > Array[Mid] AND Target <= Array[High] THEN\n                Low <- Mid + 1\n            ELSE\n                High <- Mid - 1\n            ENDIF\n        ENDIF\n    ENDWHILE\n\n    OUTPUT \"Not Found\"\nEND",
+      "canonical": "FUNCTION unnamed_function ACCEPTS(Array, Target)\n        Low <- 0\n        High <- LENGTH(Array) - 1\n\n        WHILE Low <= High\n            Mid <- (Low + High) DIV 2\n\n            IF Array[Mid] == Target THEN\n                OUTPUT Mid\n                STOP\n            ENDIF\n\n            IF Array[Low] <= Array[Mid] THEN\n                IF Target >= Array[Low] AND Target < Array[Mid] THEN\n                    High <- Mid - 1\n                ELSE\n                    Low <- Mid + 1\n                ENDIF\n            ELSE\n                IF Target > Array[Mid] AND Target <= Array[High] THEN\n                    Low <- Mid + 1\n                ELSE\n                    High <- Mid - 1\n                ENDIF\n            ENDIF\n        ENDWHILE\n\n        OUTPUT \"Not Found\"\n    END\nENDFUNCTION",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        High <- LENGTH(Array) - 1",
+      "canonical": "        High <- LENGTH OF Array - 1",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 10,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "                STOP",
+      "canonical": "                RETURN",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 28,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        OUTPUT \"Not Found\"",
+      "canonical": "        OUTPUT STRING(\"Not Found\")",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        WHILE Low <= High",
+      "canonical": "        WHILE Low <= High DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 29,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    END",
+      "canonical": "",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 6,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            Mid <- (Low + High) DIV 2",
+      "canonical": "            Mid <- (Low + High) INTEGER DIVISION 2",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 2
+}

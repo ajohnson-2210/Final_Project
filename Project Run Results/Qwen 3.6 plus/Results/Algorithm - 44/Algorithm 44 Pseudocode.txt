@@ -1,0 +1,18 @@
+# Kadane's Algorithm (Max Subarray Sum)
+
+INPUT arr
+
+maxSoFar = -∞
+currentMax = 0
+
+FOR num in arr:
+    currentMax += num
+
+    IF maxSoFar < currentMax:
+        maxSoFar = currentMax
+
+    IF currentMax < 0:
+        currentMax = 0
+
+RETURN maxSoFar
+

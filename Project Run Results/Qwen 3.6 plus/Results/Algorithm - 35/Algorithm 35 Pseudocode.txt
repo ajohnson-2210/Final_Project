@@ -1,0 +1,21 @@
+# LRU Memory Buffer
+
+INIT capacity, cache = orderedDict()
+
+FUNCTION get(key):
+    IF key in cache:
+        moveToFront(cache, key)
+        RETURN cache[key]
+    ELSE:
+        RETURN null
+
+FUNCTION put(key, value):
+    IF key in cache:
+        moveToFront(cache, key)
+        cache[key] = value
+    ELSE:
+        IF length(cache) == capacity:
+            removeBack(cache)
+
+        addToFront(cache, key, value)
+

@@ -1,0 +1,211 @@
+{
+  "success": false,
+  "status": "FAILURE",
+  "stages": [
+    {
+      "name": "PSEUDOCODE_PROFILE_PROCESSING",
+      "status": "SUCCESS",
+      "message": "Processed source using GENERIC_COMPATIBILITY; 7 transformation(s); 2 header line(s) stripped.",
+      "duration_ms": 2.917
+    },
+    {
+      "name": "PSEUDOCODE_TO_AST",
+      "status": "SUCCESS",
+      "message": "Pseudocode parsed and validated.",
+      "duration_ms": 0.664
+    },
+    {
+      "name": "AST_TO_FLOW_DIAGRAM",
+      "status": "SUCCESS",
+      "message": "Machine-readable flow diagram generated.",
+      "duration_ms": 0.151
+    },
+    {
+      "name": "FLOW_DIAGRAM_TO_DRAWIO",
+      "status": "SUCCESS",
+      "message": "Editable draw.io XML flow diagram generated.",
+      "duration_ms": 1.264
+    },
+    {
+      "name": "FLOW_DIAGRAM_TO_PYTHON",
+      "status": "SUCCESS",
+      "message": "Python source generated and syntax validated.",
+      "duration_ms": 0.559
+    },
+    {
+      "name": "BEHAVIOURAL_TESTING",
+      "status": "FAILURE",
+      "message": "Passed 0 of 5 tests.",
+      "duration_ms": 220.859
+    }
+  ],
+  "output_files": {
+    "pseudocode_processing_report": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\ChatGPT 5.5\\Results\\Algorithm - 22\\pipeline_artifacts\\pseudocode_processing_report.json",
+    "processed_pseudocode": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\ChatGPT 5.5\\Results\\Algorithm - 22\\pipeline_artifacts\\processed_pseudocode.aj",
+    "ast": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\ChatGPT 5.5\\Results\\Algorithm - 22\\pipeline_artifacts\\ast.json",
+    "parser_report": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\ChatGPT 5.5\\Results\\Algorithm - 22\\pipeline_artifacts\\parser_report.json",
+    "ast_visualisation": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\ChatGPT 5.5\\Results\\Algorithm - 22\\pipeline_artifacts\\ast_visualisation.html",
+    "flow_diagram": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\ChatGPT 5.5\\Results\\Algorithm - 22\\pipeline_artifacts\\flow_diagram.json",
+    "flow_visualisation": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\ChatGPT 5.5\\Results\\Algorithm - 22\\pipeline_artifacts\\flow_diagram.html",
+    "flow_diagram_drawio": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\ChatGPT 5.5\\Results\\Algorithm - 22\\pipeline_artifacts\\flow_diagram.drawio",
+    "generated_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\ChatGPT 5.5\\Results\\Algorithm - 22\\pipeline_artifacts\\generated_program.py",
+    "compilation_report": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\ChatGPT 5.5\\Results\\Algorithm - 22\\pipeline_artifacts\\compilation_report.json",
+    "test_report": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\ChatGPT 5.5\\Results\\Algorithm - 22\\pipeline_artifacts\\test_report.json",
+    "pipeline_report": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\ChatGPT 5.5\\Results\\Algorithm - 22\\pipeline_artifacts\\pipeline_report.json"
+  },
+  "test_report": {
+    "program_path": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\ChatGPT 5.5\\Results\\Algorithm - 22\\pipeline_artifacts\\generated_program.py",
+    "success": false,
+    "total_tests": 5,
+    "passed_tests": 0,
+    "failed_tests": 5,
+    "category_summary": {
+      "NORMAL": {
+        "total": 1,
+        "passed": 0,
+        "failed": 1
+      },
+      "BOUNDARY": {
+        "total": 3,
+        "passed": 0,
+        "failed": 3
+      },
+      "ERROR_BEHAVIOUR": {
+        "total": 1,
+        "passed": 0,
+        "failed": 1
+      }
+    },
+    "results": [
+      {
+        "name": "factorial of five",
+        "status": "FAILED",
+        "expected_output": [
+          "Enter Number: Factoral = 120"
+        ],
+        "actual_output": [],
+        "standard_error": "",
+        "return_code": 0,
+        "duration_ms": 42.306,
+        "category": "NORMAL",
+        "semantic_feature": "FACTORIAL_LOOP",
+        "expected_return_code": 0,
+        "expected_error_type": null,
+        "actual_error_type": null,
+        "criteria_links": [
+          "P2",
+          "P4"
+        ],
+        "random_seed": null,
+        "environment": {},
+        "requires_modules": []
+      },
+      {
+        "name": "factorial of one",
+        "status": "FAILED",
+        "expected_output": [
+          "Enter Number: Factoral = 1"
+        ],
+        "actual_output": [],
+        "standard_error": "",
+        "return_code": 0,
+        "duration_ms": 35.644,
+        "category": "BOUNDARY",
+        "semantic_feature": "FACTORIAL_ONE",
+        "expected_return_code": 0,
+        "expected_error_type": null,
+        "actual_error_type": null,
+        "criteria_links": [
+          "P2",
+          "P3",
+          "P4"
+        ],
+        "random_seed": null,
+        "environment": {},
+        "requires_modules": []
+      },
+      {
+        "name": "factorial of zero",
+        "status": "FAILED",
+        "expected_output": [
+          "Enter Number: Factoral = 1"
+        ],
+        "actual_output": [],
+        "standard_error": "",
+        "return_code": 0,
+        "duration_ms": 50.064,
+        "category": "BOUNDARY",
+        "semantic_feature": "FACTORIAL_ZERO_REFERENCE_BEHAVIOUR",
+        "expected_return_code": 0,
+        "expected_error_type": null,
+        "actual_error_type": null,
+        "criteria_links": [
+          "P2",
+          "P3",
+          "P4"
+        ],
+        "random_seed": null,
+        "environment": {},
+        "requires_modules": []
+      },
+      {
+        "name": "negative integer follows frozen reference behaviour",
+        "status": "FAILED",
+        "expected_output": [
+          "Enter Number: Factoral = 1"
+        ],
+        "actual_output": [],
+        "standard_error": "",
+        "return_code": 0,
+        "duration_ms": 48.381,
+        "category": "BOUNDARY",
+        "semantic_feature": "FACTORIAL_NEGATIVE_REFERENCE_BEHAVIOUR",
+        "expected_return_code": 0,
+        "expected_error_type": null,
+        "actual_error_type": null,
+        "criteria_links": [
+          "P2",
+          "P3",
+          "P4"
+        ],
+        "random_seed": null,
+        "environment": {},
+        "requires_modules": []
+      },
+      {
+        "name": "invalid input retries",
+        "status": "FAILED",
+        "expected_output": [
+          "Enter Number: That's Not an Integer, Please Try Again!",
+          "Enter Number: Factoral = 24"
+        ],
+        "actual_output": [],
+        "standard_error": "",
+        "return_code": 0,
+        "duration_ms": 42.918,
+        "category": "ERROR_BEHAVIOUR",
+        "semantic_feature": "INTEGER_INPUT_RETRY",
+        "expected_return_code": 0,
+        "expected_error_type": null,
+        "actual_error_type": null,
+        "criteria_links": [
+          "P2",
+          "P3",
+          "P4"
+        ],
+        "random_seed": null,
+        "environment": {},
+        "requires_modules": []
+      }
+    ]
+  },
+  "error": null,
+  "input_metadata": {
+    "input_type": "PSEUDOCODE",
+    "pseudocode_profile": "GENERIC_COMPATIBILITY",
+    "source_modified": true,
+    "transformation_count": 7,
+    "header_comment_removed": true,
+    "header_lines_removed": 2
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "AJ_DIALECT_STRICT",
+  "source_modified": true,
+  "transformation_count": 2,
+  "transformations": [
+    {
+      "line": 7,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        Inventory[Item] \u2190 Inventory[Item] - Quantity",
+      "canonical": "        Inventory[Item] <- Inventory[Item] - Quantity",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 10,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        Inventory[Item] \u2190 Inventory[Item] + Quantity",
+      "canonical": "        Inventory[Item] <- Inventory[Item] + Quantity",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 2
+}

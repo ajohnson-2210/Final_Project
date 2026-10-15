@@ -1,0 +1,17 @@
+# Implement a queue using two stacks
+CLASS QUEUE
+  stack1 = []
+  stack2 = []
+
+  FUNCTION ENQUEUE(element)
+    stack1.push(element)
+
+  FUNCTION DEQUEUE()
+    IF stack2 IS EMPTY THEN
+      WHILE stack1 IS NOT EMPTY
+        stack2.push(stack1.pop())
+      END WHILE
+    END IF
+    RETURN stack2.pop()
+
+END CLASS

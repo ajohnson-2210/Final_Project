@@ -1,0 +1,12 @@
+# Create a process that checks whether a password contains at least 8 characters, one number, and one uppercase letter.
+FUNCTION isPasswordStrong(password):
+    IF length(password) < 8:
+        RETURN False
+    hasNumber = False
+    hasUpper = False
+    FOR each char in password:
+        IF char IS digit:
+            hasNumber = True
+        IF char IS uppercase:
+            hasUpper = True
+    RETURN hasNumber AND hasUpper

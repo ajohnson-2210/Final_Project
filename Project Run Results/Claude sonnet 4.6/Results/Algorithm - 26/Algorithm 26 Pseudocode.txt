@@ -1,0 +1,14 @@
+# Level-Order Binary Tree Traversal
+
+FUNCTION levelOrder(root):
+    IF root is NULL THEN RETURN []
+    queue ← [root], result ← []
+    WHILE queue is not empty:
+        level ← [], nextQueue ← []
+        FOR each node IN queue:
+            APPEND node.value TO level
+            IF node.left ≠ NULL THEN APPEND node.left TO nextQueue
+            IF node.right ≠ NULL THEN APPEND node.right TO nextQueue
+        APPEND level TO result
+        queue ← nextQueue
+    RETURN result

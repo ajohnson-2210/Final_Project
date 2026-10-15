@@ -1,0 +1,11 @@
+
+# Remove Duplicate IP Addresses
+
+FUNCTION uniqueIPs(ipList):
+    seen ← empty set
+    result ← []
+    FOR each ip IN ipList:
+        IF ip NOT IN seen THEN
+            ADD ip TO seen
+            APPEND ip TO result
+    RETURN result

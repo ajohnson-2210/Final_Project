@@ -1,0 +1,157 @@
+{
+  "root_id": "N1065",
+  "nodes": {
+    "N1065": {
+      "kind": "ProgramNode",
+      "line": 1,
+      "attributes": {}
+    },
+    "N1064": {
+      "kind": "FunctionNode",
+      "line": 1,
+      "attributes": {
+        "name": "GetUniqueIPs"
+      }
+    },
+    "N1049": {
+      "kind": "ParameterNode",
+      "line": 1,
+      "attributes": {
+        "name": "ip_list",
+        "declared_type": null
+      }
+    },
+    "N1063": {
+      "kind": "BlockNode",
+      "line": 2,
+      "attributes": {}
+    },
+    "N1052": {
+      "kind": "AssignmentNode",
+      "line": 2,
+      "attributes": {}
+    },
+    "N1050": {
+      "kind": "IdentifierNode",
+      "line": 2,
+      "attributes": {
+        "name": "unique_set"
+      }
+    },
+    "N1051": {
+      "kind": "EmptyLiteralNode",
+      "line": 2,
+      "attributes": {
+        "empty_type": "SET"
+      }
+    },
+    "N1059": {
+      "kind": "ForEachNode",
+      "line": 3,
+      "attributes": {}
+    },
+    "N1058": {
+      "kind": "IdentifierNode",
+      "line": 3,
+      "attributes": {
+        "name": "ip"
+      }
+    },
+    "N1053": {
+      "kind": "IdentifierNode",
+      "line": 3,
+      "attributes": {
+        "name": "ip_list"
+      }
+    },
+    "N1057": {
+      "kind": "BlockNode",
+      "line": 4,
+      "attributes": {}
+    },
+    "N1056": {
+      "kind": "CallNode",
+      "line": 4,
+      "attributes": {
+        "name": "add_to_set"
+      }
+    },
+    "N1054": {
+      "kind": "IdentifierNode",
+      "line": 4,
+      "attributes": {
+        "name": "unique_set"
+      }
+    },
+    "N1055": {
+      "kind": "IdentifierNode",
+      "line": 4,
+      "attributes": {
+        "name": "ip"
+      }
+    },
+    "N1062": {
+      "kind": "ReturnNode",
+      "line": 6,
+      "attributes": {}
+    },
+    "N1061": {
+      "kind": "CallNode",
+      "line": 6,
+      "attributes": {
+        "name": "to_list"
+      }
+    },
+    "N1060": {
+      "kind": "IdentifierNode",
+      "line": 6,
+      "attributes": {
+        "name": "unique_set"
+      }
+    }
+  },
+  "adjacency": {
+    "N1065": [
+      "N1064"
+    ],
+    "N1064": [
+      "N1049",
+      "N1063"
+    ],
+    "N1049": [],
+    "N1063": [
+      "N1052",
+      "N1059",
+      "N1062"
+    ],
+    "N1052": [
+      "N1050",
+      "N1051"
+    ],
+    "N1050": [],
+    "N1051": [],
+    "N1059": [
+      "N1058",
+      "N1053",
+      "N1057"
+    ],
+    "N1058": [],
+    "N1053": [],
+    "N1057": [
+      "N1056"
+    ],
+    "N1056": [
+      "N1054",
+      "N1055"
+    ],
+    "N1054": [],
+    "N1055": [],
+    "N1062": [
+      "N1061"
+    ],
+    "N1061": [
+      "N1060"
+    ],
+    "N1060": []
+  }
+}

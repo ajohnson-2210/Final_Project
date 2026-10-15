@@ -1,0 +1,190 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 15,
+  "transformations": [
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    i = 0",
+      "canonical": "    i <- 0",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    j = 0",
+      "canonical": "    j <- 0",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    intersection = empty List",
+      "canonical": "    intersection <- empty List",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 11,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            i = i + 1",
+      "canonical": "            i <- i + 1",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 12,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            j = j + 1",
+      "canonical": "            j <- j + 1",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 14,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            i = i + 1",
+      "canonical": "            i <- i + 1",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 16,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            j = j + 1",
+      "canonical": "            j <- j + 1",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    intersection <- empty List",
+      "canonical": "    intersection <- EMPTY LIST",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 6,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    WHILE i < length(arr1) AND j < length(arr2) DO",
+      "canonical": "    WHILE i < LENGTH OF arr1 AND j < LENGTH OF arr2 DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 8,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            IF length(intersection) == 0 OR intersection[last] != arr1[i] THEN",
+      "canonical": "            IF LENGTH OF intersection == 0 OR intersection[last] != arr1[i] THEN",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "FUNCTION FindIntersection(arr1, arr2):\n    i <- 0\n    j <- 0\n    intersection <- EMPTY LIST\n    \n    WHILE i < LENGTH OF arr1 AND j < LENGTH OF arr2 DO\n        IF arr1[i] == arr2[j] THEN\n            IF LENGTH OF intersection == 0 OR intersection[last] != arr1[i] THEN\n                APPEND arr1[i] TO intersection\n            END IF\n            i <- i + 1\n            j <- j + 1\n        ELSE IF arr1[i] < arr2[j] THEN\n            i <- i + 1\n        ELSE\n            j <- j + 1\n        END IF\n    END WHILE\n    \n    RETURN intersection\nEND FUNCTION",
+      "canonical": "FUNCTION FindIntersection(arr1, arr2):\n    i <- 0\n    j <- 0\n    intersection <- EMPTY LIST\n    \n    WHILE i < LENGTH OF arr1 AND j < LENGTH OF arr2 DO\n        IF arr1[i] == arr2[j] THEN\n            IF LENGTH OF intersection == 0 OR intersection[last] != arr1[i] THEN\n                APPEND arr1[i] TO intersection\n            ENDIF\n            i <- i + 1\n            j <- j + 1\n        ELSE IF arr1[i] < arr2[j] THEN\n            i <- i + 1\n        ELSE\n            j <- j + 1\n        ENDIF\n    ENDWHILE\n    \n    RETURN intersection\nENDFUNCTION",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION FindIntersection(arr1, arr2):\n    i <- 0\n    j <- 0\n    intersection <- EMPTY LIST\n    \n    WHILE i < LENGTH OF arr1 AND j < LENGTH OF arr2 DO\n        IF arr1[i] == arr2[j] THEN\n            IF LENGTH OF intersection == 0 OR intersection[last] != arr1[i] THEN\n                APPEND arr1[i] TO intersection\n            ENDIF\n            i <- i + 1\n            j <- j + 1\n        ELSE IF arr1[i] < arr2[j] THEN\n            i <- i + 1\n        ELSE\n            j <- j + 1\n        ENDIF\n    ENDWHILE\n    \n    RETURN intersection\nENDFUNCTION",
+      "canonical": "FUNCTION FindIntersection(arr1, arr2):\n    i <- 0\n    j <- 0\n    intersection <- EMPTY LIST\n    \n    WHILE i < LENGTH OF arr1 AND j < LENGTH OF arr2 DO\n        IF arr1[i] == arr2[j] THEN\n            IF LENGTH OF intersection == 0 OR intersection[-1] != arr1[i] THEN\n                APPEND arr1[i] TO intersection\n            ENDIF\n            i <- i + 1\n            j <- j + 1\n        ELSE IF arr1[i] < arr2[j] THEN\n            i <- i + 1\n        ELSE\n            j <- j + 1\n        ENDIF\n    ENDWHILE\n    \n    RETURN intersection\nENDFUNCTION",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION FindIntersection(arr1, arr2):",
+      "canonical": "FUNCTION FindIntersection ACCEPTS(arr1, arr2)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    ",
+      "canonical": "",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 19,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    ",
+      "canonical": "",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 1
+}

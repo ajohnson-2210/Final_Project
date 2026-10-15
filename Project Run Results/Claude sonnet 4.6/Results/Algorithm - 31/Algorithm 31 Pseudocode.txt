@@ -1,0 +1,10 @@
+# Co-reference Resolution
+
+FUNCTION resolveCoReferences(text):
+    entities ← extractNamedEntities(text)
+    mentions ← extractMentions(text)   // nouns and pronouns
+    FOR each pronoun IN mentions:
+        candidates ← findNearestEntities(pronoun, entities)
+        bestMatch ← scoreAndRank(candidates, pronoun)
+        MAP pronoun TO bestMatch
+    RETURN coreferenceMap

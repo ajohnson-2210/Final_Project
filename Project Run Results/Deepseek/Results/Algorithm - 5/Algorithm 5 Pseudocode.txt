@@ -1,0 +1,8 @@
+# Remove punctuation from a sentence.
+FUNCTION removePunctuation(sentence):
+    punctuation = set(". , ! ? ; : ' \" - ( ) [ ] { }")
+    result = ""
+    FOR each char in sentence:
+        IF char NOT IN punctuation:
+            result = result + char
+    RETURN result

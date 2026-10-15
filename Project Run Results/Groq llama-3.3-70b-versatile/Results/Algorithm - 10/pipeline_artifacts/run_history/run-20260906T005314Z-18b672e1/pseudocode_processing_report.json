@@ -1,0 +1,190 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 15,
+  "transformations": [
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  vowels = [\"a\", \"e\", \"i\", \"o\", \"u\"]",
+      "canonical": "  vowels <- [\"a\", \"e\", \"i\", \"o\", \"u\"]",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  counts = []",
+      "canonical": "  counts <- []",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    count = 0",
+      "canonical": "    count <- 0",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 8,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        count += 1",
+      "canonical": "        count <- count + 1",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 11,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    counts += [count]",
+      "canonical": "    counts <- counts + [count]",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  vowels <- [\"a\", \"e\", \"i\", \"o\", \"u\"]",
+      "canonical": "  vowels <- LIST [STRING(\"a\"), STRING(\"e\"), STRING(\"i\"), STRING(\"o\"), STRING(\"u\")]",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  vowels <- [\"a\", \"e\", \"i\", \"o\", \"u\"]",
+      "canonical": "  vowels <- LIST [STRING(\"a\"), STRING(\"e\"), STRING(\"i\"), STRING(\"o\"), STRING(\"u\")]",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  counts <- []",
+      "canonical": "  counts <- EMPTY LIST",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION COUNT_VOWELS(text)",
+      "canonical": "FUNCTION COUNT_VOWELS ACCEPTS(text)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "FUNCTION COUNT_VOWELS ACCEPTS(text)\n  vowels <- LIST [STRING(\"a\"), STRING(\"e\"), STRING(\"i\"), STRING(\"o\"), STRING(\"u\")]\n  counts <- EMPTY LIST\n  FOR v IN vowels\n    count <- 0\n    FOR c IN text\n      IF c == v THEN\n        count <- count + 1\n      END IF\n    END FOR\n    counts <- counts + [count]\n  END FOR\n  RETURN counts\nEND FUNCTION",
+      "canonical": "FUNCTION COUNT_VOWELS ACCEPTS(text)\n  vowels <- CALL list_value(STRING(\"a\"), STRING(\"e\"), STRING(\"i\"), STRING(\"o\"), STRING(\"u\"))\n  counts <- EMPTY LIST\n  FOR v IN vowels\n    count <- 0\n    FOR c IN text\n      IF c == v THEN\n        count <- count + 1\n      ENDIF\n    END FOR\n    counts <- counts + [count]\n  END FOR\n  RETURN counts\nENDFUNCTION",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "FUNCTION COUNT_VOWELS ACCEPTS(text)\n  vowels <- CALL list_value(STRING(\"a\"), STRING(\"e\"), STRING(\"i\"), STRING(\"o\"), STRING(\"u\"))\n  counts <- EMPTY LIST\n  FOR v IN vowels\n    count <- 0\n    FOR c IN text\n      IF c == v THEN\n        count <- count + 1\n      ENDIF\n    END FOR\n    counts <- counts + [count]\n  END FOR\n  RETURN counts\nENDFUNCTION",
+      "canonical": "FUNCTION COUNT_VOWELS ACCEPTS(text)\n  vowels <- CALL list_value(STRING(\"a\"), STRING(\"e\"), STRING(\"i\"), STRING(\"o\"), STRING(\"u\"))\n  counts <- EMPTY LIST\n  FOR v IN vowels\n    count <- 0\n    FOR c IN text\n      IF c == v THEN\n        count <- count + 1\n      ENDIF\n    END FOR\n    APPEND count TO counts\n  END FOR\n  RETURN counts\nENDFUNCTION",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  FOR v IN vowels",
+      "canonical": "  FOR EACH v IN vowels DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 6,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    FOR c IN text",
+      "canonical": "    FOR EACH c IN text DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 10,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "    END FOR",
+      "canonical": "    ENDFOR",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 12,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "  END FOR",
+      "canonical": "  ENDFOR",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 1
+}

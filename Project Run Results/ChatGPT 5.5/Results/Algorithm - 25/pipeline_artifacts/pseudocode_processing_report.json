@@ -1,0 +1,214 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 17,
+  "transformations": [
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    MaxLength \u2190 0",
+      "canonical": "    MaxLength <- 0",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    FOR Start \u2190 0 TO LENGTH(Text)-1",
+      "canonical": "    FOR Start <- 0 TO LENGTH(Text)-1",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 6,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        Seen \u2190 Empty Set",
+      "canonical": "        Seen <- Empty Set",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 7,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        CurrentLength \u2190 0",
+      "canonical": "        CurrentLength <- 0",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 9,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        FOR End \u2190 Start TO LENGTH(Text)-1",
+      "canonical": "        FOR End <- Start TO LENGTH(Text)-1",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 15,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            CurrentLength \u2190 CurrentLength + 1",
+      "canonical": "            CurrentLength <- CurrentLength + 1",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 19,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            MaxLength \u2190 CurrentLength",
+      "canonical": "            MaxLength <- CurrentLength",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    INPUT Text\n\n    MaxLength <- 0\n\n    FOR Start <- 0 TO LENGTH(Text)-1\n        Seen <- Empty Set\n        CurrentLength <- 0\n\n        FOR End <- Start TO LENGTH(Text)-1\n            IF Text[End] EXISTS IN Seen THEN\n                EXIT FOR\n            ENDIF\n\n            ADD Text[End] TO Seen\n            CurrentLength <- CurrentLength + 1\n        ENDFOR\n\n        IF CurrentLength > MaxLength THEN\n            MaxLength <- CurrentLength\n        ENDIF\n    ENDFOR\n\n    OUTPUT MaxLength\nEND",
+      "canonical": "FUNCTION unnamed_function ACCEPTS(Text)\n        MaxLength <- 0\n\n        FOR Start <- 0 TO LENGTH(Text)-1\n            Seen <- Empty Set\n            CurrentLength <- 0\n\n            FOR End <- Start TO LENGTH(Text)-1\n                IF Text[End] EXISTS IN Seen THEN\n                    EXIT FOR\n                ENDIF\n\n                ADD Text[End] TO Seen\n                CurrentLength <- CurrentLength + 1\n            ENDFOR\n\n            IF CurrentLength > MaxLength THEN\n                MaxLength <- CurrentLength\n            ENDIF\n        ENDFOR\n\n        OUTPUT MaxLength\n    END\nENDFUNCTION",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            Seen <- Empty Set",
+      "canonical": "            Seen <- EMPTY SET",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        FOR Start <- 0 TO LENGTH(Text)-1",
+      "canonical": "        FOR Start <- 0 TO LENGTH OF Text-1",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 8,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            FOR End <- Start TO LENGTH(Text)-1",
+      "canonical": "            FOR End <- Start TO LENGTH OF Text-1",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION unnamed_function ACCEPTS(Text)\n        MaxLength <- 0\n\n        FOR Start <- 0 TO LENGTH OF Text-1\n            Seen <- EMPTY SET\n            CurrentLength <- 0\n\n            FOR End <- Start TO LENGTH OF Text-1\n                IF Text[End] EXISTS IN Seen THEN\n                    EXIT FOR\n                ENDIF\n\n                ADD Text[End] TO Seen\n                CurrentLength <- CurrentLength + 1\n            ENDFOR\n\n            IF CurrentLength > MaxLength THEN\n                MaxLength <- CurrentLength\n            ENDIF\n        ENDFOR\n\n        OUTPUT MaxLength\n    END\nENDFUNCTION",
+      "canonical": "FUNCTION unnamed_function ACCEPTS(Text)\n        MaxLength <- 0\n\n        FOR Start <- 0 TO LENGTH OF Text-1\n            Seen <- EMPTY SET\n            CurrentLength <- 0\n\n            FOR End <- Start TO LENGTH OF Text-1\n                IF Text[End] EXISTS IN Seen THEN\n                    EXIT FOR\n                ENDIF\n\n                CALL add_to_set(Seen, Text[End])\n                CurrentLength <- CurrentLength + 1\n            ENDFOR\n\n            IF CurrentLength > MaxLength THEN\n                MaxLength <- CurrentLength\n            ENDIF\n        ENDFOR\n\n        OUTPUT MaxLength\n    END\nENDFUNCTION",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 9,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "                IF Text[End] EXISTS IN Seen THEN",
+      "canonical": "                IF Text[End] IN Seen THEN",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        FOR Start <- 0 TO LENGTH OF Text-1",
+      "canonical": "        FOR Start <- IN RANGE 0 TO (LENGTH OF Text-1) + 1 DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 8,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            FOR End <- Start TO LENGTH OF Text-1",
+      "canonical": "            FOR End <- IN RANGE Start TO (LENGTH OF Text-1) + 1 DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 23,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    END",
+      "canonical": "",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 10,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "                    EXIT FOR",
+      "canonical": "                    BREAK",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 2
+}

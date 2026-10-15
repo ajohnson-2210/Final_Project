@@ -1,0 +1,94 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 7,
+  "transformations": [
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "tokens = tokenizeAndClean(trainingTexts)",
+      "canonical": "tokens <- tokenizeAndClean(trainingTexts)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "vectors = convertToTFIDF(tokens)",
+      "canonical": "vectors <- convertToTFIDF(tokens)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "model = trainClassifier(vectors, labels)",
+      "canonical": "model <- trainClassifier(vectors, labels)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "INPUT trainingTexts, labels\n\ntokens <- tokenizeAndClean(trainingTexts)\nvectors <- convertToTFIDF(tokens)\nmodel <- trainClassifier(vectors, labels)\n\nRETURN model",
+      "canonical": "FUNCTION unnamed_function ACCEPTS(trainingTexts, labels)\n    tokens <- tokenizeAndClean(trainingTexts)\n    vectors <- convertToTFIDF(tokens)\n    model <- trainClassifier(vectors, labels)\n\n    RETURN model\nENDFUNCTION",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    tokens <- tokenizeAndClean(trainingTexts)",
+      "canonical": "    tokens <- CALL tokenizeAndClean(trainingTexts)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    vectors <- convertToTFIDF(tokens)",
+      "canonical": "    vectors <- CALL convertToTFIDF(tokens)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    model <- trainClassifier(vectors, labels)",
+      "canonical": "    model <- CALL trainClassifier(vectors, labels)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 2
+}

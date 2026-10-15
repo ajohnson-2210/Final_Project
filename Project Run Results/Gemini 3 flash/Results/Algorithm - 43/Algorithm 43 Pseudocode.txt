@@ -1,0 +1,11 @@
+# Solve Tower of Hanoi for N discs    
+PROCEDURE TowerOfHanoi(N, source, auxiliary, target):
+    IF N == 1 THEN
+        PRINT "Move disc 1 from " + source + " to " + target
+        RETURN
+    END IF
+    
+    TowerOfHanoi(N - 1, source, target, auxiliary)
+    PRINT "Move disc " + N + " from " + source + " to " + target
+    TowerOfHanoi(N - 1, auxiliary, source, target)
+END PROCEDURE

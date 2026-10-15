@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AJ_24038155 AST Visualisation</title>
+<style>
+:root {
+  color-scheme: light dark;
+  --bg: #f7f8fb;
+  --panel: #ffffff;
+  --text: #172033;
+  --muted: #64748b;
+  --line: #94a3b8;
+  --border: #cbd5e1;
+  --accent: #2563eb;
+  --accent-soft: #dbeafe;
+  --node: #ffffff;
+  --node-shadow: rgba(15, 23, 42, 0.13);
+  --success: #15803d;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f172a;
+    --panel: #111827;
+    --text: #e5e7eb;
+    --muted: #94a3b8;
+    --line: #64748b;
+    --border: #334155;
+    --accent: #60a5fa;
+    --accent-soft: #172554;
+    --node: #1e293b;
+    --node-shadow: rgba(0, 0, 0, 0.3);
+    --success: #4ade80;
+  }
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; font-family: Inter, system-ui, sans-serif; background: var(--bg); color: var(--text); }
+body { display: grid; grid-template-rows: auto 1fr; overflow: hidden; }
+header {
+  display: flex; gap: 12px; align-items: center; flex-wrap: wrap;
+  padding: 12px 16px; background: var(--panel); border-bottom: 1px solid var(--border);
+}
+header h1 { font-size: 18px; margin: 0 12px 0 0; }
+.control {
+  appearance: none; border: 1px solid var(--border); border-radius: 8px;
+  background: var(--panel); color: var(--text); padding: 8px 10px; font-size: 14px;
+}
+button.control { cursor: pointer; }
+button.control:hover { border-color: var(--accent); }
+#search { width: 230px; }
+.status { margin-left: auto; color: var(--muted); font-size: 13px; }
+main { display: grid; grid-template-columns: minmax(0, 1fr) 300px; min-height: 0; }
+#viewport { position: relative; overflow: hidden; cursor: grab; background-image: radial-gradient(var(--border) 1px, transparent 1px); background-size: 22px 22px; }
+#viewport.dragging { cursor: grabbing; }
+svg { width: 100%; height: 100%; display: block; user-select: none; }
+.edge { fill: none; stroke: var(--line); stroke-width: 1.7; }
+.node rect { fill: var(--node); stroke: var(--border); stroke-width: 1.4; rx: 9; filter: drop-shadow(0 3px 5px var(--node-shadow)); }
+.node:hover rect, .node.selected rect { stroke: var(--accent); stroke-width: 2.5; }
+.node.match rect { stroke: var(--success); stroke-width: 3; }
+.node text { pointer-events: none; fill: var(--text); text-anchor: middle; }
+.node .kind { font-weight: 700; font-size: 13px; }
+.node .id { fill: var(--muted); font-size: 11px; }
+.node .toggle { pointer-events: auto; cursor: pointer; fill: var(--accent-soft); stroke: var(--accent); }
+.node .toggle-text { font-weight: 700; fill: var(--accent); font-size: 12px; }
+aside { padding: 16px; overflow: auto; border-left: 1px solid var(--border); background: var(--panel); }
+aside h2 { margin: 0 0 12px; font-size: 16px; }
+.meta-row { border-bottom: 1px solid var(--border); padding: 9px 0; }
+.meta-label { color: var(--muted); font-size: 12px; display: block; margin-bottom: 3px; }
+.meta-value { font-size: 14px; overflow-wrap: anywhere; white-space: pre-wrap; }
+.help { margin-top: 18px; color: var(--muted); font-size: 12px; line-height: 1.5; }
+@media (max-width: 760px) { main { grid-template-columns: 1fr; } aside { display: none; } .status { display: none; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>AJ_24038155 AST Visualisation</h1>
+  <button class="control" id="zoom-in" title="Zoom in">Zoom in +</button>
+  <button class="control" id="zoom-out" title="Zoom out">Zoom out −</button>
+  <button class="control" id="reset-view">Reset view</button>
+  <button class="control" id="fit">Fit tree</button>
+  <button class="control" id="expand">Expand all</button>
+  <button class="control" id="collapse">Collapse descendants</button>
+  <input class="control" id="search" type="search" placeholder="Search node kind, ID or value">
+  <span class="status" id="status"></span>
+</header>
+<main>
+  <section id="viewport" aria-label="Interactive AST tree">
+    <svg id="canvas" role="img" aria-label="Abstract syntax tree">
+      <g id="scene"><g id="edges"></g><g id="nodes"></g></g>
+    </svg>
+  </section>
+  <aside>
+    <h2>Selected node</h2>
+    <div id="details"><span class="meta-value">Select a node to inspect its metadata.</span></div>
+    <p class="help">Drag the background to pan. Use the mouse wheel to zoom. Click a ± marker to collapse or expand descendants. Double-click a node to centre it.</p>
+  </aside>
+</main>
+<script>
+const graph = {"root_id": "N12040", "nodes": {"N12040": {"kind": "ProgramNode", "line": 1, "attributes": {}}, "N12039": {"kind": "ClassNode", "line": 1, "attributes": {"name": "unnamed_class", "parameters": []}}, "N12038": {"kind": "BlockNode", "line": 2, "attributes": {}}, "N11971": {"kind": "PropertyDeclarationNode", "line": 2, "attributes": {"name": "stack", "declared_type": "LIST"}}, "N11972": {"kind": "PropertyDeclarationNode", "line": 3, "attributes": {"name": "size", "declared_type": "INTEGER"}}, "N11982": {"kind": "ConstructorNode", "line": 5, "attributes": {"parameters": []}}, "N11981": {"kind": "BlockNode", "line": 6, "attributes": {}}, "N11976": {"kind": "PropertyAssignmentNode", "line": 6, "attributes": {}}, "N11975": {"kind": "MemberAccessNode", "line": 6, "attributes": {"member": "stack"}}, "N11974": {"kind": "IdentifierNode", "line": 6, "attributes": {"name": "THIS"}}, "N11973": {"kind": "EmptyLiteralNode", "line": 6, "attributes": {"empty_type": "LIST"}}, "N11980": {"kind": "PropertyAssignmentNode", "line": 7, "attributes": {}}, "N11979": {"kind": "MemberAccessNode", "line": 7, "attributes": {"member": "size"}}, "N11978": {"kind": "IdentifierNode", "line": 7, "attributes": {"name": "THIS"}}, "N11977": {"kind": "LiteralNode", "line": 7, "attributes": {"value": 0, "data_type": "INTEGER"}}, "N11996": {"kind": "MethodNode", "line": 10, "attributes": {"name": "push"}}, "N11983": {"kind": "ParameterNode", "line": 10, "attributes": {"name": "x", "declared_type": null}}, "N11995": {"kind": "BlockNode", "line": 11, "attributes": {}}, "N11987": {"kind": "AppendNode", "line": 11, "attributes": {}}, "N11984": {"kind": "IdentifierNode", "line": 11, "attributes": {"name": "x"}}, "N11986": {"kind": "MemberAccessNode", "line": 11, "attributes": {"member": "stack"}}, "N11985": {"kind": "IdentifierNode", "line": 11, "attributes": {"name": "THIS"}}, "N11994": {"kind": "AssignmentNode", "line": 12, "attributes": {}}, "N11989": {"kind": "MemberAccessNode", "line": 12, "attributes": {"member": "size"}}, "N11988": {"kind": "IdentifierNode", "line": 12, "attributes": {"name": "THIS"}}, "N11993": {"kind": "BinaryNode", "line": 12, "attributes": {"operator": "+"}}, "N11991": {"kind": "MemberAccessNode", "line": 12, "attributes": {"member": "size"}}, "N11990": {"kind": "IdentifierNode", "line": 12, "attributes": {"name": "THIS"}}, "N11992": {"kind": "LiteralNode", "line": 12, "attributes": {"value": 1, "data_type": "INTEGER"}}, "N12018": {"kind": "MethodNode", "line": 16, "attributes": {"name": "pop", "parameters": []}}, "N12017": {"kind": "BlockNode", "line": 17, "attributes": {}}, "N12016": {"kind": "IfNode", "line": 17, "attributes": {"else_if": []}}, "N12000": {"kind": "BinaryNode", "line": 17, "attributes": {"operator": ">"}}, "N11998": {"kind": "MemberAccessNode", "line": 17, "attributes": {"member": "size"}}, "N11997": {"kind": "IdentifierNode", "line": 17, "attributes": {"name": "THIS"}}, "N11999": {"kind": "LiteralNode", "line": 17, "attributes": {"value": 0, "data_type": "INTEGER"}}, "N12012": {"kind": "BlockNode", "line": 18, "attributes": {}}, "N12007": {"kind": "AssignmentNode", "line": 18, "attributes": {}}, "N12002": {"kind": "MemberAccessNode", "line": 18, "attributes": {"member": "size"}}, "N12001": {"kind": "IdentifierNode", "line": 18, "attributes": {"name": "THIS"}}, "N12006": {"kind": "BinaryNode", "line": 18, "attributes": {"operator": "-"}}, "N12004": {"kind": "MemberAccessNode", "line": 18, "attributes": {"member": "size"}}, "N12003": {"kind": "IdentifierNode", "line": 18, "attributes": {"name": "THIS"}}, "N12005": {"kind": "LiteralNode", "line": 18, "attributes": {"value": 1, "data_type": "INTEGER"}}, "N12011": {"kind": "ReturnNode", "line": 19, "attributes": {}}, "N12010": {"kind": "MemberCallNode", "line": 19, "attributes": {"member": "pop", "arguments": [], "resolved_intrinsic": null}}, "N12009": {"kind": "MemberAccessNode", "line": 19, "attributes": {"member": "stack"}}, "N12008": {"kind": "IdentifierNode", "line": 19, "attributes": {"name": "THIS"}}, "N12015": {"kind": "BlockNode", "line": 21, "attributes": {}}, "N12014": {"kind": "RaiseNode", "line": 21, "attributes": {}}, "N12013": {"kind": "LiteralNode", "line": 21, "attributes": {"value": "ERROR", "data_type": "STRING"}}, "N12037": {"kind": "MethodNode", "line": 26, "attributes": {"name": "peek", "parameters": []}}, "N12036": {"kind": "BlockNode", "line": 27, "attributes": {}}, "N12035": {"kind": "IfNode", "line": 27, "attributes": {"else_if": []}}, "N12022": {"kind": "BinaryNode", "line": 27, "attributes": {"operator": ">"}}, "N12020": {"kind": "MemberAccessNode", "line": 27, "attributes": {"member": "size"}}, "N12019": {"kind": "IdentifierNode", "line": 27, "attributes": {"name": "THIS"}}, "N12021": {"kind": "LiteralNode", "line": 27, "attributes": {"value": 0, "data_type": "INTEGER"}}, "N12031": {"kind": "BlockNode", "line": 28, "attributes": {}}, "N12030": {"kind": "ReturnNode", "line": 28, "attributes": {}}, "N12029": {"kind": "IndexNode", "line": 28, "attributes": {}}, "N12024": {"kind": "MemberAccessNode", "line": 28, "attributes": {"member": "stack"}}, "N12023": {"kind": "IdentifierNode", "line": 28, "attributes": {"name": "THIS"}}, "N12028": {"kind": "BinaryNode", "line": 28, "attributes": {"operator": "-"}}, "N12026": {"kind": "MemberAccessNode", "line": 28, "attributes": {"member": "size"}}, "N12025": {"kind": "IdentifierNode", "line": 28, "attributes": {"name": "THIS"}}, "N12027": {"kind": "LiteralNode", "line": 28, "attributes": {"value": 1, "data_type": "INTEGER"}}, "N12034": {"kind": "BlockNode", "line": 30, "attributes": {}}, "N12033": {"kind": "RaiseNode", "line": 30, "attributes": {}}, "N12032": {"kind": "LiteralNode", "line": 30, "attributes": {"value": "ERROR", "data_type": "STRING"}}}, "adjacency": {"N12040": ["N12039"], "N12039": ["N12038"], "N12038": ["N11971", "N11972", "N11982", "N11996", "N12018", "N12037"], "N11971": [], "N11972": [], "N11982": ["N11981"], "N11981": ["N11976", "N11980"], "N11976": ["N11975", "N11973"], "N11975": ["N11974"], "N11974": [], "N11973": [], "N11980": ["N11979", "N11977"], "N11979": ["N11978"], "N11978": [], "N11977": [], "N11996": ["N11983", "N11995"], "N11983": [], "N11995": ["N11987", "N11994"], "N11987": ["N11984", "N11986"], "N11984": [], "N11986": ["N11985"], "N11985": [], "N11994": ["N11989", "N11993"], "N11989": ["N11988"], "N11988": [], "N11993": ["N11991", "N11992"], "N11991": ["N11990"], "N11990": [], "N11992": [], "N12018": ["N12017"], "N12017": ["N12016"], "N12016": ["N12000", "N12012", "N12015"], "N12000": ["N11998", "N11999"], "N11998": ["N11997"], "N11997": [], "N11999": [], "N12012": ["N12007", "N12011"], "N12007": ["N12002", "N12006"], "N12002": ["N12001"], "N12001": [], "N12006": ["N12004", "N12005"], "N12004": ["N12003"], "N12003": [], "N12005": [], "N12011": ["N12010"], "N12010": ["N12009"], "N12009": ["N12008"], "N12008": [], "N12015": ["N12014"], "N12014": ["N12013"], "N12013": [], "N12037": ["N12036"], "N12036": ["N12035"], "N12035": ["N12022", "N12031", "N12034"], "N12022": ["N12020", "N12021"], "N12020": ["N12019"], "N12019": [], "N12021": [], "N12031": ["N12030"], "N12030": ["N12029"], "N12029": ["N12024", "N12028"], "N12024": ["N12023"], "N12023": [], "N12028": ["N12026", "N12027"], "N12026": ["N12025"], "N12025": [], "N12027": [], "N12034": ["N12033"], "N12033": ["N12032"], "N12032": []}};
+const svg = document.getElementById('canvas');
+const scene = document.getElementById('scene');
+const edgesLayer = document.getElementById('edges');
+const nodesLayer = document.getElementById('nodes');
+const viewport = document.getElementById('viewport');
+const details = document.getElementById('details');
+const status = document.getElementById('status');
+const collapsed = new Set();
+let selectedId = null;
+const INITIAL_SCALE = 1.15;
+const MIN_SCALE = 0.15;
+const MAX_SCALE = 4;
+const ZOOM_FACTOR = 1.2;
+let scale = INITIAL_SCALE;
+let tx = 40;
+let ty = 40;
+let dragging = false;
+let lastX = 0;
+let lastY = 0;
+const positions = new Map();
+const NODE_W = 174;
+const NODE_H = 62;
+const X_GAP = 54;
+const Y_GAP = 94;
+
+function visibleChildren(id) { return collapsed.has(id) ? [] : (graph.adjacency[id] || []); }
+
+function layout() {
+  positions.clear();
+  let leafIndex = 0;
+  function visit(id, depth) {
+    const children = visibleChildren(id);
+    let x;
+    if (!children.length) { x = leafIndex++ * (NODE_W + X_GAP); }
+    else {
+      children.forEach(child => visit(child, depth + 1));
+      x = (positions.get(children[0]).x + positions.get(children[children.length - 1]).x) / 2;
+    }
+    positions.set(id, {x, y: depth * (NODE_H + Y_GAP)});
+  }
+  visit(graph.root_id, 0);
+}
+
+function makeSvg(name, attrs = {}) {
+  const el = document.createElementNS('http://www.w3.org/2000/svg', name);
+  Object.entries(attrs).forEach(([k, v]) => el.setAttribute(k, String(v)));
+  return el;
+}
+
+function render() {
+  layout();
+  edgesLayer.replaceChildren();
+  nodesLayer.replaceChildren();
+
+  for (const [source, targets] of Object.entries(graph.adjacency)) {
+    if (!positions.has(source)) continue;
+    for (const target of targets) {
+      if (!positions.has(target)) continue;
+      const a = positions.get(source), b = positions.get(target);
+      const path = makeSvg('path', {
+        class: 'edge',
+        d: `M ${a.x + NODE_W / 2} ${a.y + NODE_H} C ${a.x + NODE_W / 2} ${a.y + NODE_H + 40}, ${b.x + NODE_W / 2} ${b.y - 40}, ${b.x + NODE_W / 2} ${b.y}`
+      });
+      edgesLayer.appendChild(path);
+    }
+  }
+
+  for (const [id, pos] of positions) {
+    const data = graph.nodes[id];
+    const group = makeSvg('g', {class: 'node', transform: `translate(${pos.x},${pos.y})`, 'data-id': id});
+    if (id === selectedId) group.classList.add('selected');
+    group.appendChild(makeSvg('rect', {width: NODE_W, height: NODE_H}));
+
+    const kind = makeSvg('text', {class: 'kind', x: NODE_W / 2, y: 27});
+    kind.textContent = data.kind;
+    group.appendChild(kind);
+    const idText = makeSvg('text', {class: 'id', x: NODE_W / 2, y: 47});
+    idText.textContent = `${id} · line ${data.line}`;
+    group.appendChild(idText);
+
+    const children = graph.adjacency[id] || [];
+    if (children.length) {
+      const circle = makeSvg('circle', {class: 'toggle', cx: NODE_W - 12, cy: 12, r: 9});
+      circle.addEventListener('click', event => { event.stopPropagation(); toggle(id); });
+      group.appendChild(circle);
+      const sign = makeSvg('text', {class: 'toggle-text', x: NODE_W - 12, y: 16});
+      sign.textContent = collapsed.has(id) ? '+' : '−';
+      group.appendChild(sign);
+    }
+
+    group.addEventListener('click', () => selectNode(id));
+    group.addEventListener('dblclick', () => centreNode(id));
+    nodesLayer.appendChild(group);
+  }
+  applyTransform();
+  runSearch();
+}
+
+function toggle(id) {
+  if (collapsed.has(id)) collapsed.delete(id); else collapsed.add(id);
+  render();
+}
+
+function selectNode(id) {
+  selectedId = id;
+  const data = graph.nodes[id];
+  const children = graph.adjacency[id] || [];
+  details.innerHTML = '';
+  const entries = [
+    ['Node ID', id], ['Kind', data.kind], ['Source line', data.line],
+    ['Children', children.length ? children.join(', ') : 'None'],
+    ['Attributes', Object.keys(data.attributes || {}).length ? JSON.stringify(data.attributes, null, 2) : 'None']
+  ];
+  for (const [label, value] of entries) {
+    const row = document.createElement('div'); row.className = 'meta-row';
+    const labelEl = document.createElement('span'); labelEl.className = 'meta-label'; labelEl.textContent = label;
+    const valueEl = document.createElement('span'); valueEl.className = 'meta-value'; valueEl.textContent = String(value);
+    row.append(labelEl, valueEl); details.appendChild(row);
+  }
+  document.querySelectorAll('.node').forEach(el => el.classList.toggle('selected', el.dataset.id === id));
+}
+
+function updateZoomStatus() {
+  const percentage = Math.round(scale * 100);
+  status.textContent = `${positions.size} visible / ${Object.keys(graph.nodes).length} total nodes · ${percentage}%`;
+}
+
+function applyTransform() {
+  scene.setAttribute('transform', `translate(${tx} ${ty}) scale(${scale})`);
+  updateZoomStatus();
+}
+
+function zoomAt(factor, centreX = null, centreY = null) {
+  const rect = viewport.getBoundingClientRect();
+  const focusX = centreX === null ? rect.width / 2 : centreX;
+  const focusY = centreY === null ? rect.height / 2 : centreY;
+  const oldScale = scale;
+  const requestedScale = scale * factor;
+  scale = Math.max(MIN_SCALE, Math.min(MAX_SCALE, requestedScale));
+
+  if (scale === oldScale) return;
+
+  tx = focusX - (focusX - tx) * (scale / oldScale);
+  ty = focusY - (focusY - ty) * (scale / oldScale);
+  applyTransform();
+}
+
+function resetView() {
+  scale = INITIAL_SCALE;
+  const rootPosition = positions.get(graph.root_id);
+  const rect = viewport.getBoundingClientRect();
+
+  if (rootPosition) {
+    tx = rect.width / 2 - (rootPosition.x + NODE_W / 2) * scale;
+    ty = 36 - rootPosition.y * scale;
+  } else {
+    tx = 40;
+    ty = 40;
+  }
+
+  applyTransform();
+}
+
+function fitTree() {
+  if (!positions.size) return;
+  const xs = [...positions.values()].map(p => p.x);
+  const ys = [...positions.values()].map(p => p.y);
+  const minX = Math.min(...xs), maxX = Math.max(...xs) + NODE_W;
+  const minY = Math.min(...ys), maxY = Math.max(...ys) + NODE_H;
+  const width = Math.max(maxX - minX, 1), height = Math.max(maxY - minY, 1);
+  const rect = viewport.getBoundingClientRect();
+  scale = Math.min((rect.width - 70) / width, (rect.height - 70) / height, 1.4);
+  tx = (rect.width - width * scale) / 2 - minX * scale;
+  ty = 35 - minY * scale;
+  applyTransform();
+}
+
+function centreNode(id) {
+  const p = positions.get(id); if (!p) return;
+  const rect = viewport.getBoundingClientRect();
+  tx = rect.width / 2 - (p.x + NODE_W / 2) * scale;
+  ty = rect.height / 2 - (p.y + NODE_H / 2) * scale;
+  applyTransform(); selectNode(id);
+}
+
+function runSearch() {
+  const query = document.getElementById('search').value.trim().toLowerCase();
+  document.querySelectorAll('.node').forEach(el => {
+    const id = el.dataset.id;
+    const node = graph.nodes[id];
+    const haystack = `${id} ${node.kind} ${JSON.stringify(node.attributes)}`.toLowerCase();
+    el.classList.toggle('match', Boolean(query) && haystack.includes(query));
+  });
+}
+
+document.getElementById('zoom-in').addEventListener('click', () => zoomAt(ZOOM_FACTOR));
+document.getElementById('zoom-out').addEventListener('click', () => zoomAt(1 / ZOOM_FACTOR));
+document.getElementById('reset-view').addEventListener('click', resetView);
+document.getElementById('fit').addEventListener('click', fitTree);
+document.getElementById('expand').addEventListener('click', () => { collapsed.clear(); render(); fitTree(); });
+document.getElementById('collapse').addEventListener('click', () => {
+  collapsed.clear();
+  for (const id of Object.keys(graph.adjacency)) if (id !== graph.root_id && (graph.adjacency[id] || []).length) collapsed.add(id);
+  render(); fitTree();
+});
+document.getElementById('search').addEventListener('input', runSearch);
+viewport.addEventListener('mousedown', event => { if (event.target.closest('.node')) return; dragging = true; lastX = event.clientX; lastY = event.clientY; viewport.classList.add('dragging'); });
+window.addEventListener('mousemove', event => { if (!dragging) return; tx += event.clientX - lastX; ty += event.clientY - lastY; lastX = event.clientX; lastY = event.clientY; applyTransform(); });
+window.addEventListener('mouseup', () => { dragging = false; viewport.classList.remove('dragging'); });
+viewport.addEventListener('wheel', event => {
+  event.preventDefault();
+  const rect = viewport.getBoundingClientRect();
+  const mx = event.clientX - rect.left, my = event.clientY - rect.top;
+  zoomAt(event.deltaY < 0 ? 1.12 : 0.89, mx, my);
+}, {passive: false});
+window.addEventListener('resize', () => {
+  updateZoomStatus();
+});
+render();
+requestAnimationFrame(resetView);
+</script>
+</body>
+</html>

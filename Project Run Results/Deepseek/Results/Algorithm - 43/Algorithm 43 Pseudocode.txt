@@ -1,0 +1,8 @@
+# Solve the Tower of Hanoi problem for N discs.
+FUNCTION towerOfHanoi(n, source, destination, auxiliary):
+    IF n == 1:
+        PRINT "Move disc 1 from " + source + " to " + destination
+        RETURN
+    towerOfHanoi(n-1, source, auxiliary, destination)
+    PRINT "Move disc " + n + " from " + source + " to " + destination
+    towerOfHanoi(n-1, auxiliary, destination, source)

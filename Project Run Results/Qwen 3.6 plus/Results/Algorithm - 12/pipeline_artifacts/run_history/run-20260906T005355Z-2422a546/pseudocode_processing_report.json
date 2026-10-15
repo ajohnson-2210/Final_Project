@@ -1,0 +1,71 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 5,
+  "transformations": [
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "sum = 0",
+      "canonical": "sum <- 0",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 6,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    sum += matrix[i][i]",
+      "canonical": "    sum <- sum + matrix[i][i]",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "SHAPE_ANNOTATION",
+      "branch": "SQUARE_DIMENSION_LOOP_BOUND",
+      "source": "FOR i from 0 to N-1:",
+      "canonical": "FOR i <- IN RANGE 0 TO LENGTH OF matrix DO",
+      "evidence": [
+        "INPUT annotation explicitly states one square dimension symbol D x D",
+        "source loop uses that same symbol only as the inclusive upper bound D - 1"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "INPUT matrix (N x N)\n\nsum <- 0\n\nFOR i <- IN RANGE 0 TO LENGTH OF matrix DO\n    sum <- sum + matrix[i][i]\n\nRETURN sum",
+      "canonical": "FUNCTION unnamed_function ACCEPTS(matrix)\n    sum <- 0\n\n    FOR i <- IN RANGE 0 TO LENGTH OF matrix DO\n        sum <- sum + matrix[i][i]\n\n    RETURN sum\nENDFUNCTION",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 7,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDFOR",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 2
+}

@@ -1,0 +1,13 @@
+# Determine all divisors of a given positive integer    
+FUNCTION FindDivisors(n):
+    divisors = empty List
+    FOR i FROM 1 TO SQUARE_ROOT(n) DO
+        IF n MOD i == 0 THEN
+            APPEND i TO divisors
+            IF i != (n DIV i) THEN
+                APPEND (n DIV i) TO divisors
+            END IF
+        END IF
+    END FOR
+    RETURN divisors
+END FUNCTION

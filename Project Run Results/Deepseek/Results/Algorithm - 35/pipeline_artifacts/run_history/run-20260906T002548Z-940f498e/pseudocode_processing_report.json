@@ -1,0 +1,312 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 25,
+  "transformations": [
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    cache = empty dictionary",
+      "canonical": "    cache <- empty dictionary",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    capacity = given capacity",
+      "canonical": "    capacity <- given capacity",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    order = empty list (or a doubly linked list to maintain access order)",
+      "canonical": "    order <- empty list (or a doubly linked list to maintain access order)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 18,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            cache[key] = value",
+      "canonical": "            cache[key] <- value",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 24,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "                lruKey = order.back()",
+      "canonical": "                lruKey <- order.back()",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 28,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            cache[key] = value",
+      "canonical": "            cache[key] <- value",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 9,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            RETURN -1 // or NULL",
+      "canonical": "            RETURN -1\n            // or NULL",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    order <- empty list (or a doubly linked list to maintain access order)",
+      "canonical": "order <- empty list\n    // (or a doubly linked list to maintain access order)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    cache <- empty dictionary",
+      "canonical": "    cache <- EMPTY DICTIONARY",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "order <- empty list",
+      "canonical": "order <- EMPTY LIST",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 26,
+      "rule_family": "COLLECTION_OPERATION",
+      "branch": "EVIDENCED_COLLECTION_QUERY_ACCESS",
+      "source": "                lruKey <- order.back()",
+      "canonical": "                lruKey <- order[LAST]",
+      "evidence": [
+        "receiver type is independently established by an explicit collection declaration or constructor in readable lexical scope",
+        "query/access spelling is accepted only for collection kinds that support the corresponding length/front/back/empty operation",
+        "method spelling never establishes collection type and direct rebinds/formal-parameter shadowing invalidate inherited evidence"
+      ],
+      "confidence": "source_proven",
+      "semantic_change": false
+    },
+    {
+      "line": 24,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            IF length(order) >= capacity:",
+      "canonical": "            IF LENGTH OF order >= capacity:",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "CLASS LRUCache:\n    // Use a combination of a dictionary and a doubly linked list (or an ordered map)\n    cache <- EMPTY DICTIONARY\n    capacity <- given capacity\norder <- EMPTY LIST\n    // (or a doubly linked list to maintain access order)\n\n    FUNCTION get(key):\n        IF key NOT IN cache:\n            RETURN -1\n            // or NULL\n        // Move key to front of order (most recently used)\n        order.remove(key)\n        order.insert_front(key)\n        RETURN cache[key]\n\n    FUNCTION put(key, value):\n        IF key IN cache:\n            // Update value and move key to front\n            cache[key] <- value\n            order.remove(key)\n            order.insert_front(key)\n        ELSE:\n            IF LENGTH OF order >= capacity:\n                // Evict the least recently used (last element in order)\n                lruKey <- order[LAST]\n                order.remove_back()\n                cache.remove(lruKey)\n            order.insert_front(key)\n            cache[key] <- value",
+      "canonical": "CLASS LRUCache:\n    // Use a combination of a dictionary and a doubly linked list (or an ordered map)\n    cache <- EMPTY DICTIONARY\n    capacity <- given capacity\norder <- EMPTY LIST\n    // (or a doubly linked list to maintain access order)\n\n    FUNCTION get(key):\n        IF key NOT IN cache:\n            RETURN -1\n            // or NULL\n        // Move key to front of order (most recently used)\n        order.remove(key)\n        order.insert_front(key)\n        RETURN cache[key]\n\n    FUNCTION put(key, value):\n        IF key IN cache:\n            // Update value and move key to front\n            cache[key] <- value\n            order.remove(key)\n            order.insert_front(key)\n        ELSE:\n            IF LENGTH OF order >= capacity:\n                // Evict the least recently used (last element in order)\n                lruKey <- order[-1]\n                order.remove_back()\n                cache.remove(lruKey)\n            order.insert_front(key)\n            cache[key] <- value",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "CLASS LRUCache:\n    // Use a combination of a dictionary and a doubly linked list (or an ordered map)\n    cache <- EMPTY DICTIONARY\n    capacity <- given capacity\norder <- EMPTY LIST\n    // (or a doubly linked list to maintain access order)\n\n    FUNCTION get(key):\n        IF key NOT IN cache:\n            RETURN -1\n            // or NULL\n        // Move key to front of order (most recently used)\n        order.remove(key)\n        order.insert_front(key)\n        RETURN cache[key]\n\n    FUNCTION put(key, value):\n        IF key IN cache:\n            // Update value and move key to front\n            cache[key] <- value\n            order.remove(key)\n            order.insert_front(key)\n        ELSE:\n            IF LENGTH OF order >= capacity:\n                // Evict the least recently used (last element in order)\n                lruKey <- order[-1]\n                order.remove_back()\n                cache.remove(lruKey)\n            order.insert_front(key)\n            cache[key] <- value",
+      "canonical": "CLASS LRUCache ACCEPTS(capacity)\n    given_capacity <- capacity\n    cache <- EMPTY DICTIONARY\n    order <- EMPTY LIST\n\n    FUNCTION get ACCEPTS(key)\n        IF key NOT IN cache:\n            RETURN -1\n            // or NULL\n        // Move key to front of order (most recently used)\n        CALL remove_from_list(order, key)\n        CALL insert_front(order, key)\n        RETURN cache[key]\n    ENDFUNCTION\n\n    FUNCTION put ACCEPTS(key, value)\n        IF key IN cache:\n            // Update value and move key to front\n            cache[key] <- value\n            CALL remove_from_list(order, key)\n            CALL insert_front(order, key)\n        ELSE:\n            IF LENGTH OF order >= given_capacity:\n                // Evict the least recently used (last element in order)\n                lruKey <- order[-1]\n                CALL remove_last_from_list(order)\n                CALL remove_key(cache, lruKey)\n            CALL insert_front(order, key)\n            cache[key] <- value\n    ENDFUNCTION\nENDCLASS",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 7,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        IF key NOT IN cache:",
+      "canonical": "        IF key NOT IN cache THEN",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 17,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        IF key IN cache:",
+      "canonical": "        IF key IN cache THEN",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 22,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        ELSE:",
+      "canonical": "        ELSE",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 23,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            IF LENGTH OF order >= given_capacity:",
+      "canonical": "            IF LENGTH OF order >= given_capacity THEN",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 9,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            // or NULL",
+      "canonical": "            COMMENT or NULL",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 10,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        // Move key to front of order (most recently used)",
+      "canonical": "        COMMENT Move key to front of order (most recently used)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 18,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            // Update value and move key to front",
+      "canonical": "            COMMENT Update value and move key to front",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 24,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "                // Evict the least recently used (last element in order)",
+      "canonical": "                COMMENT Evict the least recently used (last element in order)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 11,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDIF",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 28,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDIF",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 30,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDIF",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 1
+}

@@ -1,0 +1,377 @@
+{
+  "format": "NL-FDEP Flow Diagram",
+  "version": "1.0",
+  "entry_node": "F1",
+  "exit_node": "F2",
+  "nodes": {
+    "F1": {
+      "node_id": "F1",
+      "node_type": "START",
+      "label": "Start",
+      "line": 1,
+      "data": {}
+    },
+    "F2": {
+      "node_id": "F2",
+      "node_type": "END",
+      "label": "End",
+      "line": 1,
+      "data": {}
+    },
+    "F3": {
+      "node_id": "F3",
+      "node_type": "FUNCTION",
+      "label": "Run function unnamed_function with arr",
+      "line": 1,
+      "data": {
+        "ast_kind": "FunctionNode",
+        "name": "unnamed_function"
+      }
+    },
+    "F4": {
+      "node_id": "F4",
+      "node_type": "PROCESS",
+      "label": "Set maxSoFar to the result of negative_infinity()",
+      "line": 2,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F5": {
+      "node_id": "F5",
+      "node_type": "PROCESS",
+      "label": "Set currentMax to 0",
+      "line": 3,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F6": {
+      "node_id": "F6",
+      "node_type": "LOOP_DECISION",
+      "label": "For each num in arr",
+      "line": 5,
+      "data": {
+        "ast_kind": "ForEachNode"
+      }
+    },
+    "F7": {
+      "node_id": "F7",
+      "node_type": "PROCESS",
+      "label": "Set currentMax to currentMax plus num",
+      "line": 6,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F8": {
+      "node_id": "F8",
+      "node_type": "DECISION",
+      "label": "MaxSoFar is less than currentMax?",
+      "line": 8,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F9": {
+      "node_id": "F9",
+      "node_type": "PROCESS",
+      "label": "Set maxSoFar to currentMax",
+      "line": 9,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F10": {
+      "node_id": "F10",
+      "node_type": "DECISION",
+      "label": "CurrentMax is less than 0?",
+      "line": 12,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F11": {
+      "node_id": "F11",
+      "node_type": "PROCESS",
+      "label": "Set currentMax to 0",
+      "line": 13,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F12": {
+      "node_id": "F12",
+      "node_type": "RETURN",
+      "label": "Return maxSoFar",
+      "line": 17,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "F4",
+      "target": "F5",
+      "label": "NEXT"
+    },
+    {
+      "source": "F8",
+      "target": "F9",
+      "label": "TRUE"
+    },
+    {
+      "source": "F7",
+      "target": "F8",
+      "label": "NEXT"
+    },
+    {
+      "source": "F10",
+      "target": "F11",
+      "label": "TRUE"
+    },
+    {
+      "source": "F9",
+      "target": "F10",
+      "label": "NEXT"
+    },
+    {
+      "source": "F8",
+      "target": "F10",
+      "label": "NEXT"
+    },
+    {
+      "source": "F6",
+      "target": "F7",
+      "label": "ITERATE"
+    },
+    {
+      "source": "F11",
+      "target": "F6",
+      "label": "LOOP"
+    },
+    {
+      "source": "F10",
+      "target": "F6",
+      "label": "LOOP"
+    },
+    {
+      "source": "F5",
+      "target": "F6",
+      "label": "NEXT"
+    },
+    {
+      "source": "F6",
+      "target": "F12",
+      "label": "NEXT"
+    },
+    {
+      "source": "F3",
+      "target": "F4",
+      "label": "BODY"
+    },
+    {
+      "source": "F1",
+      "target": "F3",
+      "label": "NEXT"
+    },
+    {
+      "source": "F12",
+      "target": "F2",
+      "label": "NEXT"
+    }
+  ],
+  "structured_program": {
+    "kind": "ProgramNode",
+    "line": 1,
+    "body": [
+      {
+        "kind": "FunctionNode",
+        "line": 1,
+        "name": "unnamed_function",
+        "parameters": [
+          {
+            "kind": "ParameterNode",
+            "line": 1,
+            "name": "arr",
+            "declared_type": null
+          }
+        ],
+        "body": {
+          "kind": "BlockNode",
+          "line": 2,
+          "statements": [
+            {
+              "kind": "AssignmentNode",
+              "line": 2,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 2,
+                "name": "maxSoFar"
+              },
+              "value": {
+                "kind": "CallNode",
+                "line": 2,
+                "name": "negative_infinity",
+                "arguments": []
+              }
+            },
+            {
+              "kind": "AssignmentNode",
+              "line": 3,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 3,
+                "name": "currentMax"
+              },
+              "value": {
+                "kind": "LiteralNode",
+                "line": 3,
+                "value": 0,
+                "data_type": "INTEGER"
+              }
+            },
+            {
+              "kind": "ForEachNode",
+              "line": 5,
+              "variable": {
+                "kind": "IdentifierNode",
+                "line": 5,
+                "name": "num"
+              },
+              "collection": {
+                "kind": "IdentifierNode",
+                "line": 5,
+                "name": "arr"
+              },
+              "body": {
+                "kind": "BlockNode",
+                "line": 6,
+                "statements": [
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 6,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 6,
+                      "name": "currentMax"
+                    },
+                    "value": {
+                      "kind": "BinaryNode",
+                      "line": 6,
+                      "operator": "+",
+                      "left": {
+                        "kind": "IdentifierNode",
+                        "line": 6,
+                        "name": "currentMax"
+                      },
+                      "right": {
+                        "kind": "IdentifierNode",
+                        "line": 6,
+                        "name": "num"
+                      }
+                    }
+                  },
+                  {
+                    "kind": "IfNode",
+                    "line": 8,
+                    "condition": {
+                      "kind": "BinaryNode",
+                      "line": 8,
+                      "operator": "<",
+                      "left": {
+                        "kind": "IdentifierNode",
+                        "line": 8,
+                        "name": "maxSoFar"
+                      },
+                      "right": {
+                        "kind": "IdentifierNode",
+                        "line": 8,
+                        "name": "currentMax"
+                      }
+                    },
+                    "then_body": {
+                      "kind": "BlockNode",
+                      "line": 9,
+                      "statements": [
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 9,
+                          "target": {
+                            "kind": "IdentifierNode",
+                            "line": 9,
+                            "name": "maxSoFar"
+                          },
+                          "value": {
+                            "kind": "IdentifierNode",
+                            "line": 9,
+                            "name": "currentMax"
+                          }
+                        }
+                      ]
+                    },
+                    "else_if": [],
+                    "else_body": null
+                  },
+                  {
+                    "kind": "IfNode",
+                    "line": 12,
+                    "condition": {
+                      "kind": "BinaryNode",
+                      "line": 12,
+                      "operator": "<",
+                      "left": {
+                        "kind": "IdentifierNode",
+                        "line": 12,
+                        "name": "currentMax"
+                      },
+                      "right": {
+                        "kind": "LiteralNode",
+                        "line": 12,
+                        "value": 0,
+                        "data_type": "INTEGER"
+                      }
+                    },
+                    "then_body": {
+                      "kind": "BlockNode",
+                      "line": 13,
+                      "statements": [
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 13,
+                          "target": {
+                            "kind": "IdentifierNode",
+                            "line": 13,
+                            "name": "currentMax"
+                          },
+                          "value": {
+                            "kind": "LiteralNode",
+                            "line": 13,
+                            "value": 0,
+                            "data_type": "INTEGER"
+                          }
+                        }
+                      ]
+                    },
+                    "else_if": [],
+                    "else_body": null
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "ReturnNode",
+              "line": 17,
+              "expression": {
+                "kind": "IdentifierNode",
+                "line": 17,
+                "name": "maxSoFar"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

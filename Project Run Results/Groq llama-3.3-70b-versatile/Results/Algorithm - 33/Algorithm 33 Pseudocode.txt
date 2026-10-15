@@ -1,0 +1,20 @@
+# Implement a method to find the exact square root of a non-negative integer using binary search, rounded down to the nearest integer, without using built-in math functions
+FUNCTION SQUARE_ROOT(n)
+  IF n < 0 THEN
+    RETURN ERROR
+  END IF
+  IF n == 0 OR n == 1 THEN
+    RETURN n
+  END IF
+  low = 0
+  high = n
+  WHILE low <= high
+    mid = (low + high) / 2
+    IF mid * mid <= n THEN
+      low = mid + 1
+    ELSE
+      high = mid - 1
+    END IF
+  END WHILE
+  RETURN high
+END FUNCTION

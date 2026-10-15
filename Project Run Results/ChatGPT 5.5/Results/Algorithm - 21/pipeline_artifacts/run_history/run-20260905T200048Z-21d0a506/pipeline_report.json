@@ -1,0 +1,215 @@
+{
+  "success": false,
+  "status": "FAILURE",
+  "stages": [
+    {
+      "name": "PSEUDOCODE_PROFILE_PROCESSING",
+      "status": "SUCCESS",
+      "message": "Processed source using GENERIC_COMPATIBILITY; 6 transformation(s); 2 header line(s) stripped.",
+      "duration_ms": 2.546
+    },
+    {
+      "name": "PSEUDOCODE_TO_AST",
+      "status": "SUCCESS",
+      "message": "Pseudocode parsed and validated.",
+      "duration_ms": 0.581
+    },
+    {
+      "name": "AST_TO_FLOW_DIAGRAM",
+      "status": "SUCCESS",
+      "message": "Machine-readable flow diagram generated.",
+      "duration_ms": 0.115
+    },
+    {
+      "name": "FLOW_DIAGRAM_TO_DRAWIO",
+      "status": "SUCCESS",
+      "message": "Editable draw.io XML flow diagram generated.",
+      "duration_ms": 1.018
+    },
+    {
+      "name": "FLOW_DIAGRAM_TO_PYTHON",
+      "status": "SUCCESS",
+      "message": "Python source generated and syntax validated.",
+      "duration_ms": 0.461
+    },
+    {
+      "name": "BEHAVIOURAL_TESTING",
+      "status": "FAILURE",
+      "message": "Passed 0 of 5 tests.",
+      "duration_ms": 193.565
+    }
+  ],
+  "output_files": {
+    "pseudocode_processing_report": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\ChatGPT 5.5\\Results\\Algorithm - 21\\pipeline_artifacts\\pseudocode_processing_report.json",
+    "processed_pseudocode": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\ChatGPT 5.5\\Results\\Algorithm - 21\\pipeline_artifacts\\processed_pseudocode.aj",
+    "ast": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\ChatGPT 5.5\\Results\\Algorithm - 21\\pipeline_artifacts\\ast.json",
+    "parser_report": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\ChatGPT 5.5\\Results\\Algorithm - 21\\pipeline_artifacts\\parser_report.json",
+    "ast_visualisation": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\ChatGPT 5.5\\Results\\Algorithm - 21\\pipeline_artifacts\\ast_visualisation.html",
+    "flow_diagram": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\ChatGPT 5.5\\Results\\Algorithm - 21\\pipeline_artifacts\\flow_diagram.json",
+    "flow_visualisation": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\ChatGPT 5.5\\Results\\Algorithm - 21\\pipeline_artifacts\\flow_diagram.html",
+    "flow_diagram_drawio": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\ChatGPT 5.5\\Results\\Algorithm - 21\\pipeline_artifacts\\flow_diagram.drawio",
+    "generated_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\ChatGPT 5.5\\Results\\Algorithm - 21\\pipeline_artifacts\\generated_program.py",
+    "compilation_report": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\ChatGPT 5.5\\Results\\Algorithm - 21\\pipeline_artifacts\\compilation_report.json",
+    "test_report": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\ChatGPT 5.5\\Results\\Algorithm - 21\\pipeline_artifacts\\test_report.json",
+    "pipeline_report": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\ChatGPT 5.5\\Results\\Algorithm - 21\\pipeline_artifacts\\pipeline_report.json"
+  },
+  "test_report": {
+    "program_path": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\ChatGPT 5.5\\Results\\Algorithm - 21\\pipeline_artifacts\\generated_program.py",
+    "success": false,
+    "total_tests": 5,
+    "passed_tests": 0,
+    "failed_tests": 5,
+    "category_summary": {
+      "NORMAL": {
+        "total": 1,
+        "passed": 0,
+        "failed": 1
+      },
+      "BRANCH": {
+        "total": 1,
+        "passed": 0,
+        "failed": 1
+      },
+      "BOUNDARY": {
+        "total": 2,
+        "passed": 0,
+        "failed": 2
+      },
+      "ERROR_BEHAVIOUR": {
+        "total": 1,
+        "passed": 0,
+        "failed": 1
+      }
+    },
+    "results": [
+      {
+        "name": "positive even",
+        "status": "FAILED",
+        "expected_output": [
+          "Enter Number: 8 is Even"
+        ],
+        "actual_output": [],
+        "standard_error": "",
+        "return_code": 0,
+        "duration_ms": 46.734,
+        "category": "NORMAL",
+        "semantic_feature": "EVEN_BRANCH",
+        "expected_return_code": 0,
+        "expected_error_type": null,
+        "actual_error_type": null,
+        "criteria_links": [
+          "P2",
+          "P4"
+        ],
+        "random_seed": null,
+        "environment": {},
+        "requires_modules": []
+      },
+      {
+        "name": "positive odd",
+        "status": "FAILED",
+        "expected_output": [
+          "Enter Number: 7 is Odd"
+        ],
+        "actual_output": [],
+        "standard_error": "",
+        "return_code": 0,
+        "duration_ms": 38.141,
+        "category": "BRANCH",
+        "semantic_feature": "ODD_BRANCH",
+        "expected_return_code": 0,
+        "expected_error_type": null,
+        "actual_error_type": null,
+        "criteria_links": [
+          "P2",
+          "P4"
+        ],
+        "random_seed": null,
+        "environment": {},
+        "requires_modules": []
+      },
+      {
+        "name": "zero is even",
+        "status": "FAILED",
+        "expected_output": [
+          "Enter Number: 0 is Even"
+        ],
+        "actual_output": [],
+        "standard_error": "",
+        "return_code": 0,
+        "duration_ms": 35.612,
+        "category": "BOUNDARY",
+        "semantic_feature": "ZERO_PARITY",
+        "expected_return_code": 0,
+        "expected_error_type": null,
+        "actual_error_type": null,
+        "criteria_links": [
+          "P2",
+          "P3",
+          "P4"
+        ],
+        "random_seed": null,
+        "environment": {},
+        "requires_modules": []
+      },
+      {
+        "name": "negative odd",
+        "status": "FAILED",
+        "expected_output": [
+          "Enter Number: -3 is Odd"
+        ],
+        "actual_output": [],
+        "standard_error": "",
+        "return_code": 0,
+        "duration_ms": 35.584,
+        "category": "BOUNDARY",
+        "semantic_feature": "NEGATIVE_PARITY",
+        "expected_return_code": 0,
+        "expected_error_type": null,
+        "actual_error_type": null,
+        "criteria_links": [
+          "P2",
+          "P3",
+          "P4"
+        ],
+        "random_seed": null,
+        "environment": {},
+        "requires_modules": []
+      },
+      {
+        "name": "invalid input retries",
+        "status": "FAILED",
+        "expected_output": [
+          "Enter Number: That's Not a Valid Integer, Please Try Again!",
+          "Enter Number: 4 is Even"
+        ],
+        "actual_output": [],
+        "standard_error": "",
+        "return_code": 0,
+        "duration_ms": 36.157,
+        "category": "ERROR_BEHAVIOUR",
+        "semantic_feature": "INTEGER_INPUT_RETRY",
+        "expected_return_code": 0,
+        "expected_error_type": null,
+        "actual_error_type": null,
+        "criteria_links": [
+          "P2",
+          "P3",
+          "P4"
+        ],
+        "random_seed": null,
+        "environment": {},
+        "requires_modules": []
+      }
+    ]
+  },
+  "error": null,
+  "input_metadata": {
+    "input_type": "PSEUDOCODE",
+    "pseudocode_profile": "GENERIC_COMPATIBILITY",
+    "source_modified": true,
+    "transformation_count": 6,
+    "header_comment_removed": true,
+    "header_lines_removed": 2
+  }
+}

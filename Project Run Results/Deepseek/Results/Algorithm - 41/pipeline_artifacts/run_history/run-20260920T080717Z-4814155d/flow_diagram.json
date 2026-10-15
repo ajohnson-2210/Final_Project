@@ -1,0 +1,1519 @@
+{
+  "format": "NL-FDEP Flow Diagram",
+  "version": "1.0",
+  "entry_node": "F1",
+  "exit_node": "F2",
+  "nodes": {
+    "F1": {
+      "node_id": "F1",
+      "node_type": "START",
+      "label": "Start",
+      "line": 1,
+      "data": {}
+    },
+    "F2": {
+      "node_id": "F2",
+      "node_type": "END",
+      "label": "End",
+      "line": 1,
+      "data": {}
+    },
+    "F3": {
+      "node_id": "F3",
+      "node_type": "FUNCTION",
+      "label": "Run function solveNQueens with N",
+      "line": 1,
+      "data": {
+        "ast_kind": "FunctionNode",
+        "name": "solveNQueens"
+      }
+    },
+    "F4": {
+      "node_id": "F4",
+      "node_type": "PROCESS",
+      "label": "Set board to the result of create_matrix(N, N, 0)",
+      "line": 2,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F5": {
+      "node_id": "F5",
+      "node_type": "PROCESS",
+      "label": "Set solutions to an empty list",
+      "line": 3,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F6": {
+      "node_id": "F6",
+      "node_type": "FUNCTION",
+      "label": "Run function isSafe with board, row, col",
+      "line": 5,
+      "data": {
+        "ast_kind": "FunctionNode",
+        "name": "isSafe"
+      }
+    },
+    "F7": {
+      "node_id": "F7",
+      "node_type": "COMMENT",
+      "label": "Check column",
+      "line": 6,
+      "data": {
+        "ast_kind": "CommentNode"
+      }
+    },
+    "F8": {
+      "node_id": "F8",
+      "node_type": "LOOP_DECISION",
+      "label": "For i from 0 to row minus 1 plus 1",
+      "line": 7,
+      "data": {
+        "ast_kind": "ForRangeNode"
+      }
+    },
+    "F9": {
+      "node_id": "F9",
+      "node_type": "DECISION",
+      "label": "Item col of item i of board is equal to 1?",
+      "line": 8,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F10": {
+      "node_id": "F10",
+      "node_type": "RETURN",
+      "label": "Return false",
+      "line": 9,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    },
+    "F11": {
+      "node_id": "F11",
+      "node_type": "COMMENT",
+      "label": "Check upper-left diagonal",
+      "line": 10,
+      "data": {
+        "ast_kind": "CommentNode"
+      }
+    },
+    "F12": {
+      "node_id": "F12",
+      "node_type": "PROCESS",
+      "label": "Set i to row minus 1",
+      "line": 13,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F13": {
+      "node_id": "F13",
+      "node_type": "PROCESS",
+      "label": "Set j to col minus 1",
+      "line": 14,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F14": {
+      "node_id": "F14",
+      "node_type": "LOOP_DECISION",
+      "label": "Continue while i is greater than or equal to 0 and j is greater than or equal to 0?",
+      "line": 15,
+      "data": {
+        "ast_kind": "WhileNode"
+      }
+    },
+    "F15": {
+      "node_id": "F15",
+      "node_type": "DECISION",
+      "label": "Item j of item i of board is equal to 1?",
+      "line": 16,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F16": {
+      "node_id": "F16",
+      "node_type": "RETURN",
+      "label": "Return false",
+      "line": 17,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    },
+    "F17": {
+      "node_id": "F17",
+      "node_type": "PROCESS",
+      "label": "Set i to i minus 1",
+      "line": 19,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F18": {
+      "node_id": "F18",
+      "node_type": "PROCESS",
+      "label": "Set j to j minus 1",
+      "line": 20,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F19": {
+      "node_id": "F19",
+      "node_type": "COMMENT",
+      "label": "Check upper-right diagonal",
+      "line": 21,
+      "data": {
+        "ast_kind": "CommentNode"
+      }
+    },
+    "F20": {
+      "node_id": "F20",
+      "node_type": "PROCESS",
+      "label": "Set i to row minus 1",
+      "line": 23,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F21": {
+      "node_id": "F21",
+      "node_type": "PROCESS",
+      "label": "Set j to col plus 1",
+      "line": 24,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F22": {
+      "node_id": "F22",
+      "node_type": "LOOP_DECISION",
+      "label": "Continue while i is greater than or equal to 0 and j is less than N?",
+      "line": 25,
+      "data": {
+        "ast_kind": "WhileNode"
+      }
+    },
+    "F23": {
+      "node_id": "F23",
+      "node_type": "DECISION",
+      "label": "Item j of item i of board is equal to 1?",
+      "line": 26,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F24": {
+      "node_id": "F24",
+      "node_type": "RETURN",
+      "label": "Return false",
+      "line": 27,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    },
+    "F25": {
+      "node_id": "F25",
+      "node_type": "PROCESS",
+      "label": "Set i to i minus 1",
+      "line": 29,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F26": {
+      "node_id": "F26",
+      "node_type": "PROCESS",
+      "label": "Set j to j plus 1",
+      "line": 30,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F27": {
+      "node_id": "F27",
+      "node_type": "RETURN",
+      "label": "Return true",
+      "line": 32,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    },
+    "F28": {
+      "node_id": "F28",
+      "node_type": "FUNCTION",
+      "label": "Run function placeQueen with board, row",
+      "line": 35,
+      "data": {
+        "ast_kind": "FunctionNode",
+        "name": "placeQueen"
+      }
+    },
+    "F29": {
+      "node_id": "F29",
+      "node_type": "DECISION",
+      "label": "Row is equal to N?",
+      "line": 36,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F30": {
+      "node_id": "F30",
+      "node_type": "PROCESS",
+      "label": "Append the result of copy_value(board) to solutions",
+      "line": 37,
+      "data": {
+        "ast_kind": "AppendNode"
+      }
+    },
+    "F31": {
+      "node_id": "F31",
+      "node_type": "RETURN",
+      "label": "Return from the function",
+      "line": 38,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    },
+    "F32": {
+      "node_id": "F32",
+      "node_type": "LOOP_DECISION",
+      "label": "For col from 0 to N minus 1 plus 1",
+      "line": 40,
+      "data": {
+        "ast_kind": "ForRangeNode"
+      }
+    },
+    "F33": {
+      "node_id": "F33",
+      "node_type": "DECISION",
+      "label": "Is the result of isSafe(board, row, col) true?",
+      "line": 41,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F34": {
+      "node_id": "F34",
+      "node_type": "PROCESS",
+      "label": "Set item col of item row of board to 1",
+      "line": 42,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F35": {
+      "node_id": "F35",
+      "node_type": "CALL",
+      "label": "Call placeQueen with board, row plus 1",
+      "line": 43,
+      "data": {
+        "ast_kind": "CallNode"
+      }
+    },
+    "F36": {
+      "node_id": "F36",
+      "node_type": "PROCESS",
+      "label": "Set item col of item row of board to 0",
+      "line": 44,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F37": {
+      "node_id": "F37",
+      "node_type": "COMMENT",
+      "label": "Backtrack",
+      "line": 45,
+      "data": {
+        "ast_kind": "CommentNode"
+      }
+    },
+    "F38": {
+      "node_id": "F38",
+      "node_type": "CALL",
+      "label": "Call placeQueen with board, 0",
+      "line": 50,
+      "data": {
+        "ast_kind": "CallNode"
+      }
+    },
+    "F39": {
+      "node_id": "F39",
+      "node_type": "RETURN",
+      "label": "Return solutions",
+      "line": 51,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "F4",
+      "target": "F5",
+      "label": "NEXT"
+    },
+    {
+      "source": "F9",
+      "target": "F10",
+      "label": "TRUE"
+    },
+    {
+      "source": "F8",
+      "target": "F9",
+      "label": "ITERATE"
+    },
+    {
+      "source": "F11",
+      "target": "F8",
+      "label": "LOOP"
+    },
+    {
+      "source": "F9",
+      "target": "F8",
+      "label": "LOOP"
+    },
+    {
+      "source": "F7",
+      "target": "F8",
+      "label": "NEXT"
+    },
+    {
+      "source": "F8",
+      "target": "F12",
+      "label": "NEXT"
+    },
+    {
+      "source": "F12",
+      "target": "F13",
+      "label": "NEXT"
+    },
+    {
+      "source": "F15",
+      "target": "F16",
+      "label": "TRUE"
+    },
+    {
+      "source": "F15",
+      "target": "F17",
+      "label": "NEXT"
+    },
+    {
+      "source": "F17",
+      "target": "F18",
+      "label": "NEXT"
+    },
+    {
+      "source": "F18",
+      "target": "F19",
+      "label": "NEXT"
+    },
+    {
+      "source": "F14",
+      "target": "F15",
+      "label": "TRUE"
+    },
+    {
+      "source": "F19",
+      "target": "F14",
+      "label": "LOOP"
+    },
+    {
+      "source": "F13",
+      "target": "F14",
+      "label": "NEXT"
+    },
+    {
+      "source": "F14",
+      "target": "F20",
+      "label": "NEXT"
+    },
+    {
+      "source": "F20",
+      "target": "F21",
+      "label": "NEXT"
+    },
+    {
+      "source": "F23",
+      "target": "F24",
+      "label": "TRUE"
+    },
+    {
+      "source": "F23",
+      "target": "F25",
+      "label": "NEXT"
+    },
+    {
+      "source": "F25",
+      "target": "F26",
+      "label": "NEXT"
+    },
+    {
+      "source": "F22",
+      "target": "F23",
+      "label": "TRUE"
+    },
+    {
+      "source": "F26",
+      "target": "F22",
+      "label": "LOOP"
+    },
+    {
+      "source": "F21",
+      "target": "F22",
+      "label": "NEXT"
+    },
+    {
+      "source": "F22",
+      "target": "F27",
+      "label": "NEXT"
+    },
+    {
+      "source": "F6",
+      "target": "F7",
+      "label": "BODY"
+    },
+    {
+      "source": "F5",
+      "target": "F6",
+      "label": "NEXT"
+    },
+    {
+      "source": "F30",
+      "target": "F31",
+      "label": "NEXT"
+    },
+    {
+      "source": "F29",
+      "target": "F30",
+      "label": "TRUE"
+    },
+    {
+      "source": "F34",
+      "target": "F35",
+      "label": "NEXT"
+    },
+    {
+      "source": "F35",
+      "target": "F36",
+      "label": "NEXT"
+    },
+    {
+      "source": "F36",
+      "target": "F37",
+      "label": "NEXT"
+    },
+    {
+      "source": "F33",
+      "target": "F34",
+      "label": "TRUE"
+    },
+    {
+      "source": "F32",
+      "target": "F33",
+      "label": "ITERATE"
+    },
+    {
+      "source": "F37",
+      "target": "F32",
+      "label": "LOOP"
+    },
+    {
+      "source": "F33",
+      "target": "F32",
+      "label": "LOOP"
+    },
+    {
+      "source": "F29",
+      "target": "F32",
+      "label": "NEXT"
+    },
+    {
+      "source": "F28",
+      "target": "F29",
+      "label": "BODY"
+    },
+    {
+      "source": "F32",
+      "target": "F38",
+      "label": "NEXT"
+    },
+    {
+      "source": "F38",
+      "target": "F39",
+      "label": "NEXT"
+    },
+    {
+      "source": "F3",
+      "target": "F4",
+      "label": "BODY"
+    },
+    {
+      "source": "F1",
+      "target": "F3",
+      "label": "NEXT"
+    },
+    {
+      "source": "F10",
+      "target": "F2",
+      "label": "NEXT"
+    },
+    {
+      "source": "F16",
+      "target": "F2",
+      "label": "NEXT"
+    },
+    {
+      "source": "F24",
+      "target": "F2",
+      "label": "NEXT"
+    },
+    {
+      "source": "F27",
+      "target": "F2",
+      "label": "NEXT"
+    },
+    {
+      "source": "F31",
+      "target": "F2",
+      "label": "NEXT"
+    },
+    {
+      "source": "F39",
+      "target": "F2",
+      "label": "NEXT"
+    }
+  ],
+  "structured_program": {
+    "kind": "ProgramNode",
+    "line": 1,
+    "body": [
+      {
+        "kind": "FunctionNode",
+        "line": 1,
+        "name": "solveNQueens",
+        "parameters": [
+          {
+            "kind": "ParameterNode",
+            "line": 1,
+            "name": "N",
+            "declared_type": null
+          }
+        ],
+        "body": {
+          "kind": "BlockNode",
+          "line": 2,
+          "statements": [
+            {
+              "kind": "AssignmentNode",
+              "line": 2,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 2,
+                "name": "board"
+              },
+              "value": {
+                "kind": "CallNode",
+                "line": 2,
+                "name": "create_matrix",
+                "arguments": [
+                  {
+                    "kind": "IdentifierNode",
+                    "line": 2,
+                    "name": "N"
+                  },
+                  {
+                    "kind": "IdentifierNode",
+                    "line": 2,
+                    "name": "N"
+                  },
+                  {
+                    "kind": "LiteralNode",
+                    "line": 2,
+                    "value": 0,
+                    "data_type": "INTEGER"
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "AssignmentNode",
+              "line": 3,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 3,
+                "name": "solutions"
+              },
+              "value": {
+                "kind": "EmptyLiteralNode",
+                "line": 3,
+                "empty_type": "LIST"
+              }
+            },
+            {
+              "kind": "FunctionNode",
+              "line": 5,
+              "name": "isSafe",
+              "parameters": [
+                {
+                  "kind": "ParameterNode",
+                  "line": 5,
+                  "name": "board",
+                  "declared_type": null
+                },
+                {
+                  "kind": "ParameterNode",
+                  "line": 5,
+                  "name": "row",
+                  "declared_type": null
+                },
+                {
+                  "kind": "ParameterNode",
+                  "line": 5,
+                  "name": "col",
+                  "declared_type": null
+                }
+              ],
+              "body": {
+                "kind": "BlockNode",
+                "line": 6,
+                "statements": [
+                  {
+                    "kind": "CommentNode",
+                    "line": 6,
+                    "text": "Check column"
+                  },
+                  {
+                    "kind": "ForRangeNode",
+                    "line": 7,
+                    "variable": {
+                      "kind": "IdentifierNode",
+                      "line": 7,
+                      "name": "i"
+                    },
+                    "start": {
+                      "kind": "LiteralNode",
+                      "line": 7,
+                      "value": 0,
+                      "data_type": "INTEGER"
+                    },
+                    "end": {
+                      "kind": "BinaryNode",
+                      "line": 7,
+                      "operator": "+",
+                      "left": {
+                        "kind": "BinaryNode",
+                        "line": 7,
+                        "operator": "-",
+                        "left": {
+                          "kind": "IdentifierNode",
+                          "line": 7,
+                          "name": "row"
+                        },
+                        "right": {
+                          "kind": "LiteralNode",
+                          "line": 7,
+                          "value": 1,
+                          "data_type": "INTEGER"
+                        }
+                      },
+                      "right": {
+                        "kind": "LiteralNode",
+                        "line": 7,
+                        "value": 1,
+                        "data_type": "INTEGER"
+                      }
+                    },
+                    "step": null,
+                    "body": {
+                      "kind": "BlockNode",
+                      "line": 8,
+                      "statements": [
+                        {
+                          "kind": "IfNode",
+                          "line": 8,
+                          "condition": {
+                            "kind": "BinaryNode",
+                            "line": 8,
+                            "operator": "==",
+                            "left": {
+                              "kind": "IndexNode",
+                              "line": 8,
+                              "collection": {
+                                "kind": "IndexNode",
+                                "line": 8,
+                                "collection": {
+                                  "kind": "IdentifierNode",
+                                  "line": 8,
+                                  "name": "board"
+                                },
+                                "index": {
+                                  "kind": "IdentifierNode",
+                                  "line": 8,
+                                  "name": "i"
+                                }
+                              },
+                              "index": {
+                                "kind": "IdentifierNode",
+                                "line": 8,
+                                "name": "col"
+                              }
+                            },
+                            "right": {
+                              "kind": "LiteralNode",
+                              "line": 8,
+                              "value": 1,
+                              "data_type": "INTEGER"
+                            }
+                          },
+                          "then_body": {
+                            "kind": "BlockNode",
+                            "line": 9,
+                            "statements": [
+                              {
+                                "kind": "ReturnNode",
+                                "line": 9,
+                                "expression": {
+                                  "kind": "LiteralNode",
+                                  "line": 9,
+                                  "value": false,
+                                  "data_type": "BOOLEAN"
+                                }
+                              },
+                              {
+                                "kind": "CommentNode",
+                                "line": 10,
+                                "text": "Check upper-left diagonal"
+                              }
+                            ]
+                          },
+                          "else_if": [],
+                          "else_body": null
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 13,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 13,
+                      "name": "i"
+                    },
+                    "value": {
+                      "kind": "BinaryNode",
+                      "line": 13,
+                      "operator": "-",
+                      "left": {
+                        "kind": "IdentifierNode",
+                        "line": 13,
+                        "name": "row"
+                      },
+                      "right": {
+                        "kind": "LiteralNode",
+                        "line": 13,
+                        "value": 1,
+                        "data_type": "INTEGER"
+                      }
+                    }
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 14,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 14,
+                      "name": "j"
+                    },
+                    "value": {
+                      "kind": "BinaryNode",
+                      "line": 14,
+                      "operator": "-",
+                      "left": {
+                        "kind": "IdentifierNode",
+                        "line": 14,
+                        "name": "col"
+                      },
+                      "right": {
+                        "kind": "LiteralNode",
+                        "line": 14,
+                        "value": 1,
+                        "data_type": "INTEGER"
+                      }
+                    }
+                  },
+                  {
+                    "kind": "WhileNode",
+                    "line": 15,
+                    "condition": {
+                      "kind": "BinaryNode",
+                      "line": 15,
+                      "operator": "AND",
+                      "left": {
+                        "kind": "BinaryNode",
+                        "line": 15,
+                        "operator": ">=",
+                        "left": {
+                          "kind": "IdentifierNode",
+                          "line": 15,
+                          "name": "i"
+                        },
+                        "right": {
+                          "kind": "LiteralNode",
+                          "line": 15,
+                          "value": 0,
+                          "data_type": "INTEGER"
+                        }
+                      },
+                      "right": {
+                        "kind": "BinaryNode",
+                        "line": 15,
+                        "operator": ">=",
+                        "left": {
+                          "kind": "IdentifierNode",
+                          "line": 15,
+                          "name": "j"
+                        },
+                        "right": {
+                          "kind": "LiteralNode",
+                          "line": 15,
+                          "value": 0,
+                          "data_type": "INTEGER"
+                        }
+                      }
+                    },
+                    "body": {
+                      "kind": "BlockNode",
+                      "line": 16,
+                      "statements": [
+                        {
+                          "kind": "IfNode",
+                          "line": 16,
+                          "condition": {
+                            "kind": "BinaryNode",
+                            "line": 16,
+                            "operator": "==",
+                            "left": {
+                              "kind": "IndexNode",
+                              "line": 16,
+                              "collection": {
+                                "kind": "IndexNode",
+                                "line": 16,
+                                "collection": {
+                                  "kind": "IdentifierNode",
+                                  "line": 16,
+                                  "name": "board"
+                                },
+                                "index": {
+                                  "kind": "IdentifierNode",
+                                  "line": 16,
+                                  "name": "i"
+                                }
+                              },
+                              "index": {
+                                "kind": "IdentifierNode",
+                                "line": 16,
+                                "name": "j"
+                              }
+                            },
+                            "right": {
+                              "kind": "LiteralNode",
+                              "line": 16,
+                              "value": 1,
+                              "data_type": "INTEGER"
+                            }
+                          },
+                          "then_body": {
+                            "kind": "BlockNode",
+                            "line": 17,
+                            "statements": [
+                              {
+                                "kind": "ReturnNode",
+                                "line": 17,
+                                "expression": {
+                                  "kind": "LiteralNode",
+                                  "line": 17,
+                                  "value": false,
+                                  "data_type": "BOOLEAN"
+                                }
+                              }
+                            ]
+                          },
+                          "else_if": [],
+                          "else_body": null
+                        },
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 19,
+                          "target": {
+                            "kind": "IdentifierNode",
+                            "line": 19,
+                            "name": "i"
+                          },
+                          "value": {
+                            "kind": "BinaryNode",
+                            "line": 19,
+                            "operator": "-",
+                            "left": {
+                              "kind": "IdentifierNode",
+                              "line": 19,
+                              "name": "i"
+                            },
+                            "right": {
+                              "kind": "LiteralNode",
+                              "line": 19,
+                              "value": 1,
+                              "data_type": "INTEGER"
+                            }
+                          }
+                        },
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 20,
+                          "target": {
+                            "kind": "IdentifierNode",
+                            "line": 20,
+                            "name": "j"
+                          },
+                          "value": {
+                            "kind": "BinaryNode",
+                            "line": 20,
+                            "operator": "-",
+                            "left": {
+                              "kind": "IdentifierNode",
+                              "line": 20,
+                              "name": "j"
+                            },
+                            "right": {
+                              "kind": "LiteralNode",
+                              "line": 20,
+                              "value": 1,
+                              "data_type": "INTEGER"
+                            }
+                          }
+                        },
+                        {
+                          "kind": "CommentNode",
+                          "line": 21,
+                          "text": "Check upper-right diagonal"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 23,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 23,
+                      "name": "i"
+                    },
+                    "value": {
+                      "kind": "BinaryNode",
+                      "line": 23,
+                      "operator": "-",
+                      "left": {
+                        "kind": "IdentifierNode",
+                        "line": 23,
+                        "name": "row"
+                      },
+                      "right": {
+                        "kind": "LiteralNode",
+                        "line": 23,
+                        "value": 1,
+                        "data_type": "INTEGER"
+                      }
+                    }
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 24,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 24,
+                      "name": "j"
+                    },
+                    "value": {
+                      "kind": "BinaryNode",
+                      "line": 24,
+                      "operator": "+",
+                      "left": {
+                        "kind": "IdentifierNode",
+                        "line": 24,
+                        "name": "col"
+                      },
+                      "right": {
+                        "kind": "LiteralNode",
+                        "line": 24,
+                        "value": 1,
+                        "data_type": "INTEGER"
+                      }
+                    }
+                  },
+                  {
+                    "kind": "WhileNode",
+                    "line": 25,
+                    "condition": {
+                      "kind": "BinaryNode",
+                      "line": 25,
+                      "operator": "AND",
+                      "left": {
+                        "kind": "BinaryNode",
+                        "line": 25,
+                        "operator": ">=",
+                        "left": {
+                          "kind": "IdentifierNode",
+                          "line": 25,
+                          "name": "i"
+                        },
+                        "right": {
+                          "kind": "LiteralNode",
+                          "line": 25,
+                          "value": 0,
+                          "data_type": "INTEGER"
+                        }
+                      },
+                      "right": {
+                        "kind": "BinaryNode",
+                        "line": 25,
+                        "operator": "<",
+                        "left": {
+                          "kind": "IdentifierNode",
+                          "line": 25,
+                          "name": "j"
+                        },
+                        "right": {
+                          "kind": "IdentifierNode",
+                          "line": 25,
+                          "name": "N"
+                        }
+                      }
+                    },
+                    "body": {
+                      "kind": "BlockNode",
+                      "line": 26,
+                      "statements": [
+                        {
+                          "kind": "IfNode",
+                          "line": 26,
+                          "condition": {
+                            "kind": "BinaryNode",
+                            "line": 26,
+                            "operator": "==",
+                            "left": {
+                              "kind": "IndexNode",
+                              "line": 26,
+                              "collection": {
+                                "kind": "IndexNode",
+                                "line": 26,
+                                "collection": {
+                                  "kind": "IdentifierNode",
+                                  "line": 26,
+                                  "name": "board"
+                                },
+                                "index": {
+                                  "kind": "IdentifierNode",
+                                  "line": 26,
+                                  "name": "i"
+                                }
+                              },
+                              "index": {
+                                "kind": "IdentifierNode",
+                                "line": 26,
+                                "name": "j"
+                              }
+                            },
+                            "right": {
+                              "kind": "LiteralNode",
+                              "line": 26,
+                              "value": 1,
+                              "data_type": "INTEGER"
+                            }
+                          },
+                          "then_body": {
+                            "kind": "BlockNode",
+                            "line": 27,
+                            "statements": [
+                              {
+                                "kind": "ReturnNode",
+                                "line": 27,
+                                "expression": {
+                                  "kind": "LiteralNode",
+                                  "line": 27,
+                                  "value": false,
+                                  "data_type": "BOOLEAN"
+                                }
+                              }
+                            ]
+                          },
+                          "else_if": [],
+                          "else_body": null
+                        },
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 29,
+                          "target": {
+                            "kind": "IdentifierNode",
+                            "line": 29,
+                            "name": "i"
+                          },
+                          "value": {
+                            "kind": "BinaryNode",
+                            "line": 29,
+                            "operator": "-",
+                            "left": {
+                              "kind": "IdentifierNode",
+                              "line": 29,
+                              "name": "i"
+                            },
+                            "right": {
+                              "kind": "LiteralNode",
+                              "line": 29,
+                              "value": 1,
+                              "data_type": "INTEGER"
+                            }
+                          }
+                        },
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 30,
+                          "target": {
+                            "kind": "IdentifierNode",
+                            "line": 30,
+                            "name": "j"
+                          },
+                          "value": {
+                            "kind": "BinaryNode",
+                            "line": 30,
+                            "operator": "+",
+                            "left": {
+                              "kind": "IdentifierNode",
+                              "line": 30,
+                              "name": "j"
+                            },
+                            "right": {
+                              "kind": "LiteralNode",
+                              "line": 30,
+                              "value": 1,
+                              "data_type": "INTEGER"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "kind": "ReturnNode",
+                    "line": 32,
+                    "expression": {
+                      "kind": "LiteralNode",
+                      "line": 32,
+                      "value": true,
+                      "data_type": "BOOLEAN"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "FunctionNode",
+              "line": 35,
+              "name": "placeQueen",
+              "parameters": [
+                {
+                  "kind": "ParameterNode",
+                  "line": 35,
+                  "name": "board",
+                  "declared_type": null
+                },
+                {
+                  "kind": "ParameterNode",
+                  "line": 35,
+                  "name": "row",
+                  "declared_type": null
+                }
+              ],
+              "body": {
+                "kind": "BlockNode",
+                "line": 36,
+                "statements": [
+                  {
+                    "kind": "IfNode",
+                    "line": 36,
+                    "condition": {
+                      "kind": "BinaryNode",
+                      "line": 36,
+                      "operator": "==",
+                      "left": {
+                        "kind": "IdentifierNode",
+                        "line": 36,
+                        "name": "row"
+                      },
+                      "right": {
+                        "kind": "IdentifierNode",
+                        "line": 36,
+                        "name": "N"
+                      }
+                    },
+                    "then_body": {
+                      "kind": "BlockNode",
+                      "line": 37,
+                      "statements": [
+                        {
+                          "kind": "AppendNode",
+                          "line": 37,
+                          "value": {
+                            "kind": "CallNode",
+                            "line": 37,
+                            "name": "copy_value",
+                            "arguments": [
+                              {
+                                "kind": "IdentifierNode",
+                                "line": 37,
+                                "name": "board"
+                              }
+                            ]
+                          },
+                          "collection": {
+                            "kind": "IdentifierNode",
+                            "line": 37,
+                            "name": "solutions"
+                          }
+                        },
+                        {
+                          "kind": "ReturnNode",
+                          "line": 38,
+                          "expression": null
+                        }
+                      ]
+                    },
+                    "else_if": [],
+                    "else_body": null
+                  },
+                  {
+                    "kind": "ForRangeNode",
+                    "line": 40,
+                    "variable": {
+                      "kind": "IdentifierNode",
+                      "line": 40,
+                      "name": "col"
+                    },
+                    "start": {
+                      "kind": "LiteralNode",
+                      "line": 40,
+                      "value": 0,
+                      "data_type": "INTEGER"
+                    },
+                    "end": {
+                      "kind": "BinaryNode",
+                      "line": 40,
+                      "operator": "+",
+                      "left": {
+                        "kind": "BinaryNode",
+                        "line": 40,
+                        "operator": "-",
+                        "left": {
+                          "kind": "IdentifierNode",
+                          "line": 40,
+                          "name": "N"
+                        },
+                        "right": {
+                          "kind": "LiteralNode",
+                          "line": 40,
+                          "value": 1,
+                          "data_type": "INTEGER"
+                        }
+                      },
+                      "right": {
+                        "kind": "LiteralNode",
+                        "line": 40,
+                        "value": 1,
+                        "data_type": "INTEGER"
+                      }
+                    },
+                    "step": null,
+                    "body": {
+                      "kind": "BlockNode",
+                      "line": 41,
+                      "statements": [
+                        {
+                          "kind": "IfNode",
+                          "line": 41,
+                          "condition": {
+                            "kind": "CallNode",
+                            "line": 41,
+                            "name": "isSafe",
+                            "arguments": [
+                              {
+                                "kind": "IdentifierNode",
+                                "line": 41,
+                                "name": "board"
+                              },
+                              {
+                                "kind": "IdentifierNode",
+                                "line": 41,
+                                "name": "row"
+                              },
+                              {
+                                "kind": "IdentifierNode",
+                                "line": 41,
+                                "name": "col"
+                              }
+                            ]
+                          },
+                          "then_body": {
+                            "kind": "BlockNode",
+                            "line": 42,
+                            "statements": [
+                              {
+                                "kind": "AssignmentNode",
+                                "line": 42,
+                                "target": {
+                                  "kind": "IndexNode",
+                                  "line": 42,
+                                  "collection": {
+                                    "kind": "IndexNode",
+                                    "line": 42,
+                                    "collection": {
+                                      "kind": "IdentifierNode",
+                                      "line": 42,
+                                      "name": "board"
+                                    },
+                                    "index": {
+                                      "kind": "IdentifierNode",
+                                      "line": 42,
+                                      "name": "row"
+                                    }
+                                  },
+                                  "index": {
+                                    "kind": "IdentifierNode",
+                                    "line": 42,
+                                    "name": "col"
+                                  }
+                                },
+                                "value": {
+                                  "kind": "LiteralNode",
+                                  "line": 42,
+                                  "value": 1,
+                                  "data_type": "INTEGER"
+                                }
+                              },
+                              {
+                                "kind": "CallNode",
+                                "line": 43,
+                                "name": "placeQueen",
+                                "arguments": [
+                                  {
+                                    "kind": "IdentifierNode",
+                                    "line": 43,
+                                    "name": "board"
+                                  },
+                                  {
+                                    "kind": "BinaryNode",
+                                    "line": 43,
+                                    "operator": "+",
+                                    "left": {
+                                      "kind": "IdentifierNode",
+                                      "line": 43,
+                                      "name": "row"
+                                    },
+                                    "right": {
+                                      "kind": "LiteralNode",
+                                      "line": 43,
+                                      "value": 1,
+                                      "data_type": "INTEGER"
+                                    }
+                                  }
+                                ]
+                              },
+                              {
+                                "kind": "AssignmentNode",
+                                "line": 44,
+                                "target": {
+                                  "kind": "IndexNode",
+                                  "line": 44,
+                                  "collection": {
+                                    "kind": "IndexNode",
+                                    "line": 44,
+                                    "collection": {
+                                      "kind": "IdentifierNode",
+                                      "line": 44,
+                                      "name": "board"
+                                    },
+                                    "index": {
+                                      "kind": "IdentifierNode",
+                                      "line": 44,
+                                      "name": "row"
+                                    }
+                                  },
+                                  "index": {
+                                    "kind": "IdentifierNode",
+                                    "line": 44,
+                                    "name": "col"
+                                  }
+                                },
+                                "value": {
+                                  "kind": "LiteralNode",
+                                  "line": 44,
+                                  "value": 0,
+                                  "data_type": "INTEGER"
+                                }
+                              },
+                              {
+                                "kind": "CommentNode",
+                                "line": 45,
+                                "text": "Backtrack"
+                              }
+                            ]
+                          },
+                          "else_if": [],
+                          "else_body": null
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "CallNode",
+              "line": 50,
+              "name": "placeQueen",
+              "arguments": [
+                {
+                  "kind": "IdentifierNode",
+                  "line": 50,
+                  "name": "board"
+                },
+                {
+                  "kind": "LiteralNode",
+                  "line": 50,
+                  "value": 0,
+                  "data_type": "INTEGER"
+                }
+              ]
+            },
+            {
+              "kind": "ReturnNode",
+              "line": 51,
+              "expression": {
+                "kind": "IdentifierNode",
+                "line": 51,
+                "name": "solutions"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

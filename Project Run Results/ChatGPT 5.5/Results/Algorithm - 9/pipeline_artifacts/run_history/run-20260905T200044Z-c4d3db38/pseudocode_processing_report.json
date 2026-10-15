@@ -1,0 +1,118 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 9,
+  "transformations": [
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    Found \u2190 FALSE",
+      "canonical": "    Found <- FALSE",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    FOR i \u2190 0 TO LENGTH(List)-1",
+      "canonical": "    FOR i <- 0 TO LENGTH(List)-1",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 8,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            Found \u2190 TRUE",
+      "canonical": "            Found <- TRUE",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 6,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        IF List[i] = Target THEN",
+      "canonical": "        IF List[i] == Target THEN",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 13,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    IF Found = FALSE THEN",
+      "canonical": "    IF Found == FALSE THEN",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    INPUT List, Target\n\n    Found <- FALSE\n\n    FOR i <- 0 TO LENGTH(List)-1\n        IF List[i] == Target THEN\n            OUTPUT \"Found at position\", i\n            Found <- TRUE\n            EXIT FOR\n        ENDIF\n    ENDFOR\n\n    IF Found == FALSE THEN\n        OUTPUT \"Target not found\"\n    ENDIF\nEND",
+      "canonical": "FUNCTION unnamed_function ACCEPTS(List, Target)\n    Found <- BOOLEAN(False)\n\n    FOR i <- IN RANGE 0 TO (LENGTH OF List - 1) + 1 DO\n        IF List[i] == Target THEN\n            OUTPUT STRING(\"Found at position {i}\")\n            Found <- BOOLEAN(True)\n            BREAK\n        ENDIF\n    ENDFOR\n\n    IF Found == BOOLEAN(False) THEN\n        OUTPUT STRING(\"Target not found\")\n    ENDIF\nENDFUNCTION",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION unnamed_function ACCEPTS(List, Target)",
+      "canonical": "FUNCTION unnamed_function ACCEPTS(__reserved_keyword__List, Target)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    FOR i <- IN RANGE 0 TO (LENGTH OF List - 1) + 1 DO",
+      "canonical": "    FOR i <- IN RANGE 0 TO (LENGTH OF __reserved_keyword__List - 1) + 1 DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        IF List[i] == Target THEN",
+      "canonical": "        IF __reserved_keyword__List[i] == Target THEN",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 2
+}

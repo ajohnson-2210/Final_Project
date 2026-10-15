@@ -1,0 +1,250 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 20,
+  "transformations": [
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  result = []",
+      "canonical": "  result <- []",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    row = []",
+      "canonical": "    row <- []",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 6,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "      sum = 0",
+      "canonical": "      sum <- 0",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 8,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        sum += matrix1[i][k] * matrix2[k][j]",
+      "canonical": "        sum <- sum + matrix1[i][k] * matrix2[k][j]",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 10,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "      row += [sum]",
+      "canonical": "      row <- row + [sum]",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 12,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    result += [row]",
+      "canonical": "    result <- result + [row]",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  result <- []",
+      "canonical": "  result <- EMPTY LIST",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    row <- []",
+      "canonical": "    row <- EMPTY LIST",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  FOR i FROM 0 TO LENGTH(matrix1) - 1",
+      "canonical": "  FOR i FROM 0 TO LENGTH OF matrix1 - 1",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    FOR j FROM 0 TO LENGTH(matrix2[0]) - 1",
+      "canonical": "    FOR j FROM 0 TO LENGTH OF matrix2[0] - 1",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 7,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "      FOR k FROM 0 TO LENGTH(matrix1[0]) - 1",
+      "canonical": "      FOR k FROM 0 TO LENGTH OF matrix1[0] - 1",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION MULTIPLY_MATRICES(matrix1, matrix2)",
+      "canonical": "FUNCTION MULTIPLY_MATRICES ACCEPTS(matrix1, matrix2)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "FUNCTION MULTIPLY_MATRICES ACCEPTS(matrix1, matrix2)\n  result <- EMPTY LIST\n  FOR i FROM 0 TO LENGTH OF matrix1 - 1\n    row <- EMPTY LIST\n    FOR j FROM 0 TO LENGTH OF matrix2[0] - 1\n      sum <- 0\n      FOR k FROM 0 TO LENGTH OF matrix1[0] - 1\n        sum <- sum + matrix1[i][k] * matrix2[k][j]\n      END FOR\n      row <- row + [sum]\n    END FOR\n    result <- result + [row]\n  END FOR\n  RETURN result\nEND FUNCTION",
+      "canonical": "FUNCTION MULTIPLY_MATRICES ACCEPTS(matrix1, matrix2)\n  result <- EMPTY LIST\n  FOR i FROM 0 TO LENGTH OF matrix1 - 1\n    row <- EMPTY LIST\n    FOR j FROM 0 TO LENGTH OF matrix2[0] - 1\n      sum <- 0\n      FOR k FROM 0 TO LENGTH OF matrix1[0] - 1\n        sum <- sum + matrix1[i][k] * matrix2[k][j]\n      END FOR\n      row <- row + [sum]\n    END FOR\n    result <- result + [row]\n  END FOR\n  RETURN result\nENDFUNCTION",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "FUNCTION MULTIPLY_MATRICES ACCEPTS(matrix1, matrix2)\n  result <- EMPTY LIST\n  FOR i FROM 0 TO LENGTH OF matrix1 - 1\n    row <- EMPTY LIST\n    FOR j FROM 0 TO LENGTH OF matrix2[0] - 1\n      sum <- 0\n      FOR k FROM 0 TO LENGTH OF matrix1[0] - 1\n        sum <- sum + matrix1[i][k] * matrix2[k][j]\n      END FOR\n      row <- row + [sum]\n    END FOR\n    result <- result + [row]\n  END FOR\n  RETURN result\nENDFUNCTION",
+      "canonical": "FUNCTION MULTIPLY_MATRICES ACCEPTS(matrix1, matrix2)\n  result <- EMPTY LIST\n  FOR i FROM 0 TO LENGTH OF matrix1 - 1\n    row <- EMPTY LIST\n    FOR j FROM 0 TO LENGTH OF matrix2[0] - 1\n      sum <- 0\n      FOR k FROM 0 TO LENGTH OF matrix1[0] - 1\n        sum <- sum + matrix1[i][k] * matrix2[k][j]\n      END FOR\n      APPEND sum TO row\n    END FOR\n    APPEND row TO result\n  END FOR\n  RETURN result\nENDFUNCTION",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  FOR i FROM 0 TO LENGTH OF matrix1 - 1",
+      "canonical": "  FOR i <- IN RANGE 0 TO (LENGTH OF matrix1 - 1) + 1 DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    FOR j FROM 0 TO LENGTH OF matrix2[0] - 1",
+      "canonical": "    FOR j <- IN RANGE 0 TO (LENGTH OF matrix2[0] - 1) + 1 DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 7,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "      FOR k FROM 0 TO LENGTH OF matrix1[0] - 1",
+      "canonical": "      FOR k <- IN RANGE 0 TO (LENGTH OF matrix1[0] - 1) + 1 DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 9,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "      END FOR",
+      "canonical": "      ENDFOR",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 11,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "    END FOR",
+      "canonical": "    ENDFOR",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 13,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "  END FOR",
+      "canonical": "  ENDFOR",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 1
+}

@@ -1,0 +1,154 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 12,
+  "transformations": [
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  inventory = []",
+      "canonical": "  inventory <- []",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "      inventory[item] -= purchases[item]",
+      "canonical": "      inventory[item] <- inventory[item] - purchases[item]",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 7,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "      inventory[item] = -purchases[item]",
+      "canonical": "      inventory[item] <- -purchases[item]",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 12,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "      inventory[item] += deliveries[item]",
+      "canonical": "      inventory[item] <- inventory[item] + deliveries[item]",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 14,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "      inventory[item] = deliveries[item]",
+      "canonical": "      inventory[item] <- deliveries[item]",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  inventory <- []",
+      "canonical": "  inventory <- EMPTY LIST",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION UPDATE_INVENTORY(purchases, deliveries)",
+      "canonical": "FUNCTION UPDATE_INVENTORY ACCEPTS(purchases, deliveries)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "FUNCTION UPDATE_INVENTORY ACCEPTS(purchases, deliveries)\n  inventory <- EMPTY LIST\n  FOR item IN purchases\n    IF item IN inventory THEN\n      inventory[item] <- inventory[item] - purchases[item]\n    ELSE\n      inventory[item] <- -purchases[item]\n    END IF\n  END FOR\n  FOR item IN deliveries\n    IF item IN inventory THEN\n      inventory[item] <- inventory[item] + deliveries[item]\n    ELSE\n      inventory[item] <- deliveries[item]\n    END IF\n  END FOR\n  RETURN inventory\nEND FUNCTION",
+      "canonical": "FUNCTION UPDATE_INVENTORY ACCEPTS(purchases, deliveries)\n  inventory <- EMPTY LIST\n  FOR item IN purchases\n    IF item IN inventory THEN\n      inventory[item] <- inventory[item] - purchases[item]\n    ELSE\n      inventory[item] <- -purchases[item]\n    ENDIF\n  END FOR\n  FOR item IN deliveries\n    IF item IN inventory THEN\n      inventory[item] <- inventory[item] + deliveries[item]\n    ELSE\n      inventory[item] <- deliveries[item]\n    ENDIF\n  END FOR\n  RETURN inventory\nENDFUNCTION",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  FOR item IN purchases",
+      "canonical": "  FOR EACH item IN purchases DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 9,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "  END FOR",
+      "canonical": "  ENDFOR",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 10,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  FOR item IN deliveries",
+      "canonical": "  FOR EACH item IN deliveries DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 16,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "  END FOR",
+      "canonical": "  ENDFOR",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 1
+}

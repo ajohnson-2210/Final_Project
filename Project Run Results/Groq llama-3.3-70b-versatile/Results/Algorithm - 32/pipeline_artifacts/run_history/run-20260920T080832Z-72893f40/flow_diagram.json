@@ -1,0 +1,157 @@
+{
+  "format": "NL-FDEP Flow Diagram",
+  "version": "1.0",
+  "entry_node": "F1",
+  "exit_node": "F2",
+  "nodes": {
+    "F1": {
+      "node_id": "F1",
+      "node_type": "START",
+      "label": "Start",
+      "line": 1,
+      "data": {}
+    },
+    "F2": {
+      "node_id": "F2",
+      "node_type": "END",
+      "label": "End",
+      "line": 1,
+      "data": {}
+    },
+    "F3": {
+      "node_id": "F3",
+      "node_type": "FUNCTION",
+      "label": "Run function QUESTION_ANSWERING with text, query",
+      "line": 1,
+      "data": {
+        "ast_kind": "FunctionNode",
+        "name": "QUESTION_ANSWERING"
+      }
+    },
+    "F4": {
+      "node_id": "F4",
+      "node_type": "COMMENT",
+      "label": "Use a question answering algorithm to find the answer",
+      "line": 2,
+      "data": {
+        "ast_kind": "CommentNode"
+      }
+    },
+    "F5": {
+      "node_id": "F5",
+      "node_type": "PROCESS",
+      "label": "Set answer to the result of FIND_ANSWER(text, query)",
+      "line": 3,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F6": {
+      "node_id": "F6",
+      "node_type": "RETURN",
+      "label": "Return answer",
+      "line": 4,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "F4",
+      "target": "F5",
+      "label": "NEXT"
+    },
+    {
+      "source": "F5",
+      "target": "F6",
+      "label": "NEXT"
+    },
+    {
+      "source": "F3",
+      "target": "F4",
+      "label": "BODY"
+    },
+    {
+      "source": "F1",
+      "target": "F3",
+      "label": "NEXT"
+    },
+    {
+      "source": "F6",
+      "target": "F2",
+      "label": "NEXT"
+    }
+  ],
+  "structured_program": {
+    "kind": "ProgramNode",
+    "line": 1,
+    "body": [
+      {
+        "kind": "FunctionNode",
+        "line": 1,
+        "name": "QUESTION_ANSWERING",
+        "parameters": [
+          {
+            "kind": "ParameterNode",
+            "line": 1,
+            "name": "text",
+            "declared_type": null
+          },
+          {
+            "kind": "ParameterNode",
+            "line": 1,
+            "name": "query",
+            "declared_type": null
+          }
+        ],
+        "body": {
+          "kind": "BlockNode",
+          "line": 2,
+          "statements": [
+            {
+              "kind": "CommentNode",
+              "line": 2,
+              "text": "Use a question answering algorithm to find the answer"
+            },
+            {
+              "kind": "AssignmentNode",
+              "line": 3,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 3,
+                "name": "answer"
+              },
+              "value": {
+                "kind": "CallNode",
+                "line": 3,
+                "name": "FIND_ANSWER",
+                "arguments": [
+                  {
+                    "kind": "IdentifierNode",
+                    "line": 3,
+                    "name": "text"
+                  },
+                  {
+                    "kind": "IdentifierNode",
+                    "line": 3,
+                    "name": "query"
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "ReturnNode",
+              "line": 4,
+              "expression": {
+                "kind": "IdentifierNode",
+                "line": 4,
+                "name": "answer"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

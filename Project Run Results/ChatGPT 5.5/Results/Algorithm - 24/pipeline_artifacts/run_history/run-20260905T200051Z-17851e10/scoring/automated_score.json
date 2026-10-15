@@ -1,0 +1,1239 @@
+{
+  "scoring_schema_version": "1.4",
+  "rubric_version": "1.1",
+  "pipeline_version": "4.32",
+  "language_version": "AJ_24038155_DIALECT_V1.5",
+  "generated_at_utc": "2026-09-05T20:00:51.481940+00:00",
+  "rubric": {
+    "scale": {
+      "2": "Criterion fully satisfied; no material semantic discrepancy detected.",
+      "1": "Partially satisfied, or the available evidence is insufficient to establish complete semantic preservation.",
+      "0": "Criterion not satisfied; a material semantic discrepancy or stage failure is present.",
+      "NA": "Criterion cannot legitimately be evaluated from the available artefacts."
+    }
+  },
+  "algorithm": {
+    "algorithm_id": 24,
+    "dataset": "ChatGPT 5.5",
+    "source_type": "llm_pseudocode",
+    "source_file": "Algorithm 24 Pseudocode.txt",
+    "source_file_resolved": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\ChatGPT 5.5\\Results\\Algorithm - 24\\Algorithm 24 Pseudocode.txt",
+    "is_baseline": false,
+    "baseline_algorithm_id": 24,
+    "baseline_reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 24\\Algorithm 24 Baseline Python code.txt"
+  },
+  "source_sufficiency": {
+    "criterion_id": "G1",
+    "stage_id": "G",
+    "stage_name": "Source Sufficiency",
+    "question": "Does the original pseudocode contain sufficient explicit information to determine the algorithm's behaviour without inventing missing semantics?",
+    "scored": false,
+    "allowed_results": [
+      "EVALUABLE",
+      "EXPECTED_FAILURE",
+      "REVIEW_REQUIRED"
+    ],
+    "result": "EVALUABLE",
+    "automated": true,
+    "justification": "The available artefacts do not identify unresolved source semantics that require invention.",
+    "human_assessment": {
+      "completed": false,
+      "result": null,
+      "agreement_with_automated_result": null,
+      "reviewer_justification": null
+    }
+  },
+  "behavioural_evidence_adequacy": {
+    "criterion_id": "G2",
+    "stage_id": "G",
+    "stage_name": "Behavioural Evidence Adequacy",
+    "question": "How strong, representative and reproducible is the behavioural evidence supporting the automated behavioural score, and what important behaviour remains untested or non-evaluable?",
+    "scored": false,
+    "allowed_results": [
+      "ADEQUATE",
+      "PARTIAL",
+      "LIMITED",
+      "NOT_EVALUABLE",
+      "NOT_DECLARED"
+    ],
+    "coverage_dimension_results": [
+      "COVERED",
+      "PARTIALLY_COVERED",
+      "NOT_COVERED",
+      "NOT_APPLICABLE",
+      "NOT_EVALUABLE"
+    ],
+    "required_descriptive_fields": [
+      "summary",
+      "test_counts",
+      "coverage_dimensions",
+      "strengths",
+      "limitations",
+      "coverage_basis",
+      "interpretation"
+    ],
+    "interpretation": "Interpret behavioural accuracy as comparatively broad evidence across the declared exercised behaviours, while not treating the result as exhaustive proof for all possible inputs and states.",
+    "result": "ADEQUATE",
+    "automated": true,
+    "justification": "The test-suite specification declares behavioural evidence adequacy as ADEQUATE.",
+    "evidence": {
+      "test_evidence_schema_version": "1.1",
+      "tests_file": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\Pipeline Versions\\NL_Flow_Diagram_Encoder_Pipeline_v4_32\\NL_Flow_Diagram_Encoder_Pipeline_v4_32\\study data\\common tests v1.1\\Algorithm - 24\\Algorithm 24 Tests.json",
+      "declared_evidence_adequacy": "ADEQUATE",
+      "declared_evidence_summary": "This suite provides comparatively broad behavioural evidence using 4 predefined common behavioural tests, with covered normal-path, branch behaviour and partial error evidence.",
+      "declared_coverage_dimensions": {
+        "normal_path": "COVERED",
+        "branch_behaviour": "COVERED",
+        "boundary_behaviour": "NOT_COVERED",
+        "error_behaviour": "PARTIALLY_COVERED",
+        "termination_behaviour": "NOT_COVERED",
+        "state_mutation": "NOT_COVERED"
+      },
+      "coverage_basis": "Assessment is based on the 4 predefined common behavioural tests, the behaviours exposed by the frozen program interface, and the declared coverage dimensions: normal path, branch behaviour, error behaviour.",
+      "interpretation_guidance": "Interpret behavioural accuracy as comparatively broad evidence across the declared exercised behaviours, while not treating the result as exhaustive proof for all possible inputs and states.",
+      "coverage_limitations": [],
+      "manual_review_targets": [],
+      "requires_pipeline_features": [],
+      "test_count": 4,
+      "category_counts": {
+        "BRANCH": 2,
+        "ERROR_BEHAVIOUR": 1,
+        "NORMAL": 1
+      },
+      "criteria_link_counts": {
+        "P2": 4,
+        "P3": 1,
+        "P4": 4
+      },
+      "seeded_test_count": 0,
+      "environment_controlled_test_count": 0,
+      "has_normal_or_branch_test": true,
+      "has_boundary_error_or_termination_test": true,
+      "has_state_mutation_test": false
+    },
+    "human_assessment": {
+      "completed": false,
+      "result": null,
+      "agreement_with_automated_result": null,
+      "reviewer_justification": null
+    },
+    "summary": "This suite provides comparatively broad behavioural evidence using 4 predefined common behavioural tests, with covered normal-path, branch behaviour and partial error evidence. Runtime evidence: 4 of 4 declared test(s) were evaluable and 0 passed.",
+    "test_counts": {
+      "declared": 4,
+      "evaluable": 4,
+      "passed": 0,
+      "failed": 4,
+      "not_evaluable": 0
+    },
+    "coverage_dimensions": {
+      "normal_path": {
+        "label": "Normal-path coverage",
+        "status": "COVERED",
+        "tests_declared": 1,
+        "tests_evaluable": 1,
+        "tests_passed": 0,
+        "evidence": "1 NORMAL test(s) declared; 1 evaluable; 0 passed."
+      },
+      "branch_behaviour": {
+        "label": "Branch coverage",
+        "status": "COVERED",
+        "tests_declared": 2,
+        "tests_evaluable": 2,
+        "tests_passed": 0,
+        "evidence": "2 BRANCH test(s) declared; 2 evaluable; 0 passed."
+      },
+      "boundary_behaviour": {
+        "label": "Boundary coverage",
+        "status": "NOT_COVERED",
+        "tests_declared": 0,
+        "tests_evaluable": 0,
+        "tests_passed": 0,
+        "evidence": "No BOUNDARY test is declared in the common suite."
+      },
+      "error_behaviour": {
+        "label": "Error-behaviour coverage",
+        "status": "PARTIALLY_COVERED",
+        "tests_declared": 1,
+        "tests_evaluable": 1,
+        "tests_passed": 0,
+        "evidence": "1 ERROR_BEHAVIOUR test(s) declared; 1 evaluable; 0 passed."
+      },
+      "termination_behaviour": {
+        "label": "Termination coverage",
+        "status": "NOT_COVERED",
+        "tests_declared": 0,
+        "tests_evaluable": 0,
+        "tests_passed": 0,
+        "evidence": "No TERMINATION test is declared in the common suite."
+      },
+      "state_mutation": {
+        "label": "State-mutation coverage",
+        "status": "NOT_COVERED",
+        "tests_declared": 0,
+        "tests_evaluable": 0,
+        "tests_passed": 0,
+        "evidence": "No STATE_MUTATION test is declared in the common suite."
+      }
+    },
+    "strengths": [
+      "The suite provides direct behavioural evidence for normal-path coverage, branch coverage.",
+      "The suite provides some evidence for error-behaviour coverage, although coverage is incomplete.",
+      "0 of 4 evaluable behavioural test(s) passed in this run."
+    ],
+    "limitations": [
+      "No direct common-test evidence is declared for: Boundary coverage, Termination coverage, State-mutation coverage."
+    ],
+    "coverage_basis": "Assessment is based on the 4 predefined common behavioural tests, the behaviours exposed by the frozen program interface, and the declared coverage dimensions: normal path, branch behaviour, error behaviour.",
+    "manual_review_targets": [],
+    "reproducibility": {
+      "seeded_test_count": 0,
+      "environment_controlled_test_count": 0
+    }
+  },
+  "stages": {
+    "canonicalisation": {
+      "stage_id": "C",
+      "stage_name": "Pseudocode Canonicalisation",
+      "stage_description": "Measures whether conversion from the source pseudocode to canonical AJ preserves the supplied algorithm semantics.",
+      "criteria": [
+        {
+          "criterion_id": "C1",
+          "question": "Does the canonical pseudocode conform to the AJ grammar sufficiently for deterministic interpretation by the next pipeline stage?",
+          "maximum_score": 2,
+          "critical_semantic_criterion": false,
+          "automated_assessment": {
+            "score": 2,
+            "status": "PASS",
+            "confidence": "HIGH",
+            "justification": "Canonical AJ completed syntax/static validation and produced an AST.",
+            "scoring_method": {
+              "type": "AUTOMATED",
+              "rule_id": "CANON_PARSE_SUCCESS_001"
+            }
+          },
+          "evidence": [
+            {
+              "artifact": "parser_report.json",
+              "observed_value": "SUCCESS"
+            }
+          ],
+          "human_assessment": {
+            "completed": false,
+            "score": null,
+            "agreement_with_automated_score": null,
+            "semantic_issue": null,
+            "reviewer_justification": null
+          }
+        },
+        {
+          "criterion_id": "C2",
+          "question": "Are all semantically relevant operations from the source pseudocode preserved in the canonical representation with equivalent meaning?",
+          "maximum_score": 2,
+          "critical_semantic_criterion": true,
+          "automated_assessment": {
+            "score": 2,
+            "status": "PASS",
+            "confidence": "HIGH",
+            "justification": "All logged transformations are from audited evidence categories and none declares a semantic change.",
+            "scoring_method": {
+              "type": "AUTOMATED",
+              "rule_id": "CANON_OPERATION_PRESERVATION_001"
+            }
+          },
+          "evidence": [
+            {
+              "artifact": "pseudocode_processing_report.json",
+              "transformation_count": 19,
+              "semantic_change_count": 0,
+              "uncertain_transformation_count": 0,
+              "rule_families": [
+                "SOURCE_NORMALISATION"
+              ]
+            }
+          ],
+          "human_assessment": {
+            "completed": false,
+            "score": null,
+            "agreement_with_automated_score": null,
+            "semantic_issue": null,
+            "reviewer_justification": null
+          }
+        },
+        {
+          "criterion_id": "C3",
+          "question": "Are conditions, branches, loop bounds, iteration behaviour, state changes and termination behaviour preserved from the source?",
+          "maximum_score": 2,
+          "critical_semantic_criterion": true,
+          "automated_assessment": {
+            "score": 2,
+            "status": "PASS",
+            "confidence": "HIGH",
+            "justification": "No logged transformation declares a change to control/state semantics; all transformations have accepted audit evidence.",
+            "scoring_method": {
+              "type": "AUTOMATED",
+              "rule_id": "CANON_CONTROL_STATE_001"
+            }
+          },
+          "evidence": [
+            {
+              "artifact": "pseudocode_processing_report.json",
+              "transformation_count": 19,
+              "semantic_change_count": 0,
+              "uncertain_transformation_count": 0,
+              "rule_families": [
+                "SOURCE_NORMALISATION"
+              ]
+            }
+          ],
+          "human_assessment": {
+            "completed": false,
+            "score": null,
+            "agreement_with_automated_score": null,
+            "semantic_issue": null,
+            "reviewer_justification": null
+          }
+        },
+        {
+          "criterion_id": "C4",
+          "question": "Has canonicalisation avoided introducing algorithmic behaviour that was not explicitly supported by the source?",
+          "maximum_score": 2,
+          "critical_semantic_criterion": true,
+          "automated_assessment": {
+            "score": 2,
+            "status": "PASS",
+            "confidence": "HIGH",
+            "justification": "No transformation is marked as semantic-changing and all transformations use accepted audit-evidence categories.",
+            "scoring_method": {
+              "type": "AUTOMATED",
+              "rule_id": "CANON_NO_INVENTION_001"
+            }
+          },
+          "evidence": [
+            {
+              "artifact": "pseudocode_processing_report.json",
+              "transformation_count": 19,
+              "semantic_change_count": 0,
+              "uncertain_transformation_count": 0,
+              "rule_families": [
+                "SOURCE_NORMALISATION"
+              ]
+            }
+          ],
+          "human_assessment": {
+            "completed": false,
+            "score": null,
+            "agreement_with_automated_score": null,
+            "semantic_issue": null,
+            "reviewer_justification": null
+          }
+        }
+      ],
+      "stage_summary": {
+        "score_obtained": 8,
+        "maximum_applicable_score": 8,
+        "percentage": 100.0,
+        "semantic_failure": false,
+        "review_required": false,
+        "status": "PASS"
+      }
+    },
+    "ast": {
+      "stage_id": "A",
+      "stage_name": "AST Semantic Alignment",
+      "stage_description": "Measures whether the abstract syntax tree faithfully represents the canonical AJ program.",
+      "criteria": [
+        {
+          "criterion_id": "A1",
+          "question": "Does every semantically relevant construct in the canonical pseudocode have an appropriate AST representation without missing or spurious executable nodes?",
+          "maximum_score": 2,
+          "critical_semantic_criterion": false,
+          "automated_assessment": {
+            "score": 2,
+            "status": "PASS",
+            "confidence": "HIGH",
+            "justification": "The parser produced a complete adjacency AST after syntax and static-semantic analysis.",
+            "scoring_method": {
+              "type": "AUTOMATED",
+              "rule_id": "AST_CONSTRUCT_CORRESPONDENCE_001"
+            }
+          },
+          "evidence": [
+            {
+              "artifact": "parser_report.json",
+              "parser_success": true,
+              "static_semantic_status": "SUCCESS",
+              "warning_count": 0
+            },
+            {
+              "artifact": "ast.json",
+              "node_count": 51,
+              "operator_multiset": {
+                "<": 1,
+                "==": 2,
+                "AND": 1
+              }
+            }
+          ],
+          "human_assessment": {
+            "completed": false,
+            "score": null,
+            "agreement_with_automated_score": null,
+            "semantic_issue": null,
+            "reviewer_justification": null
+          }
+        },
+        {
+          "criterion_id": "A2",
+          "question": "Does the AST correctly represent the operands, operators, literals, indexing, collection access and call relationships of the canonical pseudocode?",
+          "maximum_score": 2,
+          "critical_semantic_criterion": true,
+          "automated_assessment": {
+            "score": 2,
+            "status": "PASS",
+            "confidence": "MEDIUM",
+            "justification": "Operator/literal relationships were accepted by syntax and static-semantic analysis. No semantic warnings were reported.",
+            "scoring_method": {
+              "type": "AUTOMATED",
+              "rule_id": "AST_EXPRESSION_ALIGNMENT_001"
+            }
+          },
+          "evidence": [
+            {
+              "artifact": "parser_report.json",
+              "parser_success": true,
+              "static_semantic_status": "SUCCESS",
+              "warning_count": 0
+            },
+            {
+              "artifact": "ast.json",
+              "node_count": 51,
+              "operator_multiset": {
+                "<": 1,
+                "==": 2,
+                "AND": 1
+              }
+            }
+          ],
+          "human_assessment": {
+            "completed": false,
+            "score": null,
+            "agreement_with_automated_score": null,
+            "semantic_issue": null,
+            "reviewer_justification": null
+          }
+        },
+        {
+          "criterion_id": "A3",
+          "question": "Are branch relationships, loop bodies, returns, loop-control operations, variable scope and nested declarations represented in the correct structural context?",
+          "maximum_score": 2,
+          "critical_semantic_criterion": true,
+          "automated_assessment": {
+            "score": 2,
+            "status": "PASS",
+            "confidence": "MEDIUM",
+            "justification": "Control/scope relationships passed parser static-semantic analysis. No semantic warnings were reported.",
+            "scoring_method": {
+              "type": "AUTOMATED",
+              "rule_id": "AST_CONTROL_SCOPE_001"
+            }
+          },
+          "evidence": [
+            {
+              "artifact": "parser_report.json",
+              "parser_success": true,
+              "static_semantic_status": "SUCCESS",
+              "warning_count": 0
+            },
+            {
+              "artifact": "ast.json",
+              "node_count": 51,
+              "operator_multiset": {
+                "<": 1,
+                "==": 2,
+                "AND": 1
+              }
+            }
+          ],
+          "human_assessment": {
+            "completed": false,
+            "score": null,
+            "agreement_with_automated_score": null,
+            "semantic_issue": null,
+            "reviewer_justification": null
+          }
+        },
+        {
+          "criterion_id": "A4",
+          "question": "If the AST were interpreted directly, would it permit the same observable algorithmic behaviour as the canonical pseudocode?",
+          "maximum_score": 2,
+          "critical_semantic_criterion": true,
+          "automated_assessment": {
+            "score": 2,
+            "status": "PASS",
+            "confidence": "MEDIUM",
+            "justification": "The canonical program was accepted as a semantically valid AST by the parser. This automated judgement is retained for human verification rather than treated as an independent proof.",
+            "scoring_method": {
+              "type": "AUTOMATED",
+              "rule_id": "AST_SEMANTIC_EQUIVALENCE_001"
+            }
+          },
+          "evidence": [
+            {
+              "artifact": "parser_report.json",
+              "parser_success": true,
+              "static_semantic_status": "SUCCESS",
+              "warning_count": 0
+            },
+            {
+              "artifact": "ast.json",
+              "node_count": 51,
+              "operator_multiset": {
+                "<": 1,
+                "==": 2,
+                "AND": 1
+              }
+            }
+          ],
+          "human_assessment": {
+            "completed": false,
+            "score": null,
+            "agreement_with_automated_score": null,
+            "semantic_issue": null,
+            "reviewer_justification": null
+          }
+        }
+      ],
+      "stage_summary": {
+        "score_obtained": 8,
+        "maximum_applicable_score": 8,
+        "percentage": 100.0,
+        "semantic_failure": false,
+        "review_required": false,
+        "status": "PASS"
+      }
+    },
+    "flow_diagram": {
+      "stage_id": "F",
+      "stage_name": "Flow Diagram Logical Structure",
+      "stage_description": "Measures whether the generated flow representation preserves the AST's executable control structure.",
+      "criteria": [
+        {
+          "criterion_id": "F1",
+          "question": "Are all semantically relevant actions, decisions, entry/exit points and returns represented in the flow diagram?",
+          "maximum_score": 2,
+          "critical_semantic_criterion": false,
+          "automated_assessment": {
+            "score": 0,
+            "status": "FAIL",
+            "confidence": "HIGH",
+            "justification": "Executable AST construct counts and visual flow-node construct counts differ.",
+            "scoring_method": {
+              "type": "AUTOMATED",
+              "rule_id": "FLOW_NODE_COMPLETENESS_001"
+            }
+          },
+          "evidence": [
+            {
+              "artifact": "flow_diagram.json",
+              "expected_executable_ast_counts": {
+                "AssignmentNode": 4,
+                "CallNode": 2,
+                "ForEachNode": 1,
+                "FunctionNode": 1,
+                "IfNode": 4,
+                "OutputNode": 3
+              },
+              "visual_flow_ast_counts": {
+                "AssignmentNode": 4,
+                "ForEachNode": 1,
+                "FunctionNode": 1,
+                "IfNode": 4,
+                "OutputNode": 3
+              },
+              "graph_validation": {
+                "valid": true,
+                "issues": [],
+                "warnings": [],
+                "node_count": 15,
+                "edge_count": 19,
+                "decision_node_count": 5,
+                "loop_decision_count": 1,
+                "loop_back_edge_count": 2,
+                "unreachable_nodes": []
+              }
+            },
+            {
+              "artifact": "ast.json + flow_diagram.json:structured_program",
+              "signature_comparison": {
+                "equivalent": true,
+                "review_required": false,
+                "differences": []
+              }
+            }
+          ],
+          "human_assessment": {
+            "completed": false,
+            "score": null,
+            "agreement_with_automated_score": null,
+            "semantic_issue": null,
+            "reviewer_justification": null
+          }
+        },
+        {
+          "criterion_id": "F2",
+          "question": "Do the diagram connections correctly represent execution sequence, branch destinations, loop-back edges and exit paths?",
+          "maximum_score": 2,
+          "critical_semantic_criterion": true,
+          "automated_assessment": {
+            "score": 2,
+            "status": "PASS",
+            "confidence": "HIGH",
+            "justification": "Flow graph entry/exit, edge references, decision out-degree and loop routing invariants passed.",
+            "scoring_method": {
+              "type": "AUTOMATED",
+              "rule_id": "FLOW_EDGE_CORRECTNESS_001"
+            }
+          },
+          "evidence": [
+            {
+              "artifact": "flow_diagram.json",
+              "expected_executable_ast_counts": {
+                "AssignmentNode": 4,
+                "CallNode": 2,
+                "ForEachNode": 1,
+                "FunctionNode": 1,
+                "IfNode": 4,
+                "OutputNode": 3
+              },
+              "visual_flow_ast_counts": {
+                "AssignmentNode": 4,
+                "ForEachNode": 1,
+                "FunctionNode": 1,
+                "IfNode": 4,
+                "OutputNode": 3
+              },
+              "graph_validation": {
+                "valid": true,
+                "issues": [],
+                "warnings": [],
+                "node_count": 15,
+                "edge_count": 19,
+                "decision_node_count": 5,
+                "loop_decision_count": 1,
+                "loop_back_edge_count": 2,
+                "unreachable_nodes": []
+              }
+            },
+            {
+              "artifact": "ast.json + flow_diagram.json:structured_program",
+              "signature_comparison": {
+                "equivalent": true,
+                "review_required": false,
+                "differences": []
+              }
+            }
+          ],
+          "human_assessment": {
+            "completed": false,
+            "score": null,
+            "agreement_with_automated_score": null,
+            "semantic_issue": null,
+            "reviewer_justification": null
+          }
+        },
+        {
+          "criterion_id": "F3",
+          "question": "For every meaningful execution path represented by the AST, is there a corresponding path through the flow diagram without additional semantically unsupported paths?",
+          "maximum_score": 2,
+          "critical_semantic_criterion": true,
+          "automated_assessment": {
+            "score": 2,
+            "status": "PASS",
+            "confidence": "HIGH",
+            "justification": "The flow structured-program signature exactly matches the AST and graph invariants pass.",
+            "scoring_method": {
+              "type": "AUTOMATED",
+              "rule_id": "FLOW_PATH_EQUIVALENCE_001"
+            }
+          },
+          "evidence": [
+            {
+              "artifact": "flow_diagram.json",
+              "expected_executable_ast_counts": {
+                "AssignmentNode": 4,
+                "CallNode": 2,
+                "ForEachNode": 1,
+                "FunctionNode": 1,
+                "IfNode": 4,
+                "OutputNode": 3
+              },
+              "visual_flow_ast_counts": {
+                "AssignmentNode": 4,
+                "ForEachNode": 1,
+                "FunctionNode": 1,
+                "IfNode": 4,
+                "OutputNode": 3
+              },
+              "graph_validation": {
+                "valid": true,
+                "issues": [],
+                "warnings": [],
+                "node_count": 15,
+                "edge_count": 19,
+                "decision_node_count": 5,
+                "loop_decision_count": 1,
+                "loop_back_edge_count": 2,
+                "unreachable_nodes": []
+              }
+            },
+            {
+              "artifact": "ast.json + flow_diagram.json:structured_program",
+              "signature_comparison": {
+                "equivalent": true,
+                "review_required": false,
+                "differences": []
+              }
+            }
+          ],
+          "human_assessment": {
+            "completed": false,
+            "score": null,
+            "agreement_with_automated_score": null,
+            "semantic_issue": null,
+            "reviewer_justification": null
+          }
+        },
+        {
+          "criterion_id": "F4",
+          "question": "Do decision conditions, TRUE/FALSE routing, loop-entry conditions and loop-termination behaviour preserve the logic represented by the AST?",
+          "maximum_score": 2,
+          "critical_semantic_criterion": true,
+          "automated_assessment": {
+            "score": 2,
+            "status": "PASS",
+            "confidence": "HIGH",
+            "justification": "Structured AST contains 5 control decision(s); flow graph contains 5 decision node(s). Decision routing invariants passed.",
+            "scoring_method": {
+              "type": "AUTOMATED",
+              "rule_id": "FLOW_DECISION_FIDELITY_001"
+            }
+          },
+          "evidence": [
+            {
+              "artifact": "flow_diagram.json",
+              "expected_executable_ast_counts": {
+                "AssignmentNode": 4,
+                "CallNode": 2,
+                "ForEachNode": 1,
+                "FunctionNode": 1,
+                "IfNode": 4,
+                "OutputNode": 3
+              },
+              "visual_flow_ast_counts": {
+                "AssignmentNode": 4,
+                "ForEachNode": 1,
+                "FunctionNode": 1,
+                "IfNode": 4,
+                "OutputNode": 3
+              },
+              "graph_validation": {
+                "valid": true,
+                "issues": [],
+                "warnings": [],
+                "node_count": 15,
+                "edge_count": 19,
+                "decision_node_count": 5,
+                "loop_decision_count": 1,
+                "loop_back_edge_count": 2,
+                "unreachable_nodes": []
+              }
+            },
+            {
+              "artifact": "ast.json + flow_diagram.json:structured_program",
+              "signature_comparison": {
+                "equivalent": true,
+                "review_required": false,
+                "differences": []
+              }
+            }
+          ],
+          "human_assessment": {
+            "completed": false,
+            "score": null,
+            "agreement_with_automated_score": null,
+            "semantic_issue": null,
+            "reviewer_justification": null
+          }
+        }
+      ],
+      "stage_summary": {
+        "score_obtained": 6,
+        "maximum_applicable_score": 8,
+        "percentage": 75.0,
+        "semantic_failure": false,
+        "review_required": false,
+        "status": "PARTIAL"
+      }
+    },
+    "python": {
+      "stage_id": "P",
+      "stage_name": "Generated Python Correctness",
+      "stage_description": "Measures whether generated Python is executable and behaviourally/semantically faithful to the represented algorithm.",
+      "criteria": [
+        {
+          "criterion_id": "P1",
+          "question": "Is the generated Python syntactically valid and executable for inputs valid under the source algorithm's assumptions?",
+          "maximum_score": 2,
+          "critical_semantic_criterion": false,
+          "automated_assessment": {
+            "score": 2,
+            "status": "PASS",
+            "confidence": "HIGH",
+            "justification": "Python source was generated and syntax-validated by the compiler.",
+            "scoring_method": {
+              "type": "AUTOMATED",
+              "rule_id": "PY_EXECUTABILITY_001"
+            }
+          },
+          "evidence": [
+            {
+              "artifact": "compilation_report.json",
+              "status": "SUCCESS"
+            }
+          ],
+          "human_assessment": {
+            "completed": false,
+            "score": null,
+            "agreement_with_automated_score": null,
+            "semantic_issue": null,
+            "reviewer_justification": null
+          }
+        },
+        {
+          "criterion_id": "P2",
+          "question": "Does the generated Python produce the expected outputs and observable state changes across the predefined behavioural tests?",
+          "maximum_score": 2,
+          "critical_semantic_criterion": true,
+          "automated_assessment": {
+            "score": 0,
+            "status": "FAIL",
+            "confidence": "HIGH",
+            "justification": "Generated Python passed 0 of 4 behavioural tests (0.00%).",
+            "scoring_method": {
+              "type": "AUTOMATED",
+              "rule_id": "PY_FUNCTIONAL_TESTS_001"
+            }
+          },
+          "evidence": [
+            {
+              "artifact": "test_report.json",
+              "tests_total": 4,
+              "tests_passed": 0
+            }
+          ],
+          "human_assessment": {
+            "completed": false,
+            "score": null,
+            "agreement_with_automated_score": null,
+            "semantic_issue": null,
+            "reviewer_justification": null
+          }
+        },
+        {
+          "criterion_id": "P3",
+          "question": "Does the generated Python preserve source-defined boundary behaviour, termination behaviour, returns and errors?",
+          "maximum_score": 2,
+          "critical_semantic_criterion": true,
+          "automated_assessment": {
+            "score": 0,
+            "status": "FAIL",
+            "confidence": "HIGH",
+            "justification": "Passed 0 of 1 boundary/error/termination tests.",
+            "scoring_method": {
+              "type": "AUTOMATED",
+              "rule_id": "PY_BOUNDARY_ERROR_001"
+            }
+          },
+          "evidence": [
+            {
+              "artifact": "test_report.json",
+              "boundary_tests": 1,
+              "passed": 0
+            }
+          ],
+          "human_assessment": {
+            "completed": false,
+            "score": null,
+            "agreement_with_automated_score": null,
+            "semantic_issue": null,
+            "reviewer_justification": null
+          }
+        },
+        {
+          "criterion_id": "P4",
+          "question": "Does the generated Python preserve the algorithm's control flow, state changes, data-structure effects and observable behaviour without introducing or removing meaningful behaviour?",
+          "maximum_score": 2,
+          "critical_semantic_criterion": true,
+          "automated_assessment": {
+            "score": 0,
+            "status": "FAIL",
+            "confidence": "HIGH",
+            "justification": "Compilation succeeded, but none of the available behavioural-oracle tests passed.",
+            "scoring_method": {
+              "type": "AUTOMATED",
+              "rule_id": "PY_SEMANTIC_PRESERVATION_001"
+            }
+          },
+          "evidence": [
+            {
+              "artifact": "compilation_report.json + test_report.json",
+              "tests_total": 4,
+              "tests_passed": 0
+            }
+          ],
+          "human_assessment": {
+            "completed": false,
+            "score": null,
+            "agreement_with_automated_score": null,
+            "semantic_issue": null,
+            "reviewer_justification": null
+          }
+        }
+      ],
+      "stage_summary": {
+        "score_obtained": 2,
+        "maximum_applicable_score": 8,
+        "percentage": 25.0,
+        "semantic_failure": true,
+        "review_required": false,
+        "status": "SEMANTIC_FAILURE"
+      }
+    }
+  },
+  "behavioural_testing": {
+    "tests_total": 4,
+    "tests_passed": 0,
+    "tests_failed": 4,
+    "accuracy_percentage": 0.0,
+    "complete_correctness": false,
+    "category_metrics": {
+      "NORMAL": {
+        "tests_total": 1,
+        "tests_passed": 0,
+        "accuracy_percentage": 0.0
+      },
+      "ERROR_BEHAVIOUR": {
+        "tests_total": 1,
+        "tests_passed": 0,
+        "accuracy_percentage": 0.0
+      },
+      "BRANCH": {
+        "tests_total": 2,
+        "tests_passed": 0,
+        "accuracy_percentage": 0.0
+      }
+    },
+    "criteria_link_metrics": {
+      "P2": {
+        "tests_total": 4,
+        "tests_passed": 0,
+        "accuracy_percentage": 0.0
+      },
+      "P4": {
+        "tests_total": 4,
+        "tests_passed": 0,
+        "accuracy_percentage": 0.0
+      },
+      "P3": {
+        "tests_total": 1,
+        "tests_passed": 0,
+        "accuracy_percentage": 0.0
+      }
+    },
+    "evidence_adequacy": "ADEQUATE"
+  },
+  "benchmark": {
+    "comparison_schema_version": "1.0",
+    "comparison_role": "EXPERIMENTAL_VS_PIPELINE_CALIBRATION",
+    "is_baseline": false,
+    "reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 24\\Algorithm 24 Baseline Python code.txt",
+    "tests_file": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\Pipeline Versions\\NL_Flow_Diagram_Encoder_Pipeline_v4_32\\NL_Flow_Diagram_Encoder_Pipeline_v4_32\\study data\\common tests v1.1\\Algorithm - 24\\Algorithm 24 Tests.json",
+    "common_test_set": true,
+    "baseline_reference_validation": {
+      "validation_schema_version": "1.0",
+      "reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 24\\Algorithm 24 Baseline Python code.txt",
+      "reference_source_preparation": {
+        "reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 24\\Algorithm 24 Baseline Python code.txt",
+        "raw_sha256": "3204b06acf1b7bef0b96bd1f4d756e6b2dd3b151139ce0000f6a39d595c68511",
+        "raw_syntax_valid": false,
+        "execution_syntax_valid": true,
+        "normalisation_applied": true,
+        "normalisation_rule": "COMMENT_MATCHED_TEST_SUITE_ALGORITHM_TITLE",
+        "raw_syntax_error": "expected 'else' after 'if' expression (<unknown>, line 1)",
+        "normalised_line_number": 1,
+        "declared_algorithm_title": "Create a process that determines if a password has 8 characters 1 number and 1 uppercase letter",
+        "reference_heading": "Create a process that determines if a password has 8 characters 1 number and 1 uppercase letter",
+        "execution_sha256": "f15b0961961e464d0b224bb13731538cf19653b685b9cc18e618639f7aec6e25"
+      },
+      "status": "TRUSTED_REFERENCE",
+      "reason": "No independent expected outcomes are present. The frozen baseline Python is accepted as the trusted behavioural reference by the study design; this is not an independent validation claim.",
+      "explicit_tests_total": 0,
+      "tests": []
+    },
+    "baseline_calibration_status": "EVALUATED",
+    "baseline_calibration_score_percentage": 100.0,
+    "experimental_behavioural_score_percentage": 0.0,
+    "experimental_tests_total": 4,
+    "experimental_tests_passed": 0,
+    "delta_from_baseline_percentage_points": -100.0,
+    "comparison_to_baseline": "BELOW_BASELINE",
+    "comparison_status": "COMPARABLE",
+    "oracle_records": [
+      {
+        "name": "valid minimum-style password",
+        "reference": {
+          "status": "COMPLETED",
+          "standard_input": [
+            "Abcdefg1"
+          ],
+          "stdout": [
+            "Enter Password, it must be at least 8 Characters and contain at least 1 number and 1 uppercase letter : Password Accepted!!"
+          ],
+          "stderr": "",
+          "return_code": 0,
+          "error_type": null,
+          "duration_ms": 50.168,
+          "category": "NORMAL",
+          "semantic_feature": "PASSWORD_VALID",
+          "criteria_links": [
+            "P2",
+            "P4"
+          ],
+          "random_seed": null,
+          "environment": {},
+          "requires_modules": [],
+          "reference_source_preparation": {
+            "reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 24\\Algorithm 24 Baseline Python code.txt",
+            "raw_sha256": "3204b06acf1b7bef0b96bd1f4d756e6b2dd3b151139ce0000f6a39d595c68511",
+            "raw_syntax_valid": false,
+            "execution_syntax_valid": true,
+            "normalisation_applied": true,
+            "normalisation_rule": "COMMENT_MATCHED_TEST_SUITE_ALGORITHM_TITLE",
+            "raw_syntax_error": "expected 'else' after 'if' expression (<unknown>, line 1)",
+            "normalised_line_number": 1,
+            "declared_algorithm_title": "Create a process that determines if a password has 8 characters 1 number and 1 uppercase letter",
+            "reference_heading": "Create a process that determines if a password has 8 characters 1 number and 1 uppercase letter",
+            "execution_sha256": "f15b0961961e464d0b224bb13731538cf19653b685b9cc18e618639f7aec6e25"
+          }
+        },
+        "expected_result_source": "REFERENCE_PYTHON",
+        "explicit_expectation_fields": [],
+        "derived_expectation_fields": [
+          "expected_output",
+          "expected_return_code"
+        ],
+        "evaluable_expectation_fields": [
+          "expected_output",
+          "expected_return_code"
+        ],
+        "test_case_status": "EVALUABLE"
+      },
+      {
+        "name": "too short then valid",
+        "reference": {
+          "status": "COMPLETED",
+          "standard_input": [
+            "Ab1",
+            "Abcdefg1"
+          ],
+          "stdout": [
+            "Enter Password, it must be at least 8 Characters and contain at least 1 number and 1 uppercase letter : That's Not a Valid Password, Please Try Again!",
+            "Enter Password, it must be at least 8 Characters and contain at least 1 number and 1 uppercase letter : Password Accepted!!"
+          ],
+          "stderr": "",
+          "return_code": 0,
+          "error_type": null,
+          "duration_ms": 46.9,
+          "category": "ERROR_BEHAVIOUR",
+          "semantic_feature": "PASSWORD_LENGTH_REQUIREMENT",
+          "criteria_links": [
+            "P2",
+            "P3",
+            "P4"
+          ],
+          "random_seed": null,
+          "environment": {},
+          "requires_modules": [],
+          "reference_source_preparation": {
+            "reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 24\\Algorithm 24 Baseline Python code.txt",
+            "raw_sha256": "3204b06acf1b7bef0b96bd1f4d756e6b2dd3b151139ce0000f6a39d595c68511",
+            "raw_syntax_valid": false,
+            "execution_syntax_valid": true,
+            "normalisation_applied": true,
+            "normalisation_rule": "COMMENT_MATCHED_TEST_SUITE_ALGORITHM_TITLE",
+            "raw_syntax_error": "expected 'else' after 'if' expression (<unknown>, line 1)",
+            "normalised_line_number": 1,
+            "declared_algorithm_title": "Create a process that determines if a password has 8 characters 1 number and 1 uppercase letter",
+            "reference_heading": "Create a process that determines if a password has 8 characters 1 number and 1 uppercase letter",
+            "execution_sha256": "f15b0961961e464d0b224bb13731538cf19653b685b9cc18e618639f7aec6e25"
+          }
+        },
+        "expected_result_source": "REFERENCE_PYTHON",
+        "explicit_expectation_fields": [],
+        "derived_expectation_fields": [
+          "expected_output",
+          "expected_return_code"
+        ],
+        "evaluable_expectation_fields": [
+          "expected_output",
+          "expected_return_code"
+        ],
+        "test_case_status": "EVALUABLE"
+      },
+      {
+        "name": "missing digit then valid",
+        "reference": {
+          "status": "COMPLETED",
+          "standard_input": [
+            "Abcdefgh",
+            "Abcdefg1"
+          ],
+          "stdout": [
+            "Enter Password, it must be at least 8 Characters and contain at least 1 number and 1 uppercase letter : That's Not a Valid Password, Please Try Again!",
+            "Enter Password, it must be at least 8 Characters and contain at least 1 number and 1 uppercase letter : Password Accepted!!"
+          ],
+          "stderr": "",
+          "return_code": 0,
+          "error_type": null,
+          "duration_ms": 52.514,
+          "category": "BRANCH",
+          "semantic_feature": "PASSWORD_DIGIT_REQUIREMENT",
+          "criteria_links": [
+            "P2",
+            "P4"
+          ],
+          "random_seed": null,
+          "environment": {},
+          "requires_modules": [],
+          "reference_source_preparation": {
+            "reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 24\\Algorithm 24 Baseline Python code.txt",
+            "raw_sha256": "3204b06acf1b7bef0b96bd1f4d756e6b2dd3b151139ce0000f6a39d595c68511",
+            "raw_syntax_valid": false,
+            "execution_syntax_valid": true,
+            "normalisation_applied": true,
+            "normalisation_rule": "COMMENT_MATCHED_TEST_SUITE_ALGORITHM_TITLE",
+            "raw_syntax_error": "expected 'else' after 'if' expression (<unknown>, line 1)",
+            "normalised_line_number": 1,
+            "declared_algorithm_title": "Create a process that determines if a password has 8 characters 1 number and 1 uppercase letter",
+            "reference_heading": "Create a process that determines if a password has 8 characters 1 number and 1 uppercase letter",
+            "execution_sha256": "f15b0961961e464d0b224bb13731538cf19653b685b9cc18e618639f7aec6e25"
+          }
+        },
+        "expected_result_source": "REFERENCE_PYTHON",
+        "explicit_expectation_fields": [],
+        "derived_expectation_fields": [
+          "expected_output",
+          "expected_return_code"
+        ],
+        "evaluable_expectation_fields": [
+          "expected_output",
+          "expected_return_code"
+        ],
+        "test_case_status": "EVALUABLE"
+      },
+      {
+        "name": "missing uppercase then valid",
+        "reference": {
+          "status": "COMPLETED",
+          "standard_input": [
+            "abcdefg1",
+            "Abcdefg1"
+          ],
+          "stdout": [
+            "Enter Password, it must be at least 8 Characters and contain at least 1 number and 1 uppercase letter : That's Not a Valid Password, Please Try Again!",
+            "Enter Password, it must be at least 8 Characters and contain at least 1 number and 1 uppercase letter : Password Accepted!!"
+          ],
+          "stderr": "",
+          "return_code": 0,
+          "error_type": null,
+          "duration_ms": 43.486,
+          "category": "BRANCH",
+          "semantic_feature": "PASSWORD_UPPERCASE_REQUIREMENT",
+          "criteria_links": [
+            "P2",
+            "P4"
+          ],
+          "random_seed": null,
+          "environment": {},
+          "requires_modules": [],
+          "reference_source_preparation": {
+            "reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 24\\Algorithm 24 Baseline Python code.txt",
+            "raw_sha256": "3204b06acf1b7bef0b96bd1f4d756e6b2dd3b151139ce0000f6a39d595c68511",
+            "raw_syntax_valid": false,
+            "execution_syntax_valid": true,
+            "normalisation_applied": true,
+            "normalisation_rule": "COMMENT_MATCHED_TEST_SUITE_ALGORITHM_TITLE",
+            "raw_syntax_error": "expected 'else' after 'if' expression (<unknown>, line 1)",
+            "normalised_line_number": 1,
+            "declared_algorithm_title": "Create a process that determines if a password has 8 characters 1 number and 1 uppercase letter",
+            "reference_heading": "Create a process that determines if a password has 8 characters 1 number and 1 uppercase letter",
+            "execution_sha256": "f15b0961961e464d0b224bb13731538cf19653b685b9cc18e618639f7aec6e25"
+          }
+        },
+        "expected_result_source": "REFERENCE_PYTHON",
+        "explicit_expectation_fields": [],
+        "derived_expectation_fields": [
+          "expected_output",
+          "expected_return_code"
+        ],
+        "evaluable_expectation_fields": [
+          "expected_output",
+          "expected_return_code"
+        ],
+        "test_case_status": "EVALUABLE"
+      }
+    ],
+    "interpretation_note": "The baseline score measures pipeline calibration on frozen baseline pseudocode. The experimental score measures the experimental pseudocode through the same pipeline against the same trusted baseline Python/test set. The percentage-point delta is descriptive and is not a causal correction or adjusted accuracy score.",
+    "baseline_algorithm_id": 24,
+    "baseline_calibration_run_id": "run-20260905T195935Z-48315804",
+    "oracle_source": "BASELINE_REFERENCE_PYTHON",
+    "baseline_reference_oracle_eligible": true,
+    "oracle_block_reason": null
+  },
+  "derived_metrics": {
+    "pre_flow_stage_percentage": 100.0,
+    "post_flow_stage_percentage": 75.0,
+    "stage_score_difference": -25.0,
+    "stage_score_effect": "DEGRADATION",
+    "flowchart_delta": -25.0,
+    "flowchart_effect": "DEGRADATION",
+    "flowchart_delta_note": "Legacy/descriptive difference between the AST and flow-stage rubric percentages; the stages use different questions. Do not interpret this value as a causal accuracy benefit of flowcharts.",
+    "flow_mediation_delta": 0.0,
+    "flow_mediation_effect": "NO_CHANGE",
+    "direct_ast_test_accuracy_percentage": 0.0,
+    "flow_mediated_test_accuracy_percentage": 0.0,
+    "flow_structured_program_matches_direct_ast": true,
+    "direct_vs_flow_python_source_match": true,
+    "flow_mediation_note": "Paired control comparing direct AST-structured compilation with the pipeline flow-structured compilation. This measures machine-readable flow mediation, not accuracy from submitting a rendered flowchart to an LLM.",
+    "first_semantic_loss": {
+      "stage": "Generated Python Correctness",
+      "criterion": "P2",
+      "reason": "Generated Python passed 0 of 4 behavioural tests (0.00%)."
+    },
+    "failure_taxonomy": "PYTHON_OR_BEHAVIOURAL_ERROR"
+  },
+  "complexity": {
+    "cyclomatic_complexity": 6,
+    "decision_count": 5,
+    "loop_count": 1,
+    "maximum_loop_nesting": 1,
+    "ast_executable_nodes": 15,
+    "note": "Cyclomatic complexity is reported as 1 + control-decision count for study stratification."
+  },
+  "review": {
+    "status": "PENDING_HUMAN_REVIEW",
+    "reviewer_id": null,
+    "reviewed_at_utc": null,
+    "overall_reviewer_confidence": null
+  }
+}

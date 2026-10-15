@@ -1,0 +1,120 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 9,
+  "transformations": [
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "freq = {}",
+      "canonical": "freq <- {}",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 6,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    freq[char] = freq.get(char, 0) + 1",
+      "canonical": "    freq[char] <- freq.get(char, 0) + 1",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "INPUT s\n\nfreq <- {}\n\nFOR char in s:\n    freq[char] <- freq.get(char, 0) + 1\n\nRETURN freq",
+      "canonical": "FUNCTION unnamed_function ACCEPTS(s)\n    freq <- {}\n\n    FOR char in s:\n        freq[char] <- freq.get(char, 0) + 1\n\n    RETURN freq\nENDFUNCTION",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 2,
+      "rule_family": "COLLECTION_TYPE_EVIDENCE",
+      "branch": "EMPTY_BRACES_FROM_INDEXED_WRITE",
+      "source": "    freq <- {}",
+      "canonical": "    freq <- EMPTY DICTIONARY",
+      "evidence": [
+        "source explicitly initialises a simple receiver with bare empty braces",
+        "a later same-scope assignment writes through an index on that receiver before any direct rebind",
+        "indexed write is incompatible with set semantics and directly evidences keyed mapping use"
+      ],
+      "confidence": "source_proven",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    FOR char in s:",
+      "canonical": "    FOR EACH char IN s DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        freq[char] <- freq.get(char, 0) + 1",
+      "canonical": "        freq[char] <- freq.GET(char, 0) + 1",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    FOR EACH char IN s DO",
+      "canonical": "    FOR EACH __reserved_keyword__char IN s DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        freq[char] <- freq.GET(char, 0) + 1",
+      "canonical": "        freq[__reserved_keyword__char] <- freq.GET(__reserved_keyword__char, 0) + 1",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 7,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDFOR",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 2
+}

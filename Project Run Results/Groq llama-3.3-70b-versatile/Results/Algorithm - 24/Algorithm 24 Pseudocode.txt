@@ -1,0 +1,20 @@
+# Create a process that checks whether a password contains at least 8 characters, one number, and one uppercase letter
+FUNCTION CHECK_PASSWORD(password)
+  IF LENGTH(password) < 8 THEN
+    RETURN FALSE
+  END IF
+  has_number = FALSE
+  has_uppercase = FALSE
+  FOR c IN password
+    IF c IS A NUMBER THEN
+      has_number = TRUE
+    ELSE IF c IS AN UPPERCASE LETTER THEN
+      has_uppercase = TRUE
+    END IF
+  END FOR
+  IF has_number AND has_uppercase THEN
+    RETURN TRUE
+  ELSE
+    RETURN FALSE
+  END IF
+END FUNCTION

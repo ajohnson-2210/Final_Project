@@ -1,0 +1,388 @@
+{
+  "format": "NL-FDEP Flow Diagram",
+  "version": "1.0",
+  "entry_node": "F1",
+  "exit_node": "F2",
+  "nodes": {
+    "F1": {
+      "node_id": "F1",
+      "node_type": "START",
+      "label": "Start",
+      "line": 1,
+      "data": {}
+    },
+    "F2": {
+      "node_id": "F2",
+      "node_type": "END",
+      "label": "End",
+      "line": 1,
+      "data": {}
+    },
+    "F3": {
+      "node_id": "F3",
+      "node_type": "FUNCTION",
+      "label": "Run function towerOfHanoi with n, source, destination, auxiliary",
+      "line": 1,
+      "data": {
+        "ast_kind": "FunctionNode",
+        "name": "towerOfHanoi"
+      }
+    },
+    "F4": {
+      "node_id": "F4",
+      "node_type": "DECISION",
+      "label": "N is equal to 1?",
+      "line": 2,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F5": {
+      "node_id": "F5",
+      "node_type": "OUTPUT",
+      "label": "Display \"Move disc 1 from \" plus source plus \" to \" plus destination",
+      "line": 3,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F6": {
+      "node_id": "F6",
+      "node_type": "RETURN",
+      "label": "Return from the function",
+      "line": 4,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    },
+    "F7": {
+      "node_id": "F7",
+      "node_type": "CALL",
+      "label": "Call towerOfHanoi with n minus 1, source, auxiliary, destination",
+      "line": 6,
+      "data": {
+        "ast_kind": "CallNode"
+      }
+    },
+    "F8": {
+      "node_id": "F8",
+      "node_type": "OUTPUT",
+      "label": "Display \"Move disc \" plus n plus \" from \" plus source plus \" to \" plus destination",
+      "line": 7,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F9": {
+      "node_id": "F9",
+      "node_type": "CALL",
+      "label": "Call towerOfHanoi with n minus 1, auxiliary, destination, source",
+      "line": 8,
+      "data": {
+        "ast_kind": "CallNode"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "F5",
+      "target": "F6",
+      "label": "NEXT"
+    },
+    {
+      "source": "F4",
+      "target": "F5",
+      "label": "TRUE"
+    },
+    {
+      "source": "F4",
+      "target": "F7",
+      "label": "NEXT"
+    },
+    {
+      "source": "F7",
+      "target": "F8",
+      "label": "NEXT"
+    },
+    {
+      "source": "F8",
+      "target": "F9",
+      "label": "NEXT"
+    },
+    {
+      "source": "F3",
+      "target": "F4",
+      "label": "BODY"
+    },
+    {
+      "source": "F1",
+      "target": "F3",
+      "label": "NEXT"
+    },
+    {
+      "source": "F6",
+      "target": "F2",
+      "label": "NEXT"
+    },
+    {
+      "source": "F9",
+      "target": "F2",
+      "label": "NEXT"
+    }
+  ],
+  "structured_program": {
+    "kind": "ProgramNode",
+    "line": 1,
+    "body": [
+      {
+        "kind": "FunctionNode",
+        "line": 1,
+        "name": "towerOfHanoi",
+        "parameters": [
+          {
+            "kind": "ParameterNode",
+            "line": 1,
+            "name": "n",
+            "declared_type": null
+          },
+          {
+            "kind": "ParameterNode",
+            "line": 1,
+            "name": "source",
+            "declared_type": null
+          },
+          {
+            "kind": "ParameterNode",
+            "line": 1,
+            "name": "destination",
+            "declared_type": null
+          },
+          {
+            "kind": "ParameterNode",
+            "line": 1,
+            "name": "auxiliary",
+            "declared_type": null
+          }
+        ],
+        "body": {
+          "kind": "BlockNode",
+          "line": 2,
+          "statements": [
+            {
+              "kind": "IfNode",
+              "line": 2,
+              "condition": {
+                "kind": "BinaryNode",
+                "line": 2,
+                "operator": "==",
+                "left": {
+                  "kind": "IdentifierNode",
+                  "line": 2,
+                  "name": "n"
+                },
+                "right": {
+                  "kind": "LiteralNode",
+                  "line": 2,
+                  "value": 1,
+                  "data_type": "INTEGER"
+                }
+              },
+              "then_body": {
+                "kind": "BlockNode",
+                "line": 3,
+                "statements": [
+                  {
+                    "kind": "OutputNode",
+                    "line": 3,
+                    "expression": {
+                      "kind": "BinaryNode",
+                      "line": 3,
+                      "operator": "+",
+                      "left": {
+                        "kind": "BinaryNode",
+                        "line": 3,
+                        "operator": "+",
+                        "left": {
+                          "kind": "BinaryNode",
+                          "line": 3,
+                          "operator": "+",
+                          "left": {
+                            "kind": "LiteralNode",
+                            "line": 3,
+                            "value": "Move disc 1 from ",
+                            "data_type": "STRING"
+                          },
+                          "right": {
+                            "kind": "IdentifierNode",
+                            "line": 3,
+                            "name": "source"
+                          }
+                        },
+                        "right": {
+                          "kind": "LiteralNode",
+                          "line": 3,
+                          "value": " to ",
+                          "data_type": "STRING"
+                        }
+                      },
+                      "right": {
+                        "kind": "IdentifierNode",
+                        "line": 3,
+                        "name": "destination"
+                      }
+                    }
+                  },
+                  {
+                    "kind": "ReturnNode",
+                    "line": 4,
+                    "expression": null
+                  }
+                ]
+              },
+              "else_if": [],
+              "else_body": null
+            },
+            {
+              "kind": "CallNode",
+              "line": 6,
+              "name": "towerOfHanoi",
+              "arguments": [
+                {
+                  "kind": "BinaryNode",
+                  "line": 6,
+                  "operator": "-",
+                  "left": {
+                    "kind": "IdentifierNode",
+                    "line": 6,
+                    "name": "n"
+                  },
+                  "right": {
+                    "kind": "LiteralNode",
+                    "line": 6,
+                    "value": 1,
+                    "data_type": "INTEGER"
+                  }
+                },
+                {
+                  "kind": "IdentifierNode",
+                  "line": 6,
+                  "name": "source"
+                },
+                {
+                  "kind": "IdentifierNode",
+                  "line": 6,
+                  "name": "auxiliary"
+                },
+                {
+                  "kind": "IdentifierNode",
+                  "line": 6,
+                  "name": "destination"
+                }
+              ]
+            },
+            {
+              "kind": "OutputNode",
+              "line": 7,
+              "expression": {
+                "kind": "BinaryNode",
+                "line": 7,
+                "operator": "+",
+                "left": {
+                  "kind": "BinaryNode",
+                  "line": 7,
+                  "operator": "+",
+                  "left": {
+                    "kind": "BinaryNode",
+                    "line": 7,
+                    "operator": "+",
+                    "left": {
+                      "kind": "BinaryNode",
+                      "line": 7,
+                      "operator": "+",
+                      "left": {
+                        "kind": "BinaryNode",
+                        "line": 7,
+                        "operator": "+",
+                        "left": {
+                          "kind": "LiteralNode",
+                          "line": 7,
+                          "value": "Move disc ",
+                          "data_type": "STRING"
+                        },
+                        "right": {
+                          "kind": "IdentifierNode",
+                          "line": 7,
+                          "name": "n"
+                        }
+                      },
+                      "right": {
+                        "kind": "LiteralNode",
+                        "line": 7,
+                        "value": " from ",
+                        "data_type": "STRING"
+                      }
+                    },
+                    "right": {
+                      "kind": "IdentifierNode",
+                      "line": 7,
+                      "name": "source"
+                    }
+                  },
+                  "right": {
+                    "kind": "LiteralNode",
+                    "line": 7,
+                    "value": " to ",
+                    "data_type": "STRING"
+                  }
+                },
+                "right": {
+                  "kind": "IdentifierNode",
+                  "line": 7,
+                  "name": "destination"
+                }
+              }
+            },
+            {
+              "kind": "CallNode",
+              "line": 8,
+              "name": "towerOfHanoi",
+              "arguments": [
+                {
+                  "kind": "BinaryNode",
+                  "line": 8,
+                  "operator": "-",
+                  "left": {
+                    "kind": "IdentifierNode",
+                    "line": 8,
+                    "name": "n"
+                  },
+                  "right": {
+                    "kind": "LiteralNode",
+                    "line": 8,
+                    "value": 1,
+                    "data_type": "INTEGER"
+                  }
+                },
+                {
+                  "kind": "IdentifierNode",
+                  "line": 8,
+                  "name": "auxiliary"
+                },
+                {
+                  "kind": "IdentifierNode",
+                  "line": 8,
+                  "name": "destination"
+                },
+                {
+                  "kind": "IdentifierNode",
+                  "line": 8,
+                  "name": "source"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

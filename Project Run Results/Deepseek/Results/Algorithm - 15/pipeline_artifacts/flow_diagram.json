@@ -1,0 +1,477 @@
+{
+  "format": "NL-FDEP Flow Diagram",
+  "version": "1.0",
+  "entry_node": "F1",
+  "exit_node": "F2",
+  "nodes": {
+    "F1": {
+      "node_id": "F1",
+      "node_type": "START",
+      "label": "Start",
+      "line": 1,
+      "data": {}
+    },
+    "F2": {
+      "node_id": "F2",
+      "node_type": "END",
+      "label": "End",
+      "line": 1,
+      "data": {}
+    },
+    "F3": {
+      "node_id": "F3",
+      "node_type": "FUNCTION",
+      "label": "Run function secondLargest with arr",
+      "line": 1,
+      "data": {
+        "ast_kind": "FunctionNode",
+        "name": "secondLargest"
+      }
+    },
+    "F4": {
+      "node_id": "F4",
+      "node_type": "DECISION",
+      "label": "The length of arr is less than 2?",
+      "line": 2,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F5": {
+      "node_id": "F5",
+      "node_type": "RETURN",
+      "label": "Return NULL",
+      "line": 3,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    },
+    "F6": {
+      "node_id": "F6",
+      "node_type": "COMMENT",
+      "label": "or error",
+      "line": 4,
+      "data": {
+        "ast_kind": "CommentNode"
+      }
+    },
+    "F7": {
+      "node_id": "F7",
+      "node_type": "PROCESS",
+      "label": "Set largest to the result of negative_infinity()",
+      "line": 6,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F8": {
+      "node_id": "F8",
+      "node_type": "PROCESS",
+      "label": "Set second to the result of negative_infinity()",
+      "line": 7,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F9": {
+      "node_id": "F9",
+      "node_type": "LOOP_DECISION",
+      "label": "For each num in arr",
+      "line": 8,
+      "data": {
+        "ast_kind": "ForEachNode"
+      }
+    },
+    "F10": {
+      "node_id": "F10",
+      "node_type": "DECISION",
+      "label": "Num is greater than largest?",
+      "line": 9,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F11": {
+      "node_id": "F11",
+      "node_type": "PROCESS",
+      "label": "Set second to largest",
+      "line": 10,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F12": {
+      "node_id": "F12",
+      "node_type": "PROCESS",
+      "label": "Set largest to num",
+      "line": 11,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F13": {
+      "node_id": "F13",
+      "node_type": "DECISION",
+      "label": "Is num is greater than second and num is not equal to largest true?",
+      "line": 12,
+      "data": {
+        "ast_kind": "ElseIfNode"
+      }
+    },
+    "F14": {
+      "node_id": "F14",
+      "node_type": "PROCESS",
+      "label": "Set second to num",
+      "line": 13,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F15": {
+      "node_id": "F15",
+      "node_type": "RETURN",
+      "label": "Return second",
+      "line": 16,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "F4",
+      "target": "F5",
+      "label": "TRUE"
+    },
+    {
+      "source": "F6",
+      "target": "F7",
+      "label": "NEXT"
+    },
+    {
+      "source": "F4",
+      "target": "F7",
+      "label": "NEXT"
+    },
+    {
+      "source": "F7",
+      "target": "F8",
+      "label": "NEXT"
+    },
+    {
+      "source": "F11",
+      "target": "F12",
+      "label": "NEXT"
+    },
+    {
+      "source": "F10",
+      "target": "F11",
+      "label": "TRUE"
+    },
+    {
+      "source": "F10",
+      "target": "F13",
+      "label": "FALSE"
+    },
+    {
+      "source": "F13",
+      "target": "F14",
+      "label": "TRUE"
+    },
+    {
+      "source": "F9",
+      "target": "F10",
+      "label": "ITERATE"
+    },
+    {
+      "source": "F12",
+      "target": "F9",
+      "label": "LOOP"
+    },
+    {
+      "source": "F14",
+      "target": "F9",
+      "label": "LOOP"
+    },
+    {
+      "source": "F13",
+      "target": "F9",
+      "label": "LOOP"
+    },
+    {
+      "source": "F8",
+      "target": "F9",
+      "label": "NEXT"
+    },
+    {
+      "source": "F9",
+      "target": "F15",
+      "label": "NEXT"
+    },
+    {
+      "source": "F3",
+      "target": "F4",
+      "label": "BODY"
+    },
+    {
+      "source": "F1",
+      "target": "F3",
+      "label": "NEXT"
+    },
+    {
+      "source": "F5",
+      "target": "F2",
+      "label": "NEXT"
+    },
+    {
+      "source": "F15",
+      "target": "F2",
+      "label": "NEXT"
+    }
+  ],
+  "structured_program": {
+    "kind": "ProgramNode",
+    "line": 1,
+    "body": [
+      {
+        "kind": "FunctionNode",
+        "line": 1,
+        "name": "secondLargest",
+        "parameters": [
+          {
+            "kind": "ParameterNode",
+            "line": 1,
+            "name": "arr",
+            "declared_type": null
+          }
+        ],
+        "body": {
+          "kind": "BlockNode",
+          "line": 2,
+          "statements": [
+            {
+              "kind": "IfNode",
+              "line": 2,
+              "condition": {
+                "kind": "BinaryNode",
+                "line": 2,
+                "operator": "<",
+                "left": {
+                  "kind": "LengthNode",
+                  "line": 2,
+                  "expression": {
+                    "kind": "IdentifierNode",
+                    "line": 2,
+                    "name": "arr"
+                  }
+                },
+                "right": {
+                  "kind": "LiteralNode",
+                  "line": 2,
+                  "value": 2,
+                  "data_type": "INTEGER"
+                }
+              },
+              "then_body": {
+                "kind": "BlockNode",
+                "line": 3,
+                "statements": [
+                  {
+                    "kind": "ReturnNode",
+                    "line": 3,
+                    "expression": {
+                      "kind": "IdentifierNode",
+                      "line": 3,
+                      "name": "NULL"
+                    }
+                  },
+                  {
+                    "kind": "CommentNode",
+                    "line": 4,
+                    "text": "or error"
+                  }
+                ]
+              },
+              "else_if": [],
+              "else_body": null
+            },
+            {
+              "kind": "AssignmentNode",
+              "line": 6,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 6,
+                "name": "largest"
+              },
+              "value": {
+                "kind": "CallNode",
+                "line": 6,
+                "name": "negative_infinity",
+                "arguments": []
+              }
+            },
+            {
+              "kind": "AssignmentNode",
+              "line": 7,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 7,
+                "name": "second"
+              },
+              "value": {
+                "kind": "CallNode",
+                "line": 7,
+                "name": "negative_infinity",
+                "arguments": []
+              }
+            },
+            {
+              "kind": "ForEachNode",
+              "line": 8,
+              "variable": {
+                "kind": "IdentifierNode",
+                "line": 8,
+                "name": "num"
+              },
+              "collection": {
+                "kind": "IdentifierNode",
+                "line": 8,
+                "name": "arr"
+              },
+              "body": {
+                "kind": "BlockNode",
+                "line": 9,
+                "statements": [
+                  {
+                    "kind": "IfNode",
+                    "line": 9,
+                    "condition": {
+                      "kind": "BinaryNode",
+                      "line": 9,
+                      "operator": ">",
+                      "left": {
+                        "kind": "IdentifierNode",
+                        "line": 9,
+                        "name": "num"
+                      },
+                      "right": {
+                        "kind": "IdentifierNode",
+                        "line": 9,
+                        "name": "largest"
+                      }
+                    },
+                    "then_body": {
+                      "kind": "BlockNode",
+                      "line": 10,
+                      "statements": [
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 10,
+                          "target": {
+                            "kind": "IdentifierNode",
+                            "line": 10,
+                            "name": "second"
+                          },
+                          "value": {
+                            "kind": "IdentifierNode",
+                            "line": 10,
+                            "name": "largest"
+                          }
+                        },
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 11,
+                          "target": {
+                            "kind": "IdentifierNode",
+                            "line": 11,
+                            "name": "largest"
+                          },
+                          "value": {
+                            "kind": "IdentifierNode",
+                            "line": 11,
+                            "name": "num"
+                          }
+                        }
+                      ]
+                    },
+                    "else_if": [
+                      {
+                        "kind": "ElseIfNode",
+                        "line": 12,
+                        "condition": {
+                          "kind": "BinaryNode",
+                          "line": 12,
+                          "operator": "AND",
+                          "left": {
+                            "kind": "BinaryNode",
+                            "line": 12,
+                            "operator": ">",
+                            "left": {
+                              "kind": "IdentifierNode",
+                              "line": 12,
+                              "name": "num"
+                            },
+                            "right": {
+                              "kind": "IdentifierNode",
+                              "line": 12,
+                              "name": "second"
+                            }
+                          },
+                          "right": {
+                            "kind": "BinaryNode",
+                            "line": 12,
+                            "operator": "!=",
+                            "left": {
+                              "kind": "IdentifierNode",
+                              "line": 12,
+                              "name": "num"
+                            },
+                            "right": {
+                              "kind": "IdentifierNode",
+                              "line": 12,
+                              "name": "largest"
+                            }
+                          }
+                        },
+                        "body": {
+                          "kind": "BlockNode",
+                          "line": 13,
+                          "statements": [
+                            {
+                              "kind": "AssignmentNode",
+                              "line": 13,
+                              "target": {
+                                "kind": "IdentifierNode",
+                                "line": 13,
+                                "name": "second"
+                              },
+                              "value": {
+                                "kind": "IdentifierNode",
+                                "line": 13,
+                                "name": "num"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "else_body": null
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "ReturnNode",
+              "line": 16,
+              "expression": {
+                "kind": "IdentifierNode",
+                "line": 16,
+                "name": "second"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

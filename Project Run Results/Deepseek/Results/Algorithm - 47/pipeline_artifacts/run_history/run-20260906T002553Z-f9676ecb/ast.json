@@ -1,0 +1,530 @@
+{
+  "root_id": "N14284",
+  "nodes": {
+    "N14284": {
+      "kind": "ProgramNode",
+      "line": 1,
+      "attributes": {}
+    },
+    "N14283": {
+      "kind": "FunctionNode",
+      "line": 1,
+      "attributes": {
+        "name": "updateInventory"
+      }
+    },
+    "N14226": {
+      "kind": "ParameterNode",
+      "line": 1,
+      "attributes": {
+        "name": "inventory",
+        "declared_type": null
+      }
+    },
+    "N14227": {
+      "kind": "ParameterNode",
+      "line": 1,
+      "attributes": {
+        "name": "transactions",
+        "declared_type": null
+      }
+    },
+    "N14282": {
+      "kind": "BlockNode",
+      "line": 2,
+      "attributes": {}
+    },
+    "N14262": {
+      "kind": "ForEachNode",
+      "line": 2,
+      "attributes": {}
+    },
+    "N14261": {
+      "kind": "IdentifierNode",
+      "line": 2,
+      "attributes": {
+        "name": "transaction"
+      }
+    },
+    "N14228": {
+      "kind": "IdentifierNode",
+      "line": 2,
+      "attributes": {
+        "name": "transactions"
+      }
+    },
+    "N14260": {
+      "kind": "BlockNode",
+      "line": 3,
+      "attributes": {}
+    },
+    "N14232": {
+      "kind": "AssignmentNode",
+      "line": 3,
+      "attributes": {}
+    },
+    "N14229": {
+      "kind": "IdentifierNode",
+      "line": 3,
+      "attributes": {
+        "name": "itemID"
+      }
+    },
+    "N14231": {
+      "kind": "MemberAccessNode",
+      "line": 3,
+      "attributes": {
+        "member": "itemID"
+      }
+    },
+    "N14230": {
+      "kind": "IdentifierNode",
+      "line": 3,
+      "attributes": {
+        "name": "transaction"
+      }
+    },
+    "N14236": {
+      "kind": "AssignmentNode",
+      "line": 4,
+      "attributes": {}
+    },
+    "N14233": {
+      "kind": "IdentifierNode",
+      "line": 4,
+      "attributes": {
+        "name": "quantityChange"
+      }
+    },
+    "N14235": {
+      "kind": "MemberAccessNode",
+      "line": 4,
+      "attributes": {
+        "member": "quantity"
+      }
+    },
+    "N14234": {
+      "kind": "IdentifierNode",
+      "line": 4,
+      "attributes": {
+        "name": "transaction"
+      }
+    },
+    "N14237": {
+      "kind": "CommentNode",
+      "line": 5,
+      "attributes": {
+        "text": "positive for delivery, negative for purchase"
+      }
+    },
+    "N14259": {
+      "kind": "IfNode",
+      "line": 6,
+      "attributes": {
+        "else_if": []
+      }
+    },
+    "N14240": {
+      "kind": "BinaryNode",
+      "line": 6,
+      "attributes": {
+        "operator": "IN"
+      }
+    },
+    "N14238": {
+      "kind": "IdentifierNode",
+      "line": 6,
+      "attributes": {
+        "name": "itemID"
+      }
+    },
+    "N14239": {
+      "kind": "IdentifierNode",
+      "line": 6,
+      "attributes": {
+        "name": "inventory"
+      }
+    },
+    "N14250": {
+      "kind": "BlockNode",
+      "line": 7,
+      "attributes": {}
+    },
+    "N14249": {
+      "kind": "AssignmentNode",
+      "line": 7,
+      "attributes": {}
+    },
+    "N14243": {
+      "kind": "IndexNode",
+      "line": 7,
+      "attributes": {}
+    },
+    "N14241": {
+      "kind": "IdentifierNode",
+      "line": 7,
+      "attributes": {
+        "name": "inventory"
+      }
+    },
+    "N14242": {
+      "kind": "IdentifierNode",
+      "line": 7,
+      "attributes": {
+        "name": "itemID"
+      }
+    },
+    "N14248": {
+      "kind": "BinaryNode",
+      "line": 7,
+      "attributes": {
+        "operator": "+"
+      }
+    },
+    "N14246": {
+      "kind": "IndexNode",
+      "line": 7,
+      "attributes": {}
+    },
+    "N14244": {
+      "kind": "IdentifierNode",
+      "line": 7,
+      "attributes": {
+        "name": "inventory"
+      }
+    },
+    "N14245": {
+      "kind": "IdentifierNode",
+      "line": 7,
+      "attributes": {
+        "name": "itemID"
+      }
+    },
+    "N14247": {
+      "kind": "IdentifierNode",
+      "line": 7,
+      "attributes": {
+        "name": "quantityChange"
+      }
+    },
+    "N14258": {
+      "kind": "BlockNode",
+      "line": 9,
+      "attributes": {}
+    },
+    "N14251": {
+      "kind": "CommentNode",
+      "line": 9,
+      "attributes": {
+        "text": "Handle new item, maybe set initial stock"
+      }
+    },
+    "N14256": {
+      "kind": "AssignmentNode",
+      "line": 10,
+      "attributes": {}
+    },
+    "N14254": {
+      "kind": "IndexNode",
+      "line": 10,
+      "attributes": {}
+    },
+    "N14252": {
+      "kind": "IdentifierNode",
+      "line": 10,
+      "attributes": {
+        "name": "inventory"
+      }
+    },
+    "N14253": {
+      "kind": "IdentifierNode",
+      "line": 10,
+      "attributes": {
+        "name": "itemID"
+      }
+    },
+    "N14255": {
+      "kind": "IdentifierNode",
+      "line": 10,
+      "attributes": {
+        "name": "quantityChange"
+      }
+    },
+    "N14257": {
+      "kind": "CommentNode",
+      "line": 11,
+      "attributes": {
+        "text": "Ensure no negative inventory (adjust accordingly)"
+      }
+    },
+    "N14279": {
+      "kind": "ForEachNode",
+      "line": 14,
+      "attributes": {}
+    },
+    "N14278": {
+      "kind": "IdentifierNode",
+      "line": 14,
+      "attributes": {
+        "name": "item"
+      }
+    },
+    "N14263": {
+      "kind": "IdentifierNode",
+      "line": 14,
+      "attributes": {
+        "name": "inventory"
+      }
+    },
+    "N14277": {
+      "kind": "BlockNode",
+      "line": 15,
+      "attributes": {}
+    },
+    "N14276": {
+      "kind": "IfNode",
+      "line": 15,
+      "attributes": {
+        "else_if": [],
+        "else_body": null
+      }
+    },
+    "N14268": {
+      "kind": "BinaryNode",
+      "line": 15,
+      "attributes": {
+        "operator": "<"
+      }
+    },
+    "N14266": {
+      "kind": "IndexNode",
+      "line": 15,
+      "attributes": {}
+    },
+    "N14264": {
+      "kind": "IdentifierNode",
+      "line": 15,
+      "attributes": {
+        "name": "inventory"
+      }
+    },
+    "N14265": {
+      "kind": "IdentifierNode",
+      "line": 15,
+      "attributes": {
+        "name": "item"
+      }
+    },
+    "N14267": {
+      "kind": "LiteralNode",
+      "line": 15,
+      "attributes": {
+        "value": 0,
+        "data_type": "INTEGER"
+      }
+    },
+    "N14275": {
+      "kind": "BlockNode",
+      "line": 16,
+      "attributes": {}
+    },
+    "N14273": {
+      "kind": "AssignmentNode",
+      "line": 16,
+      "attributes": {}
+    },
+    "N14271": {
+      "kind": "IndexNode",
+      "line": 16,
+      "attributes": {}
+    },
+    "N14269": {
+      "kind": "IdentifierNode",
+      "line": 16,
+      "attributes": {
+        "name": "inventory"
+      }
+    },
+    "N14270": {
+      "kind": "IdentifierNode",
+      "line": 16,
+      "attributes": {
+        "name": "item"
+      }
+    },
+    "N14272": {
+      "kind": "LiteralNode",
+      "line": 16,
+      "attributes": {
+        "value": 0,
+        "data_type": "INTEGER"
+      }
+    },
+    "N14274": {
+      "kind": "CommentNode",
+      "line": 17,
+      "attributes": {
+        "text": "or raise error"
+      }
+    },
+    "N14281": {
+      "kind": "ReturnNode",
+      "line": 20,
+      "attributes": {}
+    },
+    "N14280": {
+      "kind": "IdentifierNode",
+      "line": 20,
+      "attributes": {
+        "name": "inventory"
+      }
+    }
+  },
+  "adjacency": {
+    "N14284": [
+      "N14283"
+    ],
+    "N14283": [
+      "N14226",
+      "N14227",
+      "N14282"
+    ],
+    "N14226": [],
+    "N14227": [],
+    "N14282": [
+      "N14262",
+      "N14279",
+      "N14281"
+    ],
+    "N14262": [
+      "N14261",
+      "N14228",
+      "N14260"
+    ],
+    "N14261": [],
+    "N14228": [],
+    "N14260": [
+      "N14232",
+      "N14236",
+      "N14237",
+      "N14259"
+    ],
+    "N14232": [
+      "N14229",
+      "N14231"
+    ],
+    "N14229": [],
+    "N14231": [
+      "N14230"
+    ],
+    "N14230": [],
+    "N14236": [
+      "N14233",
+      "N14235"
+    ],
+    "N14233": [],
+    "N14235": [
+      "N14234"
+    ],
+    "N14234": [],
+    "N14237": [],
+    "N14259": [
+      "N14240",
+      "N14250",
+      "N14258"
+    ],
+    "N14240": [
+      "N14238",
+      "N14239"
+    ],
+    "N14238": [],
+    "N14239": [],
+    "N14250": [
+      "N14249"
+    ],
+    "N14249": [
+      "N14243",
+      "N14248"
+    ],
+    "N14243": [
+      "N14241",
+      "N14242"
+    ],
+    "N14241": [],
+    "N14242": [],
+    "N14248": [
+      "N14246",
+      "N14247"
+    ],
+    "N14246": [
+      "N14244",
+      "N14245"
+    ],
+    "N14244": [],
+    "N14245": [],
+    "N14247": [],
+    "N14258": [
+      "N14251",
+      "N14256",
+      "N14257"
+    ],
+    "N14251": [],
+    "N14256": [
+      "N14254",
+      "N14255"
+    ],
+    "N14254": [
+      "N14252",
+      "N14253"
+    ],
+    "N14252": [],
+    "N14253": [],
+    "N14255": [],
+    "N14257": [],
+    "N14279": [
+      "N14278",
+      "N14263",
+      "N14277"
+    ],
+    "N14278": [],
+    "N14263": [],
+    "N14277": [
+      "N14276"
+    ],
+    "N14276": [
+      "N14268",
+      "N14275"
+    ],
+    "N14268": [
+      "N14266",
+      "N14267"
+    ],
+    "N14266": [
+      "N14264",
+      "N14265"
+    ],
+    "N14264": [],
+    "N14265": [],
+    "N14267": [],
+    "N14275": [
+      "N14273",
+      "N14274"
+    ],
+    "N14273": [
+      "N14271",
+      "N14272"
+    ],
+    "N14271": [
+      "N14269",
+      "N14270"
+    ],
+    "N14269": [],
+    "N14270": [],
+    "N14272": [],
+    "N14274": [],
+    "N14281": [
+      "N14280"
+    ],
+    "N14280": []
+  }
+}

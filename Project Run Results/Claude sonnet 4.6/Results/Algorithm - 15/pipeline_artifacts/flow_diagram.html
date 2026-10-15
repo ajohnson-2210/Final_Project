@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NL-FDEP Flow Diagram</title>
+<style>
+:root { color-scheme: light; }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Arial, Helvetica, sans-serif; background: #f4f5f7; color: #16191f; }
+header { position: sticky; top: 0; z-index: 10; padding: 14px 18px; background: white; border-bottom: 1px solid #c9cdd3; }
+header h1 { margin: 0 0 4px; font-size: 20px; }
+header p { margin: 0; color: #555d69; font-size: 13px; }
+.controls { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.controls input { min-width: 220px; flex: 1; padding: 8px 10px; border: 1px solid #9da4ae; border-radius: 5px; }
+.controls button { padding: 8px 12px; border: 1px solid #8f97a3; border-radius: 5px; background: white; cursor: pointer; }
+.viewport { overflow: hidden; width: 100%; height: calc(100vh - 108px); background: white; cursor: grab; }
+.viewport.dragging { cursor: grabbing; }
+svg { width: 100%; height: 100%; user-select: none; }
+.flow-node { cursor: pointer; }
+.flow-node .shape { fill: white; stroke: #20242a; stroke-width: 1.6; vector-effect: non-scaling-stroke; }
+.flow-node text { fill: #111418; font-size: 13px; text-anchor: middle; dominant-baseline: middle; pointer-events: none; }
+.flow-node .metadata { fill: #606874; font-size: 10px; }
+.flow-node.match .shape { stroke: #d18b00; stroke-width: 4; }
+.flow-node.selected .shape { stroke: #1769aa; stroke-width: 4; }
+.flow-edge { fill: none; stroke: #252a31; stroke-width: 1.45; vector-effect: non-scaling-stroke; marker-end: url(#arrowhead); }
+.shared-return-follower { marker-end: none; }
+.edge-label rect { fill: white; stroke: none; }
+.edge-label text { fill: #20242a; font-size: 11px; text-anchor: middle; dominant-baseline: middle; }
+.legend { position: fixed; right: 14px; bottom: 14px; padding: 9px 11px; background: rgba(255,255,255,.94); border: 1px solid #c9cdd3; border-radius: 6px; font-size: 11px; line-height: 1.6; }
+</style>
+</head>
+<body>
+<header>
+<h1>NL to Flow Diagram Encoder Pipeline</h1>
+<p>Standard flowchart notation generated from AJ pseudocode.</p>
+<div class="controls">
+<input id="search" placeholder="Search step, type, line, or node ID">
+<button id="zoom-in" type="button">Zoom in</button>
+<button id="zoom-out" type="button">Zoom out</button>
+<button id="fit" type="button">Fit diagram</button>
+</div>
+</header>
+<div id="viewport" class="viewport">
+<svg id="diagram" viewBox="0 0 1110 1671" role="img" aria-label="Generated program flow diagram">
+<defs>
+<marker id="arrowhead" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto" markerUnits="strokeWidth">
+<path d="M 0 0 L 9 3.5 L 0 7 z" fill="#252a31"></path>
+</marker>
+</defs>
+<g id="canvas"><path class="flow-edge" d="M 555.0 548 L 555.0 681"></path><path class="flow-edge" d="M 205.0 1336 L 205.0 1557.0 L 380.0 1557.0 L 380.0 1533"></path><path class="flow-edge" d="M 265.0 1131.0 L 241.0 1131.0 L 241.0 1248.0 L 205.0 1248.0 L 205.0 1272"></path><g class="edge-label"><rect x="206.5" y="1230.0" width="33" height="18" rx="3"></rect><text x="223.0" y="1239.0">Yes</text></g><path class="flow-edge" d="M 495.0 1131.0 L 519.0 1131.0 L 519.0 1254 L 694.0 1254 L 694.0 1328.0 L 670.0 1328.0"></path><g class="edge-label"><rect x="591.5" y="1236.0" width="30" height="18" rx="3"></rect><text x="606.5" y="1245.0">No</text></g><path class="flow-edge" d="M 440.0 1328.0 L 416.0 1328.0 L 416.0 1445.0 L 730.0 1445.0 L 730.0 1469"></path><g class="edge-label"><rect x="556.5" y="1427.0" width="33" height="18" rx="3"></rect><text x="573.0" y="1436.0">Yes</text></g><path class="flow-edge" d="M 440.0 934.0 L 416.0 934.0 L 416.0 1051.0 L 380.0 1051.0 L 380.0 1075"></path><g class="edge-label"><rect x="381.5" y="1033.0" width="33" height="18" rx="3"></rect><text x="398.0" y="1042.0">Yes</text></g><path class="flow-edge shared-return-follower" d="M 265.0 1501.0 L 241.0 1501.0 L 241.0 1354 L 422.0 1354 L 422.0 1205 L 555.0 1205 L 555.0 990"></path><path class="flow-edge shared-return-follower" d="M 845.0 1501.0 L 869.0 1501.0 L 869.0 1354 L 688.0 1354 L 688.0 1157 L 555.0 1157 L 555.0 990"></path><path class="flow-edge" d="M 555.0 1272 L 555.0 1248 L 34.0 1248.0 L 34.0 1014.0 L 555.0 1014.0 L 555.0 990"></path><g class="edge-label"><rect x="267.5" y="1230.0" width="54" height="18" rx="3"></rect><text x="294.5" y="1239.0">Repeat</text></g><path class="flow-edge" d="M 555.0 745 L 555.0 878"></path><path class="flow-edge" d="M 670.0 934.0 L 694.0 934.0 L 694.0 1051.0 L 730.0 1051.0 L 730.0 1075"></path><g class="edge-label"><rect x="697.0" y="1033.0" width="30" height="18" rx="3"></rect><text x="712.0" y="1042.0">No</text></g><path class="flow-edge" d="M 555.0 351 L 555.0 484"></path><path class="flow-edge" d="M 555.0 154 L 555.0 287"></path><path class="flow-edge" d="M 730.0 1139 L 730.0 1248.0 L 905.0 1248.0 L 905.0 1272"></path><g class="flow-node" data-node-id="F1"><title>START | Line 1 | F1</title><rect class="shape" x="440.0" y="90" width="230" height="64" rx="32" ry="32"></rect><text x="555.0" y="115.0"><tspan x="555.0" dy="0">Start</tspan></text><text class="metadata" x="555.0" y="141">Line 1 · F1</text></g><g class="flow-node" data-node-id="F2"><title>END | Line 1 | F2</title><rect class="shape" x="790.0" y="1272" width="230" height="64" rx="32" ry="32"></rect><text x="905.0" y="1297.0"><tspan x="905.0" dy="0">End</tspan></text><text class="metadata" x="905.0" y="1323">Line 1 · F2</text></g><g class="flow-node" data-node-id="F3"><title>FUNCTION | Line 1 | F3</title><rect class="shape" x="440.0" y="287" width="230" height="64"></rect><line class="shape" x1="452.0" y1="287" x2="452.0" y2="351"></line><line class="shape" x1="658.0" y1="287" x2="658.0" y2="351"></line><text x="555.0" y="304.0"><tspan x="555.0" dy="0">Run function secondLargest</tspan><tspan x="555.0" dy="16">with arr</tspan></text><text class="metadata" x="555.0" y="338">Line 1 · F3</text></g><g class="flow-node" data-node-id="F4"><title>PROCESS | Line 2 | F4</title><rect class="shape" x="440.0" y="484" width="230" height="64" rx="4" ry="4"></rect><text x="555.0" y="501.0"><tspan x="555.0" dy="0">Set second to the result of</tspan><tspan x="555.0" dy="16">negative_infinity()</tspan></text><text class="metadata" x="555.0" y="535">Line 2 · F4</text></g><g class="flow-node" data-node-id="F5"><title>PROCESS | Line 3 | F5</title><rect class="shape" x="440.0" y="681" width="230" height="64" rx="4" ry="4"></rect><text x="555.0" y="706.0"><tspan x="555.0" dy="0">Set largest to second</tspan></text><text class="metadata" x="555.0" y="732">Line 3 · F5</text></g><g class="flow-node" data-node-id="F6"><title>LOOP_DECISION | Line 4 | F6</title><polygon class="shape" points="555.0,878 670.0,934.0 555.0,990 440.0,934.0"></polygon><text x="555.0" y="927.0"><tspan x="555.0" dy="0">For each num in arr</tspan></text><text class="metadata" x="555.0" y="977">Line 4 · F6</text></g><g class="flow-node" data-node-id="F7"><title>DECISION | Line 5 | F7</title><polygon class="shape" points="380.0,1075 495.0,1131.0 380.0,1187 265.0,1131.0"></polygon><text x="380.0" y="1124.0"><tspan x="380.0" dy="0">Num is greater than largest?</tspan></text><text class="metadata" x="380.0" y="1174">Line 5 · F7</text></g><g class="flow-node" data-node-id="F8"><title>PROCESS | Line 6 | F8</title><rect class="shape" x="90.0" y="1272" width="230" height="64" rx="4" ry="4"></rect><text x="205.0" y="1297.0"><tspan x="205.0" dy="0">Set second to largest</tspan></text><text class="metadata" x="205.0" y="1323">Line 6 · F8</text></g><g class="flow-node" data-node-id="F9"><title>PROCESS | Line 7 | F9</title><rect class="shape" x="265.0" y="1469" width="230" height="64" rx="4" ry="4"></rect><text x="380.0" y="1494.0"><tspan x="380.0" dy="0">Set largest to num</tspan></text><text class="metadata" x="380.0" y="1520">Line 7 · F9</text></g><g class="flow-node" data-node-id="F10"><title>DECISION | Line 8 | F10</title><polygon class="shape" points="555.0,1272 670.0,1328.0 555.0,1384 440.0,1328.0"></polygon><text x="555.0" y="1305.0"><tspan x="555.0" dy="0">Is num is greater than second</tspan><tspan x="555.0" dy="16">and num is not equal to</tspan><tspan x="555.0" dy="16">largest true?</tspan></text><text class="metadata" x="555.0" y="1371">Line 8 · F10</text></g><g class="flow-node" data-node-id="F11"><title>PROCESS | Line 9 | F11</title><rect class="shape" x="615.0" y="1469" width="230" height="64" rx="4" ry="4"></rect><text x="730.0" y="1494.0"><tspan x="730.0" dy="0">Set second to num</tspan></text><text class="metadata" x="730.0" y="1520">Line 9 · F11</text></g><g class="flow-node" data-node-id="F12"><title>RETURN | Line 12 | F12</title><rect class="shape" x="615.0" y="1075" width="230" height="64" rx="4" ry="4"></rect><text x="730.0" y="1100.0"><tspan x="730.0" dy="0">Return second</tspan></text><text class="metadata" x="730.0" y="1126">Line 12 · F12</text></g></g>
+</svg>
+</div>
+<div class="legend">Oval: Start/End<br>Diamond: Decision<br>Parallelogram: Input/Output<br>Rectangle: Process<br>Double rectangle: Function/Call</div>
+<script>
+const diagramData = {"format": "NL-FDEP Flow Diagram", "version": "1.0", "entry_node": "F1", "exit_node": "F2", "nodes": {"F1": {"node_id": "F1", "node_type": "START", "label": "Start", "line": 1, "data": {}}, "F2": {"node_id": "F2", "node_type": "END", "label": "End", "line": 1, "data": {}}, "F3": {"node_id": "F3", "node_type": "FUNCTION", "label": "Run function secondLargest with arr", "line": 1, "data": {"ast_kind": "FunctionNode", "name": "secondLargest"}}, "F4": {"node_id": "F4", "node_type": "PROCESS", "label": "Set second to the result of negative_infinity()", "line": 2, "data": {"ast_kind": "AssignmentNode"}}, "F5": {"node_id": "F5", "node_type": "PROCESS", "label": "Set largest to second", "line": 3, "data": {"ast_kind": "AssignmentNode"}}, "F6": {"node_id": "F6", "node_type": "LOOP_DECISION", "label": "For each num in arr", "line": 4, "data": {"ast_kind": "ForEachNode"}}, "F7": {"node_id": "F7", "node_type": "DECISION", "label": "Num is greater than largest?", "line": 5, "data": {"ast_kind": "IfNode"}}, "F8": {"node_id": "F8", "node_type": "PROCESS", "label": "Set second to largest", "line": 6, "data": {"ast_kind": "AssignmentNode"}}, "F9": {"node_id": "F9", "node_type": "PROCESS", "label": "Set largest to num", "line": 7, "data": {"ast_kind": "AssignmentNode"}}, "F10": {"node_id": "F10", "node_type": "DECISION", "label": "Is num is greater than second and num is not equal to largest true?", "line": 8, "data": {"ast_kind": "ElseIfNode"}}, "F11": {"node_id": "F11", "node_type": "PROCESS", "label": "Set second to num", "line": 9, "data": {"ast_kind": "AssignmentNode"}}, "F12": {"node_id": "F12", "node_type": "RETURN", "label": "Return second", "line": 12, "data": {"ast_kind": "ReturnNode"}}}, "edges": [{"source": "F4", "target": "F5", "label": "NEXT"}, {"source": "F8", "target": "F9", "label": "NEXT"}, {"source": "F7", "target": "F8", "label": "TRUE"}, {"source": "F7", "target": "F10", "label": "FALSE"}, {"source": "F10", "target": "F11", "label": "TRUE"}, {"source": "F6", "target": "F7", "label": "ITERATE"}, {"source": "F9", "target": "F6", "label": "LOOP"}, {"source": "F11", "target": "F6", "label": "LOOP"}, {"source": "F10", "target": "F6", "label": "LOOP"}, {"source": "F5", "target": "F6", "label": "NEXT"}, {"source": "F6", "target": "F12", "label": "NEXT"}, {"source": "F3", "target": "F4", "label": "BODY"}, {"source": "F1", "target": "F3", "label": "NEXT"}, {"source": "F12", "target": "F2", "label": "NEXT"}], "structured_program": {"kind": "ProgramNode", "line": 1, "body": [{"kind": "FunctionNode", "line": 1, "name": "secondLargest", "parameters": [{"kind": "ParameterNode", "line": 1, "name": "arr", "declared_type": null}], "body": {"kind": "BlockNode", "line": 2, "statements": [{"kind": "AssignmentNode", "line": 2, "target": {"kind": "IdentifierNode", "line": 2, "name": "second"}, "value": {"kind": "CallNode", "line": 2, "name": "negative_infinity", "arguments": []}}, {"kind": "AssignmentNode", "line": 3, "target": {"kind": "IdentifierNode", "line": 3, "name": "largest"}, "value": {"kind": "IdentifierNode", "line": 3, "name": "second"}}, {"kind": "ForEachNode", "line": 4, "variable": {"kind": "IdentifierNode", "line": 4, "name": "num"}, "collection": {"kind": "IdentifierNode", "line": 4, "name": "arr"}, "body": {"kind": "BlockNode", "line": 5, "statements": [{"kind": "IfNode", "line": 5, "condition": {"kind": "BinaryNode", "line": 5, "operator": ">", "left": {"kind": "IdentifierNode", "line": 5, "name": "num"}, "right": {"kind": "IdentifierNode", "line": 5, "name": "largest"}}, "then_body": {"kind": "BlockNode", "line": 6, "statements": [{"kind": "AssignmentNode", "line": 6, "target": {"kind": "IdentifierNode", "line": 6, "name": "second"}, "value": {"kind": "IdentifierNode", "line": 6, "name": "largest"}}, {"kind": "AssignmentNode", "line": 7, "target": {"kind": "IdentifierNode", "line": 7, "name": "largest"}, "value": {"kind": "IdentifierNode", "line": 7, "name": "num"}}]}, "else_if": [{"kind": "ElseIfNode", "line": 8, "condition": {"kind": "BinaryNode", "line": 8, "operator": "AND", "left": {"kind": "BinaryNode", "line": 8, "operator": ">", "left": {"kind": "IdentifierNode", "line": 8, "name": "num"}, "right": {"kind": "IdentifierNode", "line": 8, "name": "second"}}, "right": {"kind": "BinaryNode", "line": 8, "operator": "!=", "left": {"kind": "IdentifierNode", "line": 8, "name": "num"}, "right": {"kind": "IdentifierNode", "line": 8, "name": "largest"}}}, "body": {"kind": "BlockNode", "line": 9, "statements": [{"kind": "AssignmentNode", "line": 9, "target": {"kind": "IdentifierNode", "line": 9, "name": "second"}, "value": {"kind": "IdentifierNode", "line": 9, "name": "num"}}]}}], "else_body": null}]}}, {"kind": "ReturnNode", "line": 12, "expression": {"kind": "IdentifierNode", "line": 12, "name": "second"}}]}}]}};
+const svg = document.getElementById('diagram');
+const canvas = document.getElementById('canvas');
+const viewport = document.getElementById('viewport');
+const INITIAL_SCALE = 1.15;
+let scale = INITIAL_SCALE;
+let translateX = 0;
+let translateY = 0;
+let dragging = false;
+let startX = 0;
+let startY = 0;
+
+function applyTransform() {
+    canvas.setAttribute('transform', `translate(${translateX} ${translateY}) scale(${scale})`);
+}
+
+function initialView() {
+    const box = canvas.getBBox();
+    const visibleWidth = viewport.clientWidth;
+    scale = INITIAL_SCALE;
+    translateX = (visibleWidth - box.width * scale) / 2 - box.x * scale;
+    translateY = 28 - box.y * scale;
+    applyTransform();
+}
+
+function fitDiagram() {
+    const box = canvas.getBBox();
+    const visibleWidth = viewport.clientWidth;
+    const visibleHeight = viewport.clientHeight;
+    scale = Math.min(visibleWidth / (box.width + 80), visibleHeight / (box.height + 80), 1.3);
+    translateX = (visibleWidth - box.width * scale) / 2 - box.x * scale;
+    translateY = (visibleHeight - box.height * scale) / 2 - box.y * scale;
+    applyTransform();
+}
+
+document.getElementById('zoom-in').addEventListener('click', () => { scale *= 1.15; applyTransform(); });
+document.getElementById('zoom-out').addEventListener('click', () => { scale /= 1.15; applyTransform(); });
+document.getElementById('fit').addEventListener('click', fitDiagram);
+
+document.getElementById('search').addEventListener('input', event => {
+    const query = event.target.value.trim().toLowerCase();
+    document.querySelectorAll('.flow-node').forEach(node => {
+        node.classList.toggle('match', query.length > 0 && node.textContent.toLowerCase().includes(query));
+    });
+});
+
+document.querySelectorAll('.flow-node').forEach(node => {
+    node.addEventListener('click', () => node.classList.toggle('selected'));
+});
+
+viewport.addEventListener('mousedown', event => {
+    dragging = true;
+    startX = event.clientX - translateX;
+    startY = event.clientY - translateY;
+    viewport.classList.add('dragging');
+});
+window.addEventListener('mousemove', event => {
+    if (!dragging) return;
+    translateX = event.clientX - startX;
+    translateY = event.clientY - startY;
+    applyTransform();
+});
+window.addEventListener('mouseup', () => { dragging = false; viewport.classList.remove('dragging'); });
+viewport.addEventListener('wheel', event => {
+    event.preventDefault();
+    const factor = event.deltaY < 0 ? 1.1 : 0.9;
+    scale *= factor;
+    applyTransform();
+}, { passive: false });
+window.addEventListener('load', initialView);
+window.addEventListener('resize', initialView);
+</script>
+</body>
+</html>

@@ -1,0 +1,290 @@
+{
+  "comparison_schema_version": "1.0",
+  "comparison_role": "EXPERIMENTAL_VS_PIPELINE_CALIBRATION",
+  "is_baseline": false,
+  "reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 32\\Algorithm 32 Baseline Python code.txt",
+  "tests_file": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\Pipeline Versions\\NL_Flow_Diagram_Encoder_Pipeline_v4_32\\NL_Flow_Diagram_Encoder_Pipeline_v4_32\\study data\\common tests v1.1\\Algorithm - 32\\Algorithm 32 Tests.json",
+  "common_test_set": true,
+  "baseline_reference_validation": {
+    "validation_schema_version": "1.0",
+    "reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 32\\Algorithm 32 Baseline Python code.txt",
+    "reference_source_preparation": {
+      "reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 32\\Algorithm 32 Baseline Python code.txt",
+      "raw_sha256": "96622e62aaa0735a35b6727f984deddb7720720be45fc12fb17960d9d1f2a2be",
+      "raw_syntax_valid": false,
+      "execution_syntax_valid": true,
+      "normalisation_applied": true,
+      "normalisation_rule": "COMMENT_MATCHED_TEST_SUITE_ALGORITHM_TITLE",
+      "raw_syntax_error": "invalid syntax (<unknown>, line 1)",
+      "normalised_line_number": 1,
+      "declared_algorithm_title": "Build a question answering system to answer user queries based on a given text",
+      "reference_heading": "Build a question answering system to answer user queries based on a given text",
+      "execution_sha256": "7f91381b7a4f7d373d1cc763a3f00033754621461d89fe4f56a68868466affb3"
+    },
+    "status": "TRUSTED_REFERENCE",
+    "reason": "No independent expected outcomes are present. The frozen baseline Python is accepted as the trusted behavioural reference by the study design; this is not an independent validation claim.",
+    "explicit_tests_total": 0,
+    "tests": []
+  },
+  "baseline_calibration_status": "EVALUATED",
+  "baseline_calibration_score_percentage": 100.0,
+  "experimental_behavioural_score_percentage": null,
+  "experimental_tests_total": 0,
+  "experimental_tests_passed": 0,
+  "delta_from_baseline_percentage_points": null,
+  "comparison_to_baseline": "NOT_EVALUABLE",
+  "comparison_status": "NOT_EVALUABLE",
+  "oracle_records": [
+    {
+      "name": "who question",
+      "reference": {
+        "status": "TIMEOUT",
+        "standard_input": [
+          "Who was spring-cleaning his little home?"
+        ],
+        "stdout": [
+          "Enter your question:"
+        ],
+        "stderr": "Execution exceeded the configured timeout.",
+        "return_code": null,
+        "error_type": null,
+        "duration_ms": 3019.15,
+        "category": "BRANCH",
+        "semantic_feature": "QA_WHO_QUERY",
+        "criteria_links": [
+          "P2",
+          "P4"
+        ],
+        "random_seed": null,
+        "environment": {},
+        "requires_modules": [],
+        "reference_source_preparation": {
+          "reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 32\\Algorithm 32 Baseline Python code.txt",
+          "raw_sha256": "96622e62aaa0735a35b6727f984deddb7720720be45fc12fb17960d9d1f2a2be",
+          "raw_syntax_valid": false,
+          "execution_syntax_valid": true,
+          "normalisation_applied": true,
+          "normalisation_rule": "COMMENT_MATCHED_TEST_SUITE_ALGORITHM_TITLE",
+          "raw_syntax_error": "invalid syntax (<unknown>, line 1)",
+          "normalised_line_number": 1,
+          "declared_algorithm_title": "Build a question answering system to answer user queries based on a given text",
+          "reference_heading": "Build a question answering system to answer user queries based on a given text",
+          "execution_sha256": "7f91381b7a4f7d373d1cc763a3f00033754621461d89fe4f56a68868466affb3"
+        }
+      },
+      "expected_result_source": "NONE",
+      "explicit_expectation_fields": [],
+      "derived_expectation_fields": [],
+      "evaluable_expectation_fields": [],
+      "test_case_status": "NOT_EVALUABLE",
+      "reason": "Reference oracle did not complete (status=TIMEOUT); omitted expectations were not invented."
+    },
+    {
+      "name": "where question",
+      "reference": {
+        "status": "COMPLETED",
+        "standard_input": [
+          "Where did the Mole find himself rolling?"
+        ],
+        "stdout": [
+          "Enter your question:",
+          "",
+          "Question: Where did the Mole find himself rolling?",
+          "Answer: he sat on the bank fascinated by the sight until he saw a dark hole in the opposite bank right above the water with a comfortable-looking chair and fishing poles sticking out"
+        ],
+        "stderr": "",
+        "return_code": 0,
+        "error_type": null,
+        "duration_ms": 120.165,
+        "category": "BRANCH",
+        "semantic_feature": "QA_WHERE_QUERY",
+        "criteria_links": [
+          "P2",
+          "P4"
+        ],
+        "random_seed": null,
+        "environment": {},
+        "requires_modules": [],
+        "reference_source_preparation": {
+          "reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 32\\Algorithm 32 Baseline Python code.txt",
+          "raw_sha256": "96622e62aaa0735a35b6727f984deddb7720720be45fc12fb17960d9d1f2a2be",
+          "raw_syntax_valid": false,
+          "execution_syntax_valid": true,
+          "normalisation_applied": true,
+          "normalisation_rule": "COMMENT_MATCHED_TEST_SUITE_ALGORITHM_TITLE",
+          "raw_syntax_error": "invalid syntax (<unknown>, line 1)",
+          "normalised_line_number": 1,
+          "declared_algorithm_title": "Build a question answering system to answer user queries based on a given text",
+          "reference_heading": "Build a question answering system to answer user queries based on a given text",
+          "execution_sha256": "7f91381b7a4f7d373d1cc763a3f00033754621461d89fe4f56a68868466affb3"
+        }
+      },
+      "expected_result_source": "REFERENCE_PYTHON",
+      "explicit_expectation_fields": [],
+      "derived_expectation_fields": [
+        "expected_output",
+        "expected_return_code"
+      ],
+      "evaluable_expectation_fields": [
+        "expected_output",
+        "expected_return_code"
+      ],
+      "test_case_status": "EVALUABLE"
+    },
+    {
+      "name": "what question",
+      "reference": {
+        "status": "COMPLETED",
+        "standard_input": [
+          "What did the Mole say about whitewash?"
+        ],
+        "stdout": [
+          "Enter your question:",
+          "",
+          "Question: What did the Mole say about whitewash?",
+          "Answer: the rat looked at the mole and the mole looked at the rat"
+        ],
+        "stderr": "",
+        "return_code": 0,
+        "error_type": null,
+        "duration_ms": 120.129,
+        "category": "BRANCH",
+        "semantic_feature": "QA_WHAT_QUERY",
+        "criteria_links": [
+          "P2",
+          "P4"
+        ],
+        "random_seed": null,
+        "environment": {},
+        "requires_modules": [],
+        "reference_source_preparation": {
+          "reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 32\\Algorithm 32 Baseline Python code.txt",
+          "raw_sha256": "96622e62aaa0735a35b6727f984deddb7720720be45fc12fb17960d9d1f2a2be",
+          "raw_syntax_valid": false,
+          "execution_syntax_valid": true,
+          "normalisation_applied": true,
+          "normalisation_rule": "COMMENT_MATCHED_TEST_SUITE_ALGORITHM_TITLE",
+          "raw_syntax_error": "invalid syntax (<unknown>, line 1)",
+          "normalised_line_number": 1,
+          "declared_algorithm_title": "Build a question answering system to answer user queries based on a given text",
+          "reference_heading": "Build a question answering system to answer user queries based on a given text",
+          "execution_sha256": "7f91381b7a4f7d373d1cc763a3f00033754621461d89fe4f56a68868466affb3"
+        }
+      },
+      "expected_result_source": "REFERENCE_PYTHON",
+      "explicit_expectation_fields": [],
+      "derived_expectation_fields": [
+        "expected_output",
+        "expected_return_code"
+      ],
+      "evaluable_expectation_fields": [
+        "expected_output",
+        "expected_return_code"
+      ],
+      "test_case_status": "EVALUABLE"
+    },
+    {
+      "name": "how-many category question",
+      "reference": {
+        "status": "COMPLETED",
+        "standard_input": [
+          "How many animals are mentioned?"
+        ],
+        "stdout": [
+          "Enter your question:",
+          "",
+          "Question: How many animals are mentioned?",
+          "Answer: 5 animals: mole rat animal otter badger"
+        ],
+        "stderr": "",
+        "return_code": 0,
+        "error_type": null,
+        "duration_ms": 95.334,
+        "category": "BRANCH",
+        "semantic_feature": "QA_HOW_MANY_CATEGORY_QUERY",
+        "criteria_links": [
+          "P2",
+          "P4"
+        ],
+        "random_seed": null,
+        "environment": {},
+        "requires_modules": [],
+        "reference_source_preparation": {
+          "reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 32\\Algorithm 32 Baseline Python code.txt",
+          "raw_sha256": "96622e62aaa0735a35b6727f984deddb7720720be45fc12fb17960d9d1f2a2be",
+          "raw_syntax_valid": false,
+          "execution_syntax_valid": true,
+          "normalisation_applied": true,
+          "normalisation_rule": "COMMENT_MATCHED_TEST_SUITE_ALGORITHM_TITLE",
+          "raw_syntax_error": "invalid syntax (<unknown>, line 1)",
+          "normalised_line_number": 1,
+          "declared_algorithm_title": "Build a question answering system to answer user queries based on a given text",
+          "reference_heading": "Build a question answering system to answer user queries based on a given text",
+          "execution_sha256": "7f91381b7a4f7d373d1cc763a3f00033754621461d89fe4f56a68868466affb3"
+        }
+      },
+      "expected_result_source": "REFERENCE_PYTHON",
+      "explicit_expectation_fields": [],
+      "derived_expectation_fields": [
+        "expected_output",
+        "expected_return_code"
+      ],
+      "evaluable_expectation_fields": [
+        "expected_output",
+        "expected_return_code"
+      ],
+      "test_case_status": "EVALUABLE"
+    },
+    {
+      "name": "unanswerable question",
+      "reference": {
+        "status": "TIMEOUT",
+        "standard_input": [
+          "Who invented the telescope?"
+        ],
+        "stdout": [
+          "Enter your question:"
+        ],
+        "stderr": "Execution exceeded the configured timeout.",
+        "return_code": null,
+        "error_type": null,
+        "duration_ms": 3019.904,
+        "category": "BOUNDARY",
+        "semantic_feature": "QA_NO_MATCH_FALLBACK",
+        "criteria_links": [
+          "P2",
+          "P3",
+          "P4"
+        ],
+        "random_seed": null,
+        "environment": {},
+        "requires_modules": [],
+        "reference_source_preparation": {
+          "reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 32\\Algorithm 32 Baseline Python code.txt",
+          "raw_sha256": "96622e62aaa0735a35b6727f984deddb7720720be45fc12fb17960d9d1f2a2be",
+          "raw_syntax_valid": false,
+          "execution_syntax_valid": true,
+          "normalisation_applied": true,
+          "normalisation_rule": "COMMENT_MATCHED_TEST_SUITE_ALGORITHM_TITLE",
+          "raw_syntax_error": "invalid syntax (<unknown>, line 1)",
+          "normalised_line_number": 1,
+          "declared_algorithm_title": "Build a question answering system to answer user queries based on a given text",
+          "reference_heading": "Build a question answering system to answer user queries based on a given text",
+          "execution_sha256": "7f91381b7a4f7d373d1cc763a3f00033754621461d89fe4f56a68868466affb3"
+        }
+      },
+      "expected_result_source": "NONE",
+      "explicit_expectation_fields": [],
+      "derived_expectation_fields": [],
+      "evaluable_expectation_fields": [],
+      "test_case_status": "NOT_EVALUABLE",
+      "reason": "Reference oracle did not complete (status=TIMEOUT); omitted expectations were not invented."
+    }
+  ],
+  "interpretation_note": "The baseline score measures pipeline calibration on frozen baseline pseudocode. The experimental score measures the experimental pseudocode through the same pipeline against the same trusted baseline Python/test set. The percentage-point delta is descriptive and is not a causal correction or adjusted accuracy score.",
+  "baseline_algorithm_id": 32,
+  "baseline_calibration_run_id": "run-20260905T195938Z-69648cf1",
+  "oracle_source": "BASELINE_REFERENCE_PYTHON",
+  "baseline_reference_oracle_eligible": true,
+  "oracle_block_reason": null
+}

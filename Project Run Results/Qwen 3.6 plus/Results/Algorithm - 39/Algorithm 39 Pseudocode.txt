@@ -1,0 +1,16 @@
+# Detect Linked List Cycle
+
+INPUT head
+
+slow = head
+fast = head
+
+WHILE fast != null AND fast.next != null:
+    slow = slow.next
+    fast = fast.next.next
+
+    IF slow == fast:
+        RETURN TRUE
+
+RETURN FALSE
+

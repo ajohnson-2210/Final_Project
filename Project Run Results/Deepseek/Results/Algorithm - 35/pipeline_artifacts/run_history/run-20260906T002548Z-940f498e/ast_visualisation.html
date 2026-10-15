@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AJ_24038155 AST Visualisation</title>
+<style>
+:root {
+  color-scheme: light dark;
+  --bg: #f7f8fb;
+  --panel: #ffffff;
+  --text: #172033;
+  --muted: #64748b;
+  --line: #94a3b8;
+  --border: #cbd5e1;
+  --accent: #2563eb;
+  --accent-soft: #dbeafe;
+  --node: #ffffff;
+  --node-shadow: rgba(15, 23, 42, 0.13);
+  --success: #15803d;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f172a;
+    --panel: #111827;
+    --text: #e5e7eb;
+    --muted: #94a3b8;
+    --line: #64748b;
+    --border: #334155;
+    --accent: #60a5fa;
+    --accent-soft: #172554;
+    --node: #1e293b;
+    --node-shadow: rgba(0, 0, 0, 0.3);
+    --success: #4ade80;
+  }
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; font-family: Inter, system-ui, sans-serif; background: var(--bg); color: var(--text); }
+body { display: grid; grid-template-rows: auto 1fr; overflow: hidden; }
+header {
+  display: flex; gap: 12px; align-items: center; flex-wrap: wrap;
+  padding: 12px 16px; background: var(--panel); border-bottom: 1px solid var(--border);
+}
+header h1 { font-size: 18px; margin: 0 12px 0 0; }
+.control {
+  appearance: none; border: 1px solid var(--border); border-radius: 8px;
+  background: var(--panel); color: var(--text); padding: 8px 10px; font-size: 14px;
+}
+button.control { cursor: pointer; }
+button.control:hover { border-color: var(--accent); }
+#search { width: 230px; }
+.status { margin-left: auto; color: var(--muted); font-size: 13px; }
+main { display: grid; grid-template-columns: minmax(0, 1fr) 300px; min-height: 0; }
+#viewport { position: relative; overflow: hidden; cursor: grab; background-image: radial-gradient(var(--border) 1px, transparent 1px); background-size: 22px 22px; }
+#viewport.dragging { cursor: grabbing; }
+svg { width: 100%; height: 100%; display: block; user-select: none; }
+.edge { fill: none; stroke: var(--line); stroke-width: 1.7; }
+.node rect { fill: var(--node); stroke: var(--border); stroke-width: 1.4; rx: 9; filter: drop-shadow(0 3px 5px var(--node-shadow)); }
+.node:hover rect, .node.selected rect { stroke: var(--accent); stroke-width: 2.5; }
+.node.match rect { stroke: var(--success); stroke-width: 3; }
+.node text { pointer-events: none; fill: var(--text); text-anchor: middle; }
+.node .kind { font-weight: 700; font-size: 13px; }
+.node .id { fill: var(--muted); font-size: 11px; }
+.node .toggle { pointer-events: auto; cursor: pointer; fill: var(--accent-soft); stroke: var(--accent); }
+.node .toggle-text { font-weight: 700; fill: var(--accent); font-size: 12px; }
+aside { padding: 16px; overflow: auto; border-left: 1px solid var(--border); background: var(--panel); }
+aside h2 { margin: 0 0 12px; font-size: 16px; }
+.meta-row { border-bottom: 1px solid var(--border); padding: 9px 0; }
+.meta-label { color: var(--muted); font-size: 12px; display: block; margin-bottom: 3px; }
+.meta-value { font-size: 14px; overflow-wrap: anywhere; white-space: pre-wrap; }
+.help { margin-top: 18px; color: var(--muted); font-size: 12px; line-height: 1.5; }
+@media (max-width: 760px) { main { grid-template-columns: 1fr; } aside { display: none; } .status { display: none; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>AJ_24038155 AST Visualisation</h1>
+  <button class="control" id="zoom-in" title="Zoom in">Zoom in +</button>
+  <button class="control" id="zoom-out" title="Zoom out">Zoom out −</button>
+  <button class="control" id="reset-view">Reset view</button>
+  <button class="control" id="fit">Fit tree</button>
+  <button class="control" id="expand">Expand all</button>
+  <button class="control" id="collapse">Collapse descendants</button>
+  <input class="control" id="search" type="search" placeholder="Search node kind, ID or value">
+  <span class="status" id="status"></span>
+</header>
+<main>
+  <section id="viewport" aria-label="Interactive AST tree">
+    <svg id="canvas" role="img" aria-label="Abstract syntax tree">
+      <g id="scene"><g id="edges"></g><g id="nodes"></g></g>
+    </svg>
+  </section>
+  <aside>
+    <h2>Selected node</h2>
+    <div id="details"><span class="meta-value">Select a node to inspect its metadata.</span></div>
+    <p class="help">Drag the background to pan. Use the mouse wheel to zoom. Click a ± marker to collapse or expand descendants. Double-click a node to centre it.</p>
+  </aside>
+</main>
+<script>
+const graph = {"root_id": "N12658", "nodes": {"N12658": {"kind": "ProgramNode", "line": 1, "attributes": {}}, "N12657": {"kind": "ClassNode", "line": 1, "attributes": {"name": "LRUCache"}}, "N12575": {"kind": "ParameterNode", "line": 1, "attributes": {"name": "capacity", "declared_type": null}}, "N12656": {"kind": "BlockNode", "line": 2, "attributes": {}}, "N12578": {"kind": "AssignmentNode", "line": 2, "attributes": {}}, "N12576": {"kind": "IdentifierNode", "line": 2, "attributes": {"name": "given_capacity"}}, "N12577": {"kind": "IdentifierNode", "line": 2, "attributes": {"name": "capacity"}}, "N12581": {"kind": "AssignmentNode", "line": 3, "attributes": {}}, "N12579": {"kind": "IdentifierNode", "line": 3, "attributes": {"name": "cache"}}, "N12580": {"kind": "EmptyLiteralNode", "line": 3, "attributes": {"empty_type": "DICTIONARY"}}, "N12584": {"kind": "AssignmentNode", "line": 4, "attributes": {}}, "N12582": {"kind": "IdentifierNode", "line": 4, "attributes": {"name": "order"}}, "N12583": {"kind": "EmptyLiteralNode", "line": 4, "attributes": {"empty_type": "LIST"}}, "N12607": {"kind": "FunctionNode", "line": 6, "attributes": {"name": "get"}}, "N12585": {"kind": "ParameterNode", "line": 6, "attributes": {"name": "key", "declared_type": null}}, "N12606": {"kind": "BlockNode", "line": 7, "attributes": {}}, "N12595": {"kind": "IfNode", "line": 7, "attributes": {"else_if": [], "else_body": null}}, "N12588": {"kind": "BinaryNode", "line": 7, "attributes": {"operator": "NOT IN"}}, "N12586": {"kind": "IdentifierNode", "line": 7, "attributes": {"name": "key"}}, "N12587": {"kind": "IdentifierNode", "line": 7, "attributes": {"name": "cache"}}, "N12594": {"kind": "BlockNode", "line": 8, "attributes": {}}, "N12591": {"kind": "ReturnNode", "line": 8, "attributes": {}}, "N12590": {"kind": "UnaryNode", "line": 8, "attributes": {"operator": "-"}}, "N12589": {"kind": "LiteralNode", "line": 8, "attributes": {"value": 1, "data_type": "INTEGER"}}, "N12592": {"kind": "CommentNode", "line": 9, "attributes": {"text": "or NULL"}}, "N12593": {"kind": "CommentNode", "line": 10, "attributes": {"text": "Move key to front of order (most recently used)"}}, "N12598": {"kind": "CallNode", "line": 12, "attributes": {"name": "remove_from_list"}}, "N12596": {"kind": "IdentifierNode", "line": 12, "attributes": {"name": "order"}}, "N12597": {"kind": "IdentifierNode", "line": 12, "attributes": {"name": "key"}}, "N12601": {"kind": "CallNode", "line": 13, "attributes": {"name": "insert_front"}}, "N12599": {"kind": "IdentifierNode", "line": 13, "attributes": {"name": "order"}}, "N12600": {"kind": "IdentifierNode", "line": 13, "attributes": {"name": "key"}}, "N12605": {"kind": "ReturnNode", "line": 14, "attributes": {}}, "N12604": {"kind": "IndexNode", "line": 14, "attributes": {}}, "N12602": {"kind": "IdentifierNode", "line": 14, "attributes": {"name": "cache"}}, "N12603": {"kind": "IdentifierNode", "line": 14, "attributes": {"name": "key"}}, "N12655": {"kind": "FunctionNode", "line": 17, "attributes": {"name": "put"}}, "N12608": {"kind": "ParameterNode", "line": 17, "attributes": {"name": "key", "declared_type": null}}, "N12609": {"kind": "ParameterNode", "line": 17, "attributes": {"name": "value", "declared_type": null}}, "N12654": {"kind": "BlockNode", "line": 18, "attributes": {}}, "N12653": {"kind": "IfNode", "line": 18, "attributes": {"else_if": []}}, "N12612": {"kind": "BinaryNode", "line": 18, "attributes": {"operator": "IN"}}, "N12610": {"kind": "IdentifierNode", "line": 18, "attributes": {"name": "key"}}, "N12611": {"kind": "IdentifierNode", "line": 18, "attributes": {"name": "cache"}}, "N12625": {"kind": "BlockNode", "line": 19, "attributes": {}}, "N12613": {"kind": "CommentNode", "line": 19, "attributes": {"text": "Update value and move key to front"}}, "N12618": {"kind": "AssignmentNode", "line": 20, "attributes": {}}, "N12616": {"kind": "IndexNode", "line": 20, "attributes": {}}, "N12614": {"kind": "IdentifierNode", "line": 20, "attributes": {"name": "cache"}}, "N12615": {"kind": "IdentifierNode", "line": 20, "attributes": {"name": "key"}}, "N12617": {"kind": "IdentifierNode", "line": 20, "attributes": {"name": "value"}}, "N12621": {"kind": "CallNode", "line": 21, "attributes": {"name": "remove_from_list"}}, "N12619": {"kind": "IdentifierNode", "line": 21, "attributes": {"name": "order"}}, "N12620": {"kind": "IdentifierNode", "line": 21, "attributes": {"name": "key"}}, "N12624": {"kind": "CallNode", "line": 22, "attributes": {"name": "insert_front"}}, "N12622": {"kind": "IdentifierNode", "line": 22, "attributes": {"name": "order"}}, "N12623": {"kind": "IdentifierNode", "line": 22, "attributes": {"name": "key"}}, "N12652": {"kind": "BlockNode", "line": 24, "attributes": {}}, "N12643": {"kind": "IfNode", "line": 24, "attributes": {"else_if": [], "else_body": null}}, "N12629": {"kind": "BinaryNode", "line": 24, "attributes": {"operator": ">="}}, "N12627": {"kind": "LengthNode", "line": 24, "attributes": {}}, "N12626": {"kind": "IdentifierNode", "line": 24, "attributes": {"name": "order"}}, "N12628": {"kind": "IdentifierNode", "line": 24, "attributes": {"name": "given_capacity"}}, "N12642": {"kind": "BlockNode", "line": 25, "attributes": {}}, "N12630": {"kind": "CommentNode", "line": 25, "attributes": {"text": "Evict the least recently used (last element in order)"}}, "N12636": {"kind": "AssignmentNode", "line": 26, "attributes": {}}, "N12631": {"kind": "IdentifierNode", "line": 26, "attributes": {"name": "lruKey"}}, "N12635": {"kind": "IndexNode", "line": 26, "attributes": {}}, "N12632": {"kind": "IdentifierNode", "line": 26, "attributes": {"name": "order"}}, "N12634": {"kind": "UnaryNode", "line": 26, "attributes": {"operator": "-"}}, "N12633": {"kind": "LiteralNode", "line": 26, "attributes": {"value": 1, "data_type": "INTEGER"}}, "N12638": {"kind": "CallNode", "line": 27, "attributes": {"name": "remove_last_from_list"}}, "N12637": {"kind": "IdentifierNode", "line": 27, "attributes": {"name": "order"}}, "N12641": {"kind": "CallNode", "line": 28, "attributes": {"name": "remove_key"}}, "N12639": {"kind": "IdentifierNode", "line": 28, "attributes": {"name": "cache"}}, "N12640": {"kind": "IdentifierNode", "line": 28, "attributes": {"name": "lruKey"}}, "N12646": {"kind": "CallNode", "line": 30, "attributes": {"name": "insert_front"}}, "N12644": {"kind": "IdentifierNode", "line": 30, "attributes": {"name": "order"}}, "N12645": {"kind": "IdentifierNode", "line": 30, "attributes": {"name": "key"}}, "N12651": {"kind": "AssignmentNode", "line": 31, "attributes": {}}, "N12649": {"kind": "IndexNode", "line": 31, "attributes": {}}, "N12647": {"kind": "IdentifierNode", "line": 31, "attributes": {"name": "cache"}}, "N12648": {"kind": "IdentifierNode", "line": 31, "attributes": {"name": "key"}}, "N12650": {"kind": "IdentifierNode", "line": 31, "attributes": {"name": "value"}}}, "adjacency": {"N12658": ["N12657"], "N12657": ["N12575", "N12656"], "N12575": [], "N12656": ["N12578", "N12581", "N12584", "N12607", "N12655"], "N12578": ["N12576", "N12577"], "N12576": [], "N12577": [], "N12581": ["N12579", "N12580"], "N12579": [], "N12580": [], "N12584": ["N12582", "N12583"], "N12582": [], "N12583": [], "N12607": ["N12585", "N12606"], "N12585": [], "N12606": ["N12595", "N12598", "N12601", "N12605"], "N12595": ["N12588", "N12594"], "N12588": ["N12586", "N12587"], "N12586": [], "N12587": [], "N12594": ["N12591", "N12592", "N12593"], "N12591": ["N12590"], "N12590": ["N12589"], "N12589": [], "N12592": [], "N12593": [], "N12598": ["N12596", "N12597"], "N12596": [], "N12597": [], "N12601": ["N12599", "N12600"], "N12599": [], "N12600": [], "N12605": ["N12604"], "N12604": ["N12602", "N12603"], "N12602": [], "N12603": [], "N12655": ["N12608", "N12609", "N12654"], "N12608": [], "N12609": [], "N12654": ["N12653"], "N12653": ["N12612", "N12625", "N12652"], "N12612": ["N12610", "N12611"], "N12610": [], "N12611": [], "N12625": ["N12613", "N12618", "N12621", "N12624"], "N12613": [], "N12618": ["N12616", "N12617"], "N12616": ["N12614", "N12615"], "N12614": [], "N12615": [], "N12617": [], "N12621": ["N12619", "N12620"], "N12619": [], "N12620": [], "N12624": ["N12622", "N12623"], "N12622": [], "N12623": [], "N12652": ["N12643", "N12646", "N12651"], "N12643": ["N12629", "N12642"], "N12629": ["N12627", "N12628"], "N12627": ["N12626"], "N12626": [], "N12628": [], "N12642": ["N12630", "N12636", "N12638", "N12641"], "N12630": [], "N12636": ["N12631", "N12635"], "N12631": [], "N12635": ["N12632", "N12634"], "N12632": [], "N12634": ["N12633"], "N12633": [], "N12638": ["N12637"], "N12637": [], "N12641": ["N12639", "N12640"], "N12639": [], "N12640": [], "N12646": ["N12644", "N12645"], "N12644": [], "N12645": [], "N12651": ["N12649", "N12650"], "N12649": ["N12647", "N12648"], "N12647": [], "N12648": [], "N12650": []}};
+const svg = document.getElementById('canvas');
+const scene = document.getElementById('scene');
+const edgesLayer = document.getElementById('edges');
+const nodesLayer = document.getElementById('nodes');
+const viewport = document.getElementById('viewport');
+const details = document.getElementById('details');
+const status = document.getElementById('status');
+const collapsed = new Set();
+let selectedId = null;
+const INITIAL_SCALE = 1.15;
+const MIN_SCALE = 0.15;
+const MAX_SCALE = 4;
+const ZOOM_FACTOR = 1.2;
+let scale = INITIAL_SCALE;
+let tx = 40;
+let ty = 40;
+let dragging = false;
+let lastX = 0;
+let lastY = 0;
+const positions = new Map();
+const NODE_W = 174;
+const NODE_H = 62;
+const X_GAP = 54;
+const Y_GAP = 94;
+
+function visibleChildren(id) { return collapsed.has(id) ? [] : (graph.adjacency[id] || []); }
+
+function layout() {
+  positions.clear();
+  let leafIndex = 0;
+  function visit(id, depth) {
+    const children = visibleChildren(id);
+    let x;
+    if (!children.length) { x = leafIndex++ * (NODE_W + X_GAP); }
+    else {
+      children.forEach(child => visit(child, depth + 1));
+      x = (positions.get(children[0]).x + positions.get(children[children.length - 1]).x) / 2;
+    }
+    positions.set(id, {x, y: depth * (NODE_H + Y_GAP)});
+  }
+  visit(graph.root_id, 0);
+}
+
+function makeSvg(name, attrs = {}) {
+  const el = document.createElementNS('http://www.w3.org/2000/svg', name);
+  Object.entries(attrs).forEach(([k, v]) => el.setAttribute(k, String(v)));
+  return el;
+}
+
+function render() {
+  layout();
+  edgesLayer.replaceChildren();
+  nodesLayer.replaceChildren();
+
+  for (const [source, targets] of Object.entries(graph.adjacency)) {
+    if (!positions.has(source)) continue;
+    for (const target of targets) {
+      if (!positions.has(target)) continue;
+      const a = positions.get(source), b = positions.get(target);
+      const path = makeSvg('path', {
+        class: 'edge',
+        d: `M ${a.x + NODE_W / 2} ${a.y + NODE_H} C ${a.x + NODE_W / 2} ${a.y + NODE_H + 40}, ${b.x + NODE_W / 2} ${b.y - 40}, ${b.x + NODE_W / 2} ${b.y}`
+      });
+      edgesLayer.appendChild(path);
+    }
+  }
+
+  for (const [id, pos] of positions) {
+    const data = graph.nodes[id];
+    const group = makeSvg('g', {class: 'node', transform: `translate(${pos.x},${pos.y})`, 'data-id': id});
+    if (id === selectedId) group.classList.add('selected');
+    group.appendChild(makeSvg('rect', {width: NODE_W, height: NODE_H}));
+
+    const kind = makeSvg('text', {class: 'kind', x: NODE_W / 2, y: 27});
+    kind.textContent = data.kind;
+    group.appendChild(kind);
+    const idText = makeSvg('text', {class: 'id', x: NODE_W / 2, y: 47});
+    idText.textContent = `${id} · line ${data.line}`;
+    group.appendChild(idText);
+
+    const children = graph.adjacency[id] || [];
+    if (children.length) {
+      const circle = makeSvg('circle', {class: 'toggle', cx: NODE_W - 12, cy: 12, r: 9});
+      circle.addEventListener('click', event => { event.stopPropagation(); toggle(id); });
+      group.appendChild(circle);
+      const sign = makeSvg('text', {class: 'toggle-text', x: NODE_W - 12, y: 16});
+      sign.textContent = collapsed.has(id) ? '+' : '−';
+      group.appendChild(sign);
+    }
+
+    group.addEventListener('click', () => selectNode(id));
+    group.addEventListener('dblclick', () => centreNode(id));
+    nodesLayer.appendChild(group);
+  }
+  applyTransform();
+  runSearch();
+}
+
+function toggle(id) {
+  if (collapsed.has(id)) collapsed.delete(id); else collapsed.add(id);
+  render();
+}
+
+function selectNode(id) {
+  selectedId = id;
+  const data = graph.nodes[id];
+  const children = graph.adjacency[id] || [];
+  details.innerHTML = '';
+  const entries = [
+    ['Node ID', id], ['Kind', data.kind], ['Source line', data.line],
+    ['Children', children.length ? children.join(', ') : 'None'],
+    ['Attributes', Object.keys(data.attributes || {}).length ? JSON.stringify(data.attributes, null, 2) : 'None']
+  ];
+  for (const [label, value] of entries) {
+    const row = document.createElement('div'); row.className = 'meta-row';
+    const labelEl = document.createElement('span'); labelEl.className = 'meta-label'; labelEl.textContent = label;
+    const valueEl = document.createElement('span'); valueEl.className = 'meta-value'; valueEl.textContent = String(value);
+    row.append(labelEl, valueEl); details.appendChild(row);
+  }
+  document.querySelectorAll('.node').forEach(el => el.classList.toggle('selected', el.dataset.id === id));
+}
+
+function updateZoomStatus() {
+  const percentage = Math.round(scale * 100);
+  status.textContent = `${positions.size} visible / ${Object.keys(graph.nodes).length} total nodes · ${percentage}%`;
+}
+
+function applyTransform() {
+  scene.setAttribute('transform', `translate(${tx} ${ty}) scale(${scale})`);
+  updateZoomStatus();
+}
+
+function zoomAt(factor, centreX = null, centreY = null) {
+  const rect = viewport.getBoundingClientRect();
+  const focusX = centreX === null ? rect.width / 2 : centreX;
+  const focusY = centreY === null ? rect.height / 2 : centreY;
+  const oldScale = scale;
+  const requestedScale = scale * factor;
+  scale = Math.max(MIN_SCALE, Math.min(MAX_SCALE, requestedScale));
+
+  if (scale === oldScale) return;
+
+  tx = focusX - (focusX - tx) * (scale / oldScale);
+  ty = focusY - (focusY - ty) * (scale / oldScale);
+  applyTransform();
+}
+
+function resetView() {
+  scale = INITIAL_SCALE;
+  const rootPosition = positions.get(graph.root_id);
+  const rect = viewport.getBoundingClientRect();
+
+  if (rootPosition) {
+    tx = rect.width / 2 - (rootPosition.x + NODE_W / 2) * scale;
+    ty = 36 - rootPosition.y * scale;
+  } else {
+    tx = 40;
+    ty = 40;
+  }
+
+  applyTransform();
+}
+
+function fitTree() {
+  if (!positions.size) return;
+  const xs = [...positions.values()].map(p => p.x);
+  const ys = [...positions.values()].map(p => p.y);
+  const minX = Math.min(...xs), maxX = Math.max(...xs) + NODE_W;
+  const minY = Math.min(...ys), maxY = Math.max(...ys) + NODE_H;
+  const width = Math.max(maxX - minX, 1), height = Math.max(maxY - minY, 1);
+  const rect = viewport.getBoundingClientRect();
+  scale = Math.min((rect.width - 70) / width, (rect.height - 70) / height, 1.4);
+  tx = (rect.width - width * scale) / 2 - minX * scale;
+  ty = 35 - minY * scale;
+  applyTransform();
+}
+
+function centreNode(id) {
+  const p = positions.get(id); if (!p) return;
+  const rect = viewport.getBoundingClientRect();
+  tx = rect.width / 2 - (p.x + NODE_W / 2) * scale;
+  ty = rect.height / 2 - (p.y + NODE_H / 2) * scale;
+  applyTransform(); selectNode(id);
+}
+
+function runSearch() {
+  const query = document.getElementById('search').value.trim().toLowerCase();
+  document.querySelectorAll('.node').forEach(el => {
+    const id = el.dataset.id;
+    const node = graph.nodes[id];
+    const haystack = `${id} ${node.kind} ${JSON.stringify(node.attributes)}`.toLowerCase();
+    el.classList.toggle('match', Boolean(query) && haystack.includes(query));
+  });
+}
+
+document.getElementById('zoom-in').addEventListener('click', () => zoomAt(ZOOM_FACTOR));
+document.getElementById('zoom-out').addEventListener('click', () => zoomAt(1 / ZOOM_FACTOR));
+document.getElementById('reset-view').addEventListener('click', resetView);
+document.getElementById('fit').addEventListener('click', fitTree);
+document.getElementById('expand').addEventListener('click', () => { collapsed.clear(); render(); fitTree(); });
+document.getElementById('collapse').addEventListener('click', () => {
+  collapsed.clear();
+  for (const id of Object.keys(graph.adjacency)) if (id !== graph.root_id && (graph.adjacency[id] || []).length) collapsed.add(id);
+  render(); fitTree();
+});
+document.getElementById('search').addEventListener('input', runSearch);
+viewport.addEventListener('mousedown', event => { if (event.target.closest('.node')) return; dragging = true; lastX = event.clientX; lastY = event.clientY; viewport.classList.add('dragging'); });
+window.addEventListener('mousemove', event => { if (!dragging) return; tx += event.clientX - lastX; ty += event.clientY - lastY; lastX = event.clientX; lastY = event.clientY; applyTransform(); });
+window.addEventListener('mouseup', () => { dragging = false; viewport.classList.remove('dragging'); });
+viewport.addEventListener('wheel', event => {
+  event.preventDefault();
+  const rect = viewport.getBoundingClientRect();
+  const mx = event.clientX - rect.left, my = event.clientY - rect.top;
+  zoomAt(event.deltaY < 0 ? 1.12 : 0.89, mx, my);
+}, {passive: false});
+window.addEventListener('resize', () => {
+  updateZoomStatus();
+});
+render();
+requestAnimationFrame(resetView);
+</script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+    INPUT Root
+
+    CREATE Empty Queue
+    ENQUEUE Root
+
+    WHILE Queue is not empty
+        Node <- DEQUEUE Queue
+        OUTPUT Node.Value
+
+        IF Node.Left exists THEN
+            ENQUEUE Node.Left
+        ENDIF
+
+        IF Node.Right exists THEN
+            ENQUEUE Node.Right
+        ENDIF
+    ENDWHILE
+END

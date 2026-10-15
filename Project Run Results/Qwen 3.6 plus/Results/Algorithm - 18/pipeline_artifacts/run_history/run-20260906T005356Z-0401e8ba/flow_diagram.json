@@ -1,0 +1,226 @@
+{
+  "format": "NL-FDEP Flow Diagram",
+  "version": "1.0",
+  "entry_node": "F1",
+  "exit_node": "F2",
+  "nodes": {
+    "F1": {
+      "node_id": "F1",
+      "node_type": "START",
+      "label": "Start",
+      "line": 1,
+      "data": {}
+    },
+    "F2": {
+      "node_id": "F2",
+      "node_type": "END",
+      "label": "End",
+      "line": 1,
+      "data": {}
+    },
+    "F3": {
+      "node_id": "F3",
+      "node_type": "FUNCTION",
+      "label": "Run function unnamed_function with s",
+      "line": 1,
+      "data": {
+        "ast_kind": "FunctionNode",
+        "name": "unnamed_function"
+      }
+    },
+    "F4": {
+      "node_id": "F4",
+      "node_type": "PROCESS",
+      "label": "Set freq to an empty dictionary",
+      "line": 2,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F5": {
+      "node_id": "F5",
+      "node_type": "LOOP_DECISION",
+      "label": "For each __reserved_keyword__char in s",
+      "line": 4,
+      "data": {
+        "ast_kind": "ForEachNode"
+      }
+    },
+    "F6": {
+      "node_id": "F6",
+      "node_type": "PROCESS",
+      "label": "Set item __reserved_keyword__char of freq to the result of freq.GET(__reserved_keyword__char, 0) plus 1",
+      "line": 5,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F7": {
+      "node_id": "F7",
+      "node_type": "RETURN",
+      "label": "Return freq",
+      "line": 8,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "F5",
+      "target": "F6",
+      "label": "ITERATE"
+    },
+    {
+      "source": "F6",
+      "target": "F5",
+      "label": "LOOP"
+    },
+    {
+      "source": "F4",
+      "target": "F5",
+      "label": "NEXT"
+    },
+    {
+      "source": "F5",
+      "target": "F7",
+      "label": "NEXT"
+    },
+    {
+      "source": "F3",
+      "target": "F4",
+      "label": "BODY"
+    },
+    {
+      "source": "F1",
+      "target": "F3",
+      "label": "NEXT"
+    },
+    {
+      "source": "F7",
+      "target": "F2",
+      "label": "NEXT"
+    }
+  ],
+  "structured_program": {
+    "kind": "ProgramNode",
+    "line": 1,
+    "body": [
+      {
+        "kind": "FunctionNode",
+        "line": 1,
+        "name": "unnamed_function",
+        "parameters": [
+          {
+            "kind": "ParameterNode",
+            "line": 1,
+            "name": "s",
+            "declared_type": null
+          }
+        ],
+        "body": {
+          "kind": "BlockNode",
+          "line": 2,
+          "statements": [
+            {
+              "kind": "AssignmentNode",
+              "line": 2,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 2,
+                "name": "freq"
+              },
+              "value": {
+                "kind": "EmptyLiteralNode",
+                "line": 2,
+                "empty_type": "DICTIONARY"
+              }
+            },
+            {
+              "kind": "ForEachNode",
+              "line": 4,
+              "variable": {
+                "kind": "IdentifierNode",
+                "line": 4,
+                "name": "__reserved_keyword__char"
+              },
+              "collection": {
+                "kind": "IdentifierNode",
+                "line": 4,
+                "name": "s"
+              },
+              "body": {
+                "kind": "BlockNode",
+                "line": 5,
+                "statements": [
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 5,
+                    "target": {
+                      "kind": "IndexNode",
+                      "line": 5,
+                      "collection": {
+                        "kind": "IdentifierNode",
+                        "line": 5,
+                        "name": "freq"
+                      },
+                      "index": {
+                        "kind": "IdentifierNode",
+                        "line": 5,
+                        "name": "__reserved_keyword__char"
+                      }
+                    },
+                    "value": {
+                      "kind": "BinaryNode",
+                      "line": 5,
+                      "operator": "+",
+                      "left": {
+                        "kind": "MemberCallNode",
+                        "line": 5,
+                        "object": {
+                          "kind": "IdentifierNode",
+                          "line": 5,
+                          "name": "freq"
+                        },
+                        "member": "GET",
+                        "arguments": [
+                          {
+                            "kind": "IdentifierNode",
+                            "line": 5,
+                            "name": "__reserved_keyword__char"
+                          },
+                          {
+                            "kind": "LiteralNode",
+                            "line": 5,
+                            "value": 0,
+                            "data_type": "INTEGER"
+                          }
+                        ],
+                        "resolved_intrinsic": "DICTIONARY_GET"
+                      },
+                      "right": {
+                        "kind": "LiteralNode",
+                        "line": 5,
+                        "value": 1,
+                        "data_type": "INTEGER"
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "ReturnNode",
+              "line": 8,
+              "expression": {
+                "kind": "IdentifierNode",
+                "line": 8,
+                "name": "freq"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

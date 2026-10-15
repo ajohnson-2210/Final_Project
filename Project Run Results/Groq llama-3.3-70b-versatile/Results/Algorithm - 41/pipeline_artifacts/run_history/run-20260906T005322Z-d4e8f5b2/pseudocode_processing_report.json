@@ -1,0 +1,358 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 29,
+  "transformations": [
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  board = []",
+      "canonical": "  board <- []",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    board[i] = []",
+      "canonical": "    board[i] <- []",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  board <- []",
+      "canonical": "  board <- EMPTY LIST",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    board[i] <- []",
+      "canonical": "    board[i] <- EMPTY LIST",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION N_QUEENS(N)",
+      "canonical": "FUNCTION N_QUEENS ACCEPTS(N)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  FUNCTION IS_SAFE(row, col)",
+      "canonical": "  FUNCTION IS_SAFE ACCEPTS(row, col)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  FUNCTION PLACE_QUEENS(row)",
+      "canonical": "  FUNCTION PLACE_QUEENS ACCEPTS(row)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "FUNCTION N_QUEENS ACCEPTS(N)\n  board <- EMPTY LIST\n  FOR i FROM 0 TO N-1\n    board[i] <- EMPTY LIST\n    FOR j FROM 0 TO N-1\n      board[i][j] = 0\n    END FOR\n  END FOR\n  FUNCTION IS_SAFE ACCEPTS(row, col)\n    FOR i FROM 0 TO row-1\n      IF board[i][col] == 1 THEN\n        RETURN FALSE\n      END IF\n      IF col - (row - i) >= 0 AND board[i][col - (row - i)] == 1 THEN\n        RETURN FALSE\n      END IF\n      IF col + (row - i) < N AND board[i][col + (row - i)] == 1 THEN\n        RETURN FALSE\n      END IF\n    END FOR\n    RETURN TRUE\n  END FUNCTION\n  FUNCTION PLACE_QUEENS ACCEPTS(row)\n    IF row == N THEN\n      RETURN TRUE\n    END IF\n    FOR col FROM 0 TO N-1\n      IF IS_SAFE(row, col) THEN\n        board[row][col] = 1\n        IF PLACE_QUEENS(row + 1) THEN\n          RETURN TRUE\n        END IF\n        board[row][col] = 0\n      END IF\n    END FOR\n    RETURN FALSE\n  END FUNCTION\n  IF PLACE_QUEENS(0) THEN\n    RETURN board\n  ELSE\n    RETURN NULL\n  END IF\nEND FUNCTION",
+      "canonical": "FUNCTION N_QUEENS ACCEPTS(N)\n  board <- EMPTY LIST\n  FOR i FROM 0 TO N-1\n    board[i] <- EMPTY LIST\n    FOR j FROM 0 TO N-1\n      board[i][j] = 0\n    END FOR\n  END FOR\n  FUNCTION IS_SAFE ACCEPTS(row, col)\n    FOR i FROM 0 TO row-1\n      IF board[i][col] == 1 THEN\n        RETURN FALSE\n      ENDIF\n      IF col - (row - i) >= 0 AND board[i][col - (row - i)] == 1 THEN\n        RETURN FALSE\n      ENDIF\n      IF col + (row - i) < N AND board[i][col + (row - i)] == 1 THEN\n        RETURN FALSE\n      ENDIF\n    END FOR\n    RETURN TRUE\n  ENDFUNCTION\n  FUNCTION PLACE_QUEENS ACCEPTS(row)\n    IF row == N THEN\n      RETURN TRUE\n    ENDIF\n    FOR col FROM 0 TO N-1\n      IF IS_SAFE(row, col) THEN\n        board[row][col] = 1\n        IF PLACE_QUEENS(row + 1) THEN\n          RETURN TRUE\n        ENDIF\n        board[row][col] = 0\n      ENDIF\n    END FOR\n    RETURN FALSE\n  ENDFUNCTION\n  IF PLACE_QUEENS(0) THEN\n    RETURN board\n  ELSE\n    RETURN NULL\n  ENDIF\nENDFUNCTION",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 6,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "      board[i][j] = 0",
+      "canonical": "      board[i][j] <- 0",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 29,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        board[row][col] = 1",
+      "canonical": "        board[row][col] <- 1",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 33,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        board[row][col] = 0",
+      "canonical": "        board[row][col] <- 0",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  FOR i FROM 0 TO N-1",
+      "canonical": "  FOR i <- IN RANGE 0 TO (N-1) + 1 DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    FOR j FROM 0 TO N-1",
+      "canonical": "    FOR j <- IN RANGE 0 TO (N-1) + 1 DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 7,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "    END FOR",
+      "canonical": "    ENDFOR",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 8,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "  END FOR",
+      "canonical": "  ENDFOR",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 10,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    FOR i FROM 0 TO row-1",
+      "canonical": "    FOR i <- IN RANGE 0 TO (row-1) + 1 DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 20,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "    END FOR",
+      "canonical": "    ENDFOR",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 27,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    FOR col FROM 0 TO N-1",
+      "canonical": "    FOR col <- IN RANGE 0 TO (N-1) + 1 DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 35,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "    END FOR",
+      "canonical": "    ENDFOR",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 12,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        RETURN FALSE",
+      "canonical": "        RETURN BOOLEAN(False)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 15,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        RETURN FALSE",
+      "canonical": "        RETURN BOOLEAN(False)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 18,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        RETURN FALSE",
+      "canonical": "        RETURN BOOLEAN(False)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 21,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    RETURN TRUE",
+      "canonical": "    RETURN BOOLEAN(True)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 25,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "      RETURN TRUE",
+      "canonical": "      RETURN BOOLEAN(True)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 28,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "      IF IS_SAFE(row, col) THEN",
+      "canonical": "      IF CALL IS_SAFE(row, col) THEN",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 30,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        IF PLACE_QUEENS(row + 1) THEN",
+      "canonical": "        IF CALL PLACE_QUEENS(row + 1) THEN",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 31,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "          RETURN TRUE",
+      "canonical": "          RETURN BOOLEAN(True)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 36,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    RETURN FALSE",
+      "canonical": "    RETURN BOOLEAN(False)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 38,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  IF PLACE_QUEENS(0) THEN",
+      "canonical": "  IF CALL PLACE_QUEENS(0) THEN",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 1
+}

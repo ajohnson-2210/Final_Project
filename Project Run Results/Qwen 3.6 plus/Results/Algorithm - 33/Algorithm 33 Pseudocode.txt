@@ -1,0 +1,22 @@
+# Integer Square Root (Binary Search)
+
+INPUT n
+
+IF n < 2:
+    RETURN n
+
+left = 1
+right = n DIV 2
+ans = 1
+
+WHILE left <= right:
+    mid = (left + right) DIV 2
+
+    IF mid * mid <= n:
+        ans = mid
+        left = mid + 1
+    ELSE:
+        right = mid - 1
+
+RETURN ans
+

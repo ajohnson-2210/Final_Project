@@ -1,0 +1,18 @@
+# Solve the Tower of Hanoi problem for N discs.
+BEGIN
+    INPUT N
+
+    FUNCTION Hanoi(Discs, Source, Auxiliary, Destination)
+        IF Discs = 1 THEN
+            OUTPUT "Move disk from", Source, "to", Destination
+        ELSE
+            Hanoi(Discs-1, Source, Destination, Auxiliary)
+
+            OUTPUT "Move disk from", Source, "to", Destination
+
+            Hanoi(Discs-1, Auxiliary, Source, Destination)
+        ENDIF
+    END FUNCTION
+
+    Hanoi(N, "A", "B", "C")
+END

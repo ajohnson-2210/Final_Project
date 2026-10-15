@@ -1,0 +1,178 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 14,
+  "transformations": [
+    {
+      "line": 7,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        Node \u2190 DEQUEUE Queue",
+      "canonical": "        Node <- DEQUEUE Queue",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    INPUT Root\n\n    CREATE Empty Queue\n    ENQUEUE Root\n\n    WHILE Queue is not empty\n        Node <- DEQUEUE Queue\n        OUTPUT Node.Value\n\n        IF Node.Left exists THEN\n            ENQUEUE Node.Left\n        ENDIF\n\n        IF Node.Right exists THEN\n            ENQUEUE Node.Right\n        ENDIF\n    ENDWHILE\nEND",
+      "canonical": "FUNCTION unnamed_function ACCEPTS(Root)\n        CREATE Empty Queue\n        ENQUEUE Root\n\n        WHILE Queue is not empty\n            Node <- DEQUEUE Queue\n            OUTPUT Node.Value\n\n            IF Node.Left exists THEN\n                ENQUEUE Node.Left\n            ENDIF\n\n            IF Node.Right exists THEN\n                ENQUEUE Node.Right\n            ENDIF\n        ENDWHILE\n    END\nENDFUNCTION",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        CREATE Empty Queue",
+      "canonical": "        CREATE EMPTY QUEUE",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION unnamed_function ACCEPTS(Root)\n        CREATE EMPTY QUEUE\n        ENQUEUE Root\n\n        WHILE Queue is not empty\n            Node <- DEQUEUE Queue\n            OUTPUT Node.Value\n\n            IF Node.Left exists THEN\n                ENQUEUE Node.Left\n            ENDIF\n\n            IF Node.Right exists THEN\n                ENQUEUE Node.Right\n            ENDIF\n        ENDWHILE\n    END\nENDFUNCTION",
+      "canonical": "FUNCTION unnamed_function ACCEPTS(Root)\n        CREATE EMPTY QUEUE\n        ENQUEUE Root\n\n        WHILE LENGTH OF Queue > 0\n            Node <- DEQUEUE Queue\n            OUTPUT Node.Value\n\n            IF Node.Left exists THEN\n                ENQUEUE Node.Left\n            ENDIF\n\n            IF Node.Right exists THEN\n                ENQUEUE Node.Right\n            ENDIF\n        ENDWHILE\n    END\nENDFUNCTION",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        CREATE EMPTY QUEUE",
+      "canonical": "        Queue <- CALL create_queue()",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        ENQUEUE Root",
+      "canonical": "        CALL ENQUEUE(Queue, Root)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        WHILE LENGTH OF Queue > 0",
+      "canonical": "        WHILE NOT CALL queue_is_empty(Queue)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 6,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            Node <- DEQUEUE Queue",
+      "canonical": "            Node <- CALL DEQUEUE(Queue)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 9,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            IF Node.Left exists THEN",
+      "canonical": "            IF Node.Left != NULL THEN",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 10,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "                ENQUEUE Node.Left",
+      "canonical": "                CALL ENQUEUE(Queue, Node.Left)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 13,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            IF Node.Right exists THEN",
+      "canonical": "            IF Node.Right != NULL THEN",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 14,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "                ENQUEUE Node.Right",
+      "canonical": "                CALL ENQUEUE(Queue, Node.Right)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        WHILE NOT CALL queue_is_empty(Queue)",
+      "canonical": "        WHILE NOT CALL queue_is_empty(Queue) DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 14,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    END",
+      "canonical": "",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 2
+}

@@ -1,0 +1,20 @@
+# Perform level-order traversal on a binary tree and return node values grouped by depth
+FUNCTION LEVEL_ORDER_TRAVERSAL(root)
+  result = []
+  queue = [root]
+  WHILE queue IS NOT EMPTY
+    level = []
+    FOR i FROM 0 TO LENGTH(queue) - 1
+      node = DEQUEUE(queue)
+      level += [node.value]
+      IF node.left IS NOT NULL THEN
+        ENQUEUE(queue, node.left)
+      END IF
+      IF node.right IS NOT NULL THEN
+        ENQUEUE(queue, node.right)
+      END IF
+    END FOR
+    result += [level]
+  END WHILE
+  RETURN result
+END FUNCTION

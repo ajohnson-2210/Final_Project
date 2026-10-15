@@ -1,0 +1,143 @@
+{
+  "program_path": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\ChatGPT 5.5\\Results\\Algorithm - 3\\pipeline_artifacts\\generated_program.py",
+  "success": false,
+  "total_tests": 5,
+  "passed_tests": 0,
+  "failed_tests": 5,
+  "category_summary": {
+    "BRANCH": {
+      "total": 3,
+      "passed": 0,
+      "failed": 3
+    },
+    "NORMAL": {
+      "total": 1,
+      "passed": 0,
+      "failed": 1
+    },
+    "ERROR_BEHAVIOUR": {
+      "total": 1,
+      "passed": 0,
+      "failed": 1
+    }
+  },
+  "results": [
+    {
+      "name": "leap year divisible by 400",
+      "status": "FAILED",
+      "expected_output": [
+        "Enter Year: 2000 Is a Leap Year!"
+      ],
+      "actual_output": [],
+      "standard_error": "",
+      "return_code": 0,
+      "duration_ms": 47.432,
+      "category": "BRANCH",
+      "semantic_feature": "LEAP_YEAR_400_RULE",
+      "expected_return_code": 0,
+      "expected_error_type": null,
+      "actual_error_type": null,
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "random_seed": null,
+      "environment": {},
+      "requires_modules": []
+    },
+    {
+      "name": "century year not divisible by 400",
+      "status": "FAILED",
+      "expected_output": [
+        "Enter Year: 1900 is Not a Leap Year!"
+      ],
+      "actual_output": [],
+      "standard_error": "",
+      "return_code": 0,
+      "duration_ms": 38.876,
+      "category": "BRANCH",
+      "semantic_feature": "LEAP_YEAR_CENTURY_RULE",
+      "expected_return_code": 0,
+      "expected_error_type": null,
+      "actual_error_type": null,
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "random_seed": null,
+      "environment": {},
+      "requires_modules": []
+    },
+    {
+      "name": "ordinary leap year divisible by 4",
+      "status": "FAILED",
+      "expected_output": [
+        "Enter Year: 2024 Is a Leap Year!"
+      ],
+      "actual_output": [],
+      "standard_error": "",
+      "return_code": 0,
+      "duration_ms": 37.825,
+      "category": "BRANCH",
+      "semantic_feature": "LEAP_YEAR_DIVISIBLE_BY_4",
+      "expected_return_code": 0,
+      "expected_error_type": null,
+      "actual_error_type": null,
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "random_seed": null,
+      "environment": {},
+      "requires_modules": []
+    },
+    {
+      "name": "ordinary non-leap year",
+      "status": "FAILED",
+      "expected_output": [
+        "Enter Year: 2023 is Not a Leap Year!"
+      ],
+      "actual_output": [],
+      "standard_error": "",
+      "return_code": 0,
+      "duration_ms": 35.073,
+      "category": "NORMAL",
+      "semantic_feature": "LEAP_YEAR_FALSE_PATH",
+      "expected_return_code": 0,
+      "expected_error_type": null,
+      "actual_error_type": null,
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "random_seed": null,
+      "environment": {},
+      "requires_modules": []
+    },
+    {
+      "name": "invalid input retries then succeeds",
+      "status": "FAILED",
+      "expected_output": [
+        "Enter Year: That's Not a Valid Year, Please Try Again!",
+        "Enter Year: 2024 Is a Leap Year!"
+      ],
+      "actual_output": [],
+      "standard_error": "",
+      "return_code": 0,
+      "duration_ms": 35.148,
+      "category": "ERROR_BEHAVIOUR",
+      "semantic_feature": "INTEGER_INPUT_RETRY",
+      "expected_return_code": 0,
+      "expected_error_type": null,
+      "actual_error_type": null,
+      "criteria_links": [
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "random_seed": null,
+      "environment": {},
+      "requires_modules": []
+    }
+  ]
+}

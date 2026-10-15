@@ -1,0 +1,8 @@
+# Scan a paragraph of text and count how many times each individual vowel (a, e, i, o, u) appears.
+FUNCTION countVowels(paragraph):
+    vowelCount = {a:0, e:0, i:0, o:0, u:0}
+    FOR each char in paragraph:
+        lowerChar = toLower(char)
+        IF lowerChar IN vowelCount:
+            vowelCount[lowerChar] = vowelCount[lowerChar] + 1
+    RETURN vowelCount

@@ -1,0 +1,12 @@
+# Determine whether two given strings are anagrams of each other.
+FUNCTION areAnagrams(str1, str2):
+    IF length(str1) != length(str2):
+        RETURN False
+    countArray = array of size 256 initialized to 0
+    FOR each char in str1:
+        countArray[ASCII(char)] = countArray[ASCII(char)] + 1
+    FOR each char in str2:
+        countArray[ASCII(char)] = countArray[ASCII(char)] - 1
+        IF countArray[ASCII(char)] < 0:
+            RETURN False
+    RETURN True

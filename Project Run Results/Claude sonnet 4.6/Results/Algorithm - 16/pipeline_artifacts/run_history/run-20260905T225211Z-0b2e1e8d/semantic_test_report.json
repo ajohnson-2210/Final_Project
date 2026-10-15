@@ -1,0 +1,156 @@
+{
+  "semantic_report_schema_version": "1.0",
+  "program_path": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Claude sonnet 4.6\\Results\\Algorithm - 16\\pipeline_artifacts\\generated_program.py",
+  "algorithm_id": 16,
+  "contract_version": "1.2",
+  "evaluable_tests": 4,
+  "passed_tests": 4,
+  "failed_tests": 0,
+  "not_evaluable_tests": 1,
+  "accuracy_percentage": 100.0,
+  "results": [
+    {
+      "name": "standard GCD",
+      "status": "PASSED",
+      "expected_semantic_result": 6,
+      "actual_semantic_result": 6,
+      "semantic_match": true,
+      "reason": null,
+      "duration_ms": 88.465,
+      "category": "NORMAL",
+      "semantic_feature": "EUCLIDEAN_GCD",
+      "fixture_source": "COMMON_TEST_STANDARD_INPUT",
+      "oracle_source": "TASK_SEMANTIC_ORACLE_WITH_FROZEN_BASELINE_REFERENCE",
+      "selected_entrypoint": "gcd",
+      "invocation_capture": {
+        "status": "COMPLETED",
+        "selected_entrypoint": "gcd",
+        "prints": [],
+        "returns": [
+          6
+        ],
+        "post_arguments": [
+          [
+            48,
+            18
+          ]
+        ],
+        "shared_values": {},
+        "errors": [
+          null
+        ]
+      }
+    },
+    {
+      "name": "coprime numbers",
+      "status": "PASSED",
+      "expected_semantic_result": 1,
+      "actual_semantic_result": 1,
+      "semantic_match": true,
+      "reason": null,
+      "duration_ms": 93.557,
+      "category": "BRANCH",
+      "semantic_feature": "EUCLIDEAN_GCD_COPRIME",
+      "fixture_source": "COMMON_TEST_STANDARD_INPUT",
+      "oracle_source": "TASK_SEMANTIC_ORACLE_WITH_FROZEN_BASELINE_REFERENCE",
+      "selected_entrypoint": "gcd",
+      "invocation_capture": {
+        "status": "COMPLETED",
+        "selected_entrypoint": "gcd",
+        "prints": [],
+        "returns": [
+          1
+        ],
+        "post_arguments": [
+          [
+            17,
+            13
+          ]
+        ],
+        "shared_values": {},
+        "errors": [
+          null
+        ]
+      }
+    },
+    {
+      "name": "negative input normalised",
+      "status": "PASSED",
+      "expected_semantic_result": 6,
+      "actual_semantic_result": 6,
+      "semantic_match": true,
+      "reason": null,
+      "duration_ms": 81.561,
+      "category": "BOUNDARY",
+      "semantic_feature": "ABSOLUTE_VALUE_NORMALISATION",
+      "fixture_source": "COMMON_TEST_STANDARD_INPUT",
+      "oracle_source": "TASK_SEMANTIC_ORACLE_WITH_FROZEN_BASELINE_REFERENCE",
+      "selected_entrypoint": "gcd",
+      "invocation_capture": {
+        "status": "COMPLETED",
+        "selected_entrypoint": "gcd",
+        "prints": [],
+        "returns": [
+          6
+        ],
+        "post_arguments": [
+          [
+            -48,
+            18
+          ]
+        ],
+        "shared_values": {},
+        "errors": [
+          null
+        ]
+      }
+    },
+    {
+      "name": "zero operand",
+      "status": "PASSED",
+      "expected_semantic_result": 5,
+      "actual_semantic_result": 5,
+      "semantic_match": true,
+      "reason": null,
+      "duration_ms": 77.312,
+      "category": "BOUNDARY",
+      "semantic_feature": "GCD_ZERO_OPERAND",
+      "fixture_source": "COMMON_TEST_STANDARD_INPUT",
+      "oracle_source": "TASK_SEMANTIC_ORACLE_WITH_FROZEN_BASELINE_REFERENCE",
+      "selected_entrypoint": "gcd",
+      "invocation_capture": {
+        "status": "COMPLETED",
+        "selected_entrypoint": "gcd",
+        "prints": [],
+        "returns": [
+          5
+        ],
+        "post_arguments": [
+          [
+            0,
+            5
+          ]
+        ],
+        "shared_values": {},
+        "errors": [
+          null
+        ]
+      }
+    },
+    {
+      "name": "invalid first input retries",
+      "status": "NOT_EVALUABLE",
+      "expected_semantic_result": null,
+      "actual_semantic_result": null,
+      "semantic_match": null,
+      "reason": "This Common Test remains interaction/reference evidence and is not a canonical task-function test.",
+      "duration_ms": null,
+      "category": "ERROR_BEHAVIOUR",
+      "semantic_feature": "FIRST_INTEGER_INPUT_RETRY",
+      "fixture_source": null,
+      "oracle_source": null,
+      "selected_entrypoint": null,
+      "invocation_capture": null
+    }
+  ]
+}

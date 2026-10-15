@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AJ_24038155 AST Visualisation</title>
+<style>
+:root {
+  color-scheme: light dark;
+  --bg: #f7f8fb;
+  --panel: #ffffff;
+  --text: #172033;
+  --muted: #64748b;
+  --line: #94a3b8;
+  --border: #cbd5e1;
+  --accent: #2563eb;
+  --accent-soft: #dbeafe;
+  --node: #ffffff;
+  --node-shadow: rgba(15, 23, 42, 0.13);
+  --success: #15803d;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f172a;
+    --panel: #111827;
+    --text: #e5e7eb;
+    --muted: #94a3b8;
+    --line: #64748b;
+    --border: #334155;
+    --accent: #60a5fa;
+    --accent-soft: #172554;
+    --node: #1e293b;
+    --node-shadow: rgba(0, 0, 0, 0.3);
+    --success: #4ade80;
+  }
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; font-family: Inter, system-ui, sans-serif; background: var(--bg); color: var(--text); }
+body { display: grid; grid-template-rows: auto 1fr; overflow: hidden; }
+header {
+  display: flex; gap: 12px; align-items: center; flex-wrap: wrap;
+  padding: 12px 16px; background: var(--panel); border-bottom: 1px solid var(--border);
+}
+header h1 { font-size: 18px; margin: 0 12px 0 0; }
+.control {
+  appearance: none; border: 1px solid var(--border); border-radius: 8px;
+  background: var(--panel); color: var(--text); padding: 8px 10px; font-size: 14px;
+}
+button.control { cursor: pointer; }
+button.control:hover { border-color: var(--accent); }
+#search { width: 230px; }
+.status { margin-left: auto; color: var(--muted); font-size: 13px; }
+main { display: grid; grid-template-columns: minmax(0, 1fr) 300px; min-height: 0; }
+#viewport { position: relative; overflow: hidden; cursor: grab; background-image: radial-gradient(var(--border) 1px, transparent 1px); background-size: 22px 22px; }
+#viewport.dragging { cursor: grabbing; }
+svg { width: 100%; height: 100%; display: block; user-select: none; }
+.edge { fill: none; stroke: var(--line); stroke-width: 1.7; }
+.node rect { fill: var(--node); stroke: var(--border); stroke-width: 1.4; rx: 9; filter: drop-shadow(0 3px 5px var(--node-shadow)); }
+.node:hover rect, .node.selected rect { stroke: var(--accent); stroke-width: 2.5; }
+.node.match rect { stroke: var(--success); stroke-width: 3; }
+.node text { pointer-events: none; fill: var(--text); text-anchor: middle; }
+.node .kind { font-weight: 700; font-size: 13px; }
+.node .id { fill: var(--muted); font-size: 11px; }
+.node .toggle { pointer-events: auto; cursor: pointer; fill: var(--accent-soft); stroke: var(--accent); }
+.node .toggle-text { font-weight: 700; fill: var(--accent); font-size: 12px; }
+aside { padding: 16px; overflow: auto; border-left: 1px solid var(--border); background: var(--panel); }
+aside h2 { margin: 0 0 12px; font-size: 16px; }
+.meta-row { border-bottom: 1px solid var(--border); padding: 9px 0; }
+.meta-label { color: var(--muted); font-size: 12px; display: block; margin-bottom: 3px; }
+.meta-value { font-size: 14px; overflow-wrap: anywhere; white-space: pre-wrap; }
+.help { margin-top: 18px; color: var(--muted); font-size: 12px; line-height: 1.5; }
+@media (max-width: 760px) { main { grid-template-columns: 1fr; } aside { display: none; } .status { display: none; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>AJ_24038155 AST Visualisation</h1>
+  <button class="control" id="zoom-in" title="Zoom in">Zoom in +</button>
+  <button class="control" id="zoom-out" title="Zoom out">Zoom out −</button>
+  <button class="control" id="reset-view">Reset view</button>
+  <button class="control" id="fit">Fit tree</button>
+  <button class="control" id="expand">Expand all</button>
+  <button class="control" id="collapse">Collapse descendants</button>
+  <input class="control" id="search" type="search" placeholder="Search node kind, ID or value">
+  <span class="status" id="status"></span>
+</header>
+<main>
+  <section id="viewport" aria-label="Interactive AST tree">
+    <svg id="canvas" role="img" aria-label="Abstract syntax tree">
+      <g id="scene"><g id="edges"></g><g id="nodes"></g></g>
+    </svg>
+  </section>
+  <aside>
+    <h2>Selected node</h2>
+    <div id="details"><span class="meta-value">Select a node to inspect its metadata.</span></div>
+    <p class="help">Drag the background to pan. Use the mouse wheel to zoom. Click a ± marker to collapse or expand descendants. Double-click a node to centre it.</p>
+  </aside>
+</main>
+<script>
+const graph = {"root_id": "N19574", "nodes": {"N19574": {"kind": "ProgramNode", "line": 1, "attributes": {}}, "N19573": {"kind": "FunctionNode", "line": 1, "attributes": {"name": "unnamed_function"}}, "N19522": {"kind": "ParameterNode", "line": 1, "attributes": {"name": "s", "declared_type": null}}, "N19572": {"kind": "BlockNode", "line": 2, "attributes": {}}, "N19526": {"kind": "AssignmentNode", "line": 2, "attributes": {}}, "N19523": {"kind": "IdentifierNode", "line": 2, "attributes": {"name": "chars"}}, "N19525": {"kind": "CallNode", "line": 2, "attributes": {"name": "to_array"}}, "N19524": {"kind": "IdentifierNode", "line": 2, "attributes": {"name": "s"}}, "N19529": {"kind": "AssignmentNode", "line": 3, "attributes": {}}, "N19527": {"kind": "IdentifierNode", "line": 3, "attributes": {"name": "left"}}, "N19528": {"kind": "LiteralNode", "line": 3, "attributes": {"value": 0, "data_type": "INTEGER"}}, "N19535": {"kind": "AssignmentNode", "line": 4, "attributes": {}}, "N19530": {"kind": "IdentifierNode", "line": 4, "attributes": {"name": "right"}}, "N19534": {"kind": "BinaryNode", "line": 4, "attributes": {"operator": "-"}}, "N19532": {"kind": "LengthNode", "line": 4, "attributes": {}}, "N19531": {"kind": "IdentifierNode", "line": 4, "attributes": {"name": "s"}}, "N19533": {"kind": "LiteralNode", "line": 4, "attributes": {"value": 1, "data_type": "INTEGER"}}, "N19567": {"kind": "WhileNode", "line": 6, "attributes": {}}, "N19538": {"kind": "BinaryNode", "line": 6, "attributes": {"operator": "<"}}, "N19536": {"kind": "IdentifierNode", "line": 6, "attributes": {"name": "left"}}, "N19537": {"kind": "IdentifierNode", "line": 6, "attributes": {"name": "right"}}, "N19566": {"kind": "BlockNode", "line": 7, "attributes": {}}, "N19543": {"kind": "AssignmentNode", "line": 7, "attributes": {}}, "N19539": {"kind": "IdentifierNode", "line": 7, "attributes": {"name": "temp_var"}}, "N19542": {"kind": "IndexNode", "line": 7, "attributes": {}}, "N19540": {"kind": "IdentifierNode", "line": 7, "attributes": {"name": "chars"}}, "N19541": {"kind": "IdentifierNode", "line": 7, "attributes": {"name": "left"}}, "N19550": {"kind": "AssignmentNode", "line": 8, "attributes": {}}, "N19546": {"kind": "IndexNode", "line": 8, "attributes": {}}, "N19544": {"kind": "IdentifierNode", "line": 8, "attributes": {"name": "chars"}}, "N19545": {"kind": "IdentifierNode", "line": 8, "attributes": {"name": "left"}}, "N19549": {"kind": "IndexNode", "line": 8, "attributes": {}}, "N19547": {"kind": "IdentifierNode", "line": 8, "attributes": {"name": "chars"}}, "N19548": {"kind": "IdentifierNode", "line": 8, "attributes": {"name": "right"}}, "N19555": {"kind": "AssignmentNode", "line": 9, "attributes": {}}, "N19553": {"kind": "IndexNode", "line": 9, "attributes": {}}, "N19551": {"kind": "IdentifierNode", "line": 9, "attributes": {"name": "chars"}}, "N19552": {"kind": "IdentifierNode", "line": 9, "attributes": {"name": "right"}}, "N19554": {"kind": "IdentifierNode", "line": 9, "attributes": {"name": "temp_var"}}, "N19560": {"kind": "AssignmentNode", "line": 10, "attributes": {}}, "N19556": {"kind": "IdentifierNode", "line": 10, "attributes": {"name": "left"}}, "N19559": {"kind": "BinaryNode", "line": 10, "attributes": {"operator": "+"}}, "N19557": {"kind": "IdentifierNode", "line": 10, "attributes": {"name": "left"}}, "N19558": {"kind": "LiteralNode", "line": 10, "attributes": {"value": 1, "data_type": "INTEGER"}}, "N19565": {"kind": "AssignmentNode", "line": 11, "attributes": {}}, "N19561": {"kind": "IdentifierNode", "line": 11, "attributes": {"name": "right"}}, "N19564": {"kind": "BinaryNode", "line": 11, "attributes": {"operator": "-"}}, "N19562": {"kind": "IdentifierNode", "line": 11, "attributes": {"name": "right"}}, "N19563": {"kind": "LiteralNode", "line": 11, "attributes": {"value": 1, "data_type": "INTEGER"}}, "N19571": {"kind": "ReturnNode", "line": 14, "attributes": {}}, "N19570": {"kind": "JoinNode", "line": 14, "attributes": {}}, "N19568": {"kind": "IdentifierNode", "line": 14, "attributes": {"name": "chars"}}, "N19569": {"kind": "EmptyLiteralNode", "line": 14, "attributes": {"empty_type": "STRING"}}}, "adjacency": {"N19574": ["N19573"], "N19573": ["N19522", "N19572"], "N19522": [], "N19572": ["N19526", "N19529", "N19535", "N19567", "N19571"], "N19526": ["N19523", "N19525"], "N19523": [], "N19525": ["N19524"], "N19524": [], "N19529": ["N19527", "N19528"], "N19527": [], "N19528": [], "N19535": ["N19530", "N19534"], "N19530": [], "N19534": ["N19532", "N19533"], "N19532": ["N19531"], "N19531": [], "N19533": [], "N19567": ["N19538", "N19566"], "N19538": ["N19536", "N19537"], "N19536": [], "N19537": [], "N19566": ["N19543", "N19550", "N19555", "N19560", "N19565"], "N19543": ["N19539", "N19542"], "N19539": [], "N19542": ["N19540", "N19541"], "N19540": [], "N19541": [], "N19550": ["N19546", "N19549"], "N19546": ["N19544", "N19545"], "N19544": [], "N19545": [], "N19549": ["N19547", "N19548"], "N19547": [], "N19548": [], "N19555": ["N19553", "N19554"], "N19553": ["N19551", "N19552"], "N19551": [], "N19552": [], "N19554": [], "N19560": ["N19556", "N19559"], "N19556": [], "N19559": ["N19557", "N19558"], "N19557": [], "N19558": [], "N19565": ["N19561", "N19564"], "N19561": [], "N19564": ["N19562", "N19563"], "N19562": [], "N19563": [], "N19571": ["N19570"], "N19570": ["N19568", "N19569"], "N19568": [], "N19569": []}};
+const svg = document.getElementById('canvas');
+const scene = document.getElementById('scene');
+const edgesLayer = document.getElementById('edges');
+const nodesLayer = document.getElementById('nodes');
+const viewport = document.getElementById('viewport');
+const details = document.getElementById('details');
+const status = document.getElementById('status');
+const collapsed = new Set();
+let selectedId = null;
+const INITIAL_SCALE = 1.15;
+const MIN_SCALE = 0.15;
+const MAX_SCALE = 4;
+const ZOOM_FACTOR = 1.2;
+let scale = INITIAL_SCALE;
+let tx = 40;
+let ty = 40;
+let dragging = false;
+let lastX = 0;
+let lastY = 0;
+const positions = new Map();
+const NODE_W = 174;
+const NODE_H = 62;
+const X_GAP = 54;
+const Y_GAP = 94;
+
+function visibleChildren(id) { return collapsed.has(id) ? [] : (graph.adjacency[id] || []); }
+
+function layout() {
+  positions.clear();
+  let leafIndex = 0;
+  function visit(id, depth) {
+    const children = visibleChildren(id);
+    let x;
+    if (!children.length) { x = leafIndex++ * (NODE_W + X_GAP); }
+    else {
+      children.forEach(child => visit(child, depth + 1));
+      x = (positions.get(children[0]).x + positions.get(children[children.length - 1]).x) / 2;
+    }
+    positions.set(id, {x, y: depth * (NODE_H + Y_GAP)});
+  }
+  visit(graph.root_id, 0);
+}
+
+function makeSvg(name, attrs = {}) {
+  const el = document.createElementNS('http://www.w3.org/2000/svg', name);
+  Object.entries(attrs).forEach(([k, v]) => el.setAttribute(k, String(v)));
+  return el;
+}
+
+function render() {
+  layout();
+  edgesLayer.replaceChildren();
+  nodesLayer.replaceChildren();
+
+  for (const [source, targets] of Object.entries(graph.adjacency)) {
+    if (!positions.has(source)) continue;
+    for (const target of targets) {
+      if (!positions.has(target)) continue;
+      const a = positions.get(source), b = positions.get(target);
+      const path = makeSvg('path', {
+        class: 'edge',
+        d: `M ${a.x + NODE_W / 2} ${a.y + NODE_H} C ${a.x + NODE_W / 2} ${a.y + NODE_H + 40}, ${b.x + NODE_W / 2} ${b.y - 40}, ${b.x + NODE_W / 2} ${b.y}`
+      });
+      edgesLayer.appendChild(path);
+    }
+  }
+
+  for (const [id, pos] of positions) {
+    const data = graph.nodes[id];
+    const group = makeSvg('g', {class: 'node', transform: `translate(${pos.x},${pos.y})`, 'data-id': id});
+    if (id === selectedId) group.classList.add('selected');
+    group.appendChild(makeSvg('rect', {width: NODE_W, height: NODE_H}));
+
+    const kind = makeSvg('text', {class: 'kind', x: NODE_W / 2, y: 27});
+    kind.textContent = data.kind;
+    group.appendChild(kind);
+    const idText = makeSvg('text', {class: 'id', x: NODE_W / 2, y: 47});
+    idText.textContent = `${id} · line ${data.line}`;
+    group.appendChild(idText);
+
+    const children = graph.adjacency[id] || [];
+    if (children.length) {
+      const circle = makeSvg('circle', {class: 'toggle', cx: NODE_W - 12, cy: 12, r: 9});
+      circle.addEventListener('click', event => { event.stopPropagation(); toggle(id); });
+      group.appendChild(circle);
+      const sign = makeSvg('text', {class: 'toggle-text', x: NODE_W - 12, y: 16});
+      sign.textContent = collapsed.has(id) ? '+' : '−';
+      group.appendChild(sign);
+    }
+
+    group.addEventListener('click', () => selectNode(id));
+    group.addEventListener('dblclick', () => centreNode(id));
+    nodesLayer.appendChild(group);
+  }
+  applyTransform();
+  runSearch();
+}
+
+function toggle(id) {
+  if (collapsed.has(id)) collapsed.delete(id); else collapsed.add(id);
+  render();
+}
+
+function selectNode(id) {
+  selectedId = id;
+  const data = graph.nodes[id];
+  const children = graph.adjacency[id] || [];
+  details.innerHTML = '';
+  const entries = [
+    ['Node ID', id], ['Kind', data.kind], ['Source line', data.line],
+    ['Children', children.length ? children.join(', ') : 'None'],
+    ['Attributes', Object.keys(data.attributes || {}).length ? JSON.stringify(data.attributes, null, 2) : 'None']
+  ];
+  for (const [label, value] of entries) {
+    const row = document.createElement('div'); row.className = 'meta-row';
+    const labelEl = document.createElement('span'); labelEl.className = 'meta-label'; labelEl.textContent = label;
+    const valueEl = document.createElement('span'); valueEl.className = 'meta-value'; valueEl.textContent = String(value);
+    row.append(labelEl, valueEl); details.appendChild(row);
+  }
+  document.querySelectorAll('.node').forEach(el => el.classList.toggle('selected', el.dataset.id === id));
+}
+
+function updateZoomStatus() {
+  const percentage = Math.round(scale * 100);
+  status.textContent = `${positions.size} visible / ${Object.keys(graph.nodes).length} total nodes · ${percentage}%`;
+}
+
+function applyTransform() {
+  scene.setAttribute('transform', `translate(${tx} ${ty}) scale(${scale})`);
+  updateZoomStatus();
+}
+
+function zoomAt(factor, centreX = null, centreY = null) {
+  const rect = viewport.getBoundingClientRect();
+  const focusX = centreX === null ? rect.width / 2 : centreX;
+  const focusY = centreY === null ? rect.height / 2 : centreY;
+  const oldScale = scale;
+  const requestedScale = scale * factor;
+  scale = Math.max(MIN_SCALE, Math.min(MAX_SCALE, requestedScale));
+
+  if (scale === oldScale) return;
+
+  tx = focusX - (focusX - tx) * (scale / oldScale);
+  ty = focusY - (focusY - ty) * (scale / oldScale);
+  applyTransform();
+}
+
+function resetView() {
+  scale = INITIAL_SCALE;
+  const rootPosition = positions.get(graph.root_id);
+  const rect = viewport.getBoundingClientRect();
+
+  if (rootPosition) {
+    tx = rect.width / 2 - (rootPosition.x + NODE_W / 2) * scale;
+    ty = 36 - rootPosition.y * scale;
+  } else {
+    tx = 40;
+    ty = 40;
+  }
+
+  applyTransform();
+}
+
+function fitTree() {
+  if (!positions.size) return;
+  const xs = [...positions.values()].map(p => p.x);
+  const ys = [...positions.values()].map(p => p.y);
+  const minX = Math.min(...xs), maxX = Math.max(...xs) + NODE_W;
+  const minY = Math.min(...ys), maxY = Math.max(...ys) + NODE_H;
+  const width = Math.max(maxX - minX, 1), height = Math.max(maxY - minY, 1);
+  const rect = viewport.getBoundingClientRect();
+  scale = Math.min((rect.width - 70) / width, (rect.height - 70) / height, 1.4);
+  tx = (rect.width - width * scale) / 2 - minX * scale;
+  ty = 35 - minY * scale;
+  applyTransform();
+}
+
+function centreNode(id) {
+  const p = positions.get(id); if (!p) return;
+  const rect = viewport.getBoundingClientRect();
+  tx = rect.width / 2 - (p.x + NODE_W / 2) * scale;
+  ty = rect.height / 2 - (p.y + NODE_H / 2) * scale;
+  applyTransform(); selectNode(id);
+}
+
+function runSearch() {
+  const query = document.getElementById('search').value.trim().toLowerCase();
+  document.querySelectorAll('.node').forEach(el => {
+    const id = el.dataset.id;
+    const node = graph.nodes[id];
+    const haystack = `${id} ${node.kind} ${JSON.stringify(node.attributes)}`.toLowerCase();
+    el.classList.toggle('match', Boolean(query) && haystack.includes(query));
+  });
+}
+
+document.getElementById('zoom-in').addEventListener('click', () => zoomAt(ZOOM_FACTOR));
+document.getElementById('zoom-out').addEventListener('click', () => zoomAt(1 / ZOOM_FACTOR));
+document.getElementById('reset-view').addEventListener('click', resetView);
+document.getElementById('fit').addEventListener('click', fitTree);
+document.getElementById('expand').addEventListener('click', () => { collapsed.clear(); render(); fitTree(); });
+document.getElementById('collapse').addEventListener('click', () => {
+  collapsed.clear();
+  for (const id of Object.keys(graph.adjacency)) if (id !== graph.root_id && (graph.adjacency[id] || []).length) collapsed.add(id);
+  render(); fitTree();
+});
+document.getElementById('search').addEventListener('input', runSearch);
+viewport.addEventListener('mousedown', event => { if (event.target.closest('.node')) return; dragging = true; lastX = event.clientX; lastY = event.clientY; viewport.classList.add('dragging'); });
+window.addEventListener('mousemove', event => { if (!dragging) return; tx += event.clientX - lastX; ty += event.clientY - lastY; lastX = event.clientX; lastY = event.clientY; applyTransform(); });
+window.addEventListener('mouseup', () => { dragging = false; viewport.classList.remove('dragging'); });
+viewport.addEventListener('wheel', event => {
+  event.preventDefault();
+  const rect = viewport.getBoundingClientRect();
+  const mx = event.clientX - rect.left, my = event.clientY - rect.top;
+  zoomAt(event.deltaY < 0 ? 1.12 : 0.89, mx, my);
+}, {passive: false});
+window.addEventListener('resize', () => {
+  updateZoomStatus();
+});
+render();
+requestAnimationFrame(resetView);
+</script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+# Implement a stack using an array (push/pop/peek).
+CLASS Stack:
+    stackArray = empty array
+    topIndex = -1
+
+    FUNCTION push(item):
+        topIndex = topIndex + 1
+        stackArray[topIndex] = item
+
+    FUNCTION pop():
+        IF topIndex < 0:
+            RETURN NULL // Stack underflow
+        item = stackArray[topIndex]
+        topIndex = topIndex - 1
+        RETURN item
+
+    FUNCTION peek():
+        IF topIndex < 0:
+            RETURN NULL
+        RETURN stackArray[topIndex]

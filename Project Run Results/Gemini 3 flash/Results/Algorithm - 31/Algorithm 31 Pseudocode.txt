@@ -1,0 +1,16 @@
+# Co-reference resolution system    
+FUNCTION CoreferenceResolution(text):
+    tokens, pos_tags = TokenizeAndTag(text)
+    entities = ExtractNamedEntities(tokens, pos_tags)
+    pronouns = ExtractPronouns(tokens, pos_tags)
+    
+    resolved_text = text
+    FOR EACH pronoun IN pronouns DO
+        antecedent = FindMostCompatibleEntity(pronoun, entities, search_window=2_sentences)
+        IF antecedent IS NOT NULL THEN
+            ReplaceInText(resolved_text, pronoun, antecedent.name)
+        END IF
+    END FOR
+    
+    RETURN resolved_text
+END FUNCTION

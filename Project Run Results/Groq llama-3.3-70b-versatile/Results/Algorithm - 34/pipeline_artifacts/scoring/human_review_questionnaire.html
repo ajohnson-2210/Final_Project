@@ -1,0 +1,1289 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Algorithm 34 human review</title>
+<style>
+body{font-family:Arial,sans-serif;max-width:1100px;margin:24px auto;padding:0 18px;line-height:1.45;color:#243240;background:#f7f9fc}
+h1{line-height:1.2;color:#173b5e;border-bottom:3px solid #3f7cac;padding-bottom:10px}
+h2{line-height:1.2;color:#fff;background:#2f6690;padding:10px 14px;border-radius:7px;margin-top:28px;box-shadow:0 1px 2px rgba(0,0,0,.08)}
+h3{line-height:1.2;color:#24506f}
+.meta,.auto{background:#eaf2f8;padding:10px 12px;border-radius:6px;border-left:4px solid #3f7cac}
+.criterion{background:#fff;border:1px solid #ccd7e2;border-left:5px solid #6c9bc3;border-radius:8px;padding:16px;margin:16px 0;box-shadow:0 1px 3px rgba(20,45,70,.06)}
+.question{font-size:1.05rem;font-weight:600;color:#173b5e} fieldset{border:0;padding:8px 0;display:grid;gap:6px}
+label{display:block;margin:10px 0;font-weight:600} select,textarea,input[type=text]{font:inherit;max-width:100%;box-sizing:border-box;border:1px solid #b8c7d6;border-radius:5px;background:#fff}
+textarea{width:100%;padding:8px;font-weight:400} select,input[type=text]{padding:7px;font-weight:400}
+select:focus,textarea:focus,input[type=text]:focus{outline:2px solid #8ab6d6;outline-offset:1px;border-color:#3f7cac}
+pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f8fafc;padding:10px;border:1px solid #dce5ed;border-radius:5px}
+details summary{cursor:pointer;color:#24506f;font-weight:600}
+button{font:inherit;font-weight:600;padding:10px 16px;margin:8px 8px 8px 0;cursor:pointer;border-radius:6px;border:1px solid #2f6690;background:#2f6690;color:#fff}
+button#print{background:#fff;color:#2f6690} button:hover{filter:brightness(.96)} .notice{color:#5f6f7f}
+.warning{background:#fff3cd;border:1px solid #e0b84f;border-radius:6px;padding:12px;margin:14px 0}
+.status{display:none;border-radius:6px;padding:10px 12px;margin:12px 0} .status.ok{display:block;background:#e8f5e9;border-left:4px solid #4f8a5b} .status.err{display:block;background:#ffebee;border-left:4px solid #b94a48} .custom-justification{display:none}
+.identity{display:grid;grid-template-columns:minmax(160px,1fr) minmax(220px,2fr);gap:12px;max-width:720px}
+@media(max-width:650px){.identity{grid-template-columns:1fr}}
+@media print{body{background:#fff}h2{color:#173b5e;background:#fff;border-bottom:2px solid #3f7cac;padding-left:0}.criterion{box-shadow:none}button{display:none}}
+</style>
+</head>
+<body>
+<h1>Algorithm 34 human review</h1>
+<div class="meta">
+<strong>Dataset:</strong> Groq llama-3.3-70b-versatile ·
+<strong>Source:</strong> Algorithm 34 Pseudocode.txt ·
+<strong>Pipeline:</strong> 4.37 ·
+<strong>Rubric:</strong> 1.1
+</div>
+
+<div id="save_status" class="status"></div>
+<p>Review the source and generated artefacts, then independently assess every criterion using the same 0-2/NA scale. The automated assessment is shown as evidence but must not replace reviewer judgement. Automated and human rubric scores are retained side by side; after all sixteen human criteria are completed, the combined rubric score is the equal-weight mean of the automated and human overall rubric percentages.</p>
+<h2>Reviewer</h2>
+<div class="identity">
+<label>Reviewer ID <input id="reviewer_id" type="text"></label>
+<label>Reviewer Name <input id="reviewer_name" type="text"></label>
+</div>
+<label>Overall Reviewer Confidence
+<select id="reviewer_confidence"><option value="">Select…</option><option>HIGH</option><option>MODERATE</option><option>LOW</option></select></label>
+<h2>Source Sufficiency</h2>
+<section class="criterion">
+<p class="question">Does the original pseudocode contain sufficient explicit information to determine the algorithm&#x27;s behaviour without inventing missing semantics?</p>
+<p><strong>Automated result:</strong> EVALUABLE</p>
+<p><strong>Automated justification:</strong> The available artefacts do not identify unresolved source semantics that require invention.</p>
+<label>Human Result <select id="g1_result"><option value="">Select…</option><option>EVALUABLE</option><option>EXPECTED_FAILURE</option><option>REVIEW_REQUIRED</option></select></label>
+<label>Agreement <select id="g1_agreement"><option value="">Select…</option><option>AGREE</option><option>PARTIALLY_AGREE</option><option>DISAGREE</option></select></label>
+<label>Reviewer Justification
+  <select id="g1_justification_choice" onchange="toggleReviewComment('g1_justification')">
+    <option value="Evidence supports the selected assessment.">Evidence supports the selected assessment.</option>
+<option value="Evidence mostly supports the selected assessment, with minor limitations.">Evidence mostly supports the selected assessment, with minor limitations.</option>
+<option value="Evidence shows partial support for the selected assessment.">Evidence shows partial support for the selected assessment.</option>
+<option value="Evidence does not support the selected assessment.">Evidence does not support the selected assessment.</option>
+<option value="Insufficient evidence to make a confident judgement.">Insufficient evidence to make a confident judgement.</option>
+<option value="Not applicable to this algorithm.">Not applicable to this algorithm.</option>
+    <option value="__OTHER__">Other — add specific comment</option>
+  </select>
+</label>
+<div id="g1_justification_other_wrap" class="custom-justification">
+  <label>Specific Comment
+    <textarea id="g1_justification_other" rows="3"></textarea>
+  </label>
+</div>
+</section>
+<h2>Behavioural Evidence Adequacy</h2>
+<section class="criterion">
+<p class="question">How strong, representative and reproducible is the behavioural evidence supporting the automated behavioural score, and what important behaviour remains untested or non-evaluable?</p>
+<p><strong>Headline classification:</strong> PARTIAL</p>
+<p><strong>Evidence summary:</strong> This suite provides partial behavioural evidence using one predefined common behavioural test, with partial state-mutation evidence. Embedded list cases are fixed; the helper function is not invoked through an external contract by the current program runner. Runtime evidence: 1 of 1 declared test(s) were evaluable and 0 passed.</p>
+<details open><summary>Coverage profile</summary><pre>{
+  &quot;normal_path&quot;: {
+    &quot;label&quot;: &quot;Normal-path coverage&quot;,
+    &quot;status&quot;: &quot;NOT_COVERED&quot;,
+    &quot;tests_declared&quot;: 0,
+    &quot;tests_evaluable&quot;: 0,
+    &quot;tests_passed&quot;: 0,
+    &quot;evidence&quot;: &quot;No NORMAL test is declared in the common suite.&quot;
+  },
+  &quot;branch_behaviour&quot;: {
+    &quot;label&quot;: &quot;Branch coverage&quot;,
+    &quot;status&quot;: &quot;NOT_COVERED&quot;,
+    &quot;tests_declared&quot;: 0,
+    &quot;tests_evaluable&quot;: 0,
+    &quot;tests_passed&quot;: 0,
+    &quot;evidence&quot;: &quot;No BRANCH test is declared in the common suite.&quot;
+  },
+  &quot;boundary_behaviour&quot;: {
+    &quot;label&quot;: &quot;Boundary coverage&quot;,
+    &quot;status&quot;: &quot;NOT_COVERED&quot;,
+    &quot;tests_declared&quot;: 0,
+    &quot;tests_evaluable&quot;: 0,
+    &quot;tests_passed&quot;: 0,
+    &quot;evidence&quot;: &quot;No BOUNDARY test is declared in the common suite.&quot;
+  },
+  &quot;error_behaviour&quot;: {
+    &quot;label&quot;: &quot;Error-behaviour coverage&quot;,
+    &quot;status&quot;: &quot;NOT_COVERED&quot;,
+    &quot;tests_declared&quot;: 0,
+    &quot;tests_evaluable&quot;: 0,
+    &quot;tests_passed&quot;: 0,
+    &quot;evidence&quot;: &quot;No ERROR_BEHAVIOUR test is declared in the common suite.&quot;
+  },
+  &quot;termination_behaviour&quot;: {
+    &quot;label&quot;: &quot;Termination coverage&quot;,
+    &quot;status&quot;: &quot;NOT_COVERED&quot;,
+    &quot;tests_declared&quot;: 0,
+    &quot;tests_evaluable&quot;: 0,
+    &quot;tests_passed&quot;: 0,
+    &quot;evidence&quot;: &quot;No TERMINATION test is declared in the common suite.&quot;
+  },
+  &quot;state_mutation&quot;: {
+    &quot;label&quot;: &quot;State-mutation coverage&quot;,
+    &quot;status&quot;: &quot;PARTIALLY_COVERED&quot;,
+    &quot;tests_declared&quot;: 1,
+    &quot;tests_evaluable&quot;: 1,
+    &quot;tests_passed&quot;: 0,
+    &quot;evidence&quot;: &quot;1 STATE_MUTATION test(s) declared; 1 evaluable; 0 passed.&quot;
+  }
+}</pre></details>
+<details><summary>Strengths</summary><pre>[
+  &quot;The suite provides some evidence for state-mutation coverage, although coverage is incomplete.&quot;,
+  &quot;0 of 1 evaluable behavioural test(s) passed in this run.&quot;
+]</pre></details>
+<details><summary>Limitations</summary><pre>[
+  &quot;Embedded list cases are fixed; the helper function is not invoked through an external contract by the current program runner.&quot;,
+  &quot;No direct common-test evidence is declared for: Normal-path coverage, Branch coverage, Boundary coverage, Error-behaviour coverage, Termination coverage.&quot;
+]</pre></details>
+<p><strong>Coverage basis:</strong> Assessment is based on the predefined common behavioural test, the behaviours exposed by the frozen program interface, and the declared coverage dimensions: state mutation.</p>
+<p><strong>Interpretation:</strong> Interpret behavioural accuracy as useful but incomplete evidence across the declared exercised behaviours; unexercised behaviours remain outside the direct evidence.</p>
+<label>Human G2 Assessment <select id="g2_result"><option value="">Select…</option><option>ADEQUATE</option><option>PARTIAL</option><option>LIMITED</option><option>NOT_EVALUABLE</option><option>NOT_DECLARED</option></select></label>
+<label>Agreement <select id="g2_agreement"><option value="">Select…</option><option>AGREE</option><option>PARTIALLY_AGREE</option><option>DISAGREE</option></select></label>
+<label>Reviewer Evidence Comment
+  <select id="g2_justification_choice" onchange="toggleReviewComment('g2_justification')">
+    <option value="Evidence supports the selected assessment.">Evidence supports the selected assessment.</option>
+<option value="Evidence mostly supports the selected assessment, with minor limitations.">Evidence mostly supports the selected assessment, with minor limitations.</option>
+<option value="Evidence shows partial support for the selected assessment.">Evidence shows partial support for the selected assessment.</option>
+<option value="Evidence does not support the selected assessment.">Evidence does not support the selected assessment.</option>
+<option value="Insufficient evidence to make a confident judgement.">Insufficient evidence to make a confident judgement.</option>
+<option value="Not applicable to this algorithm.">Not applicable to this algorithm.</option>
+    <option value="__OTHER__">Other — add specific comment</option>
+  </select>
+</label>
+<div id="g2_justification_other_wrap" class="custom-justification">
+  <label>Specific Comment
+    <textarea id="g2_justification_other" rows="3"></textarea>
+  </label>
+</div>
+</section>
+<h2>Task-Semantic Evaluation</h2><section class="criterion"><p>Judge the original model pseudocode against the task-semantic contract. Use the same questions whether automated semantic execution succeeded, failed, or was NOT_EVALUABLE; the automated evidence is supporting evidence and must not replace independent human judgement.</p><details open><summary>Canonical Task-Semantic Contract</summary><pre>{
+  &quot;contract_version&quot;: &quot;1.4&quot;,
+  &quot;contract_source&quot;: &quot;ORIGINAL_TASK_SPECIFICATION&quot;,
+  &quot;task_statement&quot;: &quot;Find all common elements in two unsorted lists without duplicates.&quot;,
+  &quot;inputs&quot;: [
+    {
+      &quot;position&quot;: 1,
+      &quot;name&quot;: &quot;list_1&quot;,
+      &quot;type&quot;: &quot;ARRAY&quot;
+    },
+    {
+      &quot;position&quot;: 2,
+      &quot;name&quot;: &quot;list_2&quot;,
+      &quot;type&quot;: &quot;ARRAY&quot;
+    }
+  ],
+  &quot;result&quot;: {
+    &quot;type&quot;: &quot;SET&quot;,
+    &quot;canonical_semantics&quot;: &quot;Elements present in both lists, with duplicates removed.&quot;
+  },
+  &quot;automation_status&quot;: &quot;AUTOMATED_FUNCTION&quot;,
+  &quot;parameter_names_are_semantically_irrelevant&quot;: true,
+  &quot;derived_parameters_may_be_supplied_by_adapter&quot;: true,
+  &quot;human_review_instruction&quot;: &quot;Judge the original generated pseudocode against this same frozen task-semantic contract, including when automated evaluation is NOT_EVALUABLE.&quot;,
+  &quot;fixture_policy&quot;: &quot;PREEXPERIMENT_FROZEN_INPUTS&quot;,
+  &quot;expectation_policy&quot;: &quot;STATIC_PREEXPERIMENT_EXPECTED_VALUES&quot;,
+  &quot;runtime_oracle_prohibited&quot;: true
+}</pre></details><details><summary>Automated Semantic Evidence</summary><pre>{
+  &quot;semantic_report_schema_version&quot;: &quot;1.2&quot;,
+  &quot;runtime_expected_value_generation&quot;: false,
+  &quot;program_path&quot;: &quot;C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Groq llama-3.3-70b-versatile\\Results\\Algorithm - 34\\pipeline_artifacts\\generated_program.py&quot;,
+  &quot;algorithm_id&quot;: 34,
+  &quot;contract_version&quot;: &quot;1.4&quot;,
+  &quot;evaluable_tests&quot;: 1,
+  &quot;passed_tests&quot;: 0,
+  &quot;failed_tests&quot;: 1,
+  &quot;not_evaluable_tests&quot;: 0,
+  &quot;accuracy_percentage&quot;: 0.0,
+  &quot;pre_freeze_validation&quot;: {
+    &quot;declared_cases&quot;: 0,
+    &quot;evaluable_cases&quot;: 0,
+    &quot;passed_cases&quot;: 0,
+    &quot;failed_cases&quot;: 0,
+    &quot;not_evaluable&quot;: 0,
+    &quot;accuracy_percentage&quot;: null,
+    &quot;included_in_core_behavioural_score&quot;: false,
+    &quot;included_in_baseline_calibration&quot;: false,
+    &quot;interpretation&quot;: &quot;Candidate valid-domain coverage expansions retained for pre-freeze baseline validation. Results are descriptive only until explicitly promoted to CORE_BEHAVIOURAL.&quot;
+  },
+  &quot;semantic_boundary&quot;: {
+    &quot;measure&quot;: &quot;SEMANTIC_BOUNDARY_VARIANCE&quot;,
+    &quot;declared_probes&quot;: 0,
+    &quot;evaluable_probes&quot;: 0,
+    &quot;out_of_domain_accepted&quot;: 0,
+    &quot;controlled_rejection&quot;: 0,
+    &quot;incidental_failure&quot;: 0,
+    &quot;not_evaluable&quot;: 0,
+    &quot;variance_percentage&quot;: null,
+    &quot;interpretation&quot;: &quot;Percentage of evaluable out-of-domain probes that the generated implementation accepted and processed. This is a descriptive semantic-domain extension measure and is not included in core behavioural accuracy.&quot;
+  },
+  &quot;results&quot;: [
+    {
+      &quot;name&quot;: &quot;default common-elements-without-duplicates examples&quot;,
+      &quot;status&quot;: &quot;FAILED&quot;,
+      &quot;expected_semantic_result&quot;: [
+        2,
+        3,
+        7,
+        9
+      ],
+      &quot;actual_semantic_result&quot;: {
+        &quot;runtime_errors&quot;: [
+          {
+            &quot;type&quot;: &quot;NameError&quot;,
+            &quot;message&quot;: &quot;name &#x27;UNIQUE_INTERSECTION&#x27; is not defined&quot;
+          }
+        ]
+      },
+      &quot;semantic_match&quot;: false,
+      &quot;reason&quot;: &quot;The task entrypoint raised a runtime error for the frozen semantic fixture.&quot;,
+      &quot;duration_ms&quot;: 86.182,
+      &quot;category&quot;: &quot;STATE_MUTATION&quot;,
+      &quot;semantic_feature&quot;: &quot;UNIQUE_INTERSECTION_UNSORTED_LISTS&quot;,
+      &quot;fixture_source&quot;: &quot;PREEXPERIMENT_FROZEN_FIXTURE&quot;,
+      &quot;expectation_policy&quot;: &quot;STATIC_FROZEN_VALUE&quot;,
+      &quot;selected_entrypoint&quot;: &quot;COMMON_ELEMENTS&quot;,
+      &quot;invocation_capture&quot;: {
+        &quot;status&quot;: &quot;ERROR&quot;,
+        &quot;selected_entrypoint&quot;: &quot;COMMON_ELEMENTS&quot;,
+        &quot;selected_arity&quot;: 2,
+        &quot;prints&quot;: [],
+        &quot;returns&quot;: [
+          null
+        ],
+        &quot;post_arguments&quot;: [
+          [
+            [
+              5,
+              8,
+              6,
+              3,
+              6,
+              9,
+              7,
+              0,
+              2
+            ],
+            [
+              2,
+              4,
+              3,
+              1,
+              7,
+              9,
+              7,
+              3
+            ]
+          ]
+        ],
+        &quot;shared_values&quot;: {},
+        &quot;errors&quot;: [
+          {
+            &quot;type&quot;: &quot;NameError&quot;,
+            &quot;message&quot;: &quot;name &#x27;UNIQUE_INTERSECTION&#x27; is not defined&quot;
+          }
+        ]
+      },
+      &quot;score_stream&quot;: &quot;CORE_BEHAVIOURAL&quot;,
+      &quot;boundary_outcome&quot;: null,
+      &quot;criteria_links&quot;: [
+        &quot;P2&quot;,
+        &quot;P4&quot;
+      ]
+    }
+  ]
+}</pre></details><label>Are the required task inputs represented? <select id="sem_inputs"><option value="">Select…</option><option>YES</option><option>PARTIAL</option><option>NO</option><option>UNABLE_TO_DETERMINE</option></select></label><label>Core Algorithm Logic <select id="sem_logic"><option value="">Select…</option><option>CORRECT</option><option>MOSTLY_CORRECT</option><option>PARTIAL</option><option>INCORRECT</option><option>NOT_DETERMINABLE</option></select></label><label>Are the required output semantics represented? <select id="sem_output"><option value="">Select…</option><option>YES</option><option>PARTIAL</option><option>NO</option><option>UNABLE_TO_DETERMINE</option></select></label><label>Edge/Domain Handling <select id="sem_edge"><option value="">Select…</option><option>YES</option><option>PARTIAL</option><option>NO</option><option>NOT_APPLICABLE</option><option>UNABLE_TO_DETERMINE</option></select></label><label>Overall Semantic Assessment <select id="sem_overall"><option value="">Select…</option><option>CORRECT</option><option>MOSTLY_CORRECT</option><option>PARTIAL</option><option>INCORRECT</option><option>NOT_DETERMINABLE</option></select></label><label>Reviewer Semantic Justification
+  <select id="sem_justification_choice" onchange="toggleReviewComment('sem_justification')">
+    <option value="Evidence supports the selected assessment.">Evidence supports the selected assessment.</option>
+<option value="Evidence mostly supports the selected assessment, with minor limitations.">Evidence mostly supports the selected assessment, with minor limitations.</option>
+<option value="Evidence shows partial support for the selected assessment.">Evidence shows partial support for the selected assessment.</option>
+<option value="Evidence does not support the selected assessment.">Evidence does not support the selected assessment.</option>
+<option value="Insufficient evidence to make a confident judgement.">Insufficient evidence to make a confident judgement.</option>
+<option value="Not applicable to this algorithm.">Not applicable to this algorithm.</option>
+    <option value="__OTHER__">Other — add specific comment</option>
+  </select>
+</label>
+<div id="sem_justification_other_wrap" class="custom-justification">
+  <label>Specific Comment
+    <textarea id="sem_justification_other" rows="4"></textarea>
+  </label>
+</div></section>
+
+<h2>Stage Criteria</h2>
+
+    <section class="criterion" data-index="0" data-criterion-id="C1">
+      <h3>C1 · Pseudocode Canonicalisation</h3>
+      <p class="question">Does the canonical pseudocode conform to the AJ grammar sufficiently for deterministic interpretation by the next pipeline stage?</p>
+      <div class="auto"><strong>Automated assessment:</strong> 2/2 · PASS · confidence HIGH</div>
+      <p><strong>Automated justification:</strong> Canonical AJ completed syntax/static validation and produced an AST.</p>
+      <details><summary>Evidence</summary><pre>[
+  {
+    &quot;artifact&quot;: &quot;parser_report.json&quot;,
+    &quot;observed_value&quot;: &quot;SUCCESS&quot;
+  }
+]</pre></details>
+      <fieldset>
+        <legend>Human score</legend>
+        <label><input type="radio" name="criterion_0_score" value="2"> 2 — fully satisfied</label>
+        <label><input type="radio" name="criterion_0_score" value="1"> 1 — partially satisfied / uncertain</label>
+        <label><input type="radio" name="criterion_0_score" value="0"> 0 — material semantic discrepancy</label>
+        <label><input type="radio" name="criterion_0_score" value="NA"> N/A — not legitimately assessable</label>
+      </fieldset>
+      <label>Agreement with automated score
+        <select id="criterion_0_agreement" name="criterion_0_agreement">
+          <option value="">Select…</option>
+          <option>AGREE</option><option>PARTIALLY_AGREE</option><option>DISAGREE</option>
+        </select>
+      </label>
+      <label>Semantic issue identified?
+        <select id="criterion_0_semantic" name="criterion_0_semantic">
+          <option value="">Select…</option><option value="false">No</option><option value="true">Yes</option>
+        </select>
+      </label>
+      <label>Reviewer justification
+        <select id="criterion_0_justification_choice" name="criterion_0_justification_choice" onchange="toggleCriterionJustification(0)">
+          <option value="Evidence supports the selected score.">Evidence supports the selected score.</option>
+<option value="Evidence mostly supports the selected score, with minor limitations.">Evidence mostly supports the selected score, with minor limitations.</option>
+<option value="Evidence shows partial fulfilment of the criterion.">Evidence shows partial fulfilment of the criterion.</option>
+<option value="Evidence does not support the criterion.">Evidence does not support the criterion.</option>
+<option value="Insufficient evidence to make a confident judgement.">Insufficient evidence to make a confident judgement.</option>
+<option value="Not applicable to this algorithm.">Not applicable to this algorithm.</option>
+          <option value="__OTHER__">Other — add specific comment</option>
+        </select>
+      </label>
+      <div id="criterion_0_justification_other_wrap" class="custom-justification">
+        <label>Specific comment
+          <textarea id="criterion_0_justification_other" name="criterion_0_justification_other" rows="3"></textarea>
+        </label>
+      </div>
+    </section>
+    
+
+    <section class="criterion" data-index="1" data-criterion-id="C2">
+      <h3>C2 · Pseudocode Canonicalisation</h3>
+      <p class="question">Are all semantically relevant operations from the source pseudocode preserved in the canonical representation with equivalent meaning?</p>
+      <div class="auto"><strong>Automated assessment:</strong> 2/2 · PASS · confidence HIGH</div>
+      <p><strong>Automated justification:</strong> All logged transformations are from audited evidence categories and none declares a semantic change.</p>
+      <details><summary>Evidence</summary><pre>[
+  {
+    &quot;artifact&quot;: &quot;pseudocode_processing_report.json&quot;,
+    &quot;transformation_count&quot;: 3,
+    &quot;semantic_change_count&quot;: 0,
+    &quot;uncertain_transformation_count&quot;: 0,
+    &quot;rule_families&quot;: [
+      &quot;BLOCK_TERMINATOR&quot;,
+      &quot;SOURCE_NORMALISATION&quot;
+    ]
+  }
+]</pre></details>
+      <fieldset>
+        <legend>Human score</legend>
+        <label><input type="radio" name="criterion_1_score" value="2"> 2 — fully satisfied</label>
+        <label><input type="radio" name="criterion_1_score" value="1"> 1 — partially satisfied / uncertain</label>
+        <label><input type="radio" name="criterion_1_score" value="0"> 0 — material semantic discrepancy</label>
+        <label><input type="radio" name="criterion_1_score" value="NA"> N/A — not legitimately assessable</label>
+      </fieldset>
+      <label>Agreement with automated score
+        <select id="criterion_1_agreement" name="criterion_1_agreement">
+          <option value="">Select…</option>
+          <option>AGREE</option><option>PARTIALLY_AGREE</option><option>DISAGREE</option>
+        </select>
+      </label>
+      <label>Semantic issue identified?
+        <select id="criterion_1_semantic" name="criterion_1_semantic">
+          <option value="">Select…</option><option value="false">No</option><option value="true">Yes</option>
+        </select>
+      </label>
+      <label>Reviewer justification
+        <select id="criterion_1_justification_choice" name="criterion_1_justification_choice" onchange="toggleCriterionJustification(1)">
+          <option value="Evidence supports the selected score.">Evidence supports the selected score.</option>
+<option value="Evidence mostly supports the selected score, with minor limitations.">Evidence mostly supports the selected score, with minor limitations.</option>
+<option value="Evidence shows partial fulfilment of the criterion.">Evidence shows partial fulfilment of the criterion.</option>
+<option value="Evidence does not support the criterion.">Evidence does not support the criterion.</option>
+<option value="Insufficient evidence to make a confident judgement.">Insufficient evidence to make a confident judgement.</option>
+<option value="Not applicable to this algorithm.">Not applicable to this algorithm.</option>
+          <option value="__OTHER__">Other — add specific comment</option>
+        </select>
+      </label>
+      <div id="criterion_1_justification_other_wrap" class="custom-justification">
+        <label>Specific comment
+          <textarea id="criterion_1_justification_other" name="criterion_1_justification_other" rows="3"></textarea>
+        </label>
+      </div>
+    </section>
+    
+
+    <section class="criterion" data-index="2" data-criterion-id="C3">
+      <h3>C3 · Pseudocode Canonicalisation</h3>
+      <p class="question">Are conditions, branches, loop bounds, iteration behaviour, state changes and termination behaviour preserved from the source?</p>
+      <div class="auto"><strong>Automated assessment:</strong> 2/2 · PASS · confidence HIGH</div>
+      <p><strong>Automated justification:</strong> No logged transformation declares a change to control/state semantics; all transformations have accepted audit evidence.</p>
+      <details><summary>Evidence</summary><pre>[
+  {
+    &quot;artifact&quot;: &quot;pseudocode_processing_report.json&quot;,
+    &quot;transformation_count&quot;: 3,
+    &quot;semantic_change_count&quot;: 0,
+    &quot;uncertain_transformation_count&quot;: 0,
+    &quot;rule_families&quot;: [
+      &quot;BLOCK_TERMINATOR&quot;,
+      &quot;SOURCE_NORMALISATION&quot;
+    ]
+  }
+]</pre></details>
+      <fieldset>
+        <legend>Human score</legend>
+        <label><input type="radio" name="criterion_2_score" value="2"> 2 — fully satisfied</label>
+        <label><input type="radio" name="criterion_2_score" value="1"> 1 — partially satisfied / uncertain</label>
+        <label><input type="radio" name="criterion_2_score" value="0"> 0 — material semantic discrepancy</label>
+        <label><input type="radio" name="criterion_2_score" value="NA"> N/A — not legitimately assessable</label>
+      </fieldset>
+      <label>Agreement with automated score
+        <select id="criterion_2_agreement" name="criterion_2_agreement">
+          <option value="">Select…</option>
+          <option>AGREE</option><option>PARTIALLY_AGREE</option><option>DISAGREE</option>
+        </select>
+      </label>
+      <label>Semantic issue identified?
+        <select id="criterion_2_semantic" name="criterion_2_semantic">
+          <option value="">Select…</option><option value="false">No</option><option value="true">Yes</option>
+        </select>
+      </label>
+      <label>Reviewer justification
+        <select id="criterion_2_justification_choice" name="criterion_2_justification_choice" onchange="toggleCriterionJustification(2)">
+          <option value="Evidence supports the selected score.">Evidence supports the selected score.</option>
+<option value="Evidence mostly supports the selected score, with minor limitations.">Evidence mostly supports the selected score, with minor limitations.</option>
+<option value="Evidence shows partial fulfilment of the criterion.">Evidence shows partial fulfilment of the criterion.</option>
+<option value="Evidence does not support the criterion.">Evidence does not support the criterion.</option>
+<option value="Insufficient evidence to make a confident judgement.">Insufficient evidence to make a confident judgement.</option>
+<option value="Not applicable to this algorithm.">Not applicable to this algorithm.</option>
+          <option value="__OTHER__">Other — add specific comment</option>
+        </select>
+      </label>
+      <div id="criterion_2_justification_other_wrap" class="custom-justification">
+        <label>Specific comment
+          <textarea id="criterion_2_justification_other" name="criterion_2_justification_other" rows="3"></textarea>
+        </label>
+      </div>
+    </section>
+    
+
+    <section class="criterion" data-index="3" data-criterion-id="C4">
+      <h3>C4 · Pseudocode Canonicalisation</h3>
+      <p class="question">Has canonicalisation avoided introducing algorithmic behaviour that was not explicitly supported by the source?</p>
+      <div class="auto"><strong>Automated assessment:</strong> 2/2 · PASS · confidence HIGH</div>
+      <p><strong>Automated justification:</strong> No transformation is marked as semantic-changing and all transformations use accepted audit-evidence categories.</p>
+      <details><summary>Evidence</summary><pre>[
+  {
+    &quot;artifact&quot;: &quot;pseudocode_processing_report.json&quot;,
+    &quot;transformation_count&quot;: 3,
+    &quot;semantic_change_count&quot;: 0,
+    &quot;uncertain_transformation_count&quot;: 0,
+    &quot;rule_families&quot;: [
+      &quot;BLOCK_TERMINATOR&quot;,
+      &quot;SOURCE_NORMALISATION&quot;
+    ]
+  }
+]</pre></details>
+      <fieldset>
+        <legend>Human score</legend>
+        <label><input type="radio" name="criterion_3_score" value="2"> 2 — fully satisfied</label>
+        <label><input type="radio" name="criterion_3_score" value="1"> 1 — partially satisfied / uncertain</label>
+        <label><input type="radio" name="criterion_3_score" value="0"> 0 — material semantic discrepancy</label>
+        <label><input type="radio" name="criterion_3_score" value="NA"> N/A — not legitimately assessable</label>
+      </fieldset>
+      <label>Agreement with automated score
+        <select id="criterion_3_agreement" name="criterion_3_agreement">
+          <option value="">Select…</option>
+          <option>AGREE</option><option>PARTIALLY_AGREE</option><option>DISAGREE</option>
+        </select>
+      </label>
+      <label>Semantic issue identified?
+        <select id="criterion_3_semantic" name="criterion_3_semantic">
+          <option value="">Select…</option><option value="false">No</option><option value="true">Yes</option>
+        </select>
+      </label>
+      <label>Reviewer justification
+        <select id="criterion_3_justification_choice" name="criterion_3_justification_choice" onchange="toggleCriterionJustification(3)">
+          <option value="Evidence supports the selected score.">Evidence supports the selected score.</option>
+<option value="Evidence mostly supports the selected score, with minor limitations.">Evidence mostly supports the selected score, with minor limitations.</option>
+<option value="Evidence shows partial fulfilment of the criterion.">Evidence shows partial fulfilment of the criterion.</option>
+<option value="Evidence does not support the criterion.">Evidence does not support the criterion.</option>
+<option value="Insufficient evidence to make a confident judgement.">Insufficient evidence to make a confident judgement.</option>
+<option value="Not applicable to this algorithm.">Not applicable to this algorithm.</option>
+          <option value="__OTHER__">Other — add specific comment</option>
+        </select>
+      </label>
+      <div id="criterion_3_justification_other_wrap" class="custom-justification">
+        <label>Specific comment
+          <textarea id="criterion_3_justification_other" name="criterion_3_justification_other" rows="3"></textarea>
+        </label>
+      </div>
+    </section>
+    
+
+    <section class="criterion" data-index="4" data-criterion-id="A1">
+      <h3>A1 · AST Semantic Alignment</h3>
+      <p class="question">Does every semantically relevant construct in the canonical pseudocode have an appropriate AST representation without missing or spurious executable nodes?</p>
+      <div class="auto"><strong>Automated assessment:</strong> 2/2 · PASS · confidence HIGH</div>
+      <p><strong>Automated justification:</strong> The parser produced a complete adjacency AST after syntax and static-semantic analysis.</p>
+      <details><summary>Evidence</summary><pre>[
+  {
+    &quot;artifact&quot;: &quot;parser_report.json&quot;,
+    &quot;parser_success&quot;: true,
+    &quot;static_semantic_status&quot;: &quot;SUCCESS&quot;,
+    &quot;warning_count&quot;: 0
+  },
+  {
+    &quot;artifact&quot;: &quot;ast.json&quot;,
+    &quot;node_count&quot;: 9,
+    &quot;operator_multiset&quot;: {}
+  }
+]</pre></details>
+      <fieldset>
+        <legend>Human score</legend>
+        <label><input type="radio" name="criterion_4_score" value="2"> 2 — fully satisfied</label>
+        <label><input type="radio" name="criterion_4_score" value="1"> 1 — partially satisfied / uncertain</label>
+        <label><input type="radio" name="criterion_4_score" value="0"> 0 — material semantic discrepancy</label>
+        <label><input type="radio" name="criterion_4_score" value="NA"> N/A — not legitimately assessable</label>
+      </fieldset>
+      <label>Agreement with automated score
+        <select id="criterion_4_agreement" name="criterion_4_agreement">
+          <option value="">Select…</option>
+          <option>AGREE</option><option>PARTIALLY_AGREE</option><option>DISAGREE</option>
+        </select>
+      </label>
+      <label>Semantic issue identified?
+        <select id="criterion_4_semantic" name="criterion_4_semantic">
+          <option value="">Select…</option><option value="false">No</option><option value="true">Yes</option>
+        </select>
+      </label>
+      <label>Reviewer justification
+        <select id="criterion_4_justification_choice" name="criterion_4_justification_choice" onchange="toggleCriterionJustification(4)">
+          <option value="Evidence supports the selected score.">Evidence supports the selected score.</option>
+<option value="Evidence mostly supports the selected score, with minor limitations.">Evidence mostly supports the selected score, with minor limitations.</option>
+<option value="Evidence shows partial fulfilment of the criterion.">Evidence shows partial fulfilment of the criterion.</option>
+<option value="Evidence does not support the criterion.">Evidence does not support the criterion.</option>
+<option value="Insufficient evidence to make a confident judgement.">Insufficient evidence to make a confident judgement.</option>
+<option value="Not applicable to this algorithm.">Not applicable to this algorithm.</option>
+          <option value="__OTHER__">Other — add specific comment</option>
+        </select>
+      </label>
+      <div id="criterion_4_justification_other_wrap" class="custom-justification">
+        <label>Specific comment
+          <textarea id="criterion_4_justification_other" name="criterion_4_justification_other" rows="3"></textarea>
+        </label>
+      </div>
+    </section>
+    
+
+    <section class="criterion" data-index="5" data-criterion-id="A2">
+      <h3>A2 · AST Semantic Alignment</h3>
+      <p class="question">Does the AST correctly represent the operands, operators, literals, indexing, collection access and call relationships of the canonical pseudocode?</p>
+      <div class="auto"><strong>Automated assessment:</strong> 2/2 · PASS · confidence MEDIUM</div>
+      <p><strong>Automated justification:</strong> Operator/literal relationships were accepted by syntax and static-semantic analysis. No semantic warnings were reported.</p>
+      <details><summary>Evidence</summary><pre>[
+  {
+    &quot;artifact&quot;: &quot;parser_report.json&quot;,
+    &quot;parser_success&quot;: true,
+    &quot;static_semantic_status&quot;: &quot;SUCCESS&quot;,
+    &quot;warning_count&quot;: 0
+  },
+  {
+    &quot;artifact&quot;: &quot;ast.json&quot;,
+    &quot;node_count&quot;: 9,
+    &quot;operator_multiset&quot;: {}
+  }
+]</pre></details>
+      <fieldset>
+        <legend>Human score</legend>
+        <label><input type="radio" name="criterion_5_score" value="2"> 2 — fully satisfied</label>
+        <label><input type="radio" name="criterion_5_score" value="1"> 1 — partially satisfied / uncertain</label>
+        <label><input type="radio" name="criterion_5_score" value="0"> 0 — material semantic discrepancy</label>
+        <label><input type="radio" name="criterion_5_score" value="NA"> N/A — not legitimately assessable</label>
+      </fieldset>
+      <label>Agreement with automated score
+        <select id="criterion_5_agreement" name="criterion_5_agreement">
+          <option value="">Select…</option>
+          <option>AGREE</option><option>PARTIALLY_AGREE</option><option>DISAGREE</option>
+        </select>
+      </label>
+      <label>Semantic issue identified?
+        <select id="criterion_5_semantic" name="criterion_5_semantic">
+          <option value="">Select…</option><option value="false">No</option><option value="true">Yes</option>
+        </select>
+      </label>
+      <label>Reviewer justification
+        <select id="criterion_5_justification_choice" name="criterion_5_justification_choice" onchange="toggleCriterionJustification(5)">
+          <option value="Evidence supports the selected score.">Evidence supports the selected score.</option>
+<option value="Evidence mostly supports the selected score, with minor limitations.">Evidence mostly supports the selected score, with minor limitations.</option>
+<option value="Evidence shows partial fulfilment of the criterion.">Evidence shows partial fulfilment of the criterion.</option>
+<option value="Evidence does not support the criterion.">Evidence does not support the criterion.</option>
+<option value="Insufficient evidence to make a confident judgement.">Insufficient evidence to make a confident judgement.</option>
+<option value="Not applicable to this algorithm.">Not applicable to this algorithm.</option>
+          <option value="__OTHER__">Other — add specific comment</option>
+        </select>
+      </label>
+      <div id="criterion_5_justification_other_wrap" class="custom-justification">
+        <label>Specific comment
+          <textarea id="criterion_5_justification_other" name="criterion_5_justification_other" rows="3"></textarea>
+        </label>
+      </div>
+    </section>
+    
+
+    <section class="criterion" data-index="6" data-criterion-id="A3">
+      <h3>A3 · AST Semantic Alignment</h3>
+      <p class="question">Are branch relationships, loop bodies, returns, loop-control operations, variable scope and nested declarations represented in the correct structural context?</p>
+      <div class="auto"><strong>Automated assessment:</strong> 2/2 · PASS · confidence MEDIUM</div>
+      <p><strong>Automated justification:</strong> Control/scope relationships passed parser static-semantic analysis. No semantic warnings were reported.</p>
+      <details><summary>Evidence</summary><pre>[
+  {
+    &quot;artifact&quot;: &quot;parser_report.json&quot;,
+    &quot;parser_success&quot;: true,
+    &quot;static_semantic_status&quot;: &quot;SUCCESS&quot;,
+    &quot;warning_count&quot;: 0
+  },
+  {
+    &quot;artifact&quot;: &quot;ast.json&quot;,
+    &quot;node_count&quot;: 9,
+    &quot;operator_multiset&quot;: {}
+  }
+]</pre></details>
+      <fieldset>
+        <legend>Human score</legend>
+        <label><input type="radio" name="criterion_6_score" value="2"> 2 — fully satisfied</label>
+        <label><input type="radio" name="criterion_6_score" value="1"> 1 — partially satisfied / uncertain</label>
+        <label><input type="radio" name="criterion_6_score" value="0"> 0 — material semantic discrepancy</label>
+        <label><input type="radio" name="criterion_6_score" value="NA"> N/A — not legitimately assessable</label>
+      </fieldset>
+      <label>Agreement with automated score
+        <select id="criterion_6_agreement" name="criterion_6_agreement">
+          <option value="">Select…</option>
+          <option>AGREE</option><option>PARTIALLY_AGREE</option><option>DISAGREE</option>
+        </select>
+      </label>
+      <label>Semantic issue identified?
+        <select id="criterion_6_semantic" name="criterion_6_semantic">
+          <option value="">Select…</option><option value="false">No</option><option value="true">Yes</option>
+        </select>
+      </label>
+      <label>Reviewer justification
+        <select id="criterion_6_justification_choice" name="criterion_6_justification_choice" onchange="toggleCriterionJustification(6)">
+          <option value="Evidence supports the selected score.">Evidence supports the selected score.</option>
+<option value="Evidence mostly supports the selected score, with minor limitations.">Evidence mostly supports the selected score, with minor limitations.</option>
+<option value="Evidence shows partial fulfilment of the criterion.">Evidence shows partial fulfilment of the criterion.</option>
+<option value="Evidence does not support the criterion.">Evidence does not support the criterion.</option>
+<option value="Insufficient evidence to make a confident judgement.">Insufficient evidence to make a confident judgement.</option>
+<option value="Not applicable to this algorithm.">Not applicable to this algorithm.</option>
+          <option value="__OTHER__">Other — add specific comment</option>
+        </select>
+      </label>
+      <div id="criterion_6_justification_other_wrap" class="custom-justification">
+        <label>Specific comment
+          <textarea id="criterion_6_justification_other" name="criterion_6_justification_other" rows="3"></textarea>
+        </label>
+      </div>
+    </section>
+    
+
+    <section class="criterion" data-index="7" data-criterion-id="A4">
+      <h3>A4 · AST Semantic Alignment</h3>
+      <p class="question">If the AST were interpreted directly, would it permit the same observable algorithmic behaviour as the canonical pseudocode?</p>
+      <div class="auto"><strong>Automated assessment:</strong> 2/2 · PASS · confidence MEDIUM</div>
+      <p><strong>Automated justification:</strong> The canonical program was accepted as a semantically valid AST by the parser. This automated judgement is retained for human verification rather than treated as an independent proof.</p>
+      <details><summary>Evidence</summary><pre>[
+  {
+    &quot;artifact&quot;: &quot;parser_report.json&quot;,
+    &quot;parser_success&quot;: true,
+    &quot;static_semantic_status&quot;: &quot;SUCCESS&quot;,
+    &quot;warning_count&quot;: 0
+  },
+  {
+    &quot;artifact&quot;: &quot;ast.json&quot;,
+    &quot;node_count&quot;: 9,
+    &quot;operator_multiset&quot;: {}
+  }
+]</pre></details>
+      <fieldset>
+        <legend>Human score</legend>
+        <label><input type="radio" name="criterion_7_score" value="2"> 2 — fully satisfied</label>
+        <label><input type="radio" name="criterion_7_score" value="1"> 1 — partially satisfied / uncertain</label>
+        <label><input type="radio" name="criterion_7_score" value="0"> 0 — material semantic discrepancy</label>
+        <label><input type="radio" name="criterion_7_score" value="NA"> N/A — not legitimately assessable</label>
+      </fieldset>
+      <label>Agreement with automated score
+        <select id="criterion_7_agreement" name="criterion_7_agreement">
+          <option value="">Select…</option>
+          <option>AGREE</option><option>PARTIALLY_AGREE</option><option>DISAGREE</option>
+        </select>
+      </label>
+      <label>Semantic issue identified?
+        <select id="criterion_7_semantic" name="criterion_7_semantic">
+          <option value="">Select…</option><option value="false">No</option><option value="true">Yes</option>
+        </select>
+      </label>
+      <label>Reviewer justification
+        <select id="criterion_7_justification_choice" name="criterion_7_justification_choice" onchange="toggleCriterionJustification(7)">
+          <option value="Evidence supports the selected score.">Evidence supports the selected score.</option>
+<option value="Evidence mostly supports the selected score, with minor limitations.">Evidence mostly supports the selected score, with minor limitations.</option>
+<option value="Evidence shows partial fulfilment of the criterion.">Evidence shows partial fulfilment of the criterion.</option>
+<option value="Evidence does not support the criterion.">Evidence does not support the criterion.</option>
+<option value="Insufficient evidence to make a confident judgement.">Insufficient evidence to make a confident judgement.</option>
+<option value="Not applicable to this algorithm.">Not applicable to this algorithm.</option>
+          <option value="__OTHER__">Other — add specific comment</option>
+        </select>
+      </label>
+      <div id="criterion_7_justification_other_wrap" class="custom-justification">
+        <label>Specific comment
+          <textarea id="criterion_7_justification_other" name="criterion_7_justification_other" rows="3"></textarea>
+        </label>
+      </div>
+    </section>
+    
+
+    <section class="criterion" data-index="8" data-criterion-id="F1">
+      <h3>F1 · Flow Diagram Logical Structure</h3>
+      <p class="question">Are all semantically relevant actions, decisions, entry/exit points and returns represented in the flow diagram?</p>
+      <div class="auto"><strong>Automated assessment:</strong> 0/2 · FAIL · confidence HIGH</div>
+      <p><strong>Automated justification:</strong> Executable AST construct counts and visual flow-node construct counts differ.</p>
+      <details><summary>Evidence</summary><pre>[
+  {
+    &quot;artifact&quot;: &quot;flow_diagram.json&quot;,
+    &quot;expected_executable_ast_counts&quot;: {
+      &quot;CallNode&quot;: 1,
+      &quot;FunctionNode&quot;: 1,
+      &quot;ReturnNode&quot;: 1
+    },
+    &quot;visual_flow_ast_counts&quot;: {
+      &quot;FunctionNode&quot;: 1,
+      &quot;ReturnNode&quot;: 1
+    },
+    &quot;graph_validation&quot;: {
+      &quot;valid&quot;: true,
+      &quot;issues&quot;: [],
+      &quot;warnings&quot;: [],
+      &quot;node_count&quot;: 4,
+      &quot;edge_count&quot;: 3,
+      &quot;decision_node_count&quot;: 0,
+      &quot;loop_decision_count&quot;: 0,
+      &quot;loop_back_edge_count&quot;: 0,
+      &quot;unreachable_nodes&quot;: []
+    }
+  },
+  {
+    &quot;artifact&quot;: &quot;ast.json + flow_diagram.json:structured_program&quot;,
+    &quot;signature_comparison&quot;: {
+      &quot;equivalent&quot;: true,
+      &quot;review_required&quot;: false,
+      &quot;differences&quot;: []
+    }
+  }
+]</pre></details>
+      <fieldset>
+        <legend>Human score</legend>
+        <label><input type="radio" name="criterion_8_score" value="2"> 2 — fully satisfied</label>
+        <label><input type="radio" name="criterion_8_score" value="1"> 1 — partially satisfied / uncertain</label>
+        <label><input type="radio" name="criterion_8_score" value="0"> 0 — material semantic discrepancy</label>
+        <label><input type="radio" name="criterion_8_score" value="NA"> N/A — not legitimately assessable</label>
+      </fieldset>
+      <label>Agreement with automated score
+        <select id="criterion_8_agreement" name="criterion_8_agreement">
+          <option value="">Select…</option>
+          <option>AGREE</option><option>PARTIALLY_AGREE</option><option>DISAGREE</option>
+        </select>
+      </label>
+      <label>Semantic issue identified?
+        <select id="criterion_8_semantic" name="criterion_8_semantic">
+          <option value="">Select…</option><option value="false">No</option><option value="true">Yes</option>
+        </select>
+      </label>
+      <label>Reviewer justification
+        <select id="criterion_8_justification_choice" name="criterion_8_justification_choice" onchange="toggleCriterionJustification(8)">
+          <option value="Evidence supports the selected score.">Evidence supports the selected score.</option>
+<option value="Evidence mostly supports the selected score, with minor limitations.">Evidence mostly supports the selected score, with minor limitations.</option>
+<option value="Evidence shows partial fulfilment of the criterion.">Evidence shows partial fulfilment of the criterion.</option>
+<option value="Evidence does not support the criterion.">Evidence does not support the criterion.</option>
+<option value="Insufficient evidence to make a confident judgement.">Insufficient evidence to make a confident judgement.</option>
+<option value="Not applicable to this algorithm.">Not applicable to this algorithm.</option>
+          <option value="__OTHER__">Other — add specific comment</option>
+        </select>
+      </label>
+      <div id="criterion_8_justification_other_wrap" class="custom-justification">
+        <label>Specific comment
+          <textarea id="criterion_8_justification_other" name="criterion_8_justification_other" rows="3"></textarea>
+        </label>
+      </div>
+    </section>
+    
+
+    <section class="criterion" data-index="9" data-criterion-id="F2">
+      <h3>F2 · Flow Diagram Logical Structure</h3>
+      <p class="question">Do the diagram connections correctly represent execution sequence, branch destinations, loop-back edges and exit paths?</p>
+      <div class="auto"><strong>Automated assessment:</strong> 2/2 · PASS · confidence HIGH</div>
+      <p><strong>Automated justification:</strong> Flow graph entry/exit, edge references, decision out-degree and loop routing invariants passed.</p>
+      <details><summary>Evidence</summary><pre>[
+  {
+    &quot;artifact&quot;: &quot;flow_diagram.json&quot;,
+    &quot;expected_executable_ast_counts&quot;: {
+      &quot;CallNode&quot;: 1,
+      &quot;FunctionNode&quot;: 1,
+      &quot;ReturnNode&quot;: 1
+    },
+    &quot;visual_flow_ast_counts&quot;: {
+      &quot;FunctionNode&quot;: 1,
+      &quot;ReturnNode&quot;: 1
+    },
+    &quot;graph_validation&quot;: {
+      &quot;valid&quot;: true,
+      &quot;issues&quot;: [],
+      &quot;warnings&quot;: [],
+      &quot;node_count&quot;: 4,
+      &quot;edge_count&quot;: 3,
+      &quot;decision_node_count&quot;: 0,
+      &quot;loop_decision_count&quot;: 0,
+      &quot;loop_back_edge_count&quot;: 0,
+      &quot;unreachable_nodes&quot;: []
+    }
+  },
+  {
+    &quot;artifact&quot;: &quot;ast.json + flow_diagram.json:structured_program&quot;,
+    &quot;signature_comparison&quot;: {
+      &quot;equivalent&quot;: true,
+      &quot;review_required&quot;: false,
+      &quot;differences&quot;: []
+    }
+  }
+]</pre></details>
+      <fieldset>
+        <legend>Human score</legend>
+        <label><input type="radio" name="criterion_9_score" value="2"> 2 — fully satisfied</label>
+        <label><input type="radio" name="criterion_9_score" value="1"> 1 — partially satisfied / uncertain</label>
+        <label><input type="radio" name="criterion_9_score" value="0"> 0 — material semantic discrepancy</label>
+        <label><input type="radio" name="criterion_9_score" value="NA"> N/A — not legitimately assessable</label>
+      </fieldset>
+      <label>Agreement with automated score
+        <select id="criterion_9_agreement" name="criterion_9_agreement">
+          <option value="">Select…</option>
+          <option>AGREE</option><option>PARTIALLY_AGREE</option><option>DISAGREE</option>
+        </select>
+      </label>
+      <label>Semantic issue identified?
+        <select id="criterion_9_semantic" name="criterion_9_semantic">
+          <option value="">Select…</option><option value="false">No</option><option value="true">Yes</option>
+        </select>
+      </label>
+      <label>Reviewer justification
+        <select id="criterion_9_justification_choice" name="criterion_9_justification_choice" onchange="toggleCriterionJustification(9)">
+          <option value="Evidence supports the selected score.">Evidence supports the selected score.</option>
+<option value="Evidence mostly supports the selected score, with minor limitations.">Evidence mostly supports the selected score, with minor limitations.</option>
+<option value="Evidence shows partial fulfilment of the criterion.">Evidence shows partial fulfilment of the criterion.</option>
+<option value="Evidence does not support the criterion.">Evidence does not support the criterion.</option>
+<option value="Insufficient evidence to make a confident judgement.">Insufficient evidence to make a confident judgement.</option>
+<option value="Not applicable to this algorithm.">Not applicable to this algorithm.</option>
+          <option value="__OTHER__">Other — add specific comment</option>
+        </select>
+      </label>
+      <div id="criterion_9_justification_other_wrap" class="custom-justification">
+        <label>Specific comment
+          <textarea id="criterion_9_justification_other" name="criterion_9_justification_other" rows="3"></textarea>
+        </label>
+      </div>
+    </section>
+    
+
+    <section class="criterion" data-index="10" data-criterion-id="F3">
+      <h3>F3 · Flow Diagram Logical Structure</h3>
+      <p class="question">For every meaningful execution path represented by the AST, is there a corresponding path through the flow diagram without additional semantically unsupported paths?</p>
+      <div class="auto"><strong>Automated assessment:</strong> 2/2 · PASS · confidence HIGH</div>
+      <p><strong>Automated justification:</strong> The flow structured-program signature exactly matches the AST and graph invariants pass.</p>
+      <details><summary>Evidence</summary><pre>[
+  {
+    &quot;artifact&quot;: &quot;flow_diagram.json&quot;,
+    &quot;expected_executable_ast_counts&quot;: {
+      &quot;CallNode&quot;: 1,
+      &quot;FunctionNode&quot;: 1,
+      &quot;ReturnNode&quot;: 1
+    },
+    &quot;visual_flow_ast_counts&quot;: {
+      &quot;FunctionNode&quot;: 1,
+      &quot;ReturnNode&quot;: 1
+    },
+    &quot;graph_validation&quot;: {
+      &quot;valid&quot;: true,
+      &quot;issues&quot;: [],
+      &quot;warnings&quot;: [],
+      &quot;node_count&quot;: 4,
+      &quot;edge_count&quot;: 3,
+      &quot;decision_node_count&quot;: 0,
+      &quot;loop_decision_count&quot;: 0,
+      &quot;loop_back_edge_count&quot;: 0,
+      &quot;unreachable_nodes&quot;: []
+    }
+  },
+  {
+    &quot;artifact&quot;: &quot;ast.json + flow_diagram.json:structured_program&quot;,
+    &quot;signature_comparison&quot;: {
+      &quot;equivalent&quot;: true,
+      &quot;review_required&quot;: false,
+      &quot;differences&quot;: []
+    }
+  }
+]</pre></details>
+      <fieldset>
+        <legend>Human score</legend>
+        <label><input type="radio" name="criterion_10_score" value="2"> 2 — fully satisfied</label>
+        <label><input type="radio" name="criterion_10_score" value="1"> 1 — partially satisfied / uncertain</label>
+        <label><input type="radio" name="criterion_10_score" value="0"> 0 — material semantic discrepancy</label>
+        <label><input type="radio" name="criterion_10_score" value="NA"> N/A — not legitimately assessable</label>
+      </fieldset>
+      <label>Agreement with automated score
+        <select id="criterion_10_agreement" name="criterion_10_agreement">
+          <option value="">Select…</option>
+          <option>AGREE</option><option>PARTIALLY_AGREE</option><option>DISAGREE</option>
+        </select>
+      </label>
+      <label>Semantic issue identified?
+        <select id="criterion_10_semantic" name="criterion_10_semantic">
+          <option value="">Select…</option><option value="false">No</option><option value="true">Yes</option>
+        </select>
+      </label>
+      <label>Reviewer justification
+        <select id="criterion_10_justification_choice" name="criterion_10_justification_choice" onchange="toggleCriterionJustification(10)">
+          <option value="Evidence supports the selected score.">Evidence supports the selected score.</option>
+<option value="Evidence mostly supports the selected score, with minor limitations.">Evidence mostly supports the selected score, with minor limitations.</option>
+<option value="Evidence shows partial fulfilment of the criterion.">Evidence shows partial fulfilment of the criterion.</option>
+<option value="Evidence does not support the criterion.">Evidence does not support the criterion.</option>
+<option value="Insufficient evidence to make a confident judgement.">Insufficient evidence to make a confident judgement.</option>
+<option value="Not applicable to this algorithm.">Not applicable to this algorithm.</option>
+          <option value="__OTHER__">Other — add specific comment</option>
+        </select>
+      </label>
+      <div id="criterion_10_justification_other_wrap" class="custom-justification">
+        <label>Specific comment
+          <textarea id="criterion_10_justification_other" name="criterion_10_justification_other" rows="3"></textarea>
+        </label>
+      </div>
+    </section>
+    
+
+    <section class="criterion" data-index="11" data-criterion-id="F4">
+      <h3>F4 · Flow Diagram Logical Structure</h3>
+      <p class="question">Do decision conditions, TRUE/FALSE routing, loop-entry conditions and loop-termination behaviour preserve the logic represented by the AST?</p>
+      <div class="auto"><strong>Automated assessment:</strong> 2/2 · PASS · confidence HIGH</div>
+      <p><strong>Automated justification:</strong> Structured AST contains 0 control decision(s); flow graph contains 0 decision node(s). Decision routing invariants passed.</p>
+      <details><summary>Evidence</summary><pre>[
+  {
+    &quot;artifact&quot;: &quot;flow_diagram.json&quot;,
+    &quot;expected_executable_ast_counts&quot;: {
+      &quot;CallNode&quot;: 1,
+      &quot;FunctionNode&quot;: 1,
+      &quot;ReturnNode&quot;: 1
+    },
+    &quot;visual_flow_ast_counts&quot;: {
+      &quot;FunctionNode&quot;: 1,
+      &quot;ReturnNode&quot;: 1
+    },
+    &quot;graph_validation&quot;: {
+      &quot;valid&quot;: true,
+      &quot;issues&quot;: [],
+      &quot;warnings&quot;: [],
+      &quot;node_count&quot;: 4,
+      &quot;edge_count&quot;: 3,
+      &quot;decision_node_count&quot;: 0,
+      &quot;loop_decision_count&quot;: 0,
+      &quot;loop_back_edge_count&quot;: 0,
+      &quot;unreachable_nodes&quot;: []
+    }
+  },
+  {
+    &quot;artifact&quot;: &quot;ast.json + flow_diagram.json:structured_program&quot;,
+    &quot;signature_comparison&quot;: {
+      &quot;equivalent&quot;: true,
+      &quot;review_required&quot;: false,
+      &quot;differences&quot;: []
+    }
+  }
+]</pre></details>
+      <fieldset>
+        <legend>Human score</legend>
+        <label><input type="radio" name="criterion_11_score" value="2"> 2 — fully satisfied</label>
+        <label><input type="radio" name="criterion_11_score" value="1"> 1 — partially satisfied / uncertain</label>
+        <label><input type="radio" name="criterion_11_score" value="0"> 0 — material semantic discrepancy</label>
+        <label><input type="radio" name="criterion_11_score" value="NA"> N/A — not legitimately assessable</label>
+      </fieldset>
+      <label>Agreement with automated score
+        <select id="criterion_11_agreement" name="criterion_11_agreement">
+          <option value="">Select…</option>
+          <option>AGREE</option><option>PARTIALLY_AGREE</option><option>DISAGREE</option>
+        </select>
+      </label>
+      <label>Semantic issue identified?
+        <select id="criterion_11_semantic" name="criterion_11_semantic">
+          <option value="">Select…</option><option value="false">No</option><option value="true">Yes</option>
+        </select>
+      </label>
+      <label>Reviewer justification
+        <select id="criterion_11_justification_choice" name="criterion_11_justification_choice" onchange="toggleCriterionJustification(11)">
+          <option value="Evidence supports the selected score.">Evidence supports the selected score.</option>
+<option value="Evidence mostly supports the selected score, with minor limitations.">Evidence mostly supports the selected score, with minor limitations.</option>
+<option value="Evidence shows partial fulfilment of the criterion.">Evidence shows partial fulfilment of the criterion.</option>
+<option value="Evidence does not support the criterion.">Evidence does not support the criterion.</option>
+<option value="Insufficient evidence to make a confident judgement.">Insufficient evidence to make a confident judgement.</option>
+<option value="Not applicable to this algorithm.">Not applicable to this algorithm.</option>
+          <option value="__OTHER__">Other — add specific comment</option>
+        </select>
+      </label>
+      <div id="criterion_11_justification_other_wrap" class="custom-justification">
+        <label>Specific comment
+          <textarea id="criterion_11_justification_other" name="criterion_11_justification_other" rows="3"></textarea>
+        </label>
+      </div>
+    </section>
+    
+
+    <section class="criterion" data-index="12" data-criterion-id="P1">
+      <h3>P1 · Generated Python Correctness</h3>
+      <p class="question">Is the generated Python syntactically valid and executable for inputs valid under the source algorithm&#x27;s assumptions?</p>
+      <div class="auto"><strong>Automated assessment:</strong> 2/2 · PASS · confidence HIGH</div>
+      <p><strong>Automated justification:</strong> Python source was generated and syntax-validated by the compiler.</p>
+      <details><summary>Evidence</summary><pre>[
+  {
+    &quot;artifact&quot;: &quot;compilation_report.json&quot;,
+    &quot;status&quot;: &quot;SUCCESS&quot;
+  }
+]</pre></details>
+      <fieldset>
+        <legend>Human score</legend>
+        <label><input type="radio" name="criterion_12_score" value="2"> 2 — fully satisfied</label>
+        <label><input type="radio" name="criterion_12_score" value="1"> 1 — partially satisfied / uncertain</label>
+        <label><input type="radio" name="criterion_12_score" value="0"> 0 — material semantic discrepancy</label>
+        <label><input type="radio" name="criterion_12_score" value="NA"> N/A — not legitimately assessable</label>
+      </fieldset>
+      <label>Agreement with automated score
+        <select id="criterion_12_agreement" name="criterion_12_agreement">
+          <option value="">Select…</option>
+          <option>AGREE</option><option>PARTIALLY_AGREE</option><option>DISAGREE</option>
+        </select>
+      </label>
+      <label>Semantic issue identified?
+        <select id="criterion_12_semantic" name="criterion_12_semantic">
+          <option value="">Select…</option><option value="false">No</option><option value="true">Yes</option>
+        </select>
+      </label>
+      <label>Reviewer justification
+        <select id="criterion_12_justification_choice" name="criterion_12_justification_choice" onchange="toggleCriterionJustification(12)">
+          <option value="Evidence supports the selected score.">Evidence supports the selected score.</option>
+<option value="Evidence mostly supports the selected score, with minor limitations.">Evidence mostly supports the selected score, with minor limitations.</option>
+<option value="Evidence shows partial fulfilment of the criterion.">Evidence shows partial fulfilment of the criterion.</option>
+<option value="Evidence does not support the criterion.">Evidence does not support the criterion.</option>
+<option value="Insufficient evidence to make a confident judgement.">Insufficient evidence to make a confident judgement.</option>
+<option value="Not applicable to this algorithm.">Not applicable to this algorithm.</option>
+          <option value="__OTHER__">Other — add specific comment</option>
+        </select>
+      </label>
+      <div id="criterion_12_justification_other_wrap" class="custom-justification">
+        <label>Specific comment
+          <textarea id="criterion_12_justification_other" name="criterion_12_justification_other" rows="3"></textarea>
+        </label>
+      </div>
+    </section>
+    
+
+    <section class="criterion" data-index="13" data-criterion-id="P2">
+      <h3>P2 · Generated Python Correctness</h3>
+      <p class="question">Does the generated Python produce the expected outputs and observable state changes across the predefined behavioural tests?</p>
+      <div class="auto"><strong>Automated assessment:</strong> 0/2 · FAIL · confidence HIGH</div>
+      <p><strong>Automated justification:</strong> Generated Python passed 0 of 1 task-semantic tests (0.00%).</p>
+      <details><summary>Evidence</summary><pre>[
+  {
+    &quot;artifact&quot;: &quot;semantic_test_report.json&quot;,
+    &quot;tests_total&quot;: 1,
+    &quot;tests_passed&quot;: 0,
+    &quot;observation_mode&quot;: &quot;TASK_SEMANTIC_FUNCTION&quot;
+  }
+]</pre></details>
+      <fieldset>
+        <legend>Human score</legend>
+        <label><input type="radio" name="criterion_13_score" value="2"> 2 — fully satisfied</label>
+        <label><input type="radio" name="criterion_13_score" value="1"> 1 — partially satisfied / uncertain</label>
+        <label><input type="radio" name="criterion_13_score" value="0"> 0 — material semantic discrepancy</label>
+        <label><input type="radio" name="criterion_13_score" value="NA"> N/A — not legitimately assessable</label>
+      </fieldset>
+      <label>Agreement with automated score
+        <select id="criterion_13_agreement" name="criterion_13_agreement">
+          <option value="">Select…</option>
+          <option>AGREE</option><option>PARTIALLY_AGREE</option><option>DISAGREE</option>
+        </select>
+      </label>
+      <label>Semantic issue identified?
+        <select id="criterion_13_semantic" name="criterion_13_semantic">
+          <option value="">Select…</option><option value="false">No</option><option value="true">Yes</option>
+        </select>
+      </label>
+      <label>Reviewer justification
+        <select id="criterion_13_justification_choice" name="criterion_13_justification_choice" onchange="toggleCriterionJustification(13)">
+          <option value="Evidence supports the selected score.">Evidence supports the selected score.</option>
+<option value="Evidence mostly supports the selected score, with minor limitations.">Evidence mostly supports the selected score, with minor limitations.</option>
+<option value="Evidence shows partial fulfilment of the criterion.">Evidence shows partial fulfilment of the criterion.</option>
+<option value="Evidence does not support the criterion.">Evidence does not support the criterion.</option>
+<option value="Insufficient evidence to make a confident judgement.">Insufficient evidence to make a confident judgement.</option>
+<option value="Not applicable to this algorithm.">Not applicable to this algorithm.</option>
+          <option value="__OTHER__">Other — add specific comment</option>
+        </select>
+      </label>
+      <div id="criterion_13_justification_other_wrap" class="custom-justification">
+        <label>Specific comment
+          <textarea id="criterion_13_justification_other" name="criterion_13_justification_other" rows="3"></textarea>
+        </label>
+      </div>
+    </section>
+    
+
+    <section class="criterion" data-index="14" data-criterion-id="P3">
+      <h3>P3 · Generated Python Correctness</h3>
+      <p class="question">Does the generated Python preserve source-defined boundary behaviour, termination behaviour, returns and errors?</p>
+      <div class="auto"><strong>Automated assessment:</strong> N/A · NOT_EVALUABLE · confidence HIGH</div>
+      <p><strong>Automated justification:</strong> No tests are tagged BOUNDARY, ERROR_BEHAVIOUR or TERMINATION, so boundary/error/termination preservation cannot be scored automatically.</p>
+      <details><summary>Evidence</summary><pre>[]</pre></details>
+      <fieldset>
+        <legend>Human score</legend>
+        <label><input type="radio" name="criterion_14_score" value="2"> 2 — fully satisfied</label>
+        <label><input type="radio" name="criterion_14_score" value="1"> 1 — partially satisfied / uncertain</label>
+        <label><input type="radio" name="criterion_14_score" value="0"> 0 — material semantic discrepancy</label>
+        <label><input type="radio" name="criterion_14_score" value="NA"> N/A — not legitimately assessable</label>
+      </fieldset>
+      <label>Agreement with automated score
+        <select id="criterion_14_agreement" name="criterion_14_agreement">
+          <option value="">Select…</option>
+          <option>AGREE</option><option>PARTIALLY_AGREE</option><option>DISAGREE</option>
+        </select>
+      </label>
+      <label>Semantic issue identified?
+        <select id="criterion_14_semantic" name="criterion_14_semantic">
+          <option value="">Select…</option><option value="false">No</option><option value="true">Yes</option>
+        </select>
+      </label>
+      <label>Reviewer justification
+        <select id="criterion_14_justification_choice" name="criterion_14_justification_choice" onchange="toggleCriterionJustification(14)">
+          <option value="Evidence supports the selected score.">Evidence supports the selected score.</option>
+<option value="Evidence mostly supports the selected score, with minor limitations.">Evidence mostly supports the selected score, with minor limitations.</option>
+<option value="Evidence shows partial fulfilment of the criterion.">Evidence shows partial fulfilment of the criterion.</option>
+<option value="Evidence does not support the criterion.">Evidence does not support the criterion.</option>
+<option value="Insufficient evidence to make a confident judgement.">Insufficient evidence to make a confident judgement.</option>
+<option value="Not applicable to this algorithm.">Not applicable to this algorithm.</option>
+          <option value="__OTHER__">Other — add specific comment</option>
+        </select>
+      </label>
+      <div id="criterion_14_justification_other_wrap" class="custom-justification">
+        <label>Specific comment
+          <textarea id="criterion_14_justification_other" name="criterion_14_justification_other" rows="3"></textarea>
+        </label>
+      </div>
+    </section>
+    
+
+    <section class="criterion" data-index="15" data-criterion-id="P4">
+      <h3>P4 · Generated Python Correctness</h3>
+      <p class="question">Does the generated Python preserve the algorithm&#x27;s control flow, state changes, data-structure effects and observable behaviour without introducing or removing meaningful behaviour?</p>
+      <div class="auto"><strong>Automated assessment:</strong> 0/2 · FAIL · confidence HIGH</div>
+      <p><strong>Automated justification:</strong> Compilation succeeded, but none of the available behavioural-oracle tests passed.</p>
+      <details><summary>Evidence</summary><pre>[
+  {
+    &quot;artifact&quot;: &quot;compilation_report.json + semantic_test_report.json&quot;,
+    &quot;tests_total&quot;: 1,
+    &quot;tests_passed&quot;: 0
+  }
+]</pre></details>
+      <fieldset>
+        <legend>Human score</legend>
+        <label><input type="radio" name="criterion_15_score" value="2"> 2 — fully satisfied</label>
+        <label><input type="radio" name="criterion_15_score" value="1"> 1 — partially satisfied / uncertain</label>
+        <label><input type="radio" name="criterion_15_score" value="0"> 0 — material semantic discrepancy</label>
+        <label><input type="radio" name="criterion_15_score" value="NA"> N/A — not legitimately assessable</label>
+      </fieldset>
+      <label>Agreement with automated score
+        <select id="criterion_15_agreement" name="criterion_15_agreement">
+          <option value="">Select…</option>
+          <option>AGREE</option><option>PARTIALLY_AGREE</option><option>DISAGREE</option>
+        </select>
+      </label>
+      <label>Semantic issue identified?
+        <select id="criterion_15_semantic" name="criterion_15_semantic">
+          <option value="">Select…</option><option value="false">No</option><option value="true">Yes</option>
+        </select>
+      </label>
+      <label>Reviewer justification
+        <select id="criterion_15_justification_choice" name="criterion_15_justification_choice" onchange="toggleCriterionJustification(15)">
+          <option value="Evidence supports the selected score.">Evidence supports the selected score.</option>
+<option value="Evidence mostly supports the selected score, with minor limitations.">Evidence mostly supports the selected score, with minor limitations.</option>
+<option value="Evidence shows partial fulfilment of the criterion.">Evidence shows partial fulfilment of the criterion.</option>
+<option value="Evidence does not support the criterion.">Evidence does not support the criterion.</option>
+<option value="Insufficient evidence to make a confident judgement.">Insufficient evidence to make a confident judgement.</option>
+<option value="Not applicable to this algorithm.">Not applicable to this algorithm.</option>
+          <option value="__OTHER__">Other — add specific comment</option>
+        </select>
+      </label>
+      <div id="criterion_15_justification_other_wrap" class="custom-justification">
+        <label>Specific comment
+          <textarea id="criterion_15_justification_other" name="criterion_15_justification_other" rows="3"></textarea>
+        </label>
+      </div>
+    </section>
+    
+<h2>Overall Review</h2>
+<label>Material Semantic Error Not Captured by the Automated Criteria?
+<select id="uncaptured"><option value="">Select…</option><option value="false">No</option><option value="true">Yes</option></select></label>
+<label>First Semantic Loss Stage
+<select id="first_loss"><option value="">Select…</option><option>SOURCE</option><option>CANONICALISATION</option><option>AST</option><option>FLOW_DIAGRAM</option><option>PYTHON</option><option>BEHAVIOURAL_TESTING</option><option>NONE</option><option>UNABLE_TO_DETERMINE</option></select></label>
+<label>Is the Final Generated Python Behaviourally Faithful to the Algorithm Supplied by the Model?
+<select id="faithful"><option value="">Select…</option><option>YES</option><option>PARTIALLY</option><option>NO</option><option>NA</option></select></label>
+<label>Additional Observations <textarea id="observations" rows="5"></textarea></label>
+<button id="primary" type="button">Download completed human_review.json</button>
+<button id="print" type="button">Print / save as PDF</button>
+<p class="notice">The downloaded JSON preserves the automated evidence and your independent human assessment. Place it in this algorithm&#x27;s pipeline_artifacts/scoring/ folder.</p>
+<script id="template" type="application/json">{"questionnaire_schema_version": "1.3", "rubric_version": "1.1", "pipeline_version": "4.37", "algorithm": {"algorithm_id": 34, "dataset": "Groq llama-3.3-70b-versatile", "source_type": "llm_pseudocode", "source_file": "Algorithm 34 Pseudocode.txt", "source_file_resolved": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Groq llama-3.3-70b-versatile\\Results\\Algorithm - 34\\Algorithm 34 Pseudocode.txt", "is_baseline": false, "experimental_expected_value_policy": "STATIC_PREEXPERIMENT_EXPECTATIONS", "runtime_baseline_reference_used": false}, "instructions": "Review the source and generated artefacts, then independently assess every criterion using the same 0-2/NA scale. The automated assessment is shown as evidence but must not replace reviewer judgement. Automated and human rubric scores are retained side by side; after all sixteen human criteria are completed, the combined rubric score is the equal-weight mean of the automated and human overall rubric percentages.", "reviewer": {"reviewer_id": "", "reviewer_name": "", "reviewed_at_utc": null, "overall_reviewer_confidence": null}, "source_sufficiency": {"criterion_id": "G1", "question": "Does the original pseudocode contain sufficient explicit information to determine the algorithm's behaviour without inventing missing semantics?", "automated_result": "EVALUABLE", "automated_justification": "The available artefacts do not identify unresolved source semantics that require invention.", "human_result": null, "agreement_with_automated_result": null, "reviewer_justification": ""}, "behavioural_evidence_adequacy": {"criterion_id": "G2", "question": "How strong, representative and reproducible is the behavioural evidence supporting the automated behavioural score, and what important behaviour remains untested or non-evaluable?", "automated_result": "PARTIAL", "summary": "This suite provides partial behavioural evidence using one predefined common behavioural test, with partial state-mutation evidence. Embedded list cases are fixed; the helper function is not invoked through an external contract by the current program runner. Runtime evidence: 1 of 1 declared test(s) were evaluable and 0 passed.", "test_counts": {"declared": 1, "evaluable": 1, "passed": 0, "failed": 1, "not_evaluable": 0}, "coverage_dimensions": {"normal_path": {"label": "Normal-path coverage", "status": "NOT_COVERED", "tests_declared": 0, "tests_evaluable": 0, "tests_passed": 0, "evidence": "No NORMAL test is declared in the common suite."}, "branch_behaviour": {"label": "Branch coverage", "status": "NOT_COVERED", "tests_declared": 0, "tests_evaluable": 0, "tests_passed": 0, "evidence": "No BRANCH test is declared in the common suite."}, "boundary_behaviour": {"label": "Boundary coverage", "status": "NOT_COVERED", "tests_declared": 0, "tests_evaluable": 0, "tests_passed": 0, "evidence": "No BOUNDARY test is declared in the common suite."}, "error_behaviour": {"label": "Error-behaviour coverage", "status": "NOT_COVERED", "tests_declared": 0, "tests_evaluable": 0, "tests_passed": 0, "evidence": "No ERROR_BEHAVIOUR test is declared in the common suite."}, "termination_behaviour": {"label": "Termination coverage", "status": "NOT_COVERED", "tests_declared": 0, "tests_evaluable": 0, "tests_passed": 0, "evidence": "No TERMINATION test is declared in the common suite."}, "state_mutation": {"label": "State-mutation coverage", "status": "PARTIALLY_COVERED", "tests_declared": 1, "tests_evaluable": 1, "tests_passed": 0, "evidence": "1 STATE_MUTATION test(s) declared; 1 evaluable; 0 passed."}}, "strengths": ["The suite provides some evidence for state-mutation coverage, although coverage is incomplete.", "0 of 1 evaluable behavioural test(s) passed in this run."], "limitations": ["Embedded list cases are fixed; the helper function is not invoked through an external contract by the current program runner.", "No direct common-test evidence is declared for: Normal-path coverage, Branch coverage, Boundary coverage, Error-behaviour coverage, Termination coverage."], "coverage_basis": "Assessment is based on the predefined common behavioural test, the behaviours exposed by the frozen program interface, and the declared coverage dimensions: state mutation.", "interpretation": "Interpret behavioural accuracy as useful but incomplete evidence across the declared exercised behaviours; unexercised behaviours remain outside the direct evidence.", "human_result": null, "agreement_with_automated_result": null, "reviewer_justification": ""}, "task_semantic_evaluation": {"contract": {"contract_version": "1.4", "contract_source": "ORIGINAL_TASK_SPECIFICATION", "task_statement": "Find all common elements in two unsorted lists without duplicates.", "inputs": [{"position": 1, "name": "list_1", "type": "ARRAY"}, {"position": 2, "name": "list_2", "type": "ARRAY"}], "result": {"type": "SET", "canonical_semantics": "Elements present in both lists, with duplicates removed."}, "automation_status": "AUTOMATED_FUNCTION", "parameter_names_are_semantically_irrelevant": true, "derived_parameters_may_be_supplied_by_adapter": true, "human_review_instruction": "Judge the original generated pseudocode against this same frozen task-semantic contract, including when automated evaluation is NOT_EVALUABLE.", "fixture_policy": "PREEXPERIMENT_FROZEN_INPUTS", "expectation_policy": "STATIC_PREEXPERIMENT_EXPECTED_VALUES", "runtime_oracle_prohibited": true}, "automated_evidence": {"semantic_report_schema_version": "1.2", "runtime_expected_value_generation": false, "program_path": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Groq llama-3.3-70b-versatile\\Results\\Algorithm - 34\\pipeline_artifacts\\generated_program.py", "algorithm_id": 34, "contract_version": "1.4", "evaluable_tests": 1, "passed_tests": 0, "failed_tests": 1, "not_evaluable_tests": 0, "accuracy_percentage": 0.0, "pre_freeze_validation": {"declared_cases": 0, "evaluable_cases": 0, "passed_cases": 0, "failed_cases": 0, "not_evaluable": 0, "accuracy_percentage": null, "included_in_core_behavioural_score": false, "included_in_baseline_calibration": false, "interpretation": "Candidate valid-domain coverage expansions retained for pre-freeze baseline validation. Results are descriptive only until explicitly promoted to CORE_BEHAVIOURAL."}, "semantic_boundary": {"measure": "SEMANTIC_BOUNDARY_VARIANCE", "declared_probes": 0, "evaluable_probes": 0, "out_of_domain_accepted": 0, "controlled_rejection": 0, "incidental_failure": 0, "not_evaluable": 0, "variance_percentage": null, "interpretation": "Percentage of evaluable out-of-domain probes that the generated implementation accepted and processed. This is a descriptive semantic-domain extension measure and is not included in core behavioural accuracy."}, "results": [{"name": "default common-elements-without-duplicates examples", "status": "FAILED", "expected_semantic_result": [2, 3, 7, 9], "actual_semantic_result": {"runtime_errors": [{"type": "NameError", "message": "name 'UNIQUE_INTERSECTION' is not defined"}]}, "semantic_match": false, "reason": "The task entrypoint raised a runtime error for the frozen semantic fixture.", "duration_ms": 86.182, "category": "STATE_MUTATION", "semantic_feature": "UNIQUE_INTERSECTION_UNSORTED_LISTS", "fixture_source": "PREEXPERIMENT_FROZEN_FIXTURE", "expectation_policy": "STATIC_FROZEN_VALUE", "selected_entrypoint": "COMMON_ELEMENTS", "invocation_capture": {"status": "ERROR", "selected_entrypoint": "COMMON_ELEMENTS", "selected_arity": 2, "prints": [], "returns": [null], "post_arguments": [[[5, 8, 6, 3, 6, 9, 7, 0, 2], [2, 4, 3, 1, 7, 9, 7, 3]]], "shared_values": {}, "errors": [{"type": "NameError", "message": "name 'UNIQUE_INTERSECTION' is not defined"}]}, "score_stream": "CORE_BEHAVIOURAL", "boundary_outcome": null, "criteria_links": ["P2", "P4"]}]}, "instruction": "Judge the original model pseudocode against the task-semantic contract. Use the same questions whether automated semantic execution succeeded, failed, or was NOT_EVALUABLE; the automated evidence is supporting evidence and must not replace independent human judgement.", "human_assessment": {"required_inputs_represented": null, "core_algorithm_logic": null, "required_output_semantics_represented": null, "edge_and_domain_handling": null, "overall_semantic_assessment": null, "reviewer_justification": ""}}, "benchmark_validation": null, "criteria": [{"stage_key": "canonicalisation", "stage_name": "Pseudocode Canonicalisation", "criterion_id": "C1", "question": "Does the canonical pseudocode conform to the AJ grammar sufficiently for deterministic interpretation by the next pipeline stage?", "automated_score": 2, "automated_status": "PASS", "automated_confidence": "HIGH", "automated_justification": "Canonical AJ completed syntax/static validation and produced an AST.", "evidence": [{"artifact": "parser_report.json", "observed_value": "SUCCESS"}], "human_assessment": {"score": null, "agreement_with_automated_score": null, "semantic_issue": null, "reviewer_justification": ""}}, {"stage_key": "canonicalisation", "stage_name": "Pseudocode Canonicalisation", "criterion_id": "C2", "question": "Are all semantically relevant operations from the source pseudocode preserved in the canonical representation with equivalent meaning?", "automated_score": 2, "automated_status": "PASS", "automated_confidence": "HIGH", "automated_justification": "All logged transformations are from audited evidence categories and none declares a semantic change.", "evidence": [{"artifact": "pseudocode_processing_report.json", "transformation_count": 3, "semantic_change_count": 0, "uncertain_transformation_count": 0, "rule_families": ["BLOCK_TERMINATOR", "SOURCE_NORMALISATION"]}], "human_assessment": {"score": null, "agreement_with_automated_score": null, "semantic_issue": null, "reviewer_justification": ""}}, {"stage_key": "canonicalisation", "stage_name": "Pseudocode Canonicalisation", "criterion_id": "C3", "question": "Are conditions, branches, loop bounds, iteration behaviour, state changes and termination behaviour preserved from the source?", "automated_score": 2, "automated_status": "PASS", "automated_confidence": "HIGH", "automated_justification": "No logged transformation declares a change to control/state semantics; all transformations have accepted audit evidence.", "evidence": [{"artifact": "pseudocode_processing_report.json", "transformation_count": 3, "semantic_change_count": 0, "uncertain_transformation_count": 0, "rule_families": ["BLOCK_TERMINATOR", "SOURCE_NORMALISATION"]}], "human_assessment": {"score": null, "agreement_with_automated_score": null, "semantic_issue": null, "reviewer_justification": ""}}, {"stage_key": "canonicalisation", "stage_name": "Pseudocode Canonicalisation", "criterion_id": "C4", "question": "Has canonicalisation avoided introducing algorithmic behaviour that was not explicitly supported by the source?", "automated_score": 2, "automated_status": "PASS", "automated_confidence": "HIGH", "automated_justification": "No transformation is marked as semantic-changing and all transformations use accepted audit-evidence categories.", "evidence": [{"artifact": "pseudocode_processing_report.json", "transformation_count": 3, "semantic_change_count": 0, "uncertain_transformation_count": 0, "rule_families": ["BLOCK_TERMINATOR", "SOURCE_NORMALISATION"]}], "human_assessment": {"score": null, "agreement_with_automated_score": null, "semantic_issue": null, "reviewer_justification": ""}}, {"stage_key": "ast", "stage_name": "AST Semantic Alignment", "criterion_id": "A1", "question": "Does every semantically relevant construct in the canonical pseudocode have an appropriate AST representation without missing or spurious executable nodes?", "automated_score": 2, "automated_status": "PASS", "automated_confidence": "HIGH", "automated_justification": "The parser produced a complete adjacency AST after syntax and static-semantic analysis.", "evidence": [{"artifact": "parser_report.json", "parser_success": true, "static_semantic_status": "SUCCESS", "warning_count": 0}, {"artifact": "ast.json", "node_count": 9, "operator_multiset": {}}], "human_assessment": {"score": null, "agreement_with_automated_score": null, "semantic_issue": null, "reviewer_justification": ""}}, {"stage_key": "ast", "stage_name": "AST Semantic Alignment", "criterion_id": "A2", "question": "Does the AST correctly represent the operands, operators, literals, indexing, collection access and call relationships of the canonical pseudocode?", "automated_score": 2, "automated_status": "PASS", "automated_confidence": "MEDIUM", "automated_justification": "Operator/literal relationships were accepted by syntax and static-semantic analysis. No semantic warnings were reported.", "evidence": [{"artifact": "parser_report.json", "parser_success": true, "static_semantic_status": "SUCCESS", "warning_count": 0}, {"artifact": "ast.json", "node_count": 9, "operator_multiset": {}}], "human_assessment": {"score": null, "agreement_with_automated_score": null, "semantic_issue": null, "reviewer_justification": ""}}, {"stage_key": "ast", "stage_name": "AST Semantic Alignment", "criterion_id": "A3", "question": "Are branch relationships, loop bodies, returns, loop-control operations, variable scope and nested declarations represented in the correct structural context?", "automated_score": 2, "automated_status": "PASS", "automated_confidence": "MEDIUM", "automated_justification": "Control/scope relationships passed parser static-semantic analysis. No semantic warnings were reported.", "evidence": [{"artifact": "parser_report.json", "parser_success": true, "static_semantic_status": "SUCCESS", "warning_count": 0}, {"artifact": "ast.json", "node_count": 9, "operator_multiset": {}}], "human_assessment": {"score": null, "agreement_with_automated_score": null, "semantic_issue": null, "reviewer_justification": ""}}, {"stage_key": "ast", "stage_name": "AST Semantic Alignment", "criterion_id": "A4", "question": "If the AST were interpreted directly, would it permit the same observable algorithmic behaviour as the canonical pseudocode?", "automated_score": 2, "automated_status": "PASS", "automated_confidence": "MEDIUM", "automated_justification": "The canonical program was accepted as a semantically valid AST by the parser. This automated judgement is retained for human verification rather than treated as an independent proof.", "evidence": [{"artifact": "parser_report.json", "parser_success": true, "static_semantic_status": "SUCCESS", "warning_count": 0}, {"artifact": "ast.json", "node_count": 9, "operator_multiset": {}}], "human_assessment": {"score": null, "agreement_with_automated_score": null, "semantic_issue": null, "reviewer_justification": ""}}, {"stage_key": "flow_diagram", "stage_name": "Flow Diagram Logical Structure", "criterion_id": "F1", "question": "Are all semantically relevant actions, decisions, entry/exit points and returns represented in the flow diagram?", "automated_score": 0, "automated_status": "FAIL", "automated_confidence": "HIGH", "automated_justification": "Executable AST construct counts and visual flow-node construct counts differ.", "evidence": [{"artifact": "flow_diagram.json", "expected_executable_ast_counts": {"CallNode": 1, "FunctionNode": 1, "ReturnNode": 1}, "visual_flow_ast_counts": {"FunctionNode": 1, "ReturnNode": 1}, "graph_validation": {"valid": true, "issues": [], "warnings": [], "node_count": 4, "edge_count": 3, "decision_node_count": 0, "loop_decision_count": 0, "loop_back_edge_count": 0, "unreachable_nodes": []}}, {"artifact": "ast.json + flow_diagram.json:structured_program", "signature_comparison": {"equivalent": true, "review_required": false, "differences": []}}], "human_assessment": {"score": null, "agreement_with_automated_score": null, "semantic_issue": null, "reviewer_justification": ""}}, {"stage_key": "flow_diagram", "stage_name": "Flow Diagram Logical Structure", "criterion_id": "F2", "question": "Do the diagram connections correctly represent execution sequence, branch destinations, loop-back edges and exit paths?", "automated_score": 2, "automated_status": "PASS", "automated_confidence": "HIGH", "automated_justification": "Flow graph entry/exit, edge references, decision out-degree and loop routing invariants passed.", "evidence": [{"artifact": "flow_diagram.json", "expected_executable_ast_counts": {"CallNode": 1, "FunctionNode": 1, "ReturnNode": 1}, "visual_flow_ast_counts": {"FunctionNode": 1, "ReturnNode": 1}, "graph_validation": {"valid": true, "issues": [], "warnings": [], "node_count": 4, "edge_count": 3, "decision_node_count": 0, "loop_decision_count": 0, "loop_back_edge_count": 0, "unreachable_nodes": []}}, {"artifact": "ast.json + flow_diagram.json:structured_program", "signature_comparison": {"equivalent": true, "review_required": false, "differences": []}}], "human_assessment": {"score": null, "agreement_with_automated_score": null, "semantic_issue": null, "reviewer_justification": ""}}, {"stage_key": "flow_diagram", "stage_name": "Flow Diagram Logical Structure", "criterion_id": "F3", "question": "For every meaningful execution path represented by the AST, is there a corresponding path through the flow diagram without additional semantically unsupported paths?", "automated_score": 2, "automated_status": "PASS", "automated_confidence": "HIGH", "automated_justification": "The flow structured-program signature exactly matches the AST and graph invariants pass.", "evidence": [{"artifact": "flow_diagram.json", "expected_executable_ast_counts": {"CallNode": 1, "FunctionNode": 1, "ReturnNode": 1}, "visual_flow_ast_counts": {"FunctionNode": 1, "ReturnNode": 1}, "graph_validation": {"valid": true, "issues": [], "warnings": [], "node_count": 4, "edge_count": 3, "decision_node_count": 0, "loop_decision_count": 0, "loop_back_edge_count": 0, "unreachable_nodes": []}}, {"artifact": "ast.json + flow_diagram.json:structured_program", "signature_comparison": {"equivalent": true, "review_required": false, "differences": []}}], "human_assessment": {"score": null, "agreement_with_automated_score": null, "semantic_issue": null, "reviewer_justification": ""}}, {"stage_key": "flow_diagram", "stage_name": "Flow Diagram Logical Structure", "criterion_id": "F4", "question": "Do decision conditions, TRUE/FALSE routing, loop-entry conditions and loop-termination behaviour preserve the logic represented by the AST?", "automated_score": 2, "automated_status": "PASS", "automated_confidence": "HIGH", "automated_justification": "Structured AST contains 0 control decision(s); flow graph contains 0 decision node(s). Decision routing invariants passed.", "evidence": [{"artifact": "flow_diagram.json", "expected_executable_ast_counts": {"CallNode": 1, "FunctionNode": 1, "ReturnNode": 1}, "visual_flow_ast_counts": {"FunctionNode": 1, "ReturnNode": 1}, "graph_validation": {"valid": true, "issues": [], "warnings": [], "node_count": 4, "edge_count": 3, "decision_node_count": 0, "loop_decision_count": 0, "loop_back_edge_count": 0, "unreachable_nodes": []}}, {"artifact": "ast.json + flow_diagram.json:structured_program", "signature_comparison": {"equivalent": true, "review_required": false, "differences": []}}], "human_assessment": {"score": null, "agreement_with_automated_score": null, "semantic_issue": null, "reviewer_justification": ""}}, {"stage_key": "python", "stage_name": "Generated Python Correctness", "criterion_id": "P1", "question": "Is the generated Python syntactically valid and executable for inputs valid under the source algorithm's assumptions?", "automated_score": 2, "automated_status": "PASS", "automated_confidence": "HIGH", "automated_justification": "Python source was generated and syntax-validated by the compiler.", "evidence": [{"artifact": "compilation_report.json", "status": "SUCCESS"}], "human_assessment": {"score": null, "agreement_with_automated_score": null, "semantic_issue": null, "reviewer_justification": ""}}, {"stage_key": "python", "stage_name": "Generated Python Correctness", "criterion_id": "P2", "question": "Does the generated Python produce the expected outputs and observable state changes across the predefined behavioural tests?", "automated_score": 0, "automated_status": "FAIL", "automated_confidence": "HIGH", "automated_justification": "Generated Python passed 0 of 1 task-semantic tests (0.00%).", "evidence": [{"artifact": "semantic_test_report.json", "tests_total": 1, "tests_passed": 0, "observation_mode": "TASK_SEMANTIC_FUNCTION"}], "human_assessment": {"score": null, "agreement_with_automated_score": null, "semantic_issue": null, "reviewer_justification": ""}}, {"stage_key": "python", "stage_name": "Generated Python Correctness", "criterion_id": "P3", "question": "Does the generated Python preserve source-defined boundary behaviour, termination behaviour, returns and errors?", "automated_score": null, "automated_status": "NOT_EVALUABLE", "automated_confidence": "HIGH", "automated_justification": "No tests are tagged BOUNDARY, ERROR_BEHAVIOUR or TERMINATION, so boundary/error/termination preservation cannot be scored automatically.", "evidence": [], "human_assessment": {"score": null, "agreement_with_automated_score": null, "semantic_issue": null, "reviewer_justification": ""}}, {"stage_key": "python", "stage_name": "Generated Python Correctness", "criterion_id": "P4", "question": "Does the generated Python preserve the algorithm's control flow, state changes, data-structure effects and observable behaviour without introducing or removing meaningful behaviour?", "automated_score": 0, "automated_status": "FAIL", "automated_confidence": "HIGH", "automated_justification": "Compilation succeeded, but none of the available behavioural-oracle tests passed.", "evidence": [{"artifact": "compilation_report.json + semantic_test_report.json", "tests_total": 1, "tests_passed": 0}], "human_assessment": {"score": null, "agreement_with_automated_score": null, "semantic_issue": null, "reviewer_justification": ""}}], "overall_review": {"material_semantic_error_not_captured": null, "first_semantic_loss_stage": null, "final_python_behaviourally_faithful": null, "additional_observations": ""}}</script>
+<script>
+const template=JSON.parse(document.getElementById('template').textContent);
+const saveEndpoint=null;
+const readOnly=false;
+const justificationPresets=["Evidence supports the selected score.", "Evidence mostly supports the selected score, with minor limitations.", "Evidence shows partial fulfilment of the criterion.", "Evidence does not support the criterion.", "Insufficient evidence to make a confident judgement.", "Not applicable to this algorithm."];
+const reviewCommentPresets=["Evidence supports the selected assessment.", "Evidence mostly supports the selected assessment, with minor limitations.", "Evidence shows partial support for the selected assessment.", "Evidence does not support the selected assessment.", "Insufficient evidence to make a confident judgement.", "Not applicable to this algorithm."];
+const val=id=>{const el=document.getElementById(id);return el?(el.value||null):null;};
+const boolVal=id=>{const v=val(id);return v===null?null:v==='true';};
+const radio=name=>{const el=document.querySelector(`input[name="${name}"]:checked`);return el?el.value:null;};
+const setVal=(id,value)=>{const el=document.getElementById(id);if(el)el.value=value??'';};
+const setText=(id,value)=>{const el=document.getElementById(id);if(el)el.value=value??'';};
+const toggleCriterionJustification=i=>{const choice=document.getElementById(`criterion_${i}_justification_choice`);const wrap=document.getElementById(`criterion_${i}_justification_other_wrap`);if(wrap)wrap.style.display=(choice&&choice.value==='__OTHER__')?'block':'none';};
+const setCriterionJustification=(i,value)=>{const choice=document.getElementById(`criterion_${i}_justification_choice`);const other=document.getElementById(`criterion_${i}_justification_other`);const text=value||'';if(!choice)return;if(text&&justificationPresets.includes(text)){choice.value=text;if(other)other.value='';}else if(text){choice.value='__OTHER__';if(other)other.value=text;}else{choice.value=justificationPresets[0];if(other)other.value='';}toggleCriterionJustification(i);};
+const criterionJustification=i=>{const choice=document.getElementById(`criterion_${i}_justification_choice`);if(!choice)return'';if(choice.value==='__OTHER__'){const other=document.getElementById(`criterion_${i}_justification_other`);return other?other.value.trim():'';}return choice.value||justificationPresets[0];};
+const toggleReviewComment=base=>{const choice=document.getElementById(`${base}_choice`);const wrap=document.getElementById(`${base}_other_wrap`);if(wrap)wrap.style.display=(choice&&choice.value==='__OTHER__')?'block':'none';};
+const setReviewComment=(base,value)=>{const choice=document.getElementById(`${base}_choice`);const other=document.getElementById(`${base}_other`);const text=value||'';if(!choice)return;if(text&&reviewCommentPresets.includes(text)){choice.value=text;if(other)other.value='';}else if(text){choice.value='__OTHER__';if(other)other.value=text;}else{choice.value=reviewCommentPresets[0];if(other)other.value='';}toggleReviewComment(base);};
+const reviewCommentValue=base=>{const choice=document.getElementById(`${base}_choice`);if(!choice)return'';if(choice.value==='__OTHER__'){const other=document.getElementById(`${base}_other`);return other?other.value.trim():'';}return choice.value||reviewCommentPresets[0];};
+function populate(){
+ const r=template.reviewer||{}; setVal('reviewer_id',r.reviewer_id);setVal('reviewer_name',r.reviewer_name);setVal('reviewer_confidence',r.overall_reviewer_confidence);
+ const g1=template.source_sufficiency||{};setVal('g1_result',g1.human_result);setVal('g1_agreement',g1.agreement_with_automated_result);setReviewComment('g1_justification',g1.reviewer_justification);
+ const g2=template.behavioural_evidence_adequacy||{};setVal('g2_result',g2.human_result);setVal('g2_agreement',g2.agreement_with_automated_result);setReviewComment('g2_justification',g2.reviewer_justification);
+ if(template.task_semantic_evaluation){const h=template.task_semantic_evaluation.human_assessment||{};setVal('sem_inputs',h.required_inputs_represented);setVal('sem_logic',h.core_algorithm_logic);setVal('sem_output',h.required_output_semantics_represented);setVal('sem_edge',h.edge_and_domain_handling);setVal('sem_overall',h.overall_semantic_assessment);setReviewComment('sem_justification',h.reviewer_justification);}
+ if(template.benchmark_validation){setVal('baseline_reference_appropriate',template.benchmark_validation.human_reference_appropriate);setText('baseline_reference_justification',template.benchmark_validation.reviewer_justification);}
+ (template.criteria||[]).forEach((item,i)=>{const h=item.human_assessment||{};let label=h.score_label;if(!label&&h.score!==null&&h.score!==undefined)label=String(h.score);if(label){const el=document.querySelector(`input[name="criterion_${i}_score"][value="${label}"]`);if(el)el.checked=true;}setVal(`criterion_${i}_agreement`,h.agreement_with_automated_score);setVal(`criterion_${i}_semantic`,h.semantic_issue===true?'true':(h.semantic_issue===false?'false':''));setCriterionJustification(i,h.reviewer_justification);});
+ const o=template.overall_review||{};setVal('uncaptured',o.material_semantic_error_not_captured===true?'true':(o.material_semantic_error_not_captured===false?'false':''));setVal('first_loss',o.first_semantic_loss_stage);setVal('faithful',o.final_python_behaviourally_faithful);setText('observations',o.additional_observations);
+ if(saveEndpoint){document.getElementById('reviewer_id').readOnly=true;document.getElementById('reviewer_name').readOnly=true;}
+ if(readOnly){document.querySelectorAll('input,select,textarea').forEach(el=>el.disabled=true);document.getElementById('primary').disabled=true;}
+}
+function buildReview(){
+ const out=JSON.parse(JSON.stringify(template));out.reviewer=out.reviewer||{};
+ out.reviewer.reviewer_id=val('reviewer_id')||'';out.reviewer.reviewer_name=val('reviewer_name')||'';out.reviewer.reviewed_at_utc=new Date().toISOString();out.reviewer.overall_reviewer_confidence=val('reviewer_confidence');
+ out.source_sufficiency.human_result=val('g1_result');out.source_sufficiency.agreement_with_automated_result=val('g1_agreement');out.source_sufficiency.reviewer_justification=reviewCommentValue('g1_justification');
+ out.behavioural_evidence_adequacy.human_result=val('g2_result');out.behavioural_evidence_adequacy.agreement_with_automated_result=val('g2_agreement');out.behavioural_evidence_adequacy.reviewer_justification=reviewCommentValue('g2_justification');
+ if(out.benchmark_validation){out.benchmark_validation.human_reference_appropriate=val('baseline_reference_appropriate');out.benchmark_validation.reviewer_justification=document.getElementById('baseline_reference_justification').value;}
+ if(out.task_semantic_evaluation){const h=out.task_semantic_evaluation.human_assessment;h.required_inputs_represented=val('sem_inputs');h.core_algorithm_logic=val('sem_logic');h.required_output_semantics_represented=val('sem_output');h.edge_and_domain_handling=val('sem_edge');h.overall_semantic_assessment=val('sem_overall');h.reviewer_justification=reviewCommentValue('sem_justification');}
+ out.criteria.forEach((item,i)=>{const raw=radio(`criterion_${i}_score`);item.human_assessment.score=raw===null?null:(raw==='NA'?null:Number(raw));item.human_assessment.score_label=raw;item.human_assessment.completed=['0','1','2','NA'].includes(raw);item.human_assessment.agreement_with_automated_score=val(`criterion_${i}_agreement`);item.human_assessment.semantic_issue=boolVal(`criterion_${i}_semantic`);item.human_assessment.reviewer_justification=criterionJustification(i);});
+ out.overall_review.material_semantic_error_not_captured=boolVal('uncaptured');out.overall_review.first_semantic_loss_stage=val('first_loss');out.overall_review.final_python_behaviourally_faithful=val('faithful');out.overall_review.additional_observations=document.getElementById('observations').value;return out;
+}
+function showStatus(ok,message){const box=document.getElementById('save_status');box.className='status '+(ok?'ok':'err');box.textContent=message;box.scrollIntoView({behavior:'smooth',block:'center'});}
+function downloadReviewBackup(review){const blob=new Blob([JSON.stringify(review,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='human_review.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),500);}
+document.getElementById('primary').addEventListener('click',async()=>{
+ if(readOnly)return;const review=buildReview();if(!review.reviewer.reviewer_id||!review.reviewer.reviewer_name){showStatus(false,'Reviewer ID and Reviewer Name are required.');return;}
+ if(saveEndpoint){try{const response=await fetch(saveEndpoint,{method:'POST',headers:{'Content-Type':'application/json'},cache:'no-store',body:JSON.stringify(review)});let result={};try{result=await response.json();}catch(_err){result={};}if(!response.ok){showStatus(false,result.error||('Review could not be saved (HTTP '+response.status+').'));return;}showStatus(true,result.message||'Review saved.');}catch(_err){downloadReviewBackup(review);showStatus(false,"Direct save service is unavailable. A backup human_review.json has been downloaded so your completed review is not lost. Keep or reopen the NL-FDEP Human Review window, then save again, or place the backup in this algorithm's pipeline_artifacts/scoring folder.");}return;}
+ downloadReviewBackup(review);
+});
+document.getElementById('print').addEventListener('click',()=>window.print());
+populate();
+</script>
+</body>
+</html>

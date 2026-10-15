@@ -1,0 +1,9 @@
+# Decimal to Binary
+
+FUNCTION decimalToBinary(n):
+    IF n == 0 THEN RETURN "0"
+    result ← ""
+    WHILE n > 0:
+        result ← (n MOD 2) + result
+        n ← n DIV 2
+    RETURN result

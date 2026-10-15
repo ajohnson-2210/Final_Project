@@ -1,0 +1,9 @@
+# Maximum Subarray Sum (Kadane's Algorithm)
+
+FUNCTION maxSubarraySum(arr):
+    maxSum ← arr[0]
+    currentSum ← arr[0]
+    FOR i FROM 1 TO length(arr) - 1:
+        currentSum ← MAX(arr[i], currentSum + arr[i])
+        maxSum ← MAX(maxSum, currentSum)
+    RETURN maxSum

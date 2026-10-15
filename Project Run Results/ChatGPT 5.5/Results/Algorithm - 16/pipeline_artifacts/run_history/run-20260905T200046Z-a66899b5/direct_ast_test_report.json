@@ -1,0 +1,126 @@
+{
+  "program_path": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\ChatGPT 5.5\\Results\\Algorithm - 16\\pipeline_artifacts\\direct_ast_program.py",
+  "success": false,
+  "total_tests": 4,
+  "passed_tests": 0,
+  "failed_tests": 4,
+  "category_summary": {
+    "NORMAL": {
+      "total": 1,
+      "passed": 0,
+      "failed": 1
+    },
+    "BRANCH": {
+      "total": 1,
+      "passed": 0,
+      "failed": 1
+    },
+    "BOUNDARY": {
+      "total": 1,
+      "passed": 0,
+      "failed": 1
+    },
+    "ERROR_BEHAVIOUR": {
+      "total": 1,
+      "passed": 0,
+      "failed": 1
+    }
+  },
+  "results": [
+    {
+      "name": "standard GCD",
+      "status": "FAILED",
+      "expected_output": [
+        "Enter First Number: Enter Second Number: GCD = 6"
+      ],
+      "actual_output": [],
+      "standard_error": "",
+      "return_code": 0,
+      "duration_ms": 49.979,
+      "category": "NORMAL",
+      "semantic_feature": "EUCLIDEAN_GCD",
+      "expected_return_code": 0,
+      "expected_error_type": null,
+      "actual_error_type": null,
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "random_seed": null,
+      "environment": {},
+      "requires_modules": []
+    },
+    {
+      "name": "coprime numbers",
+      "status": "FAILED",
+      "expected_output": [
+        "Enter First Number: Enter Second Number: GCD = 1"
+      ],
+      "actual_output": [],
+      "standard_error": "",
+      "return_code": 0,
+      "duration_ms": 44.109,
+      "category": "BRANCH",
+      "semantic_feature": "EUCLIDEAN_GCD_COPRIME",
+      "expected_return_code": 0,
+      "expected_error_type": null,
+      "actual_error_type": null,
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "random_seed": null,
+      "environment": {},
+      "requires_modules": []
+    },
+    {
+      "name": "negative input normalised",
+      "status": "FAILED",
+      "expected_output": [
+        "Enter First Number: Enter Second Number: GCD = 6"
+      ],
+      "actual_output": [],
+      "standard_error": "",
+      "return_code": 0,
+      "duration_ms": 36.644,
+      "category": "BOUNDARY",
+      "semantic_feature": "ABSOLUTE_VALUE_NORMALISATION",
+      "expected_return_code": 0,
+      "expected_error_type": null,
+      "actual_error_type": null,
+      "criteria_links": [
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "random_seed": null,
+      "environment": {},
+      "requires_modules": []
+    },
+    {
+      "name": "invalid first input retries",
+      "status": "FAILED",
+      "expected_output": [
+        "Enter First Number: That's Not a Valid Number, Please Try Again!",
+        "Enter First Number: Enter Second Number: GCD = 6"
+      ],
+      "actual_output": [],
+      "standard_error": "",
+      "return_code": 0,
+      "duration_ms": 37.868,
+      "category": "ERROR_BEHAVIOUR",
+      "semantic_feature": "FIRST_INTEGER_INPUT_RETRY",
+      "expected_return_code": 0,
+      "expected_error_type": null,
+      "actual_error_type": null,
+      "criteria_links": [
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "random_seed": null,
+      "environment": {},
+      "requires_modules": []
+    }
+  ]
+}

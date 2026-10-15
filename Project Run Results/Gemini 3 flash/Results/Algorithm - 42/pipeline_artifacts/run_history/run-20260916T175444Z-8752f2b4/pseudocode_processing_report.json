@@ -1,0 +1,169 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 13,
+  "transformations": [
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    seen = empty Set",
+      "canonical": "    seen <- empty Set",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    pairs = empty Set",
+      "canonical": "    pairs <- empty Set",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 6,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        complement = target - num",
+      "canonical": "        complement <- target - num",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    seen <- empty Set",
+      "canonical": "    seen <- EMPTY SET",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    pairs <- empty Set",
+      "canonical": "    pairs <- EMPTY SET",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "FUNCTION FindPairsWithSum(arr, target):\n    seen <- EMPTY SET\n    pairs <- EMPTY SET\n    \n    FOR EACH num IN arr DO\n        complement <- target - num\n        IF complement IN seen THEN\n            ADD (MIN(num, complement), MAX(num, complement)) TO pairs\n        END IF\n        ADD num TO seen\n    END FOR\n    \n    RETURN pairs\nEND FUNCTION",
+      "canonical": "FUNCTION FindPairsWithSum(arr, target):\n    seen <- EMPTY SET\n    pairs <- EMPTY SET\n    \n    FOR EACH num IN arr DO\n        complement <- target - num\n        IF complement IN seen THEN\n            ADD (MIN(num, complement), MAX(num, complement)) TO pairs\n        ENDIF\n        ADD num TO seen\n    ENDFOR\n    \n    RETURN pairs\nENDFUNCTION",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION FindPairsWithSum(arr, target):\n    seen <- EMPTY SET\n    pairs <- EMPTY SET\n    \n    FOR EACH num IN arr DO\n        complement <- target - num\n        IF complement IN seen THEN\n            ADD (MIN(num, complement), MAX(num, complement)) TO pairs\n        ENDIF\n        ADD num TO seen\n    ENDFOR\n    \n    RETURN pairs\nENDFUNCTION",
+      "canonical": "FUNCTION FindPairsWithSum(arr, target):\n    seen <- EMPTY SET\n    pairs <- EMPTY SET\n    \n    FOR EACH num IN arr DO\n        complement <- target - num\n        IF complement IN seen THEN\n            CALL add_to_set(pairs, (MIN(num, complement), MAX(num, complement)))\n        ENDIF\n        CALL add_to_set(seen, num)\n    ENDFOR\n    \n    RETURN pairs\nENDFUNCTION",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SET_EXPRESSION",
+      "branch": "EVIDENCED_TWO_VALUE_TUPLE_SET_INSERTION",
+      "source": "FUNCTION FindPairsWithSum(arr, target):\n    seen <- EMPTY SET\n    pairs <- EMPTY SET\n    \n    FOR EACH num IN arr DO\n        complement <- target - num\n        IF complement IN seen THEN\n            CALL add_to_set(pairs, (MIN(num, complement), MAX(num, complement)))\n        ENDIF\n        CALL add_to_set(seen, num)\n    ENDFOR\n    \n    RETURN pairs\nENDFUNCTION",
+      "canonical": "FUNCTION FindPairsWithSum(arr, target):\n    seen <- EMPTY SET\n    pairs <- EMPTY SET\n    \n    FOR EACH num IN arr DO\n        complement <- target - num\n        IF complement IN seen THEN\n            CALL add_to_set(pairs, TUPLE(MIN(num, complement), MAX(num, complement)))\n        ENDIF\n        CALL add_to_set(seen, num)\n    ENDFOR\n    \n    RETURN pairs\nENDFUNCTION",
+      "evidence": [
+        "receiver is independently evidenced as set-backed by an explicit EMPTY SET declaration",
+        "GC158 has already preserved the source insertion as CALL add_to_set(receiver, value)",
+        "the inserted value is one outer parenthesis pair containing exactly two top-level source expressions",
+        "AJ v1.1 already represents that explicit pair value with TUPLE(...) and no collection or arithmetic semantics are added"
+      ],
+      "confidence": "source_proven",
+      "semantic_change": false
+    },
+    {
+      "line": 8,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            CALL add_to_set(pairs, TUPLE(MIN(num, complement), MAX(num, complement)))",
+      "canonical": "            CALL add_to_set(pairs, TUPLE(CALL min(num, complement), CALL max(num, complement)))",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 8,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            CALL add_to_set(pairs, TUPLE(MIN(num, complement), MAX(num, complement)))",
+      "canonical": "            CALL add_to_set(pairs, TUPLE(CALL min(num, complement), CALL max(num, complement)))",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION FindPairsWithSum(arr, target):",
+      "canonical": "FUNCTION FindPairsWithSum ACCEPTS(arr, target)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    ",
+      "canonical": "",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 12,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    ",
+      "canonical": "",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 1
+}

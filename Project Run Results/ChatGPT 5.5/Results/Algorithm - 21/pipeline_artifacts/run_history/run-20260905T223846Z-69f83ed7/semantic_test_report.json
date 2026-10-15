@@ -1,0 +1,168 @@
+{
+  "semantic_report_schema_version": "1.0",
+  "program_path": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\ChatGPT 5.5\\Results\\Algorithm - 21\\pipeline_artifacts\\generated_program.py",
+  "algorithm_id": 21,
+  "contract_version": "1.2",
+  "evaluable_tests": 4,
+  "passed_tests": 4,
+  "failed_tests": 0,
+  "not_evaluable_tests": 1,
+  "accuracy_percentage": 100.0,
+  "results": [
+    {
+      "name": "positive even",
+      "status": "PASSED",
+      "expected_semantic_result": "EVEN",
+      "actual_semantic_result": "EVEN",
+      "semantic_match": true,
+      "reason": null,
+      "duration_ms": 122.607,
+      "category": "NORMAL",
+      "semantic_feature": "EVEN_BRANCH",
+      "fixture_source": "COMMON_TEST_STANDARD_INPUT",
+      "oracle_source": "TASK_SEMANTIC_ORACLE_WITH_FROZEN_BASELINE_REFERENCE",
+      "selected_entrypoint": "unnamed_function",
+      "invocation_capture": {
+        "status": "COMPLETED",
+        "selected_entrypoint": "unnamed_function",
+        "prints": [
+          [
+            "Even"
+          ]
+        ],
+        "returns": [
+          null
+        ],
+        "post_arguments": [
+          [
+            8
+          ]
+        ],
+        "shared_values": {},
+        "errors": [
+          null
+        ]
+      }
+    },
+    {
+      "name": "positive odd",
+      "status": "PASSED",
+      "expected_semantic_result": "ODD",
+      "actual_semantic_result": "ODD",
+      "semantic_match": true,
+      "reason": null,
+      "duration_ms": 127.625,
+      "category": "BRANCH",
+      "semantic_feature": "ODD_BRANCH",
+      "fixture_source": "COMMON_TEST_STANDARD_INPUT",
+      "oracle_source": "TASK_SEMANTIC_ORACLE_WITH_FROZEN_BASELINE_REFERENCE",
+      "selected_entrypoint": "unnamed_function",
+      "invocation_capture": {
+        "status": "COMPLETED",
+        "selected_entrypoint": "unnamed_function",
+        "prints": [
+          [
+            "Odd"
+          ]
+        ],
+        "returns": [
+          null
+        ],
+        "post_arguments": [
+          [
+            7
+          ]
+        ],
+        "shared_values": {},
+        "errors": [
+          null
+        ]
+      }
+    },
+    {
+      "name": "zero is even",
+      "status": "PASSED",
+      "expected_semantic_result": "EVEN",
+      "actual_semantic_result": "EVEN",
+      "semantic_match": true,
+      "reason": null,
+      "duration_ms": 120.08,
+      "category": "BOUNDARY",
+      "semantic_feature": "ZERO_PARITY",
+      "fixture_source": "COMMON_TEST_STANDARD_INPUT",
+      "oracle_source": "TASK_SEMANTIC_ORACLE_WITH_FROZEN_BASELINE_REFERENCE",
+      "selected_entrypoint": "unnamed_function",
+      "invocation_capture": {
+        "status": "COMPLETED",
+        "selected_entrypoint": "unnamed_function",
+        "prints": [
+          [
+            "Even"
+          ]
+        ],
+        "returns": [
+          null
+        ],
+        "post_arguments": [
+          [
+            0
+          ]
+        ],
+        "shared_values": {},
+        "errors": [
+          null
+        ]
+      }
+    },
+    {
+      "name": "negative odd",
+      "status": "PASSED",
+      "expected_semantic_result": "ODD",
+      "actual_semantic_result": "ODD",
+      "semantic_match": true,
+      "reason": null,
+      "duration_ms": 144.528,
+      "category": "BOUNDARY",
+      "semantic_feature": "NEGATIVE_PARITY",
+      "fixture_source": "COMMON_TEST_STANDARD_INPUT",
+      "oracle_source": "TASK_SEMANTIC_ORACLE_WITH_FROZEN_BASELINE_REFERENCE",
+      "selected_entrypoint": "unnamed_function",
+      "invocation_capture": {
+        "status": "COMPLETED",
+        "selected_entrypoint": "unnamed_function",
+        "prints": [
+          [
+            "Odd"
+          ]
+        ],
+        "returns": [
+          null
+        ],
+        "post_arguments": [
+          [
+            -3
+          ]
+        ],
+        "shared_values": {},
+        "errors": [
+          null
+        ]
+      }
+    },
+    {
+      "name": "invalid input retries",
+      "status": "NOT_EVALUABLE",
+      "expected_semantic_result": null,
+      "actual_semantic_result": null,
+      "semantic_match": null,
+      "reason": "This Common Test remains interaction/reference evidence and is not a canonical task-function test.",
+      "duration_ms": null,
+      "category": "ERROR_BEHAVIOUR",
+      "semantic_feature": "INTEGER_INPUT_RETRY",
+      "fixture_source": null,
+      "oracle_source": null,
+      "selected_entrypoint": null,
+      "invocation_capture": null
+    }
+  ]
+}

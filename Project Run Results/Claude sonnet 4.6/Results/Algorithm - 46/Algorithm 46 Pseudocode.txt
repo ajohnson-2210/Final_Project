@@ -1,0 +1,10 @@
+# Matrix Multiplication
+
+FUNCTION multiplyMatrices(A, B, n, m, p):
+    // A is n×m, B is m×p
+    result ← n × p matrix of 0s
+    FOR i FROM 0 TO n - 1:
+        FOR j FROM 0 TO p - 1:
+            FOR k FROM 0 TO m - 1:
+                result[i][j] ← result[i][j] + A[i][k] * B[k][j]
+    RETURN result

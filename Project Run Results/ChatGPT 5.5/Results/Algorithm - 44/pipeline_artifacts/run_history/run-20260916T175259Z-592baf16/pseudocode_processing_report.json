@@ -1,0 +1,94 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 7,
+  "transformations": [
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    CurrentSum \u2190 Array[0]",
+      "canonical": "    CurrentSum <- Array[0]",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    MaxSum \u2190 Array[0]",
+      "canonical": "    MaxSum <- Array[0]",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 6,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    FOR i \u2190 1 TO LENGTH(Array)-1",
+      "canonical": "    FOR i <- 1 TO LENGTH(Array)-1",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 7,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        CurrentSum \u2190 MAX(Array[i], CurrentSum + Array[i])",
+      "canonical": "        CurrentSum <- MAX(Array[i], CurrentSum + Array[i])",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 10,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            MaxSum \u2190 CurrentSum",
+      "canonical": "            MaxSum <- CurrentSum",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    INPUT Array\n\n    CurrentSum <- Array[0]\n    MaxSum <- Array[0]\n\n    FOR i <- 1 TO LENGTH(Array)-1\n        CurrentSum <- MAX(Array[i], CurrentSum + Array[i])\n\n        IF CurrentSum > MaxSum THEN\n            MaxSum <- CurrentSum\n        ENDIF\n    ENDFOR\n\n    OUTPUT MaxSum\nEND",
+      "canonical": "FUNCTION unnamed_function ACCEPTS(Array)\n    CurrentSum <- Array[0]\n    MaxSum <- Array[0]\n\n    FOR i <- IN RANGE 1 TO (LENGTH OF Array - 1) + 1 DO\n        CurrentSum <- CALL max(Array[i], CurrentSum + Array[i])\n\n        IF CurrentSum > MaxSum THEN\n            MaxSum <- CurrentSum\n        ENDIF\n    ENDFOR\n\n    OUTPUT MaxSum\nENDFUNCTION",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 6,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        CurrentSum <- CALL max(Array[i], CurrentSum + Array[i])",
+      "canonical": "        CurrentSum <- CALL CALL max(Array[i], CurrentSum + Array[i])",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 2
+}

@@ -1,0 +1,25 @@
+# Implement a stack using an array (push/pop/peek)
+CLASS STACK
+  Constructor()
+    array = []
+    top = -1
+
+  FUNCTION PUSH(element)
+    top += 1
+    array[top] = element
+
+  FUNCTION POP()
+    IF top == -1 THEN
+      RETURN NULL
+    END IF
+    element = array[top]
+    top -= 1
+    RETURN element
+
+  FUNCTION PEEK()
+    IF top == -1 THEN
+      RETURN NULL
+    END IF
+    RETURN array[top]
+
+END CLASS

@@ -1,0 +1,14 @@
+# Binary Search in Rotated Sorted Array
+
+FUNCTION searchRotated(arr, target):
+    low ← 0, high ← length(arr) - 1
+    WHILE low <= high:
+        mid ← (low + high) DIV 2
+        IF arr[mid] == target THEN RETURN mid
+        IF arr[low] <= arr[mid] THEN   // left half is sorted
+            IF arr[low] <= target < arr[mid] THEN high ← mid - 1
+            ELSE low ← mid + 1
+        ELSE                           // right half is sorted
+            IF arr[mid] < target <= arr[high] THEN low ← mid + 1
+            ELSE high ← mid - 1
+    RETURN -1

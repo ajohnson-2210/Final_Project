@@ -1,0 +1,15 @@
+    INPUT String1, String2
+
+    IF LENGTH(String1) ≠ LENGTH(String2) THEN
+        OUTPUT "Not Anagrams"
+    ELSE
+        SORT characters of String1
+        SORT characters of String2
+
+        IF String1 = String2 THEN
+            OUTPUT "Anagrams"
+        ELSE
+            OUTPUT "Not Anagrams"
+        ENDIF
+    ENDIF
+END

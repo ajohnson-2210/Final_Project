@@ -1,0 +1,262 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 21,
+  "transformations": [
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    stack1 \u2190 [], stack2 \u2190 []",
+      "canonical": "    stack1 <- [], stack2 <- []",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    stack1 <- [], stack2 <- []",
+      "canonical": "    stack1 <- []\n    stack2 <- []",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    stack1 <- []",
+      "canonical": "    stack1 <- EMPTY LIST",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    stack2 <- []",
+      "canonical": "    stack2 <- EMPTY LIST",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 12,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        IF stack2 is empty THEN RETURN \"Underflow\"",
+      "canonical": "        IF stack2 is empty THEN RETURN STRING(\"Underflow\")",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION Queue():\n    stack1 <- EMPTY LIST\n    stack2 <- EMPTY LIST\n    \n    FUNCTION enqueue(item):\n        PUSH item ONTO stack1\n    \n    FUNCTION dequeue():\n        IF stack2 is empty THEN\n            WHILE stack1 is not empty:\n                PUSH POP(stack1) ONTO stack2\n        IF stack2 is empty THEN RETURN STRING(\"Underflow\")\n        RETURN POP(stack2)",
+      "canonical": "FUNCTION Queue():\n    stack1 <- EMPTY LIST\n    stack2 <- EMPTY LIST\n    \n    FUNCTION enqueue(item):\n        PUSH item ONTO stack1\n    \n    FUNCTION dequeue():\n        IF LENGTH OF stack2 == 0 THEN\n            WHILE LENGTH OF stack1 > 0:\n                PUSH POP(stack1) ONTO stack2\n        IF LENGTH OF stack2 == 0 THEN RETURN STRING(\"Underflow\")\n        RETURN POP(stack2)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION Queue():\n    stack1 <- EMPTY LIST\n    stack2 <- EMPTY LIST\n    \n    FUNCTION enqueue(item):\n        PUSH item ONTO stack1\n    \n    FUNCTION dequeue():\n        IF LENGTH OF stack2 == 0 THEN\n            WHILE LENGTH OF stack1 > 0:\n                PUSH POP(stack1) ONTO stack2\n        IF LENGTH OF stack2 == 0 THEN RETURN STRING(\"Underflow\")\n        RETURN POP(stack2)",
+      "canonical": "FUNCTION Queue():\n    stack1 <- EMPTY LIST\n    stack2 <- EMPTY LIST\n    \n    FUNCTION enqueue(item):\n        APPEND item TO stack1\n    FUNCTION dequeue():\n        IF LENGTH OF stack2 == 0 THEN\n            WHILE LENGTH OF stack1 > 0:\n                APPEND POP(stack1) TO stack2\n        IF LENGTH OF stack2 == 0 THEN RETURN STRING(\"Underflow\")\n        RETURN POP(stack2)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION Queue():",
+      "canonical": "FUNCTION Queue ACCEPTS()",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    FUNCTION enqueue(item):",
+      "canonical": "    FUNCTION enqueue ACCEPTS(item)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 7,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    FUNCTION dequeue():",
+      "canonical": "    FUNCTION dequeue ACCEPTS()",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 9,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            WHILE LENGTH OF stack1 > 0:",
+      "canonical": "            WHILE LENGTH OF stack1 > 0 DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 11,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        IF LENGTH OF stack2 == 0 THEN RETURN STRING(\"Underflow\")",
+      "canonical": "        IF LENGTH OF stack2 == 0 THEN\n            RETURN STRING(\"Underflow\")",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 10,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "                APPEND POP(stack1) TO stack2",
+      "canonical": "                APPEND CALL POP(stack1) TO stack2",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 13,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        RETURN POP(stack2)",
+      "canonical": "        RETURN CALL POP(stack2)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 7,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDFUNCTION",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 11,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDWHILE",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 11,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDIF",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 13,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDIF",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 7,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDFUNCTION",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDFUNCTION",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION Queue ACCEPTS()\n    stack1 <- EMPTY LIST\n    stack2 <- EMPTY LIST\n    \n    FUNCTION enqueue ACCEPTS(item)\n        APPEND item TO stack1\n    ENDFUNCTION\n    FUNCTION dequeue ACCEPTS()\n        IF LENGTH OF stack2 == 0 THEN\n            WHILE LENGTH OF stack1 > 0 DO\n                APPEND CALL POP(stack1) TO stack2\n            ENDWHILE\n        ENDIF\n        IF LENGTH OF stack2 == 0 THEN\n            RETURN STRING(\"Underflow\")\n        ENDIF\n        RETURN CALL POP(stack2)\n    ENDFUNCTION\nENDFUNCTION",
+      "canonical": "CLASS Queue\n    PROPERTY stack1 AS LIST\n    PROPERTY stack2 AS LIST\n\n    CONSTRUCTOR ACCEPTS()\n        PROPERTY THIS.stack1 <- EMPTY LIST\n        PROPERTY THIS.stack2 <- EMPTY LIST\n    ENDCONSTRUCTOR\n\n    METHOD enqueue ACCEPTS(item)\n        APPEND item TO THIS.stack1\n    ENDMETHOD\n\n    METHOD dequeue ACCEPTS()\n        IF LENGTH OF THIS.stack2 == 0 THEN\n            WHILE LENGTH OF THIS.stack1 > 0 DO\n                APPEND CALL POP(THIS.stack1) TO THIS.stack2\n            ENDWHILE\n        ENDIF\n        IF LENGTH OF THIS.stack2 == 0 THEN\n            RETURN STRING(\"Underflow\")\n        ENDIF\n        RETURN CALL POP(THIS.stack2)\n    ENDMETHOD\nENDCLASS",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 2
+}

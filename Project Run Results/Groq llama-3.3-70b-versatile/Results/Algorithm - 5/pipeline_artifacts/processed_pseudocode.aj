@@ -1,0 +1,3 @@
+FUNCTION REMOVE_PUNCTUATION ACCEPTS(sentence)
+  RETURN CALL regex_replace(sentence, STRING("[^a-zA-Z0-9\\s]"), EMPTY STRING)
+ENDFUNCTION

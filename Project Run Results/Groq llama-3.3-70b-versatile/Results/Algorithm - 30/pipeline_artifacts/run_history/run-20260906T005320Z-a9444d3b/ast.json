@@ -1,0 +1,104 @@
+{
+  "root_id": "N6613",
+  "nodes": {
+    "N6613": {
+      "kind": "ProgramNode",
+      "line": 1,
+      "attributes": {}
+    },
+    "N6612": {
+      "kind": "FunctionNode",
+      "line": 1,
+      "attributes": {
+        "name": "TOPIC_MODELLING"
+      }
+    },
+    "N6603": {
+      "kind": "ParameterNode",
+      "line": 1,
+      "attributes": {
+        "name": "corpus",
+        "declared_type": null
+      }
+    },
+    "N6611": {
+      "kind": "BlockNode",
+      "line": 2,
+      "attributes": {}
+    },
+    "N6604": {
+      "kind": "CommentNode",
+      "line": 2,
+      "attributes": {
+        "text": "Use a topic modelling algorithm such as Latent Dirichlet Allocation (LDA) to extract topics"
+      }
+    },
+    "N6608": {
+      "kind": "AssignmentNode",
+      "line": 3,
+      "attributes": {}
+    },
+    "N6605": {
+      "kind": "IdentifierNode",
+      "line": 3,
+      "attributes": {
+        "name": "topics"
+      }
+    },
+    "N6607": {
+      "kind": "CallNode",
+      "line": 3,
+      "attributes": {
+        "name": "EXTRACT_TOPICS"
+      }
+    },
+    "N6606": {
+      "kind": "IdentifierNode",
+      "line": 3,
+      "attributes": {
+        "name": "corpus"
+      }
+    },
+    "N6610": {
+      "kind": "ReturnNode",
+      "line": 4,
+      "attributes": {}
+    },
+    "N6609": {
+      "kind": "IdentifierNode",
+      "line": 4,
+      "attributes": {
+        "name": "topics"
+      }
+    }
+  },
+  "adjacency": {
+    "N6613": [
+      "N6612"
+    ],
+    "N6612": [
+      "N6603",
+      "N6611"
+    ],
+    "N6603": [],
+    "N6611": [
+      "N6604",
+      "N6608",
+      "N6610"
+    ],
+    "N6604": [],
+    "N6608": [
+      "N6605",
+      "N6607"
+    ],
+    "N6605": [],
+    "N6607": [
+      "N6606"
+    ],
+    "N6606": [],
+    "N6610": [
+      "N6609"
+    ],
+    "N6609": []
+  }
+}

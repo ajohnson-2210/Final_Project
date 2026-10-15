@@ -1,0 +1,46 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 3,
+  "transformations": [
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION COMMON_ELEMENTS(list1, list2)",
+      "canonical": "FUNCTION COMMON_ELEMENTS ACCEPTS(list1, list2)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "FUNCTION COMMON_ELEMENTS ACCEPTS(list1, list2)\n  RETURN UNIQUE_INTERSECTION(list1, list2)\nEND FUNCTION",
+      "canonical": "FUNCTION COMMON_ELEMENTS ACCEPTS(list1, list2)\n  RETURN UNIQUE_INTERSECTION(list1, list2)\nENDFUNCTION",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  RETURN UNIQUE_INTERSECTION(list1, list2)",
+      "canonical": "  RETURN CALL UNIQUE_INTERSECTION(list1, list2)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 1
+}

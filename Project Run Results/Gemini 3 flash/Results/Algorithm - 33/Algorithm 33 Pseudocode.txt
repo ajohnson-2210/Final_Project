@@ -1,0 +1,22 @@
+# Square root using binary search (rounded down)    
+FUNCTION IntegerSquareRoot(n):
+    IF n < 2 THEN RETURN n
+    
+    low = 1
+    high = n DIV 2
+    ans = 0
+    
+    WHILE low <= high DO
+        mid = low + (high - low) DIV 2
+        IF mid * mid == n THEN
+            RETURN mid
+        ELSE IF mid * mid < n THEN
+            ans = mid
+            low = mid + 1
+        ELSE
+            high = mid - 1
+        END IF
+    END WHILE
+    
+    RETURN ans
+END FUNCTION

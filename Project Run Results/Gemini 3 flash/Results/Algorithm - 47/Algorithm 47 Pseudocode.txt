@@ -1,0 +1,10 @@
+# Inventory quantities update after purchases and deliveries    
+PROCEDURE UpdateInventory(inventory_map, transactions):
+    FOR EACH item IN transactions DO
+        IF item.type == "PURCHASE" THEN
+            inventory_map[item.id] = inventory_map[item.id] - item.quantity
+        ELSE IF item.type == "DELIVERY" THEN
+            inventory_map[item.id] = inventory_map[item.id] + item.quantity
+        END IF
+    END FOR
+END PROCEDURE

@@ -1,0 +1,12 @@
+# Scan text and count how many times each vowel (a, e, i, o, u) appears    
+FUNCTION CountVowels(text):
+    vowel_counts = {'a': 0, 'e': 0, 'i': 0, 'o': 0, 'u': 0}
+    
+    FOR EACH char IN lowercase(text) DO
+        IF char IN vowel_counts THEN
+            vowel_counts[char] = vowel_counts[char] + 1
+        END IF
+    END FOR
+    
+    RETURN vowel_counts
+END FUNCTION

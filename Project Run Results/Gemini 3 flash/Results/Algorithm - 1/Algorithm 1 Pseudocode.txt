@@ -1,0 +1,21 @@
+# Determine whether two given strings are anagrams of each other
+FUNCTION AreAnagrams(str1, str2):
+    IF length(str1) != length(str2) THEN
+        RETURN False
+    END IF
+    
+    char_counts = empty Hash Map
+    
+    FOR EACH char IN str1 DO
+        char_counts[char] = char_counts[char] + 1
+    END FOR
+    
+    FOR EACH char IN str2 DO
+        IF char NOT IN char_counts OR char_counts[char] == 0 THEN
+            RETURN False
+        END IF
+        char_counts[char] = char_counts[char] - 1
+    END FOR
+    
+    RETURN True
+END FUNCTION

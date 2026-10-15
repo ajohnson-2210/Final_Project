@@ -1,0 +1,11 @@
+# Question Answering System
+
+FUNCTION answerQuestion(question, context):
+    qTokens ← tokenize(question)
+    cTokens ← tokenize(context)
+    qEmbedding ← embed(qTokens)
+    FOR each sentence IN context:
+        score[sentence] ← similarity(qEmbedding, embed(sentence))
+    bestSentence ← sentence with highest score
+    answer ← extractAnswerSpan(question, bestSentence)
+    RETURN answer

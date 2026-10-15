@@ -1,0 +1,110 @@
+{
+  "format": "NL-FDEP Flow Diagram",
+  "version": "1.0",
+  "entry_node": "F1",
+  "exit_node": "F2",
+  "nodes": {
+    "F1": {
+      "node_id": "F1",
+      "node_type": "START",
+      "label": "Start",
+      "line": 1,
+      "data": {}
+    },
+    "F2": {
+      "node_id": "F2",
+      "node_type": "END",
+      "label": "End",
+      "line": 1,
+      "data": {}
+    },
+    "F3": {
+      "node_id": "F3",
+      "node_type": "FUNCTION",
+      "label": "Run function REMOVE_PUNCTUATION with sentence",
+      "line": 1,
+      "data": {
+        "ast_kind": "FunctionNode",
+        "name": "REMOVE_PUNCTUATION"
+      }
+    },
+    "F4": {
+      "node_id": "F4",
+      "node_type": "RETURN",
+      "label": "Return the result of regex_replace(sentence, \"[^a-zA-Z0-9\\s]\", an empty string)",
+      "line": 2,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "F3",
+      "target": "F4",
+      "label": "BODY"
+    },
+    {
+      "source": "F1",
+      "target": "F3",
+      "label": "NEXT"
+    },
+    {
+      "source": "F4",
+      "target": "F2",
+      "label": "NEXT"
+    }
+  ],
+  "structured_program": {
+    "kind": "ProgramNode",
+    "line": 1,
+    "body": [
+      {
+        "kind": "FunctionNode",
+        "line": 1,
+        "name": "REMOVE_PUNCTUATION",
+        "parameters": [
+          {
+            "kind": "ParameterNode",
+            "line": 1,
+            "name": "sentence",
+            "declared_type": null
+          }
+        ],
+        "body": {
+          "kind": "BlockNode",
+          "line": 2,
+          "statements": [
+            {
+              "kind": "ReturnNode",
+              "line": 2,
+              "expression": {
+                "kind": "CallNode",
+                "line": 2,
+                "name": "regex_replace",
+                "arguments": [
+                  {
+                    "kind": "IdentifierNode",
+                    "line": 2,
+                    "name": "sentence"
+                  },
+                  {
+                    "kind": "LiteralNode",
+                    "line": 2,
+                    "value": "[^a-zA-Z0-9\\s]",
+                    "data_type": "STRING"
+                  },
+                  {
+                    "kind": "EmptyLiteralNode",
+                    "line": 2,
+                    "empty_type": "STRING"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

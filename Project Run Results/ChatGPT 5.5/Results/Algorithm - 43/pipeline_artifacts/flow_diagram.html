@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NL-FDEP Flow Diagram</title>
+<style>
+:root { color-scheme: light; }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Arial, Helvetica, sans-serif; background: #f4f5f7; color: #16191f; }
+header { position: sticky; top: 0; z-index: 10; padding: 14px 18px; background: white; border-bottom: 1px solid #c9cdd3; }
+header h1 { margin: 0 0 4px; font-size: 20px; }
+header p { margin: 0; color: #555d69; font-size: 13px; }
+.controls { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.controls input { min-width: 220px; flex: 1; padding: 8px 10px; border: 1px solid #9da4ae; border-radius: 5px; }
+.controls button { padding: 8px 12px; border: 1px solid #8f97a3; border-radius: 5px; background: white; cursor: pointer; }
+.viewport { overflow: hidden; width: 100%; height: calc(100vh - 108px); background: white; cursor: grab; }
+.viewport.dragging { cursor: grabbing; }
+svg { width: 100%; height: 100%; user-select: none; }
+.flow-node { cursor: pointer; }
+.flow-node .shape { fill: white; stroke: #20242a; stroke-width: 1.6; vector-effect: non-scaling-stroke; }
+.flow-node text { fill: #111418; font-size: 13px; text-anchor: middle; dominant-baseline: middle; pointer-events: none; }
+.flow-node .metadata { fill: #606874; font-size: 10px; }
+.flow-node.match .shape { stroke: #d18b00; stroke-width: 4; }
+.flow-node.selected .shape { stroke: #1769aa; stroke-width: 4; }
+.flow-edge { fill: none; stroke: #252a31; stroke-width: 1.45; vector-effect: non-scaling-stroke; marker-end: url(#arrowhead); }
+.shared-return-follower { marker-end: none; }
+.edge-label rect { fill: white; stroke: none; }
+.edge-label text { fill: #20242a; font-size: 11px; text-anchor: middle; dominant-baseline: middle; }
+.legend { position: fixed; right: 14px; bottom: 14px; padding: 9px 11px; background: rgba(255,255,255,.94); border: 1px solid #c9cdd3; border-radius: 6px; font-size: 11px; line-height: 1.6; }
+</style>
+</head>
+<body>
+<header>
+<h1>NL to Flow Diagram Encoder Pipeline</h1>
+<p>Standard flowchart notation generated from AJ pseudocode.</p>
+<div class="controls">
+<input id="search" placeholder="Search step, type, line, or node ID">
+<button id="zoom-in" type="button">Zoom in</button>
+<button id="zoom-out" type="button">Zoom out</button>
+<button id="fit" type="button">Fit diagram</button>
+</div>
+</header>
+<div id="viewport" class="viewport">
+<svg id="diagram" viewBox="0 0 760 1868" role="img" aria-label="Generated program flow diagram">
+<defs>
+<marker id="arrowhead" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto" markerUnits="strokeWidth">
+<path d="M 0 0 L 9 3.5 L 0 7 z" fill="#252a31"></path>
+</marker>
+</defs>
+<g id="canvas"><path class="flow-edge" d="M 380.0 793 L 380.0 854.0 L 205.0 854.0 L 205.0 878"></path><g class="edge-label"><rect x="276.0" y="836.0" width="33" height="18" rx="3"></rect><text x="292.5" y="845.0">Yes</text></g><path class="flow-edge" d="M 555.0 942 L 555.0 1051.0 L 380.0 1051.0 L 380.0 1075"></path><path class="flow-edge" d="M 380.0 1139 L 380.0 1272"></path><path class="flow-edge" d="M 495.0 737.0 L 519.0 737.0 L 519.0 854.0 L 555.0 854.0 L 555.0 878"></path><g class="edge-label"><rect x="522.0" y="836.0" width="30" height="18" rx="3"></rect><text x="537.0" y="845.0">No</text></g><path class="flow-edge" d="M 380.0 548 L 380.0 681"></path><path class="flow-edge" d="M 205.0 942 L 205.0 1445.0 L 380.0 1445.0 L 380.0 1469"></path><path class="flow-edge" d="M 380.0 1336 L 380.0 1360 L 519.0 1360.0 L 519.0 1501.0 L 495.0 1501.0"></path><path class="flow-edge" d="M 380.0 351 L 380.0 484"></path><path class="flow-edge" d="M 380.0 154 L 380.0 287"></path><path class="flow-edge" d="M 380.0 1533 L 380.0 1666"></path><g class="flow-node" data-node-id="F1"><title>START | Line 1 | F1</title><rect class="shape" x="265.0" y="90" width="230" height="64" rx="32" ry="32"></rect><text x="380.0" y="115.0"><tspan x="380.0" dy="0">Start</tspan></text><text class="metadata" x="380.0" y="141">Line 1 · F1</text></g><g class="flow-node" data-node-id="F2"><title>END | Line 1 | F2</title><rect class="shape" x="265.0" y="1666" width="230" height="64" rx="32" ry="32"></rect><text x="380.0" y="1691.0"><tspan x="380.0" dy="0">End</tspan></text><text class="metadata" x="380.0" y="1717">Line 1 · F2</text></g><g class="flow-node" data-node-id="F3"><title>FUNCTION | Line 1 | F3</title><rect class="shape" x="265.0" y="287" width="230" height="64"></rect><line class="shape" x1="277.0" y1="287" x2="277.0" y2="351"></line><line class="shape" x1="483.0" y1="287" x2="483.0" y2="351"></line><text x="380.0" y="304.0"><tspan x="380.0" dy="0">Run function unnamed_function</tspan><tspan x="380.0" dy="16">with N</tspan></text><text class="metadata" x="380.0" y="338">Line 1 · F3</text></g><g class="flow-node" data-node-id="F4"><title>FUNCTION | Line 2 | F4</title><rect class="shape" x="265.0" y="484" width="230" height="64"></rect><line class="shape" x1="277.0" y1="484" x2="277.0" y2="548"></line><line class="shape" x1="483.0" y1="484" x2="483.0" y2="548"></line><text x="380.0" y="501.0"><tspan x="380.0" dy="0">Run function Hanoi with Discs,</tspan><tspan x="380.0" dy="16">Source, Auxiliary, Destination</tspan></text><text class="metadata" x="380.0" y="535">Line 2 · F4</text></g><g class="flow-node" data-node-id="F5"><title>DECISION | Line 3 | F5</title><polygon class="shape" points="380.0,681 495.0,737.0 380.0,793 265.0,737.0"></polygon><text x="380.0" y="730.0"><tspan x="380.0" dy="0">Discs is equal to 1?</tspan></text><text class="metadata" x="380.0" y="780">Line 3 · F5</text></g><g class="flow-node" data-node-id="F6"><title>OUTPUT | Line 4 | F6</title><polygon class="shape" points="114.0,878 320.0,878 296.0,942 90.0,942"></polygon><text x="205.0" y="895.0"><tspan x="205.0" dy="0">Display &quot;Move disk from</tspan><tspan x="205.0" dy="16">{Source} to {Destination}&quot;</tspan></text><text class="metadata" x="205.0" y="929">Line 4 · F6</text></g><g class="flow-node" data-node-id="F7"><title>CALL | Line 6 | F7</title><rect class="shape" x="440.0" y="878" width="230" height="64"></rect><line class="shape" x1="452.0" y1="878" x2="452.0" y2="942"></line><line class="shape" x1="658.0" y1="878" x2="658.0" y2="942"></line><text x="555.0" y="895.0"><tspan x="555.0" dy="0">Call Hanoi with Discs minus 1,</tspan><tspan x="555.0" dy="16">Source, Destination, Auxiliary</tspan></text><text class="metadata" x="555.0" y="929">Line 6 · F7</text></g><g class="flow-node" data-node-id="F8"><title>OUTPUT | Line 8 | F8</title><polygon class="shape" points="289.0,1075 495.0,1075 471.0,1139 265.0,1139"></polygon><text x="380.0" y="1092.0"><tspan x="380.0" dy="0">Display &quot;Move disk from</tspan><tspan x="380.0" dy="16">{Source} to {Destination}&quot;</tspan></text><text class="metadata" x="380.0" y="1126">Line 8 · F8</text></g><g class="flow-node" data-node-id="F9"><title>CALL | Line 10 | F9</title><rect class="shape" x="265.0" y="1272" width="230" height="64"></rect><line class="shape" x1="277.0" y1="1272" x2="277.0" y2="1336"></line><line class="shape" x1="483.0" y1="1272" x2="483.0" y2="1336"></line><text x="380.0" y="1289.0"><tspan x="380.0" dy="0">Call Hanoi with Discs minus 1,</tspan><tspan x="380.0" dy="16">Auxiliary, Source, Destination</tspan></text><text class="metadata" x="380.0" y="1323">Line 10 · F9</text></g><g class="flow-node" data-node-id="F10"><title>CALL | Line 14 | F10</title><rect class="shape" x="265.0" y="1469" width="230" height="64"></rect><line class="shape" x1="277.0" y1="1469" x2="277.0" y2="1533"></line><line class="shape" x1="483.0" y1="1469" x2="483.0" y2="1533"></line><text x="380.0" y="1486.0"><tspan x="380.0" dy="0">Call Hanoi with N, &quot;A&quot;, &quot;B&quot;,</tspan><tspan x="380.0" dy="16">&quot;C&quot;</tspan></text><text class="metadata" x="380.0" y="1520">Line 14 · F10</text></g></g>
+</svg>
+</div>
+<div class="legend">Oval: Start/End<br>Diamond: Decision<br>Parallelogram: Input/Output<br>Rectangle: Process<br>Double rectangle: Function/Call</div>
+<script>
+const diagramData = {"format": "NL-FDEP Flow Diagram", "version": "1.0", "entry_node": "F1", "exit_node": "F2", "nodes": {"F1": {"node_id": "F1", "node_type": "START", "label": "Start", "line": 1, "data": {}}, "F2": {"node_id": "F2", "node_type": "END", "label": "End", "line": 1, "data": {}}, "F3": {"node_id": "F3", "node_type": "FUNCTION", "label": "Run function unnamed_function with N", "line": 1, "data": {"ast_kind": "FunctionNode", "name": "unnamed_function"}}, "F4": {"node_id": "F4", "node_type": "FUNCTION", "label": "Run function Hanoi with Discs, Source, Auxiliary, Destination", "line": 2, "data": {"ast_kind": "FunctionNode", "name": "Hanoi"}}, "F5": {"node_id": "F5", "node_type": "DECISION", "label": "Discs is equal to 1?", "line": 3, "data": {"ast_kind": "IfNode"}}, "F6": {"node_id": "F6", "node_type": "OUTPUT", "label": "Display \"Move disk from {Source} to {Destination}\"", "line": 4, "data": {"ast_kind": "OutputNode"}}, "F7": {"node_id": "F7", "node_type": "CALL", "label": "Call Hanoi with Discs minus 1, Source, Destination, Auxiliary", "line": 6, "data": {"ast_kind": "CallNode"}}, "F8": {"node_id": "F8", "node_type": "OUTPUT", "label": "Display \"Move disk from {Source} to {Destination}\"", "line": 8, "data": {"ast_kind": "OutputNode"}}, "F9": {"node_id": "F9", "node_type": "CALL", "label": "Call Hanoi with Discs minus 1, Auxiliary, Source, Destination", "line": 10, "data": {"ast_kind": "CallNode"}}, "F10": {"node_id": "F10", "node_type": "CALL", "label": "Call Hanoi with N, \"A\", \"B\", \"C\"", "line": 14, "data": {"ast_kind": "CallNode"}}}, "edges": [{"source": "F5", "target": "F6", "label": "TRUE"}, {"source": "F7", "target": "F8", "label": "NEXT"}, {"source": "F8", "target": "F9", "label": "NEXT"}, {"source": "F5", "target": "F7", "label": "FALSE"}, {"source": "F4", "target": "F5", "label": "BODY"}, {"source": "F6", "target": "F10", "label": "NEXT"}, {"source": "F9", "target": "F10", "label": "NEXT"}, {"source": "F3", "target": "F4", "label": "BODY"}, {"source": "F1", "target": "F3", "label": "NEXT"}, {"source": "F10", "target": "F2", "label": "NEXT"}], "structured_program": {"kind": "ProgramNode", "line": 1, "body": [{"kind": "FunctionNode", "line": 1, "name": "unnamed_function", "parameters": [{"kind": "ParameterNode", "line": 1, "name": "N", "declared_type": null}], "body": {"kind": "BlockNode", "line": 2, "statements": [{"kind": "FunctionNode", "line": 2, "name": "Hanoi", "parameters": [{"kind": "ParameterNode", "line": 2, "name": "Discs", "declared_type": null}, {"kind": "ParameterNode", "line": 2, "name": "Source", "declared_type": null}, {"kind": "ParameterNode", "line": 2, "name": "Auxiliary", "declared_type": null}, {"kind": "ParameterNode", "line": 2, "name": "Destination", "declared_type": null}], "body": {"kind": "BlockNode", "line": 3, "statements": [{"kind": "IfNode", "line": 3, "condition": {"kind": "BinaryNode", "line": 3, "operator": "==", "left": {"kind": "IdentifierNode", "line": 3, "name": "Discs"}, "right": {"kind": "LiteralNode", "line": 3, "value": 1, "data_type": "INTEGER"}}, "then_body": {"kind": "BlockNode", "line": 4, "statements": [{"kind": "OutputNode", "line": 4, "expression": {"kind": "LiteralNode", "line": 4, "value": "Move disk from {Source} to {Destination}", "data_type": "STRING"}}]}, "else_if": [], "else_body": {"kind": "BlockNode", "line": 6, "statements": [{"kind": "CallNode", "line": 6, "name": "Hanoi", "arguments": [{"kind": "BinaryNode", "line": 6, "operator": "-", "left": {"kind": "IdentifierNode", "line": 6, "name": "Discs"}, "right": {"kind": "LiteralNode", "line": 6, "value": 1, "data_type": "INTEGER"}}, {"kind": "IdentifierNode", "line": 6, "name": "Source"}, {"kind": "IdentifierNode", "line": 6, "name": "Destination"}, {"kind": "IdentifierNode", "line": 6, "name": "Auxiliary"}]}, {"kind": "OutputNode", "line": 8, "expression": {"kind": "LiteralNode", "line": 8, "value": "Move disk from {Source} to {Destination}", "data_type": "STRING"}}, {"kind": "CallNode", "line": 10, "name": "Hanoi", "arguments": [{"kind": "BinaryNode", "line": 10, "operator": "-", "left": {"kind": "IdentifierNode", "line": 10, "name": "Discs"}, "right": {"kind": "LiteralNode", "line": 10, "value": 1, "data_type": "INTEGER"}}, {"kind": "IdentifierNode", "line": 10, "name": "Auxiliary"}, {"kind": "IdentifierNode", "line": 10, "name": "Source"}, {"kind": "IdentifierNode", "line": 10, "name": "Destination"}]}]}}]}}, {"kind": "CallNode", "line": 14, "name": "Hanoi", "arguments": [{"kind": "IdentifierNode", "line": 14, "name": "N"}, {"kind": "LiteralNode", "line": 14, "value": "A", "data_type": "STRING"}, {"kind": "LiteralNode", "line": 14, "value": "B", "data_type": "STRING"}, {"kind": "LiteralNode", "line": 14, "value": "C", "data_type": "STRING"}]}]}}]}};
+const svg = document.getElementById('diagram');
+const canvas = document.getElementById('canvas');
+const viewport = document.getElementById('viewport');
+const INITIAL_SCALE = 1.15;
+let scale = INITIAL_SCALE;
+let translateX = 0;
+let translateY = 0;
+let dragging = false;
+let startX = 0;
+let startY = 0;
+
+function applyTransform() {
+    canvas.setAttribute('transform', `translate(${translateX} ${translateY}) scale(${scale})`);
+}
+
+function initialView() {
+    const box = canvas.getBBox();
+    const visibleWidth = viewport.clientWidth;
+    scale = INITIAL_SCALE;
+    translateX = (visibleWidth - box.width * scale) / 2 - box.x * scale;
+    translateY = 28 - box.y * scale;
+    applyTransform();
+}
+
+function fitDiagram() {
+    const box = canvas.getBBox();
+    const visibleWidth = viewport.clientWidth;
+    const visibleHeight = viewport.clientHeight;
+    scale = Math.min(visibleWidth / (box.width + 80), visibleHeight / (box.height + 80), 1.3);
+    translateX = (visibleWidth - box.width * scale) / 2 - box.x * scale;
+    translateY = (visibleHeight - box.height * scale) / 2 - box.y * scale;
+    applyTransform();
+}
+
+document.getElementById('zoom-in').addEventListener('click', () => { scale *= 1.15; applyTransform(); });
+document.getElementById('zoom-out').addEventListener('click', () => { scale /= 1.15; applyTransform(); });
+document.getElementById('fit').addEventListener('click', fitDiagram);
+
+document.getElementById('search').addEventListener('input', event => {
+    const query = event.target.value.trim().toLowerCase();
+    document.querySelectorAll('.flow-node').forEach(node => {
+        node.classList.toggle('match', query.length > 0 && node.textContent.toLowerCase().includes(query));
+    });
+});
+
+document.querySelectorAll('.flow-node').forEach(node => {
+    node.addEventListener('click', () => node.classList.toggle('selected'));
+});
+
+viewport.addEventListener('mousedown', event => {
+    dragging = true;
+    startX = event.clientX - translateX;
+    startY = event.clientY - translateY;
+    viewport.classList.add('dragging');
+});
+window.addEventListener('mousemove', event => {
+    if (!dragging) return;
+    translateX = event.clientX - startX;
+    translateY = event.clientY - startY;
+    applyTransform();
+});
+window.addEventListener('mouseup', () => { dragging = false; viewport.classList.remove('dragging'); });
+viewport.addEventListener('wheel', event => {
+    event.preventDefault();
+    const factor = event.deltaY < 0 ? 1.1 : 0.9;
+    scale *= factor;
+    applyTransform();
+}, { passive: false });
+window.addEventListener('load', initialView);
+window.addEventListener('resize', initialView);
+</script>
+</body>
+</html>

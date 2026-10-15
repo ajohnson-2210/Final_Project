@@ -1,0 +1,14 @@
+# Find the intersection of two sorted arrays and return the common elements.
+FUNCTION intersectionSorted(arr1, arr2):
+    i = 0, j = 0
+    result = empty list
+    WHILE i < length(arr1) AND j < length(arr2):
+        IF arr1[i] == arr2[j]:
+            result.append(arr1[i])
+            i = i + 1
+            j = j + 1
+        ELSE IF arr1[i] < arr2[j]:
+            i = i + 1
+        ELSE:
+            j = j + 1
+    RETURN result

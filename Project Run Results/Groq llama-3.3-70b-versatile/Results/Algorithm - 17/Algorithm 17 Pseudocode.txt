@@ -1,0 +1,9 @@
+# Compute the sum and average of a list of numbers
+FUNCTION SUM_AND_AVERAGE(arr)
+  sum = 0
+  FOR num IN arr
+    sum += num
+  END FOR
+  average = sum / LENGTH(arr)
+  RETURN [sum, average]
+END FUNCTION

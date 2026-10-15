@@ -1,0 +1,16 @@
+# Develop a process for multiplying two matrices
+FUNCTION MULTIPLY_MATRICES(matrix1, matrix2)
+  result = []
+  FOR i FROM 0 TO LENGTH(matrix1) - 1
+    row = []
+    FOR j FROM 0 TO LENGTH(matrix2[0]) - 1
+      sum = 0
+      FOR k FROM 0 TO LENGTH(matrix1[0]) - 1
+        sum += matrix1[i][k] * matrix2[k][j]
+      END FOR
+      row += [sum]
+    END FOR
+    result += [row]
+  END FOR
+  RETURN result
+END FUNCTION

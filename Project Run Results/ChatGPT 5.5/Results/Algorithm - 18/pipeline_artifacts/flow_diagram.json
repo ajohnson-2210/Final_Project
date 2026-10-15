@@ -1,0 +1,305 @@
+{
+  "format": "NL-FDEP Flow Diagram",
+  "version": "1.0",
+  "entry_node": "F1",
+  "exit_node": "F2",
+  "nodes": {
+    "F1": {
+      "node_id": "F1",
+      "node_type": "START",
+      "label": "Start",
+      "line": 1,
+      "data": {}
+    },
+    "F2": {
+      "node_id": "F2",
+      "node_type": "END",
+      "label": "End",
+      "line": 1,
+      "data": {}
+    },
+    "F3": {
+      "node_id": "F3",
+      "node_type": "FUNCTION",
+      "label": "Run function unnamed_function with Text",
+      "line": 1,
+      "data": {
+        "ast_kind": "FunctionNode",
+        "name": "unnamed_function"
+      }
+    },
+    "F4": {
+      "node_id": "F4",
+      "node_type": "PROCESS",
+      "label": "Set Dictionary to an empty dictionary",
+      "line": 2,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F5": {
+      "node_id": "F5",
+      "node_type": "LOOP_DECISION",
+      "label": "For each Character in Text",
+      "line": 4,
+      "data": {
+        "ast_kind": "ForEachNode"
+      }
+    },
+    "F6": {
+      "node_id": "F6",
+      "node_type": "DECISION",
+      "label": "Character is contained in Dictionary?",
+      "line": 5,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F7": {
+      "node_id": "F7",
+      "node_type": "PROCESS",
+      "label": "Set item Character of Dictionary to item Character of Dictionary plus 1",
+      "line": 6,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F8": {
+      "node_id": "F8",
+      "node_type": "PROCESS",
+      "label": "Set item Character of Dictionary to 1",
+      "line": 8,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F9": {
+      "node_id": "F9",
+      "node_type": "OUTPUT",
+      "label": "Display Dictionary",
+      "line": 12,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "F6",
+      "target": "F7",
+      "label": "TRUE"
+    },
+    {
+      "source": "F6",
+      "target": "F8",
+      "label": "FALSE"
+    },
+    {
+      "source": "F5",
+      "target": "F6",
+      "label": "ITERATE"
+    },
+    {
+      "source": "F7",
+      "target": "F5",
+      "label": "LOOP"
+    },
+    {
+      "source": "F8",
+      "target": "F5",
+      "label": "LOOP"
+    },
+    {
+      "source": "F4",
+      "target": "F5",
+      "label": "NEXT"
+    },
+    {
+      "source": "F5",
+      "target": "F9",
+      "label": "NEXT"
+    },
+    {
+      "source": "F3",
+      "target": "F4",
+      "label": "BODY"
+    },
+    {
+      "source": "F1",
+      "target": "F3",
+      "label": "NEXT"
+    },
+    {
+      "source": "F9",
+      "target": "F2",
+      "label": "NEXT"
+    }
+  ],
+  "structured_program": {
+    "kind": "ProgramNode",
+    "line": 1,
+    "body": [
+      {
+        "kind": "FunctionNode",
+        "line": 1,
+        "name": "unnamed_function",
+        "parameters": [
+          {
+            "kind": "ParameterNode",
+            "line": 1,
+            "name": "Text",
+            "declared_type": null
+          }
+        ],
+        "body": {
+          "kind": "BlockNode",
+          "line": 2,
+          "statements": [
+            {
+              "kind": "AssignmentNode",
+              "line": 2,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 2,
+                "name": "Dictionary"
+              },
+              "value": {
+                "kind": "EmptyLiteralNode",
+                "line": 2,
+                "empty_type": "DICTIONARY"
+              }
+            },
+            {
+              "kind": "ForEachNode",
+              "line": 4,
+              "variable": {
+                "kind": "IdentifierNode",
+                "line": 4,
+                "name": "Character"
+              },
+              "collection": {
+                "kind": "IdentifierNode",
+                "line": 4,
+                "name": "Text"
+              },
+              "body": {
+                "kind": "BlockNode",
+                "line": 5,
+                "statements": [
+                  {
+                    "kind": "IfNode",
+                    "line": 5,
+                    "condition": {
+                      "kind": "BinaryNode",
+                      "line": 5,
+                      "operator": "IN",
+                      "left": {
+                        "kind": "IdentifierNode",
+                        "line": 5,
+                        "name": "Character"
+                      },
+                      "right": {
+                        "kind": "IdentifierNode",
+                        "line": 5,
+                        "name": "Dictionary"
+                      }
+                    },
+                    "then_body": {
+                      "kind": "BlockNode",
+                      "line": 6,
+                      "statements": [
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 6,
+                          "target": {
+                            "kind": "IndexNode",
+                            "line": 6,
+                            "collection": {
+                              "kind": "IdentifierNode",
+                              "line": 6,
+                              "name": "Dictionary"
+                            },
+                            "index": {
+                              "kind": "IdentifierNode",
+                              "line": 6,
+                              "name": "Character"
+                            }
+                          },
+                          "value": {
+                            "kind": "BinaryNode",
+                            "line": 6,
+                            "operator": "+",
+                            "left": {
+                              "kind": "IndexNode",
+                              "line": 6,
+                              "collection": {
+                                "kind": "IdentifierNode",
+                                "line": 6,
+                                "name": "Dictionary"
+                              },
+                              "index": {
+                                "kind": "IdentifierNode",
+                                "line": 6,
+                                "name": "Character"
+                              }
+                            },
+                            "right": {
+                              "kind": "LiteralNode",
+                              "line": 6,
+                              "value": 1,
+                              "data_type": "INTEGER"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "else_if": [],
+                    "else_body": {
+                      "kind": "BlockNode",
+                      "line": 8,
+                      "statements": [
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 8,
+                          "target": {
+                            "kind": "IndexNode",
+                            "line": 8,
+                            "collection": {
+                              "kind": "IdentifierNode",
+                              "line": 8,
+                              "name": "Dictionary"
+                            },
+                            "index": {
+                              "kind": "IdentifierNode",
+                              "line": 8,
+                              "name": "Character"
+                            }
+                          },
+                          "value": {
+                            "kind": "LiteralNode",
+                            "line": 8,
+                            "value": 1,
+                            "data_type": "INTEGER"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "OutputNode",
+              "line": 12,
+              "expression": {
+                "kind": "IdentifierNode",
+                "line": 12,
+                "name": "Dictionary"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

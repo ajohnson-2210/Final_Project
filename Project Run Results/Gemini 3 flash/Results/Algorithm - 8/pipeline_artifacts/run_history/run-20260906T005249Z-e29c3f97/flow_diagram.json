@@ -1,0 +1,487 @@
+{
+  "format": "NL-FDEP Flow Diagram",
+  "version": "1.0",
+  "entry_node": "F1",
+  "exit_node": "F2",
+  "nodes": {
+    "F1": {
+      "node_id": "F1",
+      "node_type": "START",
+      "label": "Start",
+      "line": 1,
+      "data": {}
+    },
+    "F2": {
+      "node_id": "F2",
+      "node_type": "END",
+      "label": "End",
+      "line": 1,
+      "data": {}
+    },
+    "F3": {
+      "node_id": "F3",
+      "node_type": "FUNCTION",
+      "label": "Run function BubbleSortWords with words",
+      "line": 1,
+      "data": {
+        "ast_kind": "FunctionNode",
+        "name": "BubbleSortWords"
+      }
+    },
+    "F4": {
+      "node_id": "F4",
+      "node_type": "PROCESS",
+      "label": "Set n to the length of words",
+      "line": 2,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F5": {
+      "node_id": "F5",
+      "node_type": "LOOP_DECISION",
+      "label": "For i from 0 to n minus 1 plus 1",
+      "line": 3,
+      "data": {
+        "ast_kind": "ForRangeNode"
+      }
+    },
+    "F6": {
+      "node_id": "F6",
+      "node_type": "LOOP_DECISION",
+      "label": "For j from 0 to n minus i minus 2 plus 1",
+      "line": 4,
+      "data": {
+        "ast_kind": "ForRangeNode"
+      }
+    },
+    "F7": {
+      "node_id": "F7",
+      "node_type": "DECISION",
+      "label": "Item j of words is greater than item j plus 1 of words?",
+      "line": 5,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F8": {
+      "node_id": "F8",
+      "node_type": "PROCESS",
+      "label": "Set temp_var to item j of words",
+      "line": 6,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F9": {
+      "node_id": "F9",
+      "node_type": "PROCESS",
+      "label": "Set item j of words to item j plus 1 of words",
+      "line": 7,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F10": {
+      "node_id": "F10",
+      "node_type": "PROCESS",
+      "label": "Set item j plus 1 of words to temp_var",
+      "line": 8,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F11": {
+      "node_id": "F11",
+      "node_type": "RETURN",
+      "label": "Return words",
+      "line": 12,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "F8",
+      "target": "F9",
+      "label": "NEXT"
+    },
+    {
+      "source": "F9",
+      "target": "F10",
+      "label": "NEXT"
+    },
+    {
+      "source": "F7",
+      "target": "F8",
+      "label": "TRUE"
+    },
+    {
+      "source": "F6",
+      "target": "F7",
+      "label": "ITERATE"
+    },
+    {
+      "source": "F10",
+      "target": "F6",
+      "label": "LOOP"
+    },
+    {
+      "source": "F7",
+      "target": "F6",
+      "label": "LOOP"
+    },
+    {
+      "source": "F5",
+      "target": "F6",
+      "label": "ITERATE"
+    },
+    {
+      "source": "F6",
+      "target": "F5",
+      "label": "LOOP"
+    },
+    {
+      "source": "F4",
+      "target": "F5",
+      "label": "NEXT"
+    },
+    {
+      "source": "F5",
+      "target": "F11",
+      "label": "NEXT"
+    },
+    {
+      "source": "F3",
+      "target": "F4",
+      "label": "BODY"
+    },
+    {
+      "source": "F1",
+      "target": "F3",
+      "label": "NEXT"
+    },
+    {
+      "source": "F11",
+      "target": "F2",
+      "label": "NEXT"
+    }
+  ],
+  "structured_program": {
+    "kind": "ProgramNode",
+    "line": 1,
+    "body": [
+      {
+        "kind": "FunctionNode",
+        "line": 1,
+        "name": "BubbleSortWords",
+        "parameters": [
+          {
+            "kind": "ParameterNode",
+            "line": 1,
+            "name": "words",
+            "declared_type": null
+          }
+        ],
+        "body": {
+          "kind": "BlockNode",
+          "line": 2,
+          "statements": [
+            {
+              "kind": "AssignmentNode",
+              "line": 2,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 2,
+                "name": "n"
+              },
+              "value": {
+                "kind": "LengthNode",
+                "line": 2,
+                "expression": {
+                  "kind": "IdentifierNode",
+                  "line": 2,
+                  "name": "words"
+                }
+              }
+            },
+            {
+              "kind": "ForRangeNode",
+              "line": 3,
+              "variable": {
+                "kind": "IdentifierNode",
+                "line": 3,
+                "name": "i"
+              },
+              "start": {
+                "kind": "LiteralNode",
+                "line": 3,
+                "value": 0,
+                "data_type": "INTEGER"
+              },
+              "end": {
+                "kind": "BinaryNode",
+                "line": 3,
+                "operator": "+",
+                "left": {
+                  "kind": "BinaryNode",
+                  "line": 3,
+                  "operator": "-",
+                  "left": {
+                    "kind": "IdentifierNode",
+                    "line": 3,
+                    "name": "n"
+                  },
+                  "right": {
+                    "kind": "LiteralNode",
+                    "line": 3,
+                    "value": 1,
+                    "data_type": "INTEGER"
+                  }
+                },
+                "right": {
+                  "kind": "LiteralNode",
+                  "line": 3,
+                  "value": 1,
+                  "data_type": "INTEGER"
+                }
+              },
+              "step": null,
+              "body": {
+                "kind": "BlockNode",
+                "line": 4,
+                "statements": [
+                  {
+                    "kind": "ForRangeNode",
+                    "line": 4,
+                    "variable": {
+                      "kind": "IdentifierNode",
+                      "line": 4,
+                      "name": "j"
+                    },
+                    "start": {
+                      "kind": "LiteralNode",
+                      "line": 4,
+                      "value": 0,
+                      "data_type": "INTEGER"
+                    },
+                    "end": {
+                      "kind": "BinaryNode",
+                      "line": 4,
+                      "operator": "+",
+                      "left": {
+                        "kind": "BinaryNode",
+                        "line": 4,
+                        "operator": "-",
+                        "left": {
+                          "kind": "BinaryNode",
+                          "line": 4,
+                          "operator": "-",
+                          "left": {
+                            "kind": "IdentifierNode",
+                            "line": 4,
+                            "name": "n"
+                          },
+                          "right": {
+                            "kind": "IdentifierNode",
+                            "line": 4,
+                            "name": "i"
+                          }
+                        },
+                        "right": {
+                          "kind": "LiteralNode",
+                          "line": 4,
+                          "value": 2,
+                          "data_type": "INTEGER"
+                        }
+                      },
+                      "right": {
+                        "kind": "LiteralNode",
+                        "line": 4,
+                        "value": 1,
+                        "data_type": "INTEGER"
+                      }
+                    },
+                    "step": null,
+                    "body": {
+                      "kind": "BlockNode",
+                      "line": 5,
+                      "statements": [
+                        {
+                          "kind": "IfNode",
+                          "line": 5,
+                          "condition": {
+                            "kind": "BinaryNode",
+                            "line": 5,
+                            "operator": ">",
+                            "left": {
+                              "kind": "IndexNode",
+                              "line": 5,
+                              "collection": {
+                                "kind": "IdentifierNode",
+                                "line": 5,
+                                "name": "words"
+                              },
+                              "index": {
+                                "kind": "IdentifierNode",
+                                "line": 5,
+                                "name": "j"
+                              }
+                            },
+                            "right": {
+                              "kind": "IndexNode",
+                              "line": 5,
+                              "collection": {
+                                "kind": "IdentifierNode",
+                                "line": 5,
+                                "name": "words"
+                              },
+                              "index": {
+                                "kind": "BinaryNode",
+                                "line": 5,
+                                "operator": "+",
+                                "left": {
+                                  "kind": "IdentifierNode",
+                                  "line": 5,
+                                  "name": "j"
+                                },
+                                "right": {
+                                  "kind": "LiteralNode",
+                                  "line": 5,
+                                  "value": 1,
+                                  "data_type": "INTEGER"
+                                }
+                              }
+                            }
+                          },
+                          "then_body": {
+                            "kind": "BlockNode",
+                            "line": 6,
+                            "statements": [
+                              {
+                                "kind": "AssignmentNode",
+                                "line": 6,
+                                "target": {
+                                  "kind": "IdentifierNode",
+                                  "line": 6,
+                                  "name": "temp_var"
+                                },
+                                "value": {
+                                  "kind": "IndexNode",
+                                  "line": 6,
+                                  "collection": {
+                                    "kind": "IdentifierNode",
+                                    "line": 6,
+                                    "name": "words"
+                                  },
+                                  "index": {
+                                    "kind": "IdentifierNode",
+                                    "line": 6,
+                                    "name": "j"
+                                  }
+                                }
+                              },
+                              {
+                                "kind": "AssignmentNode",
+                                "line": 7,
+                                "target": {
+                                  "kind": "IndexNode",
+                                  "line": 7,
+                                  "collection": {
+                                    "kind": "IdentifierNode",
+                                    "line": 7,
+                                    "name": "words"
+                                  },
+                                  "index": {
+                                    "kind": "IdentifierNode",
+                                    "line": 7,
+                                    "name": "j"
+                                  }
+                                },
+                                "value": {
+                                  "kind": "IndexNode",
+                                  "line": 7,
+                                  "collection": {
+                                    "kind": "IdentifierNode",
+                                    "line": 7,
+                                    "name": "words"
+                                  },
+                                  "index": {
+                                    "kind": "BinaryNode",
+                                    "line": 7,
+                                    "operator": "+",
+                                    "left": {
+                                      "kind": "IdentifierNode",
+                                      "line": 7,
+                                      "name": "j"
+                                    },
+                                    "right": {
+                                      "kind": "LiteralNode",
+                                      "line": 7,
+                                      "value": 1,
+                                      "data_type": "INTEGER"
+                                    }
+                                  }
+                                }
+                              },
+                              {
+                                "kind": "AssignmentNode",
+                                "line": 8,
+                                "target": {
+                                  "kind": "IndexNode",
+                                  "line": 8,
+                                  "collection": {
+                                    "kind": "IdentifierNode",
+                                    "line": 8,
+                                    "name": "words"
+                                  },
+                                  "index": {
+                                    "kind": "BinaryNode",
+                                    "line": 8,
+                                    "operator": "+",
+                                    "left": {
+                                      "kind": "IdentifierNode",
+                                      "line": 8,
+                                      "name": "j"
+                                    },
+                                    "right": {
+                                      "kind": "LiteralNode",
+                                      "line": 8,
+                                      "value": 1,
+                                      "data_type": "INTEGER"
+                                    }
+                                  }
+                                },
+                                "value": {
+                                  "kind": "IdentifierNode",
+                                  "line": 8,
+                                  "name": "temp_var"
+                                }
+                              }
+                            ]
+                          },
+                          "else_if": [],
+                          "else_body": null
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "ReturnNode",
+              "line": 12,
+              "expression": {
+                "kind": "IdentifierNode",
+                "line": 12,
+                "name": "words"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

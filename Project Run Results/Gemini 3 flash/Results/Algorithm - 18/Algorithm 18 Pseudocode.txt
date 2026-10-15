@@ -1,0 +1,12 @@
+# Count the frequency of each character in a string    
+FUNCTION CharacterFrequency(str):
+    freq_map = empty Hash Map
+    FOR EACH char IN str DO
+        IF char IN freq_map THEN
+            freq_map[char] = freq_map[char] + 1
+        ELSE
+            freq_map[char] = 1
+        END IF
+    END FOR
+    RETURN freq_map
+END FUNCTION

@@ -1,0 +1,156 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 12,
+  "transformations": [
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  max_length = 0",
+      "canonical": "  max_length <- 0",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  start = 0",
+      "canonical": "  start <- 0",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  char_index = {}",
+      "canonical": "  char_index <- {}",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 7,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "      start = char_index[s[i]] + 1",
+      "canonical": "      start <- char_index[s[i]] + 1",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 10,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    max_length = MAX(max_length, i - start + 1)",
+      "canonical": "    max_length <- MAX(max_length, i - start + 1)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "COLLECTION_TYPE_EVIDENCE",
+      "branch": "EMPTY_BRACES_FROM_INDEXED_WRITE",
+      "source": "  char_index <- {}",
+      "canonical": "  char_index <- EMPTY DICTIONARY",
+      "evidence": [
+        "source explicitly initialises a simple receiver with bare empty braces",
+        "a later same-scope assignment writes through an index on that receiver before any direct rebind",
+        "indexed write is incompatible with set semantics and directly evidences keyed mapping use"
+      ],
+      "confidence": "source_proven",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  FOR i FROM 0 TO LENGTH(s) - 1",
+      "canonical": "  FOR i FROM 0 TO LENGTH OF s - 1",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION LONGEST_SUBSTRING(s)",
+      "canonical": "FUNCTION LONGEST_SUBSTRING ACCEPTS(s)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "FUNCTION LONGEST_SUBSTRING ACCEPTS(s)\n  max_length <- 0\n  start <- 0\n  char_index <- EMPTY DICTIONARY\n  FOR i FROM 0 TO LENGTH OF s - 1\n    IF s[i] IN char_index AND char_index[s[i]] >= start THEN\n      start <- char_index[s[i]] + 1\n    END IF\n    char_index[s[i]] = i\n    max_length <- MAX(max_length, i - start + 1)\n  END FOR\n  RETURN max_length\nEND FUNCTION",
+      "canonical": "FUNCTION LONGEST_SUBSTRING ACCEPTS(s)\n  max_length <- 0\n  start <- 0\n  char_index <- EMPTY DICTIONARY\n  FOR i FROM 0 TO LENGTH OF s - 1\n    IF s[i] IN char_index AND char_index[s[i]] >= start THEN\n      start <- char_index[s[i]] + 1\n    ENDIF\n    char_index[s[i]] = i\n    max_length <- MAX(max_length, i - start + 1)\n  END FOR\n  RETURN max_length\nENDFUNCTION",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 10,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    max_length <- MAX(max_length, i - start + 1)",
+      "canonical": "    max_length <- CALL max(max_length, i - start + 1)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  FOR i FROM 0 TO LENGTH OF s - 1",
+      "canonical": "  FOR i <- IN RANGE 0 TO (LENGTH OF s - 1) + 1 DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 11,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "  END FOR",
+      "canonical": "  ENDFOR",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 1
+}

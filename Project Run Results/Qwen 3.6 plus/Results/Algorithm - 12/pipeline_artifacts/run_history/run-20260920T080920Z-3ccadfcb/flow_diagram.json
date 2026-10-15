@@ -1,0 +1,227 @@
+{
+  "format": "NL-FDEP Flow Diagram",
+  "version": "1.0",
+  "entry_node": "F1",
+  "exit_node": "F2",
+  "nodes": {
+    "F1": {
+      "node_id": "F1",
+      "node_type": "START",
+      "label": "Start",
+      "line": 1,
+      "data": {}
+    },
+    "F2": {
+      "node_id": "F2",
+      "node_type": "END",
+      "label": "End",
+      "line": 1,
+      "data": {}
+    },
+    "F3": {
+      "node_id": "F3",
+      "node_type": "FUNCTION",
+      "label": "Run function unnamed_function with matrix",
+      "line": 1,
+      "data": {
+        "ast_kind": "FunctionNode",
+        "name": "unnamed_function"
+      }
+    },
+    "F4": {
+      "node_id": "F4",
+      "node_type": "PROCESS",
+      "label": "Set sum to 0",
+      "line": 2,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F5": {
+      "node_id": "F5",
+      "node_type": "LOOP_DECISION",
+      "label": "For i from 0 to the length of matrix",
+      "line": 4,
+      "data": {
+        "ast_kind": "ForRangeNode"
+      }
+    },
+    "F6": {
+      "node_id": "F6",
+      "node_type": "PROCESS",
+      "label": "Set sum to sum plus item i of item i of matrix",
+      "line": 5,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F7": {
+      "node_id": "F7",
+      "node_type": "RETURN",
+      "label": "Return sum",
+      "line": 8,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "F5",
+      "target": "F6",
+      "label": "ITERATE"
+    },
+    {
+      "source": "F6",
+      "target": "F5",
+      "label": "LOOP"
+    },
+    {
+      "source": "F4",
+      "target": "F5",
+      "label": "NEXT"
+    },
+    {
+      "source": "F5",
+      "target": "F7",
+      "label": "NEXT"
+    },
+    {
+      "source": "F3",
+      "target": "F4",
+      "label": "BODY"
+    },
+    {
+      "source": "F1",
+      "target": "F3",
+      "label": "NEXT"
+    },
+    {
+      "source": "F7",
+      "target": "F2",
+      "label": "NEXT"
+    }
+  ],
+  "structured_program": {
+    "kind": "ProgramNode",
+    "line": 1,
+    "body": [
+      {
+        "kind": "FunctionNode",
+        "line": 1,
+        "name": "unnamed_function",
+        "parameters": [
+          {
+            "kind": "ParameterNode",
+            "line": 1,
+            "name": "matrix",
+            "declared_type": null
+          }
+        ],
+        "body": {
+          "kind": "BlockNode",
+          "line": 2,
+          "statements": [
+            {
+              "kind": "AssignmentNode",
+              "line": 2,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 2,
+                "name": "sum"
+              },
+              "value": {
+                "kind": "LiteralNode",
+                "line": 2,
+                "value": 0,
+                "data_type": "INTEGER"
+              }
+            },
+            {
+              "kind": "ForRangeNode",
+              "line": 4,
+              "variable": {
+                "kind": "IdentifierNode",
+                "line": 4,
+                "name": "i"
+              },
+              "start": {
+                "kind": "LiteralNode",
+                "line": 4,
+                "value": 0,
+                "data_type": "INTEGER"
+              },
+              "end": {
+                "kind": "LengthNode",
+                "line": 4,
+                "expression": {
+                  "kind": "IdentifierNode",
+                  "line": 4,
+                  "name": "matrix"
+                }
+              },
+              "step": null,
+              "body": {
+                "kind": "BlockNode",
+                "line": 5,
+                "statements": [
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 5,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 5,
+                      "name": "sum"
+                    },
+                    "value": {
+                      "kind": "BinaryNode",
+                      "line": 5,
+                      "operator": "+",
+                      "left": {
+                        "kind": "IdentifierNode",
+                        "line": 5,
+                        "name": "sum"
+                      },
+                      "right": {
+                        "kind": "IndexNode",
+                        "line": 5,
+                        "collection": {
+                          "kind": "IndexNode",
+                          "line": 5,
+                          "collection": {
+                            "kind": "IdentifierNode",
+                            "line": 5,
+                            "name": "matrix"
+                          },
+                          "index": {
+                            "kind": "IdentifierNode",
+                            "line": 5,
+                            "name": "i"
+                          }
+                        },
+                        "index": {
+                          "kind": "IdentifierNode",
+                          "line": 5,
+                          "name": "i"
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "ReturnNode",
+              "line": 8,
+              "expression": {
+                "kind": "IdentifierNode",
+                "line": 8,
+                "name": "sum"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

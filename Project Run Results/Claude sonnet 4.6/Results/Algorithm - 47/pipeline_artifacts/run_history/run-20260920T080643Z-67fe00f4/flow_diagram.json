@@ -1,0 +1,615 @@
+{
+  "format": "NL-FDEP Flow Diagram",
+  "version": "1.0",
+  "entry_node": "F1",
+  "exit_node": "F2",
+  "nodes": {
+    "F1": {
+      "node_id": "F1",
+      "node_type": "START",
+      "label": "Start",
+      "line": 1,
+      "data": {}
+    },
+    "F2": {
+      "node_id": "F2",
+      "node_type": "END",
+      "label": "End",
+      "line": 1,
+      "data": {}
+    },
+    "F3": {
+      "node_id": "F3",
+      "node_type": "FUNCTION",
+      "label": "Run function updateInventory with inventory, transactions",
+      "line": 1,
+      "data": {
+        "ast_kind": "FunctionNode",
+        "name": "updateInventory"
+      }
+    },
+    "F4": {
+      "node_id": "F4",
+      "node_type": "LOOP_DECISION",
+      "label": "For each transaction in transactions",
+      "line": 2,
+      "data": {
+        "ast_kind": "ForEachNode"
+      }
+    },
+    "F5": {
+      "node_id": "F5",
+      "node_type": "PROCESS",
+      "label": "Set item to item of transaction",
+      "line": 3,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F6": {
+      "node_id": "F6",
+      "node_type": "PROCESS",
+      "label": "Set type to type of transaction",
+      "line": 4,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F7": {
+      "node_id": "F7",
+      "node_type": "PROCESS",
+      "label": "Set quantity to quantity of transaction",
+      "line": 5,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F8": {
+      "node_id": "F8",
+      "node_type": "DECISION",
+      "label": "Item is not contained in inventory?",
+      "line": 6,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F9": {
+      "node_id": "F9",
+      "node_type": "PROCESS",
+      "label": "Set item item of inventory to 0",
+      "line": 7,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F10": {
+      "node_id": "F10",
+      "node_type": "DECISION",
+      "label": "Type is equal to \"purchase\"?",
+      "line": 9,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F11": {
+      "node_id": "F11",
+      "node_type": "PROCESS",
+      "label": "Set item item of inventory to item item of inventory minus quantity",
+      "line": 10,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F12": {
+      "node_id": "F12",
+      "node_type": "DECISION",
+      "label": "Type is equal to \"delivery\"?",
+      "line": 11,
+      "data": {
+        "ast_kind": "ElseIfNode"
+      }
+    },
+    "F13": {
+      "node_id": "F13",
+      "node_type": "PROCESS",
+      "label": "Set item item of inventory to item item of inventory plus quantity",
+      "line": 12,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F14": {
+      "node_id": "F14",
+      "node_type": "DECISION",
+      "label": "Item item of inventory is less than 0?",
+      "line": 14,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F15": {
+      "node_id": "F15",
+      "node_type": "OUTPUT",
+      "label": "Display \"Insufficient stock for \" plus item",
+      "line": 15,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F16": {
+      "node_id": "F16",
+      "node_type": "RETURN",
+      "label": "Return inventory",
+      "line": 18,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "F5",
+      "target": "F6",
+      "label": "NEXT"
+    },
+    {
+      "source": "F6",
+      "target": "F7",
+      "label": "NEXT"
+    },
+    {
+      "source": "F8",
+      "target": "F9",
+      "label": "TRUE"
+    },
+    {
+      "source": "F7",
+      "target": "F8",
+      "label": "NEXT"
+    },
+    {
+      "source": "F10",
+      "target": "F11",
+      "label": "TRUE"
+    },
+    {
+      "source": "F10",
+      "target": "F12",
+      "label": "FALSE"
+    },
+    {
+      "source": "F12",
+      "target": "F13",
+      "label": "TRUE"
+    },
+    {
+      "source": "F9",
+      "target": "F10",
+      "label": "NEXT"
+    },
+    {
+      "source": "F8",
+      "target": "F10",
+      "label": "NEXT"
+    },
+    {
+      "source": "F14",
+      "target": "F15",
+      "label": "TRUE"
+    },
+    {
+      "source": "F11",
+      "target": "F14",
+      "label": "NEXT"
+    },
+    {
+      "source": "F13",
+      "target": "F14",
+      "label": "NEXT"
+    },
+    {
+      "source": "F12",
+      "target": "F14",
+      "label": "NEXT"
+    },
+    {
+      "source": "F4",
+      "target": "F5",
+      "label": "ITERATE"
+    },
+    {
+      "source": "F15",
+      "target": "F4",
+      "label": "LOOP"
+    },
+    {
+      "source": "F14",
+      "target": "F4",
+      "label": "LOOP"
+    },
+    {
+      "source": "F4",
+      "target": "F16",
+      "label": "NEXT"
+    },
+    {
+      "source": "F3",
+      "target": "F4",
+      "label": "BODY"
+    },
+    {
+      "source": "F1",
+      "target": "F3",
+      "label": "NEXT"
+    },
+    {
+      "source": "F16",
+      "target": "F2",
+      "label": "NEXT"
+    }
+  ],
+  "structured_program": {
+    "kind": "ProgramNode",
+    "line": 1,
+    "body": [
+      {
+        "kind": "FunctionNode",
+        "line": 1,
+        "name": "updateInventory",
+        "parameters": [
+          {
+            "kind": "ParameterNode",
+            "line": 1,
+            "name": "inventory",
+            "declared_type": null
+          },
+          {
+            "kind": "ParameterNode",
+            "line": 1,
+            "name": "transactions",
+            "declared_type": null
+          }
+        ],
+        "body": {
+          "kind": "BlockNode",
+          "line": 2,
+          "statements": [
+            {
+              "kind": "ForEachNode",
+              "line": 2,
+              "variable": {
+                "kind": "IdentifierNode",
+                "line": 2,
+                "name": "transaction"
+              },
+              "collection": {
+                "kind": "IdentifierNode",
+                "line": 2,
+                "name": "transactions"
+              },
+              "body": {
+                "kind": "BlockNode",
+                "line": 3,
+                "statements": [
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 3,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 3,
+                      "name": "item"
+                    },
+                    "value": {
+                      "kind": "MemberAccessNode",
+                      "line": 3,
+                      "object": {
+                        "kind": "IdentifierNode",
+                        "line": 3,
+                        "name": "transaction"
+                      },
+                      "member": "item"
+                    }
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 4,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 4,
+                      "name": "type"
+                    },
+                    "value": {
+                      "kind": "MemberAccessNode",
+                      "line": 4,
+                      "object": {
+                        "kind": "IdentifierNode",
+                        "line": 4,
+                        "name": "transaction"
+                      },
+                      "member": "type"
+                    }
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 5,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 5,
+                      "name": "quantity"
+                    },
+                    "value": {
+                      "kind": "MemberAccessNode",
+                      "line": 5,
+                      "object": {
+                        "kind": "IdentifierNode",
+                        "line": 5,
+                        "name": "transaction"
+                      },
+                      "member": "quantity"
+                    }
+                  },
+                  {
+                    "kind": "IfNode",
+                    "line": 6,
+                    "condition": {
+                      "kind": "BinaryNode",
+                      "line": 6,
+                      "operator": "NOT IN",
+                      "left": {
+                        "kind": "IdentifierNode",
+                        "line": 6,
+                        "name": "item"
+                      },
+                      "right": {
+                        "kind": "IdentifierNode",
+                        "line": 6,
+                        "name": "inventory"
+                      }
+                    },
+                    "then_body": {
+                      "kind": "BlockNode",
+                      "line": 7,
+                      "statements": [
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 7,
+                          "target": {
+                            "kind": "IndexNode",
+                            "line": 7,
+                            "collection": {
+                              "kind": "IdentifierNode",
+                              "line": 7,
+                              "name": "inventory"
+                            },
+                            "index": {
+                              "kind": "IdentifierNode",
+                              "line": 7,
+                              "name": "item"
+                            }
+                          },
+                          "value": {
+                            "kind": "LiteralNode",
+                            "line": 7,
+                            "value": 0,
+                            "data_type": "INTEGER"
+                          }
+                        }
+                      ]
+                    },
+                    "else_if": [],
+                    "else_body": null
+                  },
+                  {
+                    "kind": "IfNode",
+                    "line": 9,
+                    "condition": {
+                      "kind": "BinaryNode",
+                      "line": 9,
+                      "operator": "==",
+                      "left": {
+                        "kind": "IdentifierNode",
+                        "line": 9,
+                        "name": "type"
+                      },
+                      "right": {
+                        "kind": "LiteralNode",
+                        "line": 9,
+                        "value": "purchase",
+                        "data_type": "STRING"
+                      }
+                    },
+                    "then_body": {
+                      "kind": "BlockNode",
+                      "line": 10,
+                      "statements": [
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 10,
+                          "target": {
+                            "kind": "IndexNode",
+                            "line": 10,
+                            "collection": {
+                              "kind": "IdentifierNode",
+                              "line": 10,
+                              "name": "inventory"
+                            },
+                            "index": {
+                              "kind": "IdentifierNode",
+                              "line": 10,
+                              "name": "item"
+                            }
+                          },
+                          "value": {
+                            "kind": "BinaryNode",
+                            "line": 10,
+                            "operator": "-",
+                            "left": {
+                              "kind": "IndexNode",
+                              "line": 10,
+                              "collection": {
+                                "kind": "IdentifierNode",
+                                "line": 10,
+                                "name": "inventory"
+                              },
+                              "index": {
+                                "kind": "IdentifierNode",
+                                "line": 10,
+                                "name": "item"
+                              }
+                            },
+                            "right": {
+                              "kind": "IdentifierNode",
+                              "line": 10,
+                              "name": "quantity"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "else_if": [
+                      {
+                        "kind": "ElseIfNode",
+                        "line": 11,
+                        "condition": {
+                          "kind": "BinaryNode",
+                          "line": 11,
+                          "operator": "==",
+                          "left": {
+                            "kind": "IdentifierNode",
+                            "line": 11,
+                            "name": "type"
+                          },
+                          "right": {
+                            "kind": "LiteralNode",
+                            "line": 11,
+                            "value": "delivery",
+                            "data_type": "STRING"
+                          }
+                        },
+                        "body": {
+                          "kind": "BlockNode",
+                          "line": 12,
+                          "statements": [
+                            {
+                              "kind": "AssignmentNode",
+                              "line": 12,
+                              "target": {
+                                "kind": "IndexNode",
+                                "line": 12,
+                                "collection": {
+                                  "kind": "IdentifierNode",
+                                  "line": 12,
+                                  "name": "inventory"
+                                },
+                                "index": {
+                                  "kind": "IdentifierNode",
+                                  "line": 12,
+                                  "name": "item"
+                                }
+                              },
+                              "value": {
+                                "kind": "BinaryNode",
+                                "line": 12,
+                                "operator": "+",
+                                "left": {
+                                  "kind": "IndexNode",
+                                  "line": 12,
+                                  "collection": {
+                                    "kind": "IdentifierNode",
+                                    "line": 12,
+                                    "name": "inventory"
+                                  },
+                                  "index": {
+                                    "kind": "IdentifierNode",
+                                    "line": 12,
+                                    "name": "item"
+                                  }
+                                },
+                                "right": {
+                                  "kind": "IdentifierNode",
+                                  "line": 12,
+                                  "name": "quantity"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "else_body": null
+                  },
+                  {
+                    "kind": "IfNode",
+                    "line": 14,
+                    "condition": {
+                      "kind": "BinaryNode",
+                      "line": 14,
+                      "operator": "<",
+                      "left": {
+                        "kind": "IndexNode",
+                        "line": 14,
+                        "collection": {
+                          "kind": "IdentifierNode",
+                          "line": 14,
+                          "name": "inventory"
+                        },
+                        "index": {
+                          "kind": "IdentifierNode",
+                          "line": 14,
+                          "name": "item"
+                        }
+                      },
+                      "right": {
+                        "kind": "LiteralNode",
+                        "line": 14,
+                        "value": 0,
+                        "data_type": "INTEGER"
+                      }
+                    },
+                    "then_body": {
+                      "kind": "BlockNode",
+                      "line": 15,
+                      "statements": [
+                        {
+                          "kind": "OutputNode",
+                          "line": 15,
+                          "expression": {
+                            "kind": "BinaryNode",
+                            "line": 15,
+                            "operator": "+",
+                            "left": {
+                              "kind": "LiteralNode",
+                              "line": 15,
+                              "value": "Insufficient stock for ",
+                              "data_type": "STRING"
+                            },
+                            "right": {
+                              "kind": "IdentifierNode",
+                              "line": 15,
+                              "name": "item"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "else_if": [],
+                    "else_body": null
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "ReturnNode",
+              "line": 18,
+              "expression": {
+                "kind": "IdentifierNode",
+                "line": 18,
+                "name": "inventory"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,148 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 11,
+  "transformations": [
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    set1 = ConvertToSet(list1)",
+      "canonical": "    set1 <- ConvertToSet(list1)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    result_set = empty Set",
+      "canonical": "    result_set <- empty Set",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    result_set <- empty Set",
+      "canonical": "    result_set <- EMPTY SET",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "FUNCTION FindUniqueCommonElements(list1, list2):\n    set1 <- ConvertToSet(list1)\n    result_set <- EMPTY SET\n    \n    FOR EACH item IN list2 DO\n        IF item IN set1 THEN\n            ADD item TO result_set\n        END IF\n    END FOR\n    \n    RETURN ConvertSetToList(result_set)\nEND FUNCTION",
+      "canonical": "FUNCTION FindUniqueCommonElements(list1, list2):\n    set1 <- ConvertToSet(list1)\n    result_set <- EMPTY SET\n    \n    FOR EACH item IN list2 DO\n        IF item IN set1 THEN\n            ADD item TO result_set\n        ENDIF\n    ENDFOR\n    \n    RETURN ConvertSetToList(result_set)\nENDFUNCTION",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION FindUniqueCommonElements(list1, list2):\n    set1 <- ConvertToSet(list1)\n    result_set <- EMPTY SET\n    \n    FOR EACH item IN list2 DO\n        IF item IN set1 THEN\n            ADD item TO result_set\n        ENDIF\n    ENDFOR\n    \n    RETURN ConvertSetToList(result_set)\nENDFUNCTION",
+      "canonical": "FUNCTION FindUniqueCommonElements(list1, list2):\n    set1 <- ConvertToSet(list1)\n    result_set <- EMPTY SET\n    \n    FOR EACH item IN list2 DO\n        IF item IN set1 THEN\n            CALL add_to_set(result_set, item)\n        ENDIF\n    ENDFOR\n    \n    RETURN ConvertSetToList(result_set)\nENDFUNCTION",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION FindUniqueCommonElements(list1, list2):",
+      "canonical": "FUNCTION FindUniqueCommonElements ACCEPTS(list1, list2)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 2,
+      "rule_family": "TYPE_COERCION",
+      "branch": "EXPLICIT_SET_CONVERSION_INTRINSIC",
+      "source": "    set1 <- ConvertToSet(list1)",
+      "canonical": "    set1 <- CALL to_set(list1)",
+      "evidence": [
+        "source explicitly calls free ConvertToSet(value) with exactly one argument",
+        "the operation explicitly requests set conversion rather than requiring set semantics to be inferred",
+        "the existing to_set compatibility intrinsic preserves that supplied conversion and lowers deterministically to Python set(value)",
+        "declarations, member methods, quoted text, and zero/multi-argument calls remain untouched"
+      ],
+      "confidence": "source_proven",
+      "semantic_change": false
+    },
+    {
+      "line": 11,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    RETURN ConvertSetToList(result_set)",
+      "canonical": "    RETURN CALL ConvertSetToList(result_set)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 11,
+      "rule_family": "TYPE_COERCION",
+      "branch": "EVIDENCED_SET_TO_LIST_CONVERSION",
+      "source": "    RETURN CALL ConvertSetToList(result_set)",
+      "canonical": "    RETURN CALL to_list(result_set)",
+      "evidence": [
+        "the source explicitly calls free ConvertSetToList(name) with exactly one simple identifier argument",
+        "the same lexical routine previously establishes that identifier as EMPTY SET",
+        "no intervening direct reassignment invalidates the set-backed evidence",
+        "the existing to_list compatibility intrinsic preserves the explicit conversion and lowers deterministically to Python list(name)"
+      ],
+      "confidence": "source_proven",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    ",
+      "canonical": "",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 10,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    ",
+      "canonical": "",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 1
+}

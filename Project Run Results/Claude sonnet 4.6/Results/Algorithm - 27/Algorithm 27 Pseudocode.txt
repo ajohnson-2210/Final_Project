@@ -1,0 +1,11 @@
+# Rotate 2D Matrix 90° Clockwise
+
+FUNCTION rotateMatrix(matrix, N):
+    // Transpose
+    FOR i FROM 0 TO N - 1:
+        FOR j FROM i+1 TO N - 1:
+            SWAP matrix[i][j] AND matrix[j][i]
+    // Reverse each row
+    FOR i FROM 0 TO N - 1:
+        REVERSE matrix[i]
+    RETURN matrix

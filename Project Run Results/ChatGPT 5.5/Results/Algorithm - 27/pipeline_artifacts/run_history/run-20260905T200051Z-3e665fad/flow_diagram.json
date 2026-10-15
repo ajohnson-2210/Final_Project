@@ -1,0 +1,189 @@
+{
+  "format": "NL-FDEP Flow Diagram",
+  "version": "1.0",
+  "entry_node": "F1",
+  "exit_node": "F2",
+  "nodes": {
+    "F1": {
+      "node_id": "F1",
+      "node_type": "START",
+      "label": "Start",
+      "line": 1,
+      "data": {}
+    },
+    "F2": {
+      "node_id": "F2",
+      "node_type": "END",
+      "label": "End",
+      "line": 1,
+      "data": {}
+    },
+    "F3": {
+      "node_id": "F3",
+      "node_type": "FUNCTION",
+      "label": "Run function unnamed_function with Matrix, N",
+      "line": 1,
+      "data": {
+        "ast_kind": "FunctionNode",
+        "name": "unnamed_function"
+      }
+    },
+    "F4": {
+      "node_id": "F4",
+      "node_type": "CALL",
+      "label": "Call transpose_in_place with Matrix",
+      "line": 2,
+      "data": {
+        "ast_kind": "CallNode"
+      }
+    },
+    "F5": {
+      "node_id": "F5",
+      "node_type": "LOOP_DECISION",
+      "label": "For each Row in Matrix",
+      "line": 3,
+      "data": {
+        "ast_kind": "ForEachNode"
+      }
+    },
+    "F6": {
+      "node_id": "F6",
+      "node_type": "CALL",
+      "label": "Call reverse_list with Row",
+      "line": 4,
+      "data": {
+        "ast_kind": "CallNode"
+      }
+    },
+    "F7": {
+      "node_id": "F7",
+      "node_type": "OUTPUT",
+      "label": "Display Matrix",
+      "line": 7,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "F5",
+      "target": "F6",
+      "label": "ITERATE"
+    },
+    {
+      "source": "F6",
+      "target": "F5",
+      "label": "LOOP"
+    },
+    {
+      "source": "F4",
+      "target": "F5",
+      "label": "NEXT"
+    },
+    {
+      "source": "F5",
+      "target": "F7",
+      "label": "NEXT"
+    },
+    {
+      "source": "F3",
+      "target": "F4",
+      "label": "BODY"
+    },
+    {
+      "source": "F1",
+      "target": "F3",
+      "label": "NEXT"
+    },
+    {
+      "source": "F7",
+      "target": "F2",
+      "label": "NEXT"
+    }
+  ],
+  "structured_program": {
+    "kind": "ProgramNode",
+    "line": 1,
+    "body": [
+      {
+        "kind": "FunctionNode",
+        "line": 1,
+        "name": "unnamed_function",
+        "parameters": [
+          {
+            "kind": "ParameterNode",
+            "line": 1,
+            "name": "Matrix",
+            "declared_type": null
+          },
+          {
+            "kind": "ParameterNode",
+            "line": 1,
+            "name": "N",
+            "declared_type": null
+          }
+        ],
+        "body": {
+          "kind": "BlockNode",
+          "line": 2,
+          "statements": [
+            {
+              "kind": "CallNode",
+              "line": 2,
+              "name": "transpose_in_place",
+              "arguments": [
+                {
+                  "kind": "IdentifierNode",
+                  "line": 2,
+                  "name": "Matrix"
+                }
+              ]
+            },
+            {
+              "kind": "ForEachNode",
+              "line": 3,
+              "variable": {
+                "kind": "IdentifierNode",
+                "line": 3,
+                "name": "Row"
+              },
+              "collection": {
+                "kind": "IdentifierNode",
+                "line": 3,
+                "name": "Matrix"
+              },
+              "body": {
+                "kind": "BlockNode",
+                "line": 4,
+                "statements": [
+                  {
+                    "kind": "CallNode",
+                    "line": 4,
+                    "name": "reverse_list",
+                    "arguments": [
+                      {
+                        "kind": "IdentifierNode",
+                        "line": 4,
+                        "name": "Row"
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "OutputNode",
+              "line": 7,
+              "expression": {
+                "kind": "IdentifierNode",
+                "line": 7,
+                "name": "Matrix"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

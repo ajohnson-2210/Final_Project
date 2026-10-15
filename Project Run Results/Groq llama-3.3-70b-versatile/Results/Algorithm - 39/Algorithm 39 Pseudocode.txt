@@ -1,0 +1,13 @@
+# Detect cycle in a singly linked list (Floyd’s cycle detection)
+FUNCTION HAS_CYCLE(head)
+  tortoise = head
+  hare = head
+  WHILE tortoise != NULL AND hare != NULL AND hare.next != NULL
+    tortoise = tortoise.next
+    hare = hare.next.next
+    IF tortoise == hare THEN
+      RETURN TRUE
+    END IF
+  END WHILE
+  RETURN FALSE
+END FUNCTION

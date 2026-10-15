@@ -1,0 +1,142 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 11,
+  "transformations": [
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "      PRINT(\"Move disk 1 from rod \" + from_rod + \" to rod \" + to_rod)",
+      "canonical": "      PRINT(STRING(\"Move disk 1 from rod \") + from_rod + STRING(\" to rod \") + to_rod)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 7,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "      PRINT(\"Move disk \" + n + \" from rod \" + from_rod + \" to rod \" + to_rod)",
+      "canonical": "      PRINT(STRING(\"Move disk \") + n + STRING(\" from rod \") + from_rod + STRING(\" to rod \") + to_rod)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 11,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  MOVE(N, \"A\", \"C\", \"B\")",
+      "canonical": "  MOVE(N, STRING(\"A\"), STRING(\"C\"), STRING(\"B\"))",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "      PRINT(STRING(\"Move disk 1 from rod \") + from_rod + STRING(\" to rod \") + to_rod)",
+      "canonical": "      OUTPUT STRING(\"Move disk 1 from rod \") + from_rod + STRING(\" to rod \") + to_rod",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 7,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "      PRINT(STRING(\"Move disk \") + n + STRING(\" from rod \") + from_rod + STRING(\" to rod \") + to_rod)",
+      "canonical": "      OUTPUT STRING(\"Move disk \") + n + STRING(\" from rod \") + from_rod + STRING(\" to rod \") + to_rod",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION TOWER_OF_HANOI(N)",
+      "canonical": "FUNCTION TOWER_OF_HANOI ACCEPTS(N)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  FUNCTION MOVE(n, from_rod, to_rod, aux_rod)",
+      "canonical": "  FUNCTION MOVE ACCEPTS(n, from_rod, to_rod, aux_rod)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "FUNCTION TOWER_OF_HANOI ACCEPTS(N)\n  FUNCTION MOVE ACCEPTS(n, from_rod, to_rod, aux_rod)\n    IF n == 1 THEN\n      OUTPUT STRING(\"Move disk 1 from rod \") + from_rod + STRING(\" to rod \") + to_rod\n    ELSE\n      MOVE(n - 1, from_rod, aux_rod, to_rod)\n      OUTPUT STRING(\"Move disk \") + n + STRING(\" from rod \") + from_rod + STRING(\" to rod \") + to_rod\n      MOVE(n - 1, aux_rod, to_rod, from_rod)\n    END IF\n  END FUNCTION\n  MOVE(N, STRING(\"A\"), STRING(\"C\"), STRING(\"B\"))\nEND FUNCTION",
+      "canonical": "FUNCTION TOWER_OF_HANOI ACCEPTS(N)\n  FUNCTION MOVE ACCEPTS(n, from_rod, to_rod, aux_rod)\n    IF n == 1 THEN\n      OUTPUT STRING(\"Move disk 1 from rod \") + from_rod + STRING(\" to rod \") + to_rod\n    ELSE\n      MOVE(n - 1, from_rod, aux_rod, to_rod)\n      OUTPUT STRING(\"Move disk \") + n + STRING(\" from rod \") + from_rod + STRING(\" to rod \") + to_rod\n      MOVE(n - 1, aux_rod, to_rod, from_rod)\n    ENDIF\n  ENDFUNCTION\n  MOVE(N, STRING(\"A\"), STRING(\"C\"), STRING(\"B\"))\nENDFUNCTION",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 6,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "      MOVE(n - 1, from_rod, aux_rod, to_rod)",
+      "canonical": "      CALL MOVE(n - 1, from_rod, aux_rod, to_rod)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 8,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "      MOVE(n - 1, aux_rod, to_rod, from_rod)",
+      "canonical": "      CALL MOVE(n - 1, aux_rod, to_rod, from_rod)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 11,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  MOVE(N, STRING(\"A\"), STRING(\"C\"), STRING(\"B\"))",
+      "canonical": "  CALL MOVE(N, STRING(\"A\"), STRING(\"C\"), STRING(\"B\"))",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 1
+}

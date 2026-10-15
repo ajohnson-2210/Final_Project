@@ -1,0 +1,12 @@
+    INPUT List1, List2
+
+    Result <- Empty Set
+
+    FOR EACH Item IN List1
+        IF Item EXISTS IN List2 THEN
+            ADD Item TO Result
+        ENDIF
+    ENDFOR
+
+    OUTPUT Result
+END

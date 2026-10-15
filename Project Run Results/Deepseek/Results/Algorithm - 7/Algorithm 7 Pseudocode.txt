@@ -1,0 +1,14 @@
+# Split a sentence into individual words and store in a list.
+FUNCTION splitIntoSentences(sentence):
+    words = empty list
+    currentWord = ""
+    FOR each char in sentence:
+        IF char == ' ':
+            IF currentWord != "":
+                words.append(currentWord)
+                currentWord = ""
+        ELSE:
+            currentWord = currentWord + char
+    IF currentWord != "":
+        words.append(currentWord)
+    RETURN words

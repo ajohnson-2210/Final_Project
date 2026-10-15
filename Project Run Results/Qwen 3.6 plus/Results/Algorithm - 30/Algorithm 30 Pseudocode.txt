@@ -1,0 +1,10 @@
+# Topic Modelling System
+
+INPUT corpus
+
+texts = preprocess(corpus)
+dtm = buildDocumentTermMatrix(texts)
+topics = applyLDA(dtm, numTopics)
+
+RETURN extractTopWords(topics)
+

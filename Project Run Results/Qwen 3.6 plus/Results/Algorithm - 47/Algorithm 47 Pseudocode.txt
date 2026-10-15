@@ -1,0 +1,16 @@
+# Inventory Update
+
+INPUT inventoryMap, transactions
+
+FOR t in transactions:
+    IF t.type == "purchase":
+        inventoryMap[t.item] += t.qty
+
+    IF t.type == "delivery":
+        inventoryMap[t.item] -= t.qty
+
+    IF inventoryMap[t.item] < 0:
+        RAISE "Insufficient Stock"
+
+RETURN inventoryMap
+

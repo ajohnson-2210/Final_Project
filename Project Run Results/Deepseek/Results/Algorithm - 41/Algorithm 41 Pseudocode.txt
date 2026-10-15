@@ -1,0 +1,36 @@
+# Solve the N Queens Problem for N arbitrary board size N.
+FUNCTION solveNQueens(N):
+    board = 2D array of size NxN initialized to 0
+    solutions = empty list
+
+    FUNCTION isSafe(board, row, col):
+        // Check column
+        FOR i FROM 0 TO row-1:
+            IF board[i][col] == 1:
+                RETURN False
+        // Check upper-left diagonal
+        i = row - 1, j = col - 1
+        WHILE i >= 0 AND j >= 0:
+            IF board[i][j] == 1:
+                RETURN False
+            i = i - 1, j = j - 1
+        // Check upper-right diagonal
+        i = row - 1, j = col + 1
+        WHILE i >= 0 AND j < N:
+            IF board[i][j] == 1:
+                RETURN False
+            i = i - 1, j = j + 1
+        RETURN True
+
+    FUNCTION placeQueen(board, row):
+        IF row == N:
+            solutions.append(copy of board)
+            RETURN
+        FOR col FROM 0 TO N-1:
+            IF isSafe(board, row, col):
+                board[row][col] = 1
+                placeQueen(board, row + 1)
+                board[row][col] = 0 // Backtrack
+
+    placeQueen(board, 0)
+    RETURN solutions

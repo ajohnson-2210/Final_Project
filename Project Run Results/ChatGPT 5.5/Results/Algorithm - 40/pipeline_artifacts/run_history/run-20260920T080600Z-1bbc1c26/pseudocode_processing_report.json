@@ -1,0 +1,94 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 7,
+  "transformations": [
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    ENQUEUE(Item)\n        PUSH Item onto Stack1\n\n    DEQUEUE()\n        IF Stack2 is empty THEN\n            WHILE Stack1 is not empty\n                PUSH POP(Stack1) onto Stack2\n            ENDWHILE\n        ENDIF\n\n        OUTPUT POP(Stack2)\nEND",
+      "canonical": "    ENQUEUE(Item)\n        PUSH Item onto Stack1\n\n    DEQUEUE()\n        IF LENGTH OF Stack2 == 0 THEN\n            WHILE LENGTH OF Stack1 > 0\n                PUSH POP(Stack1) onto Stack2\n            ENDWHILE\n        ENDIF\n\n        OUTPUT POP(Stack2)\nEND",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 6,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            WHILE LENGTH OF Stack1 > 0",
+      "canonical": "            WHILE LENGTH OF Stack1 > 0 DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 12,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "END",
+      "canonical": "",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    ENQUEUE(Item)",
+      "canonical": "    CALL ENQUEUE(Item)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    DEQUEUE()",
+      "canonical": "    CALL DEQUEUE()",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 7,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "                PUSH POP(Stack1) onto Stack2",
+      "canonical": "                PUSH CALL POP(Stack1) onto Stack2",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 11,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        OUTPUT POP(Stack2)",
+      "canonical": "        OUTPUT CALL POP(Stack2)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 5
+}

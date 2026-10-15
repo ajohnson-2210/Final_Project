@@ -1,0 +1,9 @@
+# Find GCD of two numbers using Euclidean algorithm
+FUNCTION GCD(a, b)
+  WHILE b != 0
+    temp = b
+    b = a MOD b
+    a = temp
+  END WHILE
+  RETURN a
+END FUNCTION

@@ -1,0 +1,12 @@
+# Convert a non-negative decimal integer into its binary string representation
+FUNCTION DECIMAL_TO_BINARY(n)
+  IF n == 0 THEN
+    RETURN "0"
+  END IF
+  binary = ""
+  WHILE n > 0
+    binary = MOD(n, 2) + binary
+    n = FLOOR(n / 2)
+  END WHILE
+  RETURN binary
+END FUNCTION

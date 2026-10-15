@@ -1,0 +1,60 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 4,
+  "transformations": [
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION REMOVE_DUPLICATE_IPS(ips)",
+      "canonical": "FUNCTION REMOVE_DUPLICATE_IPS ACCEPTS(ips)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "FUNCTION REMOVE_DUPLICATE_IPS ACCEPTS(ips)\n  RETURN UNIQUE(ips)\nEND FUNCTION",
+      "canonical": "FUNCTION REMOVE_DUPLICATE_IPS ACCEPTS(ips)\n  RETURN UNIQUE(ips)\nENDFUNCTION",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  RETURN UNIQUE(ips)",
+      "canonical": "  RETURN CALL UNIQUE(ips)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 2,
+      "rule_family": "COLLECTION_DEDUPLICATION",
+      "branch": "EXACT_UNIQUE_TO_SET_INTRINSIC",
+      "source": "  RETURN CALL UNIQUE(ips)",
+      "canonical": "  RETURN CALL to_set(ips)",
+      "evidence": [
+        "source explicitly calls unique(collection) as a one-argument deduplication operation",
+        "AJ v1.1 already has native set semantics, while the compatibility layer may lower that exact source operation to the existing to_set intrinsic",
+        "the pair-search algorithm and collection contents are unchanged; only duplicate elimination is represented"
+      ],
+      "confidence": "user_confirmed",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 1
+}

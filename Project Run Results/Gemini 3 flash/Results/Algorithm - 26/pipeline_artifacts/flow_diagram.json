@@ -1,0 +1,685 @@
+{
+  "format": "NL-FDEP Flow Diagram",
+  "version": "1.0",
+  "entry_node": "F1",
+  "exit_node": "F2",
+  "nodes": {
+    "F1": {
+      "node_id": "F1",
+      "node_type": "START",
+      "label": "Start",
+      "line": 1,
+      "data": {}
+    },
+    "F2": {
+      "node_id": "F2",
+      "node_type": "END",
+      "label": "End",
+      "line": 1,
+      "data": {}
+    },
+    "F3": {
+      "node_id": "F3",
+      "node_type": "FUNCTION",
+      "label": "Run function LevelOrderTraversal with root",
+      "line": 1,
+      "data": {
+        "ast_kind": "FunctionNode",
+        "name": "LevelOrderTraversal"
+      }
+    },
+    "F4": {
+      "node_id": "F4",
+      "node_type": "DECISION",
+      "label": "Root is equal to NULL?",
+      "line": 2,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F5": {
+      "node_id": "F5",
+      "node_type": "RETURN",
+      "label": "Return an empty list",
+      "line": 3,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    },
+    "F6": {
+      "node_id": "F6",
+      "node_type": "PROCESS",
+      "label": "Set result to an empty list",
+      "line": 6,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F7": {
+      "node_id": "F7",
+      "node_type": "PROCESS",
+      "label": "Set queue to the result of create_queue()",
+      "line": 7,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F8": {
+      "node_id": "F8",
+      "node_type": "CALL",
+      "label": "Call ENQUEUE with queue, root",
+      "line": 8,
+      "data": {
+        "ast_kind": "CallNode"
+      }
+    },
+    "F9": {
+      "node_id": "F9",
+      "node_type": "LOOP_DECISION",
+      "label": "Continue while not the result of queue_is_empty(queue)?",
+      "line": 9,
+      "data": {
+        "ast_kind": "WhileNode"
+      }
+    },
+    "F10": {
+      "node_id": "F10",
+      "node_type": "PROCESS",
+      "label": "Set level_size to the result of queue_size(queue)",
+      "line": 10,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F11": {
+      "node_id": "F11",
+      "node_type": "PROCESS",
+      "label": "Set current_level to an empty list",
+      "line": 11,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F12": {
+      "node_id": "F12",
+      "node_type": "LOOP_DECISION",
+      "label": "For i from 1 to level_size plus 1",
+      "line": 13,
+      "data": {
+        "ast_kind": "ForRangeNode"
+      }
+    },
+    "F13": {
+      "node_id": "F13",
+      "node_type": "PROCESS",
+      "label": "Set node to the result of DEQUEUE(queue)",
+      "line": 14,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F14": {
+      "node_id": "F14",
+      "node_type": "PROCESS",
+      "label": "Append value of node to current_level",
+      "line": 15,
+      "data": {
+        "ast_kind": "AppendNode"
+      }
+    },
+    "F15": {
+      "node_id": "F15",
+      "node_type": "DECISION",
+      "label": "Left of node is not equal to NULL?",
+      "line": 17,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F16": {
+      "node_id": "F16",
+      "node_type": "CALL",
+      "label": "Call ENQUEUE with queue, left of node",
+      "line": 18,
+      "data": {
+        "ast_kind": "CallNode"
+      }
+    },
+    "F17": {
+      "node_id": "F17",
+      "node_type": "DECISION",
+      "label": "Right of node is not equal to NULL?",
+      "line": 20,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F18": {
+      "node_id": "F18",
+      "node_type": "CALL",
+      "label": "Call ENQUEUE with queue, right of node",
+      "line": 21,
+      "data": {
+        "ast_kind": "CallNode"
+      }
+    },
+    "F19": {
+      "node_id": "F19",
+      "node_type": "PROCESS",
+      "label": "Append current_level to result",
+      "line": 25,
+      "data": {
+        "ast_kind": "AppendNode"
+      }
+    },
+    "F20": {
+      "node_id": "F20",
+      "node_type": "RETURN",
+      "label": "Return result",
+      "line": 28,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "F4",
+      "target": "F5",
+      "label": "TRUE"
+    },
+    {
+      "source": "F4",
+      "target": "F6",
+      "label": "NEXT"
+    },
+    {
+      "source": "F6",
+      "target": "F7",
+      "label": "NEXT"
+    },
+    {
+      "source": "F7",
+      "target": "F8",
+      "label": "NEXT"
+    },
+    {
+      "source": "F10",
+      "target": "F11",
+      "label": "NEXT"
+    },
+    {
+      "source": "F13",
+      "target": "F14",
+      "label": "NEXT"
+    },
+    {
+      "source": "F15",
+      "target": "F16",
+      "label": "TRUE"
+    },
+    {
+      "source": "F14",
+      "target": "F15",
+      "label": "NEXT"
+    },
+    {
+      "source": "F17",
+      "target": "F18",
+      "label": "TRUE"
+    },
+    {
+      "source": "F16",
+      "target": "F17",
+      "label": "NEXT"
+    },
+    {
+      "source": "F15",
+      "target": "F17",
+      "label": "NEXT"
+    },
+    {
+      "source": "F12",
+      "target": "F13",
+      "label": "ITERATE"
+    },
+    {
+      "source": "F18",
+      "target": "F12",
+      "label": "LOOP"
+    },
+    {
+      "source": "F17",
+      "target": "F12",
+      "label": "LOOP"
+    },
+    {
+      "source": "F11",
+      "target": "F12",
+      "label": "NEXT"
+    },
+    {
+      "source": "F12",
+      "target": "F19",
+      "label": "NEXT"
+    },
+    {
+      "source": "F9",
+      "target": "F10",
+      "label": "TRUE"
+    },
+    {
+      "source": "F19",
+      "target": "F9",
+      "label": "LOOP"
+    },
+    {
+      "source": "F8",
+      "target": "F9",
+      "label": "NEXT"
+    },
+    {
+      "source": "F9",
+      "target": "F20",
+      "label": "NEXT"
+    },
+    {
+      "source": "F3",
+      "target": "F4",
+      "label": "BODY"
+    },
+    {
+      "source": "F1",
+      "target": "F3",
+      "label": "NEXT"
+    },
+    {
+      "source": "F5",
+      "target": "F2",
+      "label": "NEXT"
+    },
+    {
+      "source": "F20",
+      "target": "F2",
+      "label": "NEXT"
+    }
+  ],
+  "structured_program": {
+    "kind": "ProgramNode",
+    "line": 1,
+    "body": [
+      {
+        "kind": "FunctionNode",
+        "line": 1,
+        "name": "LevelOrderTraversal",
+        "parameters": [
+          {
+            "kind": "ParameterNode",
+            "line": 1,
+            "name": "root",
+            "declared_type": null
+          }
+        ],
+        "body": {
+          "kind": "BlockNode",
+          "line": 2,
+          "statements": [
+            {
+              "kind": "IfNode",
+              "line": 2,
+              "condition": {
+                "kind": "BinaryNode",
+                "line": 2,
+                "operator": "==",
+                "left": {
+                  "kind": "IdentifierNode",
+                  "line": 2,
+                  "name": "root"
+                },
+                "right": {
+                  "kind": "IdentifierNode",
+                  "line": 2,
+                  "name": "NULL"
+                }
+              },
+              "then_body": {
+                "kind": "BlockNode",
+                "line": 3,
+                "statements": [
+                  {
+                    "kind": "ReturnNode",
+                    "line": 3,
+                    "expression": {
+                      "kind": "EmptyLiteralNode",
+                      "line": 3,
+                      "empty_type": "LIST"
+                    }
+                  }
+                ]
+              },
+              "else_if": [],
+              "else_body": null
+            },
+            {
+              "kind": "AssignmentNode",
+              "line": 6,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 6,
+                "name": "result"
+              },
+              "value": {
+                "kind": "EmptyLiteralNode",
+                "line": 6,
+                "empty_type": "LIST"
+              }
+            },
+            {
+              "kind": "AssignmentNode",
+              "line": 7,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 7,
+                "name": "queue"
+              },
+              "value": {
+                "kind": "CallNode",
+                "line": 7,
+                "name": "create_queue",
+                "arguments": []
+              }
+            },
+            {
+              "kind": "CallNode",
+              "line": 8,
+              "name": "ENQUEUE",
+              "arguments": [
+                {
+                  "kind": "IdentifierNode",
+                  "line": 8,
+                  "name": "queue"
+                },
+                {
+                  "kind": "IdentifierNode",
+                  "line": 8,
+                  "name": "root"
+                }
+              ]
+            },
+            {
+              "kind": "WhileNode",
+              "line": 9,
+              "condition": {
+                "kind": "UnaryNode",
+                "line": 9,
+                "operator": "NOT",
+                "operand": {
+                  "kind": "CallNode",
+                  "line": 9,
+                  "name": "queue_is_empty",
+                  "arguments": [
+                    {
+                      "kind": "IdentifierNode",
+                      "line": 9,
+                      "name": "queue"
+                    }
+                  ]
+                }
+              },
+              "body": {
+                "kind": "BlockNode",
+                "line": 10,
+                "statements": [
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 10,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 10,
+                      "name": "level_size"
+                    },
+                    "value": {
+                      "kind": "CallNode",
+                      "line": 10,
+                      "name": "queue_size",
+                      "arguments": [
+                        {
+                          "kind": "IdentifierNode",
+                          "line": 10,
+                          "name": "queue"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 11,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 11,
+                      "name": "current_level"
+                    },
+                    "value": {
+                      "kind": "EmptyLiteralNode",
+                      "line": 11,
+                      "empty_type": "LIST"
+                    }
+                  },
+                  {
+                    "kind": "ForRangeNode",
+                    "line": 13,
+                    "variable": {
+                      "kind": "IdentifierNode",
+                      "line": 13,
+                      "name": "i"
+                    },
+                    "start": {
+                      "kind": "LiteralNode",
+                      "line": 13,
+                      "value": 1,
+                      "data_type": "INTEGER"
+                    },
+                    "end": {
+                      "kind": "BinaryNode",
+                      "line": 13,
+                      "operator": "+",
+                      "left": {
+                        "kind": "IdentifierNode",
+                        "line": 13,
+                        "name": "level_size"
+                      },
+                      "right": {
+                        "kind": "LiteralNode",
+                        "line": 13,
+                        "value": 1,
+                        "data_type": "INTEGER"
+                      }
+                    },
+                    "step": null,
+                    "body": {
+                      "kind": "BlockNode",
+                      "line": 14,
+                      "statements": [
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 14,
+                          "target": {
+                            "kind": "IdentifierNode",
+                            "line": 14,
+                            "name": "node"
+                          },
+                          "value": {
+                            "kind": "CallNode",
+                            "line": 14,
+                            "name": "DEQUEUE",
+                            "arguments": [
+                              {
+                                "kind": "IdentifierNode",
+                                "line": 14,
+                                "name": "queue"
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "kind": "AppendNode",
+                          "line": 15,
+                          "value": {
+                            "kind": "MemberAccessNode",
+                            "line": 15,
+                            "object": {
+                              "kind": "IdentifierNode",
+                              "line": 15,
+                              "name": "node"
+                            },
+                            "member": "value"
+                          },
+                          "collection": {
+                            "kind": "IdentifierNode",
+                            "line": 15,
+                            "name": "current_level"
+                          }
+                        },
+                        {
+                          "kind": "IfNode",
+                          "line": 17,
+                          "condition": {
+                            "kind": "BinaryNode",
+                            "line": 17,
+                            "operator": "!=",
+                            "left": {
+                              "kind": "MemberAccessNode",
+                              "line": 17,
+                              "object": {
+                                "kind": "IdentifierNode",
+                                "line": 17,
+                                "name": "node"
+                              },
+                              "member": "left"
+                            },
+                            "right": {
+                              "kind": "IdentifierNode",
+                              "line": 17,
+                              "name": "NULL"
+                            }
+                          },
+                          "then_body": {
+                            "kind": "BlockNode",
+                            "line": 18,
+                            "statements": [
+                              {
+                                "kind": "CallNode",
+                                "line": 18,
+                                "name": "ENQUEUE",
+                                "arguments": [
+                                  {
+                                    "kind": "IdentifierNode",
+                                    "line": 18,
+                                    "name": "queue"
+                                  },
+                                  {
+                                    "kind": "MemberAccessNode",
+                                    "line": 18,
+                                    "object": {
+                                      "kind": "IdentifierNode",
+                                      "line": 18,
+                                      "name": "node"
+                                    },
+                                    "member": "left"
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          "else_if": [],
+                          "else_body": null
+                        },
+                        {
+                          "kind": "IfNode",
+                          "line": 20,
+                          "condition": {
+                            "kind": "BinaryNode",
+                            "line": 20,
+                            "operator": "!=",
+                            "left": {
+                              "kind": "MemberAccessNode",
+                              "line": 20,
+                              "object": {
+                                "kind": "IdentifierNode",
+                                "line": 20,
+                                "name": "node"
+                              },
+                              "member": "right"
+                            },
+                            "right": {
+                              "kind": "IdentifierNode",
+                              "line": 20,
+                              "name": "NULL"
+                            }
+                          },
+                          "then_body": {
+                            "kind": "BlockNode",
+                            "line": 21,
+                            "statements": [
+                              {
+                                "kind": "CallNode",
+                                "line": 21,
+                                "name": "ENQUEUE",
+                                "arguments": [
+                                  {
+                                    "kind": "IdentifierNode",
+                                    "line": 21,
+                                    "name": "queue"
+                                  },
+                                  {
+                                    "kind": "MemberAccessNode",
+                                    "line": 21,
+                                    "object": {
+                                      "kind": "IdentifierNode",
+                                      "line": 21,
+                                      "name": "node"
+                                    },
+                                    "member": "right"
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          "else_if": [],
+                          "else_body": null
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "kind": "AppendNode",
+                    "line": 25,
+                    "value": {
+                      "kind": "IdentifierNode",
+                      "line": 25,
+                      "name": "current_level"
+                    },
+                    "collection": {
+                      "kind": "IdentifierNode",
+                      "line": 25,
+                      "name": "result"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "ReturnNode",
+              "line": 28,
+              "expression": {
+                "kind": "IdentifierNode",
+                "line": 28,
+                "name": "result"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

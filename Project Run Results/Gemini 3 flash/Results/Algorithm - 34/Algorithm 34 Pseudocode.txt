@@ -1,0 +1,13 @@
+# Unique common elements from two unsorted lists    
+FUNCTION FindUniqueCommonElements(list1, list2):
+    set1 = ConvertToSet(list1)
+    result_set = empty Set
+    
+    FOR EACH item IN list2 DO
+        IF item IN set1 THEN
+            ADD item TO result_set
+        END IF
+    END FOR
+    
+    RETURN ConvertSetToList(result_set)
+END FUNCTION

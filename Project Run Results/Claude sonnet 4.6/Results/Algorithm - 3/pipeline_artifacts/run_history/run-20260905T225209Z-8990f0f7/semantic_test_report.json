@@ -1,0 +1,152 @@
+{
+  "semantic_report_schema_version": "1.0",
+  "program_path": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Claude sonnet 4.6\\Results\\Algorithm - 3\\pipeline_artifacts\\generated_program.py",
+  "algorithm_id": 3,
+  "contract_version": "1.2",
+  "evaluable_tests": 0,
+  "passed_tests": 0,
+  "failed_tests": 0,
+  "not_evaluable_tests": 5,
+  "accuracy_percentage": null,
+  "results": [
+    {
+      "name": "leap year divisible by 400",
+      "status": "NOT_EVALUABLE",
+      "expected_semantic_result": true,
+      "actual_semantic_result": null,
+      "semantic_match": null,
+      "reason": "The semantic observer could not derive the task result from the invocation evidence.",
+      "duration_ms": 91.499,
+      "category": "BRANCH",
+      "semantic_feature": "LEAP_YEAR_400_RULE",
+      "fixture_source": "COMMON_TEST_STANDARD_INPUT",
+      "oracle_source": "TASK_SEMANTIC_ORACLE_WITH_FROZEN_BASELINE_REFERENCE",
+      "selected_entrypoint": "isLeapYear",
+      "invocation_capture": {
+        "status": "COMPLETED",
+        "selected_entrypoint": "isLeapYear",
+        "prints": [],
+        "returns": [
+          true
+        ],
+        "post_arguments": [
+          [
+            2000
+          ]
+        ],
+        "shared_values": {},
+        "errors": [
+          null
+        ]
+      }
+    },
+    {
+      "name": "century year not divisible by 400",
+      "status": "NOT_EVALUABLE",
+      "expected_semantic_result": false,
+      "actual_semantic_result": null,
+      "semantic_match": null,
+      "reason": "The semantic observer could not derive the task result from the invocation evidence.",
+      "duration_ms": 85.436,
+      "category": "BRANCH",
+      "semantic_feature": "LEAP_YEAR_CENTURY_RULE",
+      "fixture_source": "COMMON_TEST_STANDARD_INPUT",
+      "oracle_source": "TASK_SEMANTIC_ORACLE_WITH_FROZEN_BASELINE_REFERENCE",
+      "selected_entrypoint": "isLeapYear",
+      "invocation_capture": {
+        "status": "COMPLETED",
+        "selected_entrypoint": "isLeapYear",
+        "prints": [],
+        "returns": [
+          false
+        ],
+        "post_arguments": [
+          [
+            1900
+          ]
+        ],
+        "shared_values": {},
+        "errors": [
+          null
+        ]
+      }
+    },
+    {
+      "name": "ordinary leap year divisible by 4",
+      "status": "NOT_EVALUABLE",
+      "expected_semantic_result": true,
+      "actual_semantic_result": null,
+      "semantic_match": null,
+      "reason": "The semantic observer could not derive the task result from the invocation evidence.",
+      "duration_ms": 80.261,
+      "category": "BRANCH",
+      "semantic_feature": "LEAP_YEAR_DIVISIBLE_BY_4",
+      "fixture_source": "COMMON_TEST_STANDARD_INPUT",
+      "oracle_source": "TASK_SEMANTIC_ORACLE_WITH_FROZEN_BASELINE_REFERENCE",
+      "selected_entrypoint": "isLeapYear",
+      "invocation_capture": {
+        "status": "COMPLETED",
+        "selected_entrypoint": "isLeapYear",
+        "prints": [],
+        "returns": [
+          true
+        ],
+        "post_arguments": [
+          [
+            2024
+          ]
+        ],
+        "shared_values": {},
+        "errors": [
+          null
+        ]
+      }
+    },
+    {
+      "name": "ordinary non-leap year",
+      "status": "NOT_EVALUABLE",
+      "expected_semantic_result": false,
+      "actual_semantic_result": null,
+      "semantic_match": null,
+      "reason": "The semantic observer could not derive the task result from the invocation evidence.",
+      "duration_ms": 80.455,
+      "category": "NORMAL",
+      "semantic_feature": "LEAP_YEAR_FALSE_PATH",
+      "fixture_source": "COMMON_TEST_STANDARD_INPUT",
+      "oracle_source": "TASK_SEMANTIC_ORACLE_WITH_FROZEN_BASELINE_REFERENCE",
+      "selected_entrypoint": "isLeapYear",
+      "invocation_capture": {
+        "status": "COMPLETED",
+        "selected_entrypoint": "isLeapYear",
+        "prints": [],
+        "returns": [
+          false
+        ],
+        "post_arguments": [
+          [
+            2023
+          ]
+        ],
+        "shared_values": {},
+        "errors": [
+          null
+        ]
+      }
+    },
+    {
+      "name": "invalid input retries then succeeds",
+      "status": "NOT_EVALUABLE",
+      "expected_semantic_result": null,
+      "actual_semantic_result": null,
+      "semantic_match": null,
+      "reason": "This Common Test remains interaction/reference evidence and is not a canonical task-function test.",
+      "duration_ms": null,
+      "category": "ERROR_BEHAVIOUR",
+      "semantic_feature": "INTEGER_INPUT_RETRY",
+      "fixture_source": null,
+      "oracle_source": null,
+      "selected_entrypoint": null,
+      "invocation_capture": null
+    }
+  ]
+}

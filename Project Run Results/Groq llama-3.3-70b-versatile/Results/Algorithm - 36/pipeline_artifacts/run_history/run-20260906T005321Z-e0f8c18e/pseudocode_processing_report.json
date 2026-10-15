@@ -1,0 +1,154 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 12,
+  "transformations": [
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  low = 0",
+      "canonical": "  low <- 0",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  high = LENGTH(rotated_list) - 1",
+      "canonical": "  high <- LENGTH(rotated_list) - 1",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    mid = (low + high) / 2",
+      "canonical": "    mid <- (low + high) / 2",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 10,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        high = mid - 1",
+      "canonical": "        high <- mid - 1",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 12,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        low = mid + 1",
+      "canonical": "        low <- mid + 1",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 16,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        low = mid + 1",
+      "canonical": "        low <- mid + 1",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 18,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        high = mid - 1",
+      "canonical": "        high <- mid - 1",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  high <- LENGTH(rotated_list) - 1",
+      "canonical": "  high <- LENGTH OF rotated_list - 1",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION FIND_TARGET(rotated_list, target)",
+      "canonical": "FUNCTION FIND_TARGET ACCEPTS(rotated_list, target)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "FUNCTION FIND_TARGET ACCEPTS(rotated_list, target)\n  low <- 0\n  high <- LENGTH OF rotated_list - 1\n  WHILE low <= high\n    mid <- (low + high) / 2\n    IF rotated_list[mid] == target THEN\n      RETURN mid\n    ELSE IF rotated_list[low] <= rotated_list[mid] THEN\n      IF target >= rotated_list[low] AND target < rotated_list[mid] THEN\n        high <- mid - 1\n      ELSE\n        low <- mid + 1\n      END IF\n    ELSE\n      IF target > rotated_list[mid] AND target <= rotated_list[high] THEN\n        low <- mid + 1\n      ELSE\n        high <- mid - 1\n      END IF\n    END IF\n  END WHILE\n  RETURN -1\nEND FUNCTION",
+      "canonical": "FUNCTION FIND_TARGET ACCEPTS(rotated_list, target)\n  low <- 0\n  high <- LENGTH OF rotated_list - 1\n  WHILE low <= high\n    mid <- (low + high) INTEGER DIVISION 2\n    IF rotated_list[mid] == target THEN\n      RETURN mid\n    ELSE IF rotated_list[low] <= rotated_list[mid] THEN\n      IF target >= rotated_list[low] AND target < rotated_list[mid] THEN\n        high <- mid - 1\n      ELSE\n        low <- mid + 1\n      ENDIF\n    ELSE\n      IF target > rotated_list[mid] AND target <= rotated_list[high] THEN\n        low <- mid + 1\n      ELSE\n        high <- mid - 1\n      ENDIF\n    ENDIF\n  END WHILE\n  RETURN -1\nENDFUNCTION",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  WHILE low <= high",
+      "canonical": "  WHILE low <= high DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 21,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "  END WHILE",
+      "canonical": "  ENDWHILE",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 1
+}

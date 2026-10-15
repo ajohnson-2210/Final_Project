@@ -1,0 +1,19 @@
+# Perform level-order traversal on a binary tree and return node values grouped by depth.
+FUNCTION levelOrderTraversal(root):
+    IF root IS NULL:
+        RETURN empty list
+    result = empty list
+    queue = empty queue
+    queue.enqueue(root)
+    WHILE queue IS NOT empty:
+        levelSize = queue.size()
+        currentLevel = empty list
+        FOR i FROM 0 TO levelSize-1:
+            node = queue.dequeue()
+            currentLevel.append(node.value)
+            IF node.left != NULL:
+                queue.enqueue(node.left)
+            IF node.right != NULL:
+                queue.enqueue(node.right)
+        result.append(currentLevel)
+    RETURN result

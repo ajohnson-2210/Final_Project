@@ -1,0 +1,16 @@
+# Determine whether two given strings are anagrams of each other
+FUNCTION ARE_ANAGRAMS(str1, str2)
+  SORT str1
+  SORT str2
+  IF str1 == str2 THEN
+    RETURN TRUE
+  ELSE
+    RETURN FALSE
+  END IF
+END FUNCTION
+
+Example:
+ARE_ANAGRAMS("listen", "silent")
+
+returns
+TRUE

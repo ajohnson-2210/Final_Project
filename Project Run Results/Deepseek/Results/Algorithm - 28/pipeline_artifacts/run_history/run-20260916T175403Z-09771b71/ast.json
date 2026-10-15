@@ -1,0 +1,668 @@
+{
+  "root_id": "N9768",
+  "nodes": {
+    "N9768": {
+      "kind": "ProgramNode",
+      "line": 1,
+      "attributes": {}
+    },
+    "N9767": {
+      "kind": "FunctionNode",
+      "line": 1,
+      "attributes": {
+        "name": "slidingWindowMax"
+      }
+    },
+    "N9697": {
+      "kind": "ParameterNode",
+      "line": 1,
+      "attributes": {
+        "name": "arr",
+        "declared_type": null
+      }
+    },
+    "N9698": {
+      "kind": "ParameterNode",
+      "line": 1,
+      "attributes": {
+        "name": "k",
+        "declared_type": null
+      }
+    },
+    "N9766": {
+      "kind": "BlockNode",
+      "line": 2,
+      "attributes": {}
+    },
+    "N9701": {
+      "kind": "AssignmentNode",
+      "line": 2,
+      "attributes": {}
+    },
+    "N9699": {
+      "kind": "IdentifierNode",
+      "line": 2,
+      "attributes": {
+        "name": "result"
+      }
+    },
+    "N9700": {
+      "kind": "EmptyLiteralNode",
+      "line": 2,
+      "attributes": {
+        "empty_type": "LIST"
+      }
+    },
+    "N9704": {
+      "kind": "AssignmentNode",
+      "line": 3,
+      "attributes": {}
+    },
+    "N9702": {
+      "kind": "IdentifierNode",
+      "line": 3,
+      "attributes": {
+        "name": "deque"
+      }
+    },
+    "N9703": {
+      "kind": "CallNode",
+      "line": 3,
+      "attributes": {
+        "name": "create_deque",
+        "arguments": []
+      }
+    },
+    "N9763": {
+      "kind": "ForRangeNode",
+      "line": 4,
+      "attributes": {
+        "step": null
+      }
+    },
+    "N9762": {
+      "kind": "IdentifierNode",
+      "line": 4,
+      "attributes": {
+        "name": "i"
+      }
+    },
+    "N9705": {
+      "kind": "LiteralNode",
+      "line": 4,
+      "attributes": {
+        "value": 0,
+        "data_type": "INTEGER"
+      }
+    },
+    "N9711": {
+      "kind": "BinaryNode",
+      "line": 4,
+      "attributes": {
+        "operator": "+"
+      }
+    },
+    "N9709": {
+      "kind": "BinaryNode",
+      "line": 4,
+      "attributes": {
+        "operator": "-"
+      }
+    },
+    "N9707": {
+      "kind": "LengthNode",
+      "line": 4,
+      "attributes": {}
+    },
+    "N9706": {
+      "kind": "IdentifierNode",
+      "line": 4,
+      "attributes": {
+        "name": "arr"
+      }
+    },
+    "N9708": {
+      "kind": "LiteralNode",
+      "line": 4,
+      "attributes": {
+        "value": 1,
+        "data_type": "INTEGER"
+      }
+    },
+    "N9710": {
+      "kind": "LiteralNode",
+      "line": 4,
+      "attributes": {
+        "value": 1,
+        "data_type": "INTEGER"
+      }
+    },
+    "N9761": {
+      "kind": "BlockNode",
+      "line": 5,
+      "attributes": {}
+    },
+    "N9712": {
+      "kind": "CommentNode",
+      "line": 5,
+      "attributes": {
+        "text": "Remove elements out of window from front"
+      }
+    },
+    "N9727": {
+      "kind": "WhileNode",
+      "line": 6,
+      "attributes": {}
+    },
+    "N9722": {
+      "kind": "BinaryNode",
+      "line": 6,
+      "attributes": {
+        "operator": "AND"
+      }
+    },
+    "N9715": {
+      "kind": "UnaryNode",
+      "line": 6,
+      "attributes": {
+        "operator": "NOT"
+      }
+    },
+    "N9714": {
+      "kind": "CallNode",
+      "line": 6,
+      "attributes": {
+        "name": "deque_is_empty"
+      }
+    },
+    "N9713": {
+      "kind": "IdentifierNode",
+      "line": 6,
+      "attributes": {
+        "name": "deque"
+      }
+    },
+    "N9721": {
+      "kind": "BinaryNode",
+      "line": 6,
+      "attributes": {
+        "operator": "<="
+      }
+    },
+    "N9717": {
+      "kind": "CallNode",
+      "line": 6,
+      "attributes": {
+        "name": "deque_front"
+      }
+    },
+    "N9716": {
+      "kind": "IdentifierNode",
+      "line": 6,
+      "attributes": {
+        "name": "deque"
+      }
+    },
+    "N9720": {
+      "kind": "BinaryNode",
+      "line": 6,
+      "attributes": {
+        "operator": "-"
+      }
+    },
+    "N9718": {
+      "kind": "IdentifierNode",
+      "line": 6,
+      "attributes": {
+        "name": "i"
+      }
+    },
+    "N9719": {
+      "kind": "IdentifierNode",
+      "line": 6,
+      "attributes": {
+        "name": "k"
+      }
+    },
+    "N9726": {
+      "kind": "BlockNode",
+      "line": 7,
+      "attributes": {}
+    },
+    "N9724": {
+      "kind": "CallNode",
+      "line": 7,
+      "attributes": {
+        "name": "deque_pop_front"
+      }
+    },
+    "N9723": {
+      "kind": "IdentifierNode",
+      "line": 7,
+      "attributes": {
+        "name": "deque"
+      }
+    },
+    "N9725": {
+      "kind": "CommentNode",
+      "line": 8,
+      "attributes": {
+        "text": "Maintain decreasing order in deque"
+      }
+    },
+    "N9743": {
+      "kind": "WhileNode",
+      "line": 10,
+      "attributes": {}
+    },
+    "N9739": {
+      "kind": "BinaryNode",
+      "line": 10,
+      "attributes": {
+        "operator": "AND"
+      }
+    },
+    "N9730": {
+      "kind": "UnaryNode",
+      "line": 10,
+      "attributes": {
+        "operator": "NOT"
+      }
+    },
+    "N9729": {
+      "kind": "CallNode",
+      "line": 10,
+      "attributes": {
+        "name": "deque_is_empty"
+      }
+    },
+    "N9728": {
+      "kind": "IdentifierNode",
+      "line": 10,
+      "attributes": {
+        "name": "deque"
+      }
+    },
+    "N9738": {
+      "kind": "BinaryNode",
+      "line": 10,
+      "attributes": {
+        "operator": "<="
+      }
+    },
+    "N9734": {
+      "kind": "IndexNode",
+      "line": 10,
+      "attributes": {}
+    },
+    "N9731": {
+      "kind": "IdentifierNode",
+      "line": 10,
+      "attributes": {
+        "name": "arr"
+      }
+    },
+    "N9733": {
+      "kind": "CallNode",
+      "line": 10,
+      "attributes": {
+        "name": "deque_back"
+      }
+    },
+    "N9732": {
+      "kind": "IdentifierNode",
+      "line": 10,
+      "attributes": {
+        "name": "deque"
+      }
+    },
+    "N9737": {
+      "kind": "IndexNode",
+      "line": 10,
+      "attributes": {}
+    },
+    "N9735": {
+      "kind": "IdentifierNode",
+      "line": 10,
+      "attributes": {
+        "name": "arr"
+      }
+    },
+    "N9736": {
+      "kind": "IdentifierNode",
+      "line": 10,
+      "attributes": {
+        "name": "i"
+      }
+    },
+    "N9742": {
+      "kind": "BlockNode",
+      "line": 11,
+      "attributes": {}
+    },
+    "N9741": {
+      "kind": "CallNode",
+      "line": 11,
+      "attributes": {
+        "name": "deque_pop_back"
+      }
+    },
+    "N9740": {
+      "kind": "IdentifierNode",
+      "line": 11,
+      "attributes": {
+        "name": "deque"
+      }
+    },
+    "N9746": {
+      "kind": "CallNode",
+      "line": 13,
+      "attributes": {
+        "name": "deque_push_back"
+      }
+    },
+    "N9744": {
+      "kind": "IdentifierNode",
+      "line": 13,
+      "attributes": {
+        "name": "deque"
+      }
+    },
+    "N9745": {
+      "kind": "IdentifierNode",
+      "line": 13,
+      "attributes": {
+        "name": "i"
+      }
+    },
+    "N9747": {
+      "kind": "CommentNode",
+      "line": 14,
+      "attributes": {
+        "text": "Add max to result once window is full"
+      }
+    },
+    "N9760": {
+      "kind": "IfNode",
+      "line": 15,
+      "attributes": {
+        "else_if": [],
+        "else_body": null
+      }
+    },
+    "N9752": {
+      "kind": "BinaryNode",
+      "line": 15,
+      "attributes": {
+        "operator": ">="
+      }
+    },
+    "N9748": {
+      "kind": "IdentifierNode",
+      "line": 15,
+      "attributes": {
+        "name": "i"
+      }
+    },
+    "N9751": {
+      "kind": "BinaryNode",
+      "line": 15,
+      "attributes": {
+        "operator": "-"
+      }
+    },
+    "N9749": {
+      "kind": "IdentifierNode",
+      "line": 15,
+      "attributes": {
+        "name": "k"
+      }
+    },
+    "N9750": {
+      "kind": "LiteralNode",
+      "line": 15,
+      "attributes": {
+        "value": 1,
+        "data_type": "INTEGER"
+      }
+    },
+    "N9759": {
+      "kind": "BlockNode",
+      "line": 16,
+      "attributes": {}
+    },
+    "N9758": {
+      "kind": "AppendNode",
+      "line": 16,
+      "attributes": {}
+    },
+    "N9756": {
+      "kind": "IndexNode",
+      "line": 16,
+      "attributes": {}
+    },
+    "N9753": {
+      "kind": "IdentifierNode",
+      "line": 16,
+      "attributes": {
+        "name": "arr"
+      }
+    },
+    "N9755": {
+      "kind": "CallNode",
+      "line": 16,
+      "attributes": {
+        "name": "deque_front"
+      }
+    },
+    "N9754": {
+      "kind": "IdentifierNode",
+      "line": 16,
+      "attributes": {
+        "name": "deque"
+      }
+    },
+    "N9757": {
+      "kind": "IdentifierNode",
+      "line": 16,
+      "attributes": {
+        "name": "result"
+      }
+    },
+    "N9765": {
+      "kind": "ReturnNode",
+      "line": 19,
+      "attributes": {}
+    },
+    "N9764": {
+      "kind": "IdentifierNode",
+      "line": 19,
+      "attributes": {
+        "name": "result"
+      }
+    }
+  },
+  "adjacency": {
+    "N9768": [
+      "N9767"
+    ],
+    "N9767": [
+      "N9697",
+      "N9698",
+      "N9766"
+    ],
+    "N9697": [],
+    "N9698": [],
+    "N9766": [
+      "N9701",
+      "N9704",
+      "N9763",
+      "N9765"
+    ],
+    "N9701": [
+      "N9699",
+      "N9700"
+    ],
+    "N9699": [],
+    "N9700": [],
+    "N9704": [
+      "N9702",
+      "N9703"
+    ],
+    "N9702": [],
+    "N9703": [],
+    "N9763": [
+      "N9762",
+      "N9705",
+      "N9711",
+      "N9761"
+    ],
+    "N9762": [],
+    "N9705": [],
+    "N9711": [
+      "N9709",
+      "N9710"
+    ],
+    "N9709": [
+      "N9707",
+      "N9708"
+    ],
+    "N9707": [
+      "N9706"
+    ],
+    "N9706": [],
+    "N9708": [],
+    "N9710": [],
+    "N9761": [
+      "N9712",
+      "N9727",
+      "N9743",
+      "N9746",
+      "N9747",
+      "N9760"
+    ],
+    "N9712": [],
+    "N9727": [
+      "N9722",
+      "N9726"
+    ],
+    "N9722": [
+      "N9715",
+      "N9721"
+    ],
+    "N9715": [
+      "N9714"
+    ],
+    "N9714": [
+      "N9713"
+    ],
+    "N9713": [],
+    "N9721": [
+      "N9717",
+      "N9720"
+    ],
+    "N9717": [
+      "N9716"
+    ],
+    "N9716": [],
+    "N9720": [
+      "N9718",
+      "N9719"
+    ],
+    "N9718": [],
+    "N9719": [],
+    "N9726": [
+      "N9724",
+      "N9725"
+    ],
+    "N9724": [
+      "N9723"
+    ],
+    "N9723": [],
+    "N9725": [],
+    "N9743": [
+      "N9739",
+      "N9742"
+    ],
+    "N9739": [
+      "N9730",
+      "N9738"
+    ],
+    "N9730": [
+      "N9729"
+    ],
+    "N9729": [
+      "N9728"
+    ],
+    "N9728": [],
+    "N9738": [
+      "N9734",
+      "N9737"
+    ],
+    "N9734": [
+      "N9731",
+      "N9733"
+    ],
+    "N9731": [],
+    "N9733": [
+      "N9732"
+    ],
+    "N9732": [],
+    "N9737": [
+      "N9735",
+      "N9736"
+    ],
+    "N9735": [],
+    "N9736": [],
+    "N9742": [
+      "N9741"
+    ],
+    "N9741": [
+      "N9740"
+    ],
+    "N9740": [],
+    "N9746": [
+      "N9744",
+      "N9745"
+    ],
+    "N9744": [],
+    "N9745": [],
+    "N9747": [],
+    "N9760": [
+      "N9752",
+      "N9759"
+    ],
+    "N9752": [
+      "N9748",
+      "N9751"
+    ],
+    "N9748": [],
+    "N9751": [
+      "N9749",
+      "N9750"
+    ],
+    "N9749": [],
+    "N9750": [],
+    "N9759": [
+      "N9758"
+    ],
+    "N9758": [
+      "N9756",
+      "N9757"
+    ],
+    "N9756": [
+      "N9753",
+      "N9755"
+    ],
+    "N9753": [],
+    "N9755": [
+      "N9754"
+    ],
+    "N9754": [],
+    "N9757": [],
+    "N9765": [
+      "N9764"
+    ],
+    "N9764": []
+  }
+}

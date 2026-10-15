@@ -1,0 +1,10 @@
+# Convert a non-negative decimal integer into its binary string representation.
+FUNCTION decimalToBinary(n):
+    IF n == 0:
+        RETURN "0"
+    binaryString = ""
+    WHILE n > 0:
+        remainder = n MOD 2
+        binaryString = STRING(remainder) + binaryString
+        n = n DIV 2
+    RETURN binaryString

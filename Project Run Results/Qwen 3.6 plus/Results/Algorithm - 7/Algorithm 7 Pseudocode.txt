@@ -1,0 +1,20 @@
+# Split Sentence into Words
+
+INPUT sentence
+
+words = []
+current = ""
+
+FOR each char in sentence:
+    IF char is space:
+        IF current != "":
+            words.append(current)
+            current = ""
+    ELSE:
+        current += char
+
+IF current != "":
+    words.append(current)
+
+RETURN words
+

@@ -1,0 +1,217 @@
+{
+  "format": "NL-FDEP Flow Diagram",
+  "version": "1.0",
+  "entry_node": "F1",
+  "exit_node": "F2",
+  "nodes": {
+    "F1": {
+      "node_id": "F1",
+      "node_type": "START",
+      "label": "Start",
+      "line": 1,
+      "data": {}
+    },
+    "F2": {
+      "node_id": "F2",
+      "node_type": "END",
+      "label": "End",
+      "line": 1,
+      "data": {}
+    },
+    "F3": {
+      "node_id": "F3",
+      "node_type": "FUNCTION",
+      "label": "Run function FACTORIAL with n",
+      "line": 1,
+      "data": {
+        "ast_kind": "FunctionNode",
+        "name": "FACTORIAL"
+      }
+    },
+    "F4": {
+      "node_id": "F4",
+      "node_type": "DECISION",
+      "label": "Is n is equal to 0 or n is equal to 1 true?",
+      "line": 2,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F5": {
+      "node_id": "F5",
+      "node_type": "RETURN",
+      "label": "Return 1",
+      "line": 3,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    },
+    "F6": {
+      "node_id": "F6",
+      "node_type": "RETURN",
+      "label": "Return n multiplied by the result of FACTORIAL(n minus 1)",
+      "line": 5,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "F4",
+      "target": "F5",
+      "label": "TRUE"
+    },
+    {
+      "source": "F4",
+      "target": "F6",
+      "label": "FALSE"
+    },
+    {
+      "source": "F3",
+      "target": "F4",
+      "label": "BODY"
+    },
+    {
+      "source": "F1",
+      "target": "F3",
+      "label": "NEXT"
+    },
+    {
+      "source": "F5",
+      "target": "F2",
+      "label": "NEXT"
+    },
+    {
+      "source": "F6",
+      "target": "F2",
+      "label": "NEXT"
+    }
+  ],
+  "structured_program": {
+    "kind": "ProgramNode",
+    "line": 1,
+    "body": [
+      {
+        "kind": "FunctionNode",
+        "line": 1,
+        "name": "FACTORIAL",
+        "parameters": [
+          {
+            "kind": "ParameterNode",
+            "line": 1,
+            "name": "n",
+            "declared_type": null
+          }
+        ],
+        "body": {
+          "kind": "BlockNode",
+          "line": 2,
+          "statements": [
+            {
+              "kind": "IfNode",
+              "line": 2,
+              "condition": {
+                "kind": "BinaryNode",
+                "line": 2,
+                "operator": "OR",
+                "left": {
+                  "kind": "BinaryNode",
+                  "line": 2,
+                  "operator": "==",
+                  "left": {
+                    "kind": "IdentifierNode",
+                    "line": 2,
+                    "name": "n"
+                  },
+                  "right": {
+                    "kind": "LiteralNode",
+                    "line": 2,
+                    "value": 0,
+                    "data_type": "INTEGER"
+                  }
+                },
+                "right": {
+                  "kind": "BinaryNode",
+                  "line": 2,
+                  "operator": "==",
+                  "left": {
+                    "kind": "IdentifierNode",
+                    "line": 2,
+                    "name": "n"
+                  },
+                  "right": {
+                    "kind": "LiteralNode",
+                    "line": 2,
+                    "value": 1,
+                    "data_type": "INTEGER"
+                  }
+                }
+              },
+              "then_body": {
+                "kind": "BlockNode",
+                "line": 3,
+                "statements": [
+                  {
+                    "kind": "ReturnNode",
+                    "line": 3,
+                    "expression": {
+                      "kind": "LiteralNode",
+                      "line": 3,
+                      "value": 1,
+                      "data_type": "INTEGER"
+                    }
+                  }
+                ]
+              },
+              "else_if": [],
+              "else_body": {
+                "kind": "BlockNode",
+                "line": 5,
+                "statements": [
+                  {
+                    "kind": "ReturnNode",
+                    "line": 5,
+                    "expression": {
+                      "kind": "BinaryNode",
+                      "line": 5,
+                      "operator": "*",
+                      "left": {
+                        "kind": "IdentifierNode",
+                        "line": 5,
+                        "name": "n"
+                      },
+                      "right": {
+                        "kind": "CallNode",
+                        "line": 5,
+                        "name": "FACTORIAL",
+                        "arguments": [
+                          {
+                            "kind": "BinaryNode",
+                            "line": 5,
+                            "operator": "-",
+                            "left": {
+                              "kind": "IdentifierNode",
+                              "line": 5,
+                              "name": "n"
+                            },
+                            "right": {
+                              "kind": "LiteralNode",
+                              "line": 5,
+                              "value": 1,
+                              "data_type": "INTEGER"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

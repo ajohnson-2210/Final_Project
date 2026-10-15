@@ -1,0 +1,10 @@
+
+# Given a list of IP addresses that accessed a server today, remove all duplicates and return only the unique IP addresses.
+FUNCTION uniqueIPs(ipList):
+    seen = empty set
+    uniqueList = empty list
+    FOR each ip in ipList:
+        IF ip NOT IN seen:
+            seen.add(ip)
+            uniqueList.append(ip)
+    RETURN uniqueList

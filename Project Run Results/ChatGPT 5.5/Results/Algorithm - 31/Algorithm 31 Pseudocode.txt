@@ -1,0 +1,16 @@
+# Develop a co-reference resolution system to identify relationships between pronouns and nouns.
+BEGIN
+    INPUT Text
+
+    PREPROCESS Text
+
+    IDENTIFY all nouns
+    IDENTIFY all pronouns
+
+    FOR EACH Pronoun
+        FIND the most likely matching noun
+        LINK Pronoun to Noun
+    ENDFOR
+
+    OUTPUT Linked References
+END

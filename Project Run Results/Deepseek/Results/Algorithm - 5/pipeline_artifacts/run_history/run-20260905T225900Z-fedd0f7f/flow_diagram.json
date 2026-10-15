@@ -1,0 +1,279 @@
+{
+  "format": "NL-FDEP Flow Diagram",
+  "version": "1.0",
+  "entry_node": "F1",
+  "exit_node": "F2",
+  "nodes": {
+    "F1": {
+      "node_id": "F1",
+      "node_type": "START",
+      "label": "Start",
+      "line": 1,
+      "data": {}
+    },
+    "F2": {
+      "node_id": "F2",
+      "node_type": "END",
+      "label": "End",
+      "line": 1,
+      "data": {}
+    },
+    "F3": {
+      "node_id": "F3",
+      "node_type": "FUNCTION",
+      "label": "Run function removePunctuation with sentence",
+      "line": 1,
+      "data": {
+        "ast_kind": "FunctionNode",
+        "name": "removePunctuation"
+      }
+    },
+    "F4": {
+      "node_id": "F4",
+      "node_type": "PROCESS",
+      "label": "Set punctuation to the result of to_set(\". , ! ? ; : ' \" - ( ) [ ] { }\")",
+      "line": 2,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F5": {
+      "node_id": "F5",
+      "node_type": "PROCESS",
+      "label": "Set result to an empty string",
+      "line": 3,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F6": {
+      "node_id": "F6",
+      "node_type": "LOOP_DECISION",
+      "label": "For each __reserved_keyword__char in sentence",
+      "line": 4,
+      "data": {
+        "ast_kind": "ForEachNode"
+      }
+    },
+    "F7": {
+      "node_id": "F7",
+      "node_type": "DECISION",
+      "label": "__reserved_keyword__char is not contained in punctuation?",
+      "line": 5,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F8": {
+      "node_id": "F8",
+      "node_type": "PROCESS",
+      "label": "Set result to result plus __reserved_keyword__char",
+      "line": 6,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F9": {
+      "node_id": "F9",
+      "node_type": "RETURN",
+      "label": "Return result",
+      "line": 9,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "F4",
+      "target": "F5",
+      "label": "NEXT"
+    },
+    {
+      "source": "F7",
+      "target": "F8",
+      "label": "TRUE"
+    },
+    {
+      "source": "F6",
+      "target": "F7",
+      "label": "ITERATE"
+    },
+    {
+      "source": "F8",
+      "target": "F6",
+      "label": "LOOP"
+    },
+    {
+      "source": "F7",
+      "target": "F6",
+      "label": "LOOP"
+    },
+    {
+      "source": "F5",
+      "target": "F6",
+      "label": "NEXT"
+    },
+    {
+      "source": "F6",
+      "target": "F9",
+      "label": "NEXT"
+    },
+    {
+      "source": "F3",
+      "target": "F4",
+      "label": "BODY"
+    },
+    {
+      "source": "F1",
+      "target": "F3",
+      "label": "NEXT"
+    },
+    {
+      "source": "F9",
+      "target": "F2",
+      "label": "NEXT"
+    }
+  ],
+  "structured_program": {
+    "kind": "ProgramNode",
+    "line": 1,
+    "body": [
+      {
+        "kind": "FunctionNode",
+        "line": 1,
+        "name": "removePunctuation",
+        "parameters": [
+          {
+            "kind": "ParameterNode",
+            "line": 1,
+            "name": "sentence",
+            "declared_type": null
+          }
+        ],
+        "body": {
+          "kind": "BlockNode",
+          "line": 2,
+          "statements": [
+            {
+              "kind": "AssignmentNode",
+              "line": 2,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 2,
+                "name": "punctuation"
+              },
+              "value": {
+                "kind": "CallNode",
+                "line": 2,
+                "name": "to_set",
+                "arguments": [
+                  {
+                    "kind": "LiteralNode",
+                    "line": 2,
+                    "value": ". , ! ? ; : ' \" - ( ) [ ] { }",
+                    "data_type": "STRING"
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "AssignmentNode",
+              "line": 3,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 3,
+                "name": "result"
+              },
+              "value": {
+                "kind": "EmptyLiteralNode",
+                "line": 3,
+                "empty_type": "STRING"
+              }
+            },
+            {
+              "kind": "ForEachNode",
+              "line": 4,
+              "variable": {
+                "kind": "IdentifierNode",
+                "line": 4,
+                "name": "__reserved_keyword__char"
+              },
+              "collection": {
+                "kind": "IdentifierNode",
+                "line": 4,
+                "name": "sentence"
+              },
+              "body": {
+                "kind": "BlockNode",
+                "line": 5,
+                "statements": [
+                  {
+                    "kind": "IfNode",
+                    "line": 5,
+                    "condition": {
+                      "kind": "BinaryNode",
+                      "line": 5,
+                      "operator": "NOT IN",
+                      "left": {
+                        "kind": "IdentifierNode",
+                        "line": 5,
+                        "name": "__reserved_keyword__char"
+                      },
+                      "right": {
+                        "kind": "IdentifierNode",
+                        "line": 5,
+                        "name": "punctuation"
+                      }
+                    },
+                    "then_body": {
+                      "kind": "BlockNode",
+                      "line": 6,
+                      "statements": [
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 6,
+                          "target": {
+                            "kind": "IdentifierNode",
+                            "line": 6,
+                            "name": "result"
+                          },
+                          "value": {
+                            "kind": "BinaryNode",
+                            "line": 6,
+                            "operator": "+",
+                            "left": {
+                              "kind": "IdentifierNode",
+                              "line": 6,
+                              "name": "result"
+                            },
+                            "right": {
+                              "kind": "IdentifierNode",
+                              "line": 6,
+                              "name": "__reserved_keyword__char"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "else_if": [],
+                    "else_body": null
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "ReturnNode",
+              "line": 9,
+              "expression": {
+                "kind": "IdentifierNode",
+                "line": 9,
+                "name": "result"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

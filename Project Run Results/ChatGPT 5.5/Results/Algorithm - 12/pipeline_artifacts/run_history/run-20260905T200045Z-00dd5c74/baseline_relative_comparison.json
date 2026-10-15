@@ -1,0 +1,212 @@
+{
+  "comparison_schema_version": "1.0",
+  "comparison_role": "EXPERIMENTAL_VS_PIPELINE_CALIBRATION",
+  "is_baseline": false,
+  "reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 12\\Algorithm 12 Baseline Python code.txt",
+  "tests_file": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\Pipeline Versions\\NL_Flow_Diagram_Encoder_Pipeline_v4_32\\NL_Flow_Diagram_Encoder_Pipeline_v4_32\\study data\\common tests v1.1\\Algorithm - 12\\Algorithm 12 Tests.json",
+  "common_test_set": true,
+  "baseline_reference_validation": {
+    "validation_schema_version": "1.0",
+    "reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 12\\Algorithm 12 Baseline Python code.txt",
+    "reference_source_preparation": {
+      "reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 12\\Algorithm 12 Baseline Python code.txt",
+      "raw_sha256": "0d056260db312263a28d80ff71940b89e569edf99efce3b5f5363f6bdb881ec0",
+      "raw_syntax_valid": false,
+      "execution_syntax_valid": true,
+      "normalisation_applied": true,
+      "normalisation_rule": "COMMENT_PREFIX_MATCHED_TRUNCATED_TEST_SUITE_ALGORITHM_TITLE",
+      "raw_syntax_error": "invalid syntax (<unknown>, line 1)",
+      "normalised_line_number": 1,
+      "declared_algorithm_title": "Given a square grid numbers $n x $n, calculate the sum of the numbers that lie on the main diagonal top left to",
+      "reference_heading": "Given a square grid numbers $n x $n, calculate the sum of the numbers that lie on the main diagonal top left to bottom right",
+      "execution_sha256": "331d345c3d5767e27fb6bcd8f256953e979e26c976ecc9581be1dc138412f3b4"
+    },
+    "status": "TRUSTED_REFERENCE",
+    "reason": "No independent expected outcomes are present. The frozen baseline Python is accepted as the trusted behavioural reference by the study design; this is not an independent validation claim.",
+    "explicit_tests_total": 0,
+    "tests": []
+  },
+  "baseline_calibration_status": "EVALUATED",
+  "baseline_calibration_score_percentage": 100.0,
+  "experimental_behavioural_score_percentage": 0.0,
+  "experimental_tests_total": 3,
+  "experimental_tests_passed": 0,
+  "delta_from_baseline_percentage_points": -100.0,
+  "comparison_to_baseline": "BELOW_BASELINE",
+  "comparison_status": "COMPARABLE",
+  "oracle_records": [
+    {
+      "name": "seeded diagonal-sum run seed 104729",
+      "reference": {
+        "status": "COMPLETED",
+        "standard_input": [],
+        "stdout": [
+          "6 x 6 Matrix",
+          "[78, 63, 37, 38, 59, 25]",
+          "[29, 88, 18, 99, 27, 3]",
+          "[2, 97, 99, 35, 37, 36]",
+          "[70, 14, 24, 10, 88, 41]",
+          "[30, 91, 52, 3, 3, 55]",
+          "[32, 56, 59, 78, 55, 66]",
+          "78 + 88 + 99 + 10 + 3 + 66  = 344"
+        ],
+        "stderr": "",
+        "return_code": 0,
+        "error_type": null,
+        "duration_ms": 59.763,
+        "category": "NORMAL",
+        "semantic_feature": "MAIN_DIAGONAL_SUM_RANDOM_SQUARE_GRID",
+        "criteria_links": [
+          "P2",
+          "P4"
+        ],
+        "random_seed": 104729,
+        "environment": {},
+        "requires_modules": [],
+        "reference_source_preparation": {
+          "reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 12\\Algorithm 12 Baseline Python code.txt",
+          "raw_sha256": "0d056260db312263a28d80ff71940b89e569edf99efce3b5f5363f6bdb881ec0",
+          "raw_syntax_valid": false,
+          "execution_syntax_valid": true,
+          "normalisation_applied": true,
+          "normalisation_rule": "COMMENT_PREFIX_MATCHED_TRUNCATED_TEST_SUITE_ALGORITHM_TITLE",
+          "raw_syntax_error": "invalid syntax (<unknown>, line 1)",
+          "normalised_line_number": 1,
+          "declared_algorithm_title": "Given a square grid numbers $n x $n, calculate the sum of the numbers that lie on the main diagonal top left to",
+          "reference_heading": "Given a square grid numbers $n x $n, calculate the sum of the numbers that lie on the main diagonal top left to bottom right",
+          "execution_sha256": "331d345c3d5767e27fb6bcd8f256953e979e26c976ecc9581be1dc138412f3b4"
+        }
+      },
+      "expected_result_source": "REFERENCE_PYTHON",
+      "explicit_expectation_fields": [],
+      "derived_expectation_fields": [
+        "expected_output",
+        "expected_return_code"
+      ],
+      "evaluable_expectation_fields": [
+        "expected_output",
+        "expected_return_code"
+      ],
+      "test_case_status": "EVALUABLE"
+    },
+    {
+      "name": "seeded diagonal-sum run seed 104759",
+      "reference": {
+        "status": "COMPLETED",
+        "standard_input": [],
+        "stdout": [
+          "3 x 3 Matrix",
+          "[36, 77, 45]",
+          "[45, 32, 68]",
+          "[30, 34, 45]",
+          "36 + 32 + 45  = 113"
+        ],
+        "stderr": "",
+        "return_code": 0,
+        "error_type": null,
+        "duration_ms": 65.17,
+        "category": "NORMAL",
+        "semantic_feature": "MAIN_DIAGONAL_SUM_RANDOM_SQUARE_GRID",
+        "criteria_links": [
+          "P2",
+          "P4"
+        ],
+        "random_seed": 104759,
+        "environment": {},
+        "requires_modules": [],
+        "reference_source_preparation": {
+          "reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 12\\Algorithm 12 Baseline Python code.txt",
+          "raw_sha256": "0d056260db312263a28d80ff71940b89e569edf99efce3b5f5363f6bdb881ec0",
+          "raw_syntax_valid": false,
+          "execution_syntax_valid": true,
+          "normalisation_applied": true,
+          "normalisation_rule": "COMMENT_PREFIX_MATCHED_TRUNCATED_TEST_SUITE_ALGORITHM_TITLE",
+          "raw_syntax_error": "invalid syntax (<unknown>, line 1)",
+          "normalised_line_number": 1,
+          "declared_algorithm_title": "Given a square grid numbers $n x $n, calculate the sum of the numbers that lie on the main diagonal top left to",
+          "reference_heading": "Given a square grid numbers $n x $n, calculate the sum of the numbers that lie on the main diagonal top left to bottom right",
+          "execution_sha256": "331d345c3d5767e27fb6bcd8f256953e979e26c976ecc9581be1dc138412f3b4"
+        }
+      },
+      "expected_result_source": "REFERENCE_PYTHON",
+      "explicit_expectation_fields": [],
+      "derived_expectation_fields": [
+        "expected_output",
+        "expected_return_code"
+      ],
+      "evaluable_expectation_fields": [
+        "expected_output",
+        "expected_return_code"
+      ],
+      "test_case_status": "EVALUABLE"
+    },
+    {
+      "name": "seeded diagonal-sum run seed 104761",
+      "reference": {
+        "status": "COMPLETED",
+        "standard_input": [],
+        "stdout": [
+          "14 x 14 Matrix",
+          "[3, 1, 17, 87, 45, 35, 41, 38, 10, 64, 78, 56, 5, 57]",
+          "[2, 26, 45, 83, 3, 64, 75, 56, 98, 52, 13, 63, 28, 25]",
+          "[93, 77, 93, 31, 81, 4, 41, 24, 63, 34, 75, 45, 76, 12]",
+          "[74, 15, 32, 64, 60, 31, 32, 97, 66, 7, 42, 2, 35, 90]",
+          "[73, 43, 70, 47, 98, 37, 98, 16, 58, 51, 27, 60, 68, 14]",
+          "[26, 42, 32, 85, 20, 44, 96, 69, 67, 38, 65, 95, 65, 78]",
+          "[8, 14, 39, 62, 40, 84, 98, 70, 71, 96, 93, 43, 87, 22]",
+          "[84, 14, 94, 99, 46, 28, 9, 46, 24, 31, 76, 21, 85, 57]",
+          "[91, 50, 43, 85, 21, 9, 69, 33, 24, 31, 2, 35, 97, 98]",
+          "[32, 82, 84, 45, 99, 20, 74, 84, 36, 43, 0, 8, 75, 17]",
+          "[1, 22, 36, 86, 0, 39, 87, 23, 87, 99, 56, 32, 76, 38]",
+          "[83, 49, 16, 43, 11, 11, 38, 17, 73, 84, 36, 67, 21, 78]",
+          "[13, 52, 1, 74, 40, 33, 77, 33, 55, 24, 69, 90, 51, 75]",
+          "[27, 92, 59, 31, 27, 84, 60, 37, 21, 38, 3, 78, 4, 84]",
+          "3 + 26 + 93 + 64 + 98 + 44 + 98 + 46 + 24 + 43 + 56 + 67 + 51 + 84  = 797"
+        ],
+        "stderr": "",
+        "return_code": 0,
+        "error_type": null,
+        "duration_ms": 58.702,
+        "category": "NORMAL",
+        "semantic_feature": "MAIN_DIAGONAL_SUM_RANDOM_SQUARE_GRID",
+        "criteria_links": [
+          "P2",
+          "P4"
+        ],
+        "random_seed": 104761,
+        "environment": {},
+        "requires_modules": [],
+        "reference_source_preparation": {
+          "reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 12\\Algorithm 12 Baseline Python code.txt",
+          "raw_sha256": "0d056260db312263a28d80ff71940b89e569edf99efce3b5f5363f6bdb881ec0",
+          "raw_syntax_valid": false,
+          "execution_syntax_valid": true,
+          "normalisation_applied": true,
+          "normalisation_rule": "COMMENT_PREFIX_MATCHED_TRUNCATED_TEST_SUITE_ALGORITHM_TITLE",
+          "raw_syntax_error": "invalid syntax (<unknown>, line 1)",
+          "normalised_line_number": 1,
+          "declared_algorithm_title": "Given a square grid numbers $n x $n, calculate the sum of the numbers that lie on the main diagonal top left to",
+          "reference_heading": "Given a square grid numbers $n x $n, calculate the sum of the numbers that lie on the main diagonal top left to bottom right",
+          "execution_sha256": "331d345c3d5767e27fb6bcd8f256953e979e26c976ecc9581be1dc138412f3b4"
+        }
+      },
+      "expected_result_source": "REFERENCE_PYTHON",
+      "explicit_expectation_fields": [],
+      "derived_expectation_fields": [
+        "expected_output",
+        "expected_return_code"
+      ],
+      "evaluable_expectation_fields": [
+        "expected_output",
+        "expected_return_code"
+      ],
+      "test_case_status": "EVALUABLE"
+    }
+  ],
+  "interpretation_note": "The baseline score measures pipeline calibration on frozen baseline pseudocode. The experimental score measures the experimental pseudocode through the same pipeline against the same trusted baseline Python/test set. The percentage-point delta is descriptive and is not a causal correction or adjusted accuracy score.",
+  "baseline_algorithm_id": 12,
+  "baseline_calibration_run_id": "run-20260905T195929Z-26147595",
+  "oracle_source": "BASELINE_REFERENCE_PYTHON",
+  "baseline_reference_oracle_eligible": true,
+  "oracle_block_reason": null
+}

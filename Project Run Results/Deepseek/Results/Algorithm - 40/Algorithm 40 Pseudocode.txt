@@ -1,0 +1,15 @@
+# Implement a queue using two stacks.
+CLASS QueueUsingStacks:
+    stack1 = empty stack (for enqueue)
+    stack2 = empty stack (for dequeue)
+
+    FUNCTION enqueue(item):
+        stack1.push(item)
+
+    FUNCTION dequeue():
+        IF stack2 IS empty:
+            WHILE stack1 IS NOT empty:
+                stack2.push(stack1.pop())
+        IF stack2 IS empty:
+            RETURN NULL // Queue is empty
+        RETURN stack2.pop()

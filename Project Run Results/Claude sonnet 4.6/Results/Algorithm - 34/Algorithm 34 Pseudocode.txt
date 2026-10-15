@@ -1,0 +1,9 @@
+# Union of Two Lists (No Duplicates)
+
+FUNCTION findCommonElements(list1, list2):
+    set1 ← convert list1 to set
+    result ← []
+    FOR each item IN list2:
+        IF item IN set1 AND item NOT IN result THEN
+            APPEND item TO result
+    RETURN result

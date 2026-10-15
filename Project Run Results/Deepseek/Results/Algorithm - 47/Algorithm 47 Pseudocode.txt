@@ -1,0 +1,15 @@
+# Create an algorithm that updates inventory quantities after purchases and deliveries.
+FUNCTION updateInventory(inventory, transactions):
+    FOR each transaction in transactions:
+        itemID = transaction.itemID
+        quantityChange = transaction.quantity // positive for delivery, negative for purchase
+        IF itemID IN inventory:
+            inventory[itemID] = inventory[itemID] + quantityChange
+        ELSE:
+            // Handle new item, maybe set initial stock
+            inventory[itemID] = quantityChange
+    // Ensure no negative inventory (adjust accordingly)
+    FOR each item in inventory:
+        IF inventory[item] < 0:
+            inventory[item] = 0 // or raise error
+    RETURN inventory

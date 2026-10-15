@@ -1,0 +1,198 @@
+{
+  "comparison_schema_version": "1.2",
+  "comparison_role": "EXPERIMENTAL_VS_FROZEN_STATIC_SEMANTIC_REFERENCE",
+  "is_baseline": false,
+  "reference_python": null,
+  "tests_file": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\Pipeline Versions\\NL_Flow_Diagram_Encoder_Pipeline_v4_35_RC4\\NL_Flow_Diagram_Encoder_Pipeline_v4_35\\study data\\common tests v1.3\\Algorithm - 20\\Algorithm 20 Tests.json",
+  "common_test_set": true,
+  "expected_value_policy": "STATIC_PREEXPERIMENT_EXPECTATIONS",
+  "runtime_expected_value_generation": false,
+  "runtime_baseline_reference_used": false,
+  "frozen_reference_score_percentage": 100.0,
+  "experimental_behavioural_score_percentage": 100.0,
+  "experimental_tests_total": 2,
+  "experimental_tests_passed": 2,
+  "experimental_observation_mode": "FROZEN_TASK_SEMANTIC",
+  "semantic_test_report": {
+    "semantic_report_schema_version": "1.1",
+    "runtime_expected_value_generation": false,
+    "program_path": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Claude sonnet 4.6\\Results\\Algorithm - 20\\pipeline_artifacts\\generated_program.py",
+    "algorithm_id": 20,
+    "contract_version": "1.3",
+    "evaluable_tests": 2,
+    "passed_tests": 2,
+    "failed_tests": 0,
+    "not_evaluable_tests": 3,
+    "accuracy_percentage": 100.0,
+    "results": [
+      {
+        "name": "divisors of composite number",
+        "status": "PASSED",
+        "expected_semantic_result": [
+          1,
+          2,
+          3,
+          4,
+          6,
+          12
+        ],
+        "actual_semantic_result": [
+          1,
+          2,
+          3,
+          4,
+          6,
+          12
+        ],
+        "semantic_match": true,
+        "reason": null,
+        "duration_ms": 177.965,
+        "category": "NORMAL",
+        "semantic_feature": "DIVISOR_ENUMERATION",
+        "fixture_source": "PREEXPERIMENT_FROZEN_FIXTURE",
+        "expectation_policy": "STATIC_FROZEN_VALUE",
+        "selected_entrypoint": "findDivisors",
+        "invocation_capture": {
+          "status": "COMPLETED",
+          "selected_entrypoint": "findDivisors",
+          "selected_arity": 1,
+          "prints": [],
+          "returns": [
+            [
+              1,
+              2,
+              3,
+              4,
+              6,
+              12
+            ]
+          ],
+          "post_arguments": [
+            [
+              12
+            ]
+          ],
+          "shared_values": {},
+          "errors": [
+            null
+          ]
+        }
+      },
+      {
+        "name": "divisors of one",
+        "status": "PASSED",
+        "expected_semantic_result": [
+          1
+        ],
+        "actual_semantic_result": [
+          1
+        ],
+        "semantic_match": true,
+        "reason": null,
+        "duration_ms": 161.182,
+        "category": "BOUNDARY",
+        "semantic_feature": "DIVISOR_ONE",
+        "fixture_source": "PREEXPERIMENT_FROZEN_FIXTURE",
+        "expectation_policy": "STATIC_FROZEN_VALUE",
+        "selected_entrypoint": "findDivisors",
+        "invocation_capture": {
+          "status": "COMPLETED",
+          "selected_entrypoint": "findDivisors",
+          "selected_arity": 1,
+          "prints": [],
+          "returns": [
+            [
+              1
+            ]
+          ],
+          "post_arguments": [
+            [
+              1
+            ]
+          ],
+          "shared_values": {},
+          "errors": [
+            null
+          ]
+        }
+      },
+      {
+        "name": "zero follows frozen reference behaviour",
+        "status": "NOT_EVALUABLE",
+        "expected_semantic_result": null,
+        "actual_semantic_result": null,
+        "semantic_match": null,
+        "reason": "This Common Test remains interaction/reference evidence and is not a canonical task-function test.",
+        "duration_ms": null,
+        "category": "BOUNDARY",
+        "semantic_feature": "DIVISOR_ZERO_REFERENCE_BEHAVIOUR",
+        "fixture_source": null,
+        "expectation_policy": "NOT_AUTOMATED",
+        "selected_entrypoint": null,
+        "invocation_capture": null
+      },
+      {
+        "name": "negative integer follows frozen reference behaviour",
+        "status": "NOT_EVALUABLE",
+        "expected_semantic_result": null,
+        "actual_semantic_result": null,
+        "semantic_match": null,
+        "reason": "This Common Test remains interaction/reference evidence and is not a canonical task-function test.",
+        "duration_ms": null,
+        "category": "BOUNDARY",
+        "semantic_feature": "DIVISOR_NEGATIVE_REFERENCE_BEHAVIOUR",
+        "fixture_source": null,
+        "expectation_policy": "NOT_AUTOMATED",
+        "selected_entrypoint": null,
+        "invocation_capture": null
+      },
+      {
+        "name": "invalid input retries",
+        "status": "NOT_EVALUABLE",
+        "expected_semantic_result": null,
+        "actual_semantic_result": null,
+        "semantic_match": null,
+        "reason": "This Common Test remains interaction/reference evidence and is not a canonical task-function test.",
+        "duration_ms": null,
+        "category": "ERROR_BEHAVIOUR",
+        "semantic_feature": "INTEGER_INPUT_RETRY",
+        "fixture_source": null,
+        "expectation_policy": "NOT_AUTOMATED",
+        "selected_entrypoint": null,
+        "invocation_capture": null
+      }
+    ]
+  },
+  "delta_from_frozen_reference_percentage_points": 0.0,
+  "comparison_to_frozen_reference": "AT_REFERENCE",
+  "comparison_status": "COMPARABLE",
+  "interpretation_note": "The experimental score is calculated only from static pre-experiment semantic fixtures and expected values. No baseline/reference implementation or executable oracle is run to derive expected outcomes during experimental evaluation.",
+  "baseline_calibration_score_percentage": 100.0,
+  "delta_from_baseline_percentage_points": 0.0,
+  "comparison_to_baseline": "AT_BASELINE",
+  "semantic_contract": {
+    "contract_version": "1.3",
+    "contract_source": "ORIGINAL_TASK_SPECIFICATION",
+    "task_statement": "Determine all divisors of a positive integer.",
+    "inputs": [
+      {
+        "position": 1,
+        "name": "number",
+        "type": "POSITIVE_INTEGER"
+      }
+    ],
+    "result": {
+      "type": "ARRAY[INTEGER]",
+      "canonical_semantics": "Positive divisors of the supplied positive integer in ascending order."
+    },
+    "automation_status": "AUTOMATED_FUNCTION",
+    "parameter_names_are_semantically_irrelevant": true,
+    "derived_parameters_may_be_supplied_by_adapter": true,
+    "human_review_instruction": "Judge the original generated pseudocode against this same frozen task-semantic contract, including when automated evaluation is NOT_EVALUABLE.",
+    "fixture_policy": "PREEXPERIMENT_FROZEN_INPUTS",
+    "expectation_policy": "STATIC_PREEXPERIMENT_EXPECTED_VALUES",
+    "runtime_oracle_prohibited": true
+  },
+  "semantic_contract_version": "1.3",
+  "baseline_root_supplied_but_not_used": false
+}

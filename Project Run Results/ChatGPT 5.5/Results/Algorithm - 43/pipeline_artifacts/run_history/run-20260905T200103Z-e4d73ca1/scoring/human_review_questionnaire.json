@@ -1,0 +1,648 @@
+{
+  "questionnaire_schema_version": "1.1",
+  "rubric_version": "1.1",
+  "pipeline_version": "4.32",
+  "algorithm": {
+    "algorithm_id": 43,
+    "dataset": "ChatGPT 5.5",
+    "source_type": "llm_pseudocode",
+    "source_file": "Algorithm 43 Pseudocode.txt",
+    "source_file_resolved": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\ChatGPT 5.5\\Results\\Algorithm - 43\\Algorithm 43 Pseudocode.txt",
+    "is_baseline": false,
+    "baseline_algorithm_id": 43,
+    "baseline_reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 43\\Algorithm 43 Baseline Python code.txt"
+  },
+  "instructions": "Review the source and generated artefacts, then independently assess each criterion using the same 0-2/NA scale. The automated assessment is shown as evidence but must not replace reviewer judgement.",
+  "reviewer": {
+    "reviewer_id": "",
+    "reviewed_at_utc": null,
+    "overall_reviewer_confidence": null
+  },
+  "source_sufficiency": {
+    "criterion_id": "G1",
+    "question": "Does the original pseudocode contain sufficient explicit information to determine the algorithm's behaviour without inventing missing semantics?",
+    "automated_result": "EVALUABLE",
+    "automated_justification": "The available artefacts do not identify unresolved source semantics that require invention.",
+    "human_result": null,
+    "agreement_with_automated_result": null,
+    "reviewer_justification": ""
+  },
+  "behavioural_evidence_adequacy": {
+    "criterion_id": "G2",
+    "question": "How strong, representative and reproducible is the behavioural evidence supporting the automated behavioural score, and what important behaviour remains untested or non-evaluable?",
+    "automated_result": "ADEQUATE",
+    "summary": "This suite provides comparatively broad behavioural evidence using 4 predefined common behavioural tests, with covered normal-path behaviour and partial branch, boundary, error evidence. Runtime evidence: 4 of 4 declared test(s) were evaluable and 0 passed.",
+    "test_counts": {
+      "declared": 4,
+      "evaluable": 4,
+      "passed": 0,
+      "failed": 4,
+      "not_evaluable": 0
+    },
+    "coverage_dimensions": {
+      "normal_path": {
+        "label": "Normal-path coverage",
+        "status": "COVERED",
+        "tests_declared": 1,
+        "tests_evaluable": 1,
+        "tests_passed": 0,
+        "evidence": "1 NORMAL test(s) declared; 1 evaluable; 0 passed."
+      },
+      "branch_behaviour": {
+        "label": "Branch coverage",
+        "status": "PARTIALLY_COVERED",
+        "tests_declared": 1,
+        "tests_evaluable": 1,
+        "tests_passed": 0,
+        "evidence": "1 BRANCH test(s) declared; 1 evaluable; 0 passed."
+      },
+      "boundary_behaviour": {
+        "label": "Boundary coverage",
+        "status": "PARTIALLY_COVERED",
+        "tests_declared": 1,
+        "tests_evaluable": 1,
+        "tests_passed": 0,
+        "evidence": "1 BOUNDARY test(s) declared; 1 evaluable; 0 passed."
+      },
+      "error_behaviour": {
+        "label": "Error-behaviour coverage",
+        "status": "PARTIALLY_COVERED",
+        "tests_declared": 1,
+        "tests_evaluable": 1,
+        "tests_passed": 0,
+        "evidence": "1 ERROR_BEHAVIOUR test(s) declared; 1 evaluable; 0 passed."
+      },
+      "termination_behaviour": {
+        "label": "Termination coverage",
+        "status": "NOT_COVERED",
+        "tests_declared": 0,
+        "tests_evaluable": 0,
+        "tests_passed": 0,
+        "evidence": "No TERMINATION test is declared in the common suite."
+      },
+      "state_mutation": {
+        "label": "State-mutation coverage",
+        "status": "NOT_COVERED",
+        "tests_declared": 0,
+        "tests_evaluable": 0,
+        "tests_passed": 0,
+        "evidence": "No STATE_MUTATION test is declared in the common suite."
+      }
+    },
+    "strengths": [
+      "The suite provides direct behavioural evidence for normal-path coverage.",
+      "The suite provides some evidence for branch coverage, boundary coverage, error-behaviour coverage, although coverage is incomplete.",
+      "0 of 4 evaluable behavioural test(s) passed in this run."
+    ],
+    "limitations": [
+      "No direct common-test evidence is declared for: Termination coverage, State-mutation coverage."
+    ],
+    "coverage_basis": "Assessment is based on the 4 predefined common behavioural tests, the behaviours exposed by the frozen program interface, and the declared coverage dimensions: normal path, branch behaviour, boundary behaviour, error behaviour.",
+    "interpretation": "Interpret behavioural accuracy as comparatively broad evidence across the declared exercised behaviours, while not treating the result as exhaustive proof for all possible inputs and states.",
+    "human_result": null,
+    "agreement_with_automated_result": null,
+    "reviewer_justification": ""
+  },
+  "benchmark_validation": null,
+  "criteria": [
+    {
+      "stage_key": "canonicalisation",
+      "stage_name": "Pseudocode Canonicalisation",
+      "criterion_id": "C1",
+      "question": "Does the canonical pseudocode conform to the AJ grammar sufficiently for deterministic interpretation by the next pipeline stage?",
+      "automated_score": 2,
+      "automated_status": "PASS",
+      "automated_confidence": "HIGH",
+      "automated_justification": "Canonical AJ completed syntax/static validation and produced an AST.",
+      "evidence": [
+        {
+          "artifact": "parser_report.json",
+          "observed_value": "SUCCESS"
+        }
+      ],
+      "human_assessment": {
+        "score": null,
+        "agreement_with_automated_score": null,
+        "semantic_issue": null,
+        "reviewer_justification": ""
+      }
+    },
+    {
+      "stage_key": "canonicalisation",
+      "stage_name": "Pseudocode Canonicalisation",
+      "criterion_id": "C2",
+      "question": "Are all semantically relevant operations from the source pseudocode preserved in the canonical representation with equivalent meaning?",
+      "automated_score": 2,
+      "automated_status": "PASS",
+      "automated_confidence": "HIGH",
+      "automated_justification": "All logged transformations are from audited evidence categories and none declares a semantic change.",
+      "evidence": [
+        {
+          "artifact": "pseudocode_processing_report.json",
+          "transformation_count": 2,
+          "semantic_change_count": 0,
+          "uncertain_transformation_count": 0,
+          "rule_families": [
+            "BLOCK_TERMINATOR",
+            "SOURCE_NORMALISATION"
+          ]
+        }
+      ],
+      "human_assessment": {
+        "score": null,
+        "agreement_with_automated_score": null,
+        "semantic_issue": null,
+        "reviewer_justification": ""
+      }
+    },
+    {
+      "stage_key": "canonicalisation",
+      "stage_name": "Pseudocode Canonicalisation",
+      "criterion_id": "C3",
+      "question": "Are conditions, branches, loop bounds, iteration behaviour, state changes and termination behaviour preserved from the source?",
+      "automated_score": 2,
+      "automated_status": "PASS",
+      "automated_confidence": "HIGH",
+      "automated_justification": "No logged transformation declares a change to control/state semantics; all transformations have accepted audit evidence.",
+      "evidence": [
+        {
+          "artifact": "pseudocode_processing_report.json",
+          "transformation_count": 2,
+          "semantic_change_count": 0,
+          "uncertain_transformation_count": 0,
+          "rule_families": [
+            "BLOCK_TERMINATOR",
+            "SOURCE_NORMALISATION"
+          ]
+        }
+      ],
+      "human_assessment": {
+        "score": null,
+        "agreement_with_automated_score": null,
+        "semantic_issue": null,
+        "reviewer_justification": ""
+      }
+    },
+    {
+      "stage_key": "canonicalisation",
+      "stage_name": "Pseudocode Canonicalisation",
+      "criterion_id": "C4",
+      "question": "Has canonicalisation avoided introducing algorithmic behaviour that was not explicitly supported by the source?",
+      "automated_score": 2,
+      "automated_status": "PASS",
+      "automated_confidence": "HIGH",
+      "automated_justification": "No transformation is marked as semantic-changing and all transformations use accepted audit-evidence categories.",
+      "evidence": [
+        {
+          "artifact": "pseudocode_processing_report.json",
+          "transformation_count": 2,
+          "semantic_change_count": 0,
+          "uncertain_transformation_count": 0,
+          "rule_families": [
+            "BLOCK_TERMINATOR",
+            "SOURCE_NORMALISATION"
+          ]
+        }
+      ],
+      "human_assessment": {
+        "score": null,
+        "agreement_with_automated_score": null,
+        "semantic_issue": null,
+        "reviewer_justification": ""
+      }
+    },
+    {
+      "stage_key": "ast",
+      "stage_name": "AST Semantic Alignment",
+      "criterion_id": "A1",
+      "question": "Does every semantically relevant construct in the canonical pseudocode have an appropriate AST representation without missing or spurious executable nodes?",
+      "automated_score": 2,
+      "automated_status": "PASS",
+      "automated_confidence": "HIGH",
+      "automated_justification": "The parser produced a complete adjacency AST after syntax and static-semantic analysis.",
+      "evidence": [
+        {
+          "artifact": "parser_report.json",
+          "parser_success": true,
+          "static_semantic_status": "SUCCESS",
+          "warning_count": 0
+        },
+        {
+          "artifact": "ast.json",
+          "node_count": 39,
+          "operator_multiset": {
+            "-": 2,
+            "==": 1
+          }
+        }
+      ],
+      "human_assessment": {
+        "score": null,
+        "agreement_with_automated_score": null,
+        "semantic_issue": null,
+        "reviewer_justification": ""
+      }
+    },
+    {
+      "stage_key": "ast",
+      "stage_name": "AST Semantic Alignment",
+      "criterion_id": "A2",
+      "question": "Does the AST correctly represent the operands, operators, literals, indexing, collection access and call relationships of the canonical pseudocode?",
+      "automated_score": 2,
+      "automated_status": "PASS",
+      "automated_confidence": "MEDIUM",
+      "automated_justification": "Operator/literal relationships were accepted by syntax and static-semantic analysis. No semantic warnings were reported.",
+      "evidence": [
+        {
+          "artifact": "parser_report.json",
+          "parser_success": true,
+          "static_semantic_status": "SUCCESS",
+          "warning_count": 0
+        },
+        {
+          "artifact": "ast.json",
+          "node_count": 39,
+          "operator_multiset": {
+            "-": 2,
+            "==": 1
+          }
+        }
+      ],
+      "human_assessment": {
+        "score": null,
+        "agreement_with_automated_score": null,
+        "semantic_issue": null,
+        "reviewer_justification": ""
+      }
+    },
+    {
+      "stage_key": "ast",
+      "stage_name": "AST Semantic Alignment",
+      "criterion_id": "A3",
+      "question": "Are branch relationships, loop bodies, returns, loop-control operations, variable scope and nested declarations represented in the correct structural context?",
+      "automated_score": 2,
+      "automated_status": "PASS",
+      "automated_confidence": "MEDIUM",
+      "automated_justification": "Control/scope relationships passed parser static-semantic analysis. No semantic warnings were reported.",
+      "evidence": [
+        {
+          "artifact": "parser_report.json",
+          "parser_success": true,
+          "static_semantic_status": "SUCCESS",
+          "warning_count": 0
+        },
+        {
+          "artifact": "ast.json",
+          "node_count": 39,
+          "operator_multiset": {
+            "-": 2,
+            "==": 1
+          }
+        }
+      ],
+      "human_assessment": {
+        "score": null,
+        "agreement_with_automated_score": null,
+        "semantic_issue": null,
+        "reviewer_justification": ""
+      }
+    },
+    {
+      "stage_key": "ast",
+      "stage_name": "AST Semantic Alignment",
+      "criterion_id": "A4",
+      "question": "If the AST were interpreted directly, would it permit the same observable algorithmic behaviour as the canonical pseudocode?",
+      "automated_score": 2,
+      "automated_status": "PASS",
+      "automated_confidence": "MEDIUM",
+      "automated_justification": "The canonical program was accepted as a semantically valid AST by the parser. This automated judgement is retained for human verification rather than treated as an independent proof.",
+      "evidence": [
+        {
+          "artifact": "parser_report.json",
+          "parser_success": true,
+          "static_semantic_status": "SUCCESS",
+          "warning_count": 0
+        },
+        {
+          "artifact": "ast.json",
+          "node_count": 39,
+          "operator_multiset": {
+            "-": 2,
+            "==": 1
+          }
+        }
+      ],
+      "human_assessment": {
+        "score": null,
+        "agreement_with_automated_score": null,
+        "semantic_issue": null,
+        "reviewer_justification": ""
+      }
+    },
+    {
+      "stage_key": "flow_diagram",
+      "stage_name": "Flow Diagram Logical Structure",
+      "criterion_id": "F1",
+      "question": "Are all semantically relevant actions, decisions, entry/exit points and returns represented in the flow diagram?",
+      "automated_score": 2,
+      "automated_status": "PASS",
+      "automated_confidence": "HIGH",
+      "automated_justification": "Every executable AST construct has a corresponding visual flow node count.",
+      "evidence": [
+        {
+          "artifact": "flow_diagram.json",
+          "expected_executable_ast_counts": {
+            "CallNode": 3,
+            "FunctionNode": 2,
+            "IfNode": 1,
+            "OutputNode": 2
+          },
+          "visual_flow_ast_counts": {
+            "CallNode": 3,
+            "FunctionNode": 2,
+            "IfNode": 1,
+            "OutputNode": 2
+          },
+          "graph_validation": {
+            "valid": true,
+            "issues": [],
+            "warnings": [],
+            "node_count": 10,
+            "edge_count": 10,
+            "decision_node_count": 1,
+            "loop_decision_count": 0,
+            "loop_back_edge_count": 0,
+            "unreachable_nodes": []
+          }
+        },
+        {
+          "artifact": "ast.json + flow_diagram.json:structured_program",
+          "signature_comparison": {
+            "equivalent": true,
+            "review_required": false,
+            "differences": []
+          }
+        }
+      ],
+      "human_assessment": {
+        "score": null,
+        "agreement_with_automated_score": null,
+        "semantic_issue": null,
+        "reviewer_justification": ""
+      }
+    },
+    {
+      "stage_key": "flow_diagram",
+      "stage_name": "Flow Diagram Logical Structure",
+      "criterion_id": "F2",
+      "question": "Do the diagram connections correctly represent execution sequence, branch destinations, loop-back edges and exit paths?",
+      "automated_score": 2,
+      "automated_status": "PASS",
+      "automated_confidence": "HIGH",
+      "automated_justification": "Flow graph entry/exit, edge references, decision out-degree and loop routing invariants passed.",
+      "evidence": [
+        {
+          "artifact": "flow_diagram.json",
+          "expected_executable_ast_counts": {
+            "CallNode": 3,
+            "FunctionNode": 2,
+            "IfNode": 1,
+            "OutputNode": 2
+          },
+          "visual_flow_ast_counts": {
+            "CallNode": 3,
+            "FunctionNode": 2,
+            "IfNode": 1,
+            "OutputNode": 2
+          },
+          "graph_validation": {
+            "valid": true,
+            "issues": [],
+            "warnings": [],
+            "node_count": 10,
+            "edge_count": 10,
+            "decision_node_count": 1,
+            "loop_decision_count": 0,
+            "loop_back_edge_count": 0,
+            "unreachable_nodes": []
+          }
+        },
+        {
+          "artifact": "ast.json + flow_diagram.json:structured_program",
+          "signature_comparison": {
+            "equivalent": true,
+            "review_required": false,
+            "differences": []
+          }
+        }
+      ],
+      "human_assessment": {
+        "score": null,
+        "agreement_with_automated_score": null,
+        "semantic_issue": null,
+        "reviewer_justification": ""
+      }
+    },
+    {
+      "stage_key": "flow_diagram",
+      "stage_name": "Flow Diagram Logical Structure",
+      "criterion_id": "F3",
+      "question": "For every meaningful execution path represented by the AST, is there a corresponding path through the flow diagram without additional semantically unsupported paths?",
+      "automated_score": 2,
+      "automated_status": "PASS",
+      "automated_confidence": "HIGH",
+      "automated_justification": "The flow structured-program signature exactly matches the AST and graph invariants pass.",
+      "evidence": [
+        {
+          "artifact": "flow_diagram.json",
+          "expected_executable_ast_counts": {
+            "CallNode": 3,
+            "FunctionNode": 2,
+            "IfNode": 1,
+            "OutputNode": 2
+          },
+          "visual_flow_ast_counts": {
+            "CallNode": 3,
+            "FunctionNode": 2,
+            "IfNode": 1,
+            "OutputNode": 2
+          },
+          "graph_validation": {
+            "valid": true,
+            "issues": [],
+            "warnings": [],
+            "node_count": 10,
+            "edge_count": 10,
+            "decision_node_count": 1,
+            "loop_decision_count": 0,
+            "loop_back_edge_count": 0,
+            "unreachable_nodes": []
+          }
+        },
+        {
+          "artifact": "ast.json + flow_diagram.json:structured_program",
+          "signature_comparison": {
+            "equivalent": true,
+            "review_required": false,
+            "differences": []
+          }
+        }
+      ],
+      "human_assessment": {
+        "score": null,
+        "agreement_with_automated_score": null,
+        "semantic_issue": null,
+        "reviewer_justification": ""
+      }
+    },
+    {
+      "stage_key": "flow_diagram",
+      "stage_name": "Flow Diagram Logical Structure",
+      "criterion_id": "F4",
+      "question": "Do decision conditions, TRUE/FALSE routing, loop-entry conditions and loop-termination behaviour preserve the logic represented by the AST?",
+      "automated_score": 2,
+      "automated_status": "PASS",
+      "automated_confidence": "HIGH",
+      "automated_justification": "Structured AST contains 1 control decision(s); flow graph contains 1 decision node(s). Decision routing invariants passed.",
+      "evidence": [
+        {
+          "artifact": "flow_diagram.json",
+          "expected_executable_ast_counts": {
+            "CallNode": 3,
+            "FunctionNode": 2,
+            "IfNode": 1,
+            "OutputNode": 2
+          },
+          "visual_flow_ast_counts": {
+            "CallNode": 3,
+            "FunctionNode": 2,
+            "IfNode": 1,
+            "OutputNode": 2
+          },
+          "graph_validation": {
+            "valid": true,
+            "issues": [],
+            "warnings": [],
+            "node_count": 10,
+            "edge_count": 10,
+            "decision_node_count": 1,
+            "loop_decision_count": 0,
+            "loop_back_edge_count": 0,
+            "unreachable_nodes": []
+          }
+        },
+        {
+          "artifact": "ast.json + flow_diagram.json:structured_program",
+          "signature_comparison": {
+            "equivalent": true,
+            "review_required": false,
+            "differences": []
+          }
+        }
+      ],
+      "human_assessment": {
+        "score": null,
+        "agreement_with_automated_score": null,
+        "semantic_issue": null,
+        "reviewer_justification": ""
+      }
+    },
+    {
+      "stage_key": "python",
+      "stage_name": "Generated Python Correctness",
+      "criterion_id": "P1",
+      "question": "Is the generated Python syntactically valid and executable for inputs valid under the source algorithm's assumptions?",
+      "automated_score": 2,
+      "automated_status": "PASS",
+      "automated_confidence": "HIGH",
+      "automated_justification": "Python source was generated and syntax-validated by the compiler.",
+      "evidence": [
+        {
+          "artifact": "compilation_report.json",
+          "status": "SUCCESS"
+        }
+      ],
+      "human_assessment": {
+        "score": null,
+        "agreement_with_automated_score": null,
+        "semantic_issue": null,
+        "reviewer_justification": ""
+      }
+    },
+    {
+      "stage_key": "python",
+      "stage_name": "Generated Python Correctness",
+      "criterion_id": "P2",
+      "question": "Does the generated Python produce the expected outputs and observable state changes across the predefined behavioural tests?",
+      "automated_score": 0,
+      "automated_status": "FAIL",
+      "automated_confidence": "HIGH",
+      "automated_justification": "Generated Python passed 0 of 4 behavioural tests (0.00%).",
+      "evidence": [
+        {
+          "artifact": "test_report.json",
+          "tests_total": 4,
+          "tests_passed": 0
+        }
+      ],
+      "human_assessment": {
+        "score": null,
+        "agreement_with_automated_score": null,
+        "semantic_issue": null,
+        "reviewer_justification": ""
+      }
+    },
+    {
+      "stage_key": "python",
+      "stage_name": "Generated Python Correctness",
+      "criterion_id": "P3",
+      "question": "Does the generated Python preserve source-defined boundary behaviour, termination behaviour, returns and errors?",
+      "automated_score": 0,
+      "automated_status": "FAIL",
+      "automated_confidence": "HIGH",
+      "automated_justification": "Passed 0 of 2 boundary/error/termination tests.",
+      "evidence": [
+        {
+          "artifact": "test_report.json",
+          "boundary_tests": 2,
+          "passed": 0
+        }
+      ],
+      "human_assessment": {
+        "score": null,
+        "agreement_with_automated_score": null,
+        "semantic_issue": null,
+        "reviewer_justification": ""
+      }
+    },
+    {
+      "stage_key": "python",
+      "stage_name": "Generated Python Correctness",
+      "criterion_id": "P4",
+      "question": "Does the generated Python preserve the algorithm's control flow, state changes, data-structure effects and observable behaviour without introducing or removing meaningful behaviour?",
+      "automated_score": 0,
+      "automated_status": "FAIL",
+      "automated_confidence": "HIGH",
+      "automated_justification": "Compilation succeeded, but none of the available behavioural-oracle tests passed.",
+      "evidence": [
+        {
+          "artifact": "compilation_report.json + test_report.json",
+          "tests_total": 4,
+          "tests_passed": 0
+        }
+      ],
+      "human_assessment": {
+        "score": null,
+        "agreement_with_automated_score": null,
+        "semantic_issue": null,
+        "reviewer_justification": ""
+      }
+    }
+  ],
+  "overall_review": {
+    "material_semantic_error_not_captured": null,
+    "first_semantic_loss_stage": null,
+    "final_python_behaviourally_faithful": null,
+    "additional_observations": ""
+  }
+}

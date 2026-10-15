@@ -1,0 +1,13 @@
+# Remove punctuation from a sentence     
+FUNCTION RemovePunctuation(sentence):
+    punctuation_set = {'.', ',', '!', '?', ';', ':', '-', '\'', '"', '(', ')'}
+    clean_sentence = ""
+    
+    FOR EACH char IN sentence DO
+        IF char NOT IN punctuation_set THEN
+            clean_sentence = clean_sentence + char
+        END IF
+    END FOR
+    
+    RETURN clean_sentence
+END FUNCTION

@@ -1,0 +1,385 @@
+{
+  "format": "NL-FDEP Flow Diagram",
+  "version": "1.0",
+  "entry_node": "F1",
+  "exit_node": "F2",
+  "nodes": {
+    "F1": {
+      "node_id": "F1",
+      "node_type": "START",
+      "label": "Start",
+      "line": 1,
+      "data": {}
+    },
+    "F2": {
+      "node_id": "F2",
+      "node_type": "END",
+      "label": "End",
+      "line": 1,
+      "data": {}
+    },
+    "F3": {
+      "node_id": "F3",
+      "node_type": "FUNCTION",
+      "label": "Run function unnamed_function with arr, target",
+      "line": 1,
+      "data": {
+        "ast_kind": "FunctionNode",
+        "name": "unnamed_function"
+      }
+    },
+    "F4": {
+      "node_id": "F4",
+      "node_type": "PROCESS",
+      "label": "Set seen to an empty dictionary",
+      "line": 2,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F5": {
+      "node_id": "F5",
+      "node_type": "PROCESS",
+      "label": "Set pairs to an empty list",
+      "line": 3,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F6": {
+      "node_id": "F6",
+      "node_type": "LOOP_DECISION",
+      "label": "For each num in arr",
+      "line": 5,
+      "data": {
+        "ast_kind": "ForEachNode"
+      }
+    },
+    "F7": {
+      "node_id": "F7",
+      "node_type": "PROCESS",
+      "label": "Set comp to target minus num",
+      "line": 6,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F8": {
+      "node_id": "F8",
+      "node_type": "DECISION",
+      "label": "Comp is contained in seen?",
+      "line": 8,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F9": {
+      "node_id": "F9",
+      "node_type": "PROCESS",
+      "label": "Append (the result of min(num, comp), the result of max(num, comp)) to pairs",
+      "line": 9,
+      "data": {
+        "ast_kind": "AppendNode"
+      }
+    },
+    "F10": {
+      "node_id": "F10",
+      "node_type": "PROCESS",
+      "label": "Set item num of seen to true",
+      "line": 12,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F11": {
+      "node_id": "F11",
+      "node_type": "RETURN",
+      "label": "Return the result of to_set(pairs)",
+      "line": 15,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "F4",
+      "target": "F5",
+      "label": "NEXT"
+    },
+    {
+      "source": "F8",
+      "target": "F9",
+      "label": "TRUE"
+    },
+    {
+      "source": "F7",
+      "target": "F8",
+      "label": "NEXT"
+    },
+    {
+      "source": "F9",
+      "target": "F10",
+      "label": "NEXT"
+    },
+    {
+      "source": "F8",
+      "target": "F10",
+      "label": "NEXT"
+    },
+    {
+      "source": "F6",
+      "target": "F7",
+      "label": "ITERATE"
+    },
+    {
+      "source": "F10",
+      "target": "F6",
+      "label": "LOOP"
+    },
+    {
+      "source": "F5",
+      "target": "F6",
+      "label": "NEXT"
+    },
+    {
+      "source": "F6",
+      "target": "F11",
+      "label": "NEXT"
+    },
+    {
+      "source": "F3",
+      "target": "F4",
+      "label": "BODY"
+    },
+    {
+      "source": "F1",
+      "target": "F3",
+      "label": "NEXT"
+    },
+    {
+      "source": "F11",
+      "target": "F2",
+      "label": "NEXT"
+    }
+  ],
+  "structured_program": {
+    "kind": "ProgramNode",
+    "line": 1,
+    "body": [
+      {
+        "kind": "FunctionNode",
+        "line": 1,
+        "name": "unnamed_function",
+        "parameters": [
+          {
+            "kind": "ParameterNode",
+            "line": 1,
+            "name": "arr",
+            "declared_type": null
+          },
+          {
+            "kind": "ParameterNode",
+            "line": 1,
+            "name": "target",
+            "declared_type": null
+          }
+        ],
+        "body": {
+          "kind": "BlockNode",
+          "line": 2,
+          "statements": [
+            {
+              "kind": "AssignmentNode",
+              "line": 2,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 2,
+                "name": "seen"
+              },
+              "value": {
+                "kind": "EmptyLiteralNode",
+                "line": 2,
+                "empty_type": "DICTIONARY"
+              }
+            },
+            {
+              "kind": "AssignmentNode",
+              "line": 3,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 3,
+                "name": "pairs"
+              },
+              "value": {
+                "kind": "EmptyLiteralNode",
+                "line": 3,
+                "empty_type": "LIST"
+              }
+            },
+            {
+              "kind": "ForEachNode",
+              "line": 5,
+              "variable": {
+                "kind": "IdentifierNode",
+                "line": 5,
+                "name": "num"
+              },
+              "collection": {
+                "kind": "IdentifierNode",
+                "line": 5,
+                "name": "arr"
+              },
+              "body": {
+                "kind": "BlockNode",
+                "line": 6,
+                "statements": [
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 6,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 6,
+                      "name": "comp"
+                    },
+                    "value": {
+                      "kind": "BinaryNode",
+                      "line": 6,
+                      "operator": "-",
+                      "left": {
+                        "kind": "IdentifierNode",
+                        "line": 6,
+                        "name": "target"
+                      },
+                      "right": {
+                        "kind": "IdentifierNode",
+                        "line": 6,
+                        "name": "num"
+                      }
+                    }
+                  },
+                  {
+                    "kind": "IfNode",
+                    "line": 8,
+                    "condition": {
+                      "kind": "BinaryNode",
+                      "line": 8,
+                      "operator": "IN",
+                      "left": {
+                        "kind": "IdentifierNode",
+                        "line": 8,
+                        "name": "comp"
+                      },
+                      "right": {
+                        "kind": "IdentifierNode",
+                        "line": 8,
+                        "name": "seen"
+                      }
+                    },
+                    "then_body": {
+                      "kind": "BlockNode",
+                      "line": 9,
+                      "statements": [
+                        {
+                          "kind": "AppendNode",
+                          "line": 9,
+                          "value": {
+                            "kind": "TupleLiteralNode",
+                            "line": 9,
+                            "items": [
+                              {
+                                "kind": "CallNode",
+                                "line": 9,
+                                "name": "min",
+                                "arguments": [
+                                  {
+                                    "kind": "IdentifierNode",
+                                    "line": 9,
+                                    "name": "num"
+                                  },
+                                  {
+                                    "kind": "IdentifierNode",
+                                    "line": 9,
+                                    "name": "comp"
+                                  }
+                                ]
+                              },
+                              {
+                                "kind": "CallNode",
+                                "line": 9,
+                                "name": "max",
+                                "arguments": [
+                                  {
+                                    "kind": "IdentifierNode",
+                                    "line": 9,
+                                    "name": "num"
+                                  },
+                                  {
+                                    "kind": "IdentifierNode",
+                                    "line": 9,
+                                    "name": "comp"
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          "collection": {
+                            "kind": "IdentifierNode",
+                            "line": 9,
+                            "name": "pairs"
+                          }
+                        }
+                      ]
+                    },
+                    "else_if": [],
+                    "else_body": null
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 12,
+                    "target": {
+                      "kind": "IndexNode",
+                      "line": 12,
+                      "collection": {
+                        "kind": "IdentifierNode",
+                        "line": 12,
+                        "name": "seen"
+                      },
+                      "index": {
+                        "kind": "IdentifierNode",
+                        "line": 12,
+                        "name": "num"
+                      }
+                    },
+                    "value": {
+                      "kind": "LiteralNode",
+                      "line": 12,
+                      "value": true,
+                      "data_type": "BOOLEAN"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "ReturnNode",
+              "line": 15,
+              "expression": {
+                "kind": "CallNode",
+                "line": 15,
+                "name": "to_set",
+                "arguments": [
+                  {
+                    "kind": "IdentifierNode",
+                    "line": 15,
+                    "name": "pairs"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

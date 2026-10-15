@@ -1,0 +1,222 @@
+{
+  "comparison_schema_version": "1.0",
+  "comparison_role": "EXPERIMENTAL_VS_PIPELINE_CALIBRATION",
+  "is_baseline": false,
+  "reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 49\\Algorithm 49 Baseline Python code.txt",
+  "tests_file": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\Pipeline Versions\\NL_Flow_Diagram_Encoder_Pipeline_v4_32\\NL_Flow_Diagram_Encoder_Pipeline_v4_32\\study data\\common tests v1.1\\Algorithm - 49\\Algorithm 49 Tests.json",
+  "common_test_set": true,
+  "baseline_reference_validation": {
+    "validation_schema_version": "1.0",
+    "reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 49\\Algorithm 49 Baseline Python code.txt",
+    "reference_source_preparation": {
+      "reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 49\\Algorithm 49 Baseline Python code.txt",
+      "raw_sha256": "ec6ce000277f20ecc08af07b9bbaa407efe2dea1a1a9193be2b5758c2b0da19d",
+      "raw_syntax_valid": false,
+      "execution_syntax_valid": true,
+      "normalisation_applied": true,
+      "normalisation_rule": "COMMENT_MATCHED_TEST_SUITE_ALGORITHM_TITLE",
+      "raw_syntax_error": "invalid syntax (<unknown>, line 1)",
+      "normalised_line_number": 1,
+      "declared_algorithm_title": "Create a pathfinding solution that guides a user through a maze using graph traversal.",
+      "reference_heading": "Create a pathfinding solution that guides a user through a maze using graph traversal.",
+      "execution_sha256": "9478db4e139c550916103df61312febc0ce9775a6bdab50fecedc113f93e6658"
+    },
+    "status": "TRUSTED_REFERENCE",
+    "reason": "No independent expected outcomes are present. The frozen baseline Python is accepted as the trusted behavioural reference by the study design; this is not an independent validation claim.",
+    "explicit_tests_total": 0,
+    "tests": []
+  },
+  "baseline_calibration_status": "EVALUATED",
+  "baseline_calibration_score_percentage": 100.0,
+  "experimental_behavioural_score_percentage": null,
+  "experimental_tests_total": 0,
+  "experimental_tests_passed": 0,
+  "delta_from_baseline_percentage_points": null,
+  "comparison_to_baseline": "NOT_EVALUABLE",
+  "comparison_status": "NOT_EVALUABLE",
+  "oracle_records": [
+    {
+      "name": "seeded maze generation and BFS solve seed 104729",
+      "reference": {
+        "status": "COMPLETED",
+        "standard_input": [],
+        "stdout": [
+          "Auto Maze Generator and BFS Solver",
+          "",
+          "\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c",
+          "\u00e2\u2013\u201cS\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u2013\u201c   \u00e2\u2013\u201c  \u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u2013\u201c \u00e2\u2013\u201c\u00e2\u2013\u201c",
+          "\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u2013\u201c \u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c \u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u2013\u201c \u00e2\u2013\u201c\u00e2\u2013\u201c",
+          "\u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u2013\u201c   \u00e2\u2013\u201c \u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u2013\u201c\u00e2\u2013\u201c",
+          "\u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c \u00e2\u2013\u201c \u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u2013\u201c\u00e2\u2013\u201c",
+          "\u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u2013\u201c   \u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u2013\u201c \u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u2013\u201c\u00e2\u2013\u201c",
+          "\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u2013\u201c \u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u2013\u201c\u00e2\u2013\u201c",
+          "\u00e2\u2013\u201c \u00e2\u2013\u201c   \u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u2013\u201c \u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u2013\u201c\u00e2\u2013\u201c",
+          "\u00e2\u2013\u201c \u00e2\u2013\u201c \u00e2\u2013\u201c \u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u2013\u201c \u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u2013\u201c\u00e2\u2013\u201c",
+          "\u00e2\u2013\u201c   \u00e2\u2013\u201c      \u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u2013\u201c  E\u00e2\u2013\u201c\u00e2\u2013\u201c",
+          "\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c"
+        ],
+        "stderr": "",
+        "return_code": 0,
+        "error_type": null,
+        "duration_ms": 82.216,
+        "category": "STATE_MUTATION",
+        "semantic_feature": "MAZE_CARVING_BFS_PATH_AND_MARKING",
+        "criteria_links": [
+          "P2",
+          "P4"
+        ],
+        "random_seed": 104729,
+        "environment": {},
+        "requires_modules": [],
+        "reference_source_preparation": {
+          "reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 49\\Algorithm 49 Baseline Python code.txt",
+          "raw_sha256": "ec6ce000277f20ecc08af07b9bbaa407efe2dea1a1a9193be2b5758c2b0da19d",
+          "raw_syntax_valid": false,
+          "execution_syntax_valid": true,
+          "normalisation_applied": true,
+          "normalisation_rule": "COMMENT_MATCHED_TEST_SUITE_ALGORITHM_TITLE",
+          "raw_syntax_error": "invalid syntax (<unknown>, line 1)",
+          "normalised_line_number": 1,
+          "declared_algorithm_title": "Create a pathfinding solution that guides a user through a maze using graph traversal.",
+          "reference_heading": "Create a pathfinding solution that guides a user through a maze using graph traversal.",
+          "execution_sha256": "9478db4e139c550916103df61312febc0ce9775a6bdab50fecedc113f93e6658"
+        }
+      },
+      "expected_result_source": "REFERENCE_PYTHON",
+      "explicit_expectation_fields": [],
+      "derived_expectation_fields": [
+        "expected_output",
+        "expected_return_code"
+      ],
+      "evaluable_expectation_fields": [
+        "expected_output",
+        "expected_return_code"
+      ],
+      "test_case_status": "EVALUABLE"
+    },
+    {
+      "name": "seeded maze generation and BFS solve seed 104759",
+      "reference": {
+        "status": "COMPLETED",
+        "standard_input": [],
+        "stdout": [
+          "Auto Maze Generator and BFS Solver",
+          "",
+          "\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c",
+          "\u00e2\u2013\u201cS\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u2013\u201c   \u00e2\u2013\u201c         \u00e2\u2013\u201c\u00e2\u2013\u201c",
+          "\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u2013\u201c \u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c \u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c \u00e2\u2013\u201c\u00e2\u2013\u201c",
+          "\u00e2\u2013\u201c \u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u2013\u201c     \u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u2013\u201c\u00e2\u2013\u201c",
+          "\u00e2\u2013\u201c \u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u2013\u201c\u00e2\u2013\u201c",
+          "\u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u2013\u201c    \u00e2\u20ac\u00a2\u00e2\u2013\u201c\u00e2\u2013\u201c",
+          "\u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u2013\u201c\u00e2\u2013\u201c",
+          "\u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u2013\u201c \u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u2013\u201c\u00e2\u2013\u201c",
+          "\u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c \u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u2013\u201c\u00e2\u2013\u201c",
+          "\u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u2013\u201c    \u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u2013\u201cE\u00e2\u2013\u201c\u00e2\u2013\u201c",
+          "\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c"
+        ],
+        "stderr": "",
+        "return_code": 0,
+        "error_type": null,
+        "duration_ms": 88.374,
+        "category": "STATE_MUTATION",
+        "semantic_feature": "MAZE_CARVING_BFS_PATH_AND_MARKING",
+        "criteria_links": [
+          "P2",
+          "P4"
+        ],
+        "random_seed": 104759,
+        "environment": {},
+        "requires_modules": [],
+        "reference_source_preparation": {
+          "reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 49\\Algorithm 49 Baseline Python code.txt",
+          "raw_sha256": "ec6ce000277f20ecc08af07b9bbaa407efe2dea1a1a9193be2b5758c2b0da19d",
+          "raw_syntax_valid": false,
+          "execution_syntax_valid": true,
+          "normalisation_applied": true,
+          "normalisation_rule": "COMMENT_MATCHED_TEST_SUITE_ALGORITHM_TITLE",
+          "raw_syntax_error": "invalid syntax (<unknown>, line 1)",
+          "normalised_line_number": 1,
+          "declared_algorithm_title": "Create a pathfinding solution that guides a user through a maze using graph traversal.",
+          "reference_heading": "Create a pathfinding solution that guides a user through a maze using graph traversal.",
+          "execution_sha256": "9478db4e139c550916103df61312febc0ce9775a6bdab50fecedc113f93e6658"
+        }
+      },
+      "expected_result_source": "REFERENCE_PYTHON",
+      "explicit_expectation_fields": [],
+      "derived_expectation_fields": [
+        "expected_output",
+        "expected_return_code"
+      ],
+      "evaluable_expectation_fields": [
+        "expected_output",
+        "expected_return_code"
+      ],
+      "test_case_status": "EVALUABLE"
+    },
+    {
+      "name": "seeded maze generation and BFS solve seed 104761",
+      "reference": {
+        "status": "COMPLETED",
+        "standard_input": [],
+        "stdout": [
+          "Auto Maze Generator and BFS Solver",
+          "",
+          "\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c",
+          "\u00e2\u2013\u201cS\u00e2\u2013\u201c   \u00e2\u2013\u201c  \u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u2013\u201c   \u00e2\u2013\u201c\u00e2\u2013\u201c",
+          "\u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c \u00e2\u2013\u201c \u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c \u00e2\u2013\u201c\u00e2\u2013\u201c",
+          "\u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u2013\u201c   \u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u2013\u201c\u00e2\u2013\u201c",
+          "\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c \u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u2013\u201c\u00e2\u2013\u201c",
+          "\u00e2\u2013\u201c \u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u2013\u201c   \u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u2013\u201c\u00e2\u2013\u201c",
+          "\u00e2\u2013\u201c \u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c",
+          "\u00e2\u2013\u201c   \u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u2013\u201c\u00e2\u2013\u201c",
+          "\u00e2\u2013\u201c \u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u20ac\u00a2\u00e2\u2013\u201c\u00e2\u2013\u201c",
+          "\u00e2\u2013\u201c    \u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u20ac\u00a2\u00e2\u2013\u201c        E\u00e2\u2013\u201c\u00e2\u2013\u201c",
+          "\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c\u00e2\u2013\u201c"
+        ],
+        "stderr": "",
+        "return_code": 0,
+        "error_type": null,
+        "duration_ms": 91.274,
+        "category": "STATE_MUTATION",
+        "semantic_feature": "MAZE_CARVING_BFS_PATH_AND_MARKING",
+        "criteria_links": [
+          "P2",
+          "P4"
+        ],
+        "random_seed": 104761,
+        "environment": {},
+        "requires_modules": [],
+        "reference_source_preparation": {
+          "reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 49\\Algorithm 49 Baseline Python code.txt",
+          "raw_sha256": "ec6ce000277f20ecc08af07b9bbaa407efe2dea1a1a9193be2b5758c2b0da19d",
+          "raw_syntax_valid": false,
+          "execution_syntax_valid": true,
+          "normalisation_applied": true,
+          "normalisation_rule": "COMMENT_MATCHED_TEST_SUITE_ALGORITHM_TITLE",
+          "raw_syntax_error": "invalid syntax (<unknown>, line 1)",
+          "normalised_line_number": 1,
+          "declared_algorithm_title": "Create a pathfinding solution that guides a user through a maze using graph traversal.",
+          "reference_heading": "Create a pathfinding solution that guides a user through a maze using graph traversal.",
+          "execution_sha256": "9478db4e139c550916103df61312febc0ce9775a6bdab50fecedc113f93e6658"
+        }
+      },
+      "expected_result_source": "REFERENCE_PYTHON",
+      "explicit_expectation_fields": [],
+      "derived_expectation_fields": [
+        "expected_output",
+        "expected_return_code"
+      ],
+      "evaluable_expectation_fields": [
+        "expected_output",
+        "expected_return_code"
+      ],
+      "test_case_status": "EVALUABLE"
+    }
+  ],
+  "interpretation_note": "The baseline score measures pipeline calibration on frozen baseline pseudocode. The experimental score measures the experimental pseudocode through the same pipeline against the same trusted baseline Python/test set. The percentage-point delta is descriptive and is not a causal correction or adjusted accuracy score.",
+  "baseline_algorithm_id": 49,
+  "baseline_calibration_run_id": "run-20260905T195957Z-0f81da5d",
+  "oracle_source": "BASELINE_REFERENCE_PYTHON",
+  "baseline_reference_oracle_eligible": true,
+  "oracle_block_reason": null
+}

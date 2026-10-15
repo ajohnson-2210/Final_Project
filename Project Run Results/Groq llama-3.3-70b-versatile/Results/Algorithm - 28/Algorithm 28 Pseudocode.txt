@@ -1,0 +1,14 @@
+# For a fixed window size sliding across an array, return the maximum value within each window position
+FUNCTION MAX_IN_WINDOW(arr, window_size)
+  result = []
+  FOR i FROM 0 TO LENGTH(arr) - window_size
+    max_value = NEGATIVE_INFINITY
+    FOR j FROM i TO i + window_size - 1
+      IF arr[j] > max_value THEN
+        max_value = arr[j]
+      END IF
+    END FOR
+    result += [max_value]
+  END FOR
+  RETURN result
+END FUNCTION

@@ -1,0 +1,157 @@
+{
+  "root_id": "N10902",
+  "nodes": {
+    "N10902": {
+      "kind": "ProgramNode",
+      "line": 1,
+      "attributes": {}
+    },
+    "N10901": {
+      "kind": "FunctionNode",
+      "line": 1,
+      "attributes": {
+        "name": "GetUniqueIPs"
+      }
+    },
+    "N10886": {
+      "kind": "ParameterNode",
+      "line": 1,
+      "attributes": {
+        "name": "ip_list",
+        "declared_type": null
+      }
+    },
+    "N10900": {
+      "kind": "BlockNode",
+      "line": 2,
+      "attributes": {}
+    },
+    "N10889": {
+      "kind": "AssignmentNode",
+      "line": 2,
+      "attributes": {}
+    },
+    "N10887": {
+      "kind": "IdentifierNode",
+      "line": 2,
+      "attributes": {
+        "name": "unique_set"
+      }
+    },
+    "N10888": {
+      "kind": "EmptyLiteralNode",
+      "line": 2,
+      "attributes": {
+        "empty_type": "SET"
+      }
+    },
+    "N10896": {
+      "kind": "ForEachNode",
+      "line": 3,
+      "attributes": {}
+    },
+    "N10895": {
+      "kind": "IdentifierNode",
+      "line": 3,
+      "attributes": {
+        "name": "ip"
+      }
+    },
+    "N10890": {
+      "kind": "IdentifierNode",
+      "line": 3,
+      "attributes": {
+        "name": "ip_list"
+      }
+    },
+    "N10894": {
+      "kind": "BlockNode",
+      "line": 4,
+      "attributes": {}
+    },
+    "N10893": {
+      "kind": "CallNode",
+      "line": 4,
+      "attributes": {
+        "name": "add_to_set"
+      }
+    },
+    "N10891": {
+      "kind": "IdentifierNode",
+      "line": 4,
+      "attributes": {
+        "name": "unique_set"
+      }
+    },
+    "N10892": {
+      "kind": "IdentifierNode",
+      "line": 4,
+      "attributes": {
+        "name": "ip"
+      }
+    },
+    "N10899": {
+      "kind": "ReturnNode",
+      "line": 6,
+      "attributes": {}
+    },
+    "N10898": {
+      "kind": "CallNode",
+      "line": 6,
+      "attributes": {
+        "name": "to_list"
+      }
+    },
+    "N10897": {
+      "kind": "IdentifierNode",
+      "line": 6,
+      "attributes": {
+        "name": "unique_set"
+      }
+    }
+  },
+  "adjacency": {
+    "N10902": [
+      "N10901"
+    ],
+    "N10901": [
+      "N10886",
+      "N10900"
+    ],
+    "N10886": [],
+    "N10900": [
+      "N10889",
+      "N10896",
+      "N10899"
+    ],
+    "N10889": [
+      "N10887",
+      "N10888"
+    ],
+    "N10887": [],
+    "N10888": [],
+    "N10896": [
+      "N10895",
+      "N10890",
+      "N10894"
+    ],
+    "N10895": [],
+    "N10890": [],
+    "N10894": [
+      "N10893"
+    ],
+    "N10893": [
+      "N10891",
+      "N10892"
+    ],
+    "N10891": [],
+    "N10892": [],
+    "N10899": [
+      "N10898"
+    ],
+    "N10898": [
+      "N10897"
+    ],
+    "N10897": []
+  }
+}

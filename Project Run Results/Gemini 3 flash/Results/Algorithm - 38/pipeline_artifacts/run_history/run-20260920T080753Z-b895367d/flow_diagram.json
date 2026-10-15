@@ -1,0 +1,334 @@
+{
+  "format": "NL-FDEP Flow Diagram",
+  "version": "1.0",
+  "entry_node": "F1",
+  "exit_node": "F2",
+  "nodes": {
+    "F1": {
+      "node_id": "F1",
+      "node_type": "START",
+      "label": "Start",
+      "line": 1,
+      "data": {}
+    },
+    "F2": {
+      "node_id": "F2",
+      "node_type": "END",
+      "label": "End",
+      "line": 1,
+      "data": {}
+    },
+    "F3": {
+      "node_id": "F3",
+      "node_type": "FUNCTION",
+      "label": "Run function FirstNonRepeatingChar with str",
+      "line": 1,
+      "data": {
+        "ast_kind": "FunctionNode",
+        "name": "FirstNonRepeatingChar"
+      }
+    },
+    "F4": {
+      "node_id": "F4",
+      "node_type": "PROCESS",
+      "label": "Set counts to an empty dictionary",
+      "line": 2,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F5": {
+      "node_id": "F5",
+      "node_type": "LOOP_DECISION",
+      "label": "For each __reserved_keyword__char in str",
+      "line": 4,
+      "data": {
+        "ast_kind": "ForEachNode"
+      }
+    },
+    "F6": {
+      "node_id": "F6",
+      "node_type": "PROCESS",
+      "label": "Set item __reserved_keyword__char of counts to item __reserved_keyword__char of counts plus 1",
+      "line": 5,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F7": {
+      "node_id": "F7",
+      "node_type": "LOOP_DECISION",
+      "label": "For each __reserved_keyword__char in str",
+      "line": 8,
+      "data": {
+        "ast_kind": "ForEachNode"
+      }
+    },
+    "F8": {
+      "node_id": "F8",
+      "node_type": "DECISION",
+      "label": "Item __reserved_keyword__char of counts is equal to 1?",
+      "line": 9,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F9": {
+      "node_id": "F9",
+      "node_type": "RETURN",
+      "label": "Return __reserved_keyword__char",
+      "line": 10,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    },
+    "F10": {
+      "node_id": "F10",
+      "node_type": "RETURN",
+      "label": "Return NULL",
+      "line": 14,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "F5",
+      "target": "F6",
+      "label": "ITERATE"
+    },
+    {
+      "source": "F6",
+      "target": "F5",
+      "label": "LOOP"
+    },
+    {
+      "source": "F4",
+      "target": "F5",
+      "label": "NEXT"
+    },
+    {
+      "source": "F8",
+      "target": "F9",
+      "label": "TRUE"
+    },
+    {
+      "source": "F7",
+      "target": "F8",
+      "label": "ITERATE"
+    },
+    {
+      "source": "F8",
+      "target": "F7",
+      "label": "LOOP"
+    },
+    {
+      "source": "F5",
+      "target": "F7",
+      "label": "NEXT"
+    },
+    {
+      "source": "F7",
+      "target": "F10",
+      "label": "NEXT"
+    },
+    {
+      "source": "F3",
+      "target": "F4",
+      "label": "BODY"
+    },
+    {
+      "source": "F1",
+      "target": "F3",
+      "label": "NEXT"
+    },
+    {
+      "source": "F9",
+      "target": "F2",
+      "label": "NEXT"
+    },
+    {
+      "source": "F10",
+      "target": "F2",
+      "label": "NEXT"
+    }
+  ],
+  "structured_program": {
+    "kind": "ProgramNode",
+    "line": 1,
+    "body": [
+      {
+        "kind": "FunctionNode",
+        "line": 1,
+        "name": "FirstNonRepeatingChar",
+        "parameters": [
+          {
+            "kind": "ParameterNode",
+            "line": 1,
+            "name": "str",
+            "declared_type": null
+          }
+        ],
+        "body": {
+          "kind": "BlockNode",
+          "line": 2,
+          "statements": [
+            {
+              "kind": "AssignmentNode",
+              "line": 2,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 2,
+                "name": "counts"
+              },
+              "value": {
+                "kind": "EmptyLiteralNode",
+                "line": 2,
+                "empty_type": "DICTIONARY"
+              }
+            },
+            {
+              "kind": "ForEachNode",
+              "line": 4,
+              "variable": {
+                "kind": "IdentifierNode",
+                "line": 4,
+                "name": "__reserved_keyword__char"
+              },
+              "collection": {
+                "kind": "IdentifierNode",
+                "line": 4,
+                "name": "str"
+              },
+              "body": {
+                "kind": "BlockNode",
+                "line": 5,
+                "statements": [
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 5,
+                    "target": {
+                      "kind": "IndexNode",
+                      "line": 5,
+                      "collection": {
+                        "kind": "IdentifierNode",
+                        "line": 5,
+                        "name": "counts"
+                      },
+                      "index": {
+                        "kind": "IdentifierNode",
+                        "line": 5,
+                        "name": "__reserved_keyword__char"
+                      }
+                    },
+                    "value": {
+                      "kind": "BinaryNode",
+                      "line": 5,
+                      "operator": "+",
+                      "left": {
+                        "kind": "IndexNode",
+                        "line": 5,
+                        "collection": {
+                          "kind": "IdentifierNode",
+                          "line": 5,
+                          "name": "counts"
+                        },
+                        "index": {
+                          "kind": "IdentifierNode",
+                          "line": 5,
+                          "name": "__reserved_keyword__char"
+                        }
+                      },
+                      "right": {
+                        "kind": "LiteralNode",
+                        "line": 5,
+                        "value": 1,
+                        "data_type": "INTEGER"
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "ForEachNode",
+              "line": 8,
+              "variable": {
+                "kind": "IdentifierNode",
+                "line": 8,
+                "name": "__reserved_keyword__char"
+              },
+              "collection": {
+                "kind": "IdentifierNode",
+                "line": 8,
+                "name": "str"
+              },
+              "body": {
+                "kind": "BlockNode",
+                "line": 9,
+                "statements": [
+                  {
+                    "kind": "IfNode",
+                    "line": 9,
+                    "condition": {
+                      "kind": "BinaryNode",
+                      "line": 9,
+                      "operator": "==",
+                      "left": {
+                        "kind": "IndexNode",
+                        "line": 9,
+                        "collection": {
+                          "kind": "IdentifierNode",
+                          "line": 9,
+                          "name": "counts"
+                        },
+                        "index": {
+                          "kind": "IdentifierNode",
+                          "line": 9,
+                          "name": "__reserved_keyword__char"
+                        }
+                      },
+                      "right": {
+                        "kind": "LiteralNode",
+                        "line": 9,
+                        "value": 1,
+                        "data_type": "INTEGER"
+                      }
+                    },
+                    "then_body": {
+                      "kind": "BlockNode",
+                      "line": 10,
+                      "statements": [
+                        {
+                          "kind": "ReturnNode",
+                          "line": 10,
+                          "expression": {
+                            "kind": "IdentifierNode",
+                            "line": 10,
+                            "name": "__reserved_keyword__char"
+                          }
+                        }
+                      ]
+                    },
+                    "else_if": [],
+                    "else_body": null
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "ReturnNode",
+              "line": 14,
+              "expression": {
+                "kind": "IdentifierNode",
+                "line": 14,
+                "name": "NULL"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

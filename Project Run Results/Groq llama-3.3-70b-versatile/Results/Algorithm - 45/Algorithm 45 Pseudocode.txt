@@ -1,0 +1,12 @@
+# Create instructions for adding two matrices of equal size
+FUNCTION ADD_MATRICES(matrix1, matrix2)
+  result = []
+  FOR i FROM 0 TO LENGTH(matrix1) - 1
+    row = []
+    FOR j FROM 0 TO LENGTH(matrix1[0]) - 1
+      row += [matrix1[i][j] + matrix2[i][j]]
+    END FOR
+    result += [row]
+  END FOR
+  RETURN result
+END FUNCTION

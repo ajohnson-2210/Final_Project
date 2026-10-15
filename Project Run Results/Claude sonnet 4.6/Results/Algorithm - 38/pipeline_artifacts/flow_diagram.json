@@ -1,0 +1,345 @@
+{
+  "format": "NL-FDEP Flow Diagram",
+  "version": "1.0",
+  "entry_node": "F1",
+  "exit_node": "F2",
+  "nodes": {
+    "F1": {
+      "node_id": "F1",
+      "node_type": "START",
+      "label": "Start",
+      "line": 1,
+      "data": {}
+    },
+    "F2": {
+      "node_id": "F2",
+      "node_type": "END",
+      "label": "End",
+      "line": 1,
+      "data": {}
+    },
+    "F3": {
+      "node_id": "F3",
+      "node_type": "FUNCTION",
+      "label": "Run function firstNonRepeating with str",
+      "line": 1,
+      "data": {
+        "ast_kind": "FunctionNode",
+        "name": "firstNonRepeating"
+      }
+    },
+    "F4": {
+      "node_id": "F4",
+      "node_type": "PROCESS",
+      "label": "Set freq to an empty dictionary",
+      "line": 2,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F5": {
+      "node_id": "F5",
+      "node_type": "LOOP_DECISION",
+      "label": "For each __reserved_keyword__char in str",
+      "line": 3,
+      "data": {
+        "ast_kind": "ForEachNode"
+      }
+    },
+    "F6": {
+      "node_id": "F6",
+      "node_type": "PROCESS",
+      "label": "Set item __reserved_keyword__char of freq to the result of freq.GET(__reserved_keyword__char, 0) plus 1",
+      "line": 4,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F7": {
+      "node_id": "F7",
+      "node_type": "LOOP_DECISION",
+      "label": "For each __reserved_keyword__char in str",
+      "line": 6,
+      "data": {
+        "ast_kind": "ForEachNode"
+      }
+    },
+    "F8": {
+      "node_id": "F8",
+      "node_type": "DECISION",
+      "label": "Item __reserved_keyword__char of freq is equal to 1?",
+      "line": 7,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F9": {
+      "node_id": "F9",
+      "node_type": "RETURN",
+      "label": "Return __reserved_keyword__char",
+      "line": 8,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    },
+    "F10": {
+      "node_id": "F10",
+      "node_type": "RETURN",
+      "label": "Return nothing",
+      "line": 11,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "F5",
+      "target": "F6",
+      "label": "ITERATE"
+    },
+    {
+      "source": "F6",
+      "target": "F5",
+      "label": "LOOP"
+    },
+    {
+      "source": "F4",
+      "target": "F5",
+      "label": "NEXT"
+    },
+    {
+      "source": "F8",
+      "target": "F9",
+      "label": "TRUE"
+    },
+    {
+      "source": "F7",
+      "target": "F8",
+      "label": "ITERATE"
+    },
+    {
+      "source": "F8",
+      "target": "F7",
+      "label": "LOOP"
+    },
+    {
+      "source": "F5",
+      "target": "F7",
+      "label": "NEXT"
+    },
+    {
+      "source": "F7",
+      "target": "F10",
+      "label": "NEXT"
+    },
+    {
+      "source": "F3",
+      "target": "F4",
+      "label": "BODY"
+    },
+    {
+      "source": "F1",
+      "target": "F3",
+      "label": "NEXT"
+    },
+    {
+      "source": "F9",
+      "target": "F2",
+      "label": "NEXT"
+    },
+    {
+      "source": "F10",
+      "target": "F2",
+      "label": "NEXT"
+    }
+  ],
+  "structured_program": {
+    "kind": "ProgramNode",
+    "line": 1,
+    "body": [
+      {
+        "kind": "FunctionNode",
+        "line": 1,
+        "name": "firstNonRepeating",
+        "parameters": [
+          {
+            "kind": "ParameterNode",
+            "line": 1,
+            "name": "str",
+            "declared_type": null
+          }
+        ],
+        "body": {
+          "kind": "BlockNode",
+          "line": 2,
+          "statements": [
+            {
+              "kind": "AssignmentNode",
+              "line": 2,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 2,
+                "name": "freq"
+              },
+              "value": {
+                "kind": "EmptyLiteralNode",
+                "line": 2,
+                "empty_type": "DICTIONARY"
+              }
+            },
+            {
+              "kind": "ForEachNode",
+              "line": 3,
+              "variable": {
+                "kind": "IdentifierNode",
+                "line": 3,
+                "name": "__reserved_keyword__char"
+              },
+              "collection": {
+                "kind": "IdentifierNode",
+                "line": 3,
+                "name": "str"
+              },
+              "body": {
+                "kind": "BlockNode",
+                "line": 4,
+                "statements": [
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 4,
+                    "target": {
+                      "kind": "IndexNode",
+                      "line": 4,
+                      "collection": {
+                        "kind": "IdentifierNode",
+                        "line": 4,
+                        "name": "freq"
+                      },
+                      "index": {
+                        "kind": "IdentifierNode",
+                        "line": 4,
+                        "name": "__reserved_keyword__char"
+                      }
+                    },
+                    "value": {
+                      "kind": "BinaryNode",
+                      "line": 4,
+                      "operator": "+",
+                      "left": {
+                        "kind": "MemberCallNode",
+                        "line": 4,
+                        "object": {
+                          "kind": "IdentifierNode",
+                          "line": 4,
+                          "name": "freq"
+                        },
+                        "member": "GET",
+                        "arguments": [
+                          {
+                            "kind": "IdentifierNode",
+                            "line": 4,
+                            "name": "__reserved_keyword__char"
+                          },
+                          {
+                            "kind": "LiteralNode",
+                            "line": 4,
+                            "value": 0,
+                            "data_type": "INTEGER"
+                          }
+                        ],
+                        "resolved_intrinsic": "DICTIONARY_GET"
+                      },
+                      "right": {
+                        "kind": "LiteralNode",
+                        "line": 4,
+                        "value": 1,
+                        "data_type": "INTEGER"
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "ForEachNode",
+              "line": 6,
+              "variable": {
+                "kind": "IdentifierNode",
+                "line": 6,
+                "name": "__reserved_keyword__char"
+              },
+              "collection": {
+                "kind": "IdentifierNode",
+                "line": 6,
+                "name": "str"
+              },
+              "body": {
+                "kind": "BlockNode",
+                "line": 7,
+                "statements": [
+                  {
+                    "kind": "IfNode",
+                    "line": 7,
+                    "condition": {
+                      "kind": "BinaryNode",
+                      "line": 7,
+                      "operator": "==",
+                      "left": {
+                        "kind": "IndexNode",
+                        "line": 7,
+                        "collection": {
+                          "kind": "IdentifierNode",
+                          "line": 7,
+                          "name": "freq"
+                        },
+                        "index": {
+                          "kind": "IdentifierNode",
+                          "line": 7,
+                          "name": "__reserved_keyword__char"
+                        }
+                      },
+                      "right": {
+                        "kind": "LiteralNode",
+                        "line": 7,
+                        "value": 1,
+                        "data_type": "INTEGER"
+                      }
+                    },
+                    "then_body": {
+                      "kind": "BlockNode",
+                      "line": 8,
+                      "statements": [
+                        {
+                          "kind": "ReturnNode",
+                          "line": 8,
+                          "expression": {
+                            "kind": "IdentifierNode",
+                            "line": 8,
+                            "name": "__reserved_keyword__char"
+                          }
+                        }
+                      ]
+                    },
+                    "else_if": [],
+                    "else_body": null
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "ReturnNode",
+              "line": 11,
+              "expression": {
+                "kind": "LiteralNode",
+                "line": 11,
+                "value": null,
+                "data_type": "NONE"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

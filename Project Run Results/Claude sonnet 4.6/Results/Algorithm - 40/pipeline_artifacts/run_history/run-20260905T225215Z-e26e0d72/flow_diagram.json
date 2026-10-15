@@ -1,0 +1,557 @@
+{
+  "format": "NL-FDEP Flow Diagram",
+  "version": "1.0",
+  "entry_node": "F1",
+  "exit_node": "F2",
+  "nodes": {
+    "F1": {
+      "node_id": "F1",
+      "node_type": "START",
+      "label": "Start",
+      "line": 1,
+      "data": {}
+    },
+    "F2": {
+      "node_id": "F2",
+      "node_type": "END",
+      "label": "End",
+      "line": 1,
+      "data": {}
+    },
+    "F3": {
+      "node_id": "F3",
+      "node_type": "CLASS",
+      "label": "Class Queue",
+      "line": 1,
+      "data": {
+        "ast_kind": "ClassNode",
+        "name": "Queue"
+      }
+    },
+    "F4": {
+      "node_id": "F4",
+      "node_type": "DECLARATION",
+      "label": "Declare property stack1 as LIST",
+      "line": 2,
+      "data": {
+        "ast_kind": "PropertyDeclarationNode"
+      }
+    },
+    "F5": {
+      "node_id": "F5",
+      "node_type": "DECLARATION",
+      "label": "Declare property stack2 as LIST",
+      "line": 3,
+      "data": {
+        "ast_kind": "PropertyDeclarationNode"
+      }
+    },
+    "F6": {
+      "node_id": "F6",
+      "node_type": "CONSTRUCTOR",
+      "label": "Run constructor",
+      "line": 5,
+      "data": {
+        "ast_kind": "ConstructorNode"
+      }
+    },
+    "F7": {
+      "node_id": "F7",
+      "node_type": "PROCESS",
+      "label": "Set stack1 of THIS to an empty list",
+      "line": 6,
+      "data": {
+        "ast_kind": "PropertyAssignmentNode"
+      }
+    },
+    "F8": {
+      "node_id": "F8",
+      "node_type": "PROCESS",
+      "label": "Set stack2 of THIS to an empty list",
+      "line": 7,
+      "data": {
+        "ast_kind": "PropertyAssignmentNode"
+      }
+    },
+    "F9": {
+      "node_id": "F9",
+      "node_type": "METHOD",
+      "label": "Run method enqueue with item",
+      "line": 10,
+      "data": {
+        "ast_kind": "MethodNode",
+        "name": "enqueue"
+      }
+    },
+    "F10": {
+      "node_id": "F10",
+      "node_type": "PROCESS",
+      "label": "Append item to stack1 of THIS",
+      "line": 11,
+      "data": {
+        "ast_kind": "AppendNode"
+      }
+    },
+    "F11": {
+      "node_id": "F11",
+      "node_type": "METHOD",
+      "label": "Run method dequeue",
+      "line": 14,
+      "data": {
+        "ast_kind": "MethodNode",
+        "name": "dequeue"
+      }
+    },
+    "F12": {
+      "node_id": "F12",
+      "node_type": "DECISION",
+      "label": "The length of stack2 of THIS is equal to 0?",
+      "line": 15,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F13": {
+      "node_id": "F13",
+      "node_type": "LOOP_DECISION",
+      "label": "The length of stack1 of THIS is greater than 0?",
+      "line": 16,
+      "data": {
+        "ast_kind": "WhileNode"
+      }
+    },
+    "F14": {
+      "node_id": "F14",
+      "node_type": "PROCESS",
+      "label": "Append the result of POP(stack1 of THIS) to stack2 of THIS",
+      "line": 17,
+      "data": {
+        "ast_kind": "AppendNode"
+      }
+    },
+    "F15": {
+      "node_id": "F15",
+      "node_type": "DECISION",
+      "label": "The length of stack2 of THIS is equal to 0?",
+      "line": 20,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F16": {
+      "node_id": "F16",
+      "node_type": "RETURN",
+      "label": "Return \"Underflow\"",
+      "line": 21,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    },
+    "F17": {
+      "node_id": "F17",
+      "node_type": "RETURN",
+      "label": "Return the result of POP(stack2 of THIS)",
+      "line": 23,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "F4",
+      "target": "F5",
+      "label": "NEXT"
+    },
+    {
+      "source": "F7",
+      "target": "F8",
+      "label": "NEXT"
+    },
+    {
+      "source": "F6",
+      "target": "F7",
+      "label": "BODY"
+    },
+    {
+      "source": "F5",
+      "target": "F6",
+      "label": "NEXT"
+    },
+    {
+      "source": "F9",
+      "target": "F10",
+      "label": "BODY"
+    },
+    {
+      "source": "F8",
+      "target": "F9",
+      "label": "NEXT"
+    },
+    {
+      "source": "F13",
+      "target": "F14",
+      "label": "TRUE"
+    },
+    {
+      "source": "F14",
+      "target": "F13",
+      "label": "LOOP"
+    },
+    {
+      "source": "F12",
+      "target": "F13",
+      "label": "TRUE"
+    },
+    {
+      "source": "F15",
+      "target": "F16",
+      "label": "TRUE"
+    },
+    {
+      "source": "F13",
+      "target": "F15",
+      "label": "NEXT"
+    },
+    {
+      "source": "F12",
+      "target": "F15",
+      "label": "NEXT"
+    },
+    {
+      "source": "F15",
+      "target": "F17",
+      "label": "NEXT"
+    },
+    {
+      "source": "F11",
+      "target": "F12",
+      "label": "BODY"
+    },
+    {
+      "source": "F10",
+      "target": "F11",
+      "label": "NEXT"
+    },
+    {
+      "source": "F3",
+      "target": "F4",
+      "label": "BODY"
+    },
+    {
+      "source": "F1",
+      "target": "F3",
+      "label": "NEXT"
+    },
+    {
+      "source": "F16",
+      "target": "F2",
+      "label": "NEXT"
+    },
+    {
+      "source": "F17",
+      "target": "F2",
+      "label": "NEXT"
+    }
+  ],
+  "structured_program": {
+    "kind": "ProgramNode",
+    "line": 1,
+    "body": [
+      {
+        "kind": "ClassNode",
+        "line": 1,
+        "name": "Queue",
+        "parameters": [],
+        "body": {
+          "kind": "BlockNode",
+          "line": 2,
+          "statements": [
+            {
+              "kind": "PropertyDeclarationNode",
+              "line": 2,
+              "name": "stack1",
+              "declared_type": "LIST"
+            },
+            {
+              "kind": "PropertyDeclarationNode",
+              "line": 3,
+              "name": "stack2",
+              "declared_type": "LIST"
+            },
+            {
+              "kind": "ConstructorNode",
+              "line": 5,
+              "parameters": [],
+              "body": {
+                "kind": "BlockNode",
+                "line": 6,
+                "statements": [
+                  {
+                    "kind": "PropertyAssignmentNode",
+                    "line": 6,
+                    "target": {
+                      "kind": "MemberAccessNode",
+                      "line": 6,
+                      "object": {
+                        "kind": "IdentifierNode",
+                        "line": 6,
+                        "name": "THIS"
+                      },
+                      "member": "stack1"
+                    },
+                    "value": {
+                      "kind": "EmptyLiteralNode",
+                      "line": 6,
+                      "empty_type": "LIST"
+                    }
+                  },
+                  {
+                    "kind": "PropertyAssignmentNode",
+                    "line": 7,
+                    "target": {
+                      "kind": "MemberAccessNode",
+                      "line": 7,
+                      "object": {
+                        "kind": "IdentifierNode",
+                        "line": 7,
+                        "name": "THIS"
+                      },
+                      "member": "stack2"
+                    },
+                    "value": {
+                      "kind": "EmptyLiteralNode",
+                      "line": 7,
+                      "empty_type": "LIST"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "MethodNode",
+              "line": 10,
+              "name": "enqueue",
+              "parameters": [
+                {
+                  "kind": "ParameterNode",
+                  "line": 10,
+                  "name": "item",
+                  "declared_type": null
+                }
+              ],
+              "body": {
+                "kind": "BlockNode",
+                "line": 11,
+                "statements": [
+                  {
+                    "kind": "AppendNode",
+                    "line": 11,
+                    "value": {
+                      "kind": "IdentifierNode",
+                      "line": 11,
+                      "name": "item"
+                    },
+                    "collection": {
+                      "kind": "MemberAccessNode",
+                      "line": 11,
+                      "object": {
+                        "kind": "IdentifierNode",
+                        "line": 11,
+                        "name": "THIS"
+                      },
+                      "member": "stack1"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "MethodNode",
+              "line": 14,
+              "name": "dequeue",
+              "parameters": [],
+              "body": {
+                "kind": "BlockNode",
+                "line": 15,
+                "statements": [
+                  {
+                    "kind": "IfNode",
+                    "line": 15,
+                    "condition": {
+                      "kind": "BinaryNode",
+                      "line": 15,
+                      "operator": "==",
+                      "left": {
+                        "kind": "LengthNode",
+                        "line": 15,
+                        "expression": {
+                          "kind": "MemberAccessNode",
+                          "line": 15,
+                          "object": {
+                            "kind": "IdentifierNode",
+                            "line": 15,
+                            "name": "THIS"
+                          },
+                          "member": "stack2"
+                        }
+                      },
+                      "right": {
+                        "kind": "LiteralNode",
+                        "line": 15,
+                        "value": 0,
+                        "data_type": "INTEGER"
+                      }
+                    },
+                    "then_body": {
+                      "kind": "BlockNode",
+                      "line": 16,
+                      "statements": [
+                        {
+                          "kind": "WhileNode",
+                          "line": 16,
+                          "condition": {
+                            "kind": "BinaryNode",
+                            "line": 16,
+                            "operator": ">",
+                            "left": {
+                              "kind": "LengthNode",
+                              "line": 16,
+                              "expression": {
+                                "kind": "MemberAccessNode",
+                                "line": 16,
+                                "object": {
+                                  "kind": "IdentifierNode",
+                                  "line": 16,
+                                  "name": "THIS"
+                                },
+                                "member": "stack1"
+                              }
+                            },
+                            "right": {
+                              "kind": "LiteralNode",
+                              "line": 16,
+                              "value": 0,
+                              "data_type": "INTEGER"
+                            }
+                          },
+                          "body": {
+                            "kind": "BlockNode",
+                            "line": 17,
+                            "statements": [
+                              {
+                                "kind": "AppendNode",
+                                "line": 17,
+                                "value": {
+                                  "kind": "CallNode",
+                                  "line": 17,
+                                  "name": "POP",
+                                  "arguments": [
+                                    {
+                                      "kind": "MemberAccessNode",
+                                      "line": 17,
+                                      "object": {
+                                        "kind": "IdentifierNode",
+                                        "line": 17,
+                                        "name": "THIS"
+                                      },
+                                      "member": "stack1"
+                                    }
+                                  ]
+                                },
+                                "collection": {
+                                  "kind": "MemberAccessNode",
+                                  "line": 17,
+                                  "object": {
+                                    "kind": "IdentifierNode",
+                                    "line": 17,
+                                    "name": "THIS"
+                                  },
+                                  "member": "stack2"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    "else_if": [],
+                    "else_body": null
+                  },
+                  {
+                    "kind": "IfNode",
+                    "line": 20,
+                    "condition": {
+                      "kind": "BinaryNode",
+                      "line": 20,
+                      "operator": "==",
+                      "left": {
+                        "kind": "LengthNode",
+                        "line": 20,
+                        "expression": {
+                          "kind": "MemberAccessNode",
+                          "line": 20,
+                          "object": {
+                            "kind": "IdentifierNode",
+                            "line": 20,
+                            "name": "THIS"
+                          },
+                          "member": "stack2"
+                        }
+                      },
+                      "right": {
+                        "kind": "LiteralNode",
+                        "line": 20,
+                        "value": 0,
+                        "data_type": "INTEGER"
+                      }
+                    },
+                    "then_body": {
+                      "kind": "BlockNode",
+                      "line": 21,
+                      "statements": [
+                        {
+                          "kind": "ReturnNode",
+                          "line": 21,
+                          "expression": {
+                            "kind": "LiteralNode",
+                            "line": 21,
+                            "value": "Underflow",
+                            "data_type": "STRING"
+                          }
+                        }
+                      ]
+                    },
+                    "else_if": [],
+                    "else_body": null
+                  },
+                  {
+                    "kind": "ReturnNode",
+                    "line": 23,
+                    "expression": {
+                      "kind": "CallNode",
+                      "line": 23,
+                      "name": "POP",
+                      "arguments": [
+                        {
+                          "kind": "MemberAccessNode",
+                          "line": 23,
+                          "object": {
+                            "kind": "IdentifierNode",
+                            "line": 23,
+                            "name": "THIS"
+                          },
+                          "member": "stack2"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

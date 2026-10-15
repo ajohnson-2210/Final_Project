@@ -1,0 +1,48 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 3,
+  "transformations": [
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    results = empty list",
+      "canonical": "    results <- empty list",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 9,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            subResults = findFilesByType(item, fileExtension)",
+      "canonical": "            subResults <- findFilesByType(item, fileExtension)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 6,
+      "rule_family": "RESERVED_IDENTIFIER_ESCAPE",
+      "branch": "SOURCE_PROVEN_BINDING_ESCAPE",
+      "source": "                results.append(item.path)",
+      "canonical": "                results.__reserved_keyword__append(item.path)",
+      "evidence": [
+        "the source uses an AJ reserved keyword in an unambiguous identifier-binding position",
+        "the protected __reserved_keyword__ prefix preserves the source identifier spelling without assigning new algorithmic meaning",
+        "corresponding identifier occurrences are rewritten while quoted text and recognised AJ keyword syntax are preserved"
+      ],
+      "confidence": "source_proven",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 1
+}

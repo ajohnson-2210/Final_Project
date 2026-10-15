@@ -1,0 +1,11 @@
+# Pairs Summing to Target
+
+FUNCTION findPairs(arr, target):
+    seen ← empty set
+    pairs ← []
+    FOR each num IN arr:
+        complement ← target - num
+        IF complement IN seen THEN
+            APPEND (complement, num) TO pairs
+        ADD num TO seen
+    RETURN pairs

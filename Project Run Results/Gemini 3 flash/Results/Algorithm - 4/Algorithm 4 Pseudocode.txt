@@ -1,0 +1,22 @@
+# Find the intersection of two sorted arrays and return the common elements     
+FUNCTION FindIntersection(arr1, arr2):
+    i = 0
+    j = 0
+    intersection = empty List
+    
+    WHILE i < length(arr1) AND j < length(arr2) DO
+        IF arr1[i] == arr2[j] THEN
+            IF length(intersection) == 0 OR intersection[last] != arr1[i] THEN
+                APPEND arr1[i] TO intersection
+            END IF
+            i = i + 1
+            j = j + 1
+        ELSE IF arr1[i] < arr2[j] THEN
+            i = i + 1
+        ELSE
+            j = j + 1
+        END IF
+    END WHILE
+    
+    RETURN intersection
+END FUNCTION

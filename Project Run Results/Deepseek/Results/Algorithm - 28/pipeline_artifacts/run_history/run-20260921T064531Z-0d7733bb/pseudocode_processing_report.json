@@ -1,0 +1,346 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 27,
+  "transformations": [
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    result = empty list",
+      "canonical": "    result <- empty list",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    deque = empty deque",
+      "canonical": "    deque <- empty deque",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    result <- empty list",
+      "canonical": "    result <- EMPTY LIST",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    deque <- empty deque",
+      "canonical": "    deque <- EMPTY DEQUE",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 6,
+      "rule_family": "COLLECTION_OPERATION",
+      "branch": "EVIDENCED_COLLECTION_QUERY_ACCESS",
+      "source": "        WHILE deque IS NOT empty AND deque.front() <= i - k:",
+      "canonical": "        WHILE deque IS NOT empty AND deque[0] <= i - k:",
+      "evidence": [
+        "receiver type is independently established by an explicit collection declaration or constructor in readable lexical scope",
+        "query/access spelling is accepted only for collection kinds that support the corresponding length/front/back/empty operation",
+        "method spelling never establishes collection type and direct rebinds/formal-parameter shadowing invalidate inherited evidence"
+      ],
+      "confidence": "source_proven",
+      "semantic_change": false
+    },
+    {
+      "line": 7,
+      "rule_family": "COLLECTION_OPERATION",
+      "branch": "EVIDENCED_SIMPLE_COLLECTION_METHOD",
+      "source": "            deque.pop_front()",
+      "canonical": "            REMOVE FIRST ITEM FROM deque",
+      "evidence": [
+        "receiver type is independently established by an explicit collection declaration or constructor in readable lexical scope",
+        "method spelling selects an operation only after receiver evidence exists and never establishes collection type by itself",
+        "direct rebinds and formal-parameter shadowing invalidate inherited receiver evidence"
+      ],
+      "confidence": "source_proven",
+      "semantic_change": false
+    },
+    {
+      "line": 9,
+      "rule_family": "COLLECTION_OPERATION",
+      "branch": "EVIDENCED_COLLECTION_QUERY_ACCESS",
+      "source": "        WHILE deque IS NOT empty AND arr[deque.back()] <= arr[i]:",
+      "canonical": "        WHILE deque IS NOT empty AND arr[deque[LAST]] <= arr[i]:",
+      "evidence": [
+        "receiver type is independently established by an explicit collection declaration or constructor in readable lexical scope",
+        "query/access spelling is accepted only for collection kinds that support the corresponding length/front/back/empty operation",
+        "method spelling never establishes collection type and direct rebinds/formal-parameter shadowing invalidate inherited evidence"
+      ],
+      "confidence": "source_proven",
+      "semantic_change": false
+    },
+    {
+      "line": 10,
+      "rule_family": "COLLECTION_OPERATION",
+      "branch": "EVIDENCED_SIMPLE_COLLECTION_METHOD",
+      "source": "            deque.pop_back()",
+      "canonical": "            REMOVE LAST ITEM FROM deque",
+      "evidence": [
+        "receiver type is independently established by an explicit collection declaration or constructor in readable lexical scope",
+        "method spelling selects an operation only after receiver evidence exists and never establishes collection type by itself",
+        "direct rebinds and formal-parameter shadowing invalidate inherited receiver evidence"
+      ],
+      "confidence": "source_proven",
+      "semantic_change": false
+    },
+    {
+      "line": 11,
+      "rule_family": "COLLECTION_OPERATION",
+      "branch": "EVIDENCED_SIMPLE_COLLECTION_METHOD",
+      "source": "        deque.push_back(i)",
+      "canonical": "        PUSH i TO deque",
+      "evidence": [
+        "receiver type is independently established by an explicit collection declaration or constructor in readable lexical scope",
+        "method spelling selects an operation only after receiver evidence exists and never establishes collection type by itself",
+        "direct rebinds and formal-parameter shadowing invalidate inherited receiver evidence"
+      ],
+      "confidence": "source_proven",
+      "semantic_change": false
+    },
+    {
+      "line": 14,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            result.append(arr[deque.front()])",
+      "canonical": "            APPEND arr[deque.front()] TO result",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 14,
+      "rule_family": "COLLECTION_OPERATION",
+      "branch": "EVIDENCED_COLLECTION_QUERY_ACCESS",
+      "source": "            APPEND arr[deque.front()] TO result",
+      "canonical": "            APPEND arr[deque[0]] TO result",
+      "evidence": [
+        "receiver type is independently established by an explicit collection declaration or constructor in readable lexical scope",
+        "query/access spelling is accepted only for collection kinds that support the corresponding length/front/back/empty operation",
+        "method spelling never establishes collection type and direct rebinds/formal-parameter shadowing invalidate inherited evidence"
+      ],
+      "confidence": "source_proven",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    FOR i FROM 0 TO length(arr)-1:",
+      "canonical": "    FOR i FROM 0 TO LENGTH OF arr-1:",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION slidingWindowMax(arr, k):\n    result <- EMPTY LIST\n    deque <- EMPTY DEQUE\n    FOR i FROM 0 TO LENGTH OF arr-1:\n        // Remove elements out of window from front\n        WHILE deque IS NOT empty AND deque[0] <= i - k:\n            REMOVE FIRST ITEM FROM deque\n        // Maintain decreasing order in deque\n        WHILE deque IS NOT empty AND arr[deque[LAST]] <= arr[i]:\n            REMOVE LAST ITEM FROM deque\n        PUSH i TO deque\n        // Add max to result once window is full\n        IF i >= k - 1:\n            APPEND arr[deque[0]] TO result\n    RETURN result",
+      "canonical": "FUNCTION slidingWindowMax(arr, k):\n    result <- EMPTY LIST\n    deque <- EMPTY DEQUE\n    FOR i FROM 0 TO LENGTH OF arr-1:\n        // Remove elements out of window from front\n        WHILE LENGTH OF deque > 0 AND deque[0] <= i - k:\n            REMOVE FIRST ITEM FROM deque\n        // Maintain decreasing order in deque\n        WHILE LENGTH OF deque > 0 AND arr[deque[LAST]] <= arr[i]:\n            REMOVE LAST ITEM FROM deque\n        PUSH i TO deque\n        // Add max to result once window is full\n        IF i >= k - 1:\n            APPEND arr[deque[0]] TO result\n    RETURN result",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION slidingWindowMax(arr, k):\n    result <- EMPTY LIST\n    deque <- EMPTY DEQUE\n    FOR i FROM 0 TO LENGTH OF arr-1:\n        // Remove elements out of window from front\n        WHILE LENGTH OF deque > 0 AND deque[0] <= i - k:\n            REMOVE FIRST ITEM FROM deque\n        // Maintain decreasing order in deque\n        WHILE LENGTH OF deque > 0 AND arr[deque[LAST]] <= arr[i]:\n            REMOVE LAST ITEM FROM deque\n        PUSH i TO deque\n        // Add max to result once window is full\n        IF i >= k - 1:\n            APPEND arr[deque[0]] TO result\n    RETURN result",
+      "canonical": "FUNCTION slidingWindowMax(arr, k):\n    result <- EMPTY LIST\n    deque <- CALL create_deque()\n    FOR i FROM 0 TO LENGTH OF arr-1:\n        // Remove elements out of window from front\n        WHILE NOT CALL deque_is_empty(deque) AND CALL deque_front(deque) <= i - k:\n            CALL deque_pop_front(deque)\n        // Maintain decreasing order in deque\n        WHILE NOT CALL deque_is_empty(deque) AND arr[CALL deque_back(deque)] <= arr[i]:\n            CALL deque_pop_back(deque)\n        CALL deque_push_back(deque, i)\n        // Add max to result once window is full\n        IF i >= k - 1:\n            APPEND arr[CALL deque_front(deque)] TO result\n    RETURN result",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION slidingWindowMax(arr, k):",
+      "canonical": "FUNCTION slidingWindowMax ACCEPTS(arr, k)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    FOR i FROM 0 TO LENGTH OF arr-1:",
+      "canonical": "    FOR i <- IN RANGE 0 TO (LENGTH OF arr-1) + 1 DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 6,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        WHILE NOT CALL deque_is_empty(deque) AND CALL deque_front(deque) <= i - k:",
+      "canonical": "        WHILE NOT CALL deque_is_empty(deque) AND CALL deque_front(deque) <= i - k DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 9,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        WHILE NOT CALL deque_is_empty(deque) AND arr[CALL deque_back(deque)] <= arr[i]:",
+      "canonical": "        WHILE NOT CALL deque_is_empty(deque) AND arr[CALL deque_back(deque)] <= arr[i] DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 13,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        IF i >= k - 1:",
+      "canonical": "        IF i >= k - 1 THEN",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        // Remove elements out of window from front",
+      "canonical": "        COMMENT Remove elements out of window from front",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 8,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        // Maintain decreasing order in deque",
+      "canonical": "        COMMENT Maintain decreasing order in deque",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 12,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        // Add max to result once window is full",
+      "canonical": "        COMMENT Add max to result once window is full",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 9,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDWHILE",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 11,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDWHILE",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 15,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDIF",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 15,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDFOR",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDFUNCTION",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 1
+}

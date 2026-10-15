@@ -1,0 +1,13 @@
+# Topic Modelling System
+
+FUNCTION extractTopics(corpus, numTopics):
+    tokens ← tokenize and clean each document in corpus
+    vocabulary ← buildVocabulary(tokens)
+    termMatrix ← buildDocumentTermMatrix(tokens, vocabulary)
+    topics ← initializeRandomTopicAssignments(numTopics)
+    REPEAT until convergence:
+        FOR each document:
+            FOR each word:
+                UPDATE topic assignment using probability distribution
+                UPDATE topic-word and document-topic counts
+    RETURN top N words per topic as topic descriptions

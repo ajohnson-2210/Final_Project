@@ -1,0 +1,9 @@
+# First Non-Repeating Character
+
+FUNCTION firstNonRepeating(str):
+    freq ← empty dictionary
+    FOR each char IN str:
+        freq[char] ← freq.get(char, 0) + 1
+    FOR each char IN str:
+        IF freq[char] == 1 THEN RETURN char
+    RETURN None

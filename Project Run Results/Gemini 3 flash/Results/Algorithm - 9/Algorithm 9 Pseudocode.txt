@@ -1,0 +1,9 @@
+# Find the exact position of $T$ in an unsorted list, or report non-existence    
+FUNCTION LinearSearch(arr, T):
+    FOR index FROM 0 TO length(arr) - 1 DO
+        IF arr[index] == T THEN
+            RETURN "Target found at index: " + index
+        END IF
+    END FOR
+    RETURN "Target does not exist in the list."
+END FUNCTION

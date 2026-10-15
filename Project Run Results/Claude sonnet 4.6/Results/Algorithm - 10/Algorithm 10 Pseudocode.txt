@@ -1,0 +1,8 @@
+# Count Vowel Frequencies
+
+FUNCTION countVowels(paragraph):
+    counts ← {a:0, e:0, i:0, o:0, u:0}
+    FOR each char IN lowercase(paragraph):
+        IF char IN counts THEN
+            counts[char] ← counts[char] + 1
+    RETURN counts

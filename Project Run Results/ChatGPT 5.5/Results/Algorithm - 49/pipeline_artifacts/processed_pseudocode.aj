@@ -1,0 +1,25 @@
+    INPUT Maze
+    INPUT Start, Goal
+
+    CREATE Queue
+    MARK Start as visited
+    ENQUEUE Start
+
+    WHILE Queue is not empty
+        Current <- DEQUEUE Queue
+
+        IF Current == Goal THEN
+            OUTPUT "Path Found"
+            STOP
+        ENDIF
+
+        FOR EACH Neighbour of Current
+            IF Neighbour not visited THEN
+                MARK Neighbour as visited
+                ENQUEUE Neighbour
+            ENDIF
+        ENDFOR
+    ENDWHILE
+
+    OUTPUT "No Path Found"
+END

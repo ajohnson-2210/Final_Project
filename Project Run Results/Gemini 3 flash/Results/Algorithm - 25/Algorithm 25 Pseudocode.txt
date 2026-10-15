@@ -1,0 +1,17 @@
+# Find length of longest substring without repeating characters    
+FUNCTION LongestUniqueSubstringLength(str):
+    char_map = empty Hash Map
+    max_len = 0
+    start = 0
+    
+    FOR end FROM 0 TO length(str) - 1 DO
+        char = str[end]
+        IF char IN char_map AND char_map[char] >= start THEN
+            start = char_map[char] + 1
+        END IF
+        char_map[char] = end
+        max_len = MAX(max_len, end - start + 1)
+    END FOR
+    
+    RETURN max_len
+END FUNCTION

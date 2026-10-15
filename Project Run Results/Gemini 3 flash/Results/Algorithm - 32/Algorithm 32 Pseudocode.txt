@@ -1,0 +1,11 @@
+# Question answering system (Retrieval-Augmented)    
+FUNCTION AnswerQuestion(user_query, context_text):
+    text_chunks = ChunkDocument(context_text, chunk_size=500)
+    chunk_embeddings = Embed(text_chunks)
+    query_embedding = Embed(user_query)
+    
+    best_chunk = FindHighestCosineSimilarity(query_embedding, chunk_embeddings)
+    answer = ExtractOrGenerateAnswer(user_query, best_chunk)
+    
+    RETURN answer
+END FUNCTION

@@ -1,0 +1,14 @@
+# Validate password (8+ chars, 1 number, 1 uppercase letter)    
+FUNCTION ValidatePassword(password):
+    IF length(password) < 8 THEN RETURN False
+    
+    has_digit = False
+    has_uppercase = False
+    
+    FOR EACH char IN password DO
+        IF IS_DIGIT(char) THEN has_digit = True
+        IF IS_UPPERCASE(char) THEN has_uppercase = True
+    END FOR
+    
+    RETURN (has_digit AND has_uppercase)
+END FUNCTION

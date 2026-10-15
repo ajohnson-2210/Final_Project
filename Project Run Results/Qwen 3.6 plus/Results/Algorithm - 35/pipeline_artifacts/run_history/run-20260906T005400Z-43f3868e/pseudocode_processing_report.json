@@ -1,0 +1,253 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 20,
+  "transformations": [
+    {
+      "line": 13,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        cache[key] = value",
+      "canonical": "        cache[key] <- value",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 15,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        IF length(cache) == capacity:",
+      "canonical": "        IF LENGTH OF cache == capacity:",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION get(key):",
+      "canonical": "FUNCTION get ACCEPTS(key)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    IF key in cache:",
+      "canonical": "    IF key in cache THEN",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 7,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    ELSE:",
+      "canonical": "    ELSE",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 10,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION put(key, value):",
+      "canonical": "FUNCTION put ACCEPTS(key, value)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 11,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    IF key in cache:",
+      "canonical": "    IF key in cache THEN",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 14,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    ELSE:",
+      "canonical": "    ELSE",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 15,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        IF LENGTH OF cache == capacity:",
+      "canonical": "        IF LENGTH OF cache == capacity THEN",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "INIT capacity, cache = orderedDict()",
+      "canonical": "INIT capacity, cache = CALL orderedDict()",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        moveToFront(cache, key)",
+      "canonical": "        CALL moveToFront(cache, key)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 12,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        moveToFront(cache, key)",
+      "canonical": "        CALL moveToFront(cache, key)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 16,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            removeBack(cache)",
+      "canonical": "            CALL removeBack(cache)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 18,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        addToFront(cache, key, value)",
+      "canonical": "        CALL addToFront(cache, key, value)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 10,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDIF",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 10,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDFUNCTION",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 18,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDIF",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 11,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDIF",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 10,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDFUNCTION",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "STATEFUL_ADT_STRUCTURE",
+      "branch": "EVIDENCED_ORDERED_CACHE_CONSTRUCTOR",
+      "source": "INIT capacity, cache = CALL orderedDict()\n\nFUNCTION get ACCEPTS(key)\n    IF key in cache THEN\n        CALL moveToFront(cache, key)\n        RETURN cache[key]\n    ELSE\n        RETURN null\n\n    ENDIF\nENDFUNCTION\nFUNCTION put ACCEPTS(key, value)\n    IF key in cache THEN\n        CALL moveToFront(cache, key)\n        cache[key] <- value\n    ELSE\n        IF LENGTH OF cache == capacity THEN\n            CALL removeBack(cache)\n\n        ENDIF\n        CALL addToFront(cache, key, value)\n    ENDIF\nENDFUNCTION",
+      "canonical": "CLASS unnamed_class\n    PROPERTY capacity\n    PROPERTY cache AS DICTIONARY\n\n    CONSTRUCTOR ACCEPTS(capacity)\n        PROPERTY THIS.capacity <- capacity\n        PROPERTY THIS.cache <- EMPTY DICTIONARY\n    ENDCONSTRUCTOR\n\n    METHOD get ACCEPTS(key)\n        IF key in THIS.cache THEN\n            CALL moveToFront(THIS.cache, key)\n            RETURN THIS.cache[key]\n        ELSE\n            RETURN null\n\n        ENDIF\n    ENDMETHOD\n\n    METHOD put ACCEPTS(key, value)\n        IF key in THIS.cache THEN\n            CALL moveToFront(THIS.cache, key)\n            THIS.cache[key] <- value\n        ELSE\n            IF LENGTH OF THIS.cache == THIS.capacity THEN\n                CALL removeBack(THIS.cache)\n\n            ENDIF\n            CALL addToFront(THIS.cache, key, value)\n        ENDIF\n    ENDMETHOD\nENDCLASS",
+      "evidence": [
+        "INIT names persistent capacity-like and ordered-cache state before multiple operations",
+        "all recovered operations share the cache state and the size bound is read as LENGTH OF cache == capacity",
+        "move-to-front, remove-back, and add-to-front helper calls are preserved as explicit but undefined source abstractions",
+        "capacity is supplied through the recovered constructor rather than assigned a synthetic numeric default"
+      ],
+      "confidence": "source_proven",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 2
+}

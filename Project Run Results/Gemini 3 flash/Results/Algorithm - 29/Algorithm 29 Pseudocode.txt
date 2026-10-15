@@ -1,0 +1,15 @@
+# Build a text classification model process    
+PROCEDURE TextClassificationPipeline(corpus, labels):
+    processed_corpus = PreprocessText(corpus)
+    X_train, X_test, y_train, y_test = SplitData(processed_corpus, labels)
+    
+    vectorizer = TrainTFIDFVectorizer(X_train)
+    X_train_vec = vectorizer.transform(X_train)
+    
+    model = TrainClassifierModel(X_train_vec, y_train)
+    
+    X_test_vec = vectorizer.transform(X_test)
+    predictions = model.predict(X_test_vec)
+    
+    EvaluateModel(predictions, y_test)
+END PROCEDURE

@@ -1,0 +1,22 @@
+# Split a sentence into individual words and store in a list    
+FUNCTION SplitSentence(sentence):
+    words = empty List
+    current_word = ""
+    
+    FOR EACH char IN sentence DO
+        IF char == ' ' THEN
+            IF current_word != "" THEN
+                APPEND current_word TO words
+                current_word = ""
+            END IF
+        ELSE
+            current_word = current_word + char
+        END IF
+    END FOR
+    
+    IF current_word != "" THEN
+        APPEND current_word TO words
+    END IF
+    
+    RETURN words
+END FUNCTION

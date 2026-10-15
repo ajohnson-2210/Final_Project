@@ -1,0 +1,170 @@
+{
+  "success": false,
+  "status": "FAILURE",
+  "stages": [
+    {
+      "name": "PSEUDOCODE_PROFILE_PROCESSING",
+      "status": "SUCCESS",
+      "message": "Processed source using GENERIC_COMPATIBILITY; 7 transformation(s); 2 header line(s) stripped.",
+      "duration_ms": 6.361
+    },
+    {
+      "name": "PSEUDOCODE_TO_AST",
+      "status": "SUCCESS",
+      "message": "Pseudocode parsed and validated.",
+      "duration_ms": 1.37
+    },
+    {
+      "name": "AST_TO_FLOW_DIAGRAM",
+      "status": "SUCCESS",
+      "message": "Machine-readable flow diagram generated.",
+      "duration_ms": 0.521
+    },
+    {
+      "name": "FLOW_DIAGRAM_TO_DRAWIO",
+      "status": "SUCCESS",
+      "message": "Editable draw.io XML flow diagram generated.",
+      "duration_ms": 1.41
+    },
+    {
+      "name": "FLOW_DIAGRAM_TO_PYTHON",
+      "status": "SUCCESS",
+      "message": "Python source generated and syntax validated.",
+      "duration_ms": 1.243
+    },
+    {
+      "name": "BEHAVIOURAL_TESTING",
+      "status": "FAILURE",
+      "message": "Passed 0 of 3 tests.",
+      "duration_ms": 234.901
+    }
+  ],
+  "output_files": {
+    "pseudocode_processing_report": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\ChatGPT 5.5\\Results\\Algorithm - 44\\pipeline_artifacts\\pseudocode_processing_report.json",
+    "processed_pseudocode": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\ChatGPT 5.5\\Results\\Algorithm - 44\\pipeline_artifacts\\processed_pseudocode.aj",
+    "ast": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\ChatGPT 5.5\\Results\\Algorithm - 44\\pipeline_artifacts\\ast.json",
+    "parser_report": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\ChatGPT 5.5\\Results\\Algorithm - 44\\pipeline_artifacts\\parser_report.json",
+    "ast_visualisation": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\ChatGPT 5.5\\Results\\Algorithm - 44\\pipeline_artifacts\\ast_visualisation.html",
+    "flow_diagram": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\ChatGPT 5.5\\Results\\Algorithm - 44\\pipeline_artifacts\\flow_diagram.json",
+    "flow_visualisation": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\ChatGPT 5.5\\Results\\Algorithm - 44\\pipeline_artifacts\\flow_diagram.html",
+    "flow_diagram_drawio": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\ChatGPT 5.5\\Results\\Algorithm - 44\\pipeline_artifacts\\flow_diagram.drawio",
+    "generated_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\ChatGPT 5.5\\Results\\Algorithm - 44\\pipeline_artifacts\\generated_program.py",
+    "compilation_report": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\ChatGPT 5.5\\Results\\Algorithm - 44\\pipeline_artifacts\\compilation_report.json",
+    "test_report": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\ChatGPT 5.5\\Results\\Algorithm - 44\\pipeline_artifacts\\test_report.json",
+    "pipeline_report": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\ChatGPT 5.5\\Results\\Algorithm - 44\\pipeline_artifacts\\pipeline_report.json"
+  },
+  "test_report": {
+    "program_path": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\ChatGPT 5.5\\Results\\Algorithm - 44\\pipeline_artifacts\\generated_program.py",
+    "success": false,
+    "total_tests": 3,
+    "passed_tests": 0,
+    "failed_tests": 3,
+    "category_summary": {
+      "NORMAL": {
+        "total": 3,
+        "passed": 0,
+        "failed": 3
+      }
+    },
+    "results": [
+      {
+        "name": "seeded Kadane run seed 104729",
+        "status": "FAILED",
+        "expected_output": [
+          "Random array: [8.85, -4, -6, 8.7, -10, 5.29]",
+          "",
+          "Maximum subarray sum: 8.85",
+          "Number of max subarrays: 1",
+          "",
+          "Subarray 1 Start Index: 0: ",
+          "8.85, "
+        ],
+        "actual_output": [],
+        "standard_error": "",
+        "return_code": 0,
+        "duration_ms": 71.527,
+        "category": "NORMAL",
+        "semantic_feature": "KADANE_MAX_SUM_AND_RANGE_TRACKING",
+        "expected_return_code": 0,
+        "expected_error_type": null,
+        "actual_error_type": null,
+        "criteria_links": [
+          "P2",
+          "P4"
+        ],
+        "random_seed": 104729,
+        "environment": {},
+        "requires_modules": []
+      },
+      {
+        "name": "seeded Kadane run seed 104759",
+        "status": "FAILED",
+        "expected_output": [
+          "Random array: [1, 7, -4.55, 7, 0]",
+          "",
+          "Maximum subarray sum: 10.45",
+          "Number of max subarrays: 2",
+          "",
+          "Subarray 1 Start Index: 0: ",
+          "1, 7, -4.55, 7, ",
+          "Subarray 2 Start Index: 0: ",
+          "1, 7, -4.55, 7, 0, "
+        ],
+        "actual_output": [],
+        "standard_error": "",
+        "return_code": 0,
+        "duration_ms": 80.034,
+        "category": "NORMAL",
+        "semantic_feature": "KADANE_MAX_SUM_AND_RANGE_TRACKING",
+        "expected_return_code": 0,
+        "expected_error_type": null,
+        "actual_error_type": null,
+        "criteria_links": [
+          "P2",
+          "P4"
+        ],
+        "random_seed": 104759,
+        "environment": {},
+        "requires_modules": []
+      },
+      {
+        "name": "seeded Kadane run seed 104761",
+        "status": "FAILED",
+        "expected_output": [
+          "Random array: [-6, 8.42, -8, -1.11, -4, -10, -1.18, -7.97, 9, 6.28]",
+          "",
+          "Maximum subarray sum: 15.280000000000001",
+          "Number of max subarrays: 1",
+          "",
+          "Subarray 1 Start Index: 8: ",
+          "9, 6.28, "
+        ],
+        "actual_output": [],
+        "standard_error": "",
+        "return_code": 0,
+        "duration_ms": 82.005,
+        "category": "NORMAL",
+        "semantic_feature": "KADANE_MAX_SUM_AND_RANGE_TRACKING",
+        "expected_return_code": 0,
+        "expected_error_type": null,
+        "actual_error_type": null,
+        "criteria_links": [
+          "P2",
+          "P4"
+        ],
+        "random_seed": 104761,
+        "environment": {},
+        "requires_modules": []
+      }
+    ]
+  },
+  "error": null,
+  "input_metadata": {
+    "input_type": "PSEUDOCODE",
+    "pseudocode_profile": "GENERIC_COMPATIBILITY",
+    "source_modified": true,
+    "transformation_count": 7,
+    "header_comment_removed": true,
+    "header_lines_removed": 2
+  }
+}

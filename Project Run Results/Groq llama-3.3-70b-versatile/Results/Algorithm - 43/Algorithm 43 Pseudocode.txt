@@ -1,0 +1,13 @@
+# Solve the Tower of Hanoi problem for N discs
+FUNCTION TOWER_OF_HANOI(N)
+  FUNCTION MOVE(n, from_rod, to_rod, aux_rod)
+    IF n == 1 THEN
+      PRINT("Move disk 1 from rod " + from_rod + " to rod " + to_rod)
+    ELSE
+      MOVE(n - 1, from_rod, aux_rod, to_rod)
+      PRINT("Move disk " + n + " from rod " + from_rod + " to rod " + to_rod)
+      MOVE(n - 1, aux_rod, to_rod, from_rod)
+    END IF
+  END FUNCTION
+  MOVE(N, "A", "C", "B")
+END FUNCTION

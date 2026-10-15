@@ -1,0 +1,341 @@
+{
+  "format": "NL-FDEP Flow Diagram",
+  "version": "1.0",
+  "entry_node": "F1",
+  "exit_node": "F2",
+  "nodes": {
+    "F1": {
+      "node_id": "F1",
+      "node_type": "START",
+      "label": "Start",
+      "line": 1,
+      "data": {}
+    },
+    "F2": {
+      "node_id": "F2",
+      "node_type": "END",
+      "label": "End",
+      "line": 1,
+      "data": {}
+    },
+    "F3": {
+      "node_id": "F3",
+      "node_type": "FUNCTION",
+      "label": "Run function unnamed_function with Year",
+      "line": 1,
+      "data": {
+        "ast_kind": "FunctionNode",
+        "name": "unnamed_function"
+      }
+    },
+    "F4": {
+      "node_id": "F4",
+      "node_type": "DECISION",
+      "label": "Year modulo 400 is equal to 0?",
+      "line": 2,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F5": {
+      "node_id": "F5",
+      "node_type": "OUTPUT",
+      "label": "Display \"Leap Year\"",
+      "line": 3,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F6": {
+      "node_id": "F6",
+      "node_type": "DECISION",
+      "label": "Year modulo 100 is equal to 0?",
+      "line": 4,
+      "data": {
+        "ast_kind": "ElseIfNode"
+      }
+    },
+    "F7": {
+      "node_id": "F7",
+      "node_type": "OUTPUT",
+      "label": "Display \"Not Leap Year\"",
+      "line": 5,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F8": {
+      "node_id": "F8",
+      "node_type": "DECISION",
+      "label": "Year modulo 4 is equal to 0?",
+      "line": 6,
+      "data": {
+        "ast_kind": "ElseIfNode"
+      }
+    },
+    "F9": {
+      "node_id": "F9",
+      "node_type": "OUTPUT",
+      "label": "Display \"Leap Year\"",
+      "line": 7,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F10": {
+      "node_id": "F10",
+      "node_type": "OUTPUT",
+      "label": "Display \"Not Leap Year\"",
+      "line": 9,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "F4",
+      "target": "F5",
+      "label": "TRUE"
+    },
+    {
+      "source": "F4",
+      "target": "F6",
+      "label": "FALSE"
+    },
+    {
+      "source": "F6",
+      "target": "F7",
+      "label": "TRUE"
+    },
+    {
+      "source": "F6",
+      "target": "F8",
+      "label": "FALSE"
+    },
+    {
+      "source": "F8",
+      "target": "F9",
+      "label": "TRUE"
+    },
+    {
+      "source": "F8",
+      "target": "F10",
+      "label": "FALSE"
+    },
+    {
+      "source": "F3",
+      "target": "F4",
+      "label": "BODY"
+    },
+    {
+      "source": "F1",
+      "target": "F3",
+      "label": "NEXT"
+    },
+    {
+      "source": "F5",
+      "target": "F2",
+      "label": "NEXT"
+    },
+    {
+      "source": "F7",
+      "target": "F2",
+      "label": "NEXT"
+    },
+    {
+      "source": "F9",
+      "target": "F2",
+      "label": "NEXT"
+    },
+    {
+      "source": "F10",
+      "target": "F2",
+      "label": "NEXT"
+    }
+  ],
+  "structured_program": {
+    "kind": "ProgramNode",
+    "line": 1,
+    "body": [
+      {
+        "kind": "FunctionNode",
+        "line": 1,
+        "name": "unnamed_function",
+        "parameters": [
+          {
+            "kind": "ParameterNode",
+            "line": 1,
+            "name": "Year",
+            "declared_type": null
+          }
+        ],
+        "body": {
+          "kind": "BlockNode",
+          "line": 2,
+          "statements": [
+            {
+              "kind": "IfNode",
+              "line": 2,
+              "condition": {
+                "kind": "BinaryNode",
+                "line": 2,
+                "operator": "==",
+                "left": {
+                  "kind": "BinaryNode",
+                  "line": 2,
+                  "operator": "MODULUS",
+                  "left": {
+                    "kind": "IdentifierNode",
+                    "line": 2,
+                    "name": "Year"
+                  },
+                  "right": {
+                    "kind": "LiteralNode",
+                    "line": 2,
+                    "value": 400,
+                    "data_type": "INTEGER"
+                  }
+                },
+                "right": {
+                  "kind": "LiteralNode",
+                  "line": 2,
+                  "value": 0,
+                  "data_type": "INTEGER"
+                }
+              },
+              "then_body": {
+                "kind": "BlockNode",
+                "line": 3,
+                "statements": [
+                  {
+                    "kind": "OutputNode",
+                    "line": 3,
+                    "expression": {
+                      "kind": "LiteralNode",
+                      "line": 3,
+                      "value": "Leap Year",
+                      "data_type": "STRING"
+                    }
+                  }
+                ]
+              },
+              "else_if": [
+                {
+                  "kind": "ElseIfNode",
+                  "line": 4,
+                  "condition": {
+                    "kind": "BinaryNode",
+                    "line": 4,
+                    "operator": "==",
+                    "left": {
+                      "kind": "BinaryNode",
+                      "line": 4,
+                      "operator": "MODULUS",
+                      "left": {
+                        "kind": "IdentifierNode",
+                        "line": 4,
+                        "name": "Year"
+                      },
+                      "right": {
+                        "kind": "LiteralNode",
+                        "line": 4,
+                        "value": 100,
+                        "data_type": "INTEGER"
+                      }
+                    },
+                    "right": {
+                      "kind": "LiteralNode",
+                      "line": 4,
+                      "value": 0,
+                      "data_type": "INTEGER"
+                    }
+                  },
+                  "body": {
+                    "kind": "BlockNode",
+                    "line": 5,
+                    "statements": [
+                      {
+                        "kind": "OutputNode",
+                        "line": 5,
+                        "expression": {
+                          "kind": "LiteralNode",
+                          "line": 5,
+                          "value": "Not Leap Year",
+                          "data_type": "STRING"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "kind": "ElseIfNode",
+                  "line": 6,
+                  "condition": {
+                    "kind": "BinaryNode",
+                    "line": 6,
+                    "operator": "==",
+                    "left": {
+                      "kind": "BinaryNode",
+                      "line": 6,
+                      "operator": "MODULUS",
+                      "left": {
+                        "kind": "IdentifierNode",
+                        "line": 6,
+                        "name": "Year"
+                      },
+                      "right": {
+                        "kind": "LiteralNode",
+                        "line": 6,
+                        "value": 4,
+                        "data_type": "INTEGER"
+                      }
+                    },
+                    "right": {
+                      "kind": "LiteralNode",
+                      "line": 6,
+                      "value": 0,
+                      "data_type": "INTEGER"
+                    }
+                  },
+                  "body": {
+                    "kind": "BlockNode",
+                    "line": 7,
+                    "statements": [
+                      {
+                        "kind": "OutputNode",
+                        "line": 7,
+                        "expression": {
+                          "kind": "LiteralNode",
+                          "line": 7,
+                          "value": "Leap Year",
+                          "data_type": "STRING"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ],
+              "else_body": {
+                "kind": "BlockNode",
+                "line": 9,
+                "statements": [
+                  {
+                    "kind": "OutputNode",
+                    "line": 9,
+                    "expression": {
+                      "kind": "LiteralNode",
+                      "line": 9,
+                      "value": "Not Leap Year",
+                      "data_type": "STRING"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

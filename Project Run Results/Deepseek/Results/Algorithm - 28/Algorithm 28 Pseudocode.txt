@@ -1,0 +1,16 @@
+# For a fixed window size sliding across an array, return the maximum value within each window position.
+FUNCTION slidingWindowMax(arr, k):
+    result = empty list
+    deque = empty deque
+    FOR i FROM 0 TO length(arr)-1:
+        // Remove elements out of window from front
+        WHILE deque IS NOT empty AND deque.front() <= i - k:
+            deque.pop_front()
+        // Maintain decreasing order in deque
+        WHILE deque IS NOT empty AND arr[deque.back()] <= arr[i]:
+            deque.pop_back()
+        deque.push_back(i)
+        // Add max to result once window is full
+        IF i >= k - 1:
+            result.append(arr[deque.front()])
+    RETURN result

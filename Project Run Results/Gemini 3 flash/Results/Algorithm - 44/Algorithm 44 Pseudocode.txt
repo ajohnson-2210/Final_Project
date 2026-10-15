@@ -1,0 +1,12 @@
+# Find contiguous subarray with maximum sum (Kadane’s algorithm)    
+FUNCTION MaxSubarraySum(arr):
+    max_so_far = arr[0]
+    current_max = arr[0]
+    
+    FOR i FROM 1 TO length(arr) - 1 DO
+        current_max = MAX(arr[i], current_max + arr[i])
+        max_so_far = MAX(max_so_far, current_max)
+    END FOR
+    
+    RETURN max_so_far
+END FUNCTION

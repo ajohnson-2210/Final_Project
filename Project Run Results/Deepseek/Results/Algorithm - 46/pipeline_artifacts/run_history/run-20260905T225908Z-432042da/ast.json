@@ -1,0 +1,640 @@
+{
+  "root_id": "N4548",
+  "nodes": {
+    "N4548": {
+      "kind": "ProgramNode",
+      "line": 1,
+      "attributes": {}
+    },
+    "N4547": {
+      "kind": "FunctionNode",
+      "line": 1,
+      "attributes": {
+        "name": "multiplyMatrices"
+      }
+    },
+    "N4480": {
+      "kind": "ParameterNode",
+      "line": 1,
+      "attributes": {
+        "name": "A",
+        "declared_type": null
+      }
+    },
+    "N4481": {
+      "kind": "ParameterNode",
+      "line": 1,
+      "attributes": {
+        "name": "B",
+        "declared_type": null
+      }
+    },
+    "N4482": {
+      "kind": "ParameterNode",
+      "line": 1,
+      "attributes": {
+        "name": "rowsA",
+        "declared_type": null
+      }
+    },
+    "N4483": {
+      "kind": "ParameterNode",
+      "line": 1,
+      "attributes": {
+        "name": "colsA",
+        "declared_type": null
+      }
+    },
+    "N4484": {
+      "kind": "ParameterNode",
+      "line": 1,
+      "attributes": {
+        "name": "colsB",
+        "declared_type": null
+      }
+    },
+    "N4546": {
+      "kind": "BlockNode",
+      "line": 2,
+      "attributes": {}
+    },
+    "N4485": {
+      "kind": "CommentNode",
+      "line": 2,
+      "attributes": {
+        "text": "Assumes A is rowsA x colsA, B is colsA x colsB"
+      }
+    },
+    "N4491": {
+      "kind": "AssignmentNode",
+      "line": 3,
+      "attributes": {}
+    },
+    "N4486": {
+      "kind": "IdentifierNode",
+      "line": 3,
+      "attributes": {
+        "name": "result"
+      }
+    },
+    "N4490": {
+      "kind": "CallNode",
+      "line": 3,
+      "attributes": {
+        "name": "create_matrix"
+      }
+    },
+    "N4487": {
+      "kind": "IdentifierNode",
+      "line": 3,
+      "attributes": {
+        "name": "rowsA"
+      }
+    },
+    "N4488": {
+      "kind": "IdentifierNode",
+      "line": 3,
+      "attributes": {
+        "name": "colsB"
+      }
+    },
+    "N4489": {
+      "kind": "LiteralNode",
+      "line": 3,
+      "attributes": {
+        "value": 0,
+        "data_type": "INTEGER"
+      }
+    },
+    "N4543": {
+      "kind": "ForRangeNode",
+      "line": 4,
+      "attributes": {
+        "step": null
+      }
+    },
+    "N4542": {
+      "kind": "IdentifierNode",
+      "line": 4,
+      "attributes": {
+        "name": "i"
+      }
+    },
+    "N4492": {
+      "kind": "LiteralNode",
+      "line": 4,
+      "attributes": {
+        "value": 0,
+        "data_type": "INTEGER"
+      }
+    },
+    "N4497": {
+      "kind": "BinaryNode",
+      "line": 4,
+      "attributes": {
+        "operator": "+"
+      }
+    },
+    "N4495": {
+      "kind": "BinaryNode",
+      "line": 4,
+      "attributes": {
+        "operator": "-"
+      }
+    },
+    "N4493": {
+      "kind": "IdentifierNode",
+      "line": 4,
+      "attributes": {
+        "name": "rowsA"
+      }
+    },
+    "N4494": {
+      "kind": "LiteralNode",
+      "line": 4,
+      "attributes": {
+        "value": 1,
+        "data_type": "INTEGER"
+      }
+    },
+    "N4496": {
+      "kind": "LiteralNode",
+      "line": 4,
+      "attributes": {
+        "value": 1,
+        "data_type": "INTEGER"
+      }
+    },
+    "N4541": {
+      "kind": "BlockNode",
+      "line": 5,
+      "attributes": {}
+    },
+    "N4540": {
+      "kind": "ForRangeNode",
+      "line": 5,
+      "attributes": {
+        "step": null
+      }
+    },
+    "N4539": {
+      "kind": "IdentifierNode",
+      "line": 5,
+      "attributes": {
+        "name": "j"
+      }
+    },
+    "N4498": {
+      "kind": "LiteralNode",
+      "line": 5,
+      "attributes": {
+        "value": 0,
+        "data_type": "INTEGER"
+      }
+    },
+    "N4503": {
+      "kind": "BinaryNode",
+      "line": 5,
+      "attributes": {
+        "operator": "+"
+      }
+    },
+    "N4501": {
+      "kind": "BinaryNode",
+      "line": 5,
+      "attributes": {
+        "operator": "-"
+      }
+    },
+    "N4499": {
+      "kind": "IdentifierNode",
+      "line": 5,
+      "attributes": {
+        "name": "colsB"
+      }
+    },
+    "N4500": {
+      "kind": "LiteralNode",
+      "line": 5,
+      "attributes": {
+        "value": 1,
+        "data_type": "INTEGER"
+      }
+    },
+    "N4502": {
+      "kind": "LiteralNode",
+      "line": 5,
+      "attributes": {
+        "value": 1,
+        "data_type": "INTEGER"
+      }
+    },
+    "N4538": {
+      "kind": "BlockNode",
+      "line": 6,
+      "attributes": {}
+    },
+    "N4506": {
+      "kind": "AssignmentNode",
+      "line": 6,
+      "attributes": {}
+    },
+    "N4504": {
+      "kind": "IdentifierNode",
+      "line": 6,
+      "attributes": {
+        "name": "sum"
+      }
+    },
+    "N4505": {
+      "kind": "LiteralNode",
+      "line": 6,
+      "attributes": {
+        "value": 0,
+        "data_type": "INTEGER"
+      }
+    },
+    "N4530": {
+      "kind": "ForRangeNode",
+      "line": 7,
+      "attributes": {
+        "step": null
+      }
+    },
+    "N4529": {
+      "kind": "IdentifierNode",
+      "line": 7,
+      "attributes": {
+        "name": "k"
+      }
+    },
+    "N4507": {
+      "kind": "LiteralNode",
+      "line": 7,
+      "attributes": {
+        "value": 0,
+        "data_type": "INTEGER"
+      }
+    },
+    "N4512": {
+      "kind": "BinaryNode",
+      "line": 7,
+      "attributes": {
+        "operator": "+"
+      }
+    },
+    "N4510": {
+      "kind": "BinaryNode",
+      "line": 7,
+      "attributes": {
+        "operator": "-"
+      }
+    },
+    "N4508": {
+      "kind": "IdentifierNode",
+      "line": 7,
+      "attributes": {
+        "name": "colsA"
+      }
+    },
+    "N4509": {
+      "kind": "LiteralNode",
+      "line": 7,
+      "attributes": {
+        "value": 1,
+        "data_type": "INTEGER"
+      }
+    },
+    "N4511": {
+      "kind": "LiteralNode",
+      "line": 7,
+      "attributes": {
+        "value": 1,
+        "data_type": "INTEGER"
+      }
+    },
+    "N4528": {
+      "kind": "BlockNode",
+      "line": 8,
+      "attributes": {}
+    },
+    "N4527": {
+      "kind": "AssignmentNode",
+      "line": 8,
+      "attributes": {}
+    },
+    "N4513": {
+      "kind": "IdentifierNode",
+      "line": 8,
+      "attributes": {
+        "name": "sum"
+      }
+    },
+    "N4526": {
+      "kind": "BinaryNode",
+      "line": 8,
+      "attributes": {
+        "operator": "+"
+      }
+    },
+    "N4514": {
+      "kind": "IdentifierNode",
+      "line": 8,
+      "attributes": {
+        "name": "sum"
+      }
+    },
+    "N4525": {
+      "kind": "BinaryNode",
+      "line": 8,
+      "attributes": {
+        "operator": "*"
+      }
+    },
+    "N4519": {
+      "kind": "IndexNode",
+      "line": 8,
+      "attributes": {}
+    },
+    "N4517": {
+      "kind": "IndexNode",
+      "line": 8,
+      "attributes": {}
+    },
+    "N4515": {
+      "kind": "IdentifierNode",
+      "line": 8,
+      "attributes": {
+        "name": "A"
+      }
+    },
+    "N4516": {
+      "kind": "IdentifierNode",
+      "line": 8,
+      "attributes": {
+        "name": "i"
+      }
+    },
+    "N4518": {
+      "kind": "IdentifierNode",
+      "line": 8,
+      "attributes": {
+        "name": "k"
+      }
+    },
+    "N4524": {
+      "kind": "IndexNode",
+      "line": 8,
+      "attributes": {}
+    },
+    "N4522": {
+      "kind": "IndexNode",
+      "line": 8,
+      "attributes": {}
+    },
+    "N4520": {
+      "kind": "IdentifierNode",
+      "line": 8,
+      "attributes": {
+        "name": "B"
+      }
+    },
+    "N4521": {
+      "kind": "IdentifierNode",
+      "line": 8,
+      "attributes": {
+        "name": "k"
+      }
+    },
+    "N4523": {
+      "kind": "IdentifierNode",
+      "line": 8,
+      "attributes": {
+        "name": "j"
+      }
+    },
+    "N4537": {
+      "kind": "AssignmentNode",
+      "line": 10,
+      "attributes": {}
+    },
+    "N4535": {
+      "kind": "IndexNode",
+      "line": 10,
+      "attributes": {}
+    },
+    "N4533": {
+      "kind": "IndexNode",
+      "line": 10,
+      "attributes": {}
+    },
+    "N4531": {
+      "kind": "IdentifierNode",
+      "line": 10,
+      "attributes": {
+        "name": "result"
+      }
+    },
+    "N4532": {
+      "kind": "IdentifierNode",
+      "line": 10,
+      "attributes": {
+        "name": "i"
+      }
+    },
+    "N4534": {
+      "kind": "IdentifierNode",
+      "line": 10,
+      "attributes": {
+        "name": "j"
+      }
+    },
+    "N4536": {
+      "kind": "IdentifierNode",
+      "line": 10,
+      "attributes": {
+        "name": "sum"
+      }
+    },
+    "N4545": {
+      "kind": "ReturnNode",
+      "line": 13,
+      "attributes": {}
+    },
+    "N4544": {
+      "kind": "IdentifierNode",
+      "line": 13,
+      "attributes": {
+        "name": "result"
+      }
+    }
+  },
+  "adjacency": {
+    "N4548": [
+      "N4547"
+    ],
+    "N4547": [
+      "N4480",
+      "N4481",
+      "N4482",
+      "N4483",
+      "N4484",
+      "N4546"
+    ],
+    "N4480": [],
+    "N4481": [],
+    "N4482": [],
+    "N4483": [],
+    "N4484": [],
+    "N4546": [
+      "N4485",
+      "N4491",
+      "N4543",
+      "N4545"
+    ],
+    "N4485": [],
+    "N4491": [
+      "N4486",
+      "N4490"
+    ],
+    "N4486": [],
+    "N4490": [
+      "N4487",
+      "N4488",
+      "N4489"
+    ],
+    "N4487": [],
+    "N4488": [],
+    "N4489": [],
+    "N4543": [
+      "N4542",
+      "N4492",
+      "N4497",
+      "N4541"
+    ],
+    "N4542": [],
+    "N4492": [],
+    "N4497": [
+      "N4495",
+      "N4496"
+    ],
+    "N4495": [
+      "N4493",
+      "N4494"
+    ],
+    "N4493": [],
+    "N4494": [],
+    "N4496": [],
+    "N4541": [
+      "N4540"
+    ],
+    "N4540": [
+      "N4539",
+      "N4498",
+      "N4503",
+      "N4538"
+    ],
+    "N4539": [],
+    "N4498": [],
+    "N4503": [
+      "N4501",
+      "N4502"
+    ],
+    "N4501": [
+      "N4499",
+      "N4500"
+    ],
+    "N4499": [],
+    "N4500": [],
+    "N4502": [],
+    "N4538": [
+      "N4506",
+      "N4530",
+      "N4537"
+    ],
+    "N4506": [
+      "N4504",
+      "N4505"
+    ],
+    "N4504": [],
+    "N4505": [],
+    "N4530": [
+      "N4529",
+      "N4507",
+      "N4512",
+      "N4528"
+    ],
+    "N4529": [],
+    "N4507": [],
+    "N4512": [
+      "N4510",
+      "N4511"
+    ],
+    "N4510": [
+      "N4508",
+      "N4509"
+    ],
+    "N4508": [],
+    "N4509": [],
+    "N4511": [],
+    "N4528": [
+      "N4527"
+    ],
+    "N4527": [
+      "N4513",
+      "N4526"
+    ],
+    "N4513": [],
+    "N4526": [
+      "N4514",
+      "N4525"
+    ],
+    "N4514": [],
+    "N4525": [
+      "N4519",
+      "N4524"
+    ],
+    "N4519": [
+      "N4517",
+      "N4518"
+    ],
+    "N4517": [
+      "N4515",
+      "N4516"
+    ],
+    "N4515": [],
+    "N4516": [],
+    "N4518": [],
+    "N4524": [
+      "N4522",
+      "N4523"
+    ],
+    "N4522": [
+      "N4520",
+      "N4521"
+    ],
+    "N4520": [],
+    "N4521": [],
+    "N4523": [],
+    "N4537": [
+      "N4535",
+      "N4536"
+    ],
+    "N4535": [
+      "N4533",
+      "N4534"
+    ],
+    "N4533": [
+      "N4531",
+      "N4532"
+    ],
+    "N4531": [],
+    "N4532": [],
+    "N4534": [],
+    "N4536": [],
+    "N4545": [
+      "N4544"
+    ],
+    "N4544": []
+  }
+}

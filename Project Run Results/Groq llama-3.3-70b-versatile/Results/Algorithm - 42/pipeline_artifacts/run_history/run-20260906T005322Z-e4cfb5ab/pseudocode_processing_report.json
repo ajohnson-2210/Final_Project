@@ -1,0 +1,166 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 13,
+  "transformations": [
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  pairs = []",
+      "canonical": "  pairs <- []",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 6,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        pairs += [(arr[i], arr[j])]",
+      "canonical": "        pairs <- pairs + [(arr[i], arr[j])]",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  pairs <- []",
+      "canonical": "  pairs <- EMPTY LIST",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  FOR i FROM 0 TO LENGTH(arr) - 1",
+      "canonical": "  FOR i FROM 0 TO LENGTH OF arr - 1",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    FOR j FROM i + 1 TO LENGTH(arr) - 1",
+      "canonical": "    FOR j FROM i + 1 TO LENGTH OF arr - 1",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION FIND_PAIRS(arr, target)",
+      "canonical": "FUNCTION FIND_PAIRS ACCEPTS(arr, target)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "FUNCTION FIND_PAIRS ACCEPTS(arr, target)\n  pairs <- EMPTY LIST\n  FOR i FROM 0 TO LENGTH OF arr - 1\n    FOR j FROM i + 1 TO LENGTH OF arr - 1\n      IF arr[i] + arr[j] == target THEN\n        pairs <- pairs + [(arr[i], arr[j])]\n      END IF\n    END FOR\n  END FOR\n  RETURN pairs\nEND FUNCTION",
+      "canonical": "FUNCTION FIND_PAIRS ACCEPTS(arr, target)\n  pairs <- EMPTY LIST\n  FOR i FROM 0 TO LENGTH OF arr - 1\n    FOR j FROM i + 1 TO LENGTH OF arr - 1\n      IF arr[i] + arr[j] == target THEN\n        pairs <- pairs + [(arr[i], arr[j])]\n      ENDIF\n    END FOR\n  END FOR\n  RETURN pairs\nENDFUNCTION",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "FUNCTION FIND_PAIRS ACCEPTS(arr, target)\n  pairs <- EMPTY LIST\n  FOR i FROM 0 TO LENGTH OF arr - 1\n    FOR j FROM i + 1 TO LENGTH OF arr - 1\n      IF arr[i] + arr[j] == target THEN\n        pairs <- pairs + [(arr[i], arr[j])]\n      ENDIF\n    END FOR\n  END FOR\n  RETURN pairs\nENDFUNCTION",
+      "canonical": "FUNCTION FIND_PAIRS ACCEPTS(arr, target)\n  pairs <- EMPTY LIST\n  FOR i FROM 0 TO LENGTH OF arr - 1\n    FOR j FROM i + 1 TO LENGTH OF arr - 1\n      IF arr[i] + arr[j] == target THEN\n        APPEND (arr[i], arr[j]) TO pairs\n      ENDIF\n    END FOR\n  END FOR\n  RETURN pairs\nENDFUNCTION",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 6,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        APPEND (arr[i], arr[j]) TO pairs",
+      "canonical": "        APPEND TUPLE(arr[i], arr[j]) TO pairs",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  FOR i FROM 0 TO LENGTH OF arr - 1",
+      "canonical": "  FOR i <- IN RANGE 0 TO (LENGTH OF arr - 1) + 1 DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    FOR j FROM i + 1 TO LENGTH OF arr - 1",
+      "canonical": "    FOR j <- IN RANGE i + 1 TO (LENGTH OF arr - 1) + 1 DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 8,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "    END FOR",
+      "canonical": "    ENDFOR",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 9,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "  END FOR",
+      "canonical": "  ENDFOR",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 1
+}

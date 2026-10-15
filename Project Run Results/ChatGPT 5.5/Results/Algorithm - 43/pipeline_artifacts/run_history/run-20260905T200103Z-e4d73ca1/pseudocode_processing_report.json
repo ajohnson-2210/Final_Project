@@ -1,0 +1,34 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 2,
+  "transformations": [
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        IF Discs = 1 THEN",
+      "canonical": "        IF Discs == 1 THEN",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "    INPUT N\n\n    FUNCTION Hanoi(Discs, Source, Auxiliary, Destination)\n        IF Discs == 1 THEN\n            OUTPUT \"Move disk from\", Source, \"to\", Destination\n        ELSE\n            Hanoi(Discs-1, Source, Destination, Auxiliary)\n\n            OUTPUT \"Move disk from\", Source, \"to\", Destination\n\n            Hanoi(Discs-1, Auxiliary, Source, Destination)\n        ENDIF\n    END FUNCTION\n\n    Hanoi(N, \"A\", \"B\", \"C\")\nEND",
+      "canonical": "FUNCTION unnamed_function ACCEPTS(N)\n    FUNCTION Hanoi ACCEPTS(Discs, Source, Auxiliary, Destination)\n        IF Discs == 1 THEN\n            OUTPUT STRING(\"Move disk from {Source} to {Destination}\")\n        ELSE\n            CALL Hanoi(Discs - 1, Source, Destination, Auxiliary)\n\n            OUTPUT STRING(\"Move disk from {Source} to {Destination}\")\n\n            CALL Hanoi(Discs - 1, Auxiliary, Source, Destination)\n        ENDIF\n    ENDFUNCTION\n\n    CALL Hanoi(N, STRING(\"A\"), STRING(\"B\"), STRING(\"C\"))\nENDFUNCTION",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 2
+}

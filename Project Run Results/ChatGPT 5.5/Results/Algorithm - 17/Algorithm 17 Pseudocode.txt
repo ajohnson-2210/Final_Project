@@ -1,0 +1,15 @@
+# Compute the sum and average of a list of numbers.
+BEGIN
+    INPUT Numbers
+
+    Sum ← 0
+
+    FOR EACH Number IN Numbers
+        Sum ← Sum + Number
+    ENDFOR
+
+    Average ← Sum / LENGTH(Numbers)
+
+    OUTPUT Sum
+    OUTPUT Average
+END

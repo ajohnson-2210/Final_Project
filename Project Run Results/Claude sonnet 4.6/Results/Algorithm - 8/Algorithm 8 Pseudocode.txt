@@ -1,0 +1,8 @@
+# Sort Words Alphabetically
+
+FUNCTION sortWords(wordList):
+    FOR i FROM 0 TO length(wordList) - 2:
+        FOR j FROM 0 TO length(wordList) - i - 2:
+            IF wordList[j] > wordList[j+1] THEN
+                SWAP wordList[j] AND wordList[j+1]
+    RETURN wordList

@@ -1,0 +1,154 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 12,
+  "transformations": [
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    array = []",
+      "canonical": "    array <- []",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    top = -1",
+      "canonical": "    top <- -1",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 7,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    top += 1",
+      "canonical": "    top <- top + 1",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 8,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    array[top] = element",
+      "canonical": "    array[top] <- element",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 14,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    element = array[top]",
+      "canonical": "    element <- array[top]",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 15,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    top -= 1",
+      "canonical": "    top <- top - 1",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    array <- []",
+      "canonical": "    array <- EMPTY LIST",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  FUNCTION PUSH(element)",
+      "canonical": "  FUNCTION PUSH ACCEPTS(element)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  FUNCTION POP()",
+      "canonical": "  FUNCTION POP ACCEPTS()",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  FUNCTION PEEK()",
+      "canonical": "  FUNCTION PEEK ACCEPTS()",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "CLASS STACK\n  Constructor()\n    array <- EMPTY LIST\n    top <- -1\n\n  FUNCTION PUSH ACCEPTS(element)\n    top <- top + 1\n    array[top] <- element\n\n  FUNCTION POP ACCEPTS()\n    IF top == -1 THEN\n      RETURN NULL\n    END IF\n    element <- array[top]\n    top <- top - 1\n    RETURN element\n\n  FUNCTION PEEK ACCEPTS()\n    IF top == -1 THEN\n      RETURN NULL\n    END IF\n    RETURN array[top]\n\nEND CLASS",
+      "canonical": "CLASS STACK ACCEPTS()\n  Constructor()\n    array <- EMPTY LIST\n    top <- -1\n\n  FUNCTION PUSH ACCEPTS(element)\n    top <- top + 1\n    array[top] <- element\n\n  FUNCTION POP ACCEPTS()\n    IF top == -1 THEN\n      RETURN NULL\n    ENDIF\n    element <- array[top]\n    top <- top - 1\n    RETURN element\n\n  FUNCTION PEEK ACCEPTS()\n    IF top == -1 THEN\n      RETURN NULL\n    ENDIF\n    RETURN array[top]\n\nEND CLASS",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "CLASS STACK ACCEPTS()\n  Constructor()\n    array <- EMPTY LIST\n    top <- -1\n\n  FUNCTION PUSH ACCEPTS(element)\n    top <- top + 1\n    array[top] <- element\n\n  FUNCTION POP ACCEPTS()\n    IF top == -1 THEN\n      RETURN NULL\n    ENDIF\n    element <- array[top]\n    top <- top - 1\n    RETURN element\n\n  FUNCTION PEEK ACCEPTS()\n    IF top == -1 THEN\n      RETURN NULL\n    ENDIF\n    RETURN array[top]\n\nEND CLASS",
+      "canonical": "CLASS STACK ACCEPTS()\n  CONSTRUCTOR ACCEPTS()\n    array <- EMPTY LIST\n    top <- -1\n\n  ENDCONSTRUCTOR\n  METHOD PUSH ACCEPTS(element)\n    top <- top + 1\n    array[top] <- element\n\n  ENDMETHOD\n  METHOD POP ACCEPTS()\n    IF top == -1 THEN\n      RETURN NULL\n    ENDIF\n    element <- array[top]\n    top <- top - 1\n    RETURN element\n\n  ENDMETHOD\n  METHOD PEEK ACCEPTS()\n    IF top == -1 THEN\n      RETURN NULL\n    ENDIF\n    RETURN array[top]\n\n  ENDMETHOD\nENDCLASS",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 1
+}

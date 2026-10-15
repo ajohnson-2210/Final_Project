@@ -1,0 +1,202 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 16,
+  "transformations": [
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    cleaned_corpus = RemoveStopwordsAndPunctuation(corpus)",
+      "canonical": "    cleaned_corpus <- RemoveStopwordsAndPunctuation(corpus)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    tokenized_docs = TokenizeAndStem(cleaned_corpus)",
+      "canonical": "    tokenized_docs <- TokenizeAndStem(cleaned_corpus)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    doc_term_matrix = CreateDocumentTermMatrix(tokenized_docs)",
+      "canonical": "    doc_term_matrix <- CreateDocumentTermMatrix(tokenized_docs)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    lda_model = InitializeLDAModel(num_topics)",
+      "canonical": "    lda_model <- InitializeLDAModel(num_topics)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 10,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        PRINT ExtractTopWords(topic, top_n=10)",
+      "canonical": "        OUTPUT ExtractTopWords(topic, top_n=10)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "    cleaned_corpus <- RemoveStopwordsAndPunctuation(corpus)\n    tokenized_docs <- TokenizeAndStem(cleaned_corpus)\n    \n    doc_term_matrix <- CreateDocumentTermMatrix(tokenized_docs)\n    lda_model <- InitializeLDAModel(num_topics)\n    \n    FitLDAModel(lda_model, doc_term_matrix)\n    \n    FOR EACH topic IN lda_model.get_topics() DO\n        OUTPUT ExtractTopWords(topic, top_n=10)\n    END FOR\nEND PROCEDURE",
+      "canonical": "    cleaned_corpus <- RemoveStopwordsAndPunctuation(corpus)\n    tokenized_docs <- TokenizeAndStem(cleaned_corpus)\n    \n    doc_term_matrix <- CreateDocumentTermMatrix(tokenized_docs)\n    lda_model <- InitializeLDAModel(num_topics)\n    \n    FitLDAModel(lda_model, doc_term_matrix)\n    \n    FOR EACH topic IN lda_model.get_topics() DO\n        OUTPUT ExtractTopWords(topic, top_n=10)\n    ENDFOR\nEND PROCEDURE",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 12,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "END PROCEDURE",
+      "canonical": "ENDFUNCTION",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    cleaned_corpus <- RemoveStopwordsAndPunctuation(corpus)",
+      "canonical": "    cleaned_corpus <- CALL RemoveStopwordsAndPunctuation(corpus)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    tokenized_docs <- TokenizeAndStem(cleaned_corpus)",
+      "canonical": "    tokenized_docs <- CALL TokenizeAndStem(cleaned_corpus)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    doc_term_matrix <- CreateDocumentTermMatrix(tokenized_docs)",
+      "canonical": "    doc_term_matrix <- CALL CreateDocumentTermMatrix(tokenized_docs)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    lda_model <- InitializeLDAModel(num_topics)",
+      "canonical": "    lda_model <- CALL InitializeLDAModel(num_topics)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 7,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    FitLDAModel(lda_model, doc_term_matrix)",
+      "canonical": "    CALL FitLDAModel(lda_model, doc_term_matrix)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 10,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        OUTPUT ExtractTopWords(topic, top_n=10)",
+      "canonical": "        OUTPUT CALL ExtractTopWords(topic, top_n=10)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    ",
+      "canonical": "",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 6,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    ",
+      "canonical": "",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 8,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    ",
+      "canonical": "",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 2
+}

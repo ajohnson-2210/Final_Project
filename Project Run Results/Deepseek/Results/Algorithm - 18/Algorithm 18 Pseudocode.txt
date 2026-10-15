@@ -1,0 +1,9 @@
+# Count the frequency of each character in a string.
+FUNCTION charFrequency(str):
+    freqMap = empty dictionary
+    FOR each char in str:
+        IF char IN freqMap:
+            freqMap[char] = freqMap[char] + 1
+        ELSE:
+            freqMap[char] = 1
+    RETURN freqMap

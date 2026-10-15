@@ -1,0 +1,56 @@
+{
+  "semantic_report_schema_version": "1.0",
+  "program_path": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Claude sonnet 4.6\\Results\\Algorithm - 10\\pipeline_artifacts\\generated_program.py",
+  "algorithm_id": 10,
+  "contract_version": "1.2",
+  "evaluable_tests": 1,
+  "passed_tests": 0,
+  "failed_tests": 1,
+  "not_evaluable_tests": 0,
+  "accuracy_percentage": 0.0,
+  "results": [
+    {
+      "name": "default vowel-frequency count",
+      "status": "FAILED",
+      "expected_semantic_result": {
+        "a": 3,
+        "e": 4,
+        "i": 3,
+        "o": 2,
+        "u": 0
+      },
+      "actual_semantic_result": {},
+      "semantic_match": false,
+      "reason": "Observed task-semantic result did not match the expected semantic result.",
+      "duration_ms": 96.359,
+      "category": "NORMAL",
+      "semantic_feature": "PER_VOWEL_FREQUENCY_AND_CASE_NORMALISATION",
+      "fixture_source": "FROZEN_BASELINE_FIXED_INPUT",
+      "oracle_source": "TASK_SEMANTIC_ORACLE_WITH_FROZEN_BASELINE_REFERENCE",
+      "selected_entrypoint": "countVowels",
+      "invocation_capture": {
+        "status": "COMPLETED",
+        "selected_entrypoint": "countVowels",
+        "prints": [],
+        "returns": [
+          {
+            "a": 3,
+            "e": 4,
+            "i": 3,
+            "o": 2,
+            "u": 0
+          }
+        ],
+        "post_arguments": [
+          [
+            "This is a sentence that contains vowels"
+          ]
+        ],
+        "shared_values": {},
+        "errors": [
+          null
+        ]
+      }
+    }
+  ]
+}

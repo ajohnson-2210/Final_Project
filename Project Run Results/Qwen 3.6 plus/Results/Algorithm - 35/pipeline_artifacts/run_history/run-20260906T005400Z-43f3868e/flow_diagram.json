@@ -1,0 +1,692 @@
+{
+  "format": "NL-FDEP Flow Diagram",
+  "version": "1.0",
+  "entry_node": "F1",
+  "exit_node": "F2",
+  "nodes": {
+    "F1": {
+      "node_id": "F1",
+      "node_type": "START",
+      "label": "Start",
+      "line": 1,
+      "data": {}
+    },
+    "F2": {
+      "node_id": "F2",
+      "node_type": "END",
+      "label": "End",
+      "line": 1,
+      "data": {}
+    },
+    "F3": {
+      "node_id": "F3",
+      "node_type": "CLASS",
+      "label": "Class unnamed_class",
+      "line": 1,
+      "data": {
+        "ast_kind": "ClassNode",
+        "name": "unnamed_class"
+      }
+    },
+    "F4": {
+      "node_id": "F4",
+      "node_type": "DECLARATION",
+      "label": "Declare property capacity",
+      "line": 2,
+      "data": {
+        "ast_kind": "PropertyDeclarationNode"
+      }
+    },
+    "F5": {
+      "node_id": "F5",
+      "node_type": "DECLARATION",
+      "label": "Declare property cache as DICTIONARY",
+      "line": 3,
+      "data": {
+        "ast_kind": "PropertyDeclarationNode"
+      }
+    },
+    "F6": {
+      "node_id": "F6",
+      "node_type": "CONSTRUCTOR",
+      "label": "Run constructor with capacity",
+      "line": 5,
+      "data": {
+        "ast_kind": "ConstructorNode"
+      }
+    },
+    "F7": {
+      "node_id": "F7",
+      "node_type": "PROCESS",
+      "label": "Set capacity of THIS to capacity",
+      "line": 6,
+      "data": {
+        "ast_kind": "PropertyAssignmentNode"
+      }
+    },
+    "F8": {
+      "node_id": "F8",
+      "node_type": "PROCESS",
+      "label": "Set cache of THIS to an empty dictionary",
+      "line": 7,
+      "data": {
+        "ast_kind": "PropertyAssignmentNode"
+      }
+    },
+    "F9": {
+      "node_id": "F9",
+      "node_type": "METHOD",
+      "label": "Run method get with key",
+      "line": 10,
+      "data": {
+        "ast_kind": "MethodNode",
+        "name": "get"
+      }
+    },
+    "F10": {
+      "node_id": "F10",
+      "node_type": "DECISION",
+      "label": "Key is contained in cache of THIS?",
+      "line": 11,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F11": {
+      "node_id": "F11",
+      "node_type": "CALL",
+      "label": "Call moveToFront with cache of THIS, key",
+      "line": 12,
+      "data": {
+        "ast_kind": "CallNode"
+      }
+    },
+    "F12": {
+      "node_id": "F12",
+      "node_type": "RETURN",
+      "label": "Return item key of cache of THIS",
+      "line": 13,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    },
+    "F13": {
+      "node_id": "F13",
+      "node_type": "RETURN",
+      "label": "Return null",
+      "line": 15,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    },
+    "F14": {
+      "node_id": "F14",
+      "node_type": "METHOD",
+      "label": "Run method put with key, value",
+      "line": 20,
+      "data": {
+        "ast_kind": "MethodNode",
+        "name": "put"
+      }
+    },
+    "F15": {
+      "node_id": "F15",
+      "node_type": "DECISION",
+      "label": "Key is contained in cache of THIS?",
+      "line": 21,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F16": {
+      "node_id": "F16",
+      "node_type": "CALL",
+      "label": "Call moveToFront with cache of THIS, key",
+      "line": 22,
+      "data": {
+        "ast_kind": "CallNode"
+      }
+    },
+    "F17": {
+      "node_id": "F17",
+      "node_type": "PROCESS",
+      "label": "Set item key of cache of THIS to value",
+      "line": 23,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F18": {
+      "node_id": "F18",
+      "node_type": "DECISION",
+      "label": "The length of cache of THIS is equal to capacity of THIS?",
+      "line": 25,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F19": {
+      "node_id": "F19",
+      "node_type": "CALL",
+      "label": "Call removeBack with cache of THIS",
+      "line": 26,
+      "data": {
+        "ast_kind": "CallNode"
+      }
+    },
+    "F20": {
+      "node_id": "F20",
+      "node_type": "CALL",
+      "label": "Call addToFront with cache of THIS, key, value",
+      "line": 29,
+      "data": {
+        "ast_kind": "CallNode"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "F4",
+      "target": "F5",
+      "label": "NEXT"
+    },
+    {
+      "source": "F7",
+      "target": "F8",
+      "label": "NEXT"
+    },
+    {
+      "source": "F6",
+      "target": "F7",
+      "label": "BODY"
+    },
+    {
+      "source": "F5",
+      "target": "F6",
+      "label": "NEXT"
+    },
+    {
+      "source": "F11",
+      "target": "F12",
+      "label": "NEXT"
+    },
+    {
+      "source": "F10",
+      "target": "F11",
+      "label": "TRUE"
+    },
+    {
+      "source": "F10",
+      "target": "F13",
+      "label": "FALSE"
+    },
+    {
+      "source": "F9",
+      "target": "F10",
+      "label": "BODY"
+    },
+    {
+      "source": "F8",
+      "target": "F9",
+      "label": "NEXT"
+    },
+    {
+      "source": "F16",
+      "target": "F17",
+      "label": "NEXT"
+    },
+    {
+      "source": "F15",
+      "target": "F16",
+      "label": "TRUE"
+    },
+    {
+      "source": "F18",
+      "target": "F19",
+      "label": "TRUE"
+    },
+    {
+      "source": "F19",
+      "target": "F20",
+      "label": "NEXT"
+    },
+    {
+      "source": "F18",
+      "target": "F20",
+      "label": "NEXT"
+    },
+    {
+      "source": "F15",
+      "target": "F18",
+      "label": "FALSE"
+    },
+    {
+      "source": "F14",
+      "target": "F15",
+      "label": "BODY"
+    },
+    {
+      "source": "F3",
+      "target": "F4",
+      "label": "BODY"
+    },
+    {
+      "source": "F1",
+      "target": "F3",
+      "label": "NEXT"
+    },
+    {
+      "source": "F12",
+      "target": "F2",
+      "label": "NEXT"
+    },
+    {
+      "source": "F13",
+      "target": "F2",
+      "label": "NEXT"
+    },
+    {
+      "source": "F17",
+      "target": "F2",
+      "label": "NEXT"
+    },
+    {
+      "source": "F20",
+      "target": "F2",
+      "label": "NEXT"
+    }
+  ],
+  "structured_program": {
+    "kind": "ProgramNode",
+    "line": 1,
+    "body": [
+      {
+        "kind": "ClassNode",
+        "line": 1,
+        "name": "unnamed_class",
+        "parameters": [],
+        "body": {
+          "kind": "BlockNode",
+          "line": 2,
+          "statements": [
+            {
+              "kind": "PropertyDeclarationNode",
+              "line": 2,
+              "name": "capacity",
+              "declared_type": null
+            },
+            {
+              "kind": "PropertyDeclarationNode",
+              "line": 3,
+              "name": "cache",
+              "declared_type": "DICTIONARY"
+            },
+            {
+              "kind": "ConstructorNode",
+              "line": 5,
+              "parameters": [
+                {
+                  "kind": "ParameterNode",
+                  "line": 5,
+                  "name": "capacity",
+                  "declared_type": null
+                }
+              ],
+              "body": {
+                "kind": "BlockNode",
+                "line": 6,
+                "statements": [
+                  {
+                    "kind": "PropertyAssignmentNode",
+                    "line": 6,
+                    "target": {
+                      "kind": "MemberAccessNode",
+                      "line": 6,
+                      "object": {
+                        "kind": "IdentifierNode",
+                        "line": 6,
+                        "name": "THIS"
+                      },
+                      "member": "capacity"
+                    },
+                    "value": {
+                      "kind": "IdentifierNode",
+                      "line": 6,
+                      "name": "capacity"
+                    }
+                  },
+                  {
+                    "kind": "PropertyAssignmentNode",
+                    "line": 7,
+                    "target": {
+                      "kind": "MemberAccessNode",
+                      "line": 7,
+                      "object": {
+                        "kind": "IdentifierNode",
+                        "line": 7,
+                        "name": "THIS"
+                      },
+                      "member": "cache"
+                    },
+                    "value": {
+                      "kind": "EmptyLiteralNode",
+                      "line": 7,
+                      "empty_type": "DICTIONARY"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "MethodNode",
+              "line": 10,
+              "name": "get",
+              "parameters": [
+                {
+                  "kind": "ParameterNode",
+                  "line": 10,
+                  "name": "key",
+                  "declared_type": null
+                }
+              ],
+              "body": {
+                "kind": "BlockNode",
+                "line": 11,
+                "statements": [
+                  {
+                    "kind": "IfNode",
+                    "line": 11,
+                    "condition": {
+                      "kind": "BinaryNode",
+                      "line": 11,
+                      "operator": "IN",
+                      "left": {
+                        "kind": "IdentifierNode",
+                        "line": 11,
+                        "name": "key"
+                      },
+                      "right": {
+                        "kind": "MemberAccessNode",
+                        "line": 11,
+                        "object": {
+                          "kind": "IdentifierNode",
+                          "line": 11,
+                          "name": "THIS"
+                        },
+                        "member": "cache"
+                      }
+                    },
+                    "then_body": {
+                      "kind": "BlockNode",
+                      "line": 12,
+                      "statements": [
+                        {
+                          "kind": "CallNode",
+                          "line": 12,
+                          "name": "moveToFront",
+                          "arguments": [
+                            {
+                              "kind": "MemberAccessNode",
+                              "line": 12,
+                              "object": {
+                                "kind": "IdentifierNode",
+                                "line": 12,
+                                "name": "THIS"
+                              },
+                              "member": "cache"
+                            },
+                            {
+                              "kind": "IdentifierNode",
+                              "line": 12,
+                              "name": "key"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "ReturnNode",
+                          "line": 13,
+                          "expression": {
+                            "kind": "IndexNode",
+                            "line": 13,
+                            "collection": {
+                              "kind": "MemberAccessNode",
+                              "line": 13,
+                              "object": {
+                                "kind": "IdentifierNode",
+                                "line": 13,
+                                "name": "THIS"
+                              },
+                              "member": "cache"
+                            },
+                            "index": {
+                              "kind": "IdentifierNode",
+                              "line": 13,
+                              "name": "key"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "else_if": [],
+                    "else_body": {
+                      "kind": "BlockNode",
+                      "line": 15,
+                      "statements": [
+                        {
+                          "kind": "ReturnNode",
+                          "line": 15,
+                          "expression": {
+                            "kind": "IdentifierNode",
+                            "line": 15,
+                            "name": "null"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "MethodNode",
+              "line": 20,
+              "name": "put",
+              "parameters": [
+                {
+                  "kind": "ParameterNode",
+                  "line": 20,
+                  "name": "key",
+                  "declared_type": null
+                },
+                {
+                  "kind": "ParameterNode",
+                  "line": 20,
+                  "name": "value",
+                  "declared_type": null
+                }
+              ],
+              "body": {
+                "kind": "BlockNode",
+                "line": 21,
+                "statements": [
+                  {
+                    "kind": "IfNode",
+                    "line": 21,
+                    "condition": {
+                      "kind": "BinaryNode",
+                      "line": 21,
+                      "operator": "IN",
+                      "left": {
+                        "kind": "IdentifierNode",
+                        "line": 21,
+                        "name": "key"
+                      },
+                      "right": {
+                        "kind": "MemberAccessNode",
+                        "line": 21,
+                        "object": {
+                          "kind": "IdentifierNode",
+                          "line": 21,
+                          "name": "THIS"
+                        },
+                        "member": "cache"
+                      }
+                    },
+                    "then_body": {
+                      "kind": "BlockNode",
+                      "line": 22,
+                      "statements": [
+                        {
+                          "kind": "CallNode",
+                          "line": 22,
+                          "name": "moveToFront",
+                          "arguments": [
+                            {
+                              "kind": "MemberAccessNode",
+                              "line": 22,
+                              "object": {
+                                "kind": "IdentifierNode",
+                                "line": 22,
+                                "name": "THIS"
+                              },
+                              "member": "cache"
+                            },
+                            {
+                              "kind": "IdentifierNode",
+                              "line": 22,
+                              "name": "key"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 23,
+                          "target": {
+                            "kind": "IndexNode",
+                            "line": 23,
+                            "collection": {
+                              "kind": "MemberAccessNode",
+                              "line": 23,
+                              "object": {
+                                "kind": "IdentifierNode",
+                                "line": 23,
+                                "name": "THIS"
+                              },
+                              "member": "cache"
+                            },
+                            "index": {
+                              "kind": "IdentifierNode",
+                              "line": 23,
+                              "name": "key"
+                            }
+                          },
+                          "value": {
+                            "kind": "IdentifierNode",
+                            "line": 23,
+                            "name": "value"
+                          }
+                        }
+                      ]
+                    },
+                    "else_if": [],
+                    "else_body": {
+                      "kind": "BlockNode",
+                      "line": 25,
+                      "statements": [
+                        {
+                          "kind": "IfNode",
+                          "line": 25,
+                          "condition": {
+                            "kind": "BinaryNode",
+                            "line": 25,
+                            "operator": "==",
+                            "left": {
+                              "kind": "LengthNode",
+                              "line": 25,
+                              "expression": {
+                                "kind": "MemberAccessNode",
+                                "line": 25,
+                                "object": {
+                                  "kind": "IdentifierNode",
+                                  "line": 25,
+                                  "name": "THIS"
+                                },
+                                "member": "cache"
+                              }
+                            },
+                            "right": {
+                              "kind": "MemberAccessNode",
+                              "line": 25,
+                              "object": {
+                                "kind": "IdentifierNode",
+                                "line": 25,
+                                "name": "THIS"
+                              },
+                              "member": "capacity"
+                            }
+                          },
+                          "then_body": {
+                            "kind": "BlockNode",
+                            "line": 26,
+                            "statements": [
+                              {
+                                "kind": "CallNode",
+                                "line": 26,
+                                "name": "removeBack",
+                                "arguments": [
+                                  {
+                                    "kind": "MemberAccessNode",
+                                    "line": 26,
+                                    "object": {
+                                      "kind": "IdentifierNode",
+                                      "line": 26,
+                                      "name": "THIS"
+                                    },
+                                    "member": "cache"
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          "else_if": [],
+                          "else_body": null
+                        },
+                        {
+                          "kind": "CallNode",
+                          "line": 29,
+                          "name": "addToFront",
+                          "arguments": [
+                            {
+                              "kind": "MemberAccessNode",
+                              "line": 29,
+                              "object": {
+                                "kind": "IdentifierNode",
+                                "line": 29,
+                                "name": "THIS"
+                              },
+                              "member": "cache"
+                            },
+                            {
+                              "kind": "IdentifierNode",
+                              "line": 29,
+                              "name": "key"
+                            },
+                            {
+                              "kind": "IdentifierNode",
+                              "line": 29,
+                              "name": "value"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

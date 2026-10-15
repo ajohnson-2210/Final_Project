@@ -1,0 +1,14 @@
+# Find the length of the longest substring without repeating characters in a given string
+FUNCTION LONGEST_SUBSTRING(s)
+  max_length = 0
+  start = 0
+  char_index = {}
+  FOR i FROM 0 TO LENGTH(s) - 1
+    IF s[i] IN char_index AND char_index[s[i]] >= start THEN
+      start = char_index[s[i]] + 1
+    END IF
+    char_index[s[i]] = i
+    max_length = MAX(max_length, i - start + 1)
+  END FOR
+  RETURN max_length
+END FUNCTION

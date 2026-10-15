@@ -1,0 +1,70 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 5,
+  "transformations": [
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  relationships = IDENTIFY_RELATIONSHIPS(text)",
+      "canonical": "  relationships <- IDENTIFY_RELATIONSHIPS(text)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION CO_REFERENCE_RESOLUTION(text)",
+      "canonical": "FUNCTION CO_REFERENCE_RESOLUTION ACCEPTS(text)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "FUNCTION CO_REFERENCE_RESOLUTION ACCEPTS(text)\n  # Use a co-reference resolution algorithm to identify relationships\n  relationships <- IDENTIFY_RELATIONSHIPS(text)\n  RETURN relationships\nEND FUNCTION",
+      "canonical": "FUNCTION CO_REFERENCE_RESOLUTION ACCEPTS(text)\n  # Use a co-reference resolution algorithm to identify relationships\n  relationships <- IDENTIFY_RELATIONSHIPS(text)\n  RETURN relationships\nENDFUNCTION",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  # Use a co-reference resolution algorithm to identify relationships",
+      "canonical": "  COMMENT Use a co-reference resolution algorithm to identify relationships",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  relationships <- IDENTIFY_RELATIONSHIPS(text)",
+      "canonical": "  relationships <- CALL IDENTIFY_RELATIONSHIPS(text)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 1
+}

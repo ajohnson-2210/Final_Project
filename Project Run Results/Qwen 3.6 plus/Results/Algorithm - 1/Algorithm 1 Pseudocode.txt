@@ -1,0 +1,21 @@
+# Anagram Check
+
+INPUT str1, str2
+
+IF length(str1) != length(str2):
+    RETURN FALSE
+
+CREATE map charCounts
+
+FOR each char in str1:
+    charCounts[char]++
+
+FOR each char in str2:
+    charCounts[char]--
+
+FOR each count in charCounts:
+    IF count != 0:
+        RETURN FALSE
+
+RETURN TRUE
+

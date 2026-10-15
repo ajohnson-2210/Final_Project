@@ -1,0 +1,1356 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Algorithm 28 human review</title>
+<style>
+body{font-family:Arial,sans-serif;max-width:1100px;margin:24px auto;padding:0 18px;line-height:1.45;color:#1d1d1f}
+h1,h2,h3{line-height:1.2} .meta,.auto{background:#f4f5f7;padding:10px 12px;border-radius:6px}
+.criterion{border:1px solid #d5d7da;border-radius:8px;padding:16px;margin:16px 0}
+.question{font-size:1.05rem;font-weight:600} fieldset{border:0;padding:8px 0;display:grid;gap:6px}
+label{display:block;margin:10px 0} select,textarea,input[type=text]{font:inherit;max-width:100%;box-sizing:border-box}
+textarea{width:100%;padding:8px} select,input[type=text]{padding:6px}
+pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#fafafa;padding:10px;border:1px solid #eee}
+button{font:inherit;padding:10px 16px;margin:8px 8px 8px 0;cursor:pointer} .notice{color:#5f6368}
+</style>
+</head>
+<body>
+<h1>Algorithm 28 human review</h1>
+<div class="meta">
+<strong>Dataset:</strong> ChatGPT 5.5 ·
+<strong>Source:</strong> Algorithm 28 Pseudocode.txt ·
+<strong>Pipeline:</strong> 4.35 ·
+<strong>Rubric:</strong> 1.1
+</div>
+<p>Review the source and generated artefacts, then independently assess every criterion using the same 0-2/NA scale. The automated assessment is shown as evidence but must not replace reviewer judgement. Automated and human rubric scores are retained side by side; after all sixteen human criteria are completed, the combined rubric score is the equal-weight mean of the automated and human overall rubric percentages.</p>
+<h2>Reviewer</h2>
+<label>Reviewer ID <input id="reviewer_id" type="text"></label>
+<label>Overall reviewer confidence
+<select id="reviewer_confidence"><option value="">Select…</option><option>HIGH</option><option>MODERATE</option><option>LOW</option></select></label>
+<h2>Source sufficiency</h2>
+<section class="criterion">
+<p class="question">Does the original pseudocode contain sufficient explicit information to determine the algorithm&#x27;s behaviour without inventing missing semantics?</p>
+<p><strong>Automated result:</strong> EVALUABLE</p>
+<p><strong>Automated justification:</strong> The available artefacts do not identify unresolved source semantics that require invention.</p>
+<label>Human result <select id="g1_result"><option value="">Select…</option><option>EVALUABLE</option><option>EXPECTED_FAILURE</option><option>REVIEW_REQUIRED</option></select></label>
+<label>Agreement <select id="g1_agreement"><option value="">Select…</option><option>AGREE</option><option>PARTIALLY_AGREE</option><option>DISAGREE</option></select></label>
+<label>Reviewer justification <textarea id="g1_justification" rows="3"></textarea></label>
+</section>
+<h2>Behavioural evidence adequacy</h2>
+<section class="criterion">
+<p class="question">How strong, representative and reproducible is the behavioural evidence supporting the automated behavioural score, and what important behaviour remains untested or non-evaluable?</p>
+<p><strong>Headline classification:</strong> ADEQUATE</p>
+<p><strong>Evidence summary:</strong> This suite evaluates sliding-window maxima for a representative case, k=1, k equal to the array length, and a negative-only array. Invalid window sizes are evaluated separately as semantic-boundary probes. Runtime evidence: 4 of 4 declared test(s) were evaluable and 3 passed.</p>
+<details open><summary>Coverage profile</summary><pre>{
+  &quot;normal_path&quot;: {
+    &quot;label&quot;: &quot;Normal-path coverage&quot;,
+    &quot;status&quot;: &quot;COVERED&quot;,
+    &quot;tests_declared&quot;: 2,
+    &quot;tests_evaluable&quot;: 2,
+    &quot;tests_passed&quot;: 2,
+    &quot;evidence&quot;: &quot;2 NORMAL test(s) declared; 2 evaluable; 2 passed.&quot;
+  },
+  &quot;branch_behaviour&quot;: {
+    &quot;label&quot;: &quot;Branch coverage&quot;,
+    &quot;status&quot;: &quot;NOT_COVERED&quot;,
+    &quot;tests_declared&quot;: 0,
+    &quot;tests_evaluable&quot;: 0,
+    &quot;tests_passed&quot;: 0,
+    &quot;evidence&quot;: &quot;No BRANCH test is declared in the common suite.&quot;
+  },
+  &quot;boundary_behaviour&quot;: {
+    &quot;label&quot;: &quot;Boundary coverage&quot;,
+    &quot;status&quot;: &quot;COVERED&quot;,
+    &quot;tests_declared&quot;: 2,
+    &quot;tests_evaluable&quot;: 1,
+    &quot;tests_passed&quot;: 1,
+    &quot;evidence&quot;: &quot;2 BOUNDARY test(s) declared; 1 evaluable; 1 passed.&quot;
+  },
+  &quot;error_behaviour&quot;: {
+    &quot;label&quot;: &quot;Error-behaviour coverage&quot;,
+    &quot;status&quot;: &quot;NOT_COVERED&quot;,
+    &quot;tests_declared&quot;: 0,
+    &quot;tests_evaluable&quot;: 0,
+    &quot;tests_passed&quot;: 0,
+    &quot;evidence&quot;: &quot;No ERROR_BEHAVIOUR test is declared in the common suite.&quot;
+  },
+  &quot;termination_behaviour&quot;: {
+    &quot;label&quot;: &quot;Termination coverage&quot;,
+    &quot;status&quot;: &quot;NOT_COVERED&quot;,
+    &quot;tests_declared&quot;: 0,
+    &quot;tests_evaluable&quot;: 0,
+    &quot;tests_passed&quot;: 0,
+    &quot;evidence&quot;: &quot;No TERMINATION test is declared in the common suite.&quot;
+  },
+  &quot;state_mutation&quot;: {
+    &quot;label&quot;: &quot;State-mutation coverage&quot;,
+    &quot;status&quot;: &quot;NOT_COVERED&quot;,
+    &quot;tests_declared&quot;: 0,
+    &quot;tests_evaluable&quot;: 0,
+    &quot;tests_passed&quot;: 0,
+    &quot;evidence&quot;: &quot;No STATE_MUTATION test is declared in the common suite.&quot;
+  }
+}</pre></details>
+<details><summary>Strengths</summary><pre>[
+  &quot;The suite provides direct behavioural evidence for normal-path coverage, boundary coverage.&quot;,
+  &quot;3 of 4 evaluable behavioural test(s) passed in this run.&quot;
+]</pre></details>
+<details><summary>Limitations</summary><pre>[
+  &quot;Window sizes &lt;=0 and window sizes larger than the array are outside the valid sliding-window relation and are measured separately as semantic-boundary probes.&quot;,
+  &quot;No direct common-test evidence is declared for: Branch coverage, Error-behaviour coverage, Termination coverage, State-mutation coverage.&quot;
+]</pre></details>
+<p><strong>Coverage basis:</strong> Assessment is based on 4 core Common Test cases plus any separately declared semantic-boundary probes; boundary probes do not contribute to core behavioural accuracy.</p>
+<p><strong>Interpretation:</strong> Interpret core behavioural accuracy as evidence within the frozen semantic contract. Interpret Semantic Boundary Variance separately as descriptive evidence of out-of-domain acceptance.</p>
+<label>Human G2 assessment <select id="g2_result"><option value="">Select…</option><option>ADEQUATE</option><option>PARTIAL</option><option>LIMITED</option><option>NOT_EVALUABLE</option><option>NOT_DECLARED</option></select></label>
+<label>Agreement <select id="g2_agreement"><option value="">Select…</option><option>AGREE</option><option>PARTIALLY_AGREE</option><option>DISAGREE</option></select></label>
+<label>Reviewer evidence comment <textarea id="g2_justification" rows="3"></textarea></label>
+</section>
+<h2>Task-semantic evaluation</h2><section class="criterion"><p>Judge the original model pseudocode against the task-semantic contract. Use the same questions whether automated semantic execution succeeded, failed, or was NOT_EVALUABLE; the automated evidence is supporting evidence and must not replace independent human judgement.</p><details open><summary>Canonical task-semantic contract</summary><pre>{
+  &quot;contract_version&quot;: &quot;1.4&quot;,
+  &quot;contract_source&quot;: &quot;ORIGINAL_TASK_SPECIFICATION&quot;,
+  &quot;task_statement&quot;: &quot;Return the maximum value in every sliding window.&quot;,
+  &quot;inputs&quot;: [
+    {
+      &quot;position&quot;: 1,
+      &quot;name&quot;: &quot;array&quot;,
+      &quot;type&quot;: &quot;ARRAY[NUMBER]&quot;
+    },
+    {
+      &quot;position&quot;: 2,
+      &quot;name&quot;: &quot;window_size&quot;,
+      &quot;type&quot;: &quot;POSITIVE_INTEGER&quot;
+    }
+  ],
+  &quot;result&quot;: {
+    &quot;type&quot;: &quot;ARRAY[NUMBER]&quot;,
+    &quot;canonical_semantics&quot;: &quot;Maximum value from each contiguous sliding window.&quot;
+  },
+  &quot;automation_status&quot;: &quot;AUTOMATED_FUNCTION&quot;,
+  &quot;parameter_names_are_semantically_irrelevant&quot;: true,
+  &quot;derived_parameters_may_be_supplied_by_adapter&quot;: true,
+  &quot;human_review_instruction&quot;: &quot;Judge the original generated pseudocode against this same frozen task-semantic contract, including when automated evaluation is NOT_EVALUABLE.&quot;,
+  &quot;fixture_policy&quot;: &quot;PREEXPERIMENT_FROZEN_INPUTS&quot;,
+  &quot;expectation_policy&quot;: &quot;STATIC_PREEXPERIMENT_EXPECTED_VALUES&quot;,
+  &quot;runtime_oracle_prohibited&quot;: true
+}</pre></details><details><summary>Automated semantic evidence</summary><pre>{
+  &quot;semantic_report_schema_version&quot;: &quot;1.2&quot;,
+  &quot;runtime_expected_value_generation&quot;: false,
+  &quot;program_path&quot;: &quot;C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\ChatGPT 5.5\\Results\\Algorithm - 28\\pipeline_artifacts\\generated_program.py&quot;,
+  &quot;algorithm_id&quot;: 28,
+  &quot;contract_version&quot;: &quot;1.4&quot;,
+  &quot;evaluable_tests&quot;: 3,
+  &quot;passed_tests&quot;: 3,
+  &quot;failed_tests&quot;: 0,
+  &quot;not_evaluable_tests&quot;: 1,
+  &quot;accuracy_percentage&quot;: 100.0,
+  &quot;pre_freeze_validation&quot;: {
+    &quot;declared_cases&quot;: 0,
+    &quot;evaluable_cases&quot;: 0,
+    &quot;passed_cases&quot;: 0,
+    &quot;failed_cases&quot;: 0,
+    &quot;not_evaluable&quot;: 0,
+    &quot;accuracy_percentage&quot;: null,
+    &quot;included_in_core_behavioural_score&quot;: false,
+    &quot;included_in_baseline_calibration&quot;: false,
+    &quot;interpretation&quot;: &quot;Candidate valid-domain coverage expansions retained for pre-freeze baseline validation. Results are descriptive only until explicitly promoted to CORE_BEHAVIOURAL.&quot;
+  },
+  &quot;semantic_boundary&quot;: {
+    &quot;measure&quot;: &quot;SEMANTIC_BOUNDARY_VARIANCE&quot;,
+    &quot;declared_probes&quot;: 2,
+    &quot;evaluable_probes&quot;: 2,
+    &quot;out_of_domain_accepted&quot;: 1,
+    &quot;controlled_rejection&quot;: 0,
+    &quot;incidental_failure&quot;: 1,
+    &quot;not_evaluable&quot;: 0,
+    &quot;variance_percentage&quot;: 50.0,
+    &quot;interpretation&quot;: &quot;Percentage of evaluable out-of-domain probes that the generated implementation accepted and processed. This is a descriptive semantic-domain extension measure and is not included in core behavioural accuracy.&quot;
+  },
+  &quot;results&quot;: [
+    {
+      &quot;name&quot;: &quot;default sliding-window maxima&quot;,
+      &quot;status&quot;: &quot;PASSED&quot;,
+      &quot;expected_semantic_result&quot;: [
+        3,
+        3,
+        -1,
+        5,
+        5,
+        6,
+        7
+      ],
+      &quot;actual_semantic_result&quot;: [
+        3,
+        3,
+        -1,
+        5,
+        5,
+        6,
+        7
+      ],
+      &quot;semantic_match&quot;: true,
+      &quot;reason&quot;: null,
+      &quot;duration_ms&quot;: 101.63,
+      &quot;category&quot;: &quot;NORMAL&quot;,
+      &quot;semantic_feature&quot;: &quot;WINDOW_MAXIMUM_AND_LOOP_TERMINATION&quot;,
+      &quot;fixture_source&quot;: &quot;PREEXPERIMENT_FROZEN_FIXTURE&quot;,
+      &quot;expectation_policy&quot;: &quot;STATIC_FROZEN_VALUE&quot;,
+      &quot;selected_entrypoint&quot;: &quot;unnamed_function&quot;,
+      &quot;invocation_capture&quot;: {
+        &quot;status&quot;: &quot;COMPLETED&quot;,
+        &quot;selected_entrypoint&quot;: &quot;unnamed_function&quot;,
+        &quot;selected_arity&quot;: 2,
+        &quot;prints&quot;: [
+          [
+            3
+          ],
+          [
+            3
+          ],
+          [
+            -1
+          ],
+          [
+            5
+          ],
+          [
+            5
+          ],
+          [
+            6
+          ],
+          [
+            7
+          ]
+        ],
+        &quot;returns&quot;: [
+          null
+        ],
+        &quot;post_arguments&quot;: [
+          [
+            [
+              1,
+              3,
+              -1,
+              -3,
+              5,
+              3,
+              6,
+              7
+            ],
+            2
+          ]
+        ],
+        &quot;shared_values&quot;: {},
+        &quot;errors&quot;: [
+          null
+        ]
+      },
+      &quot;score_stream&quot;: &quot;CORE_BEHAVIOURAL&quot;,
+      &quot;boundary_outcome&quot;: null,
+      &quot;criteria_links&quot;: [
+        &quot;P2&quot;,
+        &quot;P4&quot;
+      ]
+    },
+    {
+      &quot;name&quot;: &quot;window size one&quot;,
+      &quot;status&quot;: &quot;PASSED&quot;,
+      &quot;expected_semantic_result&quot;: [
+        4,
+        -1,
+        7
+      ],
+      &quot;actual_semantic_result&quot;: [
+        4,
+        -1,
+        7
+      ],
+      &quot;semantic_match&quot;: true,
+      &quot;reason&quot;: null,
+      &quot;duration_ms&quot;: 91.513,
+      &quot;category&quot;: &quot;BOUNDARY&quot;,
+      &quot;semantic_feature&quot;: &quot;WINDOW_SIZE_ONE&quot;,
+      &quot;fixture_source&quot;: &quot;PREEXPERIMENT_FROZEN_FIXTURE&quot;,
+      &quot;expectation_policy&quot;: &quot;STATIC_FROZEN_VALUE&quot;,
+      &quot;selected_entrypoint&quot;: &quot;unnamed_function&quot;,
+      &quot;invocation_capture&quot;: {
+        &quot;status&quot;: &quot;COMPLETED&quot;,
+        &quot;selected_entrypoint&quot;: &quot;unnamed_function&quot;,
+        &quot;selected_arity&quot;: 2,
+        &quot;prints&quot;: [
+          [
+            4
+          ],
+          [
+            -1
+          ],
+          [
+            7
+          ]
+        ],
+        &quot;returns&quot;: [
+          null
+        ],
+        &quot;post_arguments&quot;: [
+          [
+            [
+              4,
+              -1,
+              7
+            ],
+            1
+          ]
+        ],
+        &quot;shared_values&quot;: {},
+        &quot;errors&quot;: [
+          null
+        ]
+      },
+      &quot;score_stream&quot;: &quot;CORE_BEHAVIOURAL&quot;,
+      &quot;boundary_outcome&quot;: null,
+      &quot;criteria_links&quot;: [
+        &quot;P2&quot;,
+        &quot;P3&quot;,
+        &quot;P4&quot;
+      ]
+    },
+    {
+      &quot;name&quot;: &quot;window spans full array&quot;,
+      &quot;status&quot;: &quot;NOT_EVALUABLE&quot;,
+      &quot;expected_semantic_result&quot;: [
+        7
+      ],
+      &quot;actual_semantic_result&quot;: null,
+      &quot;semantic_match&quot;: null,
+      &quot;reason&quot;: &quot;The declarative semantic observer could not derive the task result from the invocation evidence.&quot;,
+      &quot;duration_ms&quot;: 89.346,
+      &quot;category&quot;: &quot;BOUNDARY&quot;,
+      &quot;semantic_feature&quot;: &quot;WINDOW_SIZE_ARRAY_LENGTH&quot;,
+      &quot;fixture_source&quot;: &quot;PREEXPERIMENT_FROZEN_FIXTURE&quot;,
+      &quot;expectation_policy&quot;: &quot;STATIC_FROZEN_VALUE&quot;,
+      &quot;selected_entrypoint&quot;: &quot;unnamed_function&quot;,
+      &quot;invocation_capture&quot;: {
+        &quot;status&quot;: &quot;COMPLETED&quot;,
+        &quot;selected_entrypoint&quot;: &quot;unnamed_function&quot;,
+        &quot;selected_arity&quot;: 2,
+        &quot;prints&quot;: [
+          [
+            7
+          ]
+        ],
+        &quot;returns&quot;: [
+          null
+        ],
+        &quot;post_arguments&quot;: [
+          [
+            [
+              4,
+              -1,
+              7
+            ],
+            3
+          ]
+        ],
+        &quot;shared_values&quot;: {},
+        &quot;errors&quot;: [
+          null
+        ]
+      },
+      &quot;score_stream&quot;: &quot;CORE_BEHAVIOURAL&quot;,
+      &quot;boundary_outcome&quot;: null,
+      &quot;criteria_links&quot;: [
+        &quot;P2&quot;,
+        &quot;P3&quot;,
+        &quot;P4&quot;
+      ]
+    },
+    {
+      &quot;name&quot;: &quot;negative-only sliding windows&quot;,
+      &quot;status&quot;: &quot;PASSED&quot;,
+      &quot;expected_semantic_result&quot;: [
+        -2,
+        -2,
+        -1
+      ],
+      &quot;actual_semantic_result&quot;: [
+        -2,
+        -2,
+        -1
+      ],
+      &quot;semantic_match&quot;: true,
+      &quot;reason&quot;: null,
+      &quot;duration_ms&quot;: 87.415,
+      &quot;category&quot;: &quot;NORMAL&quot;,
+      &quot;semantic_feature&quot;: &quot;NEGATIVE_ONLY_WINDOWS&quot;,
+      &quot;fixture_source&quot;: &quot;PREEXPERIMENT_FROZEN_FIXTURE&quot;,
+      &quot;expectation_policy&quot;: &quot;STATIC_FROZEN_VALUE&quot;,
+      &quot;selected_entrypoint&quot;: &quot;unnamed_function&quot;,
+      &quot;invocation_capture&quot;: {
+        &quot;status&quot;: &quot;COMPLETED&quot;,
+        &quot;selected_entrypoint&quot;: &quot;unnamed_function&quot;,
+        &quot;selected_arity&quot;: 2,
+        &quot;prints&quot;: [
+          [
+            -2
+          ],
+          [
+            -2
+          ],
+          [
+            -1
+          ]
+        ],
+        &quot;returns&quot;: [
+          null
+        ],
+        &quot;post_arguments&quot;: [
+          [
+            [
+              -4,
+              -2,
+              -8,
+              -1
+            ],
+            2
+          ]
+        ],
+        &quot;shared_values&quot;: {},
+        &quot;errors&quot;: [
+          null
+        ]
+      },
+      &quot;score_stream&quot;: &quot;CORE_BEHAVIOURAL&quot;,
+      &quot;boundary_outcome&quot;: null,
+      &quot;criteria_links&quot;: [
+        &quot;P2&quot;,
+        &quot;P3&quot;,
+        &quot;P4&quot;
+      ]
+    },
+    {
+      &quot;name&quot;: &quot;zero window size outside positive-window contract&quot;,
+      &quot;status&quot;: &quot;OBSERVED&quot;,
+      &quot;expected_semantic_result&quot;: null,
+      &quot;actual_semantic_result&quot;: {
+        &quot;runtime_errors&quot;: [
+          {
+            &quot;type&quot;: &quot;IndexError&quot;,
+            &quot;message&quot;: &quot;list index out of range&quot;
+          }
+        ]
+      },
+      &quot;semantic_match&quot;: null,
+      &quot;reason&quot;: &quot;Out-of-domain probe did not complete successfully; the runtime failure is recorded descriptively.&quot;,
+      &quot;duration_ms&quot;: 94.296,
+      &quot;category&quot;: &quot;SEMANTIC_BOUNDARY&quot;,
+      &quot;semantic_feature&quot;: &quot;WINDOW_SIZE_ZERO_PROBE&quot;,
+      &quot;fixture_source&quot;: &quot;PREEXPERIMENT_FROZEN_BOUNDARY_PROBE&quot;,
+      &quot;expectation_policy&quot;: &quot;BOUNDARY_OBSERVATION&quot;,
+      &quot;selected_entrypoint&quot;: &quot;unnamed_function&quot;,
+      &quot;invocation_capture&quot;: {
+        &quot;status&quot;: &quot;ERROR&quot;,
+        &quot;selected_entrypoint&quot;: &quot;unnamed_function&quot;,
+        &quot;selected_arity&quot;: 2,
+        &quot;prints&quot;: [
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ]
+        ],
+        &quot;returns&quot;: [
+          null
+        ],
+        &quot;post_arguments&quot;: [
+          [
+            [
+              1,
+              2,
+              3
+            ],
+            0
+          ]
+        ],
+        &quot;shared_values&quot;: {},
+        &quot;errors&quot;: [
+          {
+            &quot;type&quot;: &quot;IndexError&quot;,
+            &quot;message&quot;: &quot;list index out of range&quot;
+          }
+        ]
+      },
+      &quot;score_stream&quot;: &quot;SEMANTIC_BOUNDARY_PROBE&quot;,
+      &quot;boundary_outcome&quot;: &quot;INCIDENTAL_FAILURE&quot;,
+      &quot;criteria_links&quot;: []
+    },
+    {
+      &quot;name&quot;: &quot;window larger than array&quot;,
+      &quot;status&quot;: &quot;OBSERVED&quot;,
+      &quot;expected_semantic_result&quot;: null,
+      &quot;actual_semantic_result&quot;: {
+        &quot;returns&quot;: [
+          null
+        ],
+        &quot;prints&quot;: [],
+        &quot;mutated_arguments&quot;: null
+      },
+      &quot;semantic_match&quot;: null,
+      &quot;reason&quot;: &quot;The generated implementation accepted and processed an input outside the frozen semantic contract.&quot;,
+      &quot;duration_ms&quot;: 89.709,
+      &quot;category&quot;: &quot;SEMANTIC_BOUNDARY&quot;,
+      &quot;semantic_feature&quot;: &quot;WINDOW_SIZE_TOO_LARGE_PROBE&quot;,
+      &quot;fixture_source&quot;: &quot;PREEXPERIMENT_FROZEN_BOUNDARY_PROBE&quot;,
+      &quot;expectation_policy&quot;: &quot;BOUNDARY_OBSERVATION&quot;,
+      &quot;selected_entrypoint&quot;: &quot;unnamed_function&quot;,
+      &quot;invocation_capture&quot;: {
+        &quot;status&quot;: &quot;COMPLETED&quot;,
+        &quot;selected_entrypoint&quot;: &quot;unnamed_function&quot;,
+        &quot;selected_arity&quot;: 2,
+        &quot;prints&quot;: [],
+        &quot;returns&quot;: [
+          null
+        ],
+        &quot;post_arguments&quot;: [
+          [
+            [
+              1,
+              2,
+              3
+            ],
+            4
+          ]
+        ],
+        &quot;shared_values&quot;: {},
+        &quot;errors&quot;: [
+          null
+        ]
+      },
+      &quot;score_stream&quot;: &quot;SEMANTIC_BOUNDARY_PROBE&quot;,
+      &quot;boundary_outcome&quot;: &quot;OUT_OF_DOMAIN_ACCEPTED&quot;,
+      &quot;criteria_links&quot;: []
+    }
+  ]
+}</pre></details><label>Are the required task inputs represented? <select id="sem_inputs"><option value="">Select…</option><option>YES</option><option>PARTIAL</option><option>NO</option><option>UNABLE_TO_DETERMINE</option></select></label><label>Core algorithm logic <select id="sem_logic"><option value="">Select…</option><option>CORRECT</option><option>MOSTLY_CORRECT</option><option>PARTIAL</option><option>INCORRECT</option><option>NOT_DETERMINABLE</option></select></label><label>Are the required output semantics represented? <select id="sem_output"><option value="">Select…</option><option>YES</option><option>PARTIAL</option><option>NO</option><option>UNABLE_TO_DETERMINE</option></select></label><label>Edge/domain handling <select id="sem_edge"><option value="">Select…</option><option>YES</option><option>PARTIAL</option><option>NO</option><option>NOT_APPLICABLE</option><option>UNABLE_TO_DETERMINE</option></select></label><label>Overall semantic assessment <select id="sem_overall"><option value="">Select…</option><option>CORRECT</option><option>MOSTLY_CORRECT</option><option>PARTIAL</option><option>INCORRECT</option><option>NOT_DETERMINABLE</option></select></label><label>Reviewer semantic justification <textarea id="sem_justification" rows="4"></textarea></label></section>
+
+<h2>Stage criteria</h2>
+
+    <section class="criterion" data-index="0" data-criterion-id="C1">
+      <h3>C1 · Pseudocode Canonicalisation</h3>
+      <p class="question">Does the canonical pseudocode conform to the AJ grammar sufficiently for deterministic interpretation by the next pipeline stage?</p>
+      <div class="auto"><strong>Automated assessment:</strong> 2/2 · PASS · confidence HIGH</div>
+      <p><strong>Automated justification:</strong> Canonical AJ completed syntax/static validation and produced an AST.</p>
+      <details><summary>Evidence</summary><pre>[
+  {
+    &quot;artifact&quot;: &quot;parser_report.json&quot;,
+    &quot;observed_value&quot;: &quot;SUCCESS&quot;
+  }
+]</pre></details>
+      <fieldset>
+        <legend>Human score</legend>
+        <label><input type="radio" name="criterion_0_score" value="2"> 2 — fully satisfied</label>
+        <label><input type="radio" name="criterion_0_score" value="1"> 1 — partially satisfied / uncertain</label>
+        <label><input type="radio" name="criterion_0_score" value="0"> 0 — material semantic discrepancy</label>
+        <label><input type="radio" name="criterion_0_score" value="NA"> N/A — not legitimately assessable</label>
+      </fieldset>
+      <label>Agreement with automated score
+        <select name="criterion_0_agreement">
+          <option value="">Select…</option>
+          <option>AGREE</option><option>PARTIALLY_AGREE</option><option>DISAGREE</option>
+        </select>
+      </label>
+      <label>Semantic issue identified?
+        <select name="criterion_0_semantic">
+          <option value="">Select…</option><option value="false">No</option><option value="true">Yes</option>
+        </select>
+      </label>
+      <label>Reviewer justification
+        <textarea name="criterion_0_justification" rows="3"></textarea>
+      </label>
+    </section>
+    
+
+    <section class="criterion" data-index="1" data-criterion-id="C2">
+      <h3>C2 · Pseudocode Canonicalisation</h3>
+      <p class="question">Are all semantically relevant operations from the source pseudocode preserved in the canonical representation with equivalent meaning?</p>
+      <div class="auto"><strong>Automated assessment:</strong> 2/2 · PASS · confidence HIGH</div>
+      <p><strong>Automated justification:</strong> All logged transformations are from audited evidence categories and none declares a semantic change.</p>
+      <details><summary>Evidence</summary><pre>[
+  {
+    &quot;artifact&quot;: &quot;pseudocode_processing_report.json&quot;,
+    &quot;transformation_count&quot;: 9,
+    &quot;semantic_change_count&quot;: 0,
+    &quot;uncertain_transformation_count&quot;: 0,
+    &quot;rule_families&quot;: [
+      &quot;SOURCE_NORMALISATION&quot;
+    ]
+  }
+]</pre></details>
+      <fieldset>
+        <legend>Human score</legend>
+        <label><input type="radio" name="criterion_1_score" value="2"> 2 — fully satisfied</label>
+        <label><input type="radio" name="criterion_1_score" value="1"> 1 — partially satisfied / uncertain</label>
+        <label><input type="radio" name="criterion_1_score" value="0"> 0 — material semantic discrepancy</label>
+        <label><input type="radio" name="criterion_1_score" value="NA"> N/A — not legitimately assessable</label>
+      </fieldset>
+      <label>Agreement with automated score
+        <select name="criterion_1_agreement">
+          <option value="">Select…</option>
+          <option>AGREE</option><option>PARTIALLY_AGREE</option><option>DISAGREE</option>
+        </select>
+      </label>
+      <label>Semantic issue identified?
+        <select name="criterion_1_semantic">
+          <option value="">Select…</option><option value="false">No</option><option value="true">Yes</option>
+        </select>
+      </label>
+      <label>Reviewer justification
+        <textarea name="criterion_1_justification" rows="3"></textarea>
+      </label>
+    </section>
+    
+
+    <section class="criterion" data-index="2" data-criterion-id="C3">
+      <h3>C3 · Pseudocode Canonicalisation</h3>
+      <p class="question">Are conditions, branches, loop bounds, iteration behaviour, state changes and termination behaviour preserved from the source?</p>
+      <div class="auto"><strong>Automated assessment:</strong> 2/2 · PASS · confidence HIGH</div>
+      <p><strong>Automated justification:</strong> No logged transformation declares a change to control/state semantics; all transformations have accepted audit evidence.</p>
+      <details><summary>Evidence</summary><pre>[
+  {
+    &quot;artifact&quot;: &quot;pseudocode_processing_report.json&quot;,
+    &quot;transformation_count&quot;: 9,
+    &quot;semantic_change_count&quot;: 0,
+    &quot;uncertain_transformation_count&quot;: 0,
+    &quot;rule_families&quot;: [
+      &quot;SOURCE_NORMALISATION&quot;
+    ]
+  }
+]</pre></details>
+      <fieldset>
+        <legend>Human score</legend>
+        <label><input type="radio" name="criterion_2_score" value="2"> 2 — fully satisfied</label>
+        <label><input type="radio" name="criterion_2_score" value="1"> 1 — partially satisfied / uncertain</label>
+        <label><input type="radio" name="criterion_2_score" value="0"> 0 — material semantic discrepancy</label>
+        <label><input type="radio" name="criterion_2_score" value="NA"> N/A — not legitimately assessable</label>
+      </fieldset>
+      <label>Agreement with automated score
+        <select name="criterion_2_agreement">
+          <option value="">Select…</option>
+          <option>AGREE</option><option>PARTIALLY_AGREE</option><option>DISAGREE</option>
+        </select>
+      </label>
+      <label>Semantic issue identified?
+        <select name="criterion_2_semantic">
+          <option value="">Select…</option><option value="false">No</option><option value="true">Yes</option>
+        </select>
+      </label>
+      <label>Reviewer justification
+        <textarea name="criterion_2_justification" rows="3"></textarea>
+      </label>
+    </section>
+    
+
+    <section class="criterion" data-index="3" data-criterion-id="C4">
+      <h3>C4 · Pseudocode Canonicalisation</h3>
+      <p class="question">Has canonicalisation avoided introducing algorithmic behaviour that was not explicitly supported by the source?</p>
+      <div class="auto"><strong>Automated assessment:</strong> 2/2 · PASS · confidence HIGH</div>
+      <p><strong>Automated justification:</strong> No transformation is marked as semantic-changing and all transformations use accepted audit-evidence categories.</p>
+      <details><summary>Evidence</summary><pre>[
+  {
+    &quot;artifact&quot;: &quot;pseudocode_processing_report.json&quot;,
+    &quot;transformation_count&quot;: 9,
+    &quot;semantic_change_count&quot;: 0,
+    &quot;uncertain_transformation_count&quot;: 0,
+    &quot;rule_families&quot;: [
+      &quot;SOURCE_NORMALISATION&quot;
+    ]
+  }
+]</pre></details>
+      <fieldset>
+        <legend>Human score</legend>
+        <label><input type="radio" name="criterion_3_score" value="2"> 2 — fully satisfied</label>
+        <label><input type="radio" name="criterion_3_score" value="1"> 1 — partially satisfied / uncertain</label>
+        <label><input type="radio" name="criterion_3_score" value="0"> 0 — material semantic discrepancy</label>
+        <label><input type="radio" name="criterion_3_score" value="NA"> N/A — not legitimately assessable</label>
+      </fieldset>
+      <label>Agreement with automated score
+        <select name="criterion_3_agreement">
+          <option value="">Select…</option>
+          <option>AGREE</option><option>PARTIALLY_AGREE</option><option>DISAGREE</option>
+        </select>
+      </label>
+      <label>Semantic issue identified?
+        <select name="criterion_3_semantic">
+          <option value="">Select…</option><option value="false">No</option><option value="true">Yes</option>
+        </select>
+      </label>
+      <label>Reviewer justification
+        <textarea name="criterion_3_justification" rows="3"></textarea>
+      </label>
+    </section>
+    
+
+    <section class="criterion" data-index="4" data-criterion-id="A1">
+      <h3>A1 · AST Semantic Alignment</h3>
+      <p class="question">Does every semantically relevant construct in the canonical pseudocode have an appropriate AST representation without missing or spurious executable nodes?</p>
+      <div class="auto"><strong>Automated assessment:</strong> 2/2 · PASS · confidence HIGH</div>
+      <p><strong>Automated justification:</strong> The parser produced a complete adjacency AST after syntax and static-semantic analysis.</p>
+      <details><summary>Evidence</summary><pre>[
+  {
+    &quot;artifact&quot;: &quot;parser_report.json&quot;,
+    &quot;parser_success&quot;: true,
+    &quot;static_semantic_status&quot;: &quot;SUCCESS&quot;,
+    &quot;warning_count&quot;: 0
+  },
+  {
+    &quot;artifact&quot;: &quot;ast.json&quot;,
+    &quot;node_count&quot;: 45,
+    &quot;operator_multiset&quot;: {
+      &quot;+&quot;: 3,
+      &quot;-&quot;: 2,
+      &quot;&gt;&quot;: 1
+    }
+  }
+]</pre></details>
+      <fieldset>
+        <legend>Human score</legend>
+        <label><input type="radio" name="criterion_4_score" value="2"> 2 — fully satisfied</label>
+        <label><input type="radio" name="criterion_4_score" value="1"> 1 — partially satisfied / uncertain</label>
+        <label><input type="radio" name="criterion_4_score" value="0"> 0 — material semantic discrepancy</label>
+        <label><input type="radio" name="criterion_4_score" value="NA"> N/A — not legitimately assessable</label>
+      </fieldset>
+      <label>Agreement with automated score
+        <select name="criterion_4_agreement">
+          <option value="">Select…</option>
+          <option>AGREE</option><option>PARTIALLY_AGREE</option><option>DISAGREE</option>
+        </select>
+      </label>
+      <label>Semantic issue identified?
+        <select name="criterion_4_semantic">
+          <option value="">Select…</option><option value="false">No</option><option value="true">Yes</option>
+        </select>
+      </label>
+      <label>Reviewer justification
+        <textarea name="criterion_4_justification" rows="3"></textarea>
+      </label>
+    </section>
+    
+
+    <section class="criterion" data-index="5" data-criterion-id="A2">
+      <h3>A2 · AST Semantic Alignment</h3>
+      <p class="question">Does the AST correctly represent the operands, operators, literals, indexing, collection access and call relationships of the canonical pseudocode?</p>
+      <div class="auto"><strong>Automated assessment:</strong> 2/2 · PASS · confidence MEDIUM</div>
+      <p><strong>Automated justification:</strong> Operator/literal relationships were accepted by syntax and static-semantic analysis. No semantic warnings were reported.</p>
+      <details><summary>Evidence</summary><pre>[
+  {
+    &quot;artifact&quot;: &quot;parser_report.json&quot;,
+    &quot;parser_success&quot;: true,
+    &quot;static_semantic_status&quot;: &quot;SUCCESS&quot;,
+    &quot;warning_count&quot;: 0
+  },
+  {
+    &quot;artifact&quot;: &quot;ast.json&quot;,
+    &quot;node_count&quot;: 45,
+    &quot;operator_multiset&quot;: {
+      &quot;+&quot;: 3,
+      &quot;-&quot;: 2,
+      &quot;&gt;&quot;: 1
+    }
+  }
+]</pre></details>
+      <fieldset>
+        <legend>Human score</legend>
+        <label><input type="radio" name="criterion_5_score" value="2"> 2 — fully satisfied</label>
+        <label><input type="radio" name="criterion_5_score" value="1"> 1 — partially satisfied / uncertain</label>
+        <label><input type="radio" name="criterion_5_score" value="0"> 0 — material semantic discrepancy</label>
+        <label><input type="radio" name="criterion_5_score" value="NA"> N/A — not legitimately assessable</label>
+      </fieldset>
+      <label>Agreement with automated score
+        <select name="criterion_5_agreement">
+          <option value="">Select…</option>
+          <option>AGREE</option><option>PARTIALLY_AGREE</option><option>DISAGREE</option>
+        </select>
+      </label>
+      <label>Semantic issue identified?
+        <select name="criterion_5_semantic">
+          <option value="">Select…</option><option value="false">No</option><option value="true">Yes</option>
+        </select>
+      </label>
+      <label>Reviewer justification
+        <textarea name="criterion_5_justification" rows="3"></textarea>
+      </label>
+    </section>
+    
+
+    <section class="criterion" data-index="6" data-criterion-id="A3">
+      <h3>A3 · AST Semantic Alignment</h3>
+      <p class="question">Are branch relationships, loop bodies, returns, loop-control operations, variable scope and nested declarations represented in the correct structural context?</p>
+      <div class="auto"><strong>Automated assessment:</strong> 2/2 · PASS · confidence MEDIUM</div>
+      <p><strong>Automated justification:</strong> Control/scope relationships passed parser static-semantic analysis. No semantic warnings were reported.</p>
+      <details><summary>Evidence</summary><pre>[
+  {
+    &quot;artifact&quot;: &quot;parser_report.json&quot;,
+    &quot;parser_success&quot;: true,
+    &quot;static_semantic_status&quot;: &quot;SUCCESS&quot;,
+    &quot;warning_count&quot;: 0
+  },
+  {
+    &quot;artifact&quot;: &quot;ast.json&quot;,
+    &quot;node_count&quot;: 45,
+    &quot;operator_multiset&quot;: {
+      &quot;+&quot;: 3,
+      &quot;-&quot;: 2,
+      &quot;&gt;&quot;: 1
+    }
+  }
+]</pre></details>
+      <fieldset>
+        <legend>Human score</legend>
+        <label><input type="radio" name="criterion_6_score" value="2"> 2 — fully satisfied</label>
+        <label><input type="radio" name="criterion_6_score" value="1"> 1 — partially satisfied / uncertain</label>
+        <label><input type="radio" name="criterion_6_score" value="0"> 0 — material semantic discrepancy</label>
+        <label><input type="radio" name="criterion_6_score" value="NA"> N/A — not legitimately assessable</label>
+      </fieldset>
+      <label>Agreement with automated score
+        <select name="criterion_6_agreement">
+          <option value="">Select…</option>
+          <option>AGREE</option><option>PARTIALLY_AGREE</option><option>DISAGREE</option>
+        </select>
+      </label>
+      <label>Semantic issue identified?
+        <select name="criterion_6_semantic">
+          <option value="">Select…</option><option value="false">No</option><option value="true">Yes</option>
+        </select>
+      </label>
+      <label>Reviewer justification
+        <textarea name="criterion_6_justification" rows="3"></textarea>
+      </label>
+    </section>
+    
+
+    <section class="criterion" data-index="7" data-criterion-id="A4">
+      <h3>A4 · AST Semantic Alignment</h3>
+      <p class="question">If the AST were interpreted directly, would it permit the same observable algorithmic behaviour as the canonical pseudocode?</p>
+      <div class="auto"><strong>Automated assessment:</strong> 2/2 · PASS · confidence MEDIUM</div>
+      <p><strong>Automated justification:</strong> The canonical program was accepted as a semantically valid AST by the parser. This automated judgement is retained for human verification rather than treated as an independent proof.</p>
+      <details><summary>Evidence</summary><pre>[
+  {
+    &quot;artifact&quot;: &quot;parser_report.json&quot;,
+    &quot;parser_success&quot;: true,
+    &quot;static_semantic_status&quot;: &quot;SUCCESS&quot;,
+    &quot;warning_count&quot;: 0
+  },
+  {
+    &quot;artifact&quot;: &quot;ast.json&quot;,
+    &quot;node_count&quot;: 45,
+    &quot;operator_multiset&quot;: {
+      &quot;+&quot;: 3,
+      &quot;-&quot;: 2,
+      &quot;&gt;&quot;: 1
+    }
+  }
+]</pre></details>
+      <fieldset>
+        <legend>Human score</legend>
+        <label><input type="radio" name="criterion_7_score" value="2"> 2 — fully satisfied</label>
+        <label><input type="radio" name="criterion_7_score" value="1"> 1 — partially satisfied / uncertain</label>
+        <label><input type="radio" name="criterion_7_score" value="0"> 0 — material semantic discrepancy</label>
+        <label><input type="radio" name="criterion_7_score" value="NA"> N/A — not legitimately assessable</label>
+      </fieldset>
+      <label>Agreement with automated score
+        <select name="criterion_7_agreement">
+          <option value="">Select…</option>
+          <option>AGREE</option><option>PARTIALLY_AGREE</option><option>DISAGREE</option>
+        </select>
+      </label>
+      <label>Semantic issue identified?
+        <select name="criterion_7_semantic">
+          <option value="">Select…</option><option value="false">No</option><option value="true">Yes</option>
+        </select>
+      </label>
+      <label>Reviewer justification
+        <textarea name="criterion_7_justification" rows="3"></textarea>
+      </label>
+    </section>
+    
+
+    <section class="criterion" data-index="8" data-criterion-id="F1">
+      <h3>F1 · Flow Diagram Logical Structure</h3>
+      <p class="question">Are all semantically relevant actions, decisions, entry/exit points and returns represented in the flow diagram?</p>
+      <div class="auto"><strong>Automated assessment:</strong> 2/2 · PASS · confidence HIGH</div>
+      <p><strong>Automated justification:</strong> Every executable AST construct has a corresponding visual flow node count.</p>
+      <details><summary>Evidence</summary><pre>[
+  {
+    &quot;artifact&quot;: &quot;flow_diagram.json&quot;,
+    &quot;expected_executable_ast_counts&quot;: {
+      &quot;AssignmentNode&quot;: 2,
+      &quot;ForRangeNode&quot;: 2,
+      &quot;FunctionNode&quot;: 1,
+      &quot;IfNode&quot;: 1,
+      &quot;OutputNode&quot;: 1
+    },
+    &quot;visual_flow_ast_counts&quot;: {
+      &quot;AssignmentNode&quot;: 2,
+      &quot;ForRangeNode&quot;: 2,
+      &quot;FunctionNode&quot;: 1,
+      &quot;IfNode&quot;: 1,
+      &quot;OutputNode&quot;: 1
+    },
+    &quot;graph_validation&quot;: {
+      &quot;valid&quot;: true,
+      &quot;issues&quot;: [],
+      &quot;warnings&quot;: [],
+      &quot;node_count&quot;: 9,
+      &quot;edge_count&quot;: 11,
+      &quot;decision_node_count&quot;: 3,
+      &quot;loop_decision_count&quot;: 2,
+      &quot;loop_back_edge_count&quot;: 3,
+      &quot;unreachable_nodes&quot;: []
+    }
+  },
+  {
+    &quot;artifact&quot;: &quot;ast.json + flow_diagram.json:structured_program&quot;,
+    &quot;signature_comparison&quot;: {
+      &quot;equivalent&quot;: true,
+      &quot;review_required&quot;: false,
+      &quot;differences&quot;: []
+    }
+  }
+]</pre></details>
+      <fieldset>
+        <legend>Human score</legend>
+        <label><input type="radio" name="criterion_8_score" value="2"> 2 — fully satisfied</label>
+        <label><input type="radio" name="criterion_8_score" value="1"> 1 — partially satisfied / uncertain</label>
+        <label><input type="radio" name="criterion_8_score" value="0"> 0 — material semantic discrepancy</label>
+        <label><input type="radio" name="criterion_8_score" value="NA"> N/A — not legitimately assessable</label>
+      </fieldset>
+      <label>Agreement with automated score
+        <select name="criterion_8_agreement">
+          <option value="">Select…</option>
+          <option>AGREE</option><option>PARTIALLY_AGREE</option><option>DISAGREE</option>
+        </select>
+      </label>
+      <label>Semantic issue identified?
+        <select name="criterion_8_semantic">
+          <option value="">Select…</option><option value="false">No</option><option value="true">Yes</option>
+        </select>
+      </label>
+      <label>Reviewer justification
+        <textarea name="criterion_8_justification" rows="3"></textarea>
+      </label>
+    </section>
+    
+
+    <section class="criterion" data-index="9" data-criterion-id="F2">
+      <h3>F2 · Flow Diagram Logical Structure</h3>
+      <p class="question">Do the diagram connections correctly represent execution sequence, branch destinations, loop-back edges and exit paths?</p>
+      <div class="auto"><strong>Automated assessment:</strong> 2/2 · PASS · confidence HIGH</div>
+      <p><strong>Automated justification:</strong> Flow graph entry/exit, edge references, decision out-degree and loop routing invariants passed.</p>
+      <details><summary>Evidence</summary><pre>[
+  {
+    &quot;artifact&quot;: &quot;flow_diagram.json&quot;,
+    &quot;expected_executable_ast_counts&quot;: {
+      &quot;AssignmentNode&quot;: 2,
+      &quot;ForRangeNode&quot;: 2,
+      &quot;FunctionNode&quot;: 1,
+      &quot;IfNode&quot;: 1,
+      &quot;OutputNode&quot;: 1
+    },
+    &quot;visual_flow_ast_counts&quot;: {
+      &quot;AssignmentNode&quot;: 2,
+      &quot;ForRangeNode&quot;: 2,
+      &quot;FunctionNode&quot;: 1,
+      &quot;IfNode&quot;: 1,
+      &quot;OutputNode&quot;: 1
+    },
+    &quot;graph_validation&quot;: {
+      &quot;valid&quot;: true,
+      &quot;issues&quot;: [],
+      &quot;warnings&quot;: [],
+      &quot;node_count&quot;: 9,
+      &quot;edge_count&quot;: 11,
+      &quot;decision_node_count&quot;: 3,
+      &quot;loop_decision_count&quot;: 2,
+      &quot;loop_back_edge_count&quot;: 3,
+      &quot;unreachable_nodes&quot;: []
+    }
+  },
+  {
+    &quot;artifact&quot;: &quot;ast.json + flow_diagram.json:structured_program&quot;,
+    &quot;signature_comparison&quot;: {
+      &quot;equivalent&quot;: true,
+      &quot;review_required&quot;: false,
+      &quot;differences&quot;: []
+    }
+  }
+]</pre></details>
+      <fieldset>
+        <legend>Human score</legend>
+        <label><input type="radio" name="criterion_9_score" value="2"> 2 — fully satisfied</label>
+        <label><input type="radio" name="criterion_9_score" value="1"> 1 — partially satisfied / uncertain</label>
+        <label><input type="radio" name="criterion_9_score" value="0"> 0 — material semantic discrepancy</label>
+        <label><input type="radio" name="criterion_9_score" value="NA"> N/A — not legitimately assessable</label>
+      </fieldset>
+      <label>Agreement with automated score
+        <select name="criterion_9_agreement">
+          <option value="">Select…</option>
+          <option>AGREE</option><option>PARTIALLY_AGREE</option><option>DISAGREE</option>
+        </select>
+      </label>
+      <label>Semantic issue identified?
+        <select name="criterion_9_semantic">
+          <option value="">Select…</option><option value="false">No</option><option value="true">Yes</option>
+        </select>
+      </label>
+      <label>Reviewer justification
+        <textarea name="criterion_9_justification" rows="3"></textarea>
+      </label>
+    </section>
+    
+
+    <section class="criterion" data-index="10" data-criterion-id="F3">
+      <h3>F3 · Flow Diagram Logical Structure</h3>
+      <p class="question">For every meaningful execution path represented by the AST, is there a corresponding path through the flow diagram without additional semantically unsupported paths?</p>
+      <div class="auto"><strong>Automated assessment:</strong> 2/2 · PASS · confidence HIGH</div>
+      <p><strong>Automated justification:</strong> The flow structured-program signature exactly matches the AST and graph invariants pass.</p>
+      <details><summary>Evidence</summary><pre>[
+  {
+    &quot;artifact&quot;: &quot;flow_diagram.json&quot;,
+    &quot;expected_executable_ast_counts&quot;: {
+      &quot;AssignmentNode&quot;: 2,
+      &quot;ForRangeNode&quot;: 2,
+      &quot;FunctionNode&quot;: 1,
+      &quot;IfNode&quot;: 1,
+      &quot;OutputNode&quot;: 1
+    },
+    &quot;visual_flow_ast_counts&quot;: {
+      &quot;AssignmentNode&quot;: 2,
+      &quot;ForRangeNode&quot;: 2,
+      &quot;FunctionNode&quot;: 1,
+      &quot;IfNode&quot;: 1,
+      &quot;OutputNode&quot;: 1
+    },
+    &quot;graph_validation&quot;: {
+      &quot;valid&quot;: true,
+      &quot;issues&quot;: [],
+      &quot;warnings&quot;: [],
+      &quot;node_count&quot;: 9,
+      &quot;edge_count&quot;: 11,
+      &quot;decision_node_count&quot;: 3,
+      &quot;loop_decision_count&quot;: 2,
+      &quot;loop_back_edge_count&quot;: 3,
+      &quot;unreachable_nodes&quot;: []
+    }
+  },
+  {
+    &quot;artifact&quot;: &quot;ast.json + flow_diagram.json:structured_program&quot;,
+    &quot;signature_comparison&quot;: {
+      &quot;equivalent&quot;: true,
+      &quot;review_required&quot;: false,
+      &quot;differences&quot;: []
+    }
+  }
+]</pre></details>
+      <fieldset>
+        <legend>Human score</legend>
+        <label><input type="radio" name="criterion_10_score" value="2"> 2 — fully satisfied</label>
+        <label><input type="radio" name="criterion_10_score" value="1"> 1 — partially satisfied / uncertain</label>
+        <label><input type="radio" name="criterion_10_score" value="0"> 0 — material semantic discrepancy</label>
+        <label><input type="radio" name="criterion_10_score" value="NA"> N/A — not legitimately assessable</label>
+      </fieldset>
+      <label>Agreement with automated score
+        <select name="criterion_10_agreement">
+          <option value="">Select…</option>
+          <option>AGREE</option><option>PARTIALLY_AGREE</option><option>DISAGREE</option>
+        </select>
+      </label>
+      <label>Semantic issue identified?
+        <select name="criterion_10_semantic">
+          <option value="">Select…</option><option value="false">No</option><option value="true">Yes</option>
+        </select>
+      </label>
+      <label>Reviewer justification
+        <textarea name="criterion_10_justification" rows="3"></textarea>
+      </label>
+    </section>
+    
+
+    <section class="criterion" data-index="11" data-criterion-id="F4">
+      <h3>F4 · Flow Diagram Logical Structure</h3>
+      <p class="question">Do decision conditions, TRUE/FALSE routing, loop-entry conditions and loop-termination behaviour preserve the logic represented by the AST?</p>
+      <div class="auto"><strong>Automated assessment:</strong> 2/2 · PASS · confidence HIGH</div>
+      <p><strong>Automated justification:</strong> Structured AST contains 3 control decision(s); flow graph contains 3 decision node(s). Decision routing invariants passed.</p>
+      <details><summary>Evidence</summary><pre>[
+  {
+    &quot;artifact&quot;: &quot;flow_diagram.json&quot;,
+    &quot;expected_executable_ast_counts&quot;: {
+      &quot;AssignmentNode&quot;: 2,
+      &quot;ForRangeNode&quot;: 2,
+      &quot;FunctionNode&quot;: 1,
+      &quot;IfNode&quot;: 1,
+      &quot;OutputNode&quot;: 1
+    },
+    &quot;visual_flow_ast_counts&quot;: {
+      &quot;AssignmentNode&quot;: 2,
+      &quot;ForRangeNode&quot;: 2,
+      &quot;FunctionNode&quot;: 1,
+      &quot;IfNode&quot;: 1,
+      &quot;OutputNode&quot;: 1
+    },
+    &quot;graph_validation&quot;: {
+      &quot;valid&quot;: true,
+      &quot;issues&quot;: [],
+      &quot;warnings&quot;: [],
+      &quot;node_count&quot;: 9,
+      &quot;edge_count&quot;: 11,
+      &quot;decision_node_count&quot;: 3,
+      &quot;loop_decision_count&quot;: 2,
+      &quot;loop_back_edge_count&quot;: 3,
+      &quot;unreachable_nodes&quot;: []
+    }
+  },
+  {
+    &quot;artifact&quot;: &quot;ast.json + flow_diagram.json:structured_program&quot;,
+    &quot;signature_comparison&quot;: {
+      &quot;equivalent&quot;: true,
+      &quot;review_required&quot;: false,
+      &quot;differences&quot;: []
+    }
+  }
+]</pre></details>
+      <fieldset>
+        <legend>Human score</legend>
+        <label><input type="radio" name="criterion_11_score" value="2"> 2 — fully satisfied</label>
+        <label><input type="radio" name="criterion_11_score" value="1"> 1 — partially satisfied / uncertain</label>
+        <label><input type="radio" name="criterion_11_score" value="0"> 0 — material semantic discrepancy</label>
+        <label><input type="radio" name="criterion_11_score" value="NA"> N/A — not legitimately assessable</label>
+      </fieldset>
+      <label>Agreement with automated score
+        <select name="criterion_11_agreement">
+          <option value="">Select…</option>
+          <option>AGREE</option><option>PARTIALLY_AGREE</option><option>DISAGREE</option>
+        </select>
+      </label>
+      <label>Semantic issue identified?
+        <select name="criterion_11_semantic">
+          <option value="">Select…</option><option value="false">No</option><option value="true">Yes</option>
+        </select>
+      </label>
+      <label>Reviewer justification
+        <textarea name="criterion_11_justification" rows="3"></textarea>
+      </label>
+    </section>
+    
+
+    <section class="criterion" data-index="12" data-criterion-id="P1">
+      <h3>P1 · Generated Python Correctness</h3>
+      <p class="question">Is the generated Python syntactically valid and executable for inputs valid under the source algorithm&#x27;s assumptions?</p>
+      <div class="auto"><strong>Automated assessment:</strong> 2/2 · PASS · confidence HIGH</div>
+      <p><strong>Automated justification:</strong> Python source was generated and syntax-validated by the compiler.</p>
+      <details><summary>Evidence</summary><pre>[
+  {
+    &quot;artifact&quot;: &quot;compilation_report.json&quot;,
+    &quot;status&quot;: &quot;SUCCESS&quot;
+  }
+]</pre></details>
+      <fieldset>
+        <legend>Human score</legend>
+        <label><input type="radio" name="criterion_12_score" value="2"> 2 — fully satisfied</label>
+        <label><input type="radio" name="criterion_12_score" value="1"> 1 — partially satisfied / uncertain</label>
+        <label><input type="radio" name="criterion_12_score" value="0"> 0 — material semantic discrepancy</label>
+        <label><input type="radio" name="criterion_12_score" value="NA"> N/A — not legitimately assessable</label>
+      </fieldset>
+      <label>Agreement with automated score
+        <select name="criterion_12_agreement">
+          <option value="">Select…</option>
+          <option>AGREE</option><option>PARTIALLY_AGREE</option><option>DISAGREE</option>
+        </select>
+      </label>
+      <label>Semantic issue identified?
+        <select name="criterion_12_semantic">
+          <option value="">Select…</option><option value="false">No</option><option value="true">Yes</option>
+        </select>
+      </label>
+      <label>Reviewer justification
+        <textarea name="criterion_12_justification" rows="3"></textarea>
+      </label>
+    </section>
+    
+
+    <section class="criterion" data-index="13" data-criterion-id="P2">
+      <h3>P2 · Generated Python Correctness</h3>
+      <p class="question">Does the generated Python produce the expected outputs and observable state changes across the predefined behavioural tests?</p>
+      <div class="auto"><strong>Automated assessment:</strong> 2/2 · PASS · confidence HIGH</div>
+      <p><strong>Automated justification:</strong> Generated Python passed 3 of 3 task-semantic tests (100.00%).</p>
+      <details><summary>Evidence</summary><pre>[
+  {
+    &quot;artifact&quot;: &quot;semantic_test_report.json&quot;,
+    &quot;tests_total&quot;: 3,
+    &quot;tests_passed&quot;: 3,
+    &quot;observation_mode&quot;: &quot;TASK_SEMANTIC_FUNCTION&quot;
+  }
+]</pre></details>
+      <fieldset>
+        <legend>Human score</legend>
+        <label><input type="radio" name="criterion_13_score" value="2"> 2 — fully satisfied</label>
+        <label><input type="radio" name="criterion_13_score" value="1"> 1 — partially satisfied / uncertain</label>
+        <label><input type="radio" name="criterion_13_score" value="0"> 0 — material semantic discrepancy</label>
+        <label><input type="radio" name="criterion_13_score" value="NA"> N/A — not legitimately assessable</label>
+      </fieldset>
+      <label>Agreement with automated score
+        <select name="criterion_13_agreement">
+          <option value="">Select…</option>
+          <option>AGREE</option><option>PARTIALLY_AGREE</option><option>DISAGREE</option>
+        </select>
+      </label>
+      <label>Semantic issue identified?
+        <select name="criterion_13_semantic">
+          <option value="">Select…</option><option value="false">No</option><option value="true">Yes</option>
+        </select>
+      </label>
+      <label>Reviewer justification
+        <textarea name="criterion_13_justification" rows="3"></textarea>
+      </label>
+    </section>
+    
+
+    <section class="criterion" data-index="14" data-criterion-id="P3">
+      <h3>P3 · Generated Python Correctness</h3>
+      <p class="question">Does the generated Python preserve source-defined boundary behaviour, termination behaviour, returns and errors?</p>
+      <div class="auto"><strong>Automated assessment:</strong> 2/2 · PASS · confidence HIGH</div>
+      <p><strong>Automated justification:</strong> Passed 1 of 1 boundary/error/termination tests.</p>
+      <details><summary>Evidence</summary><pre>[
+  {
+    &quot;artifact&quot;: &quot;semantic_test_report.json&quot;,
+    &quot;boundary_tests&quot;: 1,
+    &quot;passed&quot;: 1
+  }
+]</pre></details>
+      <fieldset>
+        <legend>Human score</legend>
+        <label><input type="radio" name="criterion_14_score" value="2"> 2 — fully satisfied</label>
+        <label><input type="radio" name="criterion_14_score" value="1"> 1 — partially satisfied / uncertain</label>
+        <label><input type="radio" name="criterion_14_score" value="0"> 0 — material semantic discrepancy</label>
+        <label><input type="radio" name="criterion_14_score" value="NA"> N/A — not legitimately assessable</label>
+      </fieldset>
+      <label>Agreement with automated score
+        <select name="criterion_14_agreement">
+          <option value="">Select…</option>
+          <option>AGREE</option><option>PARTIALLY_AGREE</option><option>DISAGREE</option>
+        </select>
+      </label>
+      <label>Semantic issue identified?
+        <select name="criterion_14_semantic">
+          <option value="">Select…</option><option value="false">No</option><option value="true">Yes</option>
+        </select>
+      </label>
+      <label>Reviewer justification
+        <textarea name="criterion_14_justification" rows="3"></textarea>
+      </label>
+    </section>
+    
+
+    <section class="criterion" data-index="15" data-criterion-id="P4">
+      <h3>P4 · Generated Python Correctness</h3>
+      <p class="question">Does the generated Python preserve the algorithm&#x27;s control flow, state changes, data-structure effects and observable behaviour without introducing or removing meaningful behaviour?</p>
+      <div class="auto"><strong>Automated assessment:</strong> 2/2 · PASS · confidence HIGH</div>
+      <p><strong>Automated justification:</strong> Compilation succeeded and all available behavioural-oracle tests passed.</p>
+      <details><summary>Evidence</summary><pre>[
+  {
+    &quot;artifact&quot;: &quot;compilation_report.json + semantic_test_report.json&quot;,
+    &quot;tests_total&quot;: 3,
+    &quot;tests_passed&quot;: 3
+  }
+]</pre></details>
+      <fieldset>
+        <legend>Human score</legend>
+        <label><input type="radio" name="criterion_15_score" value="2"> 2 — fully satisfied</label>
+        <label><input type="radio" name="criterion_15_score" value="1"> 1 — partially satisfied / uncertain</label>
+        <label><input type="radio" name="criterion_15_score" value="0"> 0 — material semantic discrepancy</label>
+        <label><input type="radio" name="criterion_15_score" value="NA"> N/A — not legitimately assessable</label>
+      </fieldset>
+      <label>Agreement with automated score
+        <select name="criterion_15_agreement">
+          <option value="">Select…</option>
+          <option>AGREE</option><option>PARTIALLY_AGREE</option><option>DISAGREE</option>
+        </select>
+      </label>
+      <label>Semantic issue identified?
+        <select name="criterion_15_semantic">
+          <option value="">Select…</option><option value="false">No</option><option value="true">Yes</option>
+        </select>
+      </label>
+      <label>Reviewer justification
+        <textarea name="criterion_15_justification" rows="3"></textarea>
+      </label>
+    </section>
+    
+<h2>Overall review</h2>
+<label>Material semantic error not captured by the automated criteria?
+<select id="uncaptured"><option value="">Select…</option><option value="false">No</option><option value="true">Yes</option></select></label>
+<label>First semantic loss stage
+<select id="first_loss"><option value="">Select…</option><option>SOURCE</option><option>CANONICALISATION</option><option>AST</option><option>FLOW_DIAGRAM</option><option>PYTHON</option><option>BEHAVIOURAL_TESTING</option><option>NONE</option><option>UNABLE_TO_DETERMINE</option></select></label>
+<label>Is the final generated Python behaviourally faithful to the algorithm supplied by the model?
+<select id="faithful"><option value="">Select…</option><option>YES</option><option>PARTIALLY</option><option>NO</option><option>NA</option></select></label>
+<label>Additional observations <textarea id="observations" rows="5"></textarea></label>
+<button id="download" type="button">Download completed human_review.json</button>
+<button id="print" type="button">Print / save as PDF</button>
+<p class="notice">The downloaded JSON preserves the automated evidence and your independent human assessment. Place it in this algorithm's <code>pipeline_artifacts/scoring/</code> folder.</p>
+<script id="template" type="application/json">{"questionnaire_schema_version": "1.3", "rubric_version": "1.1", "pipeline_version": "4.35", "algorithm": {"algorithm_id": 28, "dataset": "ChatGPT 5.5", "source_type": "llm_pseudocode", "source_file": "Algorithm 28 Pseudocode.txt", "source_file_resolved": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\ChatGPT 5.5\\Results\\Algorithm - 28\\Algorithm 28 Pseudocode.txt", "is_baseline": false, "experimental_expected_value_policy": "STATIC_PREEXPERIMENT_EXPECTATIONS", "runtime_baseline_reference_used": false}, "instructions": "Review the source and generated artefacts, then independently assess every criterion using the same 0-2/NA scale. The automated assessment is shown as evidence but must not replace reviewer judgement. Automated and human rubric scores are retained side by side; after all sixteen human criteria are completed, the combined rubric score is the equal-weight mean of the automated and human overall rubric percentages.", "reviewer": {"reviewer_id": "", "reviewed_at_utc": null, "overall_reviewer_confidence": null}, "source_sufficiency": {"criterion_id": "G1", "question": "Does the original pseudocode contain sufficient explicit information to determine the algorithm's behaviour without inventing missing semantics?", "automated_result": "EVALUABLE", "automated_justification": "The available artefacts do not identify unresolved source semantics that require invention.", "human_result": null, "agreement_with_automated_result": null, "reviewer_justification": ""}, "behavioural_evidence_adequacy": {"criterion_id": "G2", "question": "How strong, representative and reproducible is the behavioural evidence supporting the automated behavioural score, and what important behaviour remains untested or non-evaluable?", "automated_result": "ADEQUATE", "summary": "This suite evaluates sliding-window maxima for a representative case, k=1, k equal to the array length, and a negative-only array. Invalid window sizes are evaluated separately as semantic-boundary probes. Runtime evidence: 4 of 4 declared test(s) were evaluable and 3 passed.", "test_counts": {"declared": 4, "evaluable": 4, "passed": 3, "failed": 1, "not_evaluable": 0}, "coverage_dimensions": {"normal_path": {"label": "Normal-path coverage", "status": "COVERED", "tests_declared": 2, "tests_evaluable": 2, "tests_passed": 2, "evidence": "2 NORMAL test(s) declared; 2 evaluable; 2 passed."}, "branch_behaviour": {"label": "Branch coverage", "status": "NOT_COVERED", "tests_declared": 0, "tests_evaluable": 0, "tests_passed": 0, "evidence": "No BRANCH test is declared in the common suite."}, "boundary_behaviour": {"label": "Boundary coverage", "status": "COVERED", "tests_declared": 2, "tests_evaluable": 1, "tests_passed": 1, "evidence": "2 BOUNDARY test(s) declared; 1 evaluable; 1 passed."}, "error_behaviour": {"label": "Error-behaviour coverage", "status": "NOT_COVERED", "tests_declared": 0, "tests_evaluable": 0, "tests_passed": 0, "evidence": "No ERROR_BEHAVIOUR test is declared in the common suite."}, "termination_behaviour": {"label": "Termination coverage", "status": "NOT_COVERED", "tests_declared": 0, "tests_evaluable": 0, "tests_passed": 0, "evidence": "No TERMINATION test is declared in the common suite."}, "state_mutation": {"label": "State-mutation coverage", "status": "NOT_COVERED", "tests_declared": 0, "tests_evaluable": 0, "tests_passed": 0, "evidence": "No STATE_MUTATION test is declared in the common suite."}}, "strengths": ["The suite provides direct behavioural evidence for normal-path coverage, boundary coverage.", "3 of 4 evaluable behavioural test(s) passed in this run."], "limitations": ["Window sizes <=0 and window sizes larger than the array are outside the valid sliding-window relation and are measured separately as semantic-boundary probes.", "No direct common-test evidence is declared for: Branch coverage, Error-behaviour coverage, Termination coverage, State-mutation coverage."], "coverage_basis": "Assessment is based on 4 core Common Test cases plus any separately declared semantic-boundary probes; boundary probes do not contribute to core behavioural accuracy.", "interpretation": "Interpret core behavioural accuracy as evidence within the frozen semantic contract. Interpret Semantic Boundary Variance separately as descriptive evidence of out-of-domain acceptance.", "human_result": null, "agreement_with_automated_result": null, "reviewer_justification": ""}, "task_semantic_evaluation": {"contract": {"contract_version": "1.4", "contract_source": "ORIGINAL_TASK_SPECIFICATION", "task_statement": "Return the maximum value in every sliding window.", "inputs": [{"position": 1, "name": "array", "type": "ARRAY[NUMBER]"}, {"position": 2, "name": "window_size", "type": "POSITIVE_INTEGER"}], "result": {"type": "ARRAY[NUMBER]", "canonical_semantics": "Maximum value from each contiguous sliding window."}, "automation_status": "AUTOMATED_FUNCTION", "parameter_names_are_semantically_irrelevant": true, "derived_parameters_may_be_supplied_by_adapter": true, "human_review_instruction": "Judge the original generated pseudocode against this same frozen task-semantic contract, including when automated evaluation is NOT_EVALUABLE.", "fixture_policy": "PREEXPERIMENT_FROZEN_INPUTS", "expectation_policy": "STATIC_PREEXPERIMENT_EXPECTED_VALUES", "runtime_oracle_prohibited": true}, "automated_evidence": {"semantic_report_schema_version": "1.2", "runtime_expected_value_generation": false, "program_path": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\ChatGPT 5.5\\Results\\Algorithm - 28\\pipeline_artifacts\\generated_program.py", "algorithm_id": 28, "contract_version": "1.4", "evaluable_tests": 3, "passed_tests": 3, "failed_tests": 0, "not_evaluable_tests": 1, "accuracy_percentage": 100.0, "pre_freeze_validation": {"declared_cases": 0, "evaluable_cases": 0, "passed_cases": 0, "failed_cases": 0, "not_evaluable": 0, "accuracy_percentage": null, "included_in_core_behavioural_score": false, "included_in_baseline_calibration": false, "interpretation": "Candidate valid-domain coverage expansions retained for pre-freeze baseline validation. Results are descriptive only until explicitly promoted to CORE_BEHAVIOURAL."}, "semantic_boundary": {"measure": "SEMANTIC_BOUNDARY_VARIANCE", "declared_probes": 2, "evaluable_probes": 2, "out_of_domain_accepted": 1, "controlled_rejection": 0, "incidental_failure": 1, "not_evaluable": 0, "variance_percentage": 50.0, "interpretation": "Percentage of evaluable out-of-domain probes that the generated implementation accepted and processed. This is a descriptive semantic-domain extension measure and is not included in core behavioural accuracy."}, "results": [{"name": "default sliding-window maxima", "status": "PASSED", "expected_semantic_result": [3, 3, -1, 5, 5, 6, 7], "actual_semantic_result": [3, 3, -1, 5, 5, 6, 7], "semantic_match": true, "reason": null, "duration_ms": 101.63, "category": "NORMAL", "semantic_feature": "WINDOW_MAXIMUM_AND_LOOP_TERMINATION", "fixture_source": "PREEXPERIMENT_FROZEN_FIXTURE", "expectation_policy": "STATIC_FROZEN_VALUE", "selected_entrypoint": "unnamed_function", "invocation_capture": {"status": "COMPLETED", "selected_entrypoint": "unnamed_function", "selected_arity": 2, "prints": [[3], [3], [-1], [5], [5], [6], [7]], "returns": [null], "post_arguments": [[[1, 3, -1, -3, 5, 3, 6, 7], 2]], "shared_values": {}, "errors": [null]}, "score_stream": "CORE_BEHAVIOURAL", "boundary_outcome": null, "criteria_links": ["P2", "P4"]}, {"name": "window size one", "status": "PASSED", "expected_semantic_result": [4, -1, 7], "actual_semantic_result": [4, -1, 7], "semantic_match": true, "reason": null, "duration_ms": 91.513, "category": "BOUNDARY", "semantic_feature": "WINDOW_SIZE_ONE", "fixture_source": "PREEXPERIMENT_FROZEN_FIXTURE", "expectation_policy": "STATIC_FROZEN_VALUE", "selected_entrypoint": "unnamed_function", "invocation_capture": {"status": "COMPLETED", "selected_entrypoint": "unnamed_function", "selected_arity": 2, "prints": [[4], [-1], [7]], "returns": [null], "post_arguments": [[[4, -1, 7], 1]], "shared_values": {}, "errors": [null]}, "score_stream": "CORE_BEHAVIOURAL", "boundary_outcome": null, "criteria_links": ["P2", "P3", "P4"]}, {"name": "window spans full array", "status": "NOT_EVALUABLE", "expected_semantic_result": [7], "actual_semantic_result": null, "semantic_match": null, "reason": "The declarative semantic observer could not derive the task result from the invocation evidence.", "duration_ms": 89.346, "category": "BOUNDARY", "semantic_feature": "WINDOW_SIZE_ARRAY_LENGTH", "fixture_source": "PREEXPERIMENT_FROZEN_FIXTURE", "expectation_policy": "STATIC_FROZEN_VALUE", "selected_entrypoint": "unnamed_function", "invocation_capture": {"status": "COMPLETED", "selected_entrypoint": "unnamed_function", "selected_arity": 2, "prints": [[7]], "returns": [null], "post_arguments": [[[4, -1, 7], 3]], "shared_values": {}, "errors": [null]}, "score_stream": "CORE_BEHAVIOURAL", "boundary_outcome": null, "criteria_links": ["P2", "P3", "P4"]}, {"name": "negative-only sliding windows", "status": "PASSED", "expected_semantic_result": [-2, -2, -1], "actual_semantic_result": [-2, -2, -1], "semantic_match": true, "reason": null, "duration_ms": 87.415, "category": "NORMAL", "semantic_feature": "NEGATIVE_ONLY_WINDOWS", "fixture_source": "PREEXPERIMENT_FROZEN_FIXTURE", "expectation_policy": "STATIC_FROZEN_VALUE", "selected_entrypoint": "unnamed_function", "invocation_capture": {"status": "COMPLETED", "selected_entrypoint": "unnamed_function", "selected_arity": 2, "prints": [[-2], [-2], [-1]], "returns": [null], "post_arguments": [[[-4, -2, -8, -1], 2]], "shared_values": {}, "errors": [null]}, "score_stream": "CORE_BEHAVIOURAL", "boundary_outcome": null, "criteria_links": ["P2", "P3", "P4"]}, {"name": "zero window size outside positive-window contract", "status": "OBSERVED", "expected_semantic_result": null, "actual_semantic_result": {"runtime_errors": [{"type": "IndexError", "message": "list index out of range"}]}, "semantic_match": null, "reason": "Out-of-domain probe did not complete successfully; the runtime failure is recorded descriptively.", "duration_ms": 94.296, "category": "SEMANTIC_BOUNDARY", "semantic_feature": "WINDOW_SIZE_ZERO_PROBE", "fixture_source": "PREEXPERIMENT_FROZEN_BOUNDARY_PROBE", "expectation_policy": "BOUNDARY_OBSERVATION", "selected_entrypoint": "unnamed_function", "invocation_capture": {"status": "ERROR", "selected_entrypoint": "unnamed_function", "selected_arity": 2, "prints": [[1], [2], [3]], "returns": [null], "post_arguments": [[[1, 2, 3], 0]], "shared_values": {}, "errors": [{"type": "IndexError", "message": "list index out of range"}]}, "score_stream": "SEMANTIC_BOUNDARY_PROBE", "boundary_outcome": "INCIDENTAL_FAILURE", "criteria_links": []}, {"name": "window larger than array", "status": "OBSERVED", "expected_semantic_result": null, "actual_semantic_result": {"returns": [null], "prints": [], "mutated_arguments": null}, "semantic_match": null, "reason": "The generated implementation accepted and processed an input outside the frozen semantic contract.", "duration_ms": 89.709, "category": "SEMANTIC_BOUNDARY", "semantic_feature": "WINDOW_SIZE_TOO_LARGE_PROBE", "fixture_source": "PREEXPERIMENT_FROZEN_BOUNDARY_PROBE", "expectation_policy": "BOUNDARY_OBSERVATION", "selected_entrypoint": "unnamed_function", "invocation_capture": {"status": "COMPLETED", "selected_entrypoint": "unnamed_function", "selected_arity": 2, "prints": [], "returns": [null], "post_arguments": [[[1, 2, 3], 4]], "shared_values": {}, "errors": [null]}, "score_stream": "SEMANTIC_BOUNDARY_PROBE", "boundary_outcome": "OUT_OF_DOMAIN_ACCEPTED", "criteria_links": []}]}, "instruction": "Judge the original model pseudocode against the task-semantic contract. Use the same questions whether automated semantic execution succeeded, failed, or was NOT_EVALUABLE; the automated evidence is supporting evidence and must not replace independent human judgement.", "human_assessment": {"required_inputs_represented": null, "core_algorithm_logic": null, "required_output_semantics_represented": null, "edge_and_domain_handling": null, "overall_semantic_assessment": null, "reviewer_justification": ""}}, "benchmark_validation": null, "criteria": [{"stage_key": "canonicalisation", "stage_name": "Pseudocode Canonicalisation", "criterion_id": "C1", "question": "Does the canonical pseudocode conform to the AJ grammar sufficiently for deterministic interpretation by the next pipeline stage?", "automated_score": 2, "automated_status": "PASS", "automated_confidence": "HIGH", "automated_justification": "Canonical AJ completed syntax/static validation and produced an AST.", "evidence": [{"artifact": "parser_report.json", "observed_value": "SUCCESS"}], "human_assessment": {"score": null, "agreement_with_automated_score": null, "semantic_issue": null, "reviewer_justification": ""}}, {"stage_key": "canonicalisation", "stage_name": "Pseudocode Canonicalisation", "criterion_id": "C2", "question": "Are all semantically relevant operations from the source pseudocode preserved in the canonical representation with equivalent meaning?", "automated_score": 2, "automated_status": "PASS", "automated_confidence": "HIGH", "automated_justification": "All logged transformations are from audited evidence categories and none declares a semantic change.", "evidence": [{"artifact": "pseudocode_processing_report.json", "transformation_count": 9, "semantic_change_count": 0, "uncertain_transformation_count": 0, "rule_families": ["SOURCE_NORMALISATION"]}], "human_assessment": {"score": null, "agreement_with_automated_score": null, "semantic_issue": null, "reviewer_justification": ""}}, {"stage_key": "canonicalisation", "stage_name": "Pseudocode Canonicalisation", "criterion_id": "C3", "question": "Are conditions, branches, loop bounds, iteration behaviour, state changes and termination behaviour preserved from the source?", "automated_score": 2, "automated_status": "PASS", "automated_confidence": "HIGH", "automated_justification": "No logged transformation declares a change to control/state semantics; all transformations have accepted audit evidence.", "evidence": [{"artifact": "pseudocode_processing_report.json", "transformation_count": 9, "semantic_change_count": 0, "uncertain_transformation_count": 0, "rule_families": ["SOURCE_NORMALISATION"]}], "human_assessment": {"score": null, "agreement_with_automated_score": null, "semantic_issue": null, "reviewer_justification": ""}}, {"stage_key": "canonicalisation", "stage_name": "Pseudocode Canonicalisation", "criterion_id": "C4", "question": "Has canonicalisation avoided introducing algorithmic behaviour that was not explicitly supported by the source?", "automated_score": 2, "automated_status": "PASS", "automated_confidence": "HIGH", "automated_justification": "No transformation is marked as semantic-changing and all transformations use accepted audit-evidence categories.", "evidence": [{"artifact": "pseudocode_processing_report.json", "transformation_count": 9, "semantic_change_count": 0, "uncertain_transformation_count": 0, "rule_families": ["SOURCE_NORMALISATION"]}], "human_assessment": {"score": null, "agreement_with_automated_score": null, "semantic_issue": null, "reviewer_justification": ""}}, {"stage_key": "ast", "stage_name": "AST Semantic Alignment", "criterion_id": "A1", "question": "Does every semantically relevant construct in the canonical pseudocode have an appropriate AST representation without missing or spurious executable nodes?", "automated_score": 2, "automated_status": "PASS", "automated_confidence": "HIGH", "automated_justification": "The parser produced a complete adjacency AST after syntax and static-semantic analysis.", "evidence": [{"artifact": "parser_report.json", "parser_success": true, "static_semantic_status": "SUCCESS", "warning_count": 0}, {"artifact": "ast.json", "node_count": 45, "operator_multiset": {"+": 3, "-": 2, ">": 1}}], "human_assessment": {"score": null, "agreement_with_automated_score": null, "semantic_issue": null, "reviewer_justification": ""}}, {"stage_key": "ast", "stage_name": "AST Semantic Alignment", "criterion_id": "A2", "question": "Does the AST correctly represent the operands, operators, literals, indexing, collection access and call relationships of the canonical pseudocode?", "automated_score": 2, "automated_status": "PASS", "automated_confidence": "MEDIUM", "automated_justification": "Operator/literal relationships were accepted by syntax and static-semantic analysis. No semantic warnings were reported.", "evidence": [{"artifact": "parser_report.json", "parser_success": true, "static_semantic_status": "SUCCESS", "warning_count": 0}, {"artifact": "ast.json", "node_count": 45, "operator_multiset": {"+": 3, "-": 2, ">": 1}}], "human_assessment": {"score": null, "agreement_with_automated_score": null, "semantic_issue": null, "reviewer_justification": ""}}, {"stage_key": "ast", "stage_name": "AST Semantic Alignment", "criterion_id": "A3", "question": "Are branch relationships, loop bodies, returns, loop-control operations, variable scope and nested declarations represented in the correct structural context?", "automated_score": 2, "automated_status": "PASS", "automated_confidence": "MEDIUM", "automated_justification": "Control/scope relationships passed parser static-semantic analysis. No semantic warnings were reported.", "evidence": [{"artifact": "parser_report.json", "parser_success": true, "static_semantic_status": "SUCCESS", "warning_count": 0}, {"artifact": "ast.json", "node_count": 45, "operator_multiset": {"+": 3, "-": 2, ">": 1}}], "human_assessment": {"score": null, "agreement_with_automated_score": null, "semantic_issue": null, "reviewer_justification": ""}}, {"stage_key": "ast", "stage_name": "AST Semantic Alignment", "criterion_id": "A4", "question": "If the AST were interpreted directly, would it permit the same observable algorithmic behaviour as the canonical pseudocode?", "automated_score": 2, "automated_status": "PASS", "automated_confidence": "MEDIUM", "automated_justification": "The canonical program was accepted as a semantically valid AST by the parser. This automated judgement is retained for human verification rather than treated as an independent proof.", "evidence": [{"artifact": "parser_report.json", "parser_success": true, "static_semantic_status": "SUCCESS", "warning_count": 0}, {"artifact": "ast.json", "node_count": 45, "operator_multiset": {"+": 3, "-": 2, ">": 1}}], "human_assessment": {"score": null, "agreement_with_automated_score": null, "semantic_issue": null, "reviewer_justification": ""}}, {"stage_key": "flow_diagram", "stage_name": "Flow Diagram Logical Structure", "criterion_id": "F1", "question": "Are all semantically relevant actions, decisions, entry/exit points and returns represented in the flow diagram?", "automated_score": 2, "automated_status": "PASS", "automated_confidence": "HIGH", "automated_justification": "Every executable AST construct has a corresponding visual flow node count.", "evidence": [{"artifact": "flow_diagram.json", "expected_executable_ast_counts": {"AssignmentNode": 2, "ForRangeNode": 2, "FunctionNode": 1, "IfNode": 1, "OutputNode": 1}, "visual_flow_ast_counts": {"AssignmentNode": 2, "ForRangeNode": 2, "FunctionNode": 1, "IfNode": 1, "OutputNode": 1}, "graph_validation": {"valid": true, "issues": [], "warnings": [], "node_count": 9, "edge_count": 11, "decision_node_count": 3, "loop_decision_count": 2, "loop_back_edge_count": 3, "unreachable_nodes": []}}, {"artifact": "ast.json + flow_diagram.json:structured_program", "signature_comparison": {"equivalent": true, "review_required": false, "differences": []}}], "human_assessment": {"score": null, "agreement_with_automated_score": null, "semantic_issue": null, "reviewer_justification": ""}}, {"stage_key": "flow_diagram", "stage_name": "Flow Diagram Logical Structure", "criterion_id": "F2", "question": "Do the diagram connections correctly represent execution sequence, branch destinations, loop-back edges and exit paths?", "automated_score": 2, "automated_status": "PASS", "automated_confidence": "HIGH", "automated_justification": "Flow graph entry/exit, edge references, decision out-degree and loop routing invariants passed.", "evidence": [{"artifact": "flow_diagram.json", "expected_executable_ast_counts": {"AssignmentNode": 2, "ForRangeNode": 2, "FunctionNode": 1, "IfNode": 1, "OutputNode": 1}, "visual_flow_ast_counts": {"AssignmentNode": 2, "ForRangeNode": 2, "FunctionNode": 1, "IfNode": 1, "OutputNode": 1}, "graph_validation": {"valid": true, "issues": [], "warnings": [], "node_count": 9, "edge_count": 11, "decision_node_count": 3, "loop_decision_count": 2, "loop_back_edge_count": 3, "unreachable_nodes": []}}, {"artifact": "ast.json + flow_diagram.json:structured_program", "signature_comparison": {"equivalent": true, "review_required": false, "differences": []}}], "human_assessment": {"score": null, "agreement_with_automated_score": null, "semantic_issue": null, "reviewer_justification": ""}}, {"stage_key": "flow_diagram", "stage_name": "Flow Diagram Logical Structure", "criterion_id": "F3", "question": "For every meaningful execution path represented by the AST, is there a corresponding path through the flow diagram without additional semantically unsupported paths?", "automated_score": 2, "automated_status": "PASS", "automated_confidence": "HIGH", "automated_justification": "The flow structured-program signature exactly matches the AST and graph invariants pass.", "evidence": [{"artifact": "flow_diagram.json", "expected_executable_ast_counts": {"AssignmentNode": 2, "ForRangeNode": 2, "FunctionNode": 1, "IfNode": 1, "OutputNode": 1}, "visual_flow_ast_counts": {"AssignmentNode": 2, "ForRangeNode": 2, "FunctionNode": 1, "IfNode": 1, "OutputNode": 1}, "graph_validation": {"valid": true, "issues": [], "warnings": [], "node_count": 9, "edge_count": 11, "decision_node_count": 3, "loop_decision_count": 2, "loop_back_edge_count": 3, "unreachable_nodes": []}}, {"artifact": "ast.json + flow_diagram.json:structured_program", "signature_comparison": {"equivalent": true, "review_required": false, "differences": []}}], "human_assessment": {"score": null, "agreement_with_automated_score": null, "semantic_issue": null, "reviewer_justification": ""}}, {"stage_key": "flow_diagram", "stage_name": "Flow Diagram Logical Structure", "criterion_id": "F4", "question": "Do decision conditions, TRUE/FALSE routing, loop-entry conditions and loop-termination behaviour preserve the logic represented by the AST?", "automated_score": 2, "automated_status": "PASS", "automated_confidence": "HIGH", "automated_justification": "Structured AST contains 3 control decision(s); flow graph contains 3 decision node(s). Decision routing invariants passed.", "evidence": [{"artifact": "flow_diagram.json", "expected_executable_ast_counts": {"AssignmentNode": 2, "ForRangeNode": 2, "FunctionNode": 1, "IfNode": 1, "OutputNode": 1}, "visual_flow_ast_counts": {"AssignmentNode": 2, "ForRangeNode": 2, "FunctionNode": 1, "IfNode": 1, "OutputNode": 1}, "graph_validation": {"valid": true, "issues": [], "warnings": [], "node_count": 9, "edge_count": 11, "decision_node_count": 3, "loop_decision_count": 2, "loop_back_edge_count": 3, "unreachable_nodes": []}}, {"artifact": "ast.json + flow_diagram.json:structured_program", "signature_comparison": {"equivalent": true, "review_required": false, "differences": []}}], "human_assessment": {"score": null, "agreement_with_automated_score": null, "semantic_issue": null, "reviewer_justification": ""}}, {"stage_key": "python", "stage_name": "Generated Python Correctness", "criterion_id": "P1", "question": "Is the generated Python syntactically valid and executable for inputs valid under the source algorithm's assumptions?", "automated_score": 2, "automated_status": "PASS", "automated_confidence": "HIGH", "automated_justification": "Python source was generated and syntax-validated by the compiler.", "evidence": [{"artifact": "compilation_report.json", "status": "SUCCESS"}], "human_assessment": {"score": null, "agreement_with_automated_score": null, "semantic_issue": null, "reviewer_justification": ""}}, {"stage_key": "python", "stage_name": "Generated Python Correctness", "criterion_id": "P2", "question": "Does the generated Python produce the expected outputs and observable state changes across the predefined behavioural tests?", "automated_score": 2, "automated_status": "PASS", "automated_confidence": "HIGH", "automated_justification": "Generated Python passed 3 of 3 task-semantic tests (100.00%).", "evidence": [{"artifact": "semantic_test_report.json", "tests_total": 3, "tests_passed": 3, "observation_mode": "TASK_SEMANTIC_FUNCTION"}], "human_assessment": {"score": null, "agreement_with_automated_score": null, "semantic_issue": null, "reviewer_justification": ""}}, {"stage_key": "python", "stage_name": "Generated Python Correctness", "criterion_id": "P3", "question": "Does the generated Python preserve source-defined boundary behaviour, termination behaviour, returns and errors?", "automated_score": 2, "automated_status": "PASS", "automated_confidence": "HIGH", "automated_justification": "Passed 1 of 1 boundary/error/termination tests.", "evidence": [{"artifact": "semantic_test_report.json", "boundary_tests": 1, "passed": 1}], "human_assessment": {"score": null, "agreement_with_automated_score": null, "semantic_issue": null, "reviewer_justification": ""}}, {"stage_key": "python", "stage_name": "Generated Python Correctness", "criterion_id": "P4", "question": "Does the generated Python preserve the algorithm's control flow, state changes, data-structure effects and observable behaviour without introducing or removing meaningful behaviour?", "automated_score": 2, "automated_status": "PASS", "automated_confidence": "HIGH", "automated_justification": "Compilation succeeded and all available behavioural-oracle tests passed.", "evidence": [{"artifact": "compilation_report.json + semantic_test_report.json", "tests_total": 3, "tests_passed": 3}], "human_assessment": {"score": null, "agreement_with_automated_score": null, "semantic_issue": null, "reviewer_justification": ""}}], "overall_review": {"material_semantic_error_not_captured": null, "first_semantic_loss_stage": null, "final_python_behaviourally_faithful": null, "additional_observations": ""}}</script>
+<script>
+const template=JSON.parse(document.getElementById('template').textContent);
+const val=id=>document.getElementById(id).value||null;
+const boolVal=id=>{const v=val(id);return v===null?null:v==='true';};
+function radio(name){const el=document.querySelector(`input[name="${name}"]:checked`);return el?el.value:null;}
+function buildReview(){
+ const out=JSON.parse(JSON.stringify(template));
+ out.reviewer.reviewer_id=val('reviewer_id')||'';
+ out.reviewer.reviewed_at_utc=new Date().toISOString();
+ out.reviewer.overall_reviewer_confidence=val('reviewer_confidence');
+ out.source_sufficiency.human_result=val('g1_result');
+ out.source_sufficiency.agreement_with_automated_result=val('g1_agreement');
+ out.source_sufficiency.reviewer_justification=document.getElementById('g1_justification').value;
+ out.behavioural_evidence_adequacy.human_result=val('g2_result');
+ out.behavioural_evidence_adequacy.agreement_with_automated_result=val('g2_agreement');
+ out.behavioural_evidence_adequacy.reviewer_justification=document.getElementById('g2_justification').value;
+ if(out.benchmark_validation){
+   const sel=document.getElementById('baseline_reference_appropriate');
+   const just=document.getElementById('baseline_reference_justification');
+   out.benchmark_validation.human_reference_appropriate=sel?(sel.value||null):null;
+   out.benchmark_validation.reviewer_justification=just?just.value:'';
+ }
+ if(out.task_semantic_evaluation){
+   const h=out.task_semantic_evaluation.human_assessment;
+   h.required_inputs_represented=val('sem_inputs');
+   h.core_algorithm_logic=val('sem_logic');
+   h.required_output_semantics_represented=val('sem_output');
+   h.edge_and_domain_handling=val('sem_edge');
+   h.overall_semantic_assessment=val('sem_overall');
+   h.reviewer_justification=document.getElementById('sem_justification').value;
+ }
+ out.criteria.forEach((item,i)=>{
+   const raw=radio(`criterion_${i}_score`);
+   item.human_assessment.score=raw===null?null:(raw==='NA'?null:Number(raw));
+   item.human_assessment.score_label=raw;
+   item.human_assessment.agreement_with_automated_score=val(`criterion_${i}_agreement`);
+   item.human_assessment.semantic_issue=boolVal(`criterion_${i}_semantic`);
+   item.human_assessment.reviewer_justification=document.querySelector(`[name="criterion_${i}_justification"]`).value;
+ });
+ out.overall_review.material_semantic_error_not_captured=boolVal('uncaptured');
+ out.overall_review.first_semantic_loss_stage=val('first_loss');
+ out.overall_review.final_python_behaviourally_faithful=val('faithful');
+ out.overall_review.additional_observations=document.getElementById('observations').value;
+ return out;
+}
+document.getElementById('download').addEventListener('click',()=>{
+ const blob=new Blob([JSON.stringify(buildReview(),null,2)],{type:'application/json'});
+ const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download='human_review.json'; a.click(); setTimeout(()=>URL.revokeObjectURL(url),500);
+});
+document.getElementById('print').addEventListener('click',()=>window.print());
+</script>
+</body>
+</html>

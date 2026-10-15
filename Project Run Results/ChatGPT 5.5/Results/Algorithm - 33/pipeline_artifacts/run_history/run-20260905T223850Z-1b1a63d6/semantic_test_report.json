@@ -1,0 +1,163 @@
+{
+  "semantic_report_schema_version": "1.0",
+  "program_path": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\ChatGPT 5.5\\Results\\Algorithm - 33\\pipeline_artifacts\\generated_program.py",
+  "algorithm_id": 33,
+  "contract_version": "1.2",
+  "evaluable_tests": 3,
+  "passed_tests": 3,
+  "failed_tests": 0,
+  "not_evaluable_tests": 3,
+  "accuracy_percentage": 100.0,
+  "results": [
+    {
+      "name": "perfect square",
+      "status": "PASSED",
+      "expected_semantic_result": 4,
+      "actual_semantic_result": 4,
+      "semantic_match": true,
+      "reason": null,
+      "duration_ms": 137.354,
+      "category": "NORMAL",
+      "semantic_feature": "INTEGER_SQRT_EXACT",
+      "fixture_source": "COMMON_TEST_STANDARD_INPUT",
+      "oracle_source": "TASK_SEMANTIC_ORACLE_WITH_FROZEN_BASELINE_REFERENCE",
+      "selected_entrypoint": "unnamed_function",
+      "invocation_capture": {
+        "status": "COMPLETED",
+        "selected_entrypoint": "unnamed_function",
+        "prints": [
+          [
+            4
+          ]
+        ],
+        "returns": [
+          null
+        ],
+        "post_arguments": [
+          [
+            16
+          ]
+        ],
+        "shared_values": {},
+        "errors": [
+          null
+        ]
+      }
+    },
+    {
+      "name": "non-perfect square rounds down",
+      "status": "PASSED",
+      "expected_semantic_result": 3,
+      "actual_semantic_result": 3,
+      "semantic_match": true,
+      "reason": null,
+      "duration_ms": 130.172,
+      "category": "BRANCH",
+      "semantic_feature": "INTEGER_SQRT_FLOOR",
+      "fixture_source": "COMMON_TEST_STANDARD_INPUT",
+      "oracle_source": "TASK_SEMANTIC_ORACLE_WITH_FROZEN_BASELINE_REFERENCE",
+      "selected_entrypoint": "unnamed_function",
+      "invocation_capture": {
+        "status": "COMPLETED",
+        "selected_entrypoint": "unnamed_function",
+        "prints": [
+          [
+            3
+          ]
+        ],
+        "returns": [
+          null
+        ],
+        "post_arguments": [
+          [
+            15
+          ]
+        ],
+        "shared_values": {},
+        "errors": [
+          null
+        ]
+      }
+    },
+    {
+      "name": "small positive one",
+      "status": "PASSED",
+      "expected_semantic_result": 1,
+      "actual_semantic_result": 1,
+      "semantic_match": true,
+      "reason": null,
+      "duration_ms": 119.852,
+      "category": "BOUNDARY",
+      "semantic_feature": "INTEGER_SQRT_ONE",
+      "fixture_source": "COMMON_TEST_STANDARD_INPUT",
+      "oracle_source": "TASK_SEMANTIC_ORACLE_WITH_FROZEN_BASELINE_REFERENCE",
+      "selected_entrypoint": "unnamed_function",
+      "invocation_capture": {
+        "status": "COMPLETED",
+        "selected_entrypoint": "unnamed_function",
+        "prints": [
+          [
+            1
+          ]
+        ],
+        "returns": [
+          null
+        ],
+        "post_arguments": [
+          [
+            1
+          ]
+        ],
+        "shared_values": {},
+        "errors": [
+          null
+        ]
+      }
+    },
+    {
+      "name": "zero rejected then valid",
+      "status": "NOT_EVALUABLE",
+      "expected_semantic_result": null,
+      "actual_semantic_result": null,
+      "semantic_match": null,
+      "reason": "This Common Test remains interaction/reference evidence and is not a canonical task-function test.",
+      "duration_ms": null,
+      "category": "ERROR_BEHAVIOUR",
+      "semantic_feature": "NON_POSITIVE_INPUT_RETRY",
+      "fixture_source": null,
+      "oracle_source": null,
+      "selected_entrypoint": null,
+      "invocation_capture": null
+    },
+    {
+      "name": "negative rejected then valid",
+      "status": "NOT_EVALUABLE",
+      "expected_semantic_result": null,
+      "actual_semantic_result": null,
+      "semantic_match": null,
+      "reason": "This Common Test remains interaction/reference evidence and is not a canonical task-function test.",
+      "duration_ms": null,
+      "category": "ERROR_BEHAVIOUR",
+      "semantic_feature": "NEGATIVE_INPUT_RETRY",
+      "fixture_source": null,
+      "oracle_source": null,
+      "selected_entrypoint": null,
+      "invocation_capture": null
+    },
+    {
+      "name": "non-numeric retries",
+      "status": "NOT_EVALUABLE",
+      "expected_semantic_result": null,
+      "actual_semantic_result": null,
+      "semantic_match": null,
+      "reason": "This Common Test remains interaction/reference evidence and is not a canonical task-function test.",
+      "duration_ms": null,
+      "category": "ERROR_BEHAVIOUR",
+      "semantic_feature": "INTEGER_INPUT_RETRY",
+      "fixture_source": null,
+      "oracle_source": null,
+      "selected_entrypoint": null,
+      "invocation_capture": null
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+# Second Largest in Array
+
+INPUT arr
+
+first = -∞
+second = -∞
+
+FOR num in arr:
+    IF num > first:
+        second = first
+        first = num
+    ELSE IF num > second AND num != first:
+        second = num
+
+RETURN second
+

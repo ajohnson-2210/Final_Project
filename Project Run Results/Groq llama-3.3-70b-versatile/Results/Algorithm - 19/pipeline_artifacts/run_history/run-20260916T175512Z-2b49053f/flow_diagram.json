@@ -1,0 +1,224 @@
+{
+  "format": "NL-FDEP Flow Diagram",
+  "version": "1.0",
+  "entry_node": "F1",
+  "exit_node": "F2",
+  "nodes": {
+    "F1": {
+      "node_id": "F1",
+      "node_type": "START",
+      "label": "Start",
+      "line": 1,
+      "data": {}
+    },
+    "F2": {
+      "node_id": "F2",
+      "node_type": "END",
+      "label": "End",
+      "line": 1,
+      "data": {}
+    },
+    "F3": {
+      "node_id": "F3",
+      "node_type": "FUNCTION",
+      "label": "Run function SWAP with a, b",
+      "line": 1,
+      "data": {
+        "ast_kind": "FunctionNode",
+        "name": "SWAP"
+      }
+    },
+    "F4": {
+      "node_id": "F4",
+      "node_type": "PROCESS",
+      "label": "Set a to a plus b",
+      "line": 2,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F5": {
+      "node_id": "F5",
+      "node_type": "PROCESS",
+      "label": "Set b to a minus b",
+      "line": 3,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F6": {
+      "node_id": "F6",
+      "node_type": "PROCESS",
+      "label": "Set a to a minus b",
+      "line": 4,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F7": {
+      "node_id": "F7",
+      "node_type": "RETURN",
+      "label": "Return the result of list_value(a, b)",
+      "line": 5,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "F4",
+      "target": "F5",
+      "label": "NEXT"
+    },
+    {
+      "source": "F5",
+      "target": "F6",
+      "label": "NEXT"
+    },
+    {
+      "source": "F6",
+      "target": "F7",
+      "label": "NEXT"
+    },
+    {
+      "source": "F3",
+      "target": "F4",
+      "label": "BODY"
+    },
+    {
+      "source": "F1",
+      "target": "F3",
+      "label": "NEXT"
+    },
+    {
+      "source": "F7",
+      "target": "F2",
+      "label": "NEXT"
+    }
+  ],
+  "structured_program": {
+    "kind": "ProgramNode",
+    "line": 1,
+    "body": [
+      {
+        "kind": "FunctionNode",
+        "line": 1,
+        "name": "SWAP",
+        "parameters": [
+          {
+            "kind": "ParameterNode",
+            "line": 1,
+            "name": "a",
+            "declared_type": null
+          },
+          {
+            "kind": "ParameterNode",
+            "line": 1,
+            "name": "b",
+            "declared_type": null
+          }
+        ],
+        "body": {
+          "kind": "BlockNode",
+          "line": 2,
+          "statements": [
+            {
+              "kind": "AssignmentNode",
+              "line": 2,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 2,
+                "name": "a"
+              },
+              "value": {
+                "kind": "BinaryNode",
+                "line": 2,
+                "operator": "+",
+                "left": {
+                  "kind": "IdentifierNode",
+                  "line": 2,
+                  "name": "a"
+                },
+                "right": {
+                  "kind": "IdentifierNode",
+                  "line": 2,
+                  "name": "b"
+                }
+              }
+            },
+            {
+              "kind": "AssignmentNode",
+              "line": 3,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 3,
+                "name": "b"
+              },
+              "value": {
+                "kind": "BinaryNode",
+                "line": 3,
+                "operator": "-",
+                "left": {
+                  "kind": "IdentifierNode",
+                  "line": 3,
+                  "name": "a"
+                },
+                "right": {
+                  "kind": "IdentifierNode",
+                  "line": 3,
+                  "name": "b"
+                }
+              }
+            },
+            {
+              "kind": "AssignmentNode",
+              "line": 4,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 4,
+                "name": "a"
+              },
+              "value": {
+                "kind": "BinaryNode",
+                "line": 4,
+                "operator": "-",
+                "left": {
+                  "kind": "IdentifierNode",
+                  "line": 4,
+                  "name": "a"
+                },
+                "right": {
+                  "kind": "IdentifierNode",
+                  "line": 4,
+                  "name": "b"
+                }
+              }
+            },
+            {
+              "kind": "ReturnNode",
+              "line": 5,
+              "expression": {
+                "kind": "CallNode",
+                "line": 5,
+                "name": "list_value",
+                "arguments": [
+                  {
+                    "kind": "IdentifierNode",
+                    "line": 5,
+                    "name": "a"
+                  },
+                  {
+                    "kind": "IdentifierNode",
+                    "line": 5,
+                    "name": "b"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

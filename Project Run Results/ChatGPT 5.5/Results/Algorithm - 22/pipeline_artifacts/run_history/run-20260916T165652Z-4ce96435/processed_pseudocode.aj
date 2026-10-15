@@ -1,0 +1,10 @@
+    INPUT Number
+
+    Factorial <- 1
+
+    FOR i <- 1 TO Number
+        Factorial <- Factorial × i
+    ENDFOR
+
+    OUTPUT Factorial
+END

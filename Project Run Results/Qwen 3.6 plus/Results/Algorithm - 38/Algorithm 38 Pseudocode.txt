@@ -1,0 +1,15 @@
+# First Non-Repeating Character
+
+INPUT s
+
+freq = {}
+
+FOR char in s:
+    freq[char] = freq.get(char, 0) + 1
+
+FOR char in s:
+    IF freq[char] == 1:
+        RETURN char
+
+RETURN None
+

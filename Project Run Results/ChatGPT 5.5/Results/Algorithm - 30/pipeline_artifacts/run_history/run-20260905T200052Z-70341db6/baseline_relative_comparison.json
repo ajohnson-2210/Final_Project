@@ -1,0 +1,102 @@
+{
+  "comparison_schema_version": "1.0",
+  "comparison_role": "EXPERIMENTAL_VS_PIPELINE_CALIBRATION",
+  "is_baseline": false,
+  "reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 30\\Algorithm 30 Baseline Python code.txt",
+  "tests_file": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\Pipeline Versions\\NL_Flow_Diagram_Encoder_Pipeline_v4_32\\NL_Flow_Diagram_Encoder_Pipeline_v4_32\\study data\\common tests v1.1\\Algorithm - 30\\Algorithm 30 Tests.json",
+  "common_test_set": true,
+  "baseline_reference_validation": {
+    "validation_schema_version": "1.0",
+    "reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 30\\Algorithm 30 Baseline Python code.txt",
+    "reference_source_preparation": {
+      "reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 30\\Algorithm 30 Baseline Python code.txt",
+      "raw_sha256": "7dd01e12a99aa216c605c50a04cafaef91babf6b40a6d26c2db04ba3b5dcac1f",
+      "raw_syntax_valid": false,
+      "execution_syntax_valid": true,
+      "normalisation_applied": true,
+      "normalisation_rule": "COMMENT_MATCHED_TEST_SUITE_ALGORITHM_TITLE",
+      "raw_syntax_error": "invalid syntax (<unknown>, line 1)",
+      "normalised_line_number": 1,
+      "declared_algorithm_title": "Create a topic modelling system to extract underlying topics from a large corpus",
+      "reference_heading": "Create a topic modelling system to extract underlying topics from a large corpus",
+      "execution_sha256": "7b8725a720e588fe9b4b7c809ffd141c32fa8aa6ad3f4a2c1f9c6c075d32b846"
+    },
+    "status": "TRUSTED_REFERENCE",
+    "reason": "No independent expected outcomes are present. The frozen baseline Python is accepted as the trusted behavioural reference by the study design; this is not an independent validation claim.",
+    "explicit_tests_total": 0,
+    "tests": []
+  },
+  "baseline_calibration_status": "EVALUATED",
+  "baseline_calibration_score_percentage": 100.0,
+  "experimental_behavioural_score_percentage": null,
+  "experimental_tests_total": 0,
+  "experimental_tests_passed": 0,
+  "delta_from_baseline_percentage_points": null,
+  "comparison_to_baseline": "NOT_EVALUABLE",
+  "comparison_status": "NOT_EVALUABLE",
+  "oracle_records": [
+    {
+      "name": "default topic-modelling corpus",
+      "reference": {
+        "status": "COMPLETED",
+        "standard_input": [],
+        "stdout": [
+          "Topics -> Category:",
+          "",
+          "Topic 0:['match', 'team', 'won'] -> Sports",
+          "Topic 1:['scored'] -> Sports",
+          "Topic 2:['performance', 'new', 'smartphone'] -> Tech",
+          "Topic 3:['restaurant', 'chef', 'prepares'] -> Food",
+          "Topic 4:['goals'] -> Sports",
+          "Topic 5:['player', 'hat'] -> Sports",
+          "Topic 6:['trick'] -> Sports",
+          "Topic 7:['game'] -> Sports",
+          "Topic 8:['championship', 'ended'] -> Sports"
+        ],
+        "stderr": "",
+        "return_code": 0,
+        "error_type": null,
+        "duration_ms": 62.158,
+        "category": "STATE_MUTATION",
+        "semantic_feature": "TOKEN_FILTER_FREQUENCY_TOPIC_EXTRACTION",
+        "criteria_links": [
+          "P2",
+          "P4"
+        ],
+        "random_seed": null,
+        "environment": {},
+        "requires_modules": [],
+        "reference_source_preparation": {
+          "reference_python": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Baselines\\Python\\Algorithm - 30\\Algorithm 30 Baseline Python code.txt",
+          "raw_sha256": "7dd01e12a99aa216c605c50a04cafaef91babf6b40a6d26c2db04ba3b5dcac1f",
+          "raw_syntax_valid": false,
+          "execution_syntax_valid": true,
+          "normalisation_applied": true,
+          "normalisation_rule": "COMMENT_MATCHED_TEST_SUITE_ALGORITHM_TITLE",
+          "raw_syntax_error": "invalid syntax (<unknown>, line 1)",
+          "normalised_line_number": 1,
+          "declared_algorithm_title": "Create a topic modelling system to extract underlying topics from a large corpus",
+          "reference_heading": "Create a topic modelling system to extract underlying topics from a large corpus",
+          "execution_sha256": "7b8725a720e588fe9b4b7c809ffd141c32fa8aa6ad3f4a2c1f9c6c075d32b846"
+        }
+      },
+      "expected_result_source": "REFERENCE_PYTHON",
+      "explicit_expectation_fields": [],
+      "derived_expectation_fields": [
+        "expected_output",
+        "expected_return_code"
+      ],
+      "evaluable_expectation_fields": [
+        "expected_output",
+        "expected_return_code"
+      ],
+      "test_case_status": "EVALUABLE"
+    }
+  ],
+  "interpretation_note": "The baseline score measures pipeline calibration on frozen baseline pseudocode. The experimental score measures the experimental pseudocode through the same pipeline against the same trusted baseline Python/test set. The percentage-point delta is descriptive and is not a causal correction or adjusted accuracy score.",
+  "baseline_algorithm_id": 30,
+  "baseline_calibration_run_id": "run-20260905T195937Z-80657dfb",
+  "oracle_source": "BASELINE_REFERENCE_PYTHON",
+  "baseline_reference_oracle_eligible": true,
+  "oracle_block_reason": null
+}

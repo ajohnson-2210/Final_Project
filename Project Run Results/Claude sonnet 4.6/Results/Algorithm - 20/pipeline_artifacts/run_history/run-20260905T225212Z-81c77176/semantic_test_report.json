@@ -1,0 +1,138 @@
+{
+  "semantic_report_schema_version": "1.0",
+  "program_path": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Claude sonnet 4.6\\Results\\Algorithm - 20\\pipeline_artifacts\\generated_program.py",
+  "algorithm_id": 20,
+  "contract_version": "1.2",
+  "evaluable_tests": 2,
+  "passed_tests": 0,
+  "failed_tests": 2,
+  "not_evaluable_tests": 3,
+  "accuracy_percentage": 0.0,
+  "results": [
+    {
+      "name": "divisors of composite number",
+      "status": "FAILED",
+      "expected_semantic_result": [
+        1,
+        2,
+        3,
+        4,
+        6,
+        12
+      ],
+      "actual_semantic_result": [],
+      "semantic_match": false,
+      "reason": "Observed task-semantic result did not match the expected semantic result.",
+      "duration_ms": 105.409,
+      "category": "NORMAL",
+      "semantic_feature": "DIVISOR_ENUMERATION",
+      "fixture_source": "COMMON_TEST_STANDARD_INPUT",
+      "oracle_source": "TASK_SEMANTIC_ORACLE_WITH_FROZEN_BASELINE_REFERENCE",
+      "selected_entrypoint": "findDivisors",
+      "invocation_capture": {
+        "status": "COMPLETED",
+        "selected_entrypoint": "findDivisors",
+        "prints": [],
+        "returns": [
+          [
+            1,
+            2,
+            3,
+            4,
+            6,
+            12
+          ]
+        ],
+        "post_arguments": [
+          [
+            12
+          ]
+        ],
+        "shared_values": {},
+        "errors": [
+          null
+        ]
+      }
+    },
+    {
+      "name": "divisors of one",
+      "status": "FAILED",
+      "expected_semantic_result": [
+        1
+      ],
+      "actual_semantic_result": [],
+      "semantic_match": false,
+      "reason": "Observed task-semantic result did not match the expected semantic result.",
+      "duration_ms": 104.467,
+      "category": "BOUNDARY",
+      "semantic_feature": "DIVISOR_ONE",
+      "fixture_source": "COMMON_TEST_STANDARD_INPUT",
+      "oracle_source": "TASK_SEMANTIC_ORACLE_WITH_FROZEN_BASELINE_REFERENCE",
+      "selected_entrypoint": "findDivisors",
+      "invocation_capture": {
+        "status": "COMPLETED",
+        "selected_entrypoint": "findDivisors",
+        "prints": [],
+        "returns": [
+          [
+            1
+          ]
+        ],
+        "post_arguments": [
+          [
+            1
+          ]
+        ],
+        "shared_values": {},
+        "errors": [
+          null
+        ]
+      }
+    },
+    {
+      "name": "zero follows frozen reference behaviour",
+      "status": "NOT_EVALUABLE",
+      "expected_semantic_result": null,
+      "actual_semantic_result": null,
+      "semantic_match": null,
+      "reason": "This Common Test remains interaction/reference evidence and is not a canonical task-function test.",
+      "duration_ms": null,
+      "category": "BOUNDARY",
+      "semantic_feature": "DIVISOR_ZERO_REFERENCE_BEHAVIOUR",
+      "fixture_source": null,
+      "oracle_source": null,
+      "selected_entrypoint": null,
+      "invocation_capture": null
+    },
+    {
+      "name": "negative integer follows frozen reference behaviour",
+      "status": "NOT_EVALUABLE",
+      "expected_semantic_result": null,
+      "actual_semantic_result": null,
+      "semantic_match": null,
+      "reason": "This Common Test remains interaction/reference evidence and is not a canonical task-function test.",
+      "duration_ms": null,
+      "category": "BOUNDARY",
+      "semantic_feature": "DIVISOR_NEGATIVE_REFERENCE_BEHAVIOUR",
+      "fixture_source": null,
+      "oracle_source": null,
+      "selected_entrypoint": null,
+      "invocation_capture": null
+    },
+    {
+      "name": "invalid input retries",
+      "status": "NOT_EVALUABLE",
+      "expected_semantic_result": null,
+      "actual_semantic_result": null,
+      "semantic_match": null,
+      "reason": "This Common Test remains interaction/reference evidence and is not a canonical task-function test.",
+      "duration_ms": null,
+      "category": "ERROR_BEHAVIOUR",
+      "semantic_feature": "INTEGER_INPUT_RETRY",
+      "fixture_source": null,
+      "oracle_source": null,
+      "selected_entrypoint": null,
+      "invocation_capture": null
+    }
+  ]
+}

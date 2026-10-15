@@ -1,0 +1,560 @@
+{
+  "format": "NL-FDEP Flow Diagram",
+  "version": "1.0",
+  "entry_node": "F1",
+  "exit_node": "F2",
+  "nodes": {
+    "F1": {
+      "node_id": "F1",
+      "node_type": "START",
+      "label": "Start",
+      "line": 1,
+      "data": {}
+    },
+    "F2": {
+      "node_id": "F2",
+      "node_type": "END",
+      "label": "End",
+      "line": 1,
+      "data": {}
+    },
+    "F3": {
+      "node_id": "F3",
+      "node_type": "CLASS",
+      "label": "Class QueueUsingStacks",
+      "line": 1,
+      "data": {
+        "ast_kind": "ClassNode",
+        "name": "QueueUsingStacks"
+      }
+    },
+    "F4": {
+      "node_id": "F4",
+      "node_type": "DECLARATION",
+      "label": "Declare property stack1",
+      "line": 4,
+      "data": {
+        "ast_kind": "PropertyDeclarationNode"
+      }
+    },
+    "F5": {
+      "node_id": "F5",
+      "node_type": "DECLARATION",
+      "label": "Declare property stack2",
+      "line": 5,
+      "data": {
+        "ast_kind": "PropertyDeclarationNode"
+      }
+    },
+    "F6": {
+      "node_id": "F6",
+      "node_type": "CONSTRUCTOR",
+      "label": "Run constructor",
+      "line": 7,
+      "data": {
+        "ast_kind": "ConstructorNode"
+      }
+    },
+    "F7": {
+      "node_id": "F7",
+      "node_type": "PROCESS",
+      "label": "Set stack1 of THIS to the result of create_stack()",
+      "line": 8,
+      "data": {
+        "ast_kind": "PropertyAssignmentNode"
+      }
+    },
+    "F8": {
+      "node_id": "F8",
+      "node_type": "PROCESS",
+      "label": "Set stack2 of THIS to the result of create_stack()",
+      "line": 9,
+      "data": {
+        "ast_kind": "PropertyAssignmentNode"
+      }
+    },
+    "F9": {
+      "node_id": "F9",
+      "node_type": "METHOD",
+      "label": "Run method enqueue with item",
+      "line": 12,
+      "data": {
+        "ast_kind": "MethodNode",
+        "name": "enqueue"
+      }
+    },
+    "F10": {
+      "node_id": "F10",
+      "node_type": "CALL",
+      "label": "Call PUSH with item, stack1 of THIS",
+      "line": 13,
+      "data": {
+        "ast_kind": "CallNode"
+      }
+    },
+    "F11": {
+      "node_id": "F11",
+      "node_type": "METHOD",
+      "label": "Run method dequeue",
+      "line": 16,
+      "data": {
+        "ast_kind": "MethodNode",
+        "name": "dequeue"
+      }
+    },
+    "F12": {
+      "node_id": "F12",
+      "node_type": "DECISION",
+      "label": "Is the result of stack_is_empty(stack2 of THIS) true?",
+      "line": 17,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F13": {
+      "node_id": "F13",
+      "node_type": "LOOP_DECISION",
+      "label": "Continue while not the result of stack_is_empty(stack1 of THIS)?",
+      "line": 18,
+      "data": {
+        "ast_kind": "WhileNode"
+      }
+    },
+    "F14": {
+      "node_id": "F14",
+      "node_type": "CALL",
+      "label": "Call PUSH with the result of POP(stack1 of THIS), stack2 of THIS",
+      "line": 19,
+      "data": {
+        "ast_kind": "CallNode"
+      }
+    },
+    "F15": {
+      "node_id": "F15",
+      "node_type": "DECISION",
+      "label": "Is the result of stack_is_empty(stack2 of THIS) true?",
+      "line": 22,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F16": {
+      "node_id": "F16",
+      "node_type": "RETURN",
+      "label": "Return NULL",
+      "line": 23,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    },
+    "F17": {
+      "node_id": "F17",
+      "node_type": "RETURN",
+      "label": "Return the result of POP(stack2 of THIS)",
+      "line": 26,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "F4",
+      "target": "F5",
+      "label": "NEXT"
+    },
+    {
+      "source": "F7",
+      "target": "F8",
+      "label": "NEXT"
+    },
+    {
+      "source": "F6",
+      "target": "F7",
+      "label": "BODY"
+    },
+    {
+      "source": "F5",
+      "target": "F6",
+      "label": "NEXT"
+    },
+    {
+      "source": "F9",
+      "target": "F10",
+      "label": "BODY"
+    },
+    {
+      "source": "F8",
+      "target": "F9",
+      "label": "NEXT"
+    },
+    {
+      "source": "F13",
+      "target": "F14",
+      "label": "TRUE"
+    },
+    {
+      "source": "F14",
+      "target": "F13",
+      "label": "LOOP"
+    },
+    {
+      "source": "F12",
+      "target": "F13",
+      "label": "TRUE"
+    },
+    {
+      "source": "F15",
+      "target": "F16",
+      "label": "TRUE"
+    },
+    {
+      "source": "F13",
+      "target": "F15",
+      "label": "NEXT"
+    },
+    {
+      "source": "F12",
+      "target": "F15",
+      "label": "NEXT"
+    },
+    {
+      "source": "F15",
+      "target": "F17",
+      "label": "NEXT"
+    },
+    {
+      "source": "F11",
+      "target": "F12",
+      "label": "BODY"
+    },
+    {
+      "source": "F10",
+      "target": "F11",
+      "label": "NEXT"
+    },
+    {
+      "source": "F3",
+      "target": "F4",
+      "label": "BODY"
+    },
+    {
+      "source": "F1",
+      "target": "F3",
+      "label": "NEXT"
+    },
+    {
+      "source": "F16",
+      "target": "F2",
+      "label": "NEXT"
+    },
+    {
+      "source": "F17",
+      "target": "F2",
+      "label": "NEXT"
+    }
+  ],
+  "structured_program": {
+    "kind": "ProgramNode",
+    "line": 1,
+    "body": [
+      {
+        "kind": "ClassNode",
+        "line": 1,
+        "name": "QueueUsingStacks",
+        "parameters": [],
+        "body": {
+          "kind": "BlockNode",
+          "line": 2,
+          "statements": [
+            {
+              "kind": "CommentNode",
+              "line": 2,
+              "text": "(for enqueue)"
+            },
+            {
+              "kind": "CommentNode",
+              "line": 3,
+              "text": "(for dequeue)"
+            },
+            {
+              "kind": "PropertyDeclarationNode",
+              "line": 4,
+              "name": "stack1",
+              "declared_type": null
+            },
+            {
+              "kind": "PropertyDeclarationNode",
+              "line": 5,
+              "name": "stack2",
+              "declared_type": null
+            },
+            {
+              "kind": "ConstructorNode",
+              "line": 7,
+              "parameters": [],
+              "body": {
+                "kind": "BlockNode",
+                "line": 8,
+                "statements": [
+                  {
+                    "kind": "PropertyAssignmentNode",
+                    "line": 8,
+                    "target": {
+                      "kind": "MemberAccessNode",
+                      "line": 8,
+                      "object": {
+                        "kind": "IdentifierNode",
+                        "line": 8,
+                        "name": "THIS"
+                      },
+                      "member": "stack1"
+                    },
+                    "value": {
+                      "kind": "CallNode",
+                      "line": 8,
+                      "name": "create_stack",
+                      "arguments": []
+                    }
+                  },
+                  {
+                    "kind": "PropertyAssignmentNode",
+                    "line": 9,
+                    "target": {
+                      "kind": "MemberAccessNode",
+                      "line": 9,
+                      "object": {
+                        "kind": "IdentifierNode",
+                        "line": 9,
+                        "name": "THIS"
+                      },
+                      "member": "stack2"
+                    },
+                    "value": {
+                      "kind": "CallNode",
+                      "line": 9,
+                      "name": "create_stack",
+                      "arguments": []
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "MethodNode",
+              "line": 12,
+              "name": "enqueue",
+              "parameters": [
+                {
+                  "kind": "ParameterNode",
+                  "line": 12,
+                  "name": "item",
+                  "declared_type": null
+                }
+              ],
+              "body": {
+                "kind": "BlockNode",
+                "line": 13,
+                "statements": [
+                  {
+                    "kind": "CallNode",
+                    "line": 13,
+                    "name": "PUSH",
+                    "arguments": [
+                      {
+                        "kind": "IdentifierNode",
+                        "line": 13,
+                        "name": "item"
+                      },
+                      {
+                        "kind": "MemberAccessNode",
+                        "line": 13,
+                        "object": {
+                          "kind": "IdentifierNode",
+                          "line": 13,
+                          "name": "THIS"
+                        },
+                        "member": "stack1"
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "MethodNode",
+              "line": 16,
+              "name": "dequeue",
+              "parameters": [],
+              "body": {
+                "kind": "BlockNode",
+                "line": 17,
+                "statements": [
+                  {
+                    "kind": "IfNode",
+                    "line": 17,
+                    "condition": {
+                      "kind": "CallNode",
+                      "line": 17,
+                      "name": "stack_is_empty",
+                      "arguments": [
+                        {
+                          "kind": "MemberAccessNode",
+                          "line": 17,
+                          "object": {
+                            "kind": "IdentifierNode",
+                            "line": 17,
+                            "name": "THIS"
+                          },
+                          "member": "stack2"
+                        }
+                      ]
+                    },
+                    "then_body": {
+                      "kind": "BlockNode",
+                      "line": 18,
+                      "statements": [
+                        {
+                          "kind": "WhileNode",
+                          "line": 18,
+                          "condition": {
+                            "kind": "UnaryNode",
+                            "line": 18,
+                            "operator": "NOT",
+                            "operand": {
+                              "kind": "CallNode",
+                              "line": 18,
+                              "name": "stack_is_empty",
+                              "arguments": [
+                                {
+                                  "kind": "MemberAccessNode",
+                                  "line": 18,
+                                  "object": {
+                                    "kind": "IdentifierNode",
+                                    "line": 18,
+                                    "name": "THIS"
+                                  },
+                                  "member": "stack1"
+                                }
+                              ]
+                            }
+                          },
+                          "body": {
+                            "kind": "BlockNode",
+                            "line": 19,
+                            "statements": [
+                              {
+                                "kind": "CallNode",
+                                "line": 19,
+                                "name": "PUSH",
+                                "arguments": [
+                                  {
+                                    "kind": "CallNode",
+                                    "line": 19,
+                                    "name": "POP",
+                                    "arguments": [
+                                      {
+                                        "kind": "MemberAccessNode",
+                                        "line": 19,
+                                        "object": {
+                                          "kind": "IdentifierNode",
+                                          "line": 19,
+                                          "name": "THIS"
+                                        },
+                                        "member": "stack1"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "kind": "MemberAccessNode",
+                                    "line": 19,
+                                    "object": {
+                                      "kind": "IdentifierNode",
+                                      "line": 19,
+                                      "name": "THIS"
+                                    },
+                                    "member": "stack2"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    "else_if": [],
+                    "else_body": null
+                  },
+                  {
+                    "kind": "IfNode",
+                    "line": 22,
+                    "condition": {
+                      "kind": "CallNode",
+                      "line": 22,
+                      "name": "stack_is_empty",
+                      "arguments": [
+                        {
+                          "kind": "MemberAccessNode",
+                          "line": 22,
+                          "object": {
+                            "kind": "IdentifierNode",
+                            "line": 22,
+                            "name": "THIS"
+                          },
+                          "member": "stack2"
+                        }
+                      ]
+                    },
+                    "then_body": {
+                      "kind": "BlockNode",
+                      "line": 23,
+                      "statements": [
+                        {
+                          "kind": "ReturnNode",
+                          "line": 23,
+                          "expression": {
+                            "kind": "IdentifierNode",
+                            "line": 23,
+                            "name": "NULL"
+                          }
+                        },
+                        {
+                          "kind": "CommentNode",
+                          "line": 24,
+                          "text": "LENGTH OF Queue == 0"
+                        }
+                      ]
+                    },
+                    "else_if": [],
+                    "else_body": null
+                  },
+                  {
+                    "kind": "ReturnNode",
+                    "line": 26,
+                    "expression": {
+                      "kind": "CallNode",
+                      "line": 26,
+                      "name": "POP",
+                      "arguments": [
+                        {
+                          "kind": "MemberAccessNode",
+                          "line": 26,
+                          "object": {
+                            "kind": "IdentifierNode",
+                            "line": 26,
+                            "name": "THIS"
+                          },
+                          "member": "stack2"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

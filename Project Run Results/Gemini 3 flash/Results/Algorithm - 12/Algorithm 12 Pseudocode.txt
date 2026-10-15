@@ -1,0 +1,8 @@
+# Calculate sum of the main diagonal in an $N \times N$ matrix    
+FUNCTION SumMainDiagonal(matrix, N):
+    diagonal_sum = 0
+    FOR i FROM 0 TO N - 1 DO
+        diagonal_sum = diagonal_sum + matrix[i][i]
+    END FOR
+    RETURN diagonal_sum
+END FUNCTION

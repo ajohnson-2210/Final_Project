@@ -1,0 +1,12 @@
+# Find all pairs in an array that sum to a given target value
+FUNCTION FIND_PAIRS(arr, target)
+  pairs = []
+  FOR i FROM 0 TO LENGTH(arr) - 1
+    FOR j FROM i + 1 TO LENGTH(arr) - 1
+      IF arr[i] + arr[j] == target THEN
+        pairs += [(arr[i], arr[j])]
+      END IF
+    END FOR
+  END FOR
+  RETURN pairs
+END FUNCTION

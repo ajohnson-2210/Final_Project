@@ -1,0 +1,8 @@
+# Reverse a string without using built-in reverse functions
+FUNCTION REVERSE_STRING(s)
+  reversed = ""
+  FOR i FROM LENGTH(s) - 1 TO 0
+    reversed += s[i]
+  END FOR
+  RETURN reversed
+END FUNCTION

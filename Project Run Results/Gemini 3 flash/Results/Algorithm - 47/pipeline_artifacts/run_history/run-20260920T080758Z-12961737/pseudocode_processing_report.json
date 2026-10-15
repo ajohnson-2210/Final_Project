@@ -1,0 +1,82 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 6,
+  "transformations": [
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            inventory_map[item.id] = inventory_map[item.id] - item.quantity",
+      "canonical": "            inventory_map[item.id] <- inventory_map[item.id] - item.quantity",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            inventory_map[item.id] = inventory_map[item.id] + item.quantity",
+      "canonical": "            inventory_map[item.id] <- inventory_map[item.id] + item.quantity",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        IF item.type == \"PURCHASE\" THEN",
+      "canonical": "        IF item.type == STRING(\"PURCHASE\") THEN",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        ELSE IF item.type == \"DELIVERY\" THEN",
+      "canonical": "        ELSE IF item.type == STRING(\"DELIVERY\") THEN",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "    FOR EACH item IN transactions DO\n        IF item.type == STRING(\"PURCHASE\") THEN\n            inventory_map[item.id] <- inventory_map[item.id] - item.quantity\n        ELSE IF item.type == STRING(\"DELIVERY\") THEN\n            inventory_map[item.id] <- inventory_map[item.id] + item.quantity\n        END IF\n    END FOR\nEND PROCEDURE",
+      "canonical": "    FOR EACH item IN transactions DO\n        IF item.type == STRING(\"PURCHASE\") THEN\n            inventory_map[item.id] <- inventory_map[item.id] - item.quantity\n        ELSE IF item.type == STRING(\"DELIVERY\") THEN\n            inventory_map[item.id] <- inventory_map[item.id] + item.quantity\n        ENDIF\n    ENDFOR\nEND PROCEDURE",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 8,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "END PROCEDURE",
+      "canonical": "ENDFUNCTION",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 2
+}

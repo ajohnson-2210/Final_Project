@@ -1,0 +1,784 @@
+{
+  "format": "NL-FDEP Flow Diagram",
+  "version": "1.0",
+  "entry_node": "F1",
+  "exit_node": "F2",
+  "nodes": {
+    "F1": {
+      "node_id": "F1",
+      "node_type": "START",
+      "label": "Start",
+      "line": 1,
+      "data": {}
+    },
+    "F2": {
+      "node_id": "F2",
+      "node_type": "END",
+      "label": "End",
+      "line": 1,
+      "data": {}
+    },
+    "F3": {
+      "node_id": "F3",
+      "node_type": "CLASS",
+      "label": "Class LRUCache accepts capacity",
+      "line": 1,
+      "data": {
+        "ast_kind": "ClassNode",
+        "name": "LRUCache"
+      }
+    },
+    "F4": {
+      "node_id": "F4",
+      "node_type": "PROCESS",
+      "label": "Set given_capacity to capacity",
+      "line": 2,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F5": {
+      "node_id": "F5",
+      "node_type": "PROCESS",
+      "label": "Set cache to an empty dictionary",
+      "line": 3,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F6": {
+      "node_id": "F6",
+      "node_type": "PROCESS",
+      "label": "Set order to an empty list",
+      "line": 4,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F7": {
+      "node_id": "F7",
+      "node_type": "FUNCTION",
+      "label": "Run function get with key",
+      "line": 6,
+      "data": {
+        "ast_kind": "FunctionNode",
+        "name": "get"
+      }
+    },
+    "F8": {
+      "node_id": "F8",
+      "node_type": "DECISION",
+      "label": "Key is not contained in cache?",
+      "line": 7,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F9": {
+      "node_id": "F9",
+      "node_type": "RETURN",
+      "label": "Return negative 1",
+      "line": 8,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    },
+    "F10": {
+      "node_id": "F10",
+      "node_type": "CALL",
+      "label": "Call remove_from_list with order, key",
+      "line": 12,
+      "data": {
+        "ast_kind": "CallNode"
+      }
+    },
+    "F11": {
+      "node_id": "F11",
+      "node_type": "CALL",
+      "label": "Call insert_front with order, key",
+      "line": 13,
+      "data": {
+        "ast_kind": "CallNode"
+      }
+    },
+    "F12": {
+      "node_id": "F12",
+      "node_type": "RETURN",
+      "label": "Return item key of cache",
+      "line": 14,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    },
+    "F13": {
+      "node_id": "F13",
+      "node_type": "FUNCTION",
+      "label": "Run function put with key, value",
+      "line": 17,
+      "data": {
+        "ast_kind": "FunctionNode",
+        "name": "put"
+      }
+    },
+    "F14": {
+      "node_id": "F14",
+      "node_type": "DECISION",
+      "label": "Key is contained in cache?",
+      "line": 18,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F15": {
+      "node_id": "F15",
+      "node_type": "PROCESS",
+      "label": "Set item key of cache to value",
+      "line": 20,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F16": {
+      "node_id": "F16",
+      "node_type": "CALL",
+      "label": "Call remove_from_list with order, key",
+      "line": 21,
+      "data": {
+        "ast_kind": "CallNode"
+      }
+    },
+    "F17": {
+      "node_id": "F17",
+      "node_type": "CALL",
+      "label": "Call insert_front with order, key",
+      "line": 22,
+      "data": {
+        "ast_kind": "CallNode"
+      }
+    },
+    "F18": {
+      "node_id": "F18",
+      "node_type": "DECISION",
+      "label": "The length of order is greater than or equal to given_capacity?",
+      "line": 24,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F19": {
+      "node_id": "F19",
+      "node_type": "PROCESS",
+      "label": "Set lruKey to item negative 1 of order",
+      "line": 26,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F20": {
+      "node_id": "F20",
+      "node_type": "CALL",
+      "label": "Call remove_last_from_list with order",
+      "line": 27,
+      "data": {
+        "ast_kind": "CallNode"
+      }
+    },
+    "F21": {
+      "node_id": "F21",
+      "node_type": "CALL",
+      "label": "Call remove_key with cache, lruKey",
+      "line": 28,
+      "data": {
+        "ast_kind": "CallNode"
+      }
+    },
+    "F22": {
+      "node_id": "F22",
+      "node_type": "CALL",
+      "label": "Call insert_front with order, key",
+      "line": 30,
+      "data": {
+        "ast_kind": "CallNode"
+      }
+    },
+    "F23": {
+      "node_id": "F23",
+      "node_type": "PROCESS",
+      "label": "Set item key of cache to value",
+      "line": 31,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "F4",
+      "target": "F5",
+      "label": "NEXT"
+    },
+    {
+      "source": "F5",
+      "target": "F6",
+      "label": "NEXT"
+    },
+    {
+      "source": "F8",
+      "target": "F9",
+      "label": "TRUE"
+    },
+    {
+      "source": "F8",
+      "target": "F10",
+      "label": "NEXT"
+    },
+    {
+      "source": "F10",
+      "target": "F11",
+      "label": "NEXT"
+    },
+    {
+      "source": "F11",
+      "target": "F12",
+      "label": "NEXT"
+    },
+    {
+      "source": "F7",
+      "target": "F8",
+      "label": "BODY"
+    },
+    {
+      "source": "F6",
+      "target": "F7",
+      "label": "NEXT"
+    },
+    {
+      "source": "F15",
+      "target": "F16",
+      "label": "NEXT"
+    },
+    {
+      "source": "F16",
+      "target": "F17",
+      "label": "NEXT"
+    },
+    {
+      "source": "F14",
+      "target": "F15",
+      "label": "TRUE"
+    },
+    {
+      "source": "F19",
+      "target": "F20",
+      "label": "NEXT"
+    },
+    {
+      "source": "F20",
+      "target": "F21",
+      "label": "NEXT"
+    },
+    {
+      "source": "F18",
+      "target": "F19",
+      "label": "TRUE"
+    },
+    {
+      "source": "F21",
+      "target": "F22",
+      "label": "NEXT"
+    },
+    {
+      "source": "F18",
+      "target": "F22",
+      "label": "NEXT"
+    },
+    {
+      "source": "F22",
+      "target": "F23",
+      "label": "NEXT"
+    },
+    {
+      "source": "F14",
+      "target": "F18",
+      "label": "FALSE"
+    },
+    {
+      "source": "F13",
+      "target": "F14",
+      "label": "BODY"
+    },
+    {
+      "source": "F3",
+      "target": "F4",
+      "label": "BODY"
+    },
+    {
+      "source": "F1",
+      "target": "F3",
+      "label": "NEXT"
+    },
+    {
+      "source": "F9",
+      "target": "F2",
+      "label": "NEXT"
+    },
+    {
+      "source": "F12",
+      "target": "F2",
+      "label": "NEXT"
+    },
+    {
+      "source": "F17",
+      "target": "F2",
+      "label": "NEXT"
+    },
+    {
+      "source": "F23",
+      "target": "F2",
+      "label": "NEXT"
+    }
+  ],
+  "structured_program": {
+    "kind": "ProgramNode",
+    "line": 1,
+    "body": [
+      {
+        "kind": "ClassNode",
+        "line": 1,
+        "name": "LRUCache",
+        "parameters": [
+          {
+            "kind": "ParameterNode",
+            "line": 1,
+            "name": "capacity",
+            "declared_type": null
+          }
+        ],
+        "body": {
+          "kind": "BlockNode",
+          "line": 2,
+          "statements": [
+            {
+              "kind": "AssignmentNode",
+              "line": 2,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 2,
+                "name": "given_capacity"
+              },
+              "value": {
+                "kind": "IdentifierNode",
+                "line": 2,
+                "name": "capacity"
+              }
+            },
+            {
+              "kind": "AssignmentNode",
+              "line": 3,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 3,
+                "name": "cache"
+              },
+              "value": {
+                "kind": "EmptyLiteralNode",
+                "line": 3,
+                "empty_type": "DICTIONARY"
+              }
+            },
+            {
+              "kind": "AssignmentNode",
+              "line": 4,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 4,
+                "name": "order"
+              },
+              "value": {
+                "kind": "EmptyLiteralNode",
+                "line": 4,
+                "empty_type": "LIST"
+              }
+            },
+            {
+              "kind": "FunctionNode",
+              "line": 6,
+              "name": "get",
+              "parameters": [
+                {
+                  "kind": "ParameterNode",
+                  "line": 6,
+                  "name": "key",
+                  "declared_type": null
+                }
+              ],
+              "body": {
+                "kind": "BlockNode",
+                "line": 7,
+                "statements": [
+                  {
+                    "kind": "IfNode",
+                    "line": 7,
+                    "condition": {
+                      "kind": "BinaryNode",
+                      "line": 7,
+                      "operator": "NOT IN",
+                      "left": {
+                        "kind": "IdentifierNode",
+                        "line": 7,
+                        "name": "key"
+                      },
+                      "right": {
+                        "kind": "IdentifierNode",
+                        "line": 7,
+                        "name": "cache"
+                      }
+                    },
+                    "then_body": {
+                      "kind": "BlockNode",
+                      "line": 8,
+                      "statements": [
+                        {
+                          "kind": "ReturnNode",
+                          "line": 8,
+                          "expression": {
+                            "kind": "UnaryNode",
+                            "line": 8,
+                            "operator": "-",
+                            "operand": {
+                              "kind": "LiteralNode",
+                              "line": 8,
+                              "value": 1,
+                              "data_type": "INTEGER"
+                            }
+                          }
+                        },
+                        {
+                          "kind": "CommentNode",
+                          "line": 9,
+                          "text": "or NULL"
+                        },
+                        {
+                          "kind": "CommentNode",
+                          "line": 10,
+                          "text": "Move key to front of order (most recently used)"
+                        }
+                      ]
+                    },
+                    "else_if": [],
+                    "else_body": null
+                  },
+                  {
+                    "kind": "CallNode",
+                    "line": 12,
+                    "name": "remove_from_list",
+                    "arguments": [
+                      {
+                        "kind": "IdentifierNode",
+                        "line": 12,
+                        "name": "order"
+                      },
+                      {
+                        "kind": "IdentifierNode",
+                        "line": 12,
+                        "name": "key"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "CallNode",
+                    "line": 13,
+                    "name": "insert_front",
+                    "arguments": [
+                      {
+                        "kind": "IdentifierNode",
+                        "line": 13,
+                        "name": "order"
+                      },
+                      {
+                        "kind": "IdentifierNode",
+                        "line": 13,
+                        "name": "key"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "ReturnNode",
+                    "line": 14,
+                    "expression": {
+                      "kind": "IndexNode",
+                      "line": 14,
+                      "collection": {
+                        "kind": "IdentifierNode",
+                        "line": 14,
+                        "name": "cache"
+                      },
+                      "index": {
+                        "kind": "IdentifierNode",
+                        "line": 14,
+                        "name": "key"
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "FunctionNode",
+              "line": 17,
+              "name": "put",
+              "parameters": [
+                {
+                  "kind": "ParameterNode",
+                  "line": 17,
+                  "name": "key",
+                  "declared_type": null
+                },
+                {
+                  "kind": "ParameterNode",
+                  "line": 17,
+                  "name": "value",
+                  "declared_type": null
+                }
+              ],
+              "body": {
+                "kind": "BlockNode",
+                "line": 18,
+                "statements": [
+                  {
+                    "kind": "IfNode",
+                    "line": 18,
+                    "condition": {
+                      "kind": "BinaryNode",
+                      "line": 18,
+                      "operator": "IN",
+                      "left": {
+                        "kind": "IdentifierNode",
+                        "line": 18,
+                        "name": "key"
+                      },
+                      "right": {
+                        "kind": "IdentifierNode",
+                        "line": 18,
+                        "name": "cache"
+                      }
+                    },
+                    "then_body": {
+                      "kind": "BlockNode",
+                      "line": 19,
+                      "statements": [
+                        {
+                          "kind": "CommentNode",
+                          "line": 19,
+                          "text": "Update value and move key to front"
+                        },
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 20,
+                          "target": {
+                            "kind": "IndexNode",
+                            "line": 20,
+                            "collection": {
+                              "kind": "IdentifierNode",
+                              "line": 20,
+                              "name": "cache"
+                            },
+                            "index": {
+                              "kind": "IdentifierNode",
+                              "line": 20,
+                              "name": "key"
+                            }
+                          },
+                          "value": {
+                            "kind": "IdentifierNode",
+                            "line": 20,
+                            "name": "value"
+                          }
+                        },
+                        {
+                          "kind": "CallNode",
+                          "line": 21,
+                          "name": "remove_from_list",
+                          "arguments": [
+                            {
+                              "kind": "IdentifierNode",
+                              "line": 21,
+                              "name": "order"
+                            },
+                            {
+                              "kind": "IdentifierNode",
+                              "line": 21,
+                              "name": "key"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "CallNode",
+                          "line": 22,
+                          "name": "insert_front",
+                          "arguments": [
+                            {
+                              "kind": "IdentifierNode",
+                              "line": 22,
+                              "name": "order"
+                            },
+                            {
+                              "kind": "IdentifierNode",
+                              "line": 22,
+                              "name": "key"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    "else_if": [],
+                    "else_body": {
+                      "kind": "BlockNode",
+                      "line": 24,
+                      "statements": [
+                        {
+                          "kind": "IfNode",
+                          "line": 24,
+                          "condition": {
+                            "kind": "BinaryNode",
+                            "line": 24,
+                            "operator": ">=",
+                            "left": {
+                              "kind": "LengthNode",
+                              "line": 24,
+                              "expression": {
+                                "kind": "IdentifierNode",
+                                "line": 24,
+                                "name": "order"
+                              }
+                            },
+                            "right": {
+                              "kind": "IdentifierNode",
+                              "line": 24,
+                              "name": "given_capacity"
+                            }
+                          },
+                          "then_body": {
+                            "kind": "BlockNode",
+                            "line": 25,
+                            "statements": [
+                              {
+                                "kind": "CommentNode",
+                                "line": 25,
+                                "text": "Evict the least recently used (last element in order)"
+                              },
+                              {
+                                "kind": "AssignmentNode",
+                                "line": 26,
+                                "target": {
+                                  "kind": "IdentifierNode",
+                                  "line": 26,
+                                  "name": "lruKey"
+                                },
+                                "value": {
+                                  "kind": "IndexNode",
+                                  "line": 26,
+                                  "collection": {
+                                    "kind": "IdentifierNode",
+                                    "line": 26,
+                                    "name": "order"
+                                  },
+                                  "index": {
+                                    "kind": "UnaryNode",
+                                    "line": 26,
+                                    "operator": "-",
+                                    "operand": {
+                                      "kind": "LiteralNode",
+                                      "line": 26,
+                                      "value": 1,
+                                      "data_type": "INTEGER"
+                                    }
+                                  }
+                                }
+                              },
+                              {
+                                "kind": "CallNode",
+                                "line": 27,
+                                "name": "remove_last_from_list",
+                                "arguments": [
+                                  {
+                                    "kind": "IdentifierNode",
+                                    "line": 27,
+                                    "name": "order"
+                                  }
+                                ]
+                              },
+                              {
+                                "kind": "CallNode",
+                                "line": 28,
+                                "name": "remove_key",
+                                "arguments": [
+                                  {
+                                    "kind": "IdentifierNode",
+                                    "line": 28,
+                                    "name": "cache"
+                                  },
+                                  {
+                                    "kind": "IdentifierNode",
+                                    "line": 28,
+                                    "name": "lruKey"
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          "else_if": [],
+                          "else_body": null
+                        },
+                        {
+                          "kind": "CallNode",
+                          "line": 30,
+                          "name": "insert_front",
+                          "arguments": [
+                            {
+                              "kind": "IdentifierNode",
+                              "line": 30,
+                              "name": "order"
+                            },
+                            {
+                              "kind": "IdentifierNode",
+                              "line": 30,
+                              "name": "key"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 31,
+                          "target": {
+                            "kind": "IndexNode",
+                            "line": 31,
+                            "collection": {
+                              "kind": "IdentifierNode",
+                              "line": 31,
+                              "name": "cache"
+                            },
+                            "index": {
+                              "kind": "IdentifierNode",
+                              "line": 31,
+                              "name": "key"
+                            }
+                          },
+                          "value": {
+                            "kind": "IdentifierNode",
+                            "line": 31,
+                            "name": "value"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

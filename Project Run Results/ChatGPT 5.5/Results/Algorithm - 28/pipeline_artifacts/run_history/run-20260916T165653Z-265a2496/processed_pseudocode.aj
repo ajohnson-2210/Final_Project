@@ -1,0 +1,14 @@
+    INPUT Array, WindowSize
+
+    FOR i <- 0 TO LENGTH(Array) - WindowSize
+        Maximum <- Array[i]
+
+        FOR j <- i TO i + WindowSize - 1
+            IF Array[j] > Maximum THEN
+                Maximum <- Array[j]
+            ENDIF
+        ENDFOR
+
+        OUTPUT Maximum
+    ENDFOR
+END

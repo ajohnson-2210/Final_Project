@@ -1,0 +1,16 @@
+    INPUT Array
+
+    Largest <- -∞
+    SecondLargest <- -∞
+
+    FOR EACH Number IN Array
+        IF Number > Largest THEN
+            SecondLargest <- Largest
+            Largest <- Number
+        ELSE IF Number > SecondLargest AND Number < Largest THEN
+            SecondLargest <- Number
+        ENDIF
+    ENDFOR
+
+    OUTPUT SecondLargest
+END

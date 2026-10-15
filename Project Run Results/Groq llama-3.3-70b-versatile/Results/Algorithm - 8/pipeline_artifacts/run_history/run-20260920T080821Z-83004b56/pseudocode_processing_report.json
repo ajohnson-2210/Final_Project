@@ -1,0 +1,49 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 3,
+  "transformations": [
+    {
+      "line": 2,
+      "rule_family": "SORT_MODE",
+      "branch": "EXPLICIT_ALPHABETICAL_ORDER",
+      "source": "  RETURN SORT(words, ALPHABETICAL_ORDER)",
+      "canonical": "  RETURN CALL sort_value(words)",
+      "evidence": [
+        "source explicitly supplies ALPHABETICAL_ORDER as the second argument of a free two-argument SORT call",
+        "ALPHABETICAL_ORDER denotes ascending alphabetical ordering rather than runtime data",
+        "the existing sort_value compatibility intrinsic already represents ascending sorting and lowers to Python sorted(value)",
+        "arbitrary comparators, descending markers, member methods, and other SORT arities remain untouched"
+      ],
+      "confidence": "source_proven",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION SORT_WORDS(words)",
+      "canonical": "FUNCTION SORT_WORDS ACCEPTS(words)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "FUNCTION SORT_WORDS ACCEPTS(words)\n  RETURN CALL sort_value(words)\nEND FUNCTION",
+      "canonical": "FUNCTION SORT_WORDS ACCEPTS(words)\n  RETURN CALL sort_value(words)\nENDFUNCTION",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 1
+}

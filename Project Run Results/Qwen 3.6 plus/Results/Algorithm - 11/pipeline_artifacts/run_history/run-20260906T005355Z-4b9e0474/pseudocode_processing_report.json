@@ -1,0 +1,110 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 8,
+  "transformations": [
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "uniqueSet = {}",
+      "canonical": "uniqueSet <- {}",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "INPUT ipList\n\nuniqueSet <- {}\n\nFOR ip in ipList:\n    uniqueSet.add(ip)\n\nRETURN list(uniqueSet)",
+      "canonical": "FUNCTION unnamed_function ACCEPTS(ipList)\n    uniqueSet <- {}\n\n    FOR ip in ipList:\n        uniqueSet.add(ip)\n\n    RETURN list(uniqueSet)\nENDFUNCTION",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 2,
+      "rule_family": "COLLECTION_TYPE_EVIDENCE",
+      "branch": "EMPTY_BRACES_FROM_STRUCTURAL_USAGE",
+      "source": "    uniqueSet <- {}",
+      "canonical": "    uniqueSet <- EMPTY SET",
+      "evidence": [
+        "source explicitly initialises a simple receiver with bare empty braces",
+        "later same-scope standard collection operations prove exactly one of set or dictionary semantics before any direct rebind",
+        "identifier spelling, membership, iteration, and conflicting operation evidence are not accepted as type proof"
+      ],
+      "confidence": "source_proven",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "COLLECTION_OPERATION",
+      "branch": "EVIDENCED_SIMPLE_COLLECTION_METHOD",
+      "source": "        uniqueSet.add(ip)",
+      "canonical": "        ADD ip TO uniqueSet",
+      "evidence": [
+        "receiver type is independently established by an explicit collection declaration or constructor in readable lexical scope",
+        "method spelling selects an operation only after receiver evidence exists and never establishes collection type by itself",
+        "direct rebinds and formal-parameter shadowing invalidate inherited receiver evidence"
+      ],
+      "confidence": "source_proven",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION unnamed_function ACCEPTS(ipList)\n    uniqueSet <- EMPTY SET\n\n    FOR ip in ipList:\n        ADD ip TO uniqueSet\n\n    RETURN list(uniqueSet)\nENDFUNCTION",
+      "canonical": "FUNCTION unnamed_function ACCEPTS(ipList)\n    uniqueSet <- EMPTY SET\n\n    FOR ip in ipList:\n        CALL add_to_set(uniqueSet, ip)\n    RETURN list(uniqueSet)\nENDFUNCTION",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    FOR ip in ipList:",
+      "canonical": "    FOR EACH ip IN ipList DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 6,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    RETURN list(uniqueSet)",
+      "canonical": "    RETURN CALL to_list(uniqueSet)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 6,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDFOR",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 2
+}

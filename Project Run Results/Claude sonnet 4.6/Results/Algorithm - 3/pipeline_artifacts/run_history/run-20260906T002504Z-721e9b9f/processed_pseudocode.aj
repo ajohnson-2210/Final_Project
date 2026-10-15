@@ -1,0 +1,12 @@
+FUNCTION isLeapYear ACCEPTS(year)
+    IF (year MODULUS 400 == 0) THEN
+        RETURN BOOLEAN(True)
+    ENDIF
+    IF (year MODULUS 100 == 0) THEN
+        RETURN BOOLEAN(False)
+    ENDIF
+    IF (year MODULUS 4 == 0) THEN
+        RETURN BOOLEAN(True)
+    ENDIF
+    RETURN BOOLEAN(False)
+ENDFUNCTION

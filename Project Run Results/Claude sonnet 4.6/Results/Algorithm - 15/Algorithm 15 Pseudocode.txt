@@ -1,0 +1,11 @@
+# Second Largest Element
+
+FUNCTION secondLargest(arr):
+    largest ← second ← -INFINITY
+    FOR each num IN arr:
+        IF num > largest THEN
+            second ← largest
+            largest ← num
+        ELSE IF num > second AND num ≠ largest THEN
+            second ← num
+    RETURN second

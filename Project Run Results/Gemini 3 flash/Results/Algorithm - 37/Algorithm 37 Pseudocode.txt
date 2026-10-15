@@ -1,0 +1,20 @@
+# Implement a Stack using an Array    
+CLASS Stack:
+    CONSTRUCTOR(capacity):
+        self.arr = Array of size capacity
+        self.top_index = -1
+
+    PROCEDURE Push(item):
+        IF self.top_index == length(self.arr) - 1 THEN RETURN "Overflow Error"
+        self.top_index = self.top_index + 1
+        self.arr[self.top_index] = item
+
+    FUNCTION Pop():
+        IF self.top_index == -1 THEN RETURN "Underflow Error"
+        item = self.arr[self.top_index]
+        self.top_index = self.top_index - 1
+        RETURN item
+
+    FUNCTION Peek():
+        IF self.top_index == -1 THEN RETURN "Stack Empty"
+        RETURN self.arr[self.top_index]

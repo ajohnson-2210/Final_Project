@@ -1,0 +1,44 @@
+# Solve the N Queens Problem for N arbitrary board size N
+FUNCTION N_QUEENS(N)
+  board = []
+  FOR i FROM 0 TO N-1
+    board[i] = []
+    FOR j FROM 0 TO N-1
+      board[i][j] = 0
+    END FOR
+  END FOR
+  FUNCTION IS_SAFE(row, col)
+    FOR i FROM 0 TO row-1
+      IF board[i][col] == 1 THEN
+        RETURN FALSE
+      END IF
+      IF col - (row - i) >= 0 AND board[i][col - (row - i)] == 1 THEN
+        RETURN FALSE
+      END IF
+      IF col + (row - i) < N AND board[i][col + (row - i)] == 1 THEN
+        RETURN FALSE
+      END IF
+    END FOR
+    RETURN TRUE
+  END FUNCTION
+  FUNCTION PLACE_QUEENS(row)
+    IF row == N THEN
+      RETURN TRUE
+    END IF
+    FOR col FROM 0 TO N-1
+      IF IS_SAFE(row, col) THEN
+        board[row][col] = 1
+        IF PLACE_QUEENS(row + 1) THEN
+          RETURN TRUE
+        END IF
+        board[row][col] = 0
+      END IF
+    END FOR
+    RETURN FALSE
+  END FUNCTION
+  IF PLACE_QUEENS(0) THEN
+    RETURN board
+  ELSE
+    RETURN NULL
+  END IF
+END FUNCTION

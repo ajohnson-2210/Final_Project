@@ -1,0 +1,10 @@
+# Password Validator
+
+FUNCTION validatePassword(password):
+    IF length(password) < 8 THEN RETURN False
+    hasDigit ← False
+    hasUpper ← False
+    FOR each char IN password:
+        IF char is digit THEN hasDigit ← True
+        IF char is uppercase THEN hasUpper ← True
+    RETURN hasDigit AND hasUpper

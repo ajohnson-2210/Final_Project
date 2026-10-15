@@ -1,0 +1,147 @@
+{
+  "root_id": "N3306",
+  "nodes": {
+    "N3306": {
+      "kind": "ProgramNode",
+      "line": 1,
+      "attributes": {}
+    },
+    "N3305": {
+      "kind": "FunctionNode",
+      "line": 1,
+      "attributes": {
+        "name": "unnamed_function"
+      }
+    },
+    "N3291": {
+      "kind": "ParameterNode",
+      "line": 1,
+      "attributes": {
+        "name": "IP_List",
+        "declared_type": null
+      }
+    },
+    "N3304": {
+      "kind": "BlockNode",
+      "line": 2,
+      "attributes": {}
+    },
+    "N3294": {
+      "kind": "AssignmentNode",
+      "line": 2,
+      "attributes": {}
+    },
+    "N3292": {
+      "kind": "IdentifierNode",
+      "line": 2,
+      "attributes": {
+        "name": "UniqueIPs"
+      }
+    },
+    "N3293": {
+      "kind": "EmptyLiteralNode",
+      "line": 2,
+      "attributes": {
+        "empty_type": "SET"
+      }
+    },
+    "N3301": {
+      "kind": "ForEachNode",
+      "line": 4,
+      "attributes": {}
+    },
+    "N3300": {
+      "kind": "IdentifierNode",
+      "line": 4,
+      "attributes": {
+        "name": "IP"
+      }
+    },
+    "N3295": {
+      "kind": "IdentifierNode",
+      "line": 4,
+      "attributes": {
+        "name": "IP_List"
+      }
+    },
+    "N3299": {
+      "kind": "BlockNode",
+      "line": 5,
+      "attributes": {}
+    },
+    "N3298": {
+      "kind": "CallNode",
+      "line": 5,
+      "attributes": {
+        "name": "add_to_set"
+      }
+    },
+    "N3296": {
+      "kind": "IdentifierNode",
+      "line": 5,
+      "attributes": {
+        "name": "UniqueIPs"
+      }
+    },
+    "N3297": {
+      "kind": "IdentifierNode",
+      "line": 5,
+      "attributes": {
+        "name": "IP"
+      }
+    },
+    "N3303": {
+      "kind": "OutputNode",
+      "line": 8,
+      "attributes": {}
+    },
+    "N3302": {
+      "kind": "IdentifierNode",
+      "line": 8,
+      "attributes": {
+        "name": "UniqueIPs"
+      }
+    }
+  },
+  "adjacency": {
+    "N3306": [
+      "N3305"
+    ],
+    "N3305": [
+      "N3291",
+      "N3304"
+    ],
+    "N3291": [],
+    "N3304": [
+      "N3294",
+      "N3301",
+      "N3303"
+    ],
+    "N3294": [
+      "N3292",
+      "N3293"
+    ],
+    "N3292": [],
+    "N3293": [],
+    "N3301": [
+      "N3300",
+      "N3295",
+      "N3299"
+    ],
+    "N3300": [],
+    "N3295": [],
+    "N3299": [
+      "N3298"
+    ],
+    "N3298": [
+      "N3296",
+      "N3297"
+    ],
+    "N3296": [],
+    "N3297": [],
+    "N3303": [
+      "N3302"
+    ],
+    "N3302": []
+  }
+}

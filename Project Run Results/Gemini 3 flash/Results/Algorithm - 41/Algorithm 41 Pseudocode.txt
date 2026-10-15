@@ -1,0 +1,25 @@
+# Solve the N Queens problem     
+FUNCTION SolveNQueens(N):
+    board = N x N grid initialized to 0
+    solutions = empty List
+    
+    PROCEDURE Backtrack(row, cols, diag1, diag2):
+        IF row == N THEN
+            APPEND Copy(board) TO solutions
+            RETURN
+        END IF
+        
+        FOR col FROM 0 TO N - 1 DO
+            IF col IN cols OR (row - col) IN diag1 OR (row + col) IN diag2 THEN
+                CONTINUE
+            END IF
+            
+            board[row][col] = 1
+            Backtrack(row + 1, cols + {col}, diag1 + {row - col}, diag2 + {row + col})
+            board[row][col] = 0 // Backtrack
+        END FOR
+    END PROCEDURE
+
+    Backtrack(0, empty Set, empty Set, empty Set)
+    RETURN solutions
+END FUNCTION

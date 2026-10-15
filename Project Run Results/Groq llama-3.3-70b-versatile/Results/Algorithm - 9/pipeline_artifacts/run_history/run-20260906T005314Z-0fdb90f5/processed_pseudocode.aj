@@ -1,0 +1,8 @@
+FUNCTION FIND_TARGET ACCEPTS(arr, target)
+  FOR i <- IN RANGE 0 TO (LENGTH OF arr - 1) + 1 DO
+    IF arr[i] == target THEN
+      RETURN i
+    ENDIF
+  ENDFOR
+  RETURN -1
+ENDFUNCTION

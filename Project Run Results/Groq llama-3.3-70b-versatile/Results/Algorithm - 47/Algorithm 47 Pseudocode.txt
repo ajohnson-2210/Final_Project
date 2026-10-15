@@ -1,0 +1,19 @@
+# Create an algorithm that updates inventory quantities after purchases and deliveries
+FUNCTION UPDATE_INVENTORY(purchases, deliveries)
+  inventory = []
+  FOR item IN purchases
+    IF item IN inventory THEN
+      inventory[item] -= purchases[item]
+    ELSE
+      inventory[item] = -purchases[item]
+    END IF
+  END FOR
+  FOR item IN deliveries
+    IF item IN inventory THEN
+      inventory[item] += deliveries[item]
+    ELSE
+      inventory[item] = deliveries[item]
+    END IF
+  END FOR
+  RETURN inventory
+END FUNCTION

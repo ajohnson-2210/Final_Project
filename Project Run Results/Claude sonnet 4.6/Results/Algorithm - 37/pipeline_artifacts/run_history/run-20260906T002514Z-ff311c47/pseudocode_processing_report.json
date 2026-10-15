@@ -1,0 +1,262 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 21,
+  "transformations": [
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    data \u2190 []",
+      "canonical": "    data <- []",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    data <- []",
+      "canonical": "    data <- EMPTY LIST",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 8,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        IF data is empty THEN RETURN \"Underflow\"",
+      "canonical": "        IF data is empty THEN RETURN STRING(\"Underflow\")",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 12,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        IF data is empty THEN RETURN \"Empty\"",
+      "canonical": "        IF data is empty THEN RETURN STRING(\"Empty\")",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION Stack():\n    data <- EMPTY LIST\n    \n    FUNCTION push(item):\n        APPEND item TO data\n    \n    FUNCTION pop():\n        IF data is empty THEN RETURN STRING(\"Underflow\")\n        REMOVE and RETURN last item of data\n    \n    FUNCTION peek():\n        IF data is empty THEN RETURN STRING(\"Empty\")\n        RETURN last item of data",
+      "canonical": "FUNCTION Stack():\n    data <- EMPTY LIST\n    \n    FUNCTION push(item):\n        APPEND item TO data\n    \n    FUNCTION pop():\n        IF LENGTH OF data == 0 THEN RETURN STRING(\"Underflow\")\n        REMOVE and RETURN last item of data\n    \n    FUNCTION peek():\n        IF LENGTH OF data == 0 THEN RETURN STRING(\"Empty\")\n        RETURN last item of data",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION Stack():\n    data <- EMPTY LIST\n    \n    FUNCTION push(item):\n        APPEND item TO data\n    \n    FUNCTION pop():\n        IF LENGTH OF data == 0 THEN RETURN STRING(\"Underflow\")\n        REMOVE and RETURN last item of data\n    \n    FUNCTION peek():\n        IF LENGTH OF data == 0 THEN RETURN STRING(\"Empty\")\n        RETURN last item of data",
+      "canonical": "FUNCTION Stack():\n    data <- EMPTY LIST\n    \n    FUNCTION push(item):\n        APPEND item TO data\n    \n    FUNCTION pop():\n        IF LENGTH OF data == 0 THEN RETURN STRING(\"Underflow\")\n        RETURN REMOVE LAST ITEM FROM data\n    \n    FUNCTION peek():\n        IF LENGTH OF data == 0 THEN RETURN STRING(\"Empty\")\n        RETURN data[-1]",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION Stack():",
+      "canonical": "FUNCTION Stack ACCEPTS()",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    FUNCTION push(item):",
+      "canonical": "    FUNCTION push ACCEPTS(item)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 7,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    FUNCTION pop():",
+      "canonical": "    FUNCTION pop ACCEPTS()",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 8,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        IF LENGTH OF data == 0 THEN RETURN STRING(\"Underflow\")",
+      "canonical": "        IF LENGTH OF data == 0 THEN\n            RETURN STRING(\"Underflow\")",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 11,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    FUNCTION peek():",
+      "canonical": "    FUNCTION peek ACCEPTS()",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 12,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        IF LENGTH OF data == 0 THEN RETURN STRING(\"Empty\")",
+      "canonical": "        IF LENGTH OF data == 0 THEN\n            RETURN STRING(\"Empty\")",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 7,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDFUNCTION",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 10,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDIF",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 12,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDFUNCTION",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 15,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDIF",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 12,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDFUNCTION",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDFUNCTION",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION Stack ACCEPTS()\n    data <- EMPTY LIST\n    \n    FUNCTION push ACCEPTS(item)\n        APPEND item TO data\n    \n    ENDFUNCTION\n    FUNCTION pop ACCEPTS()\n        IF LENGTH OF data == 0 THEN\n            RETURN STRING(\"Underflow\")\n        ENDIF\n        RETURN REMOVE LAST ITEM FROM data\n    \n    ENDFUNCTION\n    FUNCTION peek ACCEPTS()\n        IF LENGTH OF data == 0 THEN\n            RETURN STRING(\"Empty\")\n        ENDIF\n        RETURN data[-1]\n    ENDFUNCTION\nENDFUNCTION",
+      "canonical": "CLASS Stack\n    PROPERTY data AS LIST\n\n    CONSTRUCTOR ACCEPTS()\n        PROPERTY THIS.data <- EMPTY LIST\n    ENDCONSTRUCTOR\n\n    METHOD push ACCEPTS(item)\n        APPEND item TO THIS.data\n    \n    ENDMETHOD\n\n    METHOD pop ACCEPTS()\n        IF LENGTH OF THIS.data == 0 THEN\n            RETURN STRING(\"Underflow\")\n        ENDIF\n        RETURN REMOVE LAST ITEM FROM THIS.data\n    \n    ENDMETHOD\n\n    METHOD peek ACCEPTS()\n        IF LENGTH OF THIS.data == 0 THEN\n            RETURN STRING(\"Empty\")\n        ENDIF\n        RETURN THIS.data[-1]\n    ENDMETHOD\nENDCLASS",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 10,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    ",
+      "canonical": "",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 18,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    ",
+      "canonical": "",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 2
+}

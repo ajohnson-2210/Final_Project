@@ -1,0 +1,21 @@
+# Sliding Window Maximum
+
+INPUT arr, k
+
+result = []
+deque = []
+
+FOR i from 0 to length(arr)-1:
+    IF deque[0] == i - k:
+        deque.popFront()
+
+    WHILE deque not empty AND arr[deque.back()] <= arr[i]:
+        deque.popBack()
+
+    deque.pushBack(i)
+
+    IF i >= k - 1:
+        result.append(arr[deque.front()])
+
+RETURN result
+

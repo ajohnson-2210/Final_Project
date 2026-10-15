@@ -1,0 +1,273 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 21,
+  "transformations": [
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        self.stack_in = Stack()",
+      "canonical": "        self.stack_in <- Stack()",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        self.stack_out = Stack()",
+      "canonical": "        self.stack_out <- Stack()",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 16,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        IF self.stack_out.isEmpty() THEN RETURN \"Queue Empty\"",
+      "canonical": "        IF self.stack_out.isEmpty() THEN RETURN STRING(\"Queue Empty\")",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 7,
+      "rule_family": "COLLECTION_OPERATION",
+      "branch": "EVIDENCED_SIMPLE_COLLECTION_METHOD",
+      "source": "        self.stack_in.push(item)",
+      "canonical": "        PUSH item TO self.stack_in",
+      "evidence": [
+        "receiver type is independently established by an explicit collection declaration or constructor in readable lexical scope",
+        "method spelling selects an operation only after receiver evidence exists and never establishes collection type by itself",
+        "direct rebinds and formal-parameter shadowing invalidate inherited receiver evidence"
+      ],
+      "confidence": "source_proven",
+      "semantic_change": false
+    },
+    {
+      "line": 10,
+      "rule_family": "COLLECTION_OPERATION",
+      "branch": "EVIDENCED_COLLECTION_QUERY_ACCESS",
+      "source": "        IF self.stack_out.isEmpty() THEN",
+      "canonical": "        IF LENGTH OF self.stack_out == 0 THEN",
+      "evidence": [
+        "receiver type is independently established by an explicit collection declaration or constructor in readable lexical scope",
+        "query/access spelling is accepted only for collection kinds that support the corresponding length/front/back/empty operation",
+        "method spelling never establishes collection type and direct rebinds/formal-parameter shadowing invalidate inherited evidence"
+      ],
+      "confidence": "source_proven",
+      "semantic_change": false
+    },
+    {
+      "line": 11,
+      "rule_family": "COLLECTION_OPERATION",
+      "branch": "EVIDENCED_COLLECTION_QUERY_ACCESS",
+      "source": "            WHILE NOT self.stack_in.isEmpty() DO",
+      "canonical": "            WHILE NOT LENGTH OF self.stack_in == 0 DO",
+      "evidence": [
+        "receiver type is independently established by an explicit collection declaration or constructor in readable lexical scope",
+        "query/access spelling is accepted only for collection kinds that support the corresponding length/front/back/empty operation",
+        "method spelling never establishes collection type and direct rebinds/formal-parameter shadowing invalidate inherited evidence"
+      ],
+      "confidence": "source_proven",
+      "semantic_change": false
+    },
+    {
+      "line": 12,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "                self.stack_out.push(self.stack_in.pop())",
+      "canonical": "                PUSH self.stack_in.pop() TO self.stack_out",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 16,
+      "rule_family": "COLLECTION_OPERATION",
+      "branch": "EVIDENCED_COLLECTION_QUERY_ACCESS",
+      "source": "        IF self.stack_out.isEmpty() THEN RETURN STRING(\"Queue Empty\")",
+      "canonical": "        IF LENGTH OF self.stack_out == 0 THEN RETURN STRING(\"Queue Empty\")",
+      "evidence": [
+        "receiver type is independently established by an explicit collection declaration or constructor in readable lexical scope",
+        "query/access spelling is accepted only for collection kinds that support the corresponding length/front/back/empty operation",
+        "method spelling never establishes collection type and direct rebinds/formal-parameter shadowing invalidate inherited evidence"
+      ],
+      "confidence": "source_proven",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "CLASS QueueUsingStacks:\n    CONSTRUCTOR():\n        self.stack_in <- Stack()\n        self.stack_out <- Stack()\n\n    PROCEDURE Enqueue(item):\n        PUSH item TO self.stack_in\n\n    FUNCTION Dequeue():\n        IF LENGTH OF self.stack_out == 0 THEN\n            WHILE NOT LENGTH OF self.stack_in == 0 DO\n                PUSH self.stack_in.pop() TO self.stack_out\n            END WHILE\n        END IF\n        \n        IF LENGTH OF self.stack_out == 0 THEN RETURN STRING(\"Queue Empty\")\n        RETURN self.stack_out.pop()",
+      "canonical": "CLASS QueueUsingStacks:\n    CONSTRUCTOR():\n        self.stack_in <- Stack()\n        self.stack_out <- Stack()\n\n    PROCEDURE Enqueue(item):\n        PUSH item TO self.stack_in\n\n    FUNCTION Dequeue():\n        IF LENGTH OF self.stack_out == 0 THEN\n            WHILE NOT LENGTH OF self.stack_in == 0 DO\n                PUSH self.stack_in.pop() TO self.stack_out\n            ENDWHILE\n        ENDIF\n        \n        IF LENGTH OF self.stack_out == 0 THEN RETURN STRING(\"Queue Empty\")\n        RETURN self.stack_out.pop()",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "CLASS_STRUCTURE",
+      "branch": "CONTEXTUAL_CLASS_ROUTINE_RECOVERY",
+      "source": "CLASS QueueUsingStacks:\n    CONSTRUCTOR():\n        self.stack_in <- Stack()\n        self.stack_out <- Stack()\n\n    PROCEDURE Enqueue(item):\n        PUSH item TO self.stack_in\n\n    FUNCTION Dequeue():\n        IF LENGTH OF self.stack_out == 0 THEN\n            WHILE NOT LENGTH OF self.stack_in == 0 DO\n                PUSH self.stack_in.pop() TO self.stack_out\n            ENDWHILE\n        ENDIF\n        \n        IF LENGTH OF self.stack_out == 0 THEN RETURN STRING(\"Queue Empty\")\n        RETURN self.stack_out.pop()",
+      "canonical": "CLASS QueueUsingStacks\n    CONSTRUCTOR ACCEPTS()\n        self.stack_in <- Stack()\n        self.stack_out <- Stack()\n\n    ENDCONSTRUCTOR\n    METHOD Enqueue ACCEPTS(item)\n        PUSH item TO self.stack_in\n\n    ENDMETHOD\n    METHOD Dequeue ACCEPTS()\n        IF LENGTH OF self.stack_out == 0 THEN\n            WHILE NOT LENGTH OF self.stack_in == 0 DO\n                PUSH self.stack_in.pop() TO self.stack_out\n            ENDWHILE\n        ENDIF\n        \n        IF LENGTH OF self.stack_out == 0 THEN RETURN STRING(\"Queue Empty\")\n        RETURN self.stack_out.pop()\n    ENDMETHOD\nENDCLASS",
+      "evidence": [
+        "source explicitly declares a CLASS container",
+        "direct-child CONSTRUCTOR(...), PROCEDURE name(...), and FUNCTION name(...) declarations are routine declarations in that class context",
+        "frozen AJ v1.1 represents class routines as CONSTRUCTOR ... ENDCONSTRUCTOR and METHOD ... ENDMETHOD",
+        "routine bodies and member semantics are preserved; GC241 does not infer properties, assignments, return values, or external class behaviour"
+      ],
+      "confidence": "user_confirmed",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        self.stack_in <- Stack()",
+      "canonical": "        self.stack_in <- CALL create_stack()",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        self.stack_out <- Stack()",
+      "canonical": "        self.stack_out <- CALL create_stack()",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 8,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        PUSH item TO self.stack_in",
+      "canonical": "        CALL PUSH(item, self.stack_in)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 12,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        IF LENGTH OF self.stack_out == 0 THEN",
+      "canonical": "        IF CALL stack_is_empty(self.stack_out) THEN",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 13,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            WHILE NOT LENGTH OF self.stack_in == 0 DO",
+      "canonical": "            WHILE NOT CALL stack_is_empty(self.stack_in) DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 14,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "                PUSH self.stack_in.pop() TO self.stack_out",
+      "canonical": "                CALL PUSH(CALL POP(self.stack_in), self.stack_out)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 18,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        IF LENGTH OF self.stack_out == 0 THEN RETURN STRING(\"Queue Empty\")",
+      "canonical": "        IF CALL stack_is_empty(self.stack_out) THEN RETURN STRING(\"Queue Empty\")",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 19,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        RETURN self.stack_out.pop()",
+      "canonical": "        RETURN CALL POP(self.stack_out)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 18,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        IF CALL stack_is_empty(self.stack_out) THEN RETURN STRING(\"Queue Empty\")",
+      "canonical": "        IF CALL stack_is_empty(self.stack_out) THEN\n            RETURN STRING(\"Queue Empty\")",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 20,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDIF",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 17,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        ",
+      "canonical": "",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 1
+}

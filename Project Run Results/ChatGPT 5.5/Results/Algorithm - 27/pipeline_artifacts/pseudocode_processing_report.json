@@ -1,0 +1,70 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 5,
+  "transformations": [
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    INPUT Matrix, N\n\n    TRANSPOSE Matrix\n\n    FOR EACH Row IN Matrix\n        REVERSE Row\n    ENDFOR\n\n    OUTPUT Matrix\nEND",
+      "canonical": "FUNCTION unnamed_function ACCEPTS(Matrix, N)\n        TRANSPOSE Matrix\n\n        FOR EACH Row IN Matrix\n            REVERSE Row\n        ENDFOR\n\n        OUTPUT Matrix\n    END\nENDFUNCTION",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION unnamed_function ACCEPTS(Matrix, N)\n        TRANSPOSE Matrix\n\n        FOR EACH Row IN Matrix\n            REVERSE Row\n        ENDFOR\n\n        OUTPUT Matrix\n    END\nENDFUNCTION",
+      "canonical": "FUNCTION unnamed_function ACCEPTS(Matrix, N)\n        CALL transpose_in_place(Matrix)\n        FOR EACH Row IN Matrix\n            REVERSE Row\n        ENDFOR\n\n        OUTPUT Matrix\n    END\nENDFUNCTION",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            REVERSE Row",
+      "canonical": "            CALL reverse_list(Row)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        FOR EACH Row IN Matrix",
+      "canonical": "        FOR EACH Row IN Matrix DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 8,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    END",
+      "canonical": "",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 2
+}

@@ -1,0 +1,3 @@
+FUNCTION SORT_WORDS ACCEPTS(words)
+  RETURN CALL sort_value(words)
+ENDFUNCTION

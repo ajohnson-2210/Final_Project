@@ -1,0 +1,118 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 9,
+  "transformations": [
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    FOR i \u2190 0 TO LENGTH(Array) - WindowSize",
+      "canonical": "    FOR i <- 0 TO LENGTH(Array) - WindowSize",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        Maximum \u2190 Array[i]",
+      "canonical": "        Maximum <- Array[i]",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 6,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        FOR j \u2190 i TO i + WindowSize - 1",
+      "canonical": "        FOR j <- i TO i + WindowSize - 1",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 8,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "                Maximum \u2190 Array[j]",
+      "canonical": "                Maximum <- Array[j]",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    INPUT Array, WindowSize\n\n    FOR i <- 0 TO LENGTH(Array) - WindowSize\n        Maximum <- Array[i]\n\n        FOR j <- i TO i + WindowSize - 1\n            IF Array[j] > Maximum THEN\n                Maximum <- Array[j]\n            ENDIF\n        ENDFOR\n\n        OUTPUT Maximum\n    ENDFOR\nEND",
+      "canonical": "FUNCTION unnamed_function ACCEPTS(Array, WindowSize)\n        FOR i <- 0 TO LENGTH(Array) - WindowSize\n            Maximum <- Array[i]\n\n            FOR j <- i TO i + WindowSize - 1\n                IF Array[j] > Maximum THEN\n                    Maximum <- Array[j]\n                ENDIF\n            ENDFOR\n\n            OUTPUT Maximum\n        ENDFOR\n    END\nENDFUNCTION",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        FOR i <- 0 TO LENGTH(Array) - WindowSize",
+      "canonical": "        FOR i <- 0 TO LENGTH OF Array - WindowSize",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        FOR i <- 0 TO LENGTH OF Array - WindowSize",
+      "canonical": "        FOR i <- IN RANGE 0 TO (LENGTH OF Array - WindowSize) + 1 DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            FOR j <- i TO i + WindowSize - 1",
+      "canonical": "            FOR j <- IN RANGE i TO (i + WindowSize - 1) + 1 DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 13,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    END",
+      "canonical": "",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 2
+}

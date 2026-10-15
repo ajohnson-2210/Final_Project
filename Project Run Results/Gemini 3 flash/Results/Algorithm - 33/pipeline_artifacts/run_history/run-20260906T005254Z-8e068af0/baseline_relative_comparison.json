@@ -1,0 +1,203 @@
+{
+  "comparison_schema_version": "1.2",
+  "comparison_role": "EXPERIMENTAL_VS_FROZEN_STATIC_SEMANTIC_REFERENCE",
+  "is_baseline": false,
+  "reference_python": null,
+  "tests_file": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\Pipeline Versions\\NL_Flow_Diagram_Encoder_Pipeline_v4_35_RC5\\NL_Flow_Diagram_Encoder_Pipeline_v4_35\\study data\\common tests v1.3\\Algorithm - 33\\Algorithm 33 Tests.json",
+  "common_test_set": true,
+  "expected_value_policy": "STATIC_PREEXPERIMENT_EXPECTATIONS",
+  "runtime_expected_value_generation": false,
+  "runtime_baseline_reference_used": false,
+  "frozen_reference_score_percentage": 100.0,
+  "experimental_behavioural_score_percentage": 100.0,
+  "experimental_tests_total": 3,
+  "experimental_tests_passed": 3,
+  "experimental_observation_mode": "FROZEN_TASK_SEMANTIC",
+  "semantic_test_report": {
+    "semantic_report_schema_version": "1.1",
+    "runtime_expected_value_generation": false,
+    "program_path": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Gemini 3 flash\\Results\\Algorithm - 33\\pipeline_artifacts\\generated_program.py",
+    "algorithm_id": 33,
+    "contract_version": "1.3",
+    "evaluable_tests": 3,
+    "passed_tests": 3,
+    "failed_tests": 0,
+    "not_evaluable_tests": 3,
+    "accuracy_percentage": 100.0,
+    "results": [
+      {
+        "name": "perfect square",
+        "status": "PASSED",
+        "expected_semantic_result": 4,
+        "actual_semantic_result": 4,
+        "semantic_match": true,
+        "reason": null,
+        "duration_ms": 95.769,
+        "category": "NORMAL",
+        "semantic_feature": "INTEGER_SQRT_EXACT",
+        "fixture_source": "PREEXPERIMENT_FROZEN_FIXTURE",
+        "expectation_policy": "STATIC_FROZEN_VALUE",
+        "selected_entrypoint": "IntegerSquareRoot",
+        "invocation_capture": {
+          "status": "COMPLETED",
+          "selected_entrypoint": "IntegerSquareRoot",
+          "selected_arity": 1,
+          "prints": [],
+          "returns": [
+            4
+          ],
+          "post_arguments": [
+            [
+              16
+            ]
+          ],
+          "shared_values": {},
+          "errors": [
+            null
+          ]
+        }
+      },
+      {
+        "name": "non-perfect square rounds down",
+        "status": "PASSED",
+        "expected_semantic_result": 3,
+        "actual_semantic_result": 3,
+        "semantic_match": true,
+        "reason": null,
+        "duration_ms": 88.478,
+        "category": "BRANCH",
+        "semantic_feature": "INTEGER_SQRT_FLOOR",
+        "fixture_source": "PREEXPERIMENT_FROZEN_FIXTURE",
+        "expectation_policy": "STATIC_FROZEN_VALUE",
+        "selected_entrypoint": "IntegerSquareRoot",
+        "invocation_capture": {
+          "status": "COMPLETED",
+          "selected_entrypoint": "IntegerSquareRoot",
+          "selected_arity": 1,
+          "prints": [],
+          "returns": [
+            3
+          ],
+          "post_arguments": [
+            [
+              15
+            ]
+          ],
+          "shared_values": {},
+          "errors": [
+            null
+          ]
+        }
+      },
+      {
+        "name": "small positive one",
+        "status": "PASSED",
+        "expected_semantic_result": 1,
+        "actual_semantic_result": 1,
+        "semantic_match": true,
+        "reason": null,
+        "duration_ms": 93.825,
+        "category": "BOUNDARY",
+        "semantic_feature": "INTEGER_SQRT_ONE",
+        "fixture_source": "PREEXPERIMENT_FROZEN_FIXTURE",
+        "expectation_policy": "STATIC_FROZEN_VALUE",
+        "selected_entrypoint": "IntegerSquareRoot",
+        "invocation_capture": {
+          "status": "COMPLETED",
+          "selected_entrypoint": "IntegerSquareRoot",
+          "selected_arity": 1,
+          "prints": [],
+          "returns": [
+            1
+          ],
+          "post_arguments": [
+            [
+              1
+            ]
+          ],
+          "shared_values": {},
+          "errors": [
+            null
+          ]
+        }
+      },
+      {
+        "name": "zero rejected then valid",
+        "status": "NOT_EVALUABLE",
+        "expected_semantic_result": null,
+        "actual_semantic_result": null,
+        "semantic_match": null,
+        "reason": "This Common Test remains interaction/reference evidence and is not a canonical task-function test.",
+        "duration_ms": null,
+        "category": "ERROR_BEHAVIOUR",
+        "semantic_feature": "NON_POSITIVE_INPUT_RETRY",
+        "fixture_source": null,
+        "expectation_policy": "NOT_AUTOMATED",
+        "selected_entrypoint": null,
+        "invocation_capture": null
+      },
+      {
+        "name": "negative rejected then valid",
+        "status": "NOT_EVALUABLE",
+        "expected_semantic_result": null,
+        "actual_semantic_result": null,
+        "semantic_match": null,
+        "reason": "This Common Test remains interaction/reference evidence and is not a canonical task-function test.",
+        "duration_ms": null,
+        "category": "ERROR_BEHAVIOUR",
+        "semantic_feature": "NEGATIVE_INPUT_RETRY",
+        "fixture_source": null,
+        "expectation_policy": "NOT_AUTOMATED",
+        "selected_entrypoint": null,
+        "invocation_capture": null
+      },
+      {
+        "name": "non-numeric retries",
+        "status": "NOT_EVALUABLE",
+        "expected_semantic_result": null,
+        "actual_semantic_result": null,
+        "semantic_match": null,
+        "reason": "This Common Test remains interaction/reference evidence and is not a canonical task-function test.",
+        "duration_ms": null,
+        "category": "ERROR_BEHAVIOUR",
+        "semantic_feature": "INTEGER_INPUT_RETRY",
+        "fixture_source": null,
+        "expectation_policy": "NOT_AUTOMATED",
+        "selected_entrypoint": null,
+        "invocation_capture": null
+      }
+    ]
+  },
+  "delta_from_frozen_reference_percentage_points": 0.0,
+  "comparison_to_frozen_reference": "AT_REFERENCE",
+  "comparison_status": "COMPARABLE",
+  "interpretation_note": "The experimental score is calculated only from static pre-experiment semantic fixtures and expected values. No baseline/reference implementation or executable oracle is run to derive expected outcomes during experimental evaluation.",
+  "baseline_calibration_score_percentage": 100.0,
+  "delta_from_baseline_percentage_points": 0.0,
+  "comparison_to_baseline": "AT_BASELINE",
+  "semantic_contract": {
+    "contract_version": "1.3",
+    "contract_source": "ORIGINAL_TASK_SPECIFICATION",
+    "task_statement": "Find the square root of a non-negative integer using binary search.",
+    "inputs": [
+      {
+        "position": 1,
+        "name": "number",
+        "type": "NON_NEGATIVE_INTEGER"
+      }
+    ],
+    "result": {
+      "type": "INTEGER",
+      "canonical_semantics": "Floor of the non-negative integer square root."
+    },
+    "automation_status": "AUTOMATED_FUNCTION",
+    "parameter_names_are_semantically_irrelevant": true,
+    "derived_parameters_may_be_supplied_by_adapter": true,
+    "human_review_instruction": "Judge the original generated pseudocode against this same frozen task-semantic contract, including when automated evaluation is NOT_EVALUABLE.",
+    "fixture_policy": "PREEXPERIMENT_FROZEN_INPUTS",
+    "expectation_policy": "STATIC_PREEXPERIMENT_EXPECTED_VALUES",
+    "runtime_oracle_prohibited": true
+  },
+  "semantic_contract_version": "1.3",
+  "baseline_root_supplied_but_not_used": false
+}

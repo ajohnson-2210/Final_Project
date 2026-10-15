@@ -1,0 +1,14 @@
+# Decimal to Binary Conversion
+
+INPUT n
+
+IF n == 0:
+    RETURN "0"
+
+binary = ""
+
+WHILE n > 0:
+    binary = (n MOD 2) + binary
+    n = n DIV 2
+
+RETURN binary

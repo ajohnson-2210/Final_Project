@@ -1,0 +1,11 @@
+# Develop a process for multiplying two matrices.
+FUNCTION multiplyMatrices(A, B, rowsA, colsA, colsB):
+    // Assumes A is rowsA x colsA, B is colsA x colsB
+    result = matrix of size rowsA x colsB initialized with 0
+    FOR i FROM 0 TO rowsA-1:
+        FOR j FROM 0 TO colsB-1:
+            sum = 0
+            FOR k FROM 0 TO colsA-1:
+                sum = sum + A[i][k] * B[k][j]
+            result[i][j] = sum
+    RETURN result

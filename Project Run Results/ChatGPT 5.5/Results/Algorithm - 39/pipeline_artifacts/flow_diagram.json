@@ -1,0 +1,378 @@
+{
+  "format": "NL-FDEP Flow Diagram",
+  "version": "1.0",
+  "entry_node": "F1",
+  "exit_node": "F2",
+  "nodes": {
+    "F1": {
+      "node_id": "F1",
+      "node_type": "START",
+      "label": "Start",
+      "line": 1,
+      "data": {}
+    },
+    "F2": {
+      "node_id": "F2",
+      "node_type": "END",
+      "label": "End",
+      "line": 1,
+      "data": {}
+    },
+    "F3": {
+      "node_id": "F3",
+      "node_type": "FUNCTION",
+      "label": "Run function unnamed_function with Head",
+      "line": 1,
+      "data": {
+        "ast_kind": "FunctionNode",
+        "name": "unnamed_function"
+      }
+    },
+    "F4": {
+      "node_id": "F4",
+      "node_type": "PROCESS",
+      "label": "Set Slow to Head",
+      "line": 2,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F5": {
+      "node_id": "F5",
+      "node_type": "PROCESS",
+      "label": "Set Fast to Head",
+      "line": 3,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F6": {
+      "node_id": "F6",
+      "node_type": "LOOP_DECISION",
+      "label": "Continue while Fast is not equal to NULL and Next of Fast is not equal to NULL?",
+      "line": 5,
+      "data": {
+        "ast_kind": "WhileNode"
+      }
+    },
+    "F7": {
+      "node_id": "F7",
+      "node_type": "PROCESS",
+      "label": "Set Slow to Next of Slow",
+      "line": 6,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F8": {
+      "node_id": "F8",
+      "node_type": "PROCESS",
+      "label": "Set Fast to Next of Next of Fast",
+      "line": 7,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F9": {
+      "node_id": "F9",
+      "node_type": "DECISION",
+      "label": "Slow is equal to Fast?",
+      "line": 9,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F10": {
+      "node_id": "F10",
+      "node_type": "OUTPUT",
+      "label": "Display \"Cycle Detected\"",
+      "line": 10,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F11": {
+      "node_id": "F11",
+      "node_type": "RETURN",
+      "label": "Return from the function",
+      "line": 11,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    },
+    "F12": {
+      "node_id": "F12",
+      "node_type": "OUTPUT",
+      "label": "Display \"No Cycle\"",
+      "line": 15,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "F4",
+      "target": "F5",
+      "label": "NEXT"
+    },
+    {
+      "source": "F7",
+      "target": "F8",
+      "label": "NEXT"
+    },
+    {
+      "source": "F10",
+      "target": "F11",
+      "label": "NEXT"
+    },
+    {
+      "source": "F9",
+      "target": "F10",
+      "label": "TRUE"
+    },
+    {
+      "source": "F8",
+      "target": "F9",
+      "label": "NEXT"
+    },
+    {
+      "source": "F6",
+      "target": "F7",
+      "label": "TRUE"
+    },
+    {
+      "source": "F9",
+      "target": "F6",
+      "label": "LOOP"
+    },
+    {
+      "source": "F5",
+      "target": "F6",
+      "label": "NEXT"
+    },
+    {
+      "source": "F6",
+      "target": "F12",
+      "label": "NEXT"
+    },
+    {
+      "source": "F3",
+      "target": "F4",
+      "label": "BODY"
+    },
+    {
+      "source": "F1",
+      "target": "F3",
+      "label": "NEXT"
+    },
+    {
+      "source": "F11",
+      "target": "F2",
+      "label": "NEXT"
+    },
+    {
+      "source": "F12",
+      "target": "F2",
+      "label": "NEXT"
+    }
+  ],
+  "structured_program": {
+    "kind": "ProgramNode",
+    "line": 1,
+    "body": [
+      {
+        "kind": "FunctionNode",
+        "line": 1,
+        "name": "unnamed_function",
+        "parameters": [
+          {
+            "kind": "ParameterNode",
+            "line": 1,
+            "name": "Head",
+            "declared_type": null
+          }
+        ],
+        "body": {
+          "kind": "BlockNode",
+          "line": 2,
+          "statements": [
+            {
+              "kind": "AssignmentNode",
+              "line": 2,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 2,
+                "name": "Slow"
+              },
+              "value": {
+                "kind": "IdentifierNode",
+                "line": 2,
+                "name": "Head"
+              }
+            },
+            {
+              "kind": "AssignmentNode",
+              "line": 3,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 3,
+                "name": "Fast"
+              },
+              "value": {
+                "kind": "IdentifierNode",
+                "line": 3,
+                "name": "Head"
+              }
+            },
+            {
+              "kind": "WhileNode",
+              "line": 5,
+              "condition": {
+                "kind": "BinaryNode",
+                "line": 5,
+                "operator": "AND",
+                "left": {
+                  "kind": "BinaryNode",
+                  "line": 5,
+                  "operator": "!=",
+                  "left": {
+                    "kind": "IdentifierNode",
+                    "line": 5,
+                    "name": "Fast"
+                  },
+                  "right": {
+                    "kind": "IdentifierNode",
+                    "line": 5,
+                    "name": "NULL"
+                  }
+                },
+                "right": {
+                  "kind": "BinaryNode",
+                  "line": 5,
+                  "operator": "!=",
+                  "left": {
+                    "kind": "MemberAccessNode",
+                    "line": 5,
+                    "object": {
+                      "kind": "IdentifierNode",
+                      "line": 5,
+                      "name": "Fast"
+                    },
+                    "member": "Next"
+                  },
+                  "right": {
+                    "kind": "IdentifierNode",
+                    "line": 5,
+                    "name": "NULL"
+                  }
+                }
+              },
+              "body": {
+                "kind": "BlockNode",
+                "line": 6,
+                "statements": [
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 6,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 6,
+                      "name": "Slow"
+                    },
+                    "value": {
+                      "kind": "MemberAccessNode",
+                      "line": 6,
+                      "object": {
+                        "kind": "IdentifierNode",
+                        "line": 6,
+                        "name": "Slow"
+                      },
+                      "member": "Next"
+                    }
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 7,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 7,
+                      "name": "Fast"
+                    },
+                    "value": {
+                      "kind": "MemberAccessNode",
+                      "line": 7,
+                      "object": {
+                        "kind": "MemberAccessNode",
+                        "line": 7,
+                        "object": {
+                          "kind": "IdentifierNode",
+                          "line": 7,
+                          "name": "Fast"
+                        },
+                        "member": "Next"
+                      },
+                      "member": "Next"
+                    }
+                  },
+                  {
+                    "kind": "IfNode",
+                    "line": 9,
+                    "condition": {
+                      "kind": "BinaryNode",
+                      "line": 9,
+                      "operator": "==",
+                      "left": {
+                        "kind": "IdentifierNode",
+                        "line": 9,
+                        "name": "Slow"
+                      },
+                      "right": {
+                        "kind": "IdentifierNode",
+                        "line": 9,
+                        "name": "Fast"
+                      }
+                    },
+                    "then_body": {
+                      "kind": "BlockNode",
+                      "line": 10,
+                      "statements": [
+                        {
+                          "kind": "OutputNode",
+                          "line": 10,
+                          "expression": {
+                            "kind": "LiteralNode",
+                            "line": 10,
+                            "value": "Cycle Detected",
+                            "data_type": "STRING"
+                          }
+                        },
+                        {
+                          "kind": "ReturnNode",
+                          "line": 11,
+                          "expression": null
+                        }
+                      ]
+                    },
+                    "else_if": [],
+                    "else_body": null
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "OutputNode",
+              "line": 15,
+              "expression": {
+                "kind": "LiteralNode",
+                "line": 15,
+                "value": "No Cycle",
+                "data_type": "STRING"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

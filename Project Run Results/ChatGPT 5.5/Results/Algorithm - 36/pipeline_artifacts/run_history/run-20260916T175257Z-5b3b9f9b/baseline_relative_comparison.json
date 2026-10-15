@@ -1,0 +1,389 @@
+{
+  "comparison_schema_version": "1.3",
+  "comparison_role": "EXPERIMENTAL_VS_FROZEN_STATIC_SEMANTIC_REFERENCE",
+  "is_baseline": false,
+  "reference_python": null,
+  "tests_file": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\Pipeline Versions\\NL_Flow_Diagram_Encoder_Pipeline_v4_35_RC10\\NL_Flow_Diagram_Encoder_Pipeline_v4_35\\study data\\common tests v1.4.1\\Algorithm - 36\\Algorithm 36 Tests.json",
+  "common_test_set": true,
+  "expected_value_policy": "STATIC_PREEXPERIMENT_EXPECTATIONS",
+  "runtime_expected_value_generation": false,
+  "runtime_baseline_reference_used": false,
+  "frozen_reference_score_percentage": 100.0,
+  "experimental_behavioural_score_percentage": 100.0,
+  "experimental_tests_total": 4,
+  "experimental_tests_passed": 4,
+  "experimental_observation_mode": "FROZEN_TASK_SEMANTIC",
+  "semantic_test_report": {
+    "semantic_report_schema_version": "1.2",
+    "runtime_expected_value_generation": false,
+    "program_path": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\ChatGPT 5.5\\Results\\Algorithm - 36\\pipeline_artifacts\\generated_program.py",
+    "algorithm_id": 36,
+    "contract_version": "1.4",
+    "evaluable_tests": 4,
+    "passed_tests": 4,
+    "failed_tests": 0,
+    "not_evaluable_tests": 0,
+    "accuracy_percentage": 100.0,
+    "pre_freeze_validation": {
+      "declared_cases": 0,
+      "evaluable_cases": 0,
+      "passed_cases": 0,
+      "failed_cases": 0,
+      "not_evaluable": 0,
+      "accuracy_percentage": null,
+      "included_in_core_behavioural_score": false,
+      "included_in_baseline_calibration": false,
+      "interpretation": "Candidate valid-domain coverage expansions retained for pre-freeze baseline validation. Results are descriptive only until explicitly promoted to CORE_BEHAVIOURAL."
+    },
+    "semantic_boundary": {
+      "measure": "SEMANTIC_BOUNDARY_VARIANCE",
+      "declared_probes": 1,
+      "evaluable_probes": 1,
+      "out_of_domain_accepted": 1,
+      "controlled_rejection": 0,
+      "incidental_failure": 0,
+      "not_evaluable": 0,
+      "variance_percentage": 100.0,
+      "interpretation": "Percentage of evaluable out-of-domain probes that the generated implementation accepted and processed. This is a descriptive semantic-domain extension measure and is not included in core behavioural accuracy."
+    },
+    "results": [
+      {
+        "name": "default rotated-array search examples",
+        "status": "PASSED",
+        "expected_semantic_result": [
+          3,
+          1,
+          null
+        ],
+        "actual_semantic_result": [
+          3,
+          1,
+          null
+        ],
+        "semantic_match": true,
+        "reason": null,
+        "duration_ms": 88.472,
+        "category": "BRANCH",
+        "semantic_feature": "ROTATED_BINARY_SEARCH_FOUND_LEFT_RIGHT_AND_NOT_FOUND",
+        "fixture_source": "PREEXPERIMENT_FROZEN_FIXTURE",
+        "expectation_policy": "STATIC_FROZEN_VALUE",
+        "selected_entrypoint": "unnamed_function",
+        "invocation_capture": {
+          "status": "COMPLETED",
+          "selected_entrypoint": "unnamed_function",
+          "selected_arity": 2,
+          "prints": [
+            [
+              3
+            ],
+            [
+              1
+            ],
+            [
+              "Not Found"
+            ]
+          ],
+          "returns": [
+            null,
+            null,
+            null
+          ],
+          "post_arguments": [
+            [
+              [
+                4,
+                5,
+                6,
+                1,
+                2,
+                3
+              ],
+              1
+            ],
+            [
+              [
+                4,
+                5,
+                6,
+                1,
+                2,
+                3
+              ],
+              5
+            ],
+            [
+              [
+                4,
+                5,
+                6,
+                1,
+                2,
+                3
+              ],
+              9
+            ]
+          ],
+          "shared_values": {},
+          "errors": [
+            null,
+            null,
+            null
+          ]
+        },
+        "score_stream": "CORE_BEHAVIOURAL",
+        "boundary_outcome": null,
+        "criteria_links": [
+          "P2",
+          "P4"
+        ]
+      },
+      {
+        "name": "unrotated sorted array pivot zero",
+        "status": "PASSED",
+        "expected_semantic_result": 2,
+        "actual_semantic_result": 2,
+        "semantic_match": true,
+        "reason": null,
+        "duration_ms": 89.583,
+        "category": "BOUNDARY",
+        "semantic_feature": "ROTATED_SEARCH_PIVOT_ZERO",
+        "fixture_source": "PREEXPERIMENT_FROZEN_FIXTURE",
+        "expectation_policy": "STATIC_FROZEN_VALUE",
+        "selected_entrypoint": "unnamed_function",
+        "invocation_capture": {
+          "status": "COMPLETED",
+          "selected_entrypoint": "unnamed_function",
+          "selected_arity": 2,
+          "prints": [
+            [
+              2
+            ]
+          ],
+          "returns": [
+            null
+          ],
+          "post_arguments": [
+            [
+              [
+                1,
+                2,
+                3,
+                4
+              ],
+              3
+            ]
+          ],
+          "shared_values": {},
+          "errors": [
+            null
+          ]
+        },
+        "score_stream": "CORE_BEHAVIOURAL",
+        "boundary_outcome": null,
+        "criteria_links": [
+          "P2",
+          "P3",
+          "P4"
+        ]
+      },
+      {
+        "name": "singleton rotated array",
+        "status": "PASSED",
+        "expected_semantic_result": 0,
+        "actual_semantic_result": 0,
+        "semantic_match": true,
+        "reason": null,
+        "duration_ms": 84.746,
+        "category": "BOUNDARY",
+        "semantic_feature": "ROTATED_SEARCH_SINGLETON",
+        "fixture_source": "PREEXPERIMENT_FROZEN_FIXTURE",
+        "expectation_policy": "STATIC_FROZEN_VALUE",
+        "selected_entrypoint": "unnamed_function",
+        "invocation_capture": {
+          "status": "COMPLETED",
+          "selected_entrypoint": "unnamed_function",
+          "selected_arity": 2,
+          "prints": [
+            [
+              0
+            ]
+          ],
+          "returns": [
+            null
+          ],
+          "post_arguments": [
+            [
+              [
+                5
+              ],
+              5
+            ]
+          ],
+          "shared_values": {},
+          "errors": [
+            null
+          ]
+        },
+        "score_stream": "CORE_BEHAVIOURAL",
+        "boundary_outcome": null,
+        "criteria_links": [
+          "P2",
+          "P3",
+          "P4"
+        ]
+      },
+      {
+        "name": "pivot at final position",
+        "status": "PASSED",
+        "expected_semantic_result": 3,
+        "actual_semantic_result": 3,
+        "semantic_match": true,
+        "reason": null,
+        "duration_ms": 89.063,
+        "category": "BOUNDARY",
+        "semantic_feature": "ROTATED_SEARCH_PIVOT_LAST",
+        "fixture_source": "PREEXPERIMENT_FROZEN_FIXTURE",
+        "expectation_policy": "STATIC_FROZEN_VALUE",
+        "selected_entrypoint": "unnamed_function",
+        "invocation_capture": {
+          "status": "COMPLETED",
+          "selected_entrypoint": "unnamed_function",
+          "selected_arity": 2,
+          "prints": [
+            [
+              3
+            ]
+          ],
+          "returns": [
+            null
+          ],
+          "post_arguments": [
+            [
+              [
+                2,
+                3,
+                4,
+                1
+              ],
+              1
+            ]
+          ],
+          "shared_values": {},
+          "errors": [
+            null
+          ]
+        },
+        "score_stream": "CORE_BEHAVIOURAL",
+        "boundary_outcome": null,
+        "criteria_links": [
+          "P2",
+          "P3",
+          "P4"
+        ]
+      },
+      {
+        "name": "array not a rotation of sorted order",
+        "status": "OBSERVED",
+        "expected_semantic_result": null,
+        "actual_semantic_result": {
+          "returns": [
+            null
+          ],
+          "prints": [
+            [
+              "Not Found"
+            ]
+          ],
+          "mutated_arguments": null
+        },
+        "semantic_match": null,
+        "reason": "The generated implementation accepted and processed an input outside the frozen semantic contract.",
+        "duration_ms": 96.904,
+        "category": "SEMANTIC_BOUNDARY",
+        "semantic_feature": "UNSORTED_NON_ROTATION_PROBE",
+        "fixture_source": "PREEXPERIMENT_FROZEN_BOUNDARY_PROBE",
+        "expectation_policy": "BOUNDARY_OBSERVATION",
+        "selected_entrypoint": "unnamed_function",
+        "invocation_capture": {
+          "status": "COMPLETED",
+          "selected_entrypoint": "unnamed_function",
+          "selected_arity": 2,
+          "prints": [
+            [
+              "Not Found"
+            ]
+          ],
+          "returns": [
+            null
+          ],
+          "post_arguments": [
+            [
+              [
+                3,
+                1,
+                4,
+                2
+              ],
+              4
+            ]
+          ],
+          "shared_values": {},
+          "errors": [
+            null
+          ]
+        },
+        "score_stream": "SEMANTIC_BOUNDARY_PROBE",
+        "boundary_outcome": "OUT_OF_DOMAIN_ACCEPTED",
+        "criteria_links": []
+      }
+    ]
+  },
+  "semantic_boundary": {
+    "measure": "SEMANTIC_BOUNDARY_VARIANCE",
+    "declared_probes": 1,
+    "evaluable_probes": 1,
+    "out_of_domain_accepted": 1,
+    "controlled_rejection": 0,
+    "incidental_failure": 0,
+    "not_evaluable": 0,
+    "variance_percentage": 100.0,
+    "interpretation": "Percentage of evaluable out-of-domain probes that the generated implementation accepted and processed. This is a descriptive semantic-domain extension measure and is not included in core behavioural accuracy."
+  },
+  "delta_from_frozen_reference_percentage_points": 0.0,
+  "comparison_to_frozen_reference": "AT_REFERENCE",
+  "comparison_status": "COMPARABLE",
+  "interpretation_note": "The experimental score is calculated only from static pre-experiment semantic fixtures and expected values. No baseline/reference implementation or executable oracle is run to derive expected outcomes during experimental evaluation.",
+  "baseline_calibration_score_percentage": 100.0,
+  "delta_from_baseline_percentage_points": 0.0,
+  "comparison_to_baseline": "AT_BASELINE",
+  "semantic_contract": {
+    "contract_version": "1.4",
+    "contract_source": "ORIGINAL_TASK_SPECIFICATION",
+    "task_statement": "Find a target element in a rotated sorted array.",
+    "inputs": [
+      {
+        "position": 1,
+        "name": "array",
+        "type": "ROTATED_SORTED_ARRAY"
+      },
+      {
+        "position": 2,
+        "name": "target",
+        "type": "NUMBER"
+      }
+    ],
+    "result": {
+      "type": "INDEX_OR_NOT_FOUND",
+      "canonical_semantics": "Index of target in the rotated sorted array, or not-found."
+    },
+    "automation_status": "AUTOMATED_FUNCTION",
+    "parameter_names_are_semantically_irrelevant": true,
+    "derived_parameters_may_be_supplied_by_adapter": true,
+    "human_review_instruction": "Judge the original generated pseudocode against this same frozen task-semantic contract, including when automated evaluation is NOT_EVALUABLE.",
+    "fixture_policy": "PREEXPERIMENT_FROZEN_INPUTS",
+    "expectation_policy": "STATIC_PREEXPERIMENT_EXPECTED_VALUES",
+    "runtime_oracle_prohibited": true
+  },
+  "semantic_contract_version": "1.4",
+  "baseline_root_supplied_but_not_used": false
+}

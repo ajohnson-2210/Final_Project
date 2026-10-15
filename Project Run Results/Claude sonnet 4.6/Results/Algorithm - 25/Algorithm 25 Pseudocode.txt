@@ -1,0 +1,12 @@
+# Longest Substring Without Repeating Characters
+
+FUNCTION longestUniqueSubstring(str):
+    seen ← empty dictionary
+    maxLen ← 0
+    start ← 0
+    FOR i FROM 0 TO length(str) - 1:
+        IF str[i] IN seen AND seen[str[i]] >= start THEN
+            start ← seen[str[i]] + 1
+        seen[str[i]] ← i
+        maxLen ← MAX(maxLen, i - start + 1)
+    RETURN maxLen

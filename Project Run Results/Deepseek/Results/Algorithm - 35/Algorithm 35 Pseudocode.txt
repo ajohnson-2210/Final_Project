@@ -1,0 +1,29 @@
+# Design a memory buffer that holds a fixed number of items. When it runs out of space, it must automatically discard the item that hasn't been accessed for the longest time. (LRU Cache)
+CLASS LRUCache:
+    // Use a combination of a dictionary and a doubly linked list (or an ordered map)
+    cache = empty dictionary
+    capacity = given capacity
+    order = empty list (or a doubly linked list to maintain access order)
+
+    FUNCTION get(key):
+        IF key NOT IN cache:
+            RETURN -1 // or NULL
+        // Move key to front of order (most recently used)
+        order.remove(key)
+        order.insert_front(key)
+        RETURN cache[key]
+
+    FUNCTION put(key, value):
+        IF key IN cache:
+            // Update value and move key to front
+            cache[key] = value
+            order.remove(key)
+            order.insert_front(key)
+        ELSE:
+            IF length(order) >= capacity:
+                // Evict the least recently used (last element in order)
+                lruKey = order.back()
+                order.remove_back()
+                cache.remove(lruKey)
+            order.insert_front(key)
+            cache[key] = value

@@ -1,0 +1,208 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 16,
+  "transformations": [
+    {
+      "line": 5,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        temp = matrix[i][j]",
+      "canonical": "        temp <- matrix[i][j]",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "SHAPE_ANNOTATION",
+      "branch": "SQUARE_DIMENSION_IDENTIFIER_REFERENCE",
+      "source": "FOR i from 0 to N/2 - 1:",
+      "canonical": "FOR i from 0 to LENGTH OF matrix/2 - 1:",
+      "evidence": [
+        "INPUT annotation explicitly states one square dimension symbol D x D",
+        "the same otherwise-unbound symbol is referenced in executable code in that routine"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SHAPE_ANNOTATION",
+      "branch": "SQUARE_DIMENSION_IDENTIFIER_REFERENCE",
+      "source": "    FOR j from i to N-1-i-1:",
+      "canonical": "    FOR j from i to LENGTH OF matrix-1-i-1:",
+      "evidence": [
+        "INPUT annotation explicitly states one square dimension symbol D x D",
+        "the same otherwise-unbound symbol is referenced in executable code in that routine"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 6,
+      "rule_family": "SHAPE_ANNOTATION",
+      "branch": "SQUARE_DIMENSION_IDENTIFIER_REFERENCE",
+      "source": "        matrix[i][j] = matrix[N-1-j][i]",
+      "canonical": "        matrix[i][j] = matrix[LENGTH OF matrix-1-j][i]",
+      "evidence": [
+        "INPUT annotation explicitly states one square dimension symbol D x D",
+        "the same otherwise-unbound symbol is referenced in executable code in that routine"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 7,
+      "rule_family": "SHAPE_ANNOTATION",
+      "branch": "SQUARE_DIMENSION_IDENTIFIER_REFERENCE",
+      "source": "        matrix[N-1-j][i] = matrix[N-1-i][N-1-j]",
+      "canonical": "        matrix[LENGTH OF matrix-1-j][i] = matrix[LENGTH OF matrix-1-i][LENGTH OF matrix-1-j]",
+      "evidence": [
+        "INPUT annotation explicitly states one square dimension symbol D x D",
+        "the same otherwise-unbound symbol is referenced in executable code in that routine"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 8,
+      "rule_family": "SHAPE_ANNOTATION",
+      "branch": "SQUARE_DIMENSION_IDENTIFIER_REFERENCE",
+      "source": "        matrix[N-1-i][N-1-j] = matrix[j][N-1-i]",
+      "canonical": "        matrix[LENGTH OF matrix-1-i][LENGTH OF matrix-1-j] = matrix[j][LENGTH OF matrix-1-i]",
+      "evidence": [
+        "INPUT annotation explicitly states one square dimension symbol D x D",
+        "the same otherwise-unbound symbol is referenced in executable code in that routine"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 9,
+      "rule_family": "SHAPE_ANNOTATION",
+      "branch": "SQUARE_DIMENSION_IDENTIFIER_REFERENCE",
+      "source": "        matrix[j][N-1-i] = temp",
+      "canonical": "        matrix[j][LENGTH OF matrix-1-i] = temp",
+      "evidence": [
+        "INPUT annotation explicitly states one square dimension symbol D x D",
+        "the same otherwise-unbound symbol is referenced in executable code in that routine"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "INPUT matrix (N x N)\n\nFOR i from 0 to LENGTH OF matrix/2 - 1:\n    FOR j from i to LENGTH OF matrix-1-i-1:\n        temp <- matrix[i][j]\n        matrix[i][j] = matrix[LENGTH OF matrix-1-j][i]\n        matrix[LENGTH OF matrix-1-j][i] = matrix[LENGTH OF matrix-1-i][LENGTH OF matrix-1-j]\n        matrix[LENGTH OF matrix-1-i][LENGTH OF matrix-1-j] = matrix[j][LENGTH OF matrix-1-i]\n        matrix[j][LENGTH OF matrix-1-i] = temp\n\nRETURN matrix",
+      "canonical": "FUNCTION unnamed_function ACCEPTS(matrix)\n    FOR i from 0 to LENGTH OF matrix/2 - 1:\n        FOR j from i to LENGTH OF matrix-1-i-1:\n            temp <- matrix[i][j]\n            matrix[i][j] = matrix[LENGTH OF matrix-1-j][i]\n            matrix[LENGTH OF matrix-1-j][i] = matrix[LENGTH OF matrix-1-i][LENGTH OF matrix-1-j]\n            matrix[LENGTH OF matrix-1-i][LENGTH OF matrix-1-j] = matrix[j][LENGTH OF matrix-1-i]\n            matrix[j][LENGTH OF matrix-1-i] = temp\n\n    RETURN matrix\nENDFUNCTION",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            matrix[i][j] = matrix[LENGTH OF matrix-1-j][i]",
+      "canonical": "            matrix[i][j] <- matrix[LENGTH OF matrix-1-j][i]",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 6,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            matrix[LENGTH OF matrix-1-j][i] = matrix[LENGTH OF matrix-1-i][LENGTH OF matrix-1-j]",
+      "canonical": "            matrix[LENGTH OF matrix-1-j][i] <- matrix[LENGTH OF matrix-1-i][LENGTH OF matrix-1-j]",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 7,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            matrix[LENGTH OF matrix-1-i][LENGTH OF matrix-1-j] = matrix[j][LENGTH OF matrix-1-i]",
+      "canonical": "            matrix[LENGTH OF matrix-1-i][LENGTH OF matrix-1-j] <- matrix[j][LENGTH OF matrix-1-i]",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 8,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            matrix[j][LENGTH OF matrix-1-i] = temp",
+      "canonical": "            matrix[j][LENGTH OF matrix-1-i] <- temp",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    FOR i from 0 to LENGTH OF matrix/2 - 1:",
+      "canonical": "    FOR i <- IN RANGE 0 TO (LENGTH OF matrix/2 - 1) + 1 DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        FOR j from i to LENGTH OF matrix-1-i-1:",
+      "canonical": "        FOR j <- IN RANGE i TO (LENGTH OF matrix-1-i-1) + 1 DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 10,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDFOR",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 10,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDFOR",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 2
+}

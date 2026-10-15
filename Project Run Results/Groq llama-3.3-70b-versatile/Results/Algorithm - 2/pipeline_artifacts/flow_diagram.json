@@ -1,0 +1,324 @@
+{
+  "format": "NL-FDEP Flow Diagram",
+  "version": "1.0",
+  "entry_node": "F1",
+  "exit_node": "F2",
+  "nodes": {
+    "F1": {
+      "node_id": "F1",
+      "node_type": "START",
+      "label": "Start",
+      "line": 1,
+      "data": {}
+    },
+    "F2": {
+      "node_id": "F2",
+      "node_type": "END",
+      "label": "End",
+      "line": 1,
+      "data": {}
+    },
+    "F3": {
+      "node_id": "F3",
+      "node_type": "FUNCTION",
+      "label": "Run function DECIMAL_TO_BINARY with n",
+      "line": 1,
+      "data": {
+        "ast_kind": "FunctionNode",
+        "name": "DECIMAL_TO_BINARY"
+      }
+    },
+    "F4": {
+      "node_id": "F4",
+      "node_type": "DECISION",
+      "label": "N is equal to 0?",
+      "line": 2,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F5": {
+      "node_id": "F5",
+      "node_type": "RETURN",
+      "label": "Return \"0\"",
+      "line": 3,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    },
+    "F6": {
+      "node_id": "F6",
+      "node_type": "PROCESS",
+      "label": "Set binary to an empty string",
+      "line": 5,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F7": {
+      "node_id": "F7",
+      "node_type": "LOOP_DECISION",
+      "label": "N is greater than 0?",
+      "line": 6,
+      "data": {
+        "ast_kind": "WhileNode"
+      }
+    },
+    "F8": {
+      "node_id": "F8",
+      "node_type": "PROCESS",
+      "label": "Set binary to n modulo 2 plus binary",
+      "line": 7,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F9": {
+      "node_id": "F9",
+      "node_type": "PROCESS",
+      "label": "Set n to n integer-divided by 2",
+      "line": 8,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F10": {
+      "node_id": "F10",
+      "node_type": "RETURN",
+      "label": "Return binary",
+      "line": 10,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "F4",
+      "target": "F5",
+      "label": "TRUE"
+    },
+    {
+      "source": "F4",
+      "target": "F6",
+      "label": "NEXT"
+    },
+    {
+      "source": "F8",
+      "target": "F9",
+      "label": "NEXT"
+    },
+    {
+      "source": "F7",
+      "target": "F8",
+      "label": "TRUE"
+    },
+    {
+      "source": "F9",
+      "target": "F7",
+      "label": "LOOP"
+    },
+    {
+      "source": "F6",
+      "target": "F7",
+      "label": "NEXT"
+    },
+    {
+      "source": "F7",
+      "target": "F10",
+      "label": "NEXT"
+    },
+    {
+      "source": "F3",
+      "target": "F4",
+      "label": "BODY"
+    },
+    {
+      "source": "F1",
+      "target": "F3",
+      "label": "NEXT"
+    },
+    {
+      "source": "F5",
+      "target": "F2",
+      "label": "NEXT"
+    },
+    {
+      "source": "F10",
+      "target": "F2",
+      "label": "NEXT"
+    }
+  ],
+  "structured_program": {
+    "kind": "ProgramNode",
+    "line": 1,
+    "body": [
+      {
+        "kind": "FunctionNode",
+        "line": 1,
+        "name": "DECIMAL_TO_BINARY",
+        "parameters": [
+          {
+            "kind": "ParameterNode",
+            "line": 1,
+            "name": "n",
+            "declared_type": null
+          }
+        ],
+        "body": {
+          "kind": "BlockNode",
+          "line": 2,
+          "statements": [
+            {
+              "kind": "IfNode",
+              "line": 2,
+              "condition": {
+                "kind": "BinaryNode",
+                "line": 2,
+                "operator": "==",
+                "left": {
+                  "kind": "IdentifierNode",
+                  "line": 2,
+                  "name": "n"
+                },
+                "right": {
+                  "kind": "LiteralNode",
+                  "line": 2,
+                  "value": 0,
+                  "data_type": "INTEGER"
+                }
+              },
+              "then_body": {
+                "kind": "BlockNode",
+                "line": 3,
+                "statements": [
+                  {
+                    "kind": "ReturnNode",
+                    "line": 3,
+                    "expression": {
+                      "kind": "LiteralNode",
+                      "line": 3,
+                      "value": "0",
+                      "data_type": "STRING"
+                    }
+                  }
+                ]
+              },
+              "else_if": [],
+              "else_body": null
+            },
+            {
+              "kind": "AssignmentNode",
+              "line": 5,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 5,
+                "name": "binary"
+              },
+              "value": {
+                "kind": "EmptyLiteralNode",
+                "line": 5,
+                "empty_type": "STRING"
+              }
+            },
+            {
+              "kind": "WhileNode",
+              "line": 6,
+              "condition": {
+                "kind": "BinaryNode",
+                "line": 6,
+                "operator": ">",
+                "left": {
+                  "kind": "IdentifierNode",
+                  "line": 6,
+                  "name": "n"
+                },
+                "right": {
+                  "kind": "LiteralNode",
+                  "line": 6,
+                  "value": 0,
+                  "data_type": "INTEGER"
+                }
+              },
+              "body": {
+                "kind": "BlockNode",
+                "line": 7,
+                "statements": [
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 7,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 7,
+                      "name": "binary"
+                    },
+                    "value": {
+                      "kind": "BinaryNode",
+                      "line": 7,
+                      "operator": "+",
+                      "left": {
+                        "kind": "BinaryNode",
+                        "line": 7,
+                        "operator": "MODULUS",
+                        "left": {
+                          "kind": "IdentifierNode",
+                          "line": 7,
+                          "name": "n"
+                        },
+                        "right": {
+                          "kind": "LiteralNode",
+                          "line": 7,
+                          "value": 2,
+                          "data_type": "INTEGER"
+                        }
+                      },
+                      "right": {
+                        "kind": "IdentifierNode",
+                        "line": 7,
+                        "name": "binary"
+                      }
+                    }
+                  },
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 8,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 8,
+                      "name": "n"
+                    },
+                    "value": {
+                      "kind": "BinaryNode",
+                      "line": 8,
+                      "operator": "INTEGER DIVISION",
+                      "left": {
+                        "kind": "IdentifierNode",
+                        "line": 8,
+                        "name": "n"
+                      },
+                      "right": {
+                        "kind": "LiteralNode",
+                        "line": 8,
+                        "value": 2,
+                        "data_type": "INTEGER"
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "ReturnNode",
+              "line": 10,
+              "expression": {
+                "kind": "IdentifierNode",
+                "line": 10,
+                "name": "binary"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

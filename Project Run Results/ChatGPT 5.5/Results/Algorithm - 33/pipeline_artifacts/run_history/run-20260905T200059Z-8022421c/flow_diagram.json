@@ -1,0 +1,535 @@
+{
+  "format": "NL-FDEP Flow Diagram",
+  "version": "1.0",
+  "entry_node": "F1",
+  "exit_node": "F2",
+  "nodes": {
+    "F1": {
+      "node_id": "F1",
+      "node_type": "START",
+      "label": "Start",
+      "line": 1,
+      "data": {}
+    },
+    "F2": {
+      "node_id": "F2",
+      "node_type": "END",
+      "label": "End",
+      "line": 1,
+      "data": {}
+    },
+    "F3": {
+      "node_id": "F3",
+      "node_type": "FUNCTION",
+      "label": "Run function unnamed_function with Number",
+      "line": 1,
+      "data": {
+        "ast_kind": "FunctionNode",
+        "name": "unnamed_function"
+      }
+    },
+    "F4": {
+      "node_id": "F4",
+      "node_type": "PROCESS",
+      "label": "Set Low to 0",
+      "line": 2,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F5": {
+      "node_id": "F5",
+      "node_type": "PROCESS",
+      "label": "Set High to Number",
+      "line": 3,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F6": {
+      "node_id": "F6",
+      "node_type": "PROCESS",
+      "label": "Set Answer to 0",
+      "line": 4,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F7": {
+      "node_id": "F7",
+      "node_type": "LOOP_DECISION",
+      "label": "Low is less than or equal to High?",
+      "line": 6,
+      "data": {
+        "ast_kind": "WhileNode"
+      }
+    },
+    "F8": {
+      "node_id": "F8",
+      "node_type": "PROCESS",
+      "label": "Set Mid to Low plus High integer-divided by 2",
+      "line": 7,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F9": {
+      "node_id": "F9",
+      "node_type": "DECISION",
+      "label": "Mid multiplied by Mid is equal to Number?",
+      "line": 9,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F10": {
+      "node_id": "F10",
+      "node_type": "OUTPUT",
+      "label": "Display Mid",
+      "line": 10,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F11": {
+      "node_id": "F11",
+      "node_type": "RETURN",
+      "label": "Return from the function",
+      "line": 11,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    },
+    "F12": {
+      "node_id": "F12",
+      "node_type": "DECISION",
+      "label": "Mid multiplied by Mid is less than Number?",
+      "line": 12,
+      "data": {
+        "ast_kind": "ElseIfNode"
+      }
+    },
+    "F13": {
+      "node_id": "F13",
+      "node_type": "PROCESS",
+      "label": "Set Answer to Mid",
+      "line": 13,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F14": {
+      "node_id": "F14",
+      "node_type": "PROCESS",
+      "label": "Set Low to Mid plus 1",
+      "line": 14,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F15": {
+      "node_id": "F15",
+      "node_type": "PROCESS",
+      "label": "Set High to Mid minus 1",
+      "line": 16,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F16": {
+      "node_id": "F16",
+      "node_type": "OUTPUT",
+      "label": "Display Answer",
+      "line": 20,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "F4",
+      "target": "F5",
+      "label": "NEXT"
+    },
+    {
+      "source": "F5",
+      "target": "F6",
+      "label": "NEXT"
+    },
+    {
+      "source": "F10",
+      "target": "F11",
+      "label": "NEXT"
+    },
+    {
+      "source": "F9",
+      "target": "F10",
+      "label": "TRUE"
+    },
+    {
+      "source": "F9",
+      "target": "F12",
+      "label": "FALSE"
+    },
+    {
+      "source": "F13",
+      "target": "F14",
+      "label": "NEXT"
+    },
+    {
+      "source": "F12",
+      "target": "F13",
+      "label": "TRUE"
+    },
+    {
+      "source": "F12",
+      "target": "F15",
+      "label": "FALSE"
+    },
+    {
+      "source": "F8",
+      "target": "F9",
+      "label": "NEXT"
+    },
+    {
+      "source": "F7",
+      "target": "F8",
+      "label": "TRUE"
+    },
+    {
+      "source": "F14",
+      "target": "F7",
+      "label": "LOOP"
+    },
+    {
+      "source": "F15",
+      "target": "F7",
+      "label": "LOOP"
+    },
+    {
+      "source": "F6",
+      "target": "F7",
+      "label": "NEXT"
+    },
+    {
+      "source": "F7",
+      "target": "F16",
+      "label": "NEXT"
+    },
+    {
+      "source": "F3",
+      "target": "F4",
+      "label": "BODY"
+    },
+    {
+      "source": "F1",
+      "target": "F3",
+      "label": "NEXT"
+    },
+    {
+      "source": "F11",
+      "target": "F2",
+      "label": "NEXT"
+    },
+    {
+      "source": "F16",
+      "target": "F2",
+      "label": "NEXT"
+    }
+  ],
+  "structured_program": {
+    "kind": "ProgramNode",
+    "line": 1,
+    "body": [
+      {
+        "kind": "FunctionNode",
+        "line": 1,
+        "name": "unnamed_function",
+        "parameters": [
+          {
+            "kind": "ParameterNode",
+            "line": 1,
+            "name": "Number",
+            "declared_type": null
+          }
+        ],
+        "body": {
+          "kind": "BlockNode",
+          "line": 2,
+          "statements": [
+            {
+              "kind": "AssignmentNode",
+              "line": 2,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 2,
+                "name": "Low"
+              },
+              "value": {
+                "kind": "LiteralNode",
+                "line": 2,
+                "value": 0,
+                "data_type": "INTEGER"
+              }
+            },
+            {
+              "kind": "AssignmentNode",
+              "line": 3,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 3,
+                "name": "High"
+              },
+              "value": {
+                "kind": "IdentifierNode",
+                "line": 3,
+                "name": "Number"
+              }
+            },
+            {
+              "kind": "AssignmentNode",
+              "line": 4,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 4,
+                "name": "Answer"
+              },
+              "value": {
+                "kind": "LiteralNode",
+                "line": 4,
+                "value": 0,
+                "data_type": "INTEGER"
+              }
+            },
+            {
+              "kind": "WhileNode",
+              "line": 6,
+              "condition": {
+                "kind": "BinaryNode",
+                "line": 6,
+                "operator": "<=",
+                "left": {
+                  "kind": "IdentifierNode",
+                  "line": 6,
+                  "name": "Low"
+                },
+                "right": {
+                  "kind": "IdentifierNode",
+                  "line": 6,
+                  "name": "High"
+                }
+              },
+              "body": {
+                "kind": "BlockNode",
+                "line": 7,
+                "statements": [
+                  {
+                    "kind": "AssignmentNode",
+                    "line": 7,
+                    "target": {
+                      "kind": "IdentifierNode",
+                      "line": 7,
+                      "name": "Mid"
+                    },
+                    "value": {
+                      "kind": "BinaryNode",
+                      "line": 7,
+                      "operator": "INTEGER DIVISION",
+                      "left": {
+                        "kind": "BinaryNode",
+                        "line": 7,
+                        "operator": "+",
+                        "left": {
+                          "kind": "IdentifierNode",
+                          "line": 7,
+                          "name": "Low"
+                        },
+                        "right": {
+                          "kind": "IdentifierNode",
+                          "line": 7,
+                          "name": "High"
+                        }
+                      },
+                      "right": {
+                        "kind": "LiteralNode",
+                        "line": 7,
+                        "value": 2,
+                        "data_type": "INTEGER"
+                      }
+                    }
+                  },
+                  {
+                    "kind": "IfNode",
+                    "line": 9,
+                    "condition": {
+                      "kind": "BinaryNode",
+                      "line": 9,
+                      "operator": "==",
+                      "left": {
+                        "kind": "BinaryNode",
+                        "line": 9,
+                        "operator": "*",
+                        "left": {
+                          "kind": "IdentifierNode",
+                          "line": 9,
+                          "name": "Mid"
+                        },
+                        "right": {
+                          "kind": "IdentifierNode",
+                          "line": 9,
+                          "name": "Mid"
+                        }
+                      },
+                      "right": {
+                        "kind": "IdentifierNode",
+                        "line": 9,
+                        "name": "Number"
+                      }
+                    },
+                    "then_body": {
+                      "kind": "BlockNode",
+                      "line": 10,
+                      "statements": [
+                        {
+                          "kind": "OutputNode",
+                          "line": 10,
+                          "expression": {
+                            "kind": "IdentifierNode",
+                            "line": 10,
+                            "name": "Mid"
+                          }
+                        },
+                        {
+                          "kind": "ReturnNode",
+                          "line": 11,
+                          "expression": null
+                        }
+                      ]
+                    },
+                    "else_if": [
+                      {
+                        "kind": "ElseIfNode",
+                        "line": 12,
+                        "condition": {
+                          "kind": "BinaryNode",
+                          "line": 12,
+                          "operator": "<",
+                          "left": {
+                            "kind": "BinaryNode",
+                            "line": 12,
+                            "operator": "*",
+                            "left": {
+                              "kind": "IdentifierNode",
+                              "line": 12,
+                              "name": "Mid"
+                            },
+                            "right": {
+                              "kind": "IdentifierNode",
+                              "line": 12,
+                              "name": "Mid"
+                            }
+                          },
+                          "right": {
+                            "kind": "IdentifierNode",
+                            "line": 12,
+                            "name": "Number"
+                          }
+                        },
+                        "body": {
+                          "kind": "BlockNode",
+                          "line": 13,
+                          "statements": [
+                            {
+                              "kind": "AssignmentNode",
+                              "line": 13,
+                              "target": {
+                                "kind": "IdentifierNode",
+                                "line": 13,
+                                "name": "Answer"
+                              },
+                              "value": {
+                                "kind": "IdentifierNode",
+                                "line": 13,
+                                "name": "Mid"
+                              }
+                            },
+                            {
+                              "kind": "AssignmentNode",
+                              "line": 14,
+                              "target": {
+                                "kind": "IdentifierNode",
+                                "line": 14,
+                                "name": "Low"
+                              },
+                              "value": {
+                                "kind": "BinaryNode",
+                                "line": 14,
+                                "operator": "+",
+                                "left": {
+                                  "kind": "IdentifierNode",
+                                  "line": 14,
+                                  "name": "Mid"
+                                },
+                                "right": {
+                                  "kind": "LiteralNode",
+                                  "line": 14,
+                                  "value": 1,
+                                  "data_type": "INTEGER"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "else_body": {
+                      "kind": "BlockNode",
+                      "line": 16,
+                      "statements": [
+                        {
+                          "kind": "AssignmentNode",
+                          "line": 16,
+                          "target": {
+                            "kind": "IdentifierNode",
+                            "line": 16,
+                            "name": "High"
+                          },
+                          "value": {
+                            "kind": "BinaryNode",
+                            "line": 16,
+                            "operator": "-",
+                            "left": {
+                              "kind": "IdentifierNode",
+                              "line": 16,
+                              "name": "Mid"
+                            },
+                            "right": {
+                              "kind": "LiteralNode",
+                              "line": 16,
+                              "value": 1,
+                              "data_type": "INTEGER"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "OutputNode",
+              "line": 20,
+              "expression": {
+                "kind": "IdentifierNode",
+                "line": 20,
+                "name": "Answer"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

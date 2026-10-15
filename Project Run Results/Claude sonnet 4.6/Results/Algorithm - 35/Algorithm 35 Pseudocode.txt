@@ -1,0 +1,15 @@
+# LRU Cache
+
+FUNCTION LRUCache(capacity):
+    cache ← ordered dictionary
+    
+    FUNCTION get(key):
+        IF key NOT IN cache THEN RETURN -1
+        MOVE key to most recently used position
+        RETURN cache[key]
+    
+    FUNCTION put(key, value):
+        IF key IN cache THEN REMOVE key
+        ELSE IF length(cache) == capacity THEN
+            REMOVE least recently used (front) item
+        INSERT key:value at most recently used position

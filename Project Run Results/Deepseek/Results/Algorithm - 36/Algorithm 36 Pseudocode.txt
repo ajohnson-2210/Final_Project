@@ -1,0 +1,21 @@
+# An ordered list of numbers was rotated at an unknown pivot point (e.g., [4,5,6,1,2,3]). Find the index of a target element in this list in logarithmic time.
+FUNCTION searchRotatedArray(arr, target):
+    low = 0
+    high = length(arr) - 1
+    WHILE low <= high:
+        mid = (low + high) DIV 2
+        IF arr[mid] == target:
+            RETURN mid
+        // Check if left half is sorted
+        IF arr[low] <= arr[mid]:
+            IF arr[low] <= target AND target <= arr[mid]:
+                high = mid - 1
+            ELSE:
+                low = mid + 1
+        // Right half must be sorted
+        ELSE:
+            IF arr[mid] <= target AND target <= arr[high]:
+                low = mid + 1
+            ELSE:
+                high = mid - 1
+    RETURN -1

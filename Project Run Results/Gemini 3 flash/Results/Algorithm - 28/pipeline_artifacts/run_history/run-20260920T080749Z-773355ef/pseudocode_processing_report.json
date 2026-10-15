@@ -1,0 +1,280 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 22,
+  "transformations": [
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    result = empty List",
+      "canonical": "    result <- empty List",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    deque = empty DoubleEndedQueue // Stores indices",
+      "canonical": "    deque <- empty DoubleEndedQueue // Stores indices",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    deque <- empty DoubleEndedQueue // Stores indices",
+      "canonical": "    deque <- empty DoubleEndedQueue\n    // Stores indices",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    result <- empty List",
+      "canonical": "    result <- EMPTY LIST",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    deque <- empty DoubleEndedQueue",
+      "canonical": "    deque <- EMPTY DEQUE",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 7,
+      "rule_family": "COLLECTION_OPERATION",
+      "branch": "EVIDENCED_COLLECTION_QUERY_ACCESS",
+      "source": "        IF deque IS NOT EMPTY AND deque.front() <= i - k THEN",
+      "canonical": "        IF deque IS NOT EMPTY AND deque[0] <= i - k THEN",
+      "evidence": [
+        "receiver type is independently established by an explicit collection declaration or constructor in readable lexical scope",
+        "query/access spelling is accepted only for collection kinds that support the corresponding length/front/back/empty operation",
+        "method spelling never establishes collection type and direct rebinds/formal-parameter shadowing invalidate inherited evidence"
+      ],
+      "confidence": "source_proven",
+      "semantic_change": false
+    },
+    {
+      "line": 11,
+      "rule_family": "COLLECTION_OPERATION",
+      "branch": "EVIDENCED_COLLECTION_QUERY_ACCESS",
+      "source": "        WHILE deque IS NOT EMPTY AND arr[deque.back()] <= arr[i] DO",
+      "canonical": "        WHILE deque IS NOT EMPTY AND arr[deque[LAST]] <= arr[i] DO",
+      "evidence": [
+        "receiver type is independently established by an explicit collection declaration or constructor in readable lexical scope",
+        "query/access spelling is accepted only for collection kinds that support the corresponding length/front/back/empty operation",
+        "method spelling never establishes collection type and direct rebinds/formal-parameter shadowing invalidate inherited evidence"
+      ],
+      "confidence": "source_proven",
+      "semantic_change": false
+    },
+    {
+      "line": 18,
+      "rule_family": "COLLECTION_OPERATION",
+      "branch": "EVIDENCED_COLLECTION_QUERY_ACCESS",
+      "source": "            APPEND arr[deque.front()] TO result",
+      "canonical": "            APPEND arr[deque[0]] TO result",
+      "evidence": [
+        "receiver type is independently established by an explicit collection declaration or constructor in readable lexical scope",
+        "query/access spelling is accepted only for collection kinds that support the corresponding length/front/back/empty operation",
+        "method spelling never establishes collection type and direct rebinds/formal-parameter shadowing invalidate inherited evidence"
+      ],
+      "confidence": "source_proven",
+      "semantic_change": false
+    },
+    {
+      "line": 6,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    FOR i FROM 0 TO length(arr) - 1 DO",
+      "canonical": "    FOR i FROM 0 TO LENGTH OF arr - 1 DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "FUNCTION SlidingWindowMaximum(arr, k):\n    result <- EMPTY LIST\n    deque <- EMPTY DEQUE\n    // Stores indices\n    \n    FOR i FROM 0 TO LENGTH OF arr - 1 DO\n        IF deque IS NOT EMPTY AND deque[0] <= i - k THEN\n            REMOVE FRONT FROM deque\n        END IF\n        \n        WHILE deque IS NOT EMPTY AND arr[deque[LAST]] <= arr[i] DO\n            REMOVE BACK FROM deque\n        END WHILE\n        \n        ADD BACK i TO deque\n        \n        IF i >= k - 1 THEN\n            APPEND arr[deque[0]] TO result\n        END IF\n    END FOR\n    \n    RETURN result\nEND FUNCTION",
+      "canonical": "FUNCTION SlidingWindowMaximum(arr, k):\n    result <- EMPTY LIST\n    deque <- EMPTY DEQUE\n    // Stores indices\n    \n    FOR i FROM 0 TO LENGTH OF arr - 1 DO\n        IF LENGTH OF deque > 0 AND deque[0] <= i - k THEN\n            REMOVE FRONT FROM deque\n        ENDIF\n        \n        WHILE LENGTH OF deque > 0 AND arr[deque[LAST]] <= arr[i] DO\n            REMOVE BACK FROM deque\n        ENDWHILE\n        \n        ADD BACK i TO deque\n        \n        IF i >= k - 1 THEN\n            APPEND arr[deque[0]] TO result\n        ENDIF\n    ENDFOR\n    \n    RETURN result\nENDFUNCTION",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 8,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            REMOVE FRONT FROM deque",
+      "canonical": "            CALL deque_pop_front(deque)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 12,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            REMOVE BACK FROM deque",
+      "canonical": "            CALL deque_pop_back(deque)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 15,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        ADD BACK i TO deque",
+      "canonical": "        CALL deque_push_back(deque, i)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION SlidingWindowMaximum(arr, k):\n    result <- EMPTY LIST\n    deque <- EMPTY DEQUE\n    // Stores indices\n    \n    FOR i FROM 0 TO LENGTH OF arr - 1 DO\n        IF LENGTH OF deque > 0 AND deque[0] <= i - k THEN\n            CALL deque_pop_front(deque)\n        ENDIF\n        \n        WHILE LENGTH OF deque > 0 AND arr[deque[LAST]] <= arr[i] DO\n            CALL deque_pop_back(deque)\n        ENDWHILE\n        \n        CALL deque_push_back(deque, i)\n        \n        IF i >= k - 1 THEN\n            APPEND arr[deque[0]] TO result\n        ENDIF\n    ENDFOR\n    \n    RETURN result\nENDFUNCTION",
+      "canonical": "FUNCTION SlidingWindowMaximum(arr, k):\n    result <- EMPTY LIST\n    deque <- CALL create_deque()\n    // Stores indices\n    \n    FOR i FROM 0 TO LENGTH OF arr - 1 DO\n        IF NOT CALL deque_is_empty(deque) AND CALL deque_front(deque) <= i - k THEN\n            CALL deque_pop_front(deque)\n        ENDIF\n        \n        WHILE NOT CALL deque_is_empty(deque) AND arr[CALL deque_back(deque)] <= arr[i] DO\n            CALL deque_pop_back(deque)\n        ENDWHILE\n        \n        CALL deque_push_back(deque, i)\n        \n        IF i >= k - 1 THEN\n            APPEND arr[CALL deque_front(deque)] TO result\n        ENDIF\n    ENDFOR\n    \n    RETURN result\nENDFUNCTION",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION SlidingWindowMaximum(arr, k):",
+      "canonical": "FUNCTION SlidingWindowMaximum ACCEPTS(arr, k)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 6,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    FOR i FROM 0 TO LENGTH OF arr - 1 DO",
+      "canonical": "    FOR i <- IN RANGE 0 TO (LENGTH OF arr - 1) + 1 DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    // Stores indices",
+      "canonical": "    COMMENT Stores indices",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    ",
+      "canonical": "",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 10,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        ",
+      "canonical": "",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 14,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        ",
+      "canonical": "",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 16,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        ",
+      "canonical": "",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 21,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    ",
+      "canonical": "",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 1
+}

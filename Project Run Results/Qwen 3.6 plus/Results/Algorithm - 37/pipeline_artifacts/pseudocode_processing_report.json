@@ -1,0 +1,269 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 21,
+  "transformations": [
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "size = 0",
+      "canonical": "size <- 0",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 6,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    size++",
+      "canonical": "    size <- size + 1",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 10,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        size--",
+      "canonical": "        size <- size - 1",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "INIT stack = []",
+      "canonical": "stack <- EMPTY LIST",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "INIT stack = []",
+      "canonical": "stack <- EMPTY LIST",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "COLLECTION_OPERATION",
+      "branch": "EVIDENCED_SIMPLE_COLLECTION_METHOD",
+      "source": "    stack.append(x)",
+      "canonical": "    APPEND x TO stack",
+      "evidence": [
+        "receiver type is independently established by an explicit collection declaration or constructor in readable lexical scope",
+        "method spelling selects an operation only after receiver evidence exists and never establishes collection type by itself",
+        "direct rebinds and formal-parameter shadowing invalidate inherited receiver evidence"
+      ],
+      "confidence": "source_proven",
+      "semantic_change": false
+    },
+    {
+      "line": 13,
+      "rule_family": "ERROR_SIGNAL",
+      "branch": "STANDALONE_ERROR_RAISE",
+      "source": "        ERROR",
+      "canonical": "        RAISE STRING(\"ERROR\")",
+      "evidence": [
+        "ERROR appears as the complete executable statement rather than as a returned value or identifier",
+        "AJ v1.1 represents explicit error generation with RAISE"
+      ],
+      "confidence": "user_confirmed",
+      "semantic_change": false
+    },
+    {
+      "line": 19,
+      "rule_family": "ERROR_SIGNAL",
+      "branch": "STANDALONE_ERROR_RAISE",
+      "source": "        ERROR",
+      "canonical": "        RAISE STRING(\"ERROR\")",
+      "evidence": [
+        "ERROR appears as the complete executable statement rather than as a returned value or identifier",
+        "AJ v1.1 represents explicit error generation with RAISE"
+      ],
+      "confidence": "user_confirmed",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION push(x):",
+      "canonical": "FUNCTION push ACCEPTS(x)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 8,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION pop():",
+      "canonical": "FUNCTION pop ACCEPTS()",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 9,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    IF size > 0:",
+      "canonical": "    IF size > 0 THEN",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 12,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    ELSE:",
+      "canonical": "    ELSE",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 15,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION peek():",
+      "canonical": "FUNCTION peek ACCEPTS()",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 16,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    IF size > 0:",
+      "canonical": "    IF size > 0 THEN",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 18,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    ELSE:",
+      "canonical": "    ELSE",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 8,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDFUNCTION",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 15,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDIF",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 15,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDFUNCTION",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 16,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDIF",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 15,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDFUNCTION",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "STATEFUL_ADT_STRUCTURE",
+      "branch": "EVIDENCED_COUNTED_LIST_CONSTRUCTOR",
+      "source": "stack <- EMPTY LIST\nsize <- 0\n\nFUNCTION push ACCEPTS(x)\n    APPEND x TO stack\n    size <- size + 1\n\nENDFUNCTION\nFUNCTION pop ACCEPTS()\n    IF size > 0 THEN\n        size <- size - 1\n        RETURN stack.pop()\n    ELSE\n        RAISE STRING(\"ERROR\")\n\n    ENDIF\nENDFUNCTION\nFUNCTION peek ACCEPTS()\n    IF size > 0 THEN\n        RETURN stack[size-1]\n    ELSE\n        RAISE STRING(\"ERROR\")\n    ENDIF\nENDFUNCTION",
+      "canonical": "CLASS unnamed_class\n    PROPERTY stack AS LIST\n    PROPERTY size AS INTEGER\n\n    CONSTRUCTOR ACCEPTS()\n        PROPERTY THIS.stack <- EMPTY LIST\n        PROPERTY THIS.size <- 0\n    ENDCONSTRUCTOR\n\n    METHOD push ACCEPTS(x)\n        APPEND x TO THIS.stack\n        THIS.size <- THIS.size + 1\n\n    ENDMETHOD\n\n    METHOD pop ACCEPTS()\n        IF THIS.size > 0 THEN\n            THIS.size <- THIS.size - 1\n            RETURN THIS.stack.pop()\n        ELSE\n            RAISE STRING(\"ERROR\")\n\n        ENDIF\n    ENDMETHOD\n\n    METHOD peek ACCEPTS()\n        IF THIS.size > 0 THEN\n            RETURN THIS.stack[THIS.size-1]\n        ELSE\n            RAISE STRING(\"ERROR\")\n        ENDIF\n    ENDMETHOD\nENDCLASS",
+      "evidence": [
+        "source explicitly initialises one persistent list as EMPTY LIST and one persistent counter as zero",
+        "at least three top-level operations all share both state values",
+        "append, pop, indexed-top read, and counter +/-1 updates jointly prove the counted-list interface shape",
+        "the recovered zero-argument constructor reuses only source-supplied initial values"
+      ],
+      "confidence": "source_proven",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 2
+}

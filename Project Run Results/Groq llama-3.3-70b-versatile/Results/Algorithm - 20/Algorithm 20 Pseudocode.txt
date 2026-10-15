@@ -1,0 +1,10 @@
+# Determine all divisors of a given positive integer
+FUNCTION FIND_DIVISORS(n)
+  divisors = []
+  FOR i FROM 1 TO n
+    IF n MOD i == 0 THEN
+      divisors += [i]
+    END IF
+  END FOR
+  RETURN divisors
+END FUNCTION

@@ -1,0 +1,562 @@
+{
+  "format": "NL-FDEP Flow Diagram",
+  "version": "1.0",
+  "entry_node": "F1",
+  "exit_node": "F2",
+  "nodes": {
+    "F1": {
+      "node_id": "F1",
+      "node_type": "START",
+      "label": "Start",
+      "line": 1,
+      "data": {}
+    },
+    "F2": {
+      "node_id": "F2",
+      "node_type": "END",
+      "label": "End",
+      "line": 1,
+      "data": {}
+    },
+    "F3": {
+      "node_id": "F3",
+      "node_type": "FUNCTION",
+      "label": "Run function MultiplyMatrices with A, B, r1, c1, r2, c2",
+      "line": 1,
+      "data": {
+        "ast_kind": "FunctionNode",
+        "name": "MultiplyMatrices"
+      }
+    },
+    "F4": {
+      "node_id": "F4",
+      "node_type": "DECISION",
+      "label": "C1 is not equal to r2?",
+      "line": 2,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F5": {
+      "node_id": "F5",
+      "node_type": "RETURN",
+      "label": "Return \"Invalid matrix dimensions\"",
+      "line": 3,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    },
+    "F6": {
+      "node_id": "F6",
+      "node_type": "PROCESS",
+      "label": "Set C to the result of create_matrix(r1, c2, 0)",
+      "line": 6,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F7": {
+      "node_id": "F7",
+      "node_type": "LOOP_DECISION",
+      "label": "For i from 0 to r1 minus 1 plus 1",
+      "line": 7,
+      "data": {
+        "ast_kind": "ForRangeNode"
+      }
+    },
+    "F8": {
+      "node_id": "F8",
+      "node_type": "LOOP_DECISION",
+      "label": "For j from 0 to c2 minus 1 plus 1",
+      "line": 8,
+      "data": {
+        "ast_kind": "ForRangeNode"
+      }
+    },
+    "F9": {
+      "node_id": "F9",
+      "node_type": "LOOP_DECISION",
+      "label": "For k from 0 to c1 minus 1 plus 1",
+      "line": 9,
+      "data": {
+        "ast_kind": "ForRangeNode"
+      }
+    },
+    "F10": {
+      "node_id": "F10",
+      "node_type": "PROCESS",
+      "label": "Set item j of item i of C to item j of item i of C plus item k of item i of A multiplied by item j of item k of B",
+      "line": 10,
+      "data": {
+        "ast_kind": "AssignmentNode"
+      }
+    },
+    "F11": {
+      "node_id": "F11",
+      "node_type": "RETURN",
+      "label": "Return C",
+      "line": 14,
+      "data": {
+        "ast_kind": "ReturnNode"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "F4",
+      "target": "F5",
+      "label": "TRUE"
+    },
+    {
+      "source": "F4",
+      "target": "F6",
+      "label": "NEXT"
+    },
+    {
+      "source": "F9",
+      "target": "F10",
+      "label": "ITERATE"
+    },
+    {
+      "source": "F10",
+      "target": "F9",
+      "label": "LOOP"
+    },
+    {
+      "source": "F8",
+      "target": "F9",
+      "label": "ITERATE"
+    },
+    {
+      "source": "F9",
+      "target": "F8",
+      "label": "LOOP"
+    },
+    {
+      "source": "F7",
+      "target": "F8",
+      "label": "ITERATE"
+    },
+    {
+      "source": "F8",
+      "target": "F7",
+      "label": "LOOP"
+    },
+    {
+      "source": "F6",
+      "target": "F7",
+      "label": "NEXT"
+    },
+    {
+      "source": "F7",
+      "target": "F11",
+      "label": "NEXT"
+    },
+    {
+      "source": "F3",
+      "target": "F4",
+      "label": "BODY"
+    },
+    {
+      "source": "F1",
+      "target": "F3",
+      "label": "NEXT"
+    },
+    {
+      "source": "F5",
+      "target": "F2",
+      "label": "NEXT"
+    },
+    {
+      "source": "F11",
+      "target": "F2",
+      "label": "NEXT"
+    }
+  ],
+  "structured_program": {
+    "kind": "ProgramNode",
+    "line": 1,
+    "body": [
+      {
+        "kind": "FunctionNode",
+        "line": 1,
+        "name": "MultiplyMatrices",
+        "parameters": [
+          {
+            "kind": "ParameterNode",
+            "line": 1,
+            "name": "A",
+            "declared_type": null
+          },
+          {
+            "kind": "ParameterNode",
+            "line": 1,
+            "name": "B",
+            "declared_type": null
+          },
+          {
+            "kind": "ParameterNode",
+            "line": 1,
+            "name": "r1",
+            "declared_type": null
+          },
+          {
+            "kind": "ParameterNode",
+            "line": 1,
+            "name": "c1",
+            "declared_type": null
+          },
+          {
+            "kind": "ParameterNode",
+            "line": 1,
+            "name": "r2",
+            "declared_type": null
+          },
+          {
+            "kind": "ParameterNode",
+            "line": 1,
+            "name": "c2",
+            "declared_type": null
+          }
+        ],
+        "body": {
+          "kind": "BlockNode",
+          "line": 2,
+          "statements": [
+            {
+              "kind": "IfNode",
+              "line": 2,
+              "condition": {
+                "kind": "BinaryNode",
+                "line": 2,
+                "operator": "!=",
+                "left": {
+                  "kind": "IdentifierNode",
+                  "line": 2,
+                  "name": "c1"
+                },
+                "right": {
+                  "kind": "IdentifierNode",
+                  "line": 2,
+                  "name": "r2"
+                }
+              },
+              "then_body": {
+                "kind": "BlockNode",
+                "line": 3,
+                "statements": [
+                  {
+                    "kind": "ReturnNode",
+                    "line": 3,
+                    "expression": {
+                      "kind": "LiteralNode",
+                      "line": 3,
+                      "value": "Invalid matrix dimensions",
+                      "data_type": "STRING"
+                    }
+                  }
+                ]
+              },
+              "else_if": [],
+              "else_body": null
+            },
+            {
+              "kind": "AssignmentNode",
+              "line": 6,
+              "target": {
+                "kind": "IdentifierNode",
+                "line": 6,
+                "name": "C"
+              },
+              "value": {
+                "kind": "CallNode",
+                "line": 6,
+                "name": "create_matrix",
+                "arguments": [
+                  {
+                    "kind": "IdentifierNode",
+                    "line": 6,
+                    "name": "r1"
+                  },
+                  {
+                    "kind": "IdentifierNode",
+                    "line": 6,
+                    "name": "c2"
+                  },
+                  {
+                    "kind": "LiteralNode",
+                    "line": 6,
+                    "value": 0,
+                    "data_type": "INTEGER"
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "ForRangeNode",
+              "line": 7,
+              "variable": {
+                "kind": "IdentifierNode",
+                "line": 7,
+                "name": "i"
+              },
+              "start": {
+                "kind": "LiteralNode",
+                "line": 7,
+                "value": 0,
+                "data_type": "INTEGER"
+              },
+              "end": {
+                "kind": "BinaryNode",
+                "line": 7,
+                "operator": "+",
+                "left": {
+                  "kind": "BinaryNode",
+                  "line": 7,
+                  "operator": "-",
+                  "left": {
+                    "kind": "IdentifierNode",
+                    "line": 7,
+                    "name": "r1"
+                  },
+                  "right": {
+                    "kind": "LiteralNode",
+                    "line": 7,
+                    "value": 1,
+                    "data_type": "INTEGER"
+                  }
+                },
+                "right": {
+                  "kind": "LiteralNode",
+                  "line": 7,
+                  "value": 1,
+                  "data_type": "INTEGER"
+                }
+              },
+              "step": null,
+              "body": {
+                "kind": "BlockNode",
+                "line": 8,
+                "statements": [
+                  {
+                    "kind": "ForRangeNode",
+                    "line": 8,
+                    "variable": {
+                      "kind": "IdentifierNode",
+                      "line": 8,
+                      "name": "j"
+                    },
+                    "start": {
+                      "kind": "LiteralNode",
+                      "line": 8,
+                      "value": 0,
+                      "data_type": "INTEGER"
+                    },
+                    "end": {
+                      "kind": "BinaryNode",
+                      "line": 8,
+                      "operator": "+",
+                      "left": {
+                        "kind": "BinaryNode",
+                        "line": 8,
+                        "operator": "-",
+                        "left": {
+                          "kind": "IdentifierNode",
+                          "line": 8,
+                          "name": "c2"
+                        },
+                        "right": {
+                          "kind": "LiteralNode",
+                          "line": 8,
+                          "value": 1,
+                          "data_type": "INTEGER"
+                        }
+                      },
+                      "right": {
+                        "kind": "LiteralNode",
+                        "line": 8,
+                        "value": 1,
+                        "data_type": "INTEGER"
+                      }
+                    },
+                    "step": null,
+                    "body": {
+                      "kind": "BlockNode",
+                      "line": 9,
+                      "statements": [
+                        {
+                          "kind": "ForRangeNode",
+                          "line": 9,
+                          "variable": {
+                            "kind": "IdentifierNode",
+                            "line": 9,
+                            "name": "k"
+                          },
+                          "start": {
+                            "kind": "LiteralNode",
+                            "line": 9,
+                            "value": 0,
+                            "data_type": "INTEGER"
+                          },
+                          "end": {
+                            "kind": "BinaryNode",
+                            "line": 9,
+                            "operator": "+",
+                            "left": {
+                              "kind": "BinaryNode",
+                              "line": 9,
+                              "operator": "-",
+                              "left": {
+                                "kind": "IdentifierNode",
+                                "line": 9,
+                                "name": "c1"
+                              },
+                              "right": {
+                                "kind": "LiteralNode",
+                                "line": 9,
+                                "value": 1,
+                                "data_type": "INTEGER"
+                              }
+                            },
+                            "right": {
+                              "kind": "LiteralNode",
+                              "line": 9,
+                              "value": 1,
+                              "data_type": "INTEGER"
+                            }
+                          },
+                          "step": null,
+                          "body": {
+                            "kind": "BlockNode",
+                            "line": 10,
+                            "statements": [
+                              {
+                                "kind": "AssignmentNode",
+                                "line": 10,
+                                "target": {
+                                  "kind": "IndexNode",
+                                  "line": 10,
+                                  "collection": {
+                                    "kind": "IndexNode",
+                                    "line": 10,
+                                    "collection": {
+                                      "kind": "IdentifierNode",
+                                      "line": 10,
+                                      "name": "C"
+                                    },
+                                    "index": {
+                                      "kind": "IdentifierNode",
+                                      "line": 10,
+                                      "name": "i"
+                                    }
+                                  },
+                                  "index": {
+                                    "kind": "IdentifierNode",
+                                    "line": 10,
+                                    "name": "j"
+                                  }
+                                },
+                                "value": {
+                                  "kind": "BinaryNode",
+                                  "line": 10,
+                                  "operator": "+",
+                                  "left": {
+                                    "kind": "IndexNode",
+                                    "line": 10,
+                                    "collection": {
+                                      "kind": "IndexNode",
+                                      "line": 10,
+                                      "collection": {
+                                        "kind": "IdentifierNode",
+                                        "line": 10,
+                                        "name": "C"
+                                      },
+                                      "index": {
+                                        "kind": "IdentifierNode",
+                                        "line": 10,
+                                        "name": "i"
+                                      }
+                                    },
+                                    "index": {
+                                      "kind": "IdentifierNode",
+                                      "line": 10,
+                                      "name": "j"
+                                    }
+                                  },
+                                  "right": {
+                                    "kind": "BinaryNode",
+                                    "line": 10,
+                                    "operator": "*",
+                                    "left": {
+                                      "kind": "IndexNode",
+                                      "line": 10,
+                                      "collection": {
+                                        "kind": "IndexNode",
+                                        "line": 10,
+                                        "collection": {
+                                          "kind": "IdentifierNode",
+                                          "line": 10,
+                                          "name": "A"
+                                        },
+                                        "index": {
+                                          "kind": "IdentifierNode",
+                                          "line": 10,
+                                          "name": "i"
+                                        }
+                                      },
+                                      "index": {
+                                        "kind": "IdentifierNode",
+                                        "line": 10,
+                                        "name": "k"
+                                      }
+                                    },
+                                    "right": {
+                                      "kind": "IndexNode",
+                                      "line": 10,
+                                      "collection": {
+                                        "kind": "IndexNode",
+                                        "line": 10,
+                                        "collection": {
+                                          "kind": "IdentifierNode",
+                                          "line": 10,
+                                          "name": "B"
+                                        },
+                                        "index": {
+                                          "kind": "IdentifierNode",
+                                          "line": 10,
+                                          "name": "k"
+                                        }
+                                      },
+                                      "index": {
+                                        "kind": "IdentifierNode",
+                                        "line": 10,
+                                        "name": "j"
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "ReturnNode",
+              "line": 14,
+              "expression": {
+                "kind": "IdentifierNode",
+                "line": 14,
+                "name": "C"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

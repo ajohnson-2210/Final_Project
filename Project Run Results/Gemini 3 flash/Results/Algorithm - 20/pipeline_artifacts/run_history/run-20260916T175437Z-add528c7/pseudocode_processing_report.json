@@ -1,0 +1,133 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 10,
+  "transformations": [
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    divisors = empty List",
+      "canonical": "    divisors <- empty List",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    divisors <- empty List",
+      "canonical": "    divisors <- EMPTY LIST",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "FUNCTION FindDivisors(n):\n    divisors <- EMPTY LIST\n    FOR i FROM 1 TO SQUARE_ROOT(n) DO\n        IF n MOD i == 0 THEN\n            APPEND i TO divisors\n            IF i != (n DIV i) THEN\n                APPEND (n DIV i) TO divisors\n            END IF\n        END IF\n    END FOR\n    RETURN divisors\nEND FUNCTION",
+      "canonical": "FUNCTION FindDivisors(n):\n    divisors <- EMPTY LIST\n    FOR i FROM 1 TO SQUARE_ROOT(n) DO\n        IF n MOD i == 0 THEN\n            APPEND i TO divisors\n            IF i != (n DIV i) THEN\n                APPEND (n DIV i) TO divisors\n            ENDIF\n        ENDIF\n    ENDFOR\n    RETURN divisors\nENDFUNCTION",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION FindDivisors(n):",
+      "canonical": "FUNCTION FindDivisors ACCEPTS(n)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    FOR i FROM 1 TO SQUARE_ROOT(n) DO",
+      "canonical": "    FOR i <- IN RANGE 1 TO (SQUARE_ROOT(n)) + 1 DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "ARITHMETIC",
+      "branch": "EXPLICIT_SQUARE_ROOT_EXPONENTIATION",
+      "source": "    FOR i <- IN RANGE 1 TO (SQUARE_ROOT(n)) + 1 DO",
+      "canonical": "    FOR i <- IN RANGE 1 TO ((n EXP 0.5)) + 1 DO",
+      "evidence": [
+        "source explicitly calls free SQUARE_ROOT(value) with exactly one argument",
+        "the approved representation is mathematical square root as value raised to the power 0.5",
+        "AJ v1.1 already represents exponentiation with EXP, which lowers deterministically to Python **",
+        "no integer, floor, range-bound, or other coercion is introduced by this recovery"
+      ],
+      "confidence": "user_confirmed",
+      "semantic_change": false
+    },
+    {
+      "line": 7,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "                APPEND (n DIV i) TO divisors",
+      "canonical": "                CALL APPEND (n DIV i) TO divisors",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        IF n MOD i == 0 THEN",
+      "canonical": "        IF n MODULUS i == 0 THEN",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 6,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            IF i != (n DIV i) THEN",
+      "canonical": "            IF i != (n INTEGER DIVISION i) THEN",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 7,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "                APPEND TUPLE(n DIV i) TO divisors",
+      "canonical": "                APPEND TUPLE(n INTEGER DIVISION i) TO divisors",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 1
+}

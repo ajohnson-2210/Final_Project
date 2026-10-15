@@ -1,0 +1,25 @@
+# Perform level-order traversal on a binary tree    
+FUNCTION LevelOrderTraversal(root):
+    IF root IS NULL THEN RETURN empty List
+    
+    result = empty List
+    queue = empty Queue
+    ENQUEUE root TO queue
+    
+    WHILE queue IS NOT EMPTY DO
+        level_size = queue.size()
+        current_level = empty List
+        
+        FOR i FROM 1 TO level_size DO
+            node = DEQUEUE from queue
+            APPEND node.value TO current_level
+            
+            IF node.left IS NOT NULL THEN ENQUEUE node.left TO queue
+            IF node.right IS NOT NULL THEN ENQUEUE node.right TO queue
+        END FOR
+        
+        APPEND current_level TO result
+    END WHILE
+    
+    RETURN result
+END FUNCTION

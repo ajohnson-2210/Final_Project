@@ -1,0 +1,25 @@
+# Search Rotated Sorted Array
+
+INPUT arr, target
+
+left = 0
+right = length(arr)-1
+
+WHILE left <= right:
+    mid = (left + right) DIV 2
+
+    IF arr[mid] == target:
+        RETURN mid
+
+    IF arr[left] <= arr[mid]:
+        IF arr[left] <= target < arr[mid]:
+            right = mid - 1
+        ELSE:
+            left = mid + 1
+    ELSE:
+        IF arr[mid] < target <= arr[right]:
+            left = mid + 1
+        ELSE:
+            right = mid - 1
+
+RETURN -1

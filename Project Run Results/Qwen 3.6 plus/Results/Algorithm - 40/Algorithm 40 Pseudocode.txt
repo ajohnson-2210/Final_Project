@@ -1,0 +1,15 @@
+# Queue Using Two Stacks
+
+INIT s1 = []
+s2 = []
+
+FUNCTION enqueue(x):
+    s1.push(x)
+
+FUNCTION dequeue():
+    IF s2 is empty:
+        WHILE s1 not empty:
+            s2.push(s1.pop())
+
+    RETURN s2.pop()
+

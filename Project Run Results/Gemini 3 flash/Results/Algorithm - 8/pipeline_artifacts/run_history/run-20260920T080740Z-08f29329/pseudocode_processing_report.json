@@ -1,0 +1,94 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 7,
+  "transformations": [
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    n = length(words)",
+      "canonical": "    n <- length(words)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    n <- length(words)",
+      "canonical": "    n <- LENGTH OF words",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "FUNCTION BubbleSortWords(words):\n    n <- LENGTH OF words\n    FOR i FROM 0 TO n - 1 DO\n        FOR j FROM 0 TO n - i - 2 DO\n            IF words[j] > words[j + 1] THEN\n                SWAP words[j] AND words[j + 1]\n            END IF\n        END FOR\n    END FOR\n    RETURN words\nEND FUNCTION",
+      "canonical": "FUNCTION BubbleSortWords(words):\n    n <- LENGTH OF words\n    FOR i FROM 0 TO n - 1 DO\n        FOR j FROM 0 TO n - i - 2 DO\n            IF words[j] > words[j + 1] THEN\n                SWAP words[j] AND words[j + 1]\n            ENDIF\n        ENDFOR\n    ENDFOR\n    RETURN words\nENDFUNCTION",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 6,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "                SWAP words[j] AND words[j + 1]",
+      "canonical": "                temp_var <- words[j]\n                words[j] <- words[j + 1]\n                words[j + 1] <- temp_var",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION BubbleSortWords(words):",
+      "canonical": "FUNCTION BubbleSortWords ACCEPTS(words)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    FOR i FROM 0 TO n - 1 DO",
+      "canonical": "    FOR i <- IN RANGE 0 TO (n - 1) + 1 DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        FOR j FROM 0 TO n - i - 2 DO",
+      "canonical": "        FOR j <- IN RANGE 0 TO (n - i - 2) + 1 DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 1
+}

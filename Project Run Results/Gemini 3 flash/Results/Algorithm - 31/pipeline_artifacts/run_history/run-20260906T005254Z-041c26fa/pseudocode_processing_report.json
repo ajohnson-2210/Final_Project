@@ -1,0 +1,178 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 14,
+  "transformations": [
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    entities = ExtractNamedEntities(tokens, pos_tags)",
+      "canonical": "    entities <- ExtractNamedEntities(tokens, pos_tags)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    pronouns = ExtractPronouns(tokens, pos_tags)",
+      "canonical": "    pronouns <- ExtractPronouns(tokens, pos_tags)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 6,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    resolved_text = text",
+      "canonical": "    resolved_text <- text",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 8,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        antecedent = FindMostCompatibleEntity(pronoun, entities, search_window=2_sentences)",
+      "canonical": "        antecedent <- FindMostCompatibleEntity(pronoun, entities, search_window=2_sentences)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "FUNCTION CoreferenceResolution(text):\n    tokens, pos_tags = TokenizeAndTag(text)\n    entities <- ExtractNamedEntities(tokens, pos_tags)\n    pronouns <- ExtractPronouns(tokens, pos_tags)\n    \n    resolved_text <- text\n    FOR EACH pronoun IN pronouns DO\n        antecedent <- FindMostCompatibleEntity(pronoun, entities, search_window=2_sentences)\n        IF antecedent IS NOT NULL THEN\n            ReplaceInText(resolved_text, pronoun, antecedent.name)\n        END IF\n    END FOR\n    \n    RETURN resolved_text\nEND FUNCTION",
+      "canonical": "FUNCTION CoreferenceResolution(text):\n    tokens, pos_tags = TokenizeAndTag(text)\n    entities <- ExtractNamedEntities(tokens, pos_tags)\n    pronouns <- ExtractPronouns(tokens, pos_tags)\n    \n    resolved_text <- text\n    FOR EACH pronoun IN pronouns DO\n        antecedent <- FindMostCompatibleEntity(pronoun, entities, search_window=2_sentences)\n        IF antecedent != NULL THEN\n            ReplaceInText(resolved_text, pronoun, antecedent.name)\n        ENDIF\n    ENDFOR\n    \n    RETURN resolved_text\nENDFUNCTION",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 8,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        antecedent <- FindMostCompatibleEntity(pronoun, entities, search_window=2_sentences)",
+      "canonical": "        antecedent <- FindMostCompatibleEntity(pronoun, entities\n        search_window <- 2_sentences)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION CoreferenceResolution(text):",
+      "canonical": "FUNCTION CoreferenceResolution ACCEPTS(text)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    tokens, pos_tags = TokenizeAndTag(text)",
+      "canonical": "    tokens, pos_tags = CALL TokenizeAndTag(text)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    entities <- ExtractNamedEntities(tokens, pos_tags)",
+      "canonical": "    entities <- CALL ExtractNamedEntities(tokens, pos_tags)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    pronouns <- ExtractPronouns(tokens, pos_tags)",
+      "canonical": "    pronouns <- CALL ExtractPronouns(tokens, pos_tags)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 8,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        antecedent <- FindMostCompatibleEntity(pronoun, entities",
+      "canonical": "        antecedent <- CALL FindMostCompatibleEntity(pronoun, entities",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 11,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            ReplaceInText(resolved_text, pronoun, antecedent.name)",
+      "canonical": "            CALL ReplaceInText(resolved_text, pronoun, antecedent.name)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    ",
+      "canonical": "",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 14,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    ",
+      "canonical": "",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 1
+}

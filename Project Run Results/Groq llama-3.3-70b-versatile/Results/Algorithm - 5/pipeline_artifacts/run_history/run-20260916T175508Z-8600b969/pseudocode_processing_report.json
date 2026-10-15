@@ -1,0 +1,61 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 4,
+  "transformations": [
+    {
+      "line": 2,
+      "rule_family": "REGEX_SUBSTITUTION",
+      "branch": "EVIDENCED_REGEX_REPLACE_ALL",
+      "source": "  RETURN REPLACE_ALL(sentence, \"[^a-zA-Z0-9\\s]\", \"\")",
+      "canonical": "  RETURN CALL regex_replace(sentence, \"[^a-zA-Z0-9\\\\s]\", \"\")",
+      "evidence": [
+        "source explicitly calls free REPLACE_ALL(text, pattern, replacement) with exactly three arguments",
+        "the quoted pattern contains direct regex syntax evidence, so regex substitution is source-evidenced rather than inferred from the function name alone",
+        "pattern and replacement backslashes are protected only across compatibility-to-AJ representation so regex escapes survive the frozen AJ string lexer",
+        "the internal regex_replace intrinsic lowers the supplied pattern/replacement to Python re.sub without changing the source algorithm"
+      ],
+      "confidence": "source_proven",
+      "semantic_change": false
+    },
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "  RETURN CALL regex_replace(sentence, \"[^a-zA-Z0-9\\\\s]\", \"\")",
+      "canonical": "  RETURN CALL regex_replace(sentence, STRING(\"[^a-zA-Z0-9\\\\s]\"), EMPTY STRING)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION REMOVE_PUNCTUATION(sentence)",
+      "canonical": "FUNCTION REMOVE_PUNCTUATION ACCEPTS(sentence)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "FUNCTION REMOVE_PUNCTUATION ACCEPTS(sentence)\n  RETURN CALL regex_replace(sentence, STRING(\"[^a-zA-Z0-9\\\\s]\"), EMPTY STRING)\nEND FUNCTION",
+      "canonical": "FUNCTION REMOVE_PUNCTUATION ACCEPTS(sentence)\n  RETURN CALL regex_replace(sentence, STRING(\"[^a-zA-Z0-9\\\\s]\"), EMPTY STRING)\nENDFUNCTION",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 1
+}

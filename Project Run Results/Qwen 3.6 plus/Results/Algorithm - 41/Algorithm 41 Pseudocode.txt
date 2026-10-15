@@ -1,0 +1,21 @@
+# N Queens Problem
+
+INPUT N
+
+FUNCTION placeQueen(row, board):
+    IF row == N:
+        RETURN TRUE
+
+    FOR col from 0 to N-1:
+        IF isSafe(board, row, col):
+            board[row][col] = 'Q'
+
+            IF placeQueen(row + 1, board):
+                RETURN TRUE
+
+            board[row][col] = '.'
+
+    RETURN FALSE
+
+RETURN placeQueen(0, emptyBoard(N))
+

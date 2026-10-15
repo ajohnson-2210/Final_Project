@@ -1,0 +1,69 @@
+{
+  "test_evidence_schema_version": "1.2",
+  "test_design_version": "1.4.1",
+  "test_spec_schema_version": "1.6",
+  "tests_file": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\Pipeline Versions\\NL_Flow_Diagram_Encoder_Pipeline_v4_35_RC10\\NL_Flow_Diagram_Encoder_Pipeline_v4_35\\study data\\common tests v1.4.1\\Algorithm - 27\\Algorithm 27 Tests.json",
+  "semantic_contract": {
+    "contract_version": "1.4",
+    "contract_source": "ORIGINAL_TASK_SPECIFICATION",
+    "task_statement": "Rotate a square matrix 90\u00b0 clockwise in-place.",
+    "inputs": [
+      {
+        "position": 1,
+        "name": "matrix",
+        "type": "SQUARE_MATRIX"
+      }
+    ],
+    "result": {
+      "type": "MATRIX",
+      "canonical_semantics": "Matrix rotated 90 degrees clockwise."
+    },
+    "automation_status": "AUTOMATED_FUNCTION",
+    "parameter_names_are_semantically_irrelevant": true,
+    "derived_parameters_may_be_supplied_by_adapter": true,
+    "human_review_instruction": "Judge the original generated pseudocode against this same frozen task-semantic contract, including when automated evaluation is NOT_EVALUABLE.",
+    "fixture_policy": "PREEXPERIMENT_FROZEN_INPUTS",
+    "expectation_policy": "STATIC_PREEXPERIMENT_EXPECTED_VALUES",
+    "runtime_oracle_prohibited": true
+  },
+  "semantic_test_count": 5,
+  "interaction_or_reference_only_test_count": 0,
+  "semantic_boundary_probe_count": 1,
+  "semantic_boundary_probe_enabled_count": 1,
+  "pre_freeze_validation_count": 0,
+  "pre_freeze_validation_enabled_count": 0,
+  "core_test_count": 5,
+  "declared_evidence_adequacy": "ADEQUATE",
+  "declared_evidence_summary": "This suite evaluates square-matrix rotation across 1\u00d71, 2\u00d72, 3\u00d73 and 4\u00d74 valid inputs. A 2\u00d73 matrix is evaluated separately as an out-of-domain semantic-boundary probe.",
+  "declared_coverage_dimensions": {
+    "normal_path": "COVERED",
+    "branch_behaviour": "NOT_COVERED",
+    "boundary_behaviour": "COVERED",
+    "error_behaviour": "NOT_COVERED",
+    "termination_behaviour": "NOT_COVERED",
+    "state_mutation": "COVERED"
+  },
+  "coverage_basis": "Assessment is based on 5 core Common Test cases plus any separately declared semantic-boundary probes; boundary probes do not contribute to core behavioural accuracy.",
+  "interpretation_guidance": "Interpret core behavioural accuracy as evidence within the frozen semantic contract. Interpret Semantic Boundary Variance separately as descriptive evidence of out-of-domain acceptance.",
+  "coverage_limitations": [
+    "Rectangular matrices are outside the SQUARE_MATRIX contract; successful processing is recorded as semantic boundary variance rather than core correctness."
+  ],
+  "manual_review_targets": [],
+  "requires_pipeline_features": [],
+  "test_count": 6,
+  "category_counts": {
+    "BOUNDARY": 2,
+    "NORMAL": 2,
+    "STATE_MUTATION": 1
+  },
+  "criteria_link_counts": {
+    "P2": 5,
+    "P3": 4,
+    "P4": 5
+  },
+  "seeded_test_count": 0,
+  "environment_controlled_test_count": 0,
+  "has_normal_or_branch_test": true,
+  "has_boundary_error_or_termination_test": true,
+  "has_state_mutation_test": true
+}

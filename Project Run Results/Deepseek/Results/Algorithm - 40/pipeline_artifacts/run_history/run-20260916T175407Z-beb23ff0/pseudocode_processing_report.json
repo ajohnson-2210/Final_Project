@@ -1,0 +1,312 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 25,
+  "transformations": [
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    stack1 = empty stack (for enqueue)",
+      "canonical": "    stack1 <- empty stack (for enqueue)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    stack2 = empty stack (for dequeue)",
+      "canonical": "    stack2 <- empty stack (for dequeue)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 13,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            RETURN NULL // Queue is empty",
+      "canonical": "            RETURN NULL\n            // Queue is empty",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    stack1 <- empty stack (for enqueue)",
+      "canonical": "stack1 <- empty stack\n    // (for enqueue)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    stack2 <- empty stack (for dequeue)",
+      "canonical": "stack2 <- empty stack\n    // (for dequeue)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 8,
+      "rule_family": "COLLECTION_OPERATION",
+      "branch": "EVIDENCED_SIMPLE_COLLECTION_METHOD",
+      "source": "        stack1.push(item)",
+      "canonical": "        PUSH item TO stack1",
+      "evidence": [
+        "receiver type is independently established by an explicit collection declaration or constructor in readable lexical scope",
+        "method spelling selects an operation only after receiver evidence exists and never establishes collection type by itself",
+        "direct rebinds and formal-parameter shadowing invalidate inherited receiver evidence"
+      ],
+      "confidence": "source_proven",
+      "semantic_change": false
+    },
+    {
+      "line": 13,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "                stack2.push(stack1.pop())",
+      "canonical": "                PUSH stack1.pop() TO stack2",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "CLASS QueueUsingStacks:\nstack1 <- empty stack\n    // (for enqueue)\nstack2 <- empty stack\n    // (for dequeue)\n\n    FUNCTION enqueue(item):\n        PUSH item TO stack1\n\n    FUNCTION dequeue():\n        IF stack2 IS empty:\n            WHILE stack1 IS NOT empty:\n                PUSH stack1.pop() TO stack2\n        IF stack2 IS empty:\n            RETURN NULL\n            // Queue is empty\n        RETURN stack2.pop()",
+      "canonical": "CLASS QueueUsingStacks:\nstack1 <- empty stack\n    // (for enqueue)\nstack2 <- empty stack\n    // (for dequeue)\n\n    FUNCTION enqueue(item):\n        PUSH item TO stack1\n\n    FUNCTION dequeue():\n        IF LENGTH OF stack2 == 0:\n            WHILE LENGTH OF stack1 > 0:\n                PUSH stack1.pop() TO stack2\n        IF LENGTH OF stack2 == 0:\n            RETURN NULL\n            // LENGTH OF Queue == 0\n        RETURN stack2.pop()",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "CLASS QueueUsingStacks:\nstack1 <- empty stack\n    // (for enqueue)\nstack2 <- empty stack\n    // (for dequeue)\n\n    FUNCTION enqueue(item):\n        PUSH item TO stack1\n\n    FUNCTION dequeue():\n        IF LENGTH OF stack2 == 0:\n            WHILE LENGTH OF stack1 > 0:\n                PUSH stack1.pop() TO stack2\n        IF LENGTH OF stack2 == 0:\n            RETURN NULL\n            // LENGTH OF Queue == 0\n        RETURN stack2.pop()",
+      "canonical": "CLASS QueueUsingStacks:\nstack1 <- CALL create_stack()\n    // (for enqueue)\nstack2 <- CALL create_stack()\n    // (for dequeue)\n\n    FUNCTION enqueue(item):\n        PUSH item TO stack1\n\n    FUNCTION dequeue():\n        IF LENGTH OF stack2 == 0:\n            WHILE LENGTH OF stack1 > 0:\n                PUSH stack1.pop() TO stack2\n        IF LENGTH OF stack2 == 0:\n            RETURN NULL\n            // LENGTH OF Queue == 0\n        RETURN stack2.pop()",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "CLASS QueueUsingStacks:\nstack1 <- CALL create_stack()\n    // (for enqueue)\nstack2 <- CALL create_stack()\n    // (for dequeue)\n\n    FUNCTION enqueue(item):\n        PUSH item TO stack1\n\n    FUNCTION dequeue():\n        IF LENGTH OF stack2 == 0:\n            WHILE LENGTH OF stack1 > 0:\n                PUSH stack1.pop() TO stack2\n        IF LENGTH OF stack2 == 0:\n            RETURN NULL\n            // LENGTH OF Queue == 0\n        RETURN stack2.pop()",
+      "canonical": "CLASS QueueUsingStacks:\nstack1 <- CALL create_stack()\n    // (for enqueue)\nstack2 <- CALL create_stack()\n    // (for dequeue)\n\n    FUNCTION enqueue(item):\n        CALL PUSH(item, stack1)\n    FUNCTION dequeue():\n        IF CALL stack_is_empty(stack2):\n            WHILE NOT CALL stack_is_empty(stack1):\n                CALL PUSH(CALL POP(stack1), stack2)\n        IF CALL stack_is_empty(stack2):\n            RETURN NULL\n            // LENGTH OF Queue == 0\n        RETURN CALL POP(stack2)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "CLASS QueueUsingStacks:",
+      "canonical": "CLASS QueueUsingStacks",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 7,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    FUNCTION enqueue(item):",
+      "canonical": "    FUNCTION enqueue ACCEPTS(item)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 9,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    FUNCTION dequeue():",
+      "canonical": "    FUNCTION dequeue ACCEPTS()",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 10,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        IF CALL stack_is_empty(stack2):",
+      "canonical": "        IF CALL stack_is_empty(stack2) THEN",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 11,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            WHILE NOT CALL stack_is_empty(stack1):",
+      "canonical": "            WHILE NOT CALL stack_is_empty(stack1) DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 13,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        IF CALL stack_is_empty(stack2):",
+      "canonical": "        IF CALL stack_is_empty(stack2) THEN",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    // (for enqueue)",
+      "canonical": "    COMMENT (for enqueue)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    // (for dequeue)",
+      "canonical": "    COMMENT (for dequeue)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 15,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            // LENGTH OF Queue == 0",
+      "canonical": "            COMMENT LENGTH OF Queue == 0",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 9,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDFUNCTION",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 13,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDWHILE",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 13,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDIF",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 16,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDIF",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 9,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDFUNCTION",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "CLASS QueueUsingStacks\nstack1 <- CALL create_stack()\n    COMMENT (for enqueue)\nstack2 <- CALL create_stack()\n    COMMENT (for dequeue)\n\n    FUNCTION enqueue ACCEPTS(item)\n        CALL PUSH(item, stack1)\n    ENDFUNCTION\n    FUNCTION dequeue ACCEPTS()\n        IF CALL stack_is_empty(stack2) THEN\n            WHILE NOT CALL stack_is_empty(stack1) DO\n                CALL PUSH(CALL POP(stack1), stack2)\n            ENDWHILE\n        ENDIF\n        IF CALL stack_is_empty(stack2) THEN\n            RETURN NULL\n            COMMENT LENGTH OF Queue == 0\n        ENDIF\n        RETURN CALL POP(stack2)\n    ENDFUNCTION",
+      "canonical": "CLASS QueueUsingStacks\n    COMMENT (for enqueue)\n    COMMENT (for dequeue)\n    PROPERTY stack1\n    PROPERTY stack2\n\n    CONSTRUCTOR ACCEPTS()\n        PROPERTY THIS.stack1 <- CALL create_stack()\n        PROPERTY THIS.stack2 <- CALL create_stack()\n    ENDCONSTRUCTOR\n\n    METHOD enqueue ACCEPTS(item)\n        CALL PUSH(item, THIS.stack1)\n    ENDMETHOD\n\n    METHOD dequeue ACCEPTS()\n        IF CALL stack_is_empty(THIS.stack2) THEN\n            WHILE NOT CALL stack_is_empty(THIS.stack1) DO\n                CALL PUSH(CALL POP(THIS.stack1), THIS.stack2)\n            ENDWHILE\n        ENDIF\n        IF CALL stack_is_empty(THIS.stack2) THEN\n            RETURN NULL\n            COMMENT LENGTH OF Queue == 0\n        ENDIF\n        RETURN CALL POP(THIS.stack2)\n    ENDMETHOD\nENDCLASS",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 1
+}

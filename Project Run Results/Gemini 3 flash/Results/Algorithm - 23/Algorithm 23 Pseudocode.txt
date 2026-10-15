@@ -1,0 +1,12 @@
+# Convert numerical scores into grade categories (Pass, Merit, Distinction)    
+FUNCTION ConvertScoreToGrade(score):
+    IF score >= 70 THEN
+        RETURN "Distinction"
+    ELSE IF score >= 60 THEN
+        RETURN "Merit"
+    ELSE IF score >= 40 THEN
+        RETURN "Pass"
+    ELSE
+        RETURN "Fail"
+    END IF
+END FUNCTION

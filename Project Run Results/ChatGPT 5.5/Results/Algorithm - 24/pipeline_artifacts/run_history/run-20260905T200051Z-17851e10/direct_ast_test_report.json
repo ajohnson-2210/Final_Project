@@ -1,0 +1,122 @@
+{
+  "program_path": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\ChatGPT 5.5\\Results\\Algorithm - 24\\pipeline_artifacts\\direct_ast_program.py",
+  "success": false,
+  "total_tests": 4,
+  "passed_tests": 0,
+  "failed_tests": 4,
+  "category_summary": {
+    "NORMAL": {
+      "total": 1,
+      "passed": 0,
+      "failed": 1
+    },
+    "ERROR_BEHAVIOUR": {
+      "total": 1,
+      "passed": 0,
+      "failed": 1
+    },
+    "BRANCH": {
+      "total": 2,
+      "passed": 0,
+      "failed": 2
+    }
+  },
+  "results": [
+    {
+      "name": "valid minimum-style password",
+      "status": "FAILED",
+      "expected_output": [
+        "Enter Password, it must be at least 8 Characters and contain at least 1 number and 1 uppercase letter : Password Accepted!!"
+      ],
+      "actual_output": [],
+      "standard_error": "",
+      "return_code": 0,
+      "duration_ms": 50.677,
+      "category": "NORMAL",
+      "semantic_feature": "PASSWORD_VALID",
+      "expected_return_code": 0,
+      "expected_error_type": null,
+      "actual_error_type": null,
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "random_seed": null,
+      "environment": {},
+      "requires_modules": []
+    },
+    {
+      "name": "too short then valid",
+      "status": "FAILED",
+      "expected_output": [
+        "Enter Password, it must be at least 8 Characters and contain at least 1 number and 1 uppercase letter : That's Not a Valid Password, Please Try Again!",
+        "Enter Password, it must be at least 8 Characters and contain at least 1 number and 1 uppercase letter : Password Accepted!!"
+      ],
+      "actual_output": [],
+      "standard_error": "",
+      "return_code": 0,
+      "duration_ms": 40.263,
+      "category": "ERROR_BEHAVIOUR",
+      "semantic_feature": "PASSWORD_LENGTH_REQUIREMENT",
+      "expected_return_code": 0,
+      "expected_error_type": null,
+      "actual_error_type": null,
+      "criteria_links": [
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "random_seed": null,
+      "environment": {},
+      "requires_modules": []
+    },
+    {
+      "name": "missing digit then valid",
+      "status": "FAILED",
+      "expected_output": [
+        "Enter Password, it must be at least 8 Characters and contain at least 1 number and 1 uppercase letter : That's Not a Valid Password, Please Try Again!",
+        "Enter Password, it must be at least 8 Characters and contain at least 1 number and 1 uppercase letter : Password Accepted!!"
+      ],
+      "actual_output": [],
+      "standard_error": "",
+      "return_code": 0,
+      "duration_ms": 47.985,
+      "category": "BRANCH",
+      "semantic_feature": "PASSWORD_DIGIT_REQUIREMENT",
+      "expected_return_code": 0,
+      "expected_error_type": null,
+      "actual_error_type": null,
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "random_seed": null,
+      "environment": {},
+      "requires_modules": []
+    },
+    {
+      "name": "missing uppercase then valid",
+      "status": "FAILED",
+      "expected_output": [
+        "Enter Password, it must be at least 8 Characters and contain at least 1 number and 1 uppercase letter : That's Not a Valid Password, Please Try Again!",
+        "Enter Password, it must be at least 8 Characters and contain at least 1 number and 1 uppercase letter : Password Accepted!!"
+      ],
+      "actual_output": [],
+      "standard_error": "",
+      "return_code": 0,
+      "duration_ms": 48.07,
+      "category": "BRANCH",
+      "semantic_feature": "PASSWORD_UPPERCASE_REQUIREMENT",
+      "expected_return_code": 0,
+      "expected_error_type": null,
+      "actual_error_type": null,
+      "criteria_links": [
+        "P2",
+        "P4"
+      ],
+      "random_seed": null,
+      "environment": {},
+      "requires_modules": []
+    }
+  ]
+}

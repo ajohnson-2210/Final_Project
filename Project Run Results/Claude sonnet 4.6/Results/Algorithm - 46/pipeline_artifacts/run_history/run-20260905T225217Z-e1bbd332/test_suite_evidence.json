@@ -1,0 +1,68 @@
+{
+  "test_evidence_schema_version": "1.2",
+  "test_design_version": "1.2",
+  "test_spec_schema_version": "1.3",
+  "tests_file": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\Pipeline Versions\\NL_Flow_Diagram_Encoder_Pipeline_v4_34\\NL_Flow_Diagram_Encoder_Pipeline_v4_34\\study data\\common tests v1.2\\Algorithm - 46\\Algorithm 46 Tests.json",
+  "semantic_contract": {
+    "contract_version": "1.2",
+    "contract_source": "ORIGINAL_TASK_SPECIFICATION",
+    "task_statement": "Develop a process for multiplying two matrices.",
+    "inputs": [
+      {
+        "position": 1,
+        "name": "matrix_a",
+        "type": "MATRIX[NUMBER]"
+      },
+      {
+        "position": 2,
+        "name": "matrix_b",
+        "type": "MATRIX[NUMBER]"
+      }
+    ],
+    "result": {
+      "type": "MATRIX[NUMBER]",
+      "canonical_semantics": "Matrix product A\u00d7B for compatible dimensions."
+    },
+    "automation_status": "AUTOMATED_FUNCTION",
+    "parameter_names_are_semantically_irrelevant": true,
+    "derived_parameters_may_be_supplied_by_adapter": true,
+    "baseline_fixture_source": "Algorithm 46 Baseline Python code.txt",
+    "baseline_source_sha256": "0d9d949e55e1088f7d8677fa757b2176d24d03146c682af0193c3e2cd12923b0",
+    "oracle_policy": "The original task defines the semantic result where determinate; the frozen trusted baseline supplies concrete fixtures and resolves deterministic task-policy details where the task statement is underspecified. Experimental/model output never defines its own oracle.",
+    "human_review_instruction": "Judge the original model pseudocode against this task-semantic contract even when automated execution is NOT_EVALUABLE."
+  },
+  "semantic_test_count": 3,
+  "interaction_or_reference_only_test_count": 0,
+  "declared_evidence_adequacy": "PARTIAL",
+  "declared_evidence_summary": "This suite provides partial behavioural evidence using 3 predefined common behavioural tests, with covered state-mutation behaviour. Matrix dimensions and values are internally random; fixed seeds make the generated compatible matrices reproducible.",
+  "declared_coverage_dimensions": {
+    "normal_path": "NOT_COVERED",
+    "branch_behaviour": "NOT_COVERED",
+    "boundary_behaviour": "NOT_COVERED",
+    "error_behaviour": "NOT_COVERED",
+    "termination_behaviour": "NOT_COVERED",
+    "state_mutation": "COVERED"
+  },
+  "coverage_basis": "Assessment is based on the 3 predefined common behavioural tests, the behaviours exposed by the frozen program interface, and the declared coverage dimensions: state mutation.",
+  "interpretation_guidance": "Interpret behavioural accuracy as useful but incomplete evidence across the declared exercised behaviours; unexercised behaviours remain outside the direct evidence.",
+  "coverage_limitations": [
+    "Matrix dimensions and values are internally random; fixed seeds make the generated compatible matrices reproducible."
+  ],
+  "manual_review_targets": [],
+  "requires_pipeline_features": [
+    "DETERMINISTIC_RANDOM_SEED"
+  ],
+  "test_count": 3,
+  "category_counts": {
+    "STATE_MUTATION": 3
+  },
+  "criteria_link_counts": {
+    "P2": 3,
+    "P4": 3
+  },
+  "seeded_test_count": 3,
+  "environment_controlled_test_count": 0,
+  "has_normal_or_branch_test": false,
+  "has_boundary_error_or_termination_test": false,
+  "has_state_mutation_test": true
+}

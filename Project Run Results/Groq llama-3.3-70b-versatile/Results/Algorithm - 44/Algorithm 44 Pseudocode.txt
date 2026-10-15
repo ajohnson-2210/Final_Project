@@ -1,0 +1,10 @@
+# Find the contiguous subarray with the maximum sum (Kadane's algorithm)
+FUNCTION MAX_SUBARRAY_SUM(arr)
+  max_sum = NEGATIVE_INFINITY
+  current_sum = 0
+  FOR num IN arr
+    current_sum = MAX(num, current_sum + num)
+    max_sum = MAX(max_sum, current_sum)
+  END FOR
+  RETURN max_sum
+END FUNCTION

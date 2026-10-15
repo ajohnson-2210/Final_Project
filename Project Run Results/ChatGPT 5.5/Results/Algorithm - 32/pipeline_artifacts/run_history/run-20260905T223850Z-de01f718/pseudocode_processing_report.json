@@ -1,0 +1,34 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 2,
+  "transformations": [
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    INPUT Text\n    INPUT Question\n\n    PREPROCESS Text\n    PREPROCESS Question\n\n    FIND relevant information in Text\n\n    GENERATE Answer\n\n    OUTPUT Answer\nEND",
+      "canonical": "FUNCTION unnamed_function ACCEPTS(Text, Question)\n        PREPROCESS Text\n        PREPROCESS Question\n\n        FIND relevant information in Text\n\n        GENERATE Answer\n\n        OUTPUT Answer\n    END\nENDFUNCTION",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 10,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    END",
+      "canonical": "",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 2
+}

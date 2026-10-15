@@ -1,0 +1,157 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 12,
+  "transformations": [
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    punctuation_set = {'.', ',', '!', '?', ';', ':', '-', '\\'', '\"', '(', ')'}",
+      "canonical": "    punctuation_set <- {'.', ',', '!', '?', ';', ':', '-', '\\'', '\"', '(', ')'}",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    clean_sentence = \"\"",
+      "canonical": "    clean_sentence <- \"\"",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 7,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            clean_sentence = clean_sentence + char",
+      "canonical": "            clean_sentence <- clean_sentence + char",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 2,
+      "rule_family": "COLLECTION_LITERAL",
+      "branch": "QUOTED_SCALAR_SET_LITERAL",
+      "source": "    punctuation_set <- {'.', ',', '!', '?', ';', ':', '-', '\\'', '\"', '(', ')'}",
+      "canonical": "    punctuation_set <- CALL to_set(CALL list_value(STRING(\".\"), STRING(\",\"), STRING(\"!\"), STRING(\"?\"), STRING(\";\"), STRING(\":\"), STRING(\"-\"), STRING(\"'\"), STRING(\"\\\"\"), STRING(\"(\"), STRING(\")\")))",
+      "evidence": [
+        "the entire assignment RHS is a non-empty brace literal parsed as a set rather than a dictionary",
+        "every set member is an explicitly quoted string scalar in the source",
+        "the existing to_set compatibility intrinsic preserves the supplied set semantics without changing the frozen AJ parser",
+        "dictionaries, empty braces, mixed or unquoted members, comprehensions, and unsupported control characters remain untouched"
+      ],
+      "confidence": "source_proven",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    clean_sentence <- \"\"",
+      "canonical": "    clean_sentence <- EMPTY STRING",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "FUNCTION RemovePunctuation(sentence):\n    punctuation_set <- CALL to_set(CALL list_value(STRING(\".\"), STRING(\",\"), STRING(\"!\"), STRING(\"?\"), STRING(\";\"), STRING(\":\"), STRING(\"-\"), STRING(\"'\"), STRING(\"\\\"\"), STRING(\"(\"), STRING(\")\")))\n    clean_sentence <- EMPTY STRING\n    \n    FOR EACH char IN sentence DO\n        IF char NOT IN punctuation_set THEN\n            clean_sentence <- clean_sentence + char\n        END IF\n    END FOR\n    \n    RETURN clean_sentence\nEND FUNCTION",
+      "canonical": "FUNCTION RemovePunctuation(sentence):\n    punctuation_set <- CALL to_set(CALL list_value(STRING(\".\"), STRING(\",\"), STRING(\"!\"), STRING(\"?\"), STRING(\";\"), STRING(\":\"), STRING(\"-\"), STRING(\"'\"), STRING(\"\\\"\"), STRING(\"(\"), STRING(\")\")))\n    clean_sentence <- EMPTY STRING\n    \n    FOR EACH char IN sentence DO\n        IF char NOT IN punctuation_set THEN\n            clean_sentence <- clean_sentence + char\n        ENDIF\n    ENDFOR\n    \n    RETURN clean_sentence\nENDFUNCTION",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION RemovePunctuation(sentence):",
+      "canonical": "FUNCTION RemovePunctuation ACCEPTS(sentence)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    FOR EACH char IN sentence DO",
+      "canonical": "    FOR EACH __reserved_keyword__char IN sentence DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 6,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        IF char NOT IN punctuation_set THEN",
+      "canonical": "        IF __reserved_keyword__char NOT IN punctuation_set THEN",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 7,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            clean_sentence <- clean_sentence + char",
+      "canonical": "            clean_sentence <- clean_sentence + __reserved_keyword__char",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    ",
+      "canonical": "",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 10,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    ",
+      "canonical": "",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 1
+}

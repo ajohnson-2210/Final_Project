@@ -1,0 +1,22 @@
+CLASS unnamed_class
+    PROPERTY s1 AS LIST
+    PROPERTY s2 AS LIST
+
+    CONSTRUCTOR ACCEPTS()
+        PROPERTY THIS.s1 <- EMPTY LIST
+        PROPERTY THIS.s2 <- EMPTY LIST
+    ENDCONSTRUCTOR
+
+    METHOD enqueue ACCEPTS(x)
+        APPEND x TO THIS.s1
+    ENDMETHOD
+
+    METHOD dequeue ACCEPTS()
+        IF LENGTH OF THIS.s2 == 0 THEN
+            WHILE LENGTH OF THIS.s1 > 0 DO
+                APPEND THIS.s1.pop() TO THIS.s2
+            ENDWHILE
+        ENDIF
+        RETURN THIS.s2.pop()
+    ENDMETHOD
+ENDCLASS

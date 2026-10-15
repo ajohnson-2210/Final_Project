@@ -1,0 +1,127 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 9,
+  "transformations": [
+    {
+      "line": 3,
+      "rule_family": "SHAPE_ANNOTATION",
+      "branch": "EVIDENCED_RECTANGULAR_MATRIX_ALLOCATION",
+      "source": "INIT result as R x C matrix",
+      "canonical": "result <- CALL create_matrix(LENGTH OF A, LENGTH OF A[0], NONE)",
+      "evidence": [
+        "source explicitly states that two matrix inputs share dimensions R x C",
+        "source explicitly requests an R x C result matrix and then overwrites each result[i][j] in the matching nested row/column loops",
+        "R and C have no independent runtime binding, so the first evidenced matrix supplies LENGTH OF matrix and LENGTH OF matrix[0]",
+        "the source does not supply an initial cell value, so allocated result cells use NONE until the source-supplied writes assign them"
+      ],
+      "confidence": "source_proven",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "SHAPE_ANNOTATION",
+      "branch": "EVIDENCED_RECTANGULAR_MATRIX_ALLOCATION",
+      "source": "FOR i from 0 to R-1:",
+      "canonical": "FOR i from 0 to LENGTH OF A-1:",
+      "evidence": [
+        "source explicitly states that two matrix inputs share dimensions R x C",
+        "source explicitly requests an R x C result matrix and then overwrites each result[i][j] in the matching nested row/column loops",
+        "R and C have no independent runtime binding, so the first evidenced matrix supplies LENGTH OF matrix and LENGTH OF matrix[0]",
+        "the source does not supply an initial cell value, so allocated result cells use NONE until the source-supplied writes assign them"
+      ],
+      "confidence": "source_proven",
+      "semantic_change": false
+    },
+    {
+      "line": 6,
+      "rule_family": "SHAPE_ANNOTATION",
+      "branch": "EVIDENCED_RECTANGULAR_MATRIX_ALLOCATION",
+      "source": "    FOR j from 0 to C-1:",
+      "canonical": "    FOR j from 0 to LENGTH OF A[0]-1:",
+      "evidence": [
+        "source explicitly states that two matrix inputs share dimensions R x C",
+        "source explicitly requests an R x C result matrix and then overwrites each result[i][j] in the matching nested row/column loops",
+        "R and C have no independent runtime binding, so the first evidenced matrix supplies LENGTH OF matrix and LENGTH OF matrix[0]",
+        "the source does not supply an initial cell value, so allocated result cells use NONE until the source-supplied writes assign them"
+      ],
+      "confidence": "source_proven",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "INPUT A, B (same dimensions R x C)\n\nresult <- CALL create_matrix(LENGTH OF A, LENGTH OF A[0], NONE)\n\nFOR i from 0 to LENGTH OF A-1:\n    FOR j from 0 to LENGTH OF A[0]-1:\n        result[i][j] = A[i][j] + B[i][j]\n\nRETURN result",
+      "canonical": "FUNCTION unnamed_function ACCEPTS(A, B)\n    result <- CALL create_matrix(LENGTH OF A, LENGTH OF A[0], NONE)\n\n    FOR i from 0 to LENGTH OF A-1:\n        FOR j from 0 to LENGTH OF A[0]-1:\n            result[i][j] = A[i][j] + B[i][j]\n\n    RETURN result\nENDFUNCTION",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 6,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "            result[i][j] = A[i][j] + B[i][j]",
+      "canonical": "            result[i][j] <- A[i][j] + B[i][j]",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    FOR i from 0 to LENGTH OF A-1:",
+      "canonical": "    FOR i <- IN RANGE 0 TO (LENGTH OF A-1) + 1 DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 5,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        FOR j from 0 to LENGTH OF A[0]-1:",
+      "canonical": "        FOR j <- IN RANGE 0 TO (LENGTH OF A[0]-1) + 1 DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 8,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDFOR",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 8,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "",
+      "canonical": "ENDFOR",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 2
+}

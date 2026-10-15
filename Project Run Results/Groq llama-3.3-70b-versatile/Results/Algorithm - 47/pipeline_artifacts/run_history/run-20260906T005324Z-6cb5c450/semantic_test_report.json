@@ -1,0 +1,302 @@
+{
+  "semantic_report_schema_version": "1.1",
+  "runtime_expected_value_generation": false,
+  "program_path": "C:\\Users\\ajohn\\OneDrive\\oneDriveBak\\Desktop\\Modules\\Final Project\\Pipeline\\AI Agent Results\\Groq llama-3.3-70b-versatile\\Results\\Algorithm - 47\\pipeline_artifacts\\generated_program.py",
+  "algorithm_id": 47,
+  "contract_version": "1.3",
+  "evaluable_tests": 3,
+  "passed_tests": 0,
+  "failed_tests": 3,
+  "not_evaluable_tests": 0,
+  "accuracy_percentage": 0.0,
+  "results": [
+    {
+      "name": "seeded inventory purchase/delivery run seed 104729",
+      "status": "FAILED",
+      "expected_semantic_result": {
+        "Apples": 29,
+        "Bananas": 100,
+        "Oranges": 82,
+        "Pears": 47,
+        "Grapes": 44
+      },
+      "actual_semantic_result": {
+        "runtime_errors": [
+          {
+            "type": "TypeError",
+            "message": "list indices must be integers or slices, not str"
+          }
+        ]
+      },
+      "semantic_match": false,
+      "reason": "The task entrypoint raised a runtime error for the frozen semantic fixture.",
+      "duration_ms": 94.313,
+      "category": "STATE_MUTATION",
+      "semantic_feature": "INVENTORY_PURCHASE_DELIVERY_AND_ZERO_STOCK",
+      "fixture_source": "PREEXPERIMENT_FROZEN_FIXTURE",
+      "expectation_policy": "STATIC_FROZEN_VALUE",
+      "selected_entrypoint": "UPDATE_INVENTORY",
+      "invocation_capture": {
+        "status": "ERROR",
+        "selected_entrypoint": "UPDATE_INVENTORY",
+        "selected_arity": 2,
+        "prints": [],
+        "returns": [
+          null
+        ],
+        "post_arguments": [
+          [
+            {
+              "Apples": 37,
+              "Bananas": 88,
+              "Oranges": 73,
+              "Pears": 47,
+              "Grapes": 48
+            },
+            [
+              {
+                "$object": "Obj",
+                "attrs": {
+                  "type": "Purchase",
+                  "item": "Apples",
+                  "quantity": 8
+                }
+              },
+              {
+                "$object": "Obj",
+                "attrs": {
+                  "type": "Purchase",
+                  "item": "Grapes",
+                  "quantity": 4
+                }
+              },
+              {
+                "$object": "Obj",
+                "attrs": {
+                  "type": "Delivery",
+                  "item": "Bananas",
+                  "quantity": 12
+                }
+              },
+              {
+                "$object": "Obj",
+                "attrs": {
+                  "type": "Delivery",
+                  "item": "Oranges",
+                  "quantity": 9
+                }
+              }
+            ]
+          ]
+        ],
+        "shared_values": {
+          "inventory": {
+            "Apples": 37,
+            "Bananas": 88,
+            "Oranges": 73,
+            "Pears": 47,
+            "Grapes": 48
+          }
+        },
+        "errors": [
+          {
+            "type": "TypeError",
+            "message": "list indices must be integers or slices, not str"
+          }
+        ]
+      }
+    },
+    {
+      "name": "seeded inventory purchase/delivery run seed 104759",
+      "status": "FAILED",
+      "expected_semantic_result": {
+        "Apples": 11,
+        "Bananas": 58,
+        "Oranges": 100,
+        "Pears": 55,
+        "Grapes": 46
+      },
+      "actual_semantic_result": {
+        "runtime_errors": [
+          {
+            "type": "TypeError",
+            "message": "list indices must be integers or slices, not str"
+          }
+        ]
+      },
+      "semantic_match": false,
+      "reason": "The task entrypoint raised a runtime error for the frozen semantic fixture.",
+      "duration_ms": 94.827,
+      "category": "STATE_MUTATION",
+      "semantic_feature": "INVENTORY_PURCHASE_DELIVERY_AND_ZERO_STOCK",
+      "fixture_source": "PREEXPERIMENT_FROZEN_FIXTURE",
+      "expectation_policy": "STATIC_FROZEN_VALUE",
+      "selected_entrypoint": "UPDATE_INVENTORY",
+      "invocation_capture": {
+        "status": "ERROR",
+        "selected_entrypoint": "UPDATE_INVENTORY",
+        "selected_arity": 2,
+        "prints": [],
+        "returns": [
+          null
+        ],
+        "post_arguments": [
+          [
+            {
+              "Apples": 16,
+              "Bananas": 46,
+              "Oranges": 87,
+              "Pears": 55,
+              "Grapes": 55
+            },
+            [
+              {
+                "$object": "Obj",
+                "attrs": {
+                  "type": "Purchase",
+                  "item": "Apples",
+                  "quantity": 5
+                }
+              },
+              {
+                "$object": "Obj",
+                "attrs": {
+                  "type": "Purchase",
+                  "item": "Grapes",
+                  "quantity": 9
+                }
+              },
+              {
+                "$object": "Obj",
+                "attrs": {
+                  "type": "Delivery",
+                  "item": "Bananas",
+                  "quantity": 12
+                }
+              },
+              {
+                "$object": "Obj",
+                "attrs": {
+                  "type": "Delivery",
+                  "item": "Oranges",
+                  "quantity": 13
+                }
+              }
+            ]
+          ]
+        ],
+        "shared_values": {
+          "inventory": {
+            "Apples": 16,
+            "Bananas": 46,
+            "Oranges": 87,
+            "Pears": 55,
+            "Grapes": 55
+          }
+        },
+        "errors": [
+          {
+            "type": "TypeError",
+            "message": "list indices must be integers or slices, not str"
+          }
+        ]
+      }
+    },
+    {
+      "name": "seeded inventory purchase/delivery run seed 104761",
+      "status": "FAILED",
+      "expected_semantic_result": {
+        "Apples": 92,
+        "Bananas": 28,
+        "Oranges": 25,
+        "Pears": 27,
+        "Grapes": 92
+      },
+      "actual_semantic_result": {
+        "runtime_errors": [
+          {
+            "type": "TypeError",
+            "message": "list indices must be integers or slices, not str"
+          }
+        ]
+      },
+      "semantic_match": false,
+      "reason": "The task entrypoint raised a runtime error for the frozen semantic fixture.",
+      "duration_ms": 92.79,
+      "category": "STATE_MUTATION",
+      "semantic_feature": "INVENTORY_PURCHASE_DELIVERY_AND_ZERO_STOCK",
+      "fixture_source": "PREEXPERIMENT_FROZEN_FIXTURE",
+      "expectation_policy": "STATIC_FROZEN_VALUE",
+      "selected_entrypoint": "UPDATE_INVENTORY",
+      "invocation_capture": {
+        "status": "ERROR",
+        "selected_entrypoint": "UPDATE_INVENTORY",
+        "selected_arity": 2,
+        "prints": [],
+        "returns": [
+          null
+        ],
+        "post_arguments": [
+          [
+            {
+              "Apples": 98,
+              "Bananas": 13,
+              "Oranges": 11,
+              "Pears": 27,
+              "Grapes": 97
+            },
+            [
+              {
+                "$object": "Obj",
+                "attrs": {
+                  "type": "Purchase",
+                  "item": "Apples",
+                  "quantity": 6
+                }
+              },
+              {
+                "$object": "Obj",
+                "attrs": {
+                  "type": "Purchase",
+                  "item": "Grapes",
+                  "quantity": 5
+                }
+              },
+              {
+                "$object": "Obj",
+                "attrs": {
+                  "type": "Delivery",
+                  "item": "Bananas",
+                  "quantity": 15
+                }
+              },
+              {
+                "$object": "Obj",
+                "attrs": {
+                  "type": "Delivery",
+                  "item": "Oranges",
+                  "quantity": 14
+                }
+              }
+            ]
+          ]
+        ],
+        "shared_values": {
+          "inventory": {
+            "Apples": 98,
+            "Bananas": 13,
+            "Oranges": 11,
+            "Pears": 27,
+            "Grapes": 97
+          }
+        },
+        "errors": [
+          {
+            "type": "TypeError",
+            "message": "list indices must be integers or slices, not str"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,369 @@
+{
+  "format": "NL-FDEP Flow Diagram",
+  "version": "1.0",
+  "entry_node": "F1",
+  "exit_node": "F2",
+  "nodes": {
+    "F1": {
+      "node_id": "F1",
+      "node_type": "START",
+      "label": "Start",
+      "line": 1,
+      "data": {}
+    },
+    "F2": {
+      "node_id": "F2",
+      "node_type": "END",
+      "label": "End",
+      "line": 1,
+      "data": {}
+    },
+    "F3": {
+      "node_id": "F3",
+      "node_type": "FUNCTION",
+      "label": "Run function unnamed_function with N",
+      "line": 1,
+      "data": {
+        "ast_kind": "FunctionNode",
+        "name": "unnamed_function"
+      }
+    },
+    "F4": {
+      "node_id": "F4",
+      "node_type": "FUNCTION",
+      "label": "Run function Hanoi with Discs, Source, Auxiliary, Destination",
+      "line": 2,
+      "data": {
+        "ast_kind": "FunctionNode",
+        "name": "Hanoi"
+      }
+    },
+    "F5": {
+      "node_id": "F5",
+      "node_type": "DECISION",
+      "label": "Discs is equal to 1?",
+      "line": 3,
+      "data": {
+        "ast_kind": "IfNode"
+      }
+    },
+    "F6": {
+      "node_id": "F6",
+      "node_type": "OUTPUT",
+      "label": "Display \"Move disk from {Source} to {Destination}\"",
+      "line": 4,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F7": {
+      "node_id": "F7",
+      "node_type": "CALL",
+      "label": "Call Hanoi with Discs minus 1, Source, Destination, Auxiliary",
+      "line": 6,
+      "data": {
+        "ast_kind": "CallNode"
+      }
+    },
+    "F8": {
+      "node_id": "F8",
+      "node_type": "OUTPUT",
+      "label": "Display \"Move disk from {Source} to {Destination}\"",
+      "line": 8,
+      "data": {
+        "ast_kind": "OutputNode"
+      }
+    },
+    "F9": {
+      "node_id": "F9",
+      "node_type": "CALL",
+      "label": "Call Hanoi with Discs minus 1, Auxiliary, Source, Destination",
+      "line": 10,
+      "data": {
+        "ast_kind": "CallNode"
+      }
+    },
+    "F10": {
+      "node_id": "F10",
+      "node_type": "CALL",
+      "label": "Call Hanoi with N, \"A\", \"B\", \"C\"",
+      "line": 14,
+      "data": {
+        "ast_kind": "CallNode"
+      }
+    }
+  },
+  "edges": [
+    {
+      "source": "F5",
+      "target": "F6",
+      "label": "TRUE"
+    },
+    {
+      "source": "F7",
+      "target": "F8",
+      "label": "NEXT"
+    },
+    {
+      "source": "F8",
+      "target": "F9",
+      "label": "NEXT"
+    },
+    {
+      "source": "F5",
+      "target": "F7",
+      "label": "FALSE"
+    },
+    {
+      "source": "F4",
+      "target": "F5",
+      "label": "BODY"
+    },
+    {
+      "source": "F6",
+      "target": "F10",
+      "label": "NEXT"
+    },
+    {
+      "source": "F9",
+      "target": "F10",
+      "label": "NEXT"
+    },
+    {
+      "source": "F3",
+      "target": "F4",
+      "label": "BODY"
+    },
+    {
+      "source": "F1",
+      "target": "F3",
+      "label": "NEXT"
+    },
+    {
+      "source": "F10",
+      "target": "F2",
+      "label": "NEXT"
+    }
+  ],
+  "structured_program": {
+    "kind": "ProgramNode",
+    "line": 1,
+    "body": [
+      {
+        "kind": "FunctionNode",
+        "line": 1,
+        "name": "unnamed_function",
+        "parameters": [
+          {
+            "kind": "ParameterNode",
+            "line": 1,
+            "name": "N",
+            "declared_type": null
+          }
+        ],
+        "body": {
+          "kind": "BlockNode",
+          "line": 2,
+          "statements": [
+            {
+              "kind": "FunctionNode",
+              "line": 2,
+              "name": "Hanoi",
+              "parameters": [
+                {
+                  "kind": "ParameterNode",
+                  "line": 2,
+                  "name": "Discs",
+                  "declared_type": null
+                },
+                {
+                  "kind": "ParameterNode",
+                  "line": 2,
+                  "name": "Source",
+                  "declared_type": null
+                },
+                {
+                  "kind": "ParameterNode",
+                  "line": 2,
+                  "name": "Auxiliary",
+                  "declared_type": null
+                },
+                {
+                  "kind": "ParameterNode",
+                  "line": 2,
+                  "name": "Destination",
+                  "declared_type": null
+                }
+              ],
+              "body": {
+                "kind": "BlockNode",
+                "line": 3,
+                "statements": [
+                  {
+                    "kind": "IfNode",
+                    "line": 3,
+                    "condition": {
+                      "kind": "BinaryNode",
+                      "line": 3,
+                      "operator": "==",
+                      "left": {
+                        "kind": "IdentifierNode",
+                        "line": 3,
+                        "name": "Discs"
+                      },
+                      "right": {
+                        "kind": "LiteralNode",
+                        "line": 3,
+                        "value": 1,
+                        "data_type": "INTEGER"
+                      }
+                    },
+                    "then_body": {
+                      "kind": "BlockNode",
+                      "line": 4,
+                      "statements": [
+                        {
+                          "kind": "OutputNode",
+                          "line": 4,
+                          "expression": {
+                            "kind": "LiteralNode",
+                            "line": 4,
+                            "value": "Move disk from {Source} to {Destination}",
+                            "data_type": "STRING"
+                          }
+                        }
+                      ]
+                    },
+                    "else_if": [],
+                    "else_body": {
+                      "kind": "BlockNode",
+                      "line": 6,
+                      "statements": [
+                        {
+                          "kind": "CallNode",
+                          "line": 6,
+                          "name": "Hanoi",
+                          "arguments": [
+                            {
+                              "kind": "BinaryNode",
+                              "line": 6,
+                              "operator": "-",
+                              "left": {
+                                "kind": "IdentifierNode",
+                                "line": 6,
+                                "name": "Discs"
+                              },
+                              "right": {
+                                "kind": "LiteralNode",
+                                "line": 6,
+                                "value": 1,
+                                "data_type": "INTEGER"
+                              }
+                            },
+                            {
+                              "kind": "IdentifierNode",
+                              "line": 6,
+                              "name": "Source"
+                            },
+                            {
+                              "kind": "IdentifierNode",
+                              "line": 6,
+                              "name": "Destination"
+                            },
+                            {
+                              "kind": "IdentifierNode",
+                              "line": 6,
+                              "name": "Auxiliary"
+                            }
+                          ]
+                        },
+                        {
+                          "kind": "OutputNode",
+                          "line": 8,
+                          "expression": {
+                            "kind": "LiteralNode",
+                            "line": 8,
+                            "value": "Move disk from {Source} to {Destination}",
+                            "data_type": "STRING"
+                          }
+                        },
+                        {
+                          "kind": "CallNode",
+                          "line": 10,
+                          "name": "Hanoi",
+                          "arguments": [
+                            {
+                              "kind": "BinaryNode",
+                              "line": 10,
+                              "operator": "-",
+                              "left": {
+                                "kind": "IdentifierNode",
+                                "line": 10,
+                                "name": "Discs"
+                              },
+                              "right": {
+                                "kind": "LiteralNode",
+                                "line": 10,
+                                "value": 1,
+                                "data_type": "INTEGER"
+                              }
+                            },
+                            {
+                              "kind": "IdentifierNode",
+                              "line": 10,
+                              "name": "Auxiliary"
+                            },
+                            {
+                              "kind": "IdentifierNode",
+                              "line": 10,
+                              "name": "Source"
+                            },
+                            {
+                              "kind": "IdentifierNode",
+                              "line": 10,
+                              "name": "Destination"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "CallNode",
+              "line": 14,
+              "name": "Hanoi",
+              "arguments": [
+                {
+                  "kind": "IdentifierNode",
+                  "line": 14,
+                  "name": "N"
+                },
+                {
+                  "kind": "LiteralNode",
+                  "line": 14,
+                  "value": "A",
+                  "data_type": "STRING"
+                },
+                {
+                  "kind": "LiteralNode",
+                  "line": 14,
+                  "value": "B",
+                  "data_type": "STRING"
+                },
+                {
+                  "kind": "LiteralNode",
+                  "line": 14,
+                  "value": "C",
+                  "data_type": "STRING"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

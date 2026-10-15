@@ -1,0 +1,8 @@
+# Given a square grid of numbers (N×N), calculate the sum of the numbers that lie on the main diagonal from top-left to bottom-right
+FUNCTION SUM_DIAGONAL(grid)
+  sum = 0
+  FOR i FROM 0 TO LENGTH(grid) - 1
+    sum += grid[i][i]
+  END FOR
+  RETURN sum
+END FUNCTION

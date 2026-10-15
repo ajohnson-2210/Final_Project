@@ -1,0 +1,70 @@
+{
+  "audit_schema": "SEMANTIC_RULE_FAMILIES_V1",
+  "profile": "GENERIC_COMPATIBILITY",
+  "source_modified": true,
+  "transformation_count": 5,
+  "transformations": [
+    {
+      "line": 2,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    diagonal_sum = 0",
+      "canonical": "    diagonal_sum <- 0",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 4,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "        diagonal_sum = diagonal_sum + matrix[i][i]",
+      "canonical": "        diagonal_sum <- diagonal_sum + matrix[i][i]",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "BLOCK_TERMINATOR",
+      "branch": "SPACED_END_TO_OPEN_BLOCK",
+      "source": "FUNCTION SumMainDiagonal(matrix, N):\n    diagonal_sum <- 0\n    FOR i FROM 0 TO N - 1 DO\n        diagonal_sum <- diagonal_sum + matrix[i][i]\n    END FOR\n    RETURN diagonal_sum\nEND FUNCTION",
+      "canonical": "FUNCTION SumMainDiagonal(matrix, N):\n    diagonal_sum <- 0\n    FOR i FROM 0 TO N - 1 DO\n        diagonal_sum <- diagonal_sum + matrix[i][i]\n    ENDFOR\n    RETURN diagonal_sum\nENDFUNCTION",
+      "evidence": [
+        "a matching block is open at the point of the spaced END phrase"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 1,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "FUNCTION SumMainDiagonal(matrix, N):",
+      "canonical": "FUNCTION SumMainDiagonal ACCEPTS(matrix, N)",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    },
+    {
+      "line": 3,
+      "rule_family": "SOURCE_NORMALISATION",
+      "branch": "GENERIC_EQUIVALENCE",
+      "source": "    FOR i FROM 0 TO N - 1 DO",
+      "canonical": "    FOR i <- IN RANGE 0 TO (N - 1) + 1 DO",
+      "evidence": [
+        "source and canonical target differ by an approved compatibility equivalence"
+      ],
+      "confidence": "structurally_certain",
+      "semantic_change": false
+    }
+  ],
+  "header_comment_removed": true,
+  "header_lines_removed": 1
+}
